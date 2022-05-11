@@ -10,6 +10,7 @@ private:
 	std::string code;
 	std::string id;
 	std::string name;
+    bool exclusive;
 	int x;
 	int y;
 	int w;

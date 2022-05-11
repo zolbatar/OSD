@@ -2,7 +2,6 @@
 #include <thread>
 #include "../OS/OS.h"
 #include "../Input/Input.h"
-#include "../Editor/Editor.h"
 #include "../Tasks/GUI.h"
 #include "../Tasks/DARICWindow.h"
 #include "../Applications/Mandelbrot.h"
@@ -12,7 +11,6 @@
 #include "../Tasks/Desktop.h"
 
 Input* input;
-Editor* editor;
 extern int ScreenWidth;
 extern int ScreenHeight;
 

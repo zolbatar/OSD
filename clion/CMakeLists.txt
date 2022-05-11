@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 include(conanbuildinfo.cmake)
 conan_basic_setup()
 
+include_directories("../capstone/include")
+
 find_package(SDL2 REQUIRED)
 link_directories("/Users/daryl/GitHub/lvgl/lib")
 include_directories("/Users/daryl/GitHub/lvgl/src")
@@ -54,6 +56,7 @@ add_executable(
         ../../capstone/arch/AArch64/AArch64Mapping.c ../../capstone/arch/AArch64/AArch64Module.c
         ../../capstone/arch/X86/X86ATTInstPrinter.c ../../capstone/arch/X86/X86Disassembler.c ../../capstone/arch/X86/X86DisassemblerDecoder.c
         ../../capstone/arch/X86/X86IntelInstPrinter.c ../../capstone/arch/X86/X86Mapping.c ../../capstone/arch/X86/X86Module.c
+        ../../capstone/arch/X86/X86InstPrinterCommon.c
         ../../capstone/cs.c ../../capstone/MCInst.c ../../capstone/MCInstrDesc.c ../../capstone/MCRegisterInfo.c
         ../../capstone/SStream.c ../../capstone/utils.c ../../capstone/arch/ARM/ARMDisassembler.c ../../capstone/arch/ARM/ARMInstPrinter.c
         ../../capstone/arch/ARM/ARMMapping.c ../../capstone/arch/ARM/ARMModule.c
