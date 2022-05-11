@@ -34,7 +34,7 @@ std::map<std::string, OSDTask *> OSDTask::tasks;
 OSDTask *GetCurrentTask() {
 #ifndef CLION
     auto mScheduler = CScheduler::Get();
-    auto task = mScheduler->GetCurrentTask();
+    auto task = (OSDTask *)mScheduler->GetCurrentTask();
     if (task->TerminateRequested())
             task->Terminate();
     return (OSDTask*)task;

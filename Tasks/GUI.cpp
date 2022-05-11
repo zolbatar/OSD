@@ -126,11 +126,13 @@ void GUI::Run() {
     }
 
     // Must shut all other tasks down
+#ifdef CLION
     for (auto &t: tasks) {
         if (t.first != "GUI") {
             t.second->Terminate();
         }
     }
+#endif
 }
 
 

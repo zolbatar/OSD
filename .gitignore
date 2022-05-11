@@ -1,0 +1,9 @@
+*.o
+*.d
+*.elf
+*.sdimg
+*.lst
+*.map
+*.img
+
+clion/CMakeCache.txt
