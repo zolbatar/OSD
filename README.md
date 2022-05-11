@@ -25,9 +25,13 @@ TODO
 ----
 
 Structured types
+
 Collections
+
 String allocations (keep string of STORE and LOAD strings (and DATA/CONST), and garbage collect on LOAD?)
+
 INSTALL
-Save/delete allocation space for messages
+
 Deal with messages from dead applications
+
 Nested REPEAT and WHILEs, IFs
