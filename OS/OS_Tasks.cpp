@@ -2,9 +2,7 @@
 #include <iostream>
 
 #ifdef CLION
-
 #include <fstream>
-
 #endif
 
 #include <sstream>
@@ -24,10 +22,8 @@
 
 extern Input *input;
 std::string string_error = "NOT A VALID STRING";
-int64_t task_idx = 0;
 
 #ifdef CLION
-std::map<std::thread::id, OSDTask *> OSDTask::thread_tasks;
 std::map<std::string, OSDTask *> OSDTask::tasks;
 #endif
 
@@ -39,16 +35,16 @@ OSDTask *GetCurrentTask() {
             task->Terminate();
     return (OSDTask*)task;
 #else
-    auto id = std::this_thread::get_id();
+/*    auto id = std::this_thread::get_id();
     auto f = OSDTask::thread_tasks.find(id);
     if (f == OSDTask::thread_tasks.end()) {
-        assert(0);
+    	assert(0);
     }
     auto task = f->second;
     if (task->TerminateRequested()) {
         std::terminate();
     }
-    return task;
+    return task;*/
 #endif
 }
 
@@ -105,17 +101,11 @@ std::string &OSDTask::GetString(int64_t idx) {
 }
 
 void OSDTask::AddAllocation(size_t size, void *m) {
-#ifdef CLION
-    std::lock_guard<std::mutex> guard(allocations_lock);
-#endif
     allocations.insert(std::make_pair(m, size));
 }
 
 void OSDTask::FreeAllocation(void *m) {
     free(m);
-#ifdef CLION
-    std::lock_guard<std::mutex> guard(allocations_lock);
-#endif
     auto f = allocations.find(m);
     if (f == allocations.end())
         return;
@@ -123,9 +113,9 @@ void OSDTask::FreeAllocation(void *m) {
 }
 
 void OSDTask::SendMessage(Messages m, void *data, OSDTask *source) {
-#ifdef CLION
-    std::lock_guard<std::mutex> guard(message_lock);
-#endif
+	while (message_queue.size() >= max_message_queue) {
+		Yield();
+	}
     message_queue.emplace(Message(m, (void *) source, data));
 }
 

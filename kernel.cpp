@@ -8,7 +8,6 @@
 #ifndef CLION
 #include <circle/new.h>
 #endif
-#include "Editor/Editor.h"
 #include "Input/Input.h"
 #include "Chrono/Chrono.h"
 #include "OS/OS.h"

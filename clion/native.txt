@@ -1,624 +1,577 @@
-0x106bc0000:	stp	x29, x30, [sp, #-0xa0]!
-0x106bc0004:	mov	x29, sp
-0x106bc0008:	stp	x19, x20, [sp, #0x10]
-0x106bc000c:	sub	sp, sp, #0x800
-0x106bc0010:	mov	x19, #-0x800
-0x106bc0014:	mov	x20, x29
-0x106bc0018:	mov	x8, #0x3c
-0x106bc001c:	movk	x8, #0x6bc, lsl #16
-0x106bc0020:	movk	x8, #1, lsl #32
-0x106bc0024:	movk	x8, #0, lsl #48
-0x106bc0028:	blr	x8
-0x106bc002c:	mov	sp, x29
-0x106bc0030:	ldp	x19, x20, [sp, #0x10]
-0x106bc0034:	ldp	x29, x30, [sp], #0xa0
-0x106bc0038:	ret	
-0x106bc003c:	stp	x29, x30, [sp, #-0xa0]!
-0x106bc0040:	mov	x29, sp
-0x106bc0044:	str	x19, [sp, #0x10]
-0x106bc0048:	fmov	x8, d8
-0x106bc004c:	str	x8, [sp, #0x60]
-0x106bc0050:	fmov	x8, d9
-0x106bc0054:	str	x8, [sp, #0x68]
-0x106bc0058:	sub	sp, sp, #0x850
-0x106bc005c:	mov	x19, #-0x800
-0x106bc0060:	mov	x9, #4
-0x106bc0064:	sub	x8, x29, #0x808
-0x106bc0068:	str	x9, [x8]
-0x106bc006c:	mov	x9, #0x14
-0x106bc0070:	sub	x8, x29, #0x810
-0x106bc0074:	str	x9, [x8]
-0x106bc0078:	bl	#0x100e040d0
-0x106bc007c:	bl	#0x100e04028
-0x106bc0080:	mov	x9, x0
-0x106bc0084:	str	x9, [x29, x19]
-0x106bc0088:	ldr	x9, [x29, x19]
-0x106bc008c:	sub	x8, x29, #0x818
-0x106bc0090:	str	x9, [x8]
-0x106bc0094:	bl	#0x100e04080
-0x106bc0098:	mov	x9, x0
-0x106bc009c:	str	x9, [x29, x19]
-0x106bc00a0:	ldr	x9, [x29, x19]
-0x106bc00a4:	sub	x8, x29, #0x820
-0x106bc00a8:	str	x9, [x8]
-0x106bc00ac:	bl	#0x100e03da4
-0x106bc00b0:	mov	x9, x0
-0x106bc00b4:	str	x9, [x29, x19]
-0x106bc00b8:	add	x19, x19, #8
-0x106bc00bc:	mov	x9, #0x17
-0x106bc00c0:	str	x9, [x29, x19]
-0x106bc00c4:	add	x19, x19, #8
-0x106bc00c8:	mov	x9, #2
-0x106bc00cc:	str	x9, [x29, x19]
-0x106bc00d0:	ldr	x9, [x29, x19]
-0x106bc00d4:	mov	x0, x9
-0x106bc00d8:	sub	x19, x19, #8
-0x106bc00dc:	ldr	x9, [x29, x19]
-0x106bc00e0:	mov	x1, x9
-0x106bc00e4:	sub	x19, x19, #8
-0x106bc00e8:	ldr	x9, [x29, x19]
-0x106bc00ec:	mov	x2, x9
-0x106bc00f0:	bl	#0x100e02d30
-0x106bc00f4:	mov	x9, x0
-0x106bc00f8:	str	x9, [x29, x19]
-0x106bc00fc:	ldr	x9, [x29, x19]
-0x106bc0100:	mov	x0, x9
-0x106bc0104:	bl	#0x100e031f0
-0x106bc0108:	mov	x9, x0
-0x106bc010c:	sub	x8, x29, #0x828
-0x106bc0110:	str	x9, [x8]
-0x106bc0114:	sub	x8, x29, #0x820
-0x106bc0118:	ldr	x9, [x8]
-0x106bc011c:	str	x9, [x29, x19]
-0x106bc0120:	add	x19, x19, #8
-0x106bc0124:	mov	x8, #0xcccd
-0x106bc0128:	movk	x8, #0xcccc, lsl #16
-0x106bc012c:	movk	x8, #0xcccc, lsl #32
-0x106bc0130:	movk	x8, #0x3fdc, lsl #48
-0x106bc0134:	fmov	d8, x8
-0x106bc0138:	fmov	d9, d8
-0x106bc013c:	sub	x19, x19, #8
-0x106bc0140:	ldr	x9, [x29, x19]
-0x106bc0144:	scvtf	d8, x9
-0x106bc0148:	fmov	x8, d8
-0x106bc014c:	str	x8, [x29, x19]
-0x106bc0150:	add	x19, x19, #8
-0x106bc0154:	fmov	d8, d9
-0x106bc0158:	sub	x19, x19, #8
-0x106bc015c:	ldr	x8, [x29, x19]
-0x106bc0160:	fmov	d9, x8
-0x106bc0164:	fmul	d8, d9, d8
-0x106bc0168:	fcvtzs	x9, d8
-0x106bc016c:	sub	x8, x29, #0x830
-0x106bc0170:	str	x9, [x8]
-0x106bc0174:	mov	x9, #0xb4
-0x106bc0178:	str	x9, [x29, x19]
-0x106bc017c:	add	x19, x19, #8
-0x106bc0180:	sub	x8, x29, #0x828
-0x106bc0184:	ldr	x9, [x8]
-0x106bc0188:	str	x9, [x29, x19]
-0x106bc018c:	add	x19, x19, #8
-0x106bc0190:	mov	x9, #6
-0x106bc0194:	sub	x19, x19, #8
-0x106bc0198:	ldr	x10, [x29, x19]
-0x106bc019c:	mul	x9, x10, x9
-0x106bc01a0:	sub	x19, x19, #8
-0x106bc01a4:	ldr	x10, [x29, x19]
-0x106bc01a8:	sub	x9, x10, x9
-0x106bc01ac:	scvtf	d8, x9
-0x106bc01b0:	fmov	x8, d8
-0x106bc01b4:	sub	x18, x29, #0x838
-0x106bc01b8:	str	x8, [x18]
-0x106bc01bc:	fmov	d0, d8
-0x106bc01c0:	bl	#0x100e02114
-0x106bc01c4:	fmov	d8, d0
-0x106bc01c8:	fmov	d0, d8
-0x106bc01cc:	bl	#0x100e0203c
-0x106bc01d0:	fmov	d8, d0
-0x106bc01d4:	fmov	x8, d8
-0x106bc01d8:	str	x8, [x29, x19]
-0x106bc01dc:	add	x19, x19, #8
-0x106bc01e0:	sub	x8, x29, #0x830
-0x106bc01e4:	ldr	x9, [x8]
-0x106bc01e8:	scvtf	d8, x9
-0x106bc01ec:	sub	x19, x19, #8
-0x106bc01f0:	ldr	x8, [x29, x19]
-0x106bc01f4:	fmov	d9, x8
-0x106bc01f8:	fmul	d8, d9, d8
-0x106bc01fc:	fcvtzs	x9, d8
-0x106bc0200:	sub	x8, x29, #0x840
-0x106bc0204:	str	x9, [x8]
-0x106bc0208:	sub	x18, x29, #0x838
-0x106bc020c:	ldr	x8, [x18]
-0x106bc0210:	fmov	d8, x8
-0x106bc0214:	fmov	d0, d8
-0x106bc0218:	bl	#0x100e02114
-0x106bc021c:	fmov	d8, d0
-0x106bc0220:	fmov	d0, d8
-0x106bc0224:	bl	#0x100e02084
-0x106bc0228:	fmov	d8, d0
-0x106bc022c:	fmov	x8, d8
-0x106bc0230:	str	x8, [x29, x19]
-0x106bc0234:	add	x19, x19, #8
-0x106bc0238:	sub	x8, x29, #0x830
-0x106bc023c:	ldr	x9, [x8]
-0x106bc0240:	scvtf	d8, x9
-0x106bc0244:	sub	x19, x19, #8
-0x106bc0248:	ldr	x8, [x29, x19]
-0x106bc024c:	fmov	d9, x8
-0x106bc0250:	fmul	d8, d9, d8
-0x106bc0254:	fcvtzs	x9, d8
-0x106bc0258:	sub	x8, x29, #0x848
-0x106bc025c:	str	x9, [x8]
-0x106bc0260:	mov	x9, #0
-0x106bc0264:	str	x9, [x29, x19]
-0x106bc0268:	add	x19, x19, #8
-0x106bc026c:	mov	x9, #0xff
-0x106bc0270:	str	x9, [x29, x19]
-0x106bc0274:	add	x19, x19, #8
-0x106bc0278:	str	x9, [x29, x19]
-0x106bc027c:	ldr	x9, [x29, x19]
-0x106bc0280:	mov	x0, x9
-0x106bc0284:	sub	x19, x19, #8
-0x106bc0288:	ldr	x9, [x29, x19]
-0x106bc028c:	mov	x1, x9
-0x106bc0290:	sub	x19, x19, #8
-0x106bc0294:	ldr	x9, [x29, x19]
-0x106bc0298:	mov	x2, x9
-0x106bc029c:	bl	#0x100e040f0
-0x106bc02a0:	sub	x8, x29, #0x820
-0x106bc02a4:	ldr	x9, [x8]
-0x106bc02a8:	str	x9, [x29, x19]
-0x106bc02ac:	add	x19, x19, #8
-0x106bc02b0:	mov	x9, #2
-0x106bc02b4:	sub	x19, x19, #8
-0x106bc02b8:	ldr	x10, [x29, x19]
-0x106bc02bc:	scvtf	d8, x9
-0x106bc02c0:	scvtf	d9, x10
-0x106bc02c4:	fdiv	d8, d9, d8
-0x106bc02c8:	fmov	x8, d8
-0x106bc02cc:	str	x8, [x29, x19]
-0x106bc02d0:	add	x19, x19, #8
-0x106bc02d4:	sub	x8, x29, #0x848
-0x106bc02d8:	ldr	x9, [x8]
-0x106bc02dc:	scvtf	d8, x9
-0x106bc02e0:	sub	x19, x19, #8
-0x106bc02e4:	ldr	x8, [x29, x19]
-0x106bc02e8:	fmov	d9, x8
-0x106bc02ec:	fadd	d8, d9, d8
-0x106bc02f0:	fcvtzs	x9, d8
-0x106bc02f4:	str	x9, [x29, x19]
-0x106bc02f8:	add	x19, x19, #8
-0x106bc02fc:	sub	x8, x29, #0x818
-0x106bc0300:	ldr	x9, [x8]
-0x106bc0304:	str	x9, [x29, x19]
-0x106bc0308:	add	x19, x19, #8
-0x106bc030c:	mov	x9, #2
-0x106bc0310:	sub	x19, x19, #8
-0x106bc0314:	ldr	x10, [x29, x19]
-0x106bc0318:	scvtf	d8, x9
-0x106bc031c:	scvtf	d9, x10
-0x106bc0320:	fdiv	d8, d9, d8
-0x106bc0324:	fmov	x8, d8
-0x106bc0328:	str	x8, [x29, x19]
-0x106bc032c:	add	x19, x19, #8
-0x106bc0330:	sub	x8, x29, #0x840
-0x106bc0334:	ldr	x9, [x8]
-0x106bc0338:	scvtf	d8, x9
-0x106bc033c:	sub	x19, x19, #8
-0x106bc0340:	ldr	x8, [x29, x19]
-0x106bc0344:	fmov	d9, x8
-0x106bc0348:	fadd	d8, d9, d8
-0x106bc034c:	fcvtzs	x9, d8
-0x106bc0350:	str	x9, [x29, x19]
-0x106bc0354:	add	x19, x19, #8
-0x106bc0358:	sub	x8, x29, #0x820
-0x106bc035c:	ldr	x9, [x8]
-0x106bc0360:	str	x9, [x29, x19]
-0x106bc0364:	add	x19, x19, #8
-0x106bc0368:	mov	x9, #2
-0x106bc036c:	sub	x19, x19, #8
-0x106bc0370:	ldr	x10, [x29, x19]
-0x106bc0374:	scvtf	d8, x9
-0x106bc0378:	scvtf	d9, x10
-0x106bc037c:	fdiv	d8, d9, d8
-0x106bc0380:	fcvtzs	x9, d8
-0x106bc0384:	str	x9, [x29, x19]
-0x106bc0388:	add	x19, x19, #8
-0x106bc038c:	sub	x8, x29, #0x818
-0x106bc0390:	ldr	x9, [x8]
-0x106bc0394:	str	x9, [x29, x19]
-0x106bc0398:	add	x19, x19, #8
-0x106bc039c:	mov	x9, #2
-0x106bc03a0:	sub	x19, x19, #8
-0x106bc03a4:	ldr	x10, [x29, x19]
-0x106bc03a8:	scvtf	d8, x9
-0x106bc03ac:	scvtf	d9, x10
-0x106bc03b0:	fdiv	d8, d9, d8
-0x106bc03b4:	fcvtzs	x9, d8
-0x106bc03b8:	str	x9, [x29, x19]
-0x106bc03bc:	ldr	x9, [x29, x19]
-0x106bc03c0:	mov	x0, x9
-0x106bc03c4:	sub	x19, x19, #8
-0x106bc03c8:	ldr	x9, [x29, x19]
-0x106bc03cc:	mov	x1, x9
-0x106bc03d0:	sub	x19, x19, #8
-0x106bc03d4:	ldr	x9, [x29, x19]
-0x106bc03d8:	mov	x2, x9
-0x106bc03dc:	sub	x19, x19, #8
-0x106bc03e0:	ldr	x9, [x29, x19]
-0x106bc03e4:	mov	x3, x9
-0x106bc03e8:	bl	#0x100e041f4
-0x106bc03ec:	sub	x8, x29, #0x820
-0x106bc03f0:	ldr	x9, [x8]
-0x106bc03f4:	str	x9, [x29, x19]
-0x106bc03f8:	add	x19, x19, #8
-0x106bc03fc:	mov	x8, #0x3fd8000000000000
-0x106bc0400:	fmov	d8, x8
-0x106bc0404:	fmov	d9, d8
-0x106bc0408:	sub	x19, x19, #8
-0x106bc040c:	ldr	x9, [x29, x19]
-0x106bc0410:	scvtf	d8, x9
-0x106bc0414:	fmov	x8, d8
-0x106bc0418:	str	x8, [x29, x19]
-0x106bc041c:	add	x19, x19, #8
-0x106bc0420:	fmov	d8, d9
-0x106bc0424:	sub	x19, x19, #8
-0x106bc0428:	ldr	x8, [x29, x19]
-0x106bc042c:	fmov	d9, x8
-0x106bc0430:	fmul	d8, d9, d8
-0x106bc0434:	fcvtzs	x9, d8
-0x106bc0438:	sub	x8, x29, #0x830
-0x106bc043c:	str	x9, [x8]
-0x106bc0440:	mov	x9, #0xb4
-0x106bc0444:	str	x9, [x29, x19]
-0x106bc0448:	add	x19, x19, #8
-0x106bc044c:	sub	x8, x29, #0x810
-0x106bc0450:	ldr	x9, [x8]
-0x106bc0454:	str	x9, [x29, x19]
-0x106bc0458:	add	x19, x19, #8
-0x106bc045c:	mov	x9, #6
-0x106bc0460:	sub	x19, x19, #8
-0x106bc0464:	ldr	x10, [x29, x19]
-0x106bc0468:	mul	x9, x10, x9
-0x106bc046c:	sub	x19, x19, #8
-0x106bc0470:	ldr	x10, [x29, x19]
-0x106bc0474:	sub	x9, x10, x9
-0x106bc0478:	scvtf	d8, x9
-0x106bc047c:	fmov	x8, d8
-0x106bc0480:	sub	x18, x29, #0x838
-0x106bc0484:	str	x8, [x18]
-0x106bc0488:	fmov	d0, d8
-0x106bc048c:	bl	#0x100e02114
-0x106bc0490:	fmov	d8, d0
-0x106bc0494:	fmov	d0, d8
-0x106bc0498:	bl	#0x100e0203c
-0x106bc049c:	fmov	d8, d0
-0x106bc04a0:	fmov	x8, d8
-0x106bc04a4:	str	x8, [x29, x19]
-0x106bc04a8:	add	x19, x19, #8
-0x106bc04ac:	sub	x8, x29, #0x830
-0x106bc04b0:	ldr	x9, [x8]
-0x106bc04b4:	scvtf	d8, x9
-0x106bc04b8:	sub	x19, x19, #8
-0x106bc04bc:	ldr	x8, [x29, x19]
-0x106bc04c0:	fmov	d9, x8
-0x106bc04c4:	fmul	d8, d9, d8
-0x106bc04c8:	fcvtzs	x9, d8
-0x106bc04cc:	sub	x8, x29, #0x840
-0x106bc04d0:	str	x9, [x8]
-0x106bc04d4:	sub	x18, x29, #0x838
-0x106bc04d8:	ldr	x8, [x18]
-0x106bc04dc:	fmov	d8, x8
-0x106bc04e0:	fmov	d0, d8
-0x106bc04e4:	bl	#0x100e02114
-0x106bc04e8:	fmov	d8, d0
-0x106bc04ec:	fmov	d0, d8
-0x106bc04f0:	bl	#0x100e02084
-0x106bc04f4:	fmov	d8, d0
-0x106bc04f8:	fmov	x8, d8
-0x106bc04fc:	str	x8, [x29, x19]
-0x106bc0500:	add	x19, x19, #8
-0x106bc0504:	sub	x8, x29, #0x830
-0x106bc0508:	ldr	x9, [x8]
-0x106bc050c:	scvtf	d8, x9
-0x106bc0510:	sub	x19, x19, #8
-0x106bc0514:	ldr	x8, [x29, x19]
-0x106bc0518:	fmov	d9, x8
-0x106bc051c:	fmul	d8, d9, d8
-0x106bc0520:	fcvtzs	x9, d8
-0x106bc0524:	sub	x8, x29, #0x848
-0x106bc0528:	str	x9, [x8]
-0x106bc052c:	mov	x9, #0
-0x106bc0530:	str	x9, [x29, x19]
-0x106bc0534:	add	x19, x19, #8
-0x106bc0538:	mov	x9, #0xff
-0x106bc053c:	str	x9, [x29, x19]
-0x106bc0540:	add	x19, x19, #8
-0x106bc0544:	mov	x9, #0
-0x106bc0548:	str	x9, [x29, x19]
-0x106bc054c:	ldr	x9, [x29, x19]
-0x106bc0550:	mov	x0, x9
-0x106bc0554:	sub	x19, x19, #8
-0x106bc0558:	ldr	x9, [x29, x19]
-0x106bc055c:	mov	x1, x9
-0x106bc0560:	sub	x19, x19, #8
-0x106bc0564:	ldr	x9, [x29, x19]
-0x106bc0568:	mov	x2, x9
-0x106bc056c:	bl	#0x100e040f0
-0x106bc0570:	sub	x8, x29, #0x820
-0x106bc0574:	ldr	x9, [x8]
-0x106bc0578:	str	x9, [x29, x19]
-0x106bc057c:	add	x19, x19, #8
-0x106bc0580:	mov	x9, #2
-0x106bc0584:	sub	x19, x19, #8
-0x106bc0588:	ldr	x10, [x29, x19]
-0x106bc058c:	scvtf	d8, x9
-0x106bc0590:	scvtf	d9, x10
-0x106bc0594:	fdiv	d8, d9, d8
-0x106bc0598:	fmov	x8, d8
-0x106bc059c:	str	x8, [x29, x19]
-0x106bc05a0:	add	x19, x19, #8
-0x106bc05a4:	sub	x8, x29, #0x848
-0x106bc05a8:	ldr	x9, [x8]
-0x106bc05ac:	scvtf	d8, x9
-0x106bc05b0:	sub	x19, x19, #8
-0x106bc05b4:	ldr	x8, [x29, x19]
-0x106bc05b8:	fmov	d9, x8
-0x106bc05bc:	fadd	d8, d9, d8
-0x106bc05c0:	fcvtzs	x9, d8
-0x106bc05c4:	str	x9, [x29, x19]
-0x106bc05c8:	add	x19, x19, #8
-0x106bc05cc:	sub	x8, x29, #0x818
-0x106bc05d0:	ldr	x9, [x8]
-0x106bc05d4:	str	x9, [x29, x19]
-0x106bc05d8:	add	x19, x19, #8
-0x106bc05dc:	mov	x9, #2
-0x106bc05e0:	sub	x19, x19, #8
-0x106bc05e4:	ldr	x10, [x29, x19]
-0x106bc05e8:	scvtf	d8, x9
-0x106bc05ec:	scvtf	d9, x10
-0x106bc05f0:	fdiv	d8, d9, d8
-0x106bc05f4:	fmov	x8, d8
-0x106bc05f8:	str	x8, [x29, x19]
-0x106bc05fc:	add	x19, x19, #8
-0x106bc0600:	sub	x8, x29, #0x840
-0x106bc0604:	ldr	x9, [x8]
-0x106bc0608:	scvtf	d8, x9
-0x106bc060c:	sub	x19, x19, #8
-0x106bc0610:	ldr	x8, [x29, x19]
-0x106bc0614:	fmov	d9, x8
-0x106bc0618:	fadd	d8, d9, d8
-0x106bc061c:	fcvtzs	x9, d8
-0x106bc0620:	str	x9, [x29, x19]
-0x106bc0624:	add	x19, x19, #8
-0x106bc0628:	sub	x8, x29, #0x820
-0x106bc062c:	ldr	x9, [x8]
-0x106bc0630:	str	x9, [x29, x19]
-0x106bc0634:	add	x19, x19, #8
-0x106bc0638:	mov	x9, #2
-0x106bc063c:	sub	x19, x19, #8
-0x106bc0640:	ldr	x10, [x29, x19]
-0x106bc0644:	scvtf	d8, x9
-0x106bc0648:	scvtf	d9, x10
-0x106bc064c:	fdiv	d8, d9, d8
-0x106bc0650:	fcvtzs	x9, d8
-0x106bc0654:	str	x9, [x29, x19]
-0x106bc0658:	add	x19, x19, #8
-0x106bc065c:	sub	x8, x29, #0x818
-0x106bc0660:	ldr	x9, [x8]
-0x106bc0664:	str	x9, [x29, x19]
-0x106bc0668:	add	x19, x19, #8
-0x106bc066c:	mov	x9, #2
-0x106bc0670:	sub	x19, x19, #8
-0x106bc0674:	ldr	x10, [x29, x19]
-0x106bc0678:	scvtf	d8, x9
-0x106bc067c:	scvtf	d9, x10
-0x106bc0680:	fdiv	d8, d9, d8
-0x106bc0684:	fcvtzs	x9, d8
-0x106bc0688:	str	x9, [x29, x19]
-0x106bc068c:	ldr	x9, [x29, x19]
-0x106bc0690:	mov	x0, x9
-0x106bc0694:	sub	x19, x19, #8
-0x106bc0698:	ldr	x9, [x29, x19]
-0x106bc069c:	mov	x1, x9
-0x106bc06a0:	sub	x19, x19, #8
-0x106bc06a4:	ldr	x9, [x29, x19]
-0x106bc06a8:	mov	x2, x9
-0x106bc06ac:	sub	x19, x19, #8
-0x106bc06b0:	ldr	x9, [x29, x19]
-0x106bc06b4:	mov	x3, x9
-0x106bc06b8:	bl	#0x100e041f4
-0x106bc06bc:	sub	x8, x29, #0x820
-0x106bc06c0:	ldr	x9, [x8]
-0x106bc06c4:	str	x9, [x29, x19]
-0x106bc06c8:	add	x19, x19, #8
-0x106bc06cc:	mov	x8, #0x999a
-0x106bc06d0:	movk	x8, #0x9999, lsl #16
-0x106bc06d4:	movk	x8, #0x9999, lsl #32
-0x106bc06d8:	movk	x8, #0x3fc9, lsl #48
-0x106bc06dc:	fmov	d8, x8
-0x106bc06e0:	fmov	d9, d8
-0x106bc06e4:	sub	x19, x19, #8
-0x106bc06e8:	ldr	x9, [x29, x19]
-0x106bc06ec:	scvtf	d8, x9
-0x106bc06f0:	fmov	x8, d8
-0x106bc06f4:	str	x8, [x29, x19]
-0x106bc06f8:	add	x19, x19, #8
-0x106bc06fc:	fmov	d8, d9
-0x106bc0700:	sub	x19, x19, #8
-0x106bc0704:	ldr	x8, [x29, x19]
-0x106bc0708:	fmov	d9, x8
-0x106bc070c:	fmul	d8, d9, d8
-0x106bc0710:	fcvtzs	x9, d8
-0x106bc0714:	sub	x8, x29, #0x830
-0x106bc0718:	str	x9, [x8]
-0x106bc071c:	mov	x9, #0xb4
-0x106bc0720:	str	x9, [x29, x19]
-0x106bc0724:	add	x19, x19, #8
-0x106bc0728:	sub	x8, x29, #0x808
-0x106bc072c:	ldr	x9, [x8]
-0x106bc0730:	str	x9, [x29, x19]
-0x106bc0734:	add	x19, x19, #8
-0x106bc0738:	mov	x9, #6
-0x106bc073c:	sub	x19, x19, #8
-0x106bc0740:	ldr	x10, [x29, x19]
-0x106bc0744:	mul	x9, x10, x9
-0x106bc0748:	sub	x19, x19, #8
-0x106bc074c:	ldr	x10, [x29, x19]
-0x106bc0750:	sub	x9, x10, x9
-0x106bc0754:	scvtf	d8, x9
-0x106bc0758:	fmov	x8, d8
-0x106bc075c:	sub	x18, x29, #0x838
-0x106bc0760:	str	x8, [x18]
-0x106bc0764:	fmov	d0, d8
-0x106bc0768:	bl	#0x100e02114
-0x106bc076c:	fmov	d8, d0
-0x106bc0770:	fmov	d0, d8
-0x106bc0774:	bl	#0x100e0203c
-0x106bc0778:	fmov	d8, d0
-0x106bc077c:	fmov	x8, d8
-0x106bc0780:	str	x8, [x29, x19]
-0x106bc0784:	add	x19, x19, #8
-0x106bc0788:	sub	x8, x29, #0x830
-0x106bc078c:	ldr	x9, [x8]
-0x106bc0790:	scvtf	d8, x9
-0x106bc0794:	sub	x19, x19, #8
-0x106bc0798:	ldr	x8, [x29, x19]
-0x106bc079c:	fmov	d9, x8
-0x106bc07a0:	fmul	d8, d9, d8
-0x106bc07a4:	fcvtzs	x9, d8
-0x106bc07a8:	sub	x8, x29, #0x840
-0x106bc07ac:	str	x9, [x8]
-0x106bc07b0:	sub	x18, x29, #0x838
-0x106bc07b4:	ldr	x8, [x18]
-0x106bc07b8:	fmov	d8, x8
-0x106bc07bc:	fmov	d0, d8
-0x106bc07c0:	bl	#0x100e02114
-0x106bc07c4:	fmov	d8, d0
-0x106bc07c8:	fmov	d0, d8
-0x106bc07cc:	bl	#0x100e02084
-0x106bc07d0:	fmov	d8, d0
-0x106bc07d4:	fmov	x8, d8
-0x106bc07d8:	str	x8, [x29, x19]
-0x106bc07dc:	add	x19, x19, #8
-0x106bc07e0:	sub	x8, x29, #0x830
-0x106bc07e4:	ldr	x9, [x8]
-0x106bc07e8:	scvtf	d8, x9
-0x106bc07ec:	sub	x19, x19, #8
-0x106bc07f0:	ldr	x8, [x29, x19]
-0x106bc07f4:	fmov	d9, x8
-0x106bc07f8:	fmul	d8, d9, d8
-0x106bc07fc:	fcvtzs	x9, d8
-0x106bc0800:	sub	x8, x29, #0x848
-0x106bc0804:	str	x9, [x8]
-0x106bc0808:	mov	x9, #0xff
-0x106bc080c:	str	x9, [x29, x19]
-0x106bc0810:	add	x19, x19, #8
-0x106bc0814:	str	x9, [x29, x19]
-0x106bc0818:	add	x19, x19, #8
-0x106bc081c:	mov	x9, #0
-0x106bc0820:	str	x9, [x29, x19]
-0x106bc0824:	ldr	x9, [x29, x19]
-0x106bc0828:	mov	x0, x9
-0x106bc082c:	sub	x19, x19, #8
-0x106bc0830:	ldr	x9, [x29, x19]
-0x106bc0834:	mov	x1, x9
-0x106bc0838:	sub	x19, x19, #8
-0x106bc083c:	ldr	x9, [x29, x19]
-0x106bc0840:	mov	x2, x9
-0x106bc0844:	bl	#0x100e040f0
-0x106bc0848:	sub	x8, x29, #0x820
-0x106bc084c:	ldr	x9, [x8]
-0x106bc0850:	str	x9, [x29, x19]
-0x106bc0854:	add	x19, x19, #8
-0x106bc0858:	mov	x9, #2
-0x106bc085c:	sub	x19, x19, #8
-0x106bc0860:	ldr	x10, [x29, x19]
-0x106bc0864:	scvtf	d8, x9
-0x106bc0868:	scvtf	d9, x10
-0x106bc086c:	fdiv	d8, d9, d8
-0x106bc0870:	fmov	x8, d8
-0x106bc0874:	str	x8, [x29, x19]
-0x106bc0878:	add	x19, x19, #8
-0x106bc087c:	sub	x8, x29, #0x848
-0x106bc0880:	ldr	x9, [x8]
-0x106bc0884:	scvtf	d8, x9
-0x106bc0888:	sub	x19, x19, #8
-0x106bc088c:	ldr	x8, [x29, x19]
-0x106bc0890:	fmov	d9, x8
-0x106bc0894:	fadd	d8, d9, d8
-0x106bc0898:	fcvtzs	x9, d8
-0x106bc089c:	str	x9, [x29, x19]
-0x106bc08a0:	add	x19, x19, #8
-0x106bc08a4:	sub	x8, x29, #0x818
-0x106bc08a8:	ldr	x9, [x8]
-0x106bc08ac:	str	x9, [x29, x19]
-0x106bc08b0:	add	x19, x19, #8
-0x106bc08b4:	mov	x9, #2
-0x106bc08b8:	sub	x19, x19, #8
-0x106bc08bc:	ldr	x10, [x29, x19]
-0x106bc08c0:	scvtf	d8, x9
-0x106bc08c4:	scvtf	d9, x10
-0x106bc08c8:	fdiv	d8, d9, d8
-0x106bc08cc:	fmov	x8, d8
-0x106bc08d0:	str	x8, [x29, x19]
-0x106bc08d4:	add	x19, x19, #8
-0x106bc08d8:	sub	x8, x29, #0x840
-0x106bc08dc:	ldr	x9, [x8]
-0x106bc08e0:	scvtf	d8, x9
-0x106bc08e4:	sub	x19, x19, #8
-0x106bc08e8:	ldr	x8, [x29, x19]
-0x106bc08ec:	fmov	d9, x8
-0x106bc08f0:	fadd	d8, d9, d8
-0x106bc08f4:	fcvtzs	x9, d8
-0x106bc08f8:	str	x9, [x29, x19]
-0x106bc08fc:	add	x19, x19, #8
-0x106bc0900:	sub	x8, x29, #0x820
-0x106bc0904:	ldr	x9, [x8]
-0x106bc0908:	str	x9, [x29, x19]
-0x106bc090c:	add	x19, x19, #8
-0x106bc0910:	mov	x9, #2
-0x106bc0914:	sub	x19, x19, #8
-0x106bc0918:	ldr	x10, [x29, x19]
-0x106bc091c:	scvtf	d8, x9
-0x106bc0920:	scvtf	d9, x10
-0x106bc0924:	fdiv	d8, d9, d8
-0x106bc0928:	fcvtzs	x9, d8
-0x106bc092c:	str	x9, [x29, x19]
-0x106bc0930:	add	x19, x19, #8
-0x106bc0934:	sub	x8, x29, #0x818
-0x106bc0938:	ldr	x9, [x8]
-0x106bc093c:	str	x9, [x29, x19]
-0x106bc0940:	add	x19, x19, #8
-0x106bc0944:	mov	x9, #2
-0x106bc0948:	sub	x19, x19, #8
-0x106bc094c:	ldr	x10, [x29, x19]
-0x106bc0950:	scvtf	d8, x9
-0x106bc0954:	scvtf	d9, x10
-0x106bc0958:	fdiv	d8, d9, d8
-0x106bc095c:	fcvtzs	x9, d8
-0x106bc0960:	str	x9, [x29, x19]
-0x106bc0964:	ldr	x9, [x29, x19]
-0x106bc0968:	mov	x0, x9
-0x106bc096c:	sub	x19, x19, #8
-0x106bc0970:	ldr	x9, [x29, x19]
-0x106bc0974:	mov	x1, x9
-0x106bc0978:	sub	x19, x19, #8
-0x106bc097c:	ldr	x9, [x29, x19]
-0x106bc0980:	mov	x2, x9
-0x106bc0984:	sub	x19, x19, #8
-0x106bc0988:	ldr	x9, [x29, x19]
-0x106bc098c:	mov	x3, x9
-0x106bc0990:	bl	#0x100e041f4
-0x106bc0994:	bl	#0x100e02218
-0x106bc0998:	mov	x9, #0
-0x106bc099c:	cbz	x9, #0x106bc0078
-0x106bc09a0:	mov	sp, x29
-0x106bc09a4:	ldr	x19, [sp, #0x10]
-0x106bc09a8:	ldr	x8, [sp, #0x60]
-0x106bc09ac:	fmov	d8, x8
-0x106bc09b0:	ldr	x8, [sp, #0x68]
-0x106bc09b4:	fmov	d9, x8
-0x106bc09b8:	ldp	x29, x30, [sp], #0xa0
-0x106bc09bc:	ret	
+0x113ef8000:	sub	rsp, 0x30
+0x113ef8004:	mov	qword ptr [rsp + 0x28], rbx
+0x113ef8009:	mov	qword ptr [rsp + 0x18], r13
+0x113ef800e:	mov	qword ptr [rsp], rbp
+0x113ef8012:	mov	rbp, rsp
+0x113ef8015:	sub	rsp, 0x818
+0x113ef801c:	movabs	rbx, 0xfffffffffffff7f8
+0x113ef8026:	mov	r13, rbp
+0x113ef8029:	movabs	r10, 0x113ef8050
+0x113ef8033:	call	r10
+0x113ef8036:	mov	rsp, rbp
+0x113ef8039:	mov	rbx, qword ptr [rsp + 0x28]
+0x113ef803e:	mov	r13, qword ptr [rsp + 0x18]
+0x113ef8043:	mov	rbp, qword ptr [rsp]
+0x113ef8047:	add	rsp, 0x30
+0x113ef804b:	ret	
+0x113ef804c:	nop	dword ptr [rax]
+0x113ef8050:	sub	rsp, 0x30
+0x113ef8054:	mov	qword ptr [rsp + 0x28], rbx
+0x113ef8059:	mov	qword ptr [rsp], rbp
+0x113ef805d:	mov	rbp, rsp
+0x113ef8060:	sub	rsp, 0x858
+0x113ef8067:	movabs	rbx, 0xfffffffffffff7f8
+0x113ef8071:	mov	eax, 4
+0x113ef8076:	mov	qword ptr [rbp - 0x810], rax
+0x113ef807d:	mov	eax, 0x14
+0x113ef8082:	mov	qword ptr [rbp - 0x818], rax
+0x113ef8089:	nop	dword ptr [rax]
+0x113ef8090:	movabs	r10, 0x10d13b1d0
+0x113ef809a:	call	r10
+0x113ef809d:	movabs	r10, 0x10d13b130
+0x113ef80a7:	call	r10
+0x113ef80aa:	mov	qword ptr [rbx + rbp], rax
+0x113ef80ae:	mov	rax, qword ptr [rbx + rbp]
+0x113ef80b2:	mov	qword ptr [rbp - 0x820], rax
+0x113ef80b9:	movabs	r10, 0x10d13b180
+0x113ef80c3:	call	r10
+0x113ef80c6:	mov	qword ptr [rbx + rbp], rax
+0x113ef80ca:	mov	rax, qword ptr [rbx + rbp]
+0x113ef80ce:	mov	qword ptr [rbp - 0x828], rax
+0x113ef80d5:	movabs	r10, 0x10d13aea0
+0x113ef80df:	call	r10
+0x113ef80e2:	mov	qword ptr [rbx + rbp], rax
+0x113ef80e6:	add	rbx, 8
+0x113ef80ea:	mov	eax, 0x17
+0x113ef80ef:	mov	qword ptr [rbx + rbp], rax
+0x113ef80f3:	add	rbx, 8
+0x113ef80f7:	mov	eax, 2
+0x113ef80fc:	mov	qword ptr [rbx + rbp], rax
+0x113ef8100:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8104:	mov	rdi, rax
+0x113ef8107:	sub	rbx, 8
+0x113ef810b:	mov	rax, qword ptr [rbx + rbp]
+0x113ef810f:	mov	rsi, rax
+0x113ef8112:	sub	rbx, 8
+0x113ef8116:	mov	rax, qword ptr [rbx + rbp]
+0x113ef811a:	mov	rdx, rax
+0x113ef811d:	movabs	r10, 0x10d139e90
+0x113ef8127:	call	r10
+0x113ef812a:	mov	qword ptr [rbx + rbp], rax
+0x113ef812e:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8132:	mov	rdi, rax
+0x113ef8135:	movabs	r10, 0x10d13a390
+0x113ef813f:	call	r10
+0x113ef8142:	mov	qword ptr [rbp - 0x830], rax
+0x113ef8149:	mov	rax, qword ptr [rbp - 0x828]
+0x113ef8150:	mov	qword ptr [rbx + rbp], rax
+0x113ef8154:	add	rbx, 8
+0x113ef8158:	movabs	r10, 0x3fdccccccccccccd
+0x113ef8162:	movq	xmm8, r10
+0x113ef8167:	movsd	xmm9, xmm8
+0x113ef816c:	sub	rbx, 8
+0x113ef8170:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8174:	cvtsi2sd	xmm8, rax
+0x113ef8179:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef817f:	add	rbx, 8
+0x113ef8183:	movsd	xmm8, xmm9
+0x113ef8188:	sub	rbx, 8
+0x113ef818c:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef8193:	mulsd	xmm8, xmm9
+0x113ef8198:	cvttsd2si	rax, xmm8
+0x113ef819d:	mov	qword ptr [rbp - 0x838], rax
+0x113ef81a4:	mov	eax, 0xb4
+0x113ef81a9:	mov	qword ptr [rbx + rbp], rax
+0x113ef81ad:	add	rbx, 8
+0x113ef81b1:	mov	rax, qword ptr [rbp - 0x830]
+0x113ef81b8:	mov	qword ptr [rbx + rbp], rax
+0x113ef81bc:	add	rbx, 8
+0x113ef81c0:	mov	eax, 6
+0x113ef81c5:	sub	rbx, 8
+0x113ef81c9:	mov	r10, qword ptr [rbx + rbp]
+0x113ef81cd:	imul	rax, r10
+0x113ef81d1:	sub	rbx, 8
+0x113ef81d5:	mov	r10, qword ptr [rbx + rbp]
+0x113ef81d9:	sub	rax, r10
+0x113ef81dc:	neg	rax
+0x113ef81df:	cvtsi2sd	xmm8, rax
+0x113ef81e4:	movsd	qword ptr [rbp - 0x840], xmm8
+0x113ef81ed:	movsd	xmm0, xmm8
+0x113ef81f2:	movabs	r11, 0x10d1392a0
+0x113ef81fc:	call	r11
+0x113ef81ff:	movsd	xmm8, xmm0
+0x113ef8204:	movsd	xmm0, xmm8
+0x113ef8209:	movabs	r10, 0x10d1391e0
+0x113ef8213:	call	r10
+0x113ef8216:	movsd	xmm8, xmm0
+0x113ef821b:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef8221:	add	rbx, 8
+0x113ef8225:	mov	rax, qword ptr [rbp - 0x838]
+0x113ef822c:	cvtsi2sd	xmm8, rax
+0x113ef8231:	sub	rbx, 8
+0x113ef8235:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef823c:	mulsd	xmm8, xmm9
+0x113ef8241:	cvttsd2si	rax, xmm8
+0x113ef8246:	mov	qword ptr [rbp - 0x848], rax
+0x113ef824d:	movsd	xmm8, qword ptr [rbp - 0x840]
+0x113ef8256:	movsd	xmm0, xmm8
+0x113ef825b:	movabs	r10, 0x10d1392a0
+0x113ef8265:	call	r10
+0x113ef8268:	movsd	xmm8, xmm0
+0x113ef826d:	movsd	xmm0, xmm8
+0x113ef8272:	movabs	r10, 0x10d139220
+0x113ef827c:	call	r10
+0x113ef827f:	movsd	xmm8, xmm0
+0x113ef8284:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef828a:	add	rbx, 8
+0x113ef828e:	mov	rax, qword ptr [rbp - 0x838]
+0x113ef8295:	cvtsi2sd	xmm8, rax
+0x113ef829a:	sub	rbx, 8
+0x113ef829e:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef82a5:	mulsd	xmm8, xmm9
+0x113ef82aa:	cvttsd2si	rax, xmm8
+0x113ef82af:	mov	qword ptr [rbp - 0x850], rax
+0x113ef82b6:	xor	rax, rax
+0x113ef82b9:	mov	qword ptr [rbx + rbp], rax
+0x113ef82bd:	add	rbx, 8
+0x113ef82c1:	mov	eax, 0xff
+0x113ef82c6:	mov	qword ptr [rbx + rbp], rax
+0x113ef82ca:	add	rbx, 8
+0x113ef82ce:	mov	qword ptr [rbx + rbp], rax
+0x113ef82d2:	mov	rax, qword ptr [rbx + rbp]
+0x113ef82d6:	mov	rdi, rax
+0x113ef82d9:	sub	rbx, 8
+0x113ef82dd:	mov	rax, qword ptr [rbx + rbp]
+0x113ef82e1:	mov	rsi, rax
+0x113ef82e4:	sub	rbx, 8
+0x113ef82e8:	mov	rax, qword ptr [rbx + rbp]
+0x113ef82ec:	mov	rdx, rax
+0x113ef82ef:	movabs	r10, 0x10d13b1f0
+0x113ef82f9:	call	r10
+0x113ef82fc:	mov	rax, qword ptr [rbp - 0x828]
+0x113ef8303:	mov	qword ptr [rbx + rbp], rax
+0x113ef8307:	add	rbx, 8
+0x113ef830b:	mov	eax, 2
+0x113ef8310:	sub	rbx, 8
+0x113ef8314:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8318:	cvtsi2sd	xmm8, rax
+0x113ef831d:	cvtsi2sd	xmm9, r10
+0x113ef8322:	movsd	xmm10, xmm8
+0x113ef8327:	movsd	xmm8, xmm9
+0x113ef832c:	divsd	xmm8, xmm10
+0x113ef8331:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef8337:	add	rbx, 8
+0x113ef833b:	mov	rax, qword ptr [rbp - 0x850]
+0x113ef8342:	cvtsi2sd	xmm8, rax
+0x113ef8347:	sub	rbx, 8
+0x113ef834b:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef8352:	addsd	xmm8, xmm9
+0x113ef8357:	cvttsd2si	rax, xmm8
+0x113ef835c:	mov	qword ptr [rbx + rbp], rax
+0x113ef8360:	add	rbx, 8
+0x113ef8364:	mov	rax, qword ptr [rbp - 0x820]
+0x113ef836b:	mov	qword ptr [rbx + rbp], rax
+0x113ef836f:	add	rbx, 8
+0x113ef8373:	mov	eax, 2
+0x113ef8378:	sub	rbx, 8
+0x113ef837c:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8380:	cvtsi2sd	xmm8, rax
+0x113ef8385:	cvtsi2sd	xmm9, r10
+0x113ef838a:	movsd	xmm10, xmm8
+0x113ef838f:	movsd	xmm8, xmm9
+0x113ef8394:	divsd	xmm8, xmm10
+0x113ef8399:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef839f:	add	rbx, 8
+0x113ef83a3:	mov	rax, qword ptr [rbp - 0x848]
+0x113ef83aa:	cvtsi2sd	xmm8, rax
+0x113ef83af:	sub	rbx, 8
+0x113ef83b3:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef83ba:	addsd	xmm8, xmm9
+0x113ef83bf:	cvttsd2si	rax, xmm8
+0x113ef83c4:	mov	qword ptr [rbx + rbp], rax
+0x113ef83c8:	add	rbx, 8
+0x113ef83cc:	mov	rax, qword ptr [rbp - 0x828]
+0x113ef83d3:	mov	qword ptr [rbx + rbp], rax
+0x113ef83d7:	add	rbx, 8
+0x113ef83db:	mov	eax, 2
+0x113ef83e0:	sub	rbx, 8
+0x113ef83e4:	mov	r10, qword ptr [rbx + rbp]
+0x113ef83e8:	cvtsi2sd	xmm8, rax
+0x113ef83ed:	cvtsi2sd	xmm9, r10
+0x113ef83f2:	movsd	xmm10, xmm8
+0x113ef83f7:	movsd	xmm8, xmm9
+0x113ef83fc:	divsd	xmm8, xmm10
+0x113ef8401:	cvttsd2si	rax, xmm8
+0x113ef8406:	mov	qword ptr [rbx + rbp], rax
+0x113ef840a:	add	rbx, 8
+0x113ef840e:	mov	rax, qword ptr [rbp - 0x820]
+0x113ef8415:	mov	qword ptr [rbx + rbp], rax
+0x113ef8419:	add	rbx, 8
+0x113ef841d:	mov	eax, 2
+0x113ef8422:	sub	rbx, 8
+0x113ef8426:	mov	r10, qword ptr [rbx + rbp]
+0x113ef842a:	cvtsi2sd	xmm8, rax
+0x113ef842f:	cvtsi2sd	xmm9, r10
+0x113ef8434:	movsd	xmm10, xmm8
+0x113ef8439:	movsd	xmm8, xmm9
+0x113ef843e:	divsd	xmm8, xmm10
+0x113ef8443:	cvttsd2si	rax, xmm8
+0x113ef8448:	mov	qword ptr [rbx + rbp], rax
+0x113ef844c:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8450:	mov	rdi, rax
+0x113ef8453:	sub	rbx, 8
+0x113ef8457:	mov	rax, qword ptr [rbx + rbp]
+0x113ef845b:	mov	rsi, rax
+0x113ef845e:	sub	rbx, 8
+0x113ef8462:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8466:	mov	rdx, rax
+0x113ef8469:	sub	rbx, 8
+0x113ef846d:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8471:	mov	rcx, rax
+0x113ef8474:	movabs	r11, 0x10d13b2f0
+0x113ef847e:	call	r11
+0x113ef8481:	mov	rax, qword ptr [rbp - 0x828]
+0x113ef8488:	mov	qword ptr [rbx + rbp], rax
+0x113ef848c:	add	rbx, 8
+0x113ef8490:	movabs	r10, 0x3fd8000000000000
+0x113ef849a:	movq	xmm8, r10
+0x113ef849f:	movsd	xmm9, xmm8
+0x113ef84a4:	sub	rbx, 8
+0x113ef84a8:	mov	rax, qword ptr [rbx + rbp]
+0x113ef84ac:	cvtsi2sd	xmm8, rax
+0x113ef84b1:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef84b7:	add	rbx, 8
+0x113ef84bb:	movsd	xmm8, xmm9
+0x113ef84c0:	sub	rbx, 8
+0x113ef84c4:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef84cb:	mulsd	xmm8, xmm9
+0x113ef84d0:	cvttsd2si	rax, xmm8
+0x113ef84d5:	mov	qword ptr [rbp - 0x838], rax
+0x113ef84dc:	mov	eax, 0xb4
+0x113ef84e1:	mov	qword ptr [rbx + rbp], rax
+0x113ef84e5:	add	rbx, 8
+0x113ef84e9:	mov	rax, qword ptr [rbp - 0x818]
+0x113ef84f0:	mov	qword ptr [rbx + rbp], rax
+0x113ef84f4:	add	rbx, 8
+0x113ef84f8:	mov	eax, 6
+0x113ef84fd:	sub	rbx, 8
+0x113ef8501:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8505:	imul	rax, r10
+0x113ef8509:	sub	rbx, 8
+0x113ef850d:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8511:	sub	rax, r10
+0x113ef8514:	neg	rax
+0x113ef8517:	cvtsi2sd	xmm8, rax
+0x113ef851c:	movsd	qword ptr [rbp - 0x840], xmm8
+0x113ef8525:	movsd	xmm0, xmm8
+0x113ef852a:	movabs	r11, 0x10d1392a0
+0x113ef8534:	call	r11
+0x113ef8537:	movsd	xmm8, xmm0
+0x113ef853c:	movsd	xmm0, xmm8
+0x113ef8541:	movabs	r10, 0x10d1391e0
+0x113ef854b:	call	r10
+0x113ef854e:	movsd	xmm8, xmm0
+0x113ef8553:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef8559:	add	rbx, 8
+0x113ef855d:	mov	rax, qword ptr [rbp - 0x838]
+0x113ef8564:	cvtsi2sd	xmm8, rax
+0x113ef8569:	sub	rbx, 8
+0x113ef856d:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef8574:	mulsd	xmm8, xmm9
+0x113ef8579:	cvttsd2si	rax, xmm8
+0x113ef857e:	mov	qword ptr [rbp - 0x848], rax
+0x113ef8585:	movsd	xmm8, qword ptr [rbp - 0x840]
+0x113ef858e:	movsd	xmm0, xmm8
+0x113ef8593:	movabs	r10, 0x10d1392a0
+0x113ef859d:	call	r10
+0x113ef85a0:	movsd	xmm8, xmm0
+0x113ef85a5:	movsd	xmm0, xmm8
+0x113ef85aa:	movabs	r10, 0x10d139220
+0x113ef85b4:	call	r10
+0x113ef85b7:	movsd	xmm8, xmm0
+0x113ef85bc:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef85c2:	add	rbx, 8
+0x113ef85c6:	mov	rax, qword ptr [rbp - 0x838]
+0x113ef85cd:	cvtsi2sd	xmm8, rax
+0x113ef85d2:	sub	rbx, 8
+0x113ef85d6:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef85dd:	mulsd	xmm8, xmm9
+0x113ef85e2:	cvttsd2si	rax, xmm8
+0x113ef85e7:	mov	qword ptr [rbp - 0x850], rax
+0x113ef85ee:	xor	rax, rax
+0x113ef85f1:	mov	qword ptr [rbx + rbp], rax
+0x113ef85f5:	add	rbx, 8
+0x113ef85f9:	mov	eax, 0xff
+0x113ef85fe:	mov	qword ptr [rbx + rbp], rax
+0x113ef8602:	add	rbx, 8
+0x113ef8606:	xor	rax, rax
+0x113ef8609:	mov	qword ptr [rbx + rbp], rax
+0x113ef860d:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8611:	mov	rdi, rax
+0x113ef8614:	sub	rbx, 8
+0x113ef8618:	mov	rax, qword ptr [rbx + rbp]
+0x113ef861c:	mov	rsi, rax
+0x113ef861f:	sub	rbx, 8
+0x113ef8623:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8627:	mov	rdx, rax
+0x113ef862a:	movabs	r10, 0x10d13b1f0
+0x113ef8634:	call	r10
+0x113ef8637:	mov	rax, qword ptr [rbp - 0x828]
+0x113ef863e:	mov	qword ptr [rbx + rbp], rax
+0x113ef8642:	add	rbx, 8
+0x113ef8646:	mov	eax, 2
+0x113ef864b:	sub	rbx, 8
+0x113ef864f:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8653:	cvtsi2sd	xmm8, rax
+0x113ef8658:	cvtsi2sd	xmm9, r10
+0x113ef865d:	movsd	xmm10, xmm8
+0x113ef8662:	movsd	xmm8, xmm9
+0x113ef8667:	divsd	xmm8, xmm10
+0x113ef866c:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef8672:	add	rbx, 8
+0x113ef8676:	mov	rax, qword ptr [rbp - 0x850]
+0x113ef867d:	cvtsi2sd	xmm8, rax
+0x113ef8682:	sub	rbx, 8
+0x113ef8686:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef868d:	addsd	xmm8, xmm9
+0x113ef8692:	cvttsd2si	rax, xmm8
+0x113ef8697:	mov	qword ptr [rbx + rbp], rax
+0x113ef869b:	add	rbx, 8
+0x113ef869f:	mov	rax, qword ptr [rbp - 0x820]
+0x113ef86a6:	mov	qword ptr [rbx + rbp], rax
+0x113ef86aa:	add	rbx, 8
+0x113ef86ae:	mov	eax, 2
+0x113ef86b3:	sub	rbx, 8
+0x113ef86b7:	mov	r10, qword ptr [rbx + rbp]
+0x113ef86bb:	cvtsi2sd	xmm8, rax
+0x113ef86c0:	cvtsi2sd	xmm9, r10
+0x113ef86c5:	movsd	xmm10, xmm8
+0x113ef86ca:	movsd	xmm8, xmm9
+0x113ef86cf:	divsd	xmm8, xmm10
+0x113ef86d4:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef86da:	add	rbx, 8
+0x113ef86de:	mov	rax, qword ptr [rbp - 0x848]
+0x113ef86e5:	cvtsi2sd	xmm8, rax
+0x113ef86ea:	sub	rbx, 8
+0x113ef86ee:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef86f5:	addsd	xmm8, xmm9
+0x113ef86fa:	cvttsd2si	rax, xmm8
+0x113ef86ff:	mov	qword ptr [rbx + rbp], rax
+0x113ef8703:	add	rbx, 8
+0x113ef8707:	mov	rax, qword ptr [rbp - 0x828]
+0x113ef870e:	mov	qword ptr [rbx + rbp], rax
+0x113ef8712:	add	rbx, 8
+0x113ef8716:	mov	eax, 2
+0x113ef871b:	sub	rbx, 8
+0x113ef871f:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8723:	cvtsi2sd	xmm8, rax
+0x113ef8728:	cvtsi2sd	xmm9, r10
+0x113ef872d:	movsd	xmm10, xmm8
+0x113ef8732:	movsd	xmm8, xmm9
+0x113ef8737:	divsd	xmm8, xmm10
+0x113ef873c:	cvttsd2si	rax, xmm8
+0x113ef8741:	mov	qword ptr [rbx + rbp], rax
+0x113ef8745:	add	rbx, 8
+0x113ef8749:	mov	rax, qword ptr [rbp - 0x820]
+0x113ef8750:	mov	qword ptr [rbx + rbp], rax
+0x113ef8754:	add	rbx, 8
+0x113ef8758:	mov	eax, 2
+0x113ef875d:	sub	rbx, 8
+0x113ef8761:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8765:	cvtsi2sd	xmm8, rax
+0x113ef876a:	cvtsi2sd	xmm9, r10
+0x113ef876f:	movsd	xmm10, xmm8
+0x113ef8774:	movsd	xmm8, xmm9
+0x113ef8779:	divsd	xmm8, xmm10
+0x113ef877e:	cvttsd2si	rax, xmm8
+0x113ef8783:	mov	qword ptr [rbx + rbp], rax
+0x113ef8787:	mov	rax, qword ptr [rbx + rbp]
+0x113ef878b:	mov	rdi, rax
+0x113ef878e:	sub	rbx, 8
+0x113ef8792:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8796:	mov	rsi, rax
+0x113ef8799:	sub	rbx, 8
+0x113ef879d:	mov	rax, qword ptr [rbx + rbp]
+0x113ef87a1:	mov	rdx, rax
+0x113ef87a4:	sub	rbx, 8
+0x113ef87a8:	mov	rax, qword ptr [rbx + rbp]
+0x113ef87ac:	mov	rcx, rax
+0x113ef87af:	movabs	r11, 0x10d13b2f0
+0x113ef87b9:	call	r11
+0x113ef87bc:	mov	rax, qword ptr [rbp - 0x828]
+0x113ef87c3:	mov	qword ptr [rbx + rbp], rax
+0x113ef87c7:	add	rbx, 8
+0x113ef87cb:	movabs	r10, 0x3fc999999999999a
+0x113ef87d5:	movq	xmm8, r10
+0x113ef87da:	movsd	xmm9, xmm8
+0x113ef87df:	sub	rbx, 8
+0x113ef87e3:	mov	rax, qword ptr [rbx + rbp]
+0x113ef87e7:	cvtsi2sd	xmm8, rax
+0x113ef87ec:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef87f2:	add	rbx, 8
+0x113ef87f6:	movsd	xmm8, xmm9
+0x113ef87fb:	sub	rbx, 8
+0x113ef87ff:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef8806:	mulsd	xmm8, xmm9
+0x113ef880b:	cvttsd2si	rax, xmm8
+0x113ef8810:	mov	qword ptr [rbp - 0x838], rax
+0x113ef8817:	mov	eax, 0xb4
+0x113ef881c:	mov	qword ptr [rbx + rbp], rax
+0x113ef8820:	add	rbx, 8
+0x113ef8824:	mov	rax, qword ptr [rbp - 0x810]
+0x113ef882b:	mov	qword ptr [rbx + rbp], rax
+0x113ef882f:	add	rbx, 8
+0x113ef8833:	mov	eax, 6
+0x113ef8838:	sub	rbx, 8
+0x113ef883c:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8840:	imul	rax, r10
+0x113ef8844:	sub	rbx, 8
+0x113ef8848:	mov	r10, qword ptr [rbx + rbp]
+0x113ef884c:	sub	rax, r10
+0x113ef884f:	neg	rax
+0x113ef8852:	cvtsi2sd	xmm8, rax
+0x113ef8857:	movsd	qword ptr [rbp - 0x840], xmm8
+0x113ef8860:	movsd	xmm0, xmm8
+0x113ef8865:	movabs	r11, 0x10d1392a0
+0x113ef886f:	call	r11
+0x113ef8872:	movsd	xmm8, xmm0
+0x113ef8877:	movsd	xmm0, xmm8
+0x113ef887c:	movabs	r10, 0x10d1391e0
+0x113ef8886:	call	r10
+0x113ef8889:	movsd	xmm8, xmm0
+0x113ef888e:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef8894:	add	rbx, 8
+0x113ef8898:	mov	rax, qword ptr [rbp - 0x838]
+0x113ef889f:	cvtsi2sd	xmm8, rax
+0x113ef88a4:	sub	rbx, 8
+0x113ef88a8:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef88af:	mulsd	xmm8, xmm9
+0x113ef88b4:	cvttsd2si	rax, xmm8
+0x113ef88b9:	mov	qword ptr [rbp - 0x848], rax
+0x113ef88c0:	movsd	xmm8, qword ptr [rbp - 0x840]
+0x113ef88c9:	movsd	xmm0, xmm8
+0x113ef88ce:	movabs	r10, 0x10d1392a0
+0x113ef88d8:	call	r10
+0x113ef88db:	movsd	xmm8, xmm0
+0x113ef88e0:	movsd	xmm0, xmm8
+0x113ef88e5:	movabs	r10, 0x10d139220
+0x113ef88ef:	call	r10
+0x113ef88f2:	movsd	xmm8, xmm0
+0x113ef88f7:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef88fd:	add	rbx, 8
+0x113ef8901:	mov	rax, qword ptr [rbp - 0x838]
+0x113ef8908:	cvtsi2sd	xmm8, rax
+0x113ef890d:	sub	rbx, 8
+0x113ef8911:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef8918:	mulsd	xmm8, xmm9
+0x113ef891d:	cvttsd2si	rax, xmm8
+0x113ef8922:	mov	qword ptr [rbp - 0x850], rax
+0x113ef8929:	mov	eax, 0xff
+0x113ef892e:	mov	qword ptr [rbx + rbp], rax
+0x113ef8932:	add	rbx, 8
+0x113ef8936:	mov	qword ptr [rbx + rbp], rax
+0x113ef893a:	add	rbx, 8
+0x113ef893e:	xor	rax, rax
+0x113ef8941:	mov	qword ptr [rbx + rbp], rax
+0x113ef8945:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8949:	mov	rdi, rax
+0x113ef894c:	sub	rbx, 8
+0x113ef8950:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8954:	mov	rsi, rax
+0x113ef8957:	sub	rbx, 8
+0x113ef895b:	mov	rax, qword ptr [rbx + rbp]
+0x113ef895f:	mov	rdx, rax
+0x113ef8962:	movabs	r10, 0x10d13b1f0
+0x113ef896c:	call	r10
+0x113ef896f:	mov	rax, qword ptr [rbp - 0x828]
+0x113ef8976:	mov	qword ptr [rbx + rbp], rax
+0x113ef897a:	add	rbx, 8
+0x113ef897e:	mov	eax, 2
+0x113ef8983:	sub	rbx, 8
+0x113ef8987:	mov	r10, qword ptr [rbx + rbp]
+0x113ef898b:	cvtsi2sd	xmm8, rax
+0x113ef8990:	cvtsi2sd	xmm9, r10
+0x113ef8995:	movsd	xmm10, xmm8
+0x113ef899a:	movsd	xmm8, xmm9
+0x113ef899f:	divsd	xmm8, xmm10
+0x113ef89a4:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef89aa:	add	rbx, 8
+0x113ef89ae:	mov	rax, qword ptr [rbp - 0x850]
+0x113ef89b5:	cvtsi2sd	xmm8, rax
+0x113ef89ba:	sub	rbx, 8
+0x113ef89be:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef89c5:	addsd	xmm8, xmm9
+0x113ef89ca:	cvttsd2si	rax, xmm8
+0x113ef89cf:	mov	qword ptr [rbx + rbp], rax
+0x113ef89d3:	add	rbx, 8
+0x113ef89d7:	mov	rax, qword ptr [rbp - 0x820]
+0x113ef89de:	mov	qword ptr [rbx + rbp], rax
+0x113ef89e2:	add	rbx, 8
+0x113ef89e6:	mov	eax, 2
+0x113ef89eb:	sub	rbx, 8
+0x113ef89ef:	mov	r10, qword ptr [rbx + rbp]
+0x113ef89f3:	cvtsi2sd	xmm8, rax
+0x113ef89f8:	cvtsi2sd	xmm9, r10
+0x113ef89fd:	movsd	xmm10, xmm8
+0x113ef8a02:	movsd	xmm8, xmm9
+0x113ef8a07:	divsd	xmm8, xmm10
+0x113ef8a0c:	movsd	qword ptr [rbx + rbp], xmm8
+0x113ef8a12:	add	rbx, 8
+0x113ef8a16:	mov	rax, qword ptr [rbp - 0x848]
+0x113ef8a1d:	cvtsi2sd	xmm8, rax
+0x113ef8a22:	sub	rbx, 8
+0x113ef8a26:	movsd	xmm9, qword ptr [rbp + rbx]
+0x113ef8a2d:	addsd	xmm8, xmm9
+0x113ef8a32:	cvttsd2si	rax, xmm8
+0x113ef8a37:	mov	qword ptr [rbx + rbp], rax
+0x113ef8a3b:	add	rbx, 8
+0x113ef8a3f:	mov	rax, qword ptr [rbp - 0x828]
+0x113ef8a46:	mov	qword ptr [rbx + rbp], rax
+0x113ef8a4a:	add	rbx, 8
+0x113ef8a4e:	mov	eax, 2
+0x113ef8a53:	sub	rbx, 8
+0x113ef8a57:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8a5b:	cvtsi2sd	xmm8, rax
+0x113ef8a60:	cvtsi2sd	xmm9, r10
+0x113ef8a65:	movsd	xmm10, xmm8
+0x113ef8a6a:	movsd	xmm8, xmm9
+0x113ef8a6f:	divsd	xmm8, xmm10
+0x113ef8a74:	cvttsd2si	rax, xmm8
+0x113ef8a79:	mov	qword ptr [rbx + rbp], rax
+0x113ef8a7d:	add	rbx, 8
+0x113ef8a81:	mov	rax, qword ptr [rbp - 0x820]
+0x113ef8a88:	mov	qword ptr [rbx + rbp], rax
+0x113ef8a8c:	add	rbx, 8
+0x113ef8a90:	mov	eax, 2
+0x113ef8a95:	sub	rbx, 8
+0x113ef8a99:	mov	r10, qword ptr [rbx + rbp]
+0x113ef8a9d:	cvtsi2sd	xmm8, rax
+0x113ef8aa2:	cvtsi2sd	xmm9, r10
+0x113ef8aa7:	movsd	xmm10, xmm8
+0x113ef8aac:	movsd	xmm8, xmm9
+0x113ef8ab1:	divsd	xmm8, xmm10
+0x113ef8ab6:	cvttsd2si	rax, xmm8
+0x113ef8abb:	mov	qword ptr [rbx + rbp], rax
+0x113ef8abf:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8ac3:	mov	rdi, rax
+0x113ef8ac6:	sub	rbx, 8
+0x113ef8aca:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8ace:	mov	rsi, rax
+0x113ef8ad1:	sub	rbx, 8
+0x113ef8ad5:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8ad9:	mov	rdx, rax
+0x113ef8adc:	sub	rbx, 8
+0x113ef8ae0:	mov	rax, qword ptr [rbx + rbp]
+0x113ef8ae4:	mov	rcx, rax
+0x113ef8ae7:	movabs	r11, 0x10d13b2f0
+0x113ef8af1:	call	r11
+0x113ef8af4:	movabs	r10, 0x10d1393c0
+0x113ef8afe:	call	r10
+0x113ef8b01:	xor	rax, rax
+0x113ef8b04:	test	rax, rax
+0x113ef8b07:	je	0x113ef8090
+0x113ef8b0d:	mov	rsp, rbp
+0x113ef8b10:	mov	rbx, qword ptr [rsp + 0x28]
+0x113ef8b15:	mov	rbp, qword ptr [rsp]
+0x113ef8b19:	add	rsp, 0x30
+0x113ef8b1d:	ret	
