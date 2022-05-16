@@ -13,6 +13,7 @@ typedef void* (* THREADFUNCPTR)(void*);
 
 void DesktopStartup()
 {
+#ifndef CLION
 	auto mandelbrot = NEW DARICWindow("MANDELBROT", "Mandelbrot", false, 100, 100, 400, 400);
 	mandelbrot->SetSourceCode(DARIC_mandelbrot);
 	mandelbrot->Start();
@@ -24,4 +25,10 @@ void DesktopStartup()
 	auto clock = NEW DARICWindow("CLOCK", "Clock", false, 1000, 100, 400, 300);
 	clock->SetSourceCode(DARIC_clock);
 	clock->Start();
+#else
+    auto clock = NEW DARICWindow("CLOCK", "Clock", false, 1000, 100, 400, 300);
+    clock->SetSourceCode(DARIC_clock);
+    std::thread t1(&DARICWindow::Start, clock);
+    t1.detach();
+#endif
 }

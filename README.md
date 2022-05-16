@@ -21,6 +21,10 @@ lvgl (for UI)
 MIT license
 https://lvgl.io/
 
+Concurrent Queue
+BSD
+https://github.com/cameron314/concurrentqueue
+
 TODO
 ----
 

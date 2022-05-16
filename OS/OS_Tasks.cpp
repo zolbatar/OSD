@@ -35,16 +35,7 @@ OSDTask *GetCurrentTask() {
             task->Terminate();
     return (OSDTask*)task;
 #else
-/*    auto id = std::this_thread::get_id();
-    auto f = OSDTask::thread_tasks.find(id);
-    if (f == OSDTask::thread_tasks.end()) {
-    	assert(0);
-    }
-    auto task = f->second;
-    if (task->TerminateRequested()) {
-        std::terminate();
-    }
-    return task;*/
+    OSDTask::tasks.end()->second;
 #endif
 }
 
@@ -113,10 +104,10 @@ void OSDTask::FreeAllocation(void *m) {
 }
 
 void OSDTask::SendMessage(Messages m, void *data, OSDTask *source) {
-	while (message_queue.size() >= max_message_queue) {
+	while (message_queue.size_approx() >= max_message_queue) {
 		Yield();
 	}
-    message_queue.emplace(Message(m, (void *) source, data));
+    message_queue.enqueue(Message(m, (void *) source, data));
 }
 
 void OSDTask::SendGUIMessage(Messages m, void *data) {

@@ -61,5 +61,5 @@ add_executable(
         ../../capstone/SStream.c ../../capstone/utils.c ../../capstone/arch/ARM/ARMDisassembler.c ../../capstone/arch/ARM/ARMInstPrinter.c
         ../../capstone/arch/ARM/ARMMapping.c ../../capstone/arch/ARM/ARMModule.c
         ../Input/Input.cpp ../Input/Input.h ../Chrono/Chrono.cpp ../Chrono/Chrono.h
-        ../NativeCompiler/NativeCompiler.cpp ../NativeCompiler/NativeCompiler.h ../IRCompiler/IRConversion.cpp ../Parser/Parser_WHILE.cpp ../IRCompiler/IRWhile.cpp)
+        ../NativeCompiler/NativeCompiler.cpp ../NativeCompiler/NativeCompiler.h ../IRCompiler/IRConversion.cpp ../Parser/Parser_WHILE.cpp ../IRCompiler/IRWhile.cpp ../Concurrent/concurrentqueue.h)
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS} liblvgl.a)
