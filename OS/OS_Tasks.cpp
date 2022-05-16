@@ -27,6 +27,8 @@ std::string string_error = "NOT A VALID STRING";
 #ifdef CLION
 std::map<std::string, OSDTask*> OSDTask::tasks;
 #endif
+std::list<OSDTask*> OSDTask::tasks_list;
+size_t OSDTask::task_id = 0;
 
 OSDTask* GetCurrentTask()
 {

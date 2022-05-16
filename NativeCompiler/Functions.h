@@ -47,6 +47,7 @@ int64_t call_TIMES();
 int64_t call_2D_screenwidth();
 int64_t call_2D_screenheight();
 void call_2D_colour(int64_t r, int64_t g, int64_t b);
+void call_2D_colourbg(int64_t r, int64_t g, int64_t b);
 void call_2D_cls();
 void call_2D_plot(int64_t x, int64_t y);
 void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2);

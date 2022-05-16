@@ -1,6 +1,7 @@
 #include "Desktop.h"
 #include "../OS/OS.h"
 #include "DARICWindow.h"
+#include "TasksWindow.h"
 #include "../Applications/Mandelbrot.h"
 #include "../Applications/Tester.h"
 #include "../Applications/Clock.h"
@@ -12,19 +13,22 @@
 void DesktopStartup()
 {
 #ifndef CLION
-	auto mandelbrot = NEW DARICWindow("MANDELBROT", "Mandelbrot", false, 100, 100, 400, 400);
+	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 100, 400, 400);
 	mandelbrot->SetSourceCode(DARIC_mandelbrot);
 	mandelbrot->Start();
 
-	auto mandelbrot2 = NEW DARICWindow("MANDELBROT2", "Mandelbrot", false, 400, 300, 500, 500);
+	auto mandelbrot2 = NEW DARICWindow("Mandelbrot", false, 400, 300, 500, 500);
 	mandelbrot2->SetSourceCode(DARIC_mandelbrot_single);
 	mandelbrot2->Start();
 
-	auto clock = NEW DARICWindow("CLOCK", "Clock", false, 1000, 100, 400, 300);
+	auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
 	clock->SetSourceCode(DARIC_clock);
 	clock->Start();
+
+	auto tasks = NEW TasksWindow(1200, 400, 300, 500);
+	tasks->Start();
 #else
-    auto clock = NEW DARICWindow("CLOCK", "Clock", false, 1000, 100, 400, 300);
+    auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
     clock->SetSourceCode(DARIC_clock);
     std::thread t1(&DARICWindow::Start, clock);
     t1.detach();

@@ -1,18 +1,11 @@
-#include "../OS/OS.h"
+#pragma once
 #include "GUI.h"
 
 class DARICWindow : public OSDTask {
 public:
-	DARICWindow(std::string id, std::string name, bool exclusive, int x, int y, int w, int h);
+	DARICWindow(std::string name, bool exclusive, int x, int y, int w, int h);
 	void Run();
 	void SetSourceCode(std::string code);
 private:
 	std::string code;
-	std::string id;
-	std::string name;
-    bool exclusive;
-	int x;
-	int y;
-	int w;
-	int h;
 };

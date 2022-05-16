@@ -71,7 +71,6 @@ public:
 
 	void SetName(std::string name)
 	{
-		this->name = name;
 		tasks.insert(std::make_pair(name, this));
 	}
 
@@ -135,6 +134,7 @@ public:
 	}
 
 	std::string GetWindowID() { return id; }
+	std::string GetWindowName() { return name; }
 
 	void* GetWindow() { return w; }
 
@@ -144,16 +144,22 @@ public:
 
 #ifdef CLION
 	static std::map<std::string, OSDTask*> tasks;
-	std::string name;
 #endif
+	static std::list<OSDTask*> tasks_list;
 	const size_t max_message_queue = 1024;
 protected:
 	OSDTask* GetTask(const char* s);
 	moodycamel::ConcurrentQueue<Message> message_queue;
 	start exec;
 	bool exclusive = false;
-private:
+	int d_x;
+	int d_y;
+	int d_w;
+	int d_h;
+	static size_t task_id;
 	std::string id;
+	std::string name;
+private:
 	void* w = NULL;
 	int64_t idx;
 	int64_t string_index = 0;

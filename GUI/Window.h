@@ -5,8 +5,9 @@
 
 class Window {
 public:
-	Window(bool pure_canvas, std::string title, int x, int y, int w, int h);
+	Window(bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h);
 	~Window();
+	lv_obj_t* GetWindow() { return win; }
 	Canvas* GetCanvas() { return canvas; }
 	int64_t GetContentWidth() { return width-(WINDOW_BORDER_WIDTH*2); }
 	int64_t GetContentHeight() { return height-(WINDOW_BORDER_WIDTH*2); }
@@ -25,7 +26,7 @@ private:
 	int height;
 	int z = 0;
 	bool active = true;
-	_lv_obj_t* win;
+	lv_obj_t* win;
 	lv_obj_t* header;
 	Canvas* canvas = NULL;
 	std::list<Control> children;

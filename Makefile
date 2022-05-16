@@ -10,7 +10,7 @@ OBJS    = 	main.o kernel.o \
 			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o \
 			Input/Input.o \
 			GUI/Window.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
-			Tasks/GUI.o Tasks/DARICWindow.o Tasks/Desktop.o \
+			Tasks/GUI.o Tasks/DARICWindow.o Tasks/Desktop.o Tasks/TasksWindow.o \
 			GUI/lvgl.o GUI/Style.o \
 			GUI/Fonts/plex_sans_10.o GUI/Fonts/plex_sans_12.o GUI/Fonts/plex_sans_14.o GUI/Fonts/plex_sans_16.o GUI/Fonts/plex_sans_18.o GUI/Fonts/plex_sans_20.o \
 			GUI/Fonts/symbols_12.o \

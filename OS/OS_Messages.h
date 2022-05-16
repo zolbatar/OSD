@@ -6,6 +6,7 @@ enum class Messages {
 	Canvas_DrawLine,
 	Canvas_PlotPixel,
 	Canvas_SetForegroundColour,
+	Canvas_SetBackgroundColour,
 	WM_CloseWindow,
 	WM_OpenWindow,
 };
@@ -17,6 +18,8 @@ struct WM_OpenWindow {
 	int64_t y;
 	int64_t width;
 	int64_t height;
+	bool canvas;
+	bool fixed;
 };
 
 struct Canvas_PlotPixel {

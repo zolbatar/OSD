@@ -31,6 +31,8 @@ Parser::Parser()
 	generic_functions_ptr.insert(std::make_pair(TokenType::SCREENHEIGHT, (void*)&call_2D_screenheight));
 	generic_functions.insert(std::make_pair(TokenType::COLOUR, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::COLOUR, (void*)&call_2D_colour));
+	generic_functions.insert(std::make_pair(TokenType::COLOURBG, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::COLOURBG, (void*)&call_2D_colourbg));
 	generic_functions.insert(std::make_pair(TokenType::CLS, fp{ TypeNone() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::CLS, (void*)&call_2D_cls));
 	generic_functions.insert(std::make_pair(TokenType::PLOT, fp{ TypeNone(), TypeInteger(), TypeInteger() }));
