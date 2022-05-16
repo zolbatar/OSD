@@ -28,7 +28,7 @@ void DesktopStartup()
 	auto tasks = NEW TasksWindow(1300, 400, 300, 500);
 	tasks->Start();
 #else
-	auto tasks = NEW TasksWindow(1300, 400, 300, 500);
+	auto tasks = NEW TasksWindow(300, 200, 400, 200);
 	std::thread t1(&DARICWindow::Start, tasks);
 	t1.detach();
 

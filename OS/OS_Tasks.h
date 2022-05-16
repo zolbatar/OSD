@@ -71,7 +71,9 @@ public:
 
 	void SetName(std::string name)
 	{
+        this->name = name;
 		tasks.insert(std::make_pair(name, this));
+        tasks_list.push_back(this);
 	}
 
 	void Start()

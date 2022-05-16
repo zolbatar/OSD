@@ -246,7 +246,7 @@ lv_disp_t* GuiCLVGL::DisplayInit(SDL_Window* window)
 {
 	int width, height;
 	SDL_GetWindowSize(window, &width, &height);
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	lv_disp_draw_buf_t* draw_buf = (lv_disp_draw_buf_t*)malloc(sizeof(lv_disp_draw_buf_t));
 	SDL_Texture* texture = (SDL_Texture*)lv_draw_sdl_create_screen_texture(renderer, width, height);

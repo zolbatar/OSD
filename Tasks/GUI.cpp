@@ -11,6 +11,8 @@ extern CUSBHCIDevice *USBHCI;
 
 GUI::GUI()
 {
+    this->name = "GUI";
+
 	// Setup clvgl
 #ifdef CLION
 	clvgl = NEW GuiCLVGL();
@@ -37,6 +39,7 @@ GUI::GUI()
 
 	USBHCI->UpdatePlugAndPlay();
 #endif
+    SetName("GUI");
 }
 
 GUI::~GUI()
@@ -46,7 +49,6 @@ GUI::~GUI()
 
 void GUI::Run()
 {
-	SetName("GUI");
 	while (!clvgl->QuitRequested()) {
 #ifndef CLION
 		clvgl->Update(USBHCI->UpdatePlugAndPlay());
