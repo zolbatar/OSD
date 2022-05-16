@@ -12,7 +12,10 @@ extern lv_style_t style_background;
 extern lv_style_t style_window;
 extern lv_style_t style_window_content;
 extern lv_style_t style_window_header;
+extern lv_style_t style_window_header_inactive;
+extern lv_style_t style_window_header_active;
 extern lv_style_t style_window_furniture;
+extern lv_style_t style_scrollbar;
 extern const lv_font_t* font_normal;
 extern const lv_font_t* font_symbols;
 

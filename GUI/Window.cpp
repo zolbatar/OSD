@@ -9,17 +9,20 @@ Window::Window(bool pure_canvas, std::string title, int x, int y, int w, int h)
 	// Create
 	win = lv_win_create(lv_scr_act(), WINDOW_HEADER_HEIGHT);
 	lv_obj_set_pos(win, x1, y1);
-	lv_obj_set_width(win, width);
-	lv_obj_set_height(win, height+WINDOW_HEADER_HEIGHT);
+	lv_obj_set_width(win, width+20);
+	lv_obj_set_height(win, height+WINDOW_HEADER_HEIGHT+20);
 	lv_obj_add_style(win, &style_window, 0);
 
 	// Header
-	lv_obj_t* header = lv_win_get_header(win);
+	header = lv_win_get_header(win);
 	lv_obj_add_style(header, &style_window_header, 0);
+	lv_obj_add_style(header, &style_window_header_inactive, 0);
 	lv_obj_add_event_cb(header, DragEventHandler, LV_EVENT_PRESSING, NULL);
 
 	// Content
 	auto content = lv_win_get_content(win);
+	lv_obj_set_scrollbar_mode(content, LV_SCROLLBAR_MODE_ON);
+	lv_obj_add_style(content, &style_scrollbar, LV_PART_SCROLLBAR);
 	lv_obj_add_style(content, &style_window_content, 0);
 
 	// Title
@@ -46,6 +49,18 @@ Window::~Window()
 	if (canvas!=NULL)
 		delete canvas;
 	lv_obj_del(win);
+}
+
+void Window::SetActive()
+{
+	lv_obj_add_style(header, &style_window_header_active, 0);
+	this->active = true;
+}
+
+void Window::SetInactive()
+{
+	lv_obj_add_style(header, &style_window_header_inactive, 0);
+	this->active = false;
 }
 
 void Window::CloseClicked(_lv_event_t* e)
