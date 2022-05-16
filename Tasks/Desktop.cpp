@@ -25,12 +25,16 @@ void DesktopStartup()
 	clock->SetSourceCode(DARIC_clock);
 	clock->Start();
 
-	auto tasks = NEW TasksWindow(1200, 400, 300, 500);
+	auto tasks = NEW TasksWindow(1300, 400, 300, 500);
 	tasks->Start();
 #else
-    auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
+	auto tasks = NEW TasksWindow(1300, 400, 300, 500);
+	std::thread t1(&DARICWindow::Start, tasks);
+	t1.detach();
+
+/*    auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
     clock->SetSourceCode(DARIC_clock);
-    std::thread t1(&DARICWindow::Start, clock);
-    t1.detach();
+    std::thread t2(&DARICWindow::Start, clock);
+    t2.detach();*/
 #endif
 }

@@ -38,7 +38,7 @@ void TasksWindow::Run()
 	cont = lv_obj_create(lv_win_get_content(w->GetWindow()));
 	lv_obj_set_style_grid_column_dsc_array(cont, col_dsc, 0);
 	lv_obj_set_style_grid_row_dsc_array(cont, row_dsc, 0);
-//	lv_obj_set_size(cont, 500, 220);
+	lv_obj_set_size(cont, 500, 220);
 	lv_obj_center(cont);
 	lv_obj_set_layout(cont, LV_LAYOUT_GRID);
 
@@ -55,7 +55,7 @@ void TasksWindow::UpdateTasks()
 {
 	lv_obj_clean(cont);
 
-	uint32_t i;
+	uint32_t i = 0;
 	for (auto& task: tasks_list) {
 
 		// Title

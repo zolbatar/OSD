@@ -42,13 +42,13 @@ Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, in
 
 	// Resize button
 	if (!fixed) {
-		auto btn_size = lv_btn_create(content);
+/*		auto btn_size = lv_btn_create(content);
 		lv_obj_align(btn_size, LV_ALIGN_BOTTOM_RIGHT, -scrollbar_padding, -scrollbar_padding);
 		auto label = lv_label_create(btn_size);
 		lv_label_set_text(label, LV_SYMBOL_RESIZE);
 		lv_obj_center(label);
 		lv_obj_set_size(btn_size, WINDOW_FURNITURE_WIDTH-4, WINDOW_FURNITURE_WIDTH-4);
-		lv_obj_add_style(btn_size, &style_window_furniture, LV_STATE_DEFAULT);
+		lv_obj_add_style(btn_size, &style_window_furniture, LV_STATE_DEFAULT);*/
 	}
 }
 

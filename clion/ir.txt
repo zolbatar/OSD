@@ -25,19 +25,19 @@
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10b7e9dd0)
+[Func    ] Call function: (0x10e70ad00)
 [Branch  ] Jump create: (0)
-[Func    ] Call function: (0x10b7e9d20)
+[Func    ] Call function: (0x10e70ac50)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10b7e9c80)
+[Func    ] Call function: (0x10e70abb0)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (2)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10b7e9cd0)
+[Func    ] Call function: (0x10e70ac00)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (3)
 [Argument] Return type is string
-[Func    ] Call function: (0x10b7e99f0)
+[Func    ] Call function: (0x10e70a920)
 [Stack   ] Literal integer 23
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 2
@@ -102,7 +102,7 @@
 [Stack   ] Literal integer 0
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10b7e9d40)
+[Func    ] Call function: (0x10e70ac70)
 [Variable] Load integer (3)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 2
@@ -153,7 +153,7 @@
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10b7e9ed0)
+[Func    ] Call function: (0x10e70ae00)
 [Variable] Load integer (3)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal float 0.375000
@@ -206,7 +206,7 @@
 [Stack   ] Literal integer 60
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10b7e9d40)
+[Func    ] Call function: (0x10e70ac70)
 [Variable] Load integer (3)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 2
@@ -257,7 +257,7 @@
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10b7e9ed0)
+[Func    ] Call function: (0x10e70ae00)
 [Variable] Load integer (3)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal float 0.200000
@@ -310,7 +310,7 @@
 [Stack   ] Literal integer 120
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10b7e9d40)
+[Func    ] Call function: (0x10e70ac70)
 [Variable] Load integer (3)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 2
@@ -361,7 +361,7 @@
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10b7e9ed0)
+[Func    ] Call function: (0x10e70ae00)
 [General ] Yield
 [Stack   ] Literal integer 0
 [Branch  ] Jump on false: (0)
