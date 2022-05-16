@@ -4,13 +4,7 @@
 #include "../GUI/Window.h"
 
 void call_END() {
-    GetCurrentTask()->SendGUIMessage(Messages::WM_CloseWindow, NULL);
-    Window *w;
-    do {
-        GetCurrentTask()->Yield();
-        w = (Window *) GetCurrentTask()->GetWindow();
-    } while (w != NULL);
-    GetCurrentTask()->Terminate();
+	GetCurrentTask()->TerminateTask();
 }
 
 void call_YIELD() {

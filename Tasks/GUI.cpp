@@ -47,14 +47,14 @@ void GUI::Run() {
     while (!clvgl->QuitRequested()) {
 #ifndef CLION
         clvgl->Update(USBHCI->UpdatePlugAndPlay());
+    	Yield();
 #else
         clvgl->Update();
 #endif
-        Yield();
 
         // Process messages
         Message message;
-        if (message_queue.try_dequeue(message)) {
+        while (message_queue.try_dequeue(message)) {
             OSDTask *source = (OSDTask *) message.source;
             switch (message.type) {
 
@@ -122,7 +122,7 @@ void GUI::Run() {
 #ifdef CLION
     for (auto &t: tasks) {
         if (t.first != "GUI") {
-            t.second->Terminate();
+        	t.second->TerminateTask();
         }
     }
 #endif

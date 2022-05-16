@@ -9,8 +9,8 @@ Window::Window(bool pure_canvas, std::string title, int x, int y, int w, int h)
 	// Create
 	win = lv_win_create(lv_scr_act(), WINDOW_HEADER_HEIGHT);
 	lv_obj_set_pos(win, x1, y1);
-	lv_obj_set_width(win, width+20);
-	lv_obj_set_height(win, height+WINDOW_HEADER_HEIGHT+20);
+	lv_obj_set_width(win, width+scrollbar_width+scrollbar_padding+scrollbar_padding);
+	lv_obj_set_height(win, height+WINDOW_HEADER_HEIGHT+scrollbar_width+scrollbar_padding+scrollbar_padding);
 	lv_obj_add_style(win, &style_window, 0);
 
 	// Header

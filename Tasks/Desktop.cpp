@@ -9,8 +9,6 @@
 #include <pthread.h>
 #endif
 
-typedef void* (* THREADFUNCPTR)(void*);
-
 void DesktopStartup()
 {
 #ifndef CLION

@@ -27,11 +27,12 @@ add_executable(
         ../../Tasks/DARICWindow.cpp ../../Tasks/GUI.cpp ../../Tasks/Desktop.cpp
         ../../GUI/Window.cpp ../../GUI/lvgl.cpp ../../GUI/Style.cpp
         ../../GUI/Controls/Control.cpp ../../GUI/Controls/Canvas.cpp
-        ../../GUI/Fonts/lato_16.c
+        ../../GUI/Fonts/plex_sans_10.c
+        ../../GUI/Fonts/plex_sans_12.c
+        ../../GUI/Fonts/plex_sans_14.c
         ../../GUI/Fonts/plex_sans_16.c
-        ../../GUI/Fonts/plex_serif_16.c
-        ../../GUI/Fonts/roboto_16.c
-        ../../GUI/Fonts/open_sans_16.c
+        ../../GUI/Fonts/plex_sans_18.c
+        ../../GUI/Fonts/plex_sans_20.c
         ../../GUI/Fonts/symbols_12.c
         ../../Parser/Parser.cpp ../../Parser/ParserExpression.cpp
         ../../Parser/Parser_IF.cpp ../../Parser/Parser_PRINT.cpp ../../Parser/Parser_DEF.cpp ../../Parser/Parser_PROCCall.cpp

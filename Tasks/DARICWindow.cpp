@@ -36,12 +36,8 @@ void DARICWindow::Run()
 	}
 	while (w==NULL);
 
-	// Compile
+	// Compile (and run)
 	CompileSource(code);
-	SendGUIMessage(Messages::WM_CloseWindow, NULL);
-	do {
-		Yield();
-		w = (Window*)GetWindow();
-	}
-	while (w!=NULL);
+
+	TerminateTask();
 }

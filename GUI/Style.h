@@ -27,3 +27,8 @@ extern const lv_font_t* font_symbols;
 // 0xF00D, 0xF87F,0xF2D0,0xF2D1,0xF065
 
 void SetupLVGLStyles();
+
+const int corner_radius = 4;
+const int corner_radius_inner = 2;
+const int scrollbar_width = 16;
+const int scrollbar_padding = 3;

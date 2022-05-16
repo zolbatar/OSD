@@ -8,3 +8,5 @@
 
 clion/CMakeCache.txt
 .DS_Store
+clion/ir.txt
+clion/native.txt
