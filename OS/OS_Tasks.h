@@ -47,22 +47,23 @@ public:
 	OSDTask()
 #ifndef CLION
 	: CTask()
-#else
 #endif
 	{
-#ifdef CLION
-#endif
 	}
 
-	~OSDTask()
+	~OSDTask();
+
+	size_t CalculateMemoryUsed();
+
+	void SetNameAndAddToList()
 	{
-		DELETE code;
-		if (!allocations.empty()) {
-			//		assert(false);
-		}
-		if (!strings.empty()) {
-			//		assert(false);
-		}
+#ifndef CLION
+		SetName(name.c_str());
+#else
+		SetName(name);
+		tasks.insert(std::make_pair(name, this));
+#endif
+		tasks_list.push_back(this);
 	}
 
 #ifdef CLION
@@ -71,9 +72,7 @@ public:
 
 	void SetName(std::string name)
 	{
-        this->name = name;
-		tasks.insert(std::make_pair(name, this));
-        tasks_list.push_back(this);
+		this->name = name;
 	}
 
 	void Start()
@@ -118,16 +117,8 @@ public:
 
 	void SendMessage(Messages m, void* data, OSDTask* source);
 	void SendGUIMessage(Messages m, void* data);
-
-	void Yield()
-	{
-#ifndef CLION
-		auto mScheduler = CScheduler::Get();
-		mScheduler->Yield();
-#else
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
-#endif
-	}
+	void Yield();
+	void Sleep(int ms);
 
 	void SetWindow(std::string id, void* w)
 	{

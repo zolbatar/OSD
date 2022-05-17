@@ -11,7 +11,7 @@ extern CUSBHCIDevice *USBHCI;
 
 GUI::GUI()
 {
-    this->name = "GUI";
+	this->name = "GUI";
 
 	// Setup clvgl
 #ifdef CLION
@@ -19,6 +19,7 @@ GUI::GUI()
 #else
 	clvgl = NEW GuiCLVGL(screen, interrupt);
 #endif
+	AddAllocation(sizeof(clvgl), clvgl);
 	clvgl->Initialize();
 	SetupLVGLStyles();
 
@@ -39,12 +40,12 @@ GUI::GUI()
 
 	USBHCI->UpdatePlugAndPlay();
 #endif
-    SetName("GUI");
+	SetNameAndAddToList();
 }
 
 GUI::~GUI()
 {
-	DELETE clvgl;
+	FreeAllocation(clvgl);
 }
 
 void GUI::Run()
@@ -75,13 +76,13 @@ void GUI::Run()
 
 					windows.insert(std::make_pair(m->id, w));
 					source->SetWindow(m->id, w);
-					delete m;
+					DELETE m;
 					break;
 				}
 				case Messages::WM_CloseWindow: {
 					auto w = windows.find(source->GetWindowID());
 					if (w!=windows.end()) {
-						delete w->second;
+						DELETE w->second;
 						windows.erase(w);
 						source->SetWindow(source->GetWindowID(), NULL);
 					}
@@ -100,7 +101,7 @@ void GUI::Run()
 					auto w = (Window*)source->GetWindow();
 					if (w!=NULL)
 						w->GetCanvas()->DrawLine(m->x1, m->y1, m->x2, m->y2);
-					delete m;
+					DELETE m;
 					break;
 				}
 				case Messages::Canvas_PlotPixel: {
@@ -108,7 +109,7 @@ void GUI::Run()
 					auto w = (Window*)source->GetWindow();
 					if (w!=NULL)
 						w->GetCanvas()->PlotPixel(m->x, m->y);
-					delete m;
+					DELETE m;
 					break;
 				}
 				case Messages::Canvas_SetForegroundColour: {
@@ -116,7 +117,7 @@ void GUI::Run()
 					auto w = (Window*)source->GetWindow();
 					if (w!=NULL)
 						w->GetCanvas()->SetFG(m->colour);
-					delete m;
+					DELETE m;
 					break;
 				}
 				case Messages::Canvas_SetBackgroundColour: {
@@ -124,9 +125,11 @@ void GUI::Run()
 					auto w = (Window*)source->GetWindow();
 					if (w!=NULL)
 						w->GetCanvas()->SetBG(m->colour);
-					delete m;
+					DELETE m;
 					break;
 				}
+				default:
+					assert(0);
 			}
 		}
 	}

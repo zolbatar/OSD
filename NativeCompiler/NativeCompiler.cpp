@@ -55,7 +55,6 @@ void NativeCompiler::IRToNative(std::list<IRInstruction>* ir_global, std::list<I
 
 	// Global code
 	jit_prolog();
-	//jit_frame(FRAME_SIZE+globals_size);
 	StackInit();
 	jit_movr(JIT_V1, JIT_FP);
 	IRToNativeSection(ir_global);
@@ -747,7 +746,6 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				jit_link(call);
 				jit_prolog();
 
-				//jit_frame(FRAME_SIZE);
 				StackInit();
 				break;
 			}

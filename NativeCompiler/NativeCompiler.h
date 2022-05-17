@@ -21,7 +21,6 @@ extern "C"
 #endif
 
 const int STACK_SIZE = 2048;
-const int FRAME_SIZE = 4096;
 
 class NativeCompiler {
 public:

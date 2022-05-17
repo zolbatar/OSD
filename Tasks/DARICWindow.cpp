@@ -9,6 +9,7 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 	this->d_h = h;
 	this->name = name;
 	this->id = std::to_string(task_id++);
+	SetNameAndAddToList();
 }
 
 void DARICWindow::SetSourceCode(std::string code)
@@ -18,14 +19,8 @@ void DARICWindow::SetSourceCode(std::string code)
 
 void DARICWindow::Run()
 {
-#ifndef CLION
-	SetName(id.c_str());
-#else
-	SetName(id);
-#endif
-
 	// Create Window
-	WM_OpenWindow* m = new WM_OpenWindow();
+	WM_OpenWindow* m = NEW WM_OpenWindow();
 	m->id = id;
 	m->title = name;
 	m->x = d_x;

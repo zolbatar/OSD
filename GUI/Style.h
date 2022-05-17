@@ -16,6 +16,8 @@ extern lv_style_t style_window_header_inactive;
 extern lv_style_t style_window_header_active;
 extern lv_style_t style_window_furniture;
 extern lv_style_t style_scrollbar;
+extern lv_style_t style_bar;
+extern lv_style_t style_bar_indicator;
 
 #define LV_SYMBOL_CLOSE           "\xEF\x80\x8D" // 0xF00D close
 #define LV_SYMBOL_MAXIMISE        "\xEF\x8B\x90" // 0xF2D0 window maximize

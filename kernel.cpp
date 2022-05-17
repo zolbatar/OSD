@@ -15,6 +15,8 @@
 #include "Tasks/DARICWindow.h"
 #include "Tasks/Desktop.h"
 
+size_t kernel_size = 0;
+size_t initial_mem_free = 0;
 int ScreenResX = 1920;
 int ScreenResY = 1080;
 size_t ScreenSize = 0;
@@ -43,6 +45,10 @@ CKernel::CKernel(void)
 
 CStdlibApp::TShutdownMode CKernel::Run(void)
 {
+	// Initial memory and kernel size
+	initial_mem_free = mMemory.GetHeapFreeSpace(HEAP_ANY);
+	kernel_size = mMemory.GetMemSize()-initial_mem_free;
+
 	CString Message;
 
 #ifdef __arm__

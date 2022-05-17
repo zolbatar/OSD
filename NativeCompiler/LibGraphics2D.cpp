@@ -24,7 +24,7 @@ void call_2D_colour(int64_t r, int64_t g, int64_t b)
 {
 	auto c = 0xFF000000+(r << 16)+(g << 8)+b;
 	auto task = GetCurrentTask();
-	auto m = new Canvas_Colour();
+	auto m = NEW Canvas_Colour();
 	m->colour = c;
 	task->SendGUIMessage(Messages::Canvas_SetForegroundColour, m);
 }
@@ -33,7 +33,7 @@ void call_2D_colourbg(int64_t r, int64_t g, int64_t b)
 {
 	auto c = 0xFF000000+(r << 16)+(g << 8)+b;
 	auto task = GetCurrentTask();
-	auto m = new Canvas_Colour();
+	auto m = NEW Canvas_Colour();
 	m->colour = c;
 	task->SendGUIMessage(Messages::Canvas_SetBackgroundColour, m);
 }
@@ -41,7 +41,7 @@ void call_2D_colourbg(int64_t r, int64_t g, int64_t b)
 void call_2D_plot(int64_t x, int64_t y)
 {
 	auto task = GetCurrentTask();
-	auto m = new Canvas_PlotPixel();
+	auto m = NEW Canvas_PlotPixel();
 	m->x = x;
 	m->y = y;
 	task->SendGUIMessage(Messages::Canvas_PlotPixel, m);
@@ -50,7 +50,7 @@ void call_2D_plot(int64_t x, int64_t y)
 void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 {
 	auto task = GetCurrentTask();
-	auto m = new Canvas_DrawLine();
+	auto m = NEW Canvas_DrawLine();
 	m->x1 = x1;
 	m->y1 = y1;
 	m->x2 = x2;

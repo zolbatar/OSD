@@ -25,7 +25,7 @@ void DesktopStartup()
 	clock->SetSourceCode(DARIC_clock);
 	clock->Start();
 
-	auto tasks = NEW TasksWindow(1300, 400, 300, 500);
+	auto tasks = NEW TasksWindow(1300, 400, 500, 500);
 	tasks->Start();
 #else
 	auto tasks = NEW TasksWindow(300, 200, 400, 200);

@@ -13,6 +13,7 @@ OBJS    = 	main.o kernel.o \
 			Tasks/GUI.o Tasks/DARICWindow.o Tasks/Desktop.o Tasks/TasksWindow.o \
 			GUI/lvgl.o GUI/Style.o \
 			GUI/Fonts/plex_sans_10.o GUI/Fonts/plex_sans_12.o GUI/Fonts/plex_sans_14.o GUI/Fonts/plex_sans_16.o GUI/Fonts/plex_sans_18.o GUI/Fonts/plex_sans_20.o \
+			GUI/Fonts/plex_mono_16.o \
 			GUI/Fonts/symbols_12.o \
 			\
 			Tokeniser/Tokeniser.o Tokeniser/TokeniserNumber.o Tokeniser/TokeniserString.o Tokeniser/TokeniserSymbol.o \

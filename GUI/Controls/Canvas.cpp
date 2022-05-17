@@ -8,14 +8,15 @@ Canvas::Canvas(lv_obj_t* parent, int w, int h)
 	auto sz = (lv_img_cf_get_px_size(cf)*w)/8*h;
 	buffer = NEW uint8_t[sz];
 	object = lv_canvas_create(parent);
+	GetCurrentTask()->AddAllocation(sz, buffer);
 	lv_canvas_set_buffer(object, buffer, w, h, cf);
 	lv_canvas_fill_bg(object, bg, LV_OPA_COVER);
 }
 
 Canvas::~Canvas()
 {
+	GetCurrentTask()->FreeAllocation(buffer);
 	lv_obj_clean(object);
-	DELETE buffer;
 }
 
 void Canvas::Clear()
