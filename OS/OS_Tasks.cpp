@@ -21,6 +21,7 @@
 #include <circle/sched/scheduler.h>
 #include <circle/sched/task.h>
 #include <circle/sysconfig.h>
+#include <circle/logger.h>
 #endif
 
 extern Input* input;
@@ -46,24 +47,26 @@ OSDTask::~OSDTask()
 {
 	if (code!=NULL)
 		DELETE code;
-	if (!allocations.empty()) {
-		//		assert(false);
-	}
-	if (!strings.empty()) {
-		//		assert(false);
-	}
 }
 
 void OSDTask::TerminateTask()
 {
 	// Close window
-	SendGUIMessage(Messages::WM_CloseWindow, NULL);
+	auto mess = SendGUIMessage();
+	mess->type = Messages::WM_CloseWindow;
+	mess->source = this;
 	Window* w;
 	do {
 		Yield();
 		w = (Window*)GetWindow();
 	}
 	while (w!=NULL);
+
+	// Remove
+#ifdef CLION
+	tasks.remove(this);
+#endif
+	tasks_list.remove(this);
 
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
@@ -135,30 +138,44 @@ std::string& OSDTask::GetString(int64_t idx)
 
 void OSDTask::AddAllocation(size_t size, void* m)
 {
-	allocations.insert(std::make_pair(m, size));
+	// Scan for hole
+	for (auto it = allocations.begin(); it!=allocations.end(); ++it) {
+		if (it->m==0) {
+			it->m = m;
+			it->sz = size;
+			return;
+		}
+	}
+
+	// Need more space
+	allocations.emplace_back(TaskAllocRef{ m, size });
 }
 
 void OSDTask::FreeAllocation(void* m)
 {
-	free(m);
-	auto f = allocations.find(m);
-	if (f==allocations.end())
-		return;
-	allocations.erase(f);
-}
-
-void OSDTask::SendMessage(Messages m, void* data, OSDTask* source)
-{
-	while (message_queue.size_approx()>=max_message_queue) {
-		Yield();
+	// Go backwards (as more likely to free the last allocation)
+	for (auto it = allocations.rbegin(); it!=allocations.rend(); ++it) {
+		if (it->m==m) {
+			it->m = 0;
+			return;
+		}
 	}
-	message_queue.enqueue(Message(m, (void*)source, data));
 }
 
-void OSDTask::SendGUIMessage(Messages m, void* data)
+Message* OSDTask::SendMessage()
+{
+	while (message_queue_position==MAX_MESSAGE_QUEUE) {
+		Yield();
+		CLogger::Get()->Write("GUI", LogDebug, "Full thread");
+	}
+	Message* m = &message_queue[message_queue_position++];
+	return m;
+}
+
+Message* OSDTask::SendGUIMessage()
 {
 	auto gui = GetTask("GUI");
-	gui->SendMessage(m, data, this);
+	return gui->SendMessage();
 }
 
 OSDTask* OSDTask::GetTask(const char* s)
@@ -284,7 +301,8 @@ size_t OSDTask::CalculateMemoryUsed()
 
 	// Allocation
 	for (auto& m : allocations) {
-		r += m.second;
+		if (m.m!=0)
+			r += m.sz;
 	}
 
 	// Strings

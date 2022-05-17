@@ -17,44 +17,55 @@ int64_t call_2D_screenheight()
 
 void call_2D_cls()
 {
-	GetCurrentTask()->SendGUIMessage(Messages::Canvas_Clear, NULL);
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	mess->type = Messages::Canvas_Clear;
 }
 
 void call_2D_colour(int64_t r, int64_t g, int64_t b)
 {
 	auto c = 0xFF000000+(r << 16)+(g << 8)+b;
 	auto task = GetCurrentTask();
-	auto m = NEW Canvas_Colour();
+	auto mess = task->SendGUIMessage();
+	auto m = (Canvas_Colour*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_SetForegroundColour;
 	m->colour = c;
-	task->SendGUIMessage(Messages::Canvas_SetForegroundColour, m);
 }
 
 void call_2D_colourbg(int64_t r, int64_t g, int64_t b)
 {
 	auto c = 0xFF000000+(r << 16)+(g << 8)+b;
 	auto task = GetCurrentTask();
-	auto m = NEW Canvas_Colour();
+	auto mess = task->SendGUIMessage();
+	auto m = (Canvas_Colour*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_SetBackgroundColour;
 	m->colour = c;
-	task->SendGUIMessage(Messages::Canvas_SetBackgroundColour, m);
 }
 
 void call_2D_plot(int64_t x, int64_t y)
 {
 	auto task = GetCurrentTask();
-	auto m = NEW Canvas_PlotPixel();
+	auto mess = task->SendGUIMessage();
+	auto m = (Canvas_PlotPixel*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_PlotPixel;
 	m->x = x;
 	m->y = y;
-	task->SendGUIMessage(Messages::Canvas_PlotPixel, m);
 }
 
 void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 {
 	auto task = GetCurrentTask();
-	auto m = NEW Canvas_DrawLine();
+	auto mess = task->SendGUIMessage();
+	auto m = (Canvas_DrawLine*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_DrawLine;
 	m->x1 = x1;
 	m->y1 = y1;
 	m->x2 = x2;
 	m->y2 = y2;
-	task->SendGUIMessage(Messages::Canvas_DrawLine, m);
 }
 

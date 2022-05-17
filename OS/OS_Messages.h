@@ -1,5 +1,7 @@
 #pragma once
 
+const int MESSAGE_BLOCK = 512;
+
 // These should really be dynamic, for later modules
 enum class Messages {
 	Canvas_Clear,
@@ -12,8 +14,8 @@ enum class Messages {
 };
 
 struct WM_OpenWindow {
-	std::string id;
-	std::string title;
+	char id[64];
+	char title[256];
 	int64_t x;
 	int64_t y;
 	int64_t width;

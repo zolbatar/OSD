@@ -1,4 +1,9 @@
 #include "DARICWindow.h"
+#include <memory.h>
+#include <string.h>
+#ifndef CLION
+#include <circle/logger.h>
+#endif
 
 DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, int h)
 {
@@ -20,16 +25,18 @@ void DARICWindow::SetSourceCode(std::string code)
 void DARICWindow::Run()
 {
 	// Create Window
-	WM_OpenWindow* m = NEW WM_OpenWindow();
-	m->id = id;
-	m->title = name;
+	auto mess = SendGUIMessage();
+	mess->type = Messages::WM_OpenWindow;
+	mess->source = this;
+	auto m = (WM_OpenWindow*)&mess->data;
+	strcpy(m->id, id.c_str());
+	strcpy(m->title, name.c_str());
 	m->x = d_x;
 	m->y = d_y;
 	m->width = d_w;
 	m->height = d_h;
 	m->canvas = true;
 	m->fixed = true;
-	SendGUIMessage(Messages::WM_OpenWindow, (void*)m);
 
 	// Wait for window to be created
 	Window* w;

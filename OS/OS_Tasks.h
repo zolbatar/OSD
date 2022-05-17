@@ -12,12 +12,20 @@
 #endif
 #define DELETE delete
 
+#include <vector>
 #include <list>
 #include "OS_Messages.h"
 #include "../Concurrent/concurrentqueue.h"
 
+const size_t MAX_MESSAGE_QUEUE = 8192;
+
 extern std::string string_error;
 typedef void (* start)(void);
+
+struct TaskAllocRef {
+	void* m = 0;
+	size_t sz;
+};
 
 struct DataElement {
 	ValueType type;
@@ -26,15 +34,10 @@ struct DataElement {
 	int64_t sv = 0;
 };
 
-class Message {
-public:
-	Message() { }
-
-	Message(Messages type, void* source, void* data)
-			:type(type), source(source), data(data) { };
+struct Message {
 	Messages type;
 	void* source; // This is an OSDTask
-	void* data;
+	uint8_t data[MESSAGE_BLOCK];
 };
 
 #ifndef CLION
@@ -49,6 +52,7 @@ public:
 	: CTask()
 #endif
 	{
+		message_queue = NEW Message[MAX_MESSAGE_QUEUE];
 	}
 
 	~OSDTask();
@@ -94,6 +98,8 @@ public:
 	void RestoreDataLabel(std::string s);
 	int64_t AddString(std::string s);
 	std::string& GetString(int64_t idx);
+
+	// Malloc
 	void AddAllocation(size_t size, void* m);
 	void FreeAllocation(void* m);
 
@@ -115,8 +121,8 @@ public:
 		return exec;
 	}
 
-	void SendMessage(Messages m, void* data, OSDTask* source);
-	void SendGUIMessage(Messages m, void* data);
+	Message* SendMessage();
+	Message* SendGUIMessage();
 	void Yield();
 	void Sleep(int ms);
 
@@ -139,10 +145,10 @@ public:
 	static std::map<std::string, OSDTask*> tasks;
 #endif
 	static std::list<OSDTask*> tasks_list;
-	const size_t max_message_queue = 1024;
 protected:
 	OSDTask* GetTask(const char* s);
-	moodycamel::ConcurrentQueue<Message> message_queue;
+	Message* message_queue;
+	size_t message_queue_position = 0;
 	start exec;
 	bool exclusive = false;
 	int d_x;
@@ -157,12 +163,10 @@ private:
 	int64_t idx;
 	int64_t string_index = 0;
 	size_t data_element_index = 0;
-	std::map<void*, size_t> allocations;
-	std::list<void*> to_be_freed;
+	std::vector<TaskAllocRef> allocations;
 	std::map<int64_t, std::string> strings;
 	std::map<std::string, size_t> data_labels;
 	std::vector<DataElement> data_elements;
 	size_t code_size;
 	uint8_t* code = NULL;
-	static bool first_task;
 };

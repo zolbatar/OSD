@@ -17,16 +17,18 @@ TasksWindow::TasksWindow(int x, int y, int w, int h)
 void TasksWindow::Run()
 {
 	// Create Window
-	WM_OpenWindow* m = new WM_OpenWindow();
-	m->id = "TASKS";
-	m->title = "Task Manager";
+	auto mess = SendGUIMessage();
+	mess->type = Messages::WM_OpenWindow;
+	mess->source = this;
+	auto m = (WM_OpenWindow*)&mess->data;
+	strcpy(m->id, "TASKS");
+	strcpy(m->title, "Task Manager");
 	m->x = d_x;
 	m->y = d_y;
 	m->width = d_w;
 	m->height = d_h;
 	m->canvas = false;
 	m->fixed = false;
-	SendGUIMessage(Messages::WM_OpenWindow, (void*)m);
 
 	// Wait for window to be created
 	Window* w;
@@ -39,7 +41,7 @@ void TasksWindow::Run()
 	// Do stuff
 	while (1) {
 		UpdateTasks();
-		Sleep(1000);
+		Sleep(500);
 	}
 
 	TerminateTask();
@@ -61,7 +63,7 @@ void TasksWindow::UpdateTasks()
 	const int sz = tasks_list.size();
 #endif
 	row_dsc = (lv_coord_t*)malloc(sizeof(lv_coord_t)*sz);
-	for (size_t i = 0; i<sz; i++)
+	for (int i = 0; i<sz; i++)
 		row_dsc[i] = 16;
 	row_dsc[sz] = LV_GRID_TEMPLATE_LAST;
 	static lv_coord_t col_dsc[] = { lv_pct(30), lv_pct(30), lv_pct(40), LV_GRID_TEMPLATE_LAST };
@@ -134,6 +136,7 @@ void TasksWindow::UpdateTasks()
 	size_t i = 4;
 #else
 	size_t i = 0;
+	size_t total_task = 1;
 #endif
 
 	// Show tasks

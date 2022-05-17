@@ -2,6 +2,7 @@
 
 #ifndef CLION
 #include <circle/interrupt.h>
+#include <circle/logger.h>
 #include <circle/usb/usbhcidevice.h>
 extern CScreenDevice* screen;
 extern CInterruptSystem *interrupt;
@@ -19,7 +20,6 @@ GUI::GUI()
 #else
 	clvgl = NEW GuiCLVGL(screen, interrupt);
 #endif
-	AddAllocation(sizeof(clvgl), clvgl);
 	clvgl->Initialize();
 	SetupLVGLStyles();
 
@@ -45,7 +45,7 @@ GUI::GUI()
 
 GUI::~GUI()
 {
-	FreeAllocation(clvgl);
+	DELETE clvgl;
 }
 
 void GUI::Run()
@@ -59,14 +59,17 @@ void GUI::Run()
 #endif
 
 		// Process messages
-		Message message;
-		while (message_queue.try_dequeue(message)) {
-			OSDTask* source = (OSDTask*)message.source;
-			switch (message.type) {
+		for (size_t i = 0; i<message_queue_position; i++) {
+			Message* message = &message_queue[i];
+			OSDTask* source = (OSDTask*)message->source;
+
+//			CLogger::Get()->Write("GUI", LogDebug, "Message received %d %p", message->type, message->source);
+
+			switch (message->type) {
 
 				// Window manager
 				case Messages::WM_OpenWindow: {
-					auto m = (WM_OpenWindow*)message.data;
+					auto m = (WM_OpenWindow*)&message->data;
 					Window* w = new Window(m->canvas, m->fixed, m->title, m->x, m->y, m->width, m->height);
 					w->SetActive();
 
@@ -76,7 +79,6 @@ void GUI::Run()
 
 					windows.insert(std::make_pair(m->id, w));
 					source->SetWindow(m->id, w);
-					DELETE m;
 					break;
 				}
 				case Messages::WM_CloseWindow: {
@@ -97,41 +99,39 @@ void GUI::Run()
 					break;
 				}
 				case Messages::Canvas_DrawLine: {
-					auto m = (Canvas_DrawLine*)message.data;
+					auto m = (Canvas_DrawLine*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					if (w!=NULL)
 						w->GetCanvas()->DrawLine(m->x1, m->y1, m->x2, m->y2);
-					DELETE m;
 					break;
 				}
 				case Messages::Canvas_PlotPixel: {
-					auto m = (Canvas_PlotPixel*)message.data;
+					auto m = (Canvas_PlotPixel*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					if (w!=NULL)
 						w->GetCanvas()->PlotPixel(m->x, m->y);
-					DELETE m;
 					break;
 				}
 				case Messages::Canvas_SetForegroundColour: {
-					auto m = (Canvas_Colour*)message.data;
+					auto m = (Canvas_Colour*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					if (w!=NULL)
 						w->GetCanvas()->SetFG(m->colour);
-					DELETE m;
 					break;
 				}
 				case Messages::Canvas_SetBackgroundColour: {
-					auto m = (Canvas_Colour*)message.data;
+					auto m = (Canvas_Colour*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					if (w!=NULL)
 						w->GetCanvas()->SetBG(m->colour);
-					DELETE m;
 					break;
 				}
 				default:
+					CLogger::Get()->Write("GUI", LogDebug, "Unknown message received %d %p", message->type, message->source);
 					assert(0);
 			}
 		}
+		message_queue_position = 0;
 	}
 
 	// Must shut all other tasks down

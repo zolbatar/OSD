@@ -20,15 +20,9 @@
 
 void OS_Init();
 
-// Memory allocation
-void* osd_malloc(size_t size);
-void osd_free(void* m);
-void* osd_realloc(void* ptr, size_t new_size);
-
 // Strings
 int64_t OS_Strings_Create(std::string& s);
 std::string& OS_Strings_Get(int64_t idx);
 
 // Tasks
 OSDTask* GetCurrentTask();
-
