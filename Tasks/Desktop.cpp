@@ -21,12 +21,14 @@ void DesktopStartup()
 	mandelbrot2->SetSourceCode(DARIC_mandelbrot_single);
 	mandelbrot2->Start();
 
-/*	auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
+	auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
 	clock->SetSourceCode(DARIC_clock);
-	clock->Start();*/
+	clock->Start();
 
 	auto tasks = NEW TasksWindow(1300, 400, 500, 500);
 	tasks->Start();
+
+//	delete these after termination?
 #else
 	auto tasks = NEW TasksWindow(300, 200, 400, 200);
 	std::thread t1(&DARICWindow::Start, tasks);

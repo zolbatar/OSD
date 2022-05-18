@@ -8,12 +8,15 @@
 #ifndef CLION
 #include <circle/new.h>
 #endif
+#include "../Chrono/Chrono.h"
 #include "OS/OS.h"
 #include "Tasks/GUI.h"
 #include "Tasks/DARICWindow.h"
 #include "Tasks/Desktop.h"
-#include "Tasks/Kernel.h"
 
+size_t kernel_size = 0;
+size_t initial_mem_free = 0;
+size_t pre_boot_memory = 0;
 int ScreenResX = 1920;
 int ScreenResY = 1080;
 size_t ScreenSize = 0;
@@ -42,6 +45,13 @@ CKernel::CKernel(void)
 CStdlibApp::TShutdownMode CKernel::Run(void)
 {
 	CString Message;
+	if (!mScheduler.IsActive) {
+		Message.Format("No scheduler available");
+		mLogger.Write("OS/D", LogNotice, Message);
+		while (1);
+	}
+	mScheduler.SuspendNewTasks();
+	OSDTask::boot_task = mScheduler.GetCurrentTask();
 
 #ifdef __arm__
 	mLogger.Write(GetKernelName(), LogNotice, "Defined: ARM");
@@ -64,12 +74,9 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 			mScreen.GetRows());
 	mLogger.Write("OS/D", LogNotice, Message);
 
-	if (!mScheduler.IsActive) {
-		Message.Format("No scheduler available");
-		mLogger.Write("OS/D", LogNotice, Message);
-		while (1);
-	}
-	mScheduler.SuspendNewTasks();
+	// Init clock and input stuff
+	OS_Init();
+	ClockInit();
 
 	/*	CString IPString;
 	mNet.GetConfig()->GetIPAddress()->Format(&IPString);
@@ -77,10 +84,21 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	mTimer.SetTimeZone(0);
 	mTimer.MsDelay(20000);*/
 
-	// We need a kernel to catch memory allocations outside of a normal Task
-	Kernel kernel;
-	kernel.Start();
-	kernel.WaitForTermination();
+	// Initial memory and kernel size
+#ifndef CLION
+	auto memory = CMemorySystem::Get();
+	initial_mem_free = memory->GetHeapFreeSpace(HEAP_ANY);
+	kernel_size = memory->GetMemSize()-initial_mem_free;
+	DumpMemory();
+#else
+	initial_mem_free = 1;
+	kernel_size = 1;
+#endif
+
+	GUI gui;
+	gui.Start();
+	DesktopStartup();
+	gui.WaitForTermination();
 	mLogger.Write("OS/D", LogNotice, "Termination.");
 
 	return ShutdownHalt;

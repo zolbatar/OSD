@@ -26,3 +26,14 @@ std::string& OS_Strings_Get(int64_t idx);
 
 // Tasks
 OSDTask* GetCurrentTask();
+
+struct MemorySummary {
+	size_t total_memory;
+	size_t free_memory;
+	size_t total_task = 0;
+	size_t used;
+	size_t lost;
+};
+
+MemorySummary CalculateMem();
+void DumpMemory();

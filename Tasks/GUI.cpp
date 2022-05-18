@@ -13,6 +13,8 @@ extern CUSBHCIDevice *USBHCI;
 GUI::GUI()
 {
 	this->name = "GUI";
+	message_queue_size = MAX_MESSAGE_QUEUE;
+	message_queue = NEW Message[message_queue_size];
 
 	// Setup clvgl
 #ifdef CLION

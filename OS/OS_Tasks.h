@@ -17,7 +17,8 @@
 #include "OS_Messages.h"
 #include "../Concurrent/concurrentqueue.h"
 
-const size_t MAX_MESSAGE_QUEUE = 8192;
+const size_t MIN_MESSAGE_QUEUE = 64;
+const size_t MAX_MESSAGE_QUEUE = 4096;
 
 extern std::string string_error;
 typedef void (* start)(void);
@@ -52,7 +53,6 @@ public:
 	: CTask()
 #endif
 	{
-		message_queue = NEW Message[MAX_MESSAGE_QUEUE];
 	}
 
 	~OSDTask();
@@ -101,7 +101,7 @@ public:
 
 	// Malloc
 	void AddAllocation(size_t size, void* m);
-	void FreeAllocation(void* m);
+	bool FreeAllocation(void* m);
 
 	void SetStart(start s)
 	{
@@ -145,10 +145,14 @@ public:
 	static std::map<std::string, OSDTask*> tasks;
 #endif
 	static std::list<OSDTask*> tasks_list;
+#ifndef CLION
+	static CTask *boot_task;
+#endif
 protected:
 	OSDTask* GetTask(const char* s);
-	Message* message_queue;
+	Message* message_queue = NULL;
 	size_t message_queue_position = 0;
+	size_t message_queue_size = 0;
 	start exec;
 	bool exclusive = false;
 	int d_x;

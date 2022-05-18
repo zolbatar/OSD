@@ -29,6 +29,8 @@ std::string string_error = "NOT A VALID STRING";
 
 #ifdef CLION
 std::map<std::string, OSDTask*> OSDTask::tasks;
+#else
+CTask *OSDTask::boot_task;
 #endif
 std::list<OSDTask*> OSDTask::tasks_list;
 size_t OSDTask::task_id = 0;
@@ -47,6 +49,8 @@ OSDTask::~OSDTask()
 {
 	if (code!=NULL)
 		DELETE code;
+	if (message_queue!=NULL)
+		DELETE message_queue;
 }
 
 void OSDTask::TerminateTask()
@@ -61,6 +65,8 @@ void OSDTask::TerminateTask()
 		w = (Window*)GetWindow();
 	}
 	while (w!=NULL);
+
+	// Any outstanding allocations?
 
 	// Remove
 #ifdef CLION
@@ -151,20 +157,25 @@ void OSDTask::AddAllocation(size_t size, void* m)
 	allocations.emplace_back(TaskAllocRef{ m, size });
 }
 
-void OSDTask::FreeAllocation(void* m)
+bool OSDTask::FreeAllocation(void* m)
 {
 	// Go backwards (as more likely to free the last allocation)
 	for (auto it = allocations.rbegin(); it!=allocations.rend(); ++it) {
 		if (it->m==m) {
 			it->m = 0;
-			return;
+			return true;
 		}
 	}
+	return false;
 }
 
 Message* OSDTask::SendMessage()
 {
-	while (message_queue_position==MAX_MESSAGE_QUEUE) {
+	if (message_queue==NULL) {
+		message_queue_size = MIN_MESSAGE_QUEUE;
+		message_queue = NEW Message[message_queue_size];
+	}
+	while (message_queue_position==message_queue_size) {
 		Yield();
 		CLogger::Get()->Write("GUI", LogDebug, "Full thread");
 	}
@@ -309,15 +320,6 @@ size_t OSDTask::CalculateMemoryUsed()
 	for (auto& m : strings) {
 		r += m.second.size();
 	}
-
-	// Code size
-	r += code_size;
-
-	// Stack
-	r += STACK_SIZE;
-
-	// This (not sure how accurate this is)
-	r += sizeof(this);
 
 	return r;
 }
