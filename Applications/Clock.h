@@ -6,7 +6,7 @@ const std::string DARIC_clock = R"(Clock()
 DEF Clock()
 	H%=4:M%=20
 	COLOURBG &FF,&FF,&FF
-	REPEAT
+	FOR I%=0 TO 100
 		CLS
 		w%=SCREENWIDTH:h%=SCREENHEIGHT
 		S%=INT(MID$(TIME$,23,2))
@@ -21,5 +21,5 @@ DEF Clock()
 		COLOUR 120,120,120:LINE w%/2,h%/2,w%/2+x%,h%/2+y%
 
 		YIELD
-	UNTIL FALSE
+	NEXT
 ENDDEF)";

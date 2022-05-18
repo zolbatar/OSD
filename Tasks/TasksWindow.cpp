@@ -38,7 +38,7 @@ void TasksWindow::Run()
 	// Do stuff
 	while (1) {
 		UpdateTasks();
-		Sleep(2500);
+		Sleep(500);
 	}
 
 	TerminateTask();
@@ -46,27 +46,65 @@ void TasksWindow::Run()
 
 void TasksWindow::UpdateTasks()
 {
-	if (cont!=NULL)
-		lv_obj_del(cont);
+#ifndef CLION
+	auto m = CalculateMem();
+	used_history.push_back(m.used);
+	if (used_history.size() > 128)
+		used_history.pop_front();
+#endif
+
+	if (cont_col!=NULL)
+		lv_obj_del(cont_col);
 	if (row_dsc!=NULL)
 		free(row_dsc);
 
 	auto w = ((Window*)this->GetWindow())->GetWindow();
 
+	// Vertical container
+	cont_col = lv_obj_create(lv_win_get_content(w));
+	lv_obj_set_width(cont_col, lv_pct(100));
+	lv_obj_set_height(cont_col, lv_pct(100));
+	lv_obj_align(cont_col, LV_ALIGN_TOP_MID, 0, 0);
+	lv_obj_set_flex_flow(cont_col, LV_FLEX_FLOW_COLUMN);
+	lv_obj_add_style(cont_col, &style_grid, LV_STATE_DEFAULT);
+
+	// Memory chart
+	auto chart = lv_chart_create(cont_col);
+	lv_obj_set_flex_grow(chart, 1);
+	lv_obj_center(chart);
+	lv_chart_set_type(chart, LV_CHART_TYPE_BAR);
+	lv_chart_set_point_count(chart, std::min(128, static_cast<int>(used_history.size())));
+	lv_chart_set_axis_tick(chart, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 0, 0, false, 0);
+	lv_chart_set_div_line_count(chart, 0, 0);
+	lv_obj_add_style(chart, &style_chart, LV_STATE_DEFAULT);
+
+	/*Add two data series*/
+	lv_chart_series_t* ser1 = lv_chart_add_series(chart, lv_palette_main(LV_PALETTE_RED), LV_CHART_AXIS_PRIMARY_Y);
+
+	// Set points
+	auto m1 = 0;
+	for (auto& mc : used_history) {
+		auto m = static_cast<int>(mc);
+		lv_chart_set_next_value(chart, ser1, m);
+		if (m>m1) m1 = m;
+	}
+	lv_chart_set_range(chart, LV_CHART_AXIS_PRIMARY_Y, 0, m1);
+
 	// Container
 #ifndef CLION
-	const int sz = tasks_list.size()+4;
+	const int sz = tasks_list.size()+3;
 #else
-	const int sz = tasks_list.size();
+	const int sz = tasks_list.size()+1;
 #endif
 	row_dsc = (lv_coord_t*)malloc(sizeof(lv_coord_t)*sz);
 	for (int i = 0; i<sz; i++)
-		row_dsc[i] = 14;
+		row_dsc[i] = 16;
 	row_dsc[sz] = LV_GRID_TEMPLATE_LAST;
 	static lv_coord_t col_dsc[] = { lv_pct(30), lv_pct(30), lv_pct(40), LV_GRID_TEMPLATE_LAST };
-	cont = lv_obj_create(lv_win_get_content(w));
+	auto cont = lv_obj_create(cont_col);
+	lv_obj_set_flex_grow(cont, 1);
 	lv_obj_set_width(cont, lv_pct(100));
-	lv_obj_set_height(cont, lv_pct(100));
+//	lv_obj_set_height(cont, lv_pct(100));
 	lv_obj_set_style_grid_column_dsc_array(cont, col_dsc, 0);
 	lv_obj_set_style_grid_row_dsc_array(cont, row_dsc, 0);
 	lv_obj_center(cont);
@@ -75,7 +113,6 @@ void TasksWindow::UpdateTasks()
 
 	// Total memory
 #ifndef CLION
-	auto m = CalculateMem();
 
 	// Total memory
 	auto total_memory_title = lv_label_create(cont);
@@ -106,8 +143,6 @@ void TasksWindow::UpdateTasks()
 	lv_bar_set_value(bar_used, pc, LV_ANIM_OFF);
 	lv_obj_add_style(bar_used, &style_bar, LV_STATE_DEFAULT);
 	lv_obj_add_style(bar_used, &style_bar_indicator, LV_PART_INDICATOR);
-
-
 
 	size_t i = 2;
 #else

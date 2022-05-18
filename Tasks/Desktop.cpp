@@ -14,7 +14,7 @@ void DesktopStartup()
 {
 #ifndef CLION
 	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 100, 400, 400);
-	mandelbrot->SetSourceCode(DARIC_mandelbrot);
+	mandelbrot->SetSourceCode(DARIC_mandelbrot_single);
 	mandelbrot->Start();
 
 	auto mandelbrot2 = NEW DARICWindow("Mandelbrot", false, 400, 300, 500, 500);
