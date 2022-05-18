@@ -64,7 +64,7 @@ void SetupLVGLStyles()
 	lv_style_set_bg_color(&style_window_content, WINDOW_BACKGROUND_COLOUR);
 	lv_style_set_pad_all(&style_window_content, 0);
 	lv_style_set_text_font(&style_window_content, &plex_sans_14);
-	lv_style_set_text_color(&style_window_header, lv_color_black());
+	lv_style_set_text_color(&style_window_content, lv_color_black());
 
 	// Style - window header
 	lv_style_init(&style_window_header);

@@ -11,16 +11,16 @@
 
 extern int ScreenWidth;
 extern int ScreenHeight;
+size_t kernel_size = 0;
 
-int main()
-{
-	OS_Init();
-	ClockInit();
+int main() {
+    OS_Init();
+    ClockInit();
 
-	// What to run?
-	auto gui = NEW GUI();
-	DesktopStartup();
-	gui->Start();
-	gui->WaitForTermination();
-	return 0;
+    // What to run?
+    auto gui = NEW GUI();
+    DesktopStartup();
+    gui->Start();
+    gui->WaitForTermination();
+    return 0;
 }
