@@ -30,7 +30,7 @@ void DesktopStartup()
 
 //	delete these after termination?
 #else
-	auto tasks = NEW TasksWindow(300, 200, 400, 200);
+	auto tasks = NEW TasksWindow(300, 200, 500, 200);
 	std::thread t1(&DARICWindow::Start, tasks);
 	t1.detach();
 

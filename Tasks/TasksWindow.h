@@ -8,6 +8,7 @@ public:
 
     void Run();
 private:
+    const int HISTORY_SIZE = 64;
     std::list<size_t> used_history;
 
     void UpdateTasks();

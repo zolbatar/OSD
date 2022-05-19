@@ -32,24 +32,27 @@ void TasksWindow::Run() {
         w = (Window *) GetWindow();
     } while (w == NULL);
 
+    // Fill out history with zeroes
+    for (auto i = 0; i < HISTORY_SIZE; i++)
+        used_history.push_back(0);
+
     // Do stuff
     while (1) {
         UpdateTasks();
-        Sleep(500);
+        Sleep(1000);
     }
 
     TerminateTask();
 }
 
 void TasksWindow::UpdateTasks() {
-	OSDTask::vlgl_mutex.lock();
+    OSDTask::vlgl_mutex.lock();
     auto w = ((Window *) this->GetWindow())->GetLVGLWindow();
     lv_obj_clean(lv_win_get_content(w));
 
     auto m = CalculateMem();
+    used_history.pop_front();
     used_history.push_back(m.used);
-    if (used_history.size() > 128)
-        used_history.pop_front();
 
     // Vertical container
     auto cont_col = lv_obj_create(lv_win_get_content(w));
@@ -64,14 +67,14 @@ void TasksWindow::UpdateTasks() {
     lv_obj_set_flex_grow(chart, 1);
     lv_obj_center(chart);
     lv_chart_set_type(chart, LV_CHART_TYPE_BAR);
-    lv_chart_set_point_count(chart, std::min(128, static_cast<int>(used_history.size())));
+    lv_chart_set_point_count(chart, HISTORY_SIZE);
     lv_chart_set_axis_tick(chart, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 0, 0, false, 0);
     lv_chart_set_div_line_count(chart, 0, 0);
     lv_obj_add_style(chart, &style_chart, LV_PART_MAIN);
     lv_obj_add_style(chart, &style_chart_bar, LV_PART_ITEMS);
 
     /*Add two data series*/
-    lv_chart_series_t *ser1 = lv_chart_add_series(chart, lv_palette_main(LV_PALETTE_RED), LV_CHART_AXIS_PRIMARY_Y);
+    lv_chart_series_t *ser1 = lv_chart_add_series(chart, CONTROL_HIGHLIGHT_COLOUR, LV_CHART_AXIS_PRIMARY_Y);
 
     // Set points
     auto m1 = 0;

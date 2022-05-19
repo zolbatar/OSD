@@ -1,19 +1,5 @@
 #include "Style.h"
 
-const lv_color_t DESKTOP_COLOUR = lv_color_hex(0x707070);
-const lv_color_t HEADER_TEXT_COLOUR = lv_color_hex(0x000000);
-const lv_color_t HEADER_BACKGROUND_COLOUR = lv_color_hex(0xB0B0B0);
-const lv_color_t HEADER_BACKGROUND_COLOUR_ACTIVE = lv_color_hex(0xe0e0b0);
-const lv_color_t WINDOW_BACKGROUND_COLOUR = lv_color_hex(0xF0F0F0);
-const lv_color_t CONTAINER_BACKGROUND_COLOUR = WINDOW_BACKGROUND_COLOUR;/*lv_color_hex(0xb0b0b0);*/
-const lv_color_t CONTROL_BACKGROUND_COLOUR = lv_color_hex(0xE8E8E8);
-const lv_color_t CONTROL_BORDER_COLOUR = lv_color_hex(0xA0A0A0);
-const lv_color_t CONTROL_HIGHLIGHT_COLOUR = lv_color_hex(0x56A0D3);
-const lv_color_t WINDOW_FURNITURE_BACKGROUND_COLOUR = lv_color_hex(0xE0E0E0);
-const lv_color_t WINDOW_FURNITURE_FOREGROUND_COLOUR = lv_color_hex(0x000000);
-const lv_color_t WINDOW_FURNITURE_BORDER_COLOUR = lv_color_hex(0x404040);
-const lv_color_t WINDOW_BORDER_COLOUR = lv_color_hex(0x000000);
-const lv_color_t SCROLLBAR_BACKGROUND = lv_color_hex(0xD0D0D0);
 lv_style_t style_background;
 lv_style_t style_window;
 lv_style_t style_window_content;
@@ -107,7 +93,7 @@ void SetupLVGLStyles()
 	lv_style_set_radius(&style_bar, corner_radius_inner);
 	lv_style_set_border_color(&style_bar, CONTROL_BORDER_COLOUR);
 	lv_style_set_border_width(&style_bar, 1);
-	lv_style_set_pad_all(&style_bar, 2);
+	lv_style_set_pad_all(&style_bar, control_padding);
 	lv_style_set_bg_color(&style_bar, CONTROL_BACKGROUND_COLOUR);
 	lv_style_init(&style_bar_indicator);
 	lv_style_set_radius(&style_bar_indicator, corner_radius_inner);
@@ -125,18 +111,14 @@ void SetupLVGLStyles()
 	lv_style_init(&style_chart);
 	lv_style_set_bg_color(&style_chart, CONTROL_BACKGROUND_COLOUR);
 	lv_style_set_border_width(&style_chart, 1);
-//	lv_style_set_line_color(&style_chart, CONTROL_HIGHLIGHT_COLOUR);
 	lv_style_set_border_color(&style_chart, CONTROL_BORDER_COLOUR);
-	lv_style_set_line_width(&style_chart, 1);
-	lv_style_set_pad_all(&style_chart, 8);
+    lv_style_set_line_color(&style_chart, CONTROL_BORDER_COLOUR);
+	lv_style_set_pad_all(&style_chart, 4);
+    lv_style_set_pad_column(&style_chart, 1);
 	lv_style_set_radius(&style_chart, corner_radius_inner);
 
 	lv_style_init(&style_chart_bar);
-//	lv_style_set_bg_color(&style_chart_bar, CONTROL_BACKGROUND_COLOUR);
-	lv_style_set_border_width(&style_chart_bar, 1);
-	lv_style_set_border_color(&style_chart_bar, CONTROL_BORDER_COLOUR);
-//	lv_style_set_line_color(&style_chart_bar, CONTROL_HIGHLIGHT_COLOUR);
-//	lv_style_set_line_width(&style_chart_bar, 1);
-	lv_style_set_pad_all(&style_chart_bar, 2);
+	lv_style_set_border_width(&style_chart_bar, 0);
+	lv_style_set_pad_all(&style_chart_bar, 0);
 	lv_style_set_radius(&style_chart_bar, corner_radius_inner);
 }
