@@ -7,7 +7,7 @@
 #include <circle/alloc.h>
 #define NEW new(HEAP_ANY)
 #else
-
+#include <mutex>
 #define NEW new
 #endif
 #define DELETE delete
@@ -15,7 +15,6 @@
 #include <vector>
 #include <list>
 #include "OS_Messages.h"
-#include "../Concurrent/concurrentqueue.h"
 
 const size_t MIN_MESSAGE_QUEUE = 64;
 const size_t MAX_MESSAGE_QUEUE = 4096;
@@ -143,6 +142,7 @@ public:
 
 #ifdef CLION
 	static std::map<std::string, OSDTask*> tasks;
+	static std::mutex vlgl_mutex;
 #endif
 	static std::list<OSDTask*> tasks_list;
 #ifndef CLION

@@ -42,8 +42,8 @@ void TasksWindow::Run() {
 }
 
 void TasksWindow::UpdateTasks() {
+	OSDTask::vlgl_mutex.lock();
     auto w = ((Window *) this->GetWindow())->GetLVGLWindow();
-    printf("Clean %p\n", lv_win_get_content(w));
     lv_obj_clean(lv_win_get_content(w));
 
     auto m = CalculateMem();
@@ -67,7 +67,8 @@ void TasksWindow::UpdateTasks() {
     lv_chart_set_point_count(chart, std::min(128, static_cast<int>(used_history.size())));
     lv_chart_set_axis_tick(chart, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 0, 0, false, 0);
     lv_chart_set_div_line_count(chart, 0, 0);
-    lv_obj_add_style(chart, &style_chart, LV_STATE_DEFAULT);
+    lv_obj_add_style(chart, &style_chart, LV_PART_MAIN);
+    lv_obj_add_style(chart, &style_chart_bar, LV_PART_ITEMS);
 
     /*Add two data series*/
     lv_chart_series_t *ser1 = lv_chart_add_series(chart, lv_palette_main(LV_PALETTE_RED), LV_CHART_AXIS_PRIMARY_Y);
@@ -157,4 +158,5 @@ void TasksWindow::UpdateTasks() {
 
         i++;
     }
+    OSDTask::vlgl_mutex.unlock();
 }

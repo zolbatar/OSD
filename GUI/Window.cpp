@@ -3,6 +3,7 @@
 Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
 		:title(title), x1(x), y1(y), width(w), height(h)
 {
+	OSDTask::vlgl_mutex.lock();
 	x2 = x1+width;
 	y2 = y1+height;
 
@@ -50,13 +51,16 @@ Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, in
 		lv_obj_set_size(btn_size, WINDOW_FURNITURE_WIDTH-4, WINDOW_FURNITURE_WIDTH-4);
 		lv_obj_add_style(btn_size, &style_window_furniture, LV_STATE_DEFAULT);*/
 	}
+	OSDTask::vlgl_mutex.unlock();
 }
 
 Window::~Window()
 {
 	if (canvas!=NULL)
 		delete canvas;
+	OSDTask::vlgl_mutex.lock();
 	lv_obj_del(win);
+	OSDTask::vlgl_mutex.unlock();
 }
 
 void Window::SetActive()
@@ -81,7 +85,9 @@ void Window::DragEventHandler(lv_event_t* e)
 	lv_obj_t* obj = lv_event_get_target(e);
 
 	lv_indev_t* indev = lv_indev_get_act();
-	if (indev==NULL) return;
+	if (indev==NULL) {
+		return;
+	}
 
 	lv_point_t vect;
 	lv_indev_get_vect(indev, &vect);

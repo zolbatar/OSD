@@ -54,7 +54,9 @@ void GUI::Run() {
         clvgl->Update(USBHCI->UpdatePlugAndPlay());
         Yield();
 #else
+        vlgl_mutex.lock();
         clvgl->Update();
+        vlgl_mutex.unlock();
 #endif
 
         // Process messages

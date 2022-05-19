@@ -29,6 +29,7 @@ std::string string_error = "NOT A VALID STRING";
 
 #ifdef CLION
 std::map<std::string, OSDTask *> OSDTask::tasks;
+std::mutex OSDTask::vlgl_mutex;
 #else
 CTask *OSDTask::boot_task;
 #endif

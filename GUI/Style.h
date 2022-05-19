@@ -19,6 +19,7 @@ extern lv_style_t style_scrollbar;
 extern lv_style_t style_bar;
 extern lv_style_t style_bar_indicator;
 extern lv_style_t style_chart;
+extern lv_style_t style_chart_bar;
 
 #define LV_SYMBOL_CLOSE           "\xEF\x80\x8D" // 0xF00D close
 #define LV_SYMBOL_MAXIMISE        "\xEF\x8B\x90" // 0xF2D0 window maximize
@@ -28,7 +29,7 @@ extern lv_style_t style_chart;
 
 void SetupLVGLStyles();
 
-const int corner_radius = 3;
+const int corner_radius = 4;
 const int corner_radius_inner = 1;
 const int scrollbar_width = 20;
 const int scrollbar_padding = 3;

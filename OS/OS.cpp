@@ -93,11 +93,11 @@ MemorySummary CalculateMem() {
     m.used = initial_mem_free-mem->GetHeapFreeSpace(HEAP_ANY);
     m.lost = m.used-m.total_task;
 #else
-    m.total_memory = 0;
-    m.free_memory = 0;
-    m.total_task = 0;
-    m.used = 0;
-    m.lost = 0;
+    m.total_memory = 1;
+    m.free_memory = 1;
+    m.total_task = 1;
+    m.used = 1;
+    m.lost = 1;
 #endif
     return m;
 }
