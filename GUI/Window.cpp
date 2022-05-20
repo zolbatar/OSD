@@ -3,7 +3,7 @@
 Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
 		:title(title), x1(x), y1(y), width(w), height(h)
 {
-	OSDTask::LockVLGL();
+	OSDTask::LockVLGL("Window::Window");
 	x2 = x1+width;
 	y2 = y1+height;
 
@@ -46,23 +46,27 @@ Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, in
 
 Window::~Window()
 {
+	OSDTask::LockVLGL("Window::~Window");
 	if (canvas!=NULL)
 		delete canvas;
-	OSDTask::LockVLGL();
 	lv_obj_del(win);
 	OSDTask::UnlockVLGL();
 }
 
 void Window::SetActive()
 {
+	OSDTask::LockVLGL("Window::SetActive");
 	lv_obj_add_style(header, &style_window_header_active, 0);
 	this->active = true;
+	OSDTask::UnlockVLGL();
 }
 
 void Window::SetInactive()
 {
+	OSDTask::LockVLGL("Window::SetInactive");
 	lv_obj_add_style(header, &style_window_header_inactive, 0);
 	this->active = false;
+	OSDTask::UnlockVLGL();
 }
 
 void Window::CloseClicked(_lv_event_t* e)
@@ -72,10 +76,12 @@ void Window::CloseClicked(_lv_event_t* e)
 
 void Window::DragEventHandler(lv_event_t* e)
 {
+	OSDTask::LockVLGL("Window::DragEventHandler");
 	lv_obj_t* obj = lv_event_get_target(e);
 
 	lv_indev_t* indev = lv_indev_get_act();
 	if (indev==NULL) {
+		OSDTask::UnlockVLGL();
 		return;
 	}
 
@@ -86,4 +92,5 @@ void Window::DragEventHandler(lv_event_t* e)
 	lv_coord_t x = lv_obj_get_x(win)+vect.x;
 	lv_coord_t y = lv_obj_get_y(win)+vect.y;
 	lv_obj_set_pos(win, x, y);
+	OSDTask::UnlockVLGL();
 }

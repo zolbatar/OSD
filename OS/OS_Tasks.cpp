@@ -111,7 +111,6 @@ void OSDTask::Run()
 
 void OSDTask::RunCode()
 {
-	printf("Executing code\n");
 	auto t1 = GetClock();
 	jit_clear_state();
 	if (exec!=NULL)

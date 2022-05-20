@@ -3,7 +3,5 @@
 
 Control::~Control()
 {
-	OSDTask::LockVLGL();
 	lv_obj_del(object);
-	OSDTask::UnlockVLGL();
 }

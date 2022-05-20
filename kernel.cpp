@@ -95,7 +95,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	kernel_size = 1;
 #endif
 
-	GUI gui;
+	WindowManager gui;
 	gui.Start();
 	DesktopStartup();
 	gui.WaitForTermination();

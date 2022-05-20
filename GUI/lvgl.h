@@ -70,6 +70,7 @@ public:
 	void InputInit(bool use_mouse_cursor);
 	static void MouseRead(lv_indev_drv_t* indev_drv_mouse, lv_indev_data_t* data);
 	static void FlushCB(lv_disp_drv_t* disp_drv, const lv_area_t* area, lv_color_t* src);
+	static void ClearCB(lv_disp_drv_t *disp_drv, uint8_t *buf, uint32_t size);
 	void ProcessEvents();
 	void Update();
 #endif

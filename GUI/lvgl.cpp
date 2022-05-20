@@ -245,24 +245,31 @@ void GuiCLVGL::Update(bool bPlugAndPlayUpdated) {
 lv_disp_t* GuiCLVGL::DisplayInit(SDL_Window* window)
 {
 	int width, height;
+
+	// Setup SDL
 	SDL_GetWindowSize(window, &width, &height);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	lv_disp_draw_buf_t* draw_buf = (lv_disp_draw_buf_t*)malloc(sizeof(lv_disp_draw_buf_t));
-	SDL_Texture* texture = (SDL_Texture*)lv_draw_sdl_create_screen_texture(renderer, width, height);
-	lv_disp_draw_buf_init(draw_buf, texture, NULL, width*height);
-	lv_disp_drv_t* driver = (lv_disp_drv_t*)malloc(sizeof(lv_disp_drv_t));
-	lv_disp_drv_init(driver);
 
-	lv_draw_sdl_drv_param_t* param = (lv_draw_sdl_drv_param_t*)lv_mem_alloc(sizeof(lv_draw_sdl_drv_param_t));
-	param->renderer = renderer;
-	driver->user_data = param;
-	driver->draw_buf = draw_buf;
-	driver->flush_cb = FlushCB;
-	driver->hor_res = width;
-	driver->ver_res = height;
+	// Setup draw buffer
+	static lv_disp_draw_buf_t draw_buf;
+	SDL_Texture* texture = (SDL_Texture*)lv_draw_sdl_create_screen_texture(renderer, width, height);
+	lv_disp_draw_buf_init(&draw_buf, texture, NULL, width*height);
+
+	// Display driver
+	static lv_disp_drv_t driver;
+	lv_disp_drv_init(&driver);
+
+	static lv_draw_sdl_drv_param_t param;
+	param.renderer = renderer;
+	driver.user_data = &param;
+	driver.draw_buf = &draw_buf;
+	driver.flush_cb = FlushCB;
+	driver.clear_cb = ClearCB;
+	driver.hor_res = width;
+	driver.ver_res = height;
 	SDL_SetRenderTarget(renderer, texture);
-	lv_disp_t* disp = lv_disp_drv_register(driver);
+	lv_disp_t* disp = lv_disp_drv_register(&driver);
 	lv_disp_set_default(disp);
 	return disp;
 }
@@ -295,6 +302,11 @@ void GuiCLVGL::MouseRead(lv_indev_drv_t* indev_drv_mouse, lv_indev_data_t* data)
 	}
 }
 
+void GuiCLVGL::ClearCB(lv_disp_drv_t* disp_drv, uint8_t* buf, uint32_t size)
+{
+
+}
+
 void GuiCLVGL::FlushCB(lv_disp_drv_t* disp_drv, const lv_area_t* area, lv_color_t* src)
 {
 	LV_UNUSED(src);
@@ -309,8 +321,12 @@ void GuiCLVGL::FlushCB(lv_disp_drv_t* disp_drv, const lv_area_t* area, lv_color_
 		SDL_Renderer* renderer = param->renderer;
 		SDL_Texture* texture = (SDL_Texture*)disp_drv->draw_buf->buf1;
 		SDL_SetRenderTarget(renderer, NULL);
+
+		// Background
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 		SDL_RenderClear(renderer);
+
+		// Render
 		SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 		SDL_RenderSetClipRect(renderer, NULL);
 		SDL_RenderCopy(renderer, texture, NULL, NULL);

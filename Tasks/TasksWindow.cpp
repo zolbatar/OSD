@@ -50,7 +50,7 @@ void TasksWindow::Run()
 
 void TasksWindow::UpdateTasks()
 {
-	LockVLGL();
+	LockVLGL("TasksWindow::UpdateTasks");
 	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
 	lv_obj_clean(lv_win_get_content(w));
 
@@ -151,7 +151,11 @@ void TasksWindow::UpdateTasks()
 		// Title
 		auto title = lv_label_create(cont);
 		lv_obj_set_grid_cell(title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-		lv_label_set_text_fmt(title, "%s", task->GetWindowName().c_str());
+		if (task->GetWindowName() == "@") {
+			lv_label_set_text_fmt(title, "Window Manager");
+		} else {
+			lv_label_set_text_fmt(title, "%s", task->GetWindowName().c_str());
+		}
 
 		// Memory
 		auto memory = lv_label_create(cont);

@@ -81,7 +81,7 @@ void WindowManager::Run()
 		clvgl->Update(USBHCI->UpdatePlugAndPlay());
 		Yield();
 #else
-		LockVLGL();
+		LockVLGL("Refresh");
 		clvgl->Update();
 		UnlockVLGL();
 #endif
