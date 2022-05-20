@@ -14,7 +14,6 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 	this->d_h = h;
 	this->name = name;
 	this->id = std::to_string(task_id++);
-	SetNameAndAddToList();
 }
 
 void DARICWindow::SetSourceCode(std::string code)
@@ -24,6 +23,8 @@ void DARICWindow::SetSourceCode(std::string code)
 
 void DARICWindow::Run()
 {
+	SetNameAndAddToList();
+
 	// Create Window
 	auto mess = SendGUIMessage();
 	mess->type = Messages::WM_OpenWindow;
@@ -48,6 +49,7 @@ void DARICWindow::Run()
 
 	// Compile (and run)
 	CompileSource(code);
+	RunCode();
 
 	TerminateTask();
 }

@@ -24,8 +24,7 @@ const int STACK_SIZE = 2048;
 
 class NativeCompiler {
 public:
-	NativeCompiler(bool optimise);
-	~NativeCompiler();
+	NativeCompiler(bool optimise, jit_state_t* _jit, OSDTask* task);
 	void IRToNative(std::list<IRInstruction>* ir_global, std::list<IRInstruction>* ir);
 	void Disassemble(std::list<std::string>* disass);
 
@@ -55,6 +54,7 @@ private:
 	std::stack<ValueType> arguments;
 	std::stack<ValueType> returns;
 	IRInstruction* swap_source;
-	jit_state_t* _jit;
 	jit_word_t code_size;
+	jit_state_t* _jit;
+	OSDTask* task;
 };

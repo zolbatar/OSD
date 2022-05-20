@@ -1,5 +1,5 @@
 #pragma once
-#include "GUI.h"
+#include "WindowManager.h"
 
 class DARICWindow : public OSDTask {
 public:

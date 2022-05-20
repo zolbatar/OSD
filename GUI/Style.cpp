@@ -27,7 +27,7 @@ void SetupLVGLStyles()
 	LV_FONT_DECLARE(plex_sans_20);
 	LV_FONT_DECLARE(plex_mono_16);
 	LV_FONT_DECLARE(symbols_12);
-	auto font_normal = &plex_sans_18;
+	auto font_normal = &plex_sans_16;
 
 	// Disable scrolling
 	lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);
@@ -80,12 +80,13 @@ void SetupLVGLStyles()
 
 	// Style - scrollbar
 	lv_style_init(&style_scrollbar);
-	lv_style_set_radius(&style_scrollbar, corner_radius_inner);
+//	lv_style_set_radius(&style_scrollbar, corner_radius);
 	lv_style_set_border_color(&style_scrollbar, WINDOW_FURNITURE_BORDER_COLOUR);
+	lv_style_set_border_opa(&style_scrollbar, LV_OPA_30);
 	lv_style_set_border_width(&style_scrollbar, 1);
-	lv_style_set_pad_all(&style_scrollbar, scrollbar_padding);
+//	lv_style_set_pad_all(&style_scrollbar, scrollbar_padding);
 	lv_style_set_width(&style_scrollbar, scrollbar_width);
-	lv_style_set_bg_opa(&style_scrollbar, LV_OPA_COVER);
+	lv_style_set_bg_opa(&style_scrollbar, LV_OPA_30);
 	lv_style_set_bg_color(&style_scrollbar, SCROLLBAR_BACKGROUND);
 
 	// Style - bar

@@ -3,7 +3,7 @@
 Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
 		:title(title), x1(x), y1(y), width(w), height(h)
 {
-	OSDTask::vlgl_mutex.lock();
+	OSDTask::LockVLGL();
 	x2 = x1+width;
 	y2 = y1+height;
 
@@ -11,7 +11,7 @@ Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, in
 	win = lv_win_create(lv_scr_act(), WINDOW_HEADER_HEIGHT);
 	lv_obj_set_pos(win, x1, y1);
 	lv_obj_set_width(win, width);
-	lv_obj_set_height(win, height+WINDOW_HEADER_HEIGHT);
+	lv_obj_set_height(win, height);
 	lv_obj_add_style(win, &style_window, LV_STATE_DEFAULT);
 
 	// Header
@@ -23,7 +23,7 @@ Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, in
 	// Content
 	auto content = lv_win_get_content(win);
 //	lv_obj_set_scrollbar_mode(content, LV_SCROLLBAR_MODE_ON);
-	lv_obj_add_style(content, &style_scrollbar, LV_PART_SCROLLBAR);
+//	lv_obj_add_style(content, &style_scrollbar, LV_PART_SCROLLBAR);
 	lv_obj_add_style(content, &style_window_content, LV_STATE_DEFAULT);
 
 	// Title
@@ -38,29 +38,19 @@ Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, in
 	lv_obj_add_style(btn_close, &style_window_furniture, LV_STATE_DEFAULT);
 
 	if (pure_canvas) {
-		canvas = new Canvas(lv_win_get_content(win), w-(WINDOW_BORDER_WIDTH*2), h-(WINDOW_BORDER_WIDTH*2));
+		canvas = new Canvas(content, w-(WINDOW_BORDER_WIDTH*2), h-(WINDOW_BORDER_WIDTH*2)-WINDOW_HEADER_HEIGHT);
 	}
 
-	// Resize button
-	if (!fixed) {
-/*		auto btn_size = lv_btn_create(content);
-		lv_obj_align(btn_size, LV_ALIGN_BOTTOM_RIGHT, -scrollbar_padding, -scrollbar_padding);
-		auto label = lv_label_create(btn_size);
-		lv_label_set_text(label, LV_SYMBOL_RESIZE);
-		lv_obj_center(label);
-		lv_obj_set_size(btn_size, WINDOW_FURNITURE_WIDTH-4, WINDOW_FURNITURE_WIDTH-4);
-		lv_obj_add_style(btn_size, &style_window_furniture, LV_STATE_DEFAULT);*/
-	}
-	OSDTask::vlgl_mutex.unlock();
+	OSDTask::UnlockVLGL();
 }
 
 Window::~Window()
 {
 	if (canvas!=NULL)
 		delete canvas;
-	OSDTask::vlgl_mutex.lock();
+	OSDTask::LockVLGL();
 	lv_obj_del(win);
-	OSDTask::vlgl_mutex.unlock();
+	OSDTask::UnlockVLGL();
 }
 
 void Window::SetActive()

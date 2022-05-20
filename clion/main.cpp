@@ -1,7 +1,7 @@
 #include <iostream>
 #include <thread>
 #include "../OS/OS.h"
-#include "../Tasks/GUI.h"
+#include "../Tasks/WindowManager.h"
 #include "../Tasks/DARICWindow.h"
 #include "../Applications/Mandelbrot.h"
 #include "../Applications/Tester.h"
@@ -18,7 +18,7 @@ int main() {
     ClockInit();
 
     // What to run?
-    auto gui = NEW GUI();
+    auto gui = NEW WindowManager();
     DesktopStartup();
     gui->Start();
     gui->WaitForTermination();

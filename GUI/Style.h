@@ -14,7 +14,7 @@ const lv_color_t WINDOW_FURNITURE_BACKGROUND_COLOUR = lv_color_hex(0xE0E0E0);
 const lv_color_t WINDOW_FURNITURE_FOREGROUND_COLOUR = lv_color_hex(0x000000);
 const lv_color_t WINDOW_FURNITURE_BORDER_COLOUR = lv_color_hex(0x404040);
 const lv_color_t WINDOW_BORDER_COLOUR = lv_color_hex(0x000000);
-const lv_color_t SCROLLBAR_BACKGROUND = lv_color_hex(0xD0D0D0);
+const lv_color_t SCROLLBAR_BACKGROUND = lv_color_hex(0x8bd1de);
 const int WINDOW_HEADER_HEIGHT = 32;
 const int WINDOW_FURNITURE_WIDTH = 24;
 const int WINDOW_BORDER_WIDTH = 1;
@@ -45,6 +45,6 @@ void SetupLVGLStyles();
 
 const int corner_radius = 4;
 const int corner_radius_inner = 1;
-const int scrollbar_width = 20;
+const int scrollbar_width = 8;
 const int scrollbar_padding = 3;
 const int control_padding = 3;

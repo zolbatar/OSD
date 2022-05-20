@@ -1,261 +1,181 @@
-Line    1:  1 [260]: PROC call [Clock], no return
+Line    1:  1 [260]: PROC call [Mandelbrot], no return
   Expression 0:
-    Line    1:  6 [258]: Sub-expression
-Line    3:  2 [292]: DEF 'Clock'
+    Line    1: 11 [258]: Sub-expression
+Line    2:  2 [292]: DEF 'Mandelbrot'
   Branch 0:
-    Line    4:  3 [313]: LOCAL-NOINIT 'H%' Integer, index 0
-    Line    4:  3 [262]: Integer assignment 'H%', index 0
+    Line    3:  3 [313]: LOCAL-NOINIT 'ITERS%' Integer, index 0
+    Line    3:  3 [262]: Integer assignment 'ITERS%', index 0
       Expression 0:
-        Line    4:  6 [269]: Integer 4
-    Line    4:  8 [313]: LOCAL-NOINIT 'M%' Integer, index 1
-    Line    4:  8 [262]: Integer assignment 'M%', index 1
+        Line    3: 12 [269]: Integer 256
+    Line    3: 16 [313]: LOCAL-NOINIT 'XRANGE#' Float, index 1
+    Line    3: 16 [262]: Float assignment 'XRANGE#', index 1
       Expression 0:
-        Line    4: 11 [269]: Integer 20
-    Line    5:  3 [353]: COLOURBG
-      Required type: integer
-      Required type: integer
-      Required type: integer
+        Line    3: 26 [270]: Float -1.500000
+    Line    3: 31 [313]: LOCAL-NOINIT 'YRANGE#' Float, index 2
+    Line    3: 31 [262]: Float assignment 'YRANGE#', index 2
       Expression 0:
-        Line    5: 20 [269]: Integer 255
+        Line    3: 41 [270]: Float -1.500000
+    Line    3: 46 [313]: LOCAL-NOINIT 'COLS%' Integer, index 3
+    Line    3: 46 [262]: Integer assignment 'COLS%', index 3
+      Expression 0:
+        Line    3: 54 [269]: Integer 16
+    Line    4:  6 [313]: LOCAL-NOINIT 'ww%' Integer, index 4
+    Line    4:  6 [262]: Integer assignment 'ww%', index 4
+      Expression 0:
+        Line    4: 10 [363]: SCREENWIDTH
+    Line    4: 24 [313]: LOCAL-NOINIT 'hh%' Integer, index 5
+    Line    4: 24 [262]: Integer assignment 'hh%', index 5
+      Expression 0:
+        Line    4: 28 [364]: SCREENHEIGHT
+    Line    5:  3 [351]: CLS
+    Line    6:  7 [313]: LOCAL-NOINIT 'Y%' Integer, index 6
+    Line    6:  3 [313]: LOCAL-NOINIT 'Y% #iterations' Integer, index 7
+    Line    6:  3 [313]: LOCAL-NOINIT 'Y% #step' Integer, index 8
+    Line    6:  3 [302]: FOR, integer 'Y%'/6
+      Expression 0:
+        Line    6: 10 [269]: Integer 0
       Expression 1:
-        Line    5: 16 [269]: Integer 255
-      Expression 2:
-        Line    5: 12 [269]: Integer 255
-    Line    6:  3 [323]: REPEAT
+        Line    6: 15 [272]: Identifier 'hh%'/5
+    Line    7:  8 [313]: LOCAL-NOINIT 'X%' Integer, index 9
+    Line    7:  4 [313]: LOCAL-NOINIT 'X% #iterations' Integer, index 10
+    Line    7:  4 [313]: LOCAL-NOINIT 'X% #step' Integer, index 11
+    Line    7:  4 [302]: FOR, integer 'X%'/9
       Expression 0:
-        Line   21:  9 [301]: FALSE
+        Line    7: 11 [269]: Integer 0
+      Expression 1:
+        Line    7: 16 [272]: Identifier 'ww%'/4
+    Line    8:  5 [313]: LOCAL-NOINIT 'CR#' Float, index 12
+    Line    8:  5 [262]: Float assignment 'CR#', index 12
+      Expression 0:
+        Line    8: 11 [272]: Identifier 'XRANGE#'/1
+        Line    8: 21 [258]: Sub-expression
+          Stack:
+            Line    8: 22 [272]: Identifier 'ww%'/4
+            Line    8: 26 [272]: Identifier 'X%'/9
+            Line    8: 25 [ 45]: -
+        Line    8: 32 [269]: Integer 4
+        Line    8: 36 [272]: Identifier 'ww%'/4
+        Line    8: 34 [ 47]: /
+        Line    8: 30 [ 42]: *
+        Line    8: 19 [ 43]: +
+    Line    9:  5 [313]: LOCAL-NOINIT 'CI#' Float, index 13
+    Line    9:  5 [262]: Float assignment 'CI#', index 13
+      Expression 0:
+        Line    9: 11 [272]: Identifier 'YRANGE#'/2
+        Line    9: 21 [272]: Identifier 'Y%'/6
+        Line    9: 26 [269]: Integer 3
+        Line    9: 30 [272]: Identifier 'hh%'/5
+        Line    9: 28 [ 47]: /
+        Line    9: 24 [ 42]: *
+        Line    9: 19 [ 43]: +
+    Line   10:  5 [313]: LOCAL-NOINIT 'ZM#' Float, index 14
+    Line   10:  5 [262]: Float assignment 'ZM#', index 14
+      Expression 0:
+        Line   10: 11 [269]: Integer 0
+    Line   10: 13 [313]: LOCAL-NOINIT 'ZR#' Float, index 15
+    Line   10: 13 [262]: Float assignment 'ZR#', index 15
+      Expression 0:
+        Line   10: 19 [269]: Integer 0
+    Line   10: 21 [313]: LOCAL-NOINIT 'ZI#' Float, index 16
+    Line   10: 21 [262]: Float assignment 'ZI#', index 16
+      Expression 0:
+        Line   10: 27 [269]: Integer 0
+    Line   10: 29 [313]: LOCAL-NOINIT 'ZR2#' Float, index 17
+    Line   10: 29 [262]: Float assignment 'ZR2#', index 17
+      Expression 0:
+        Line   10: 36 [269]: Integer 0
+    Line   10: 38 [313]: LOCAL-NOINIT 'ZI2#' Float, index 18
+    Line   10: 38 [262]: Float assignment 'ZI2#', index 18
+      Expression 0:
+        Line   10: 45 [269]: Integer 0
+    Line   10: 47 [313]: LOCAL-NOINIT 'IT%' Integer, index 19
+    Line   10: 47 [262]: Integer assignment 'IT%', index 19
+      Expression 0:
+        Line   10: 53 [269]: Integer 0
+    Line   11:  5 [323]: REPEAT
+      Expression 0:
+        Line   20: 11 [272]: Identifier 'IT%'/19
+        Line   20: 17 [272]: Identifier 'ITERS%'/0
+        Line   20: 15 [ 61]: =
+        Line   20: 27 [272]: Identifier 'ZM#'/14
+        Line   20: 34 [269]: Integer 4
+        Line   20: 31 [281]: >=
+        Line   20: 24 [392]: OR
       Branch 0:
-        Line    7:  4 [351]: CLS
-        Line    8:  4 [313]: LOCAL-NOINIT 'w%' Integer, index 2
-        Line    8:  4 [262]: Integer assignment 'w%', index 2
+        Line   12:  6 [313]: LOCAL-NOINIT 'Z1#' Float, index 20
+        Line   12:  6 [262]: Float assignment 'Z1#', index 20
           Expression 0:
-            Line    8:  7 [363]: SCREENWIDTH
-        Line    8: 19 [313]: LOCAL-NOINIT 'h%' Integer, index 3
-        Line    8: 19 [262]: Integer assignment 'h%', index 3
+            Line   12: 12 [272]: Identifier 'ZR2#'/17
+            Line   12: 19 [272]: Identifier 'ZI2#'/18
+            Line   12: 26 [272]: Identifier 'CR#'/12
+            Line   12: 24 [ 43]: +
+            Line   12: 17 [ 45]: -
+        Line   13:  6 [313]: LOCAL-NOINIT 'Z2#' Float, index 21
+        Line   13:  6 [262]: Float assignment 'Z2#', index 21
           Expression 0:
-            Line    8: 22 [364]: SCREENHEIGHT
-        Line    9:  4 [313]: LOCAL-NOINIT 'S%' Integer, index 4
-        Line    9:  4 [262]: Integer assignment 'S%', index 4
+            Line   13: 12 [269]: Integer 2
+            Line   13: 16 [272]: Identifier 'ZR#'/15
+            Line   13: 22 [272]: Identifier 'ZI#'/16
+            Line   13: 20 [ 42]: *
+            Line   13: 14 [ 42]: *
+            Line   13: 28 [272]: Identifier 'CI#'/13
+            Line   13: 26 [ 43]: +
+        Line   14:  6 [262]: Float assignment 'ZR#', index 15
           Expression 0:
-            Line    9: 10 [258]: Sub-expression
-              Stack:
-                Line    9: 15 [258]: Sub-expression
-                  Stack:
-                    Line    9: 16 [333]: TIME$
-                    Line    9: 22 [269]: Integer 23
-                    Line    9: 25 [269]: Integer 2
-                Line    9: 11 [385]: MID$
-            Line    9:  7 [395]: INT
-        Line   11:  4 [313]: LOCAL-NOINIT 'si%' Integer, index 5
-        Line   11:  4 [262]: Integer assignment 'si%', index 5
+            Line   14: 12 [272]: Identifier 'Z1#'/20
+        Line   15:  6 [262]: Float assignment 'ZI#', index 16
           Expression 0:
-            Line   11:  8 [272]: Identifier 'h%'/3
-            Line   11: 11 [270]: Float 0.450000
-            Line   11: 10 [ 42]: *
-        Line   11: 16 [313]: LOCAL-NOINIT 'A#' Float, index 6
-        Line   11: 16 [262]: Float assignment 'A#', index 6
+            Line   15: 12 [272]: Identifier 'Z2#'/21
+        Line   16:  6 [262]: Float assignment 'ZR2#', index 17
           Expression 0:
-            Line   11: 19 [269]: Integer 180
-            Line   11: 23 [272]: Identifier 'S%'/4
-            Line   11: 26 [269]: Integer 6
-            Line   11: 25 [ 42]: *
-            Line   11: 22 [ 45]: -
-        Line   11: 28 [313]: LOCAL-NOINIT 'x%' Integer, index 7
-        Line   11: 28 [262]: Integer assignment 'x%', index 7
+            Line   16: 13 [272]: Identifier 'ZR#'/15
+            Line   16: 19 [272]: Identifier 'ZR#'/15
+            Line   16: 17 [ 42]: *
+        Line   17:  6 [262]: Float assignment 'ZI2#', index 18
           Expression 0:
-            Line   11: 34 [258]: Sub-expression
-              Stack:
-                Line   11: 38 [258]: Sub-expression
-                  Stack:
-                    Line   11: 39 [272]: Identifier 'A#'/6
-                Line   11: 35 [410]: RAD
-            Line   11: 31 [406]: SIN
-            Line   11: 44 [272]: Identifier 'si%'/5
-            Line   11: 43 [ 42]: *
-        Line   11: 48 [313]: LOCAL-NOINIT 'y%' Integer, index 8
-        Line   11: 48 [262]: Integer assignment 'y%', index 8
+            Line   17: 13 [272]: Identifier 'ZI#'/16
+            Line   17: 19 [272]: Identifier 'ZI#'/16
+            Line   17: 17 [ 42]: *
+        Line   18:  6 [262]: Float assignment 'ZM#', index 14
           Expression 0:
-            Line   11: 54 [258]: Sub-expression
-              Stack:
-                Line   11: 58 [258]: Sub-expression
-                  Stack:
-                    Line   11: 59 [272]: Identifier 'A#'/6
-                Line   11: 55 [410]: RAD
-            Line   11: 51 [405]: COS
-            Line   11: 64 [272]: Identifier 'si%'/5
-            Line   11: 63 [ 42]: *
-        Line   12:  4 [352]: COLOUR
-          Required type: integer
-          Required type: integer
-          Required type: integer
+            Line   18: 12 [272]: Identifier 'ZR2#'/17
+            Line   18: 19 [272]: Identifier 'ZI2#'/18
+            Line   18: 17 [ 43]: +
+        Line   19:  6 [262]: Integer assignment 'IT%', index 19
           Expression 0:
-            Line   12: 15 [269]: Integer 0
-          Expression 1:
-            Line   12: 13 [269]: Integer 0
-          Expression 2:
-            Line   12: 11 [269]: Integer 0
-        Line   12: 17 [359]: LINE
-          Required type: integer
-          Required type: integer
-          Required type: integer
-          Required type: integer
-          Expression 0:
-            Line   12: 40 [272]: Identifier 'h%'/3
-            Line   12: 43 [269]: Integer 2
-            Line   12: 42 [ 47]: /
-            Line   12: 45 [272]: Identifier 'y%'/8
-            Line   12: 44 [ 43]: +
-          Expression 1:
-            Line   12: 32 [272]: Identifier 'w%'/2
-            Line   12: 35 [269]: Integer 2
-            Line   12: 34 [ 47]: /
-            Line   12: 37 [272]: Identifier 'x%'/7
-            Line   12: 36 [ 43]: +
-          Expression 2:
-            Line   12: 27 [272]: Identifier 'h%'/3
-            Line   12: 30 [269]: Integer 2
-            Line   12: 29 [ 47]: /
-          Expression 3:
-            Line   12: 22 [272]: Identifier 'w%'/2
-            Line   12: 25 [269]: Integer 2
-            Line   12: 24 [ 47]: /
-        Line   14:  4 [262]: Integer assignment 'si%', index 5
-          Expression 0:
-            Line   14:  8 [272]: Identifier 'h%'/3
-            Line   14: 11 [270]: Float 0.375000
-            Line   14: 10 [ 42]: *
-        Line   14: 17 [262]: Float assignment 'A#', index 6
-          Expression 0:
-            Line   14: 20 [269]: Integer 180
-            Line   14: 24 [272]: Identifier 'M%'/1
-            Line   14: 27 [269]: Integer 6
-            Line   14: 26 [ 42]: *
-            Line   14: 23 [ 45]: -
-        Line   14: 29 [262]: Integer assignment 'x%', index 7
-          Expression 0:
-            Line   14: 35 [258]: Sub-expression
-              Stack:
-                Line   14: 39 [258]: Sub-expression
-                  Stack:
-                    Line   14: 40 [272]: Identifier 'A#'/6
-                Line   14: 36 [410]: RAD
-            Line   14: 32 [406]: SIN
-            Line   14: 45 [272]: Identifier 'si%'/5
-            Line   14: 44 [ 42]: *
-        Line   14: 49 [262]: Integer assignment 'y%', index 8
-          Expression 0:
-            Line   14: 55 [258]: Sub-expression
-              Stack:
-                Line   14: 59 [258]: Sub-expression
-                  Stack:
-                    Line   14: 60 [272]: Identifier 'A#'/6
-                Line   14: 56 [410]: RAD
-            Line   14: 52 [405]: COS
-            Line   14: 65 [272]: Identifier 'si%'/5
-            Line   14: 64 [ 42]: *
-        Line   15:  4 [352]: COLOUR
-          Required type: integer
-          Required type: integer
-          Required type: integer
-          Expression 0:
-            Line   15: 17 [269]: Integer 60
-          Expression 1:
-            Line   15: 14 [269]: Integer 60
-          Expression 2:
-            Line   15: 11 [269]: Integer 60
-        Line   15: 20 [359]: LINE
-          Required type: integer
-          Required type: integer
-          Required type: integer
-          Required type: integer
-          Expression 0:
-            Line   15: 43 [272]: Identifier 'h%'/3
-            Line   15: 46 [269]: Integer 2
-            Line   15: 45 [ 47]: /
-            Line   15: 48 [272]: Identifier 'y%'/8
-            Line   15: 47 [ 43]: +
-          Expression 1:
-            Line   15: 35 [272]: Identifier 'w%'/2
-            Line   15: 38 [269]: Integer 2
-            Line   15: 37 [ 47]: /
-            Line   15: 40 [272]: Identifier 'x%'/7
-            Line   15: 39 [ 43]: +
-          Expression 2:
-            Line   15: 30 [272]: Identifier 'h%'/3
-            Line   15: 33 [269]: Integer 2
-            Line   15: 32 [ 47]: /
-          Expression 3:
-            Line   15: 25 [272]: Identifier 'w%'/2
-            Line   15: 28 [269]: Integer 2
-            Line   15: 27 [ 47]: /
-        Line   17:  4 [262]: Integer assignment 'si%', index 5
-          Expression 0:
-            Line   17:  8 [272]: Identifier 'h%'/3
-            Line   17: 11 [270]: Float 0.200000
-            Line   17: 10 [ 42]: *
-        Line   17: 15 [262]: Float assignment 'A#', index 6
-          Expression 0:
-            Line   17: 18 [269]: Integer 180
-            Line   17: 22 [272]: Identifier 'H%'/0
-            Line   17: 25 [269]: Integer 6
-            Line   17: 24 [ 42]: *
-            Line   17: 21 [ 45]: -
-        Line   17: 27 [262]: Integer assignment 'x%', index 7
-          Expression 0:
-            Line   17: 33 [258]: Sub-expression
-              Stack:
-                Line   17: 37 [258]: Sub-expression
-                  Stack:
-                    Line   17: 38 [272]: Identifier 'A#'/6
-                Line   17: 34 [410]: RAD
-            Line   17: 30 [406]: SIN
-            Line   17: 43 [272]: Identifier 'si%'/5
-            Line   17: 42 [ 42]: *
-        Line   17: 47 [262]: Integer assignment 'y%', index 8
-          Expression 0:
-            Line   17: 53 [258]: Sub-expression
-              Stack:
-                Line   17: 57 [258]: Sub-expression
-                  Stack:
-                    Line   17: 58 [272]: Identifier 'A#'/6
-                Line   17: 54 [410]: RAD
-            Line   17: 50 [405]: COS
-            Line   17: 63 [272]: Identifier 'si%'/5
-            Line   17: 62 [ 42]: *
-        Line   18:  4 [352]: COLOUR
-          Required type: integer
-          Required type: integer
-          Required type: integer
-          Expression 0:
-            Line   18: 19 [269]: Integer 120
-          Expression 1:
-            Line   18: 15 [269]: Integer 120
-          Expression 2:
-            Line   18: 11 [269]: Integer 120
-        Line   18: 23 [359]: LINE
-          Required type: integer
-          Required type: integer
-          Required type: integer
-          Required type: integer
-          Expression 0:
-            Line   18: 46 [272]: Identifier 'h%'/3
-            Line   18: 49 [269]: Integer 2
-            Line   18: 48 [ 47]: /
-            Line   18: 51 [272]: Identifier 'y%'/8
-            Line   18: 50 [ 43]: +
-          Expression 1:
-            Line   18: 38 [272]: Identifier 'w%'/2
-            Line   18: 41 [269]: Integer 2
-            Line   18: 40 [ 47]: /
-            Line   18: 43 [272]: Identifier 'x%'/7
-            Line   18: 42 [ 43]: +
-          Expression 2:
-            Line   18: 33 [272]: Identifier 'h%'/3
-            Line   18: 36 [269]: Integer 2
-            Line   18: 35 [ 47]: /
-          Expression 3:
-            Line   18: 28 [272]: Identifier 'w%'/2
-            Line   18: 31 [269]: Integer 2
-            Line   18: 30 [ 47]: /
-        Line   20:  4 [339]: YIELD
-    Line    3:  2 [325]: RETURN (no value)
+            Line   19:  6 [272]: Identifier ''/19
+            Line   19: 13 [269]: Integer 1
+            Line   19:  6 [ 43]: +
+    Line   21:  5 [313]: LOCAL-NOINIT 'c%' Integer, index 22
+    Line   21:  5 [262]: Integer assignment 'c%', index 22
+      Expression 0:
+        Line   21:  8 [272]: Identifier 'IT%'/19
+        Line   21: 16 [269]: Integer 16
+        Line   21: 12 [398]: MOD
+    Line   23:  5 [352]: COLOUR
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Expression 0:
+        Line   23: 24 [272]: Identifier 'c%'/22
+        Line   23: 27 [269]: Integer 16
+        Line   23: 26 [ 42]: *
+      Expression 1:
+        Line   23: 18 [272]: Identifier 'c%'/22
+        Line   23: 21 [269]: Integer 16
+        Line   23: 20 [ 42]: *
+      Expression 2:
+        Line   23: 12 [272]: Identifier 'c%'/22
+        Line   23: 15 [269]: Integer 16
+        Line   23: 14 [ 42]: *
+    Line   24:  5 [361]: PLOT
+      Required type: integer
+      Required type: integer
+      Expression 0:
+        Line   24: 13 [272]: Identifier 'Y%'/6
+      Expression 1:
+        Line   24: 10 [272]: Identifier 'X%'/9
+    Line   25:  4 [314]: NEXT 9
+    Line   26:  4 [339]: YIELD
+    Line   27:  3 [314]: NEXT 6
+    Line    2:  2 [325]: RETURN (no value)

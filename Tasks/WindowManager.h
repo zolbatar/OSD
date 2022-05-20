@@ -9,10 +9,10 @@
 
 const int COL_BG = 0x404040;
 
-class GUI : public OSDTask {
+class WindowManager : public OSDTask {
 public:
-	GUI();
-	~GUI();
+	WindowManager();
+	~WindowManager();
 	void Run();
 
 private:

@@ -8,6 +8,7 @@
 #define NEW new(HEAP_ANY)
 #else
 #include <mutex>
+#include <thread>
 #define NEW new
 #endif
 #define DELETE delete
@@ -15,6 +16,12 @@
 #include <vector>
 #include <list>
 #include "OS_Messages.h"
+
+extern "C"
+{
+#include "../Lightning/lightning.h"
+#include "../Lightning/jit_private.h"
+}
 
 const size_t MIN_MESSAGE_QUEUE = 64;
 const size_t MAX_MESSAGE_QUEUE = 4096;
@@ -58,16 +65,7 @@ public:
 
 	size_t CalculateMemoryUsed();
 
-	void SetNameAndAddToList()
-	{
-#ifndef CLION
-		SetName(name.c_str());
-#else
-		SetName(name);
-		tasks.insert(std::make_pair(name, this));
-#endif
-		tasks_list.push_back(this);
-	}
+	void SetNameAndAddToList();
 
 #ifdef CLION
 
@@ -140,15 +138,34 @@ public:
 
 	void TerminateTask();
 
+	static void LockVLGL()
+	{
+#ifdef CLION
+//		printf("Locking VLGL\n");
+		OSDTask::vlgl_mutex.lock();
+#endif
+	}
+
+	static void UnlockVLGL()
+	{
+#ifdef CLION
+//		printf("Unlocking VLGL\n");
+		OSDTask::vlgl_mutex.unlock();
+#endif
+	}
+
 #ifdef CLION
 	static std::map<std::string, OSDTask*> tasks;
-	static std::mutex vlgl_mutex;
+	static std::map<std::thread::id, OSDTask*> task_threads;
 #endif
 	static std::list<OSDTask*> tasks_list;
 #ifndef CLION
 	static CTask *boot_task;
 #endif
 protected:
+#ifdef CLION
+	static std::mutex vlgl_mutex;
+#endif
 	OSDTask* GetTask(const char* s);
 	Message* message_queue = NULL;
 	size_t message_queue_position = 0;
@@ -173,4 +190,5 @@ private:
 	std::vector<DataElement> data_elements;
 	size_t code_size;
 	uint8_t* code = NULL;
+	jit_state_t* _jit = NULL;
 };

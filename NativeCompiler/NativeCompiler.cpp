@@ -2,38 +2,13 @@
 #include <capstone/capstone.h>
 #include <capstone/platform.h>
 
-NativeCompiler::NativeCompiler(bool optimise)
-		:optimise(optimise)
+NativeCompiler::NativeCompiler(bool optimise, jit_state_t* _jit, OSDTask* task)
+		:optimise(optimise), _jit(_jit), task(task)
 {
-	_jit = NULL;
-	init_jit("OS/D");
-	jit_set_memory_functions(malloc, realloc, free);
-
-	// Setup capstone
-	cs_opt_mem setup;
-	setup.malloc = malloc;
-	setup.calloc = calloc;
-	setup.realloc = realloc;
-	setup.free = free;
-	setup.vsnprintf = vsnprintf;
-	cs_err err = cs_option(0, CS_OPT_MEM, (size_t)&setup);
-	if (err!=CS_ERR_OK) {
-		printf("Error (cs_option): %d\n", err);
-	}
-}
-
-NativeCompiler::~NativeCompiler()
-{
-	if (_jit!=NULL) {
-		jit_destroy_state();
-		//finish_jit();
-	}
 }
 
 void NativeCompiler::IRToNative(std::list<IRInstruction>* ir_global, std::list<IRInstruction>* ir)
 {
-	_jit = jit_new_state();
-
 	// Add all global sizes
 	size_t globals_size = 0;
 	for (auto& op: *ir_global) {
@@ -114,7 +89,7 @@ void NativeCompiler::IRToNative(std::list<IRInstruction>* ir_global, std::list<I
 		}
 		printf("Count after native opt: %d\n", count);
 #endif
-//jit_print();
+		//jit_print();
 	}
 
 	// Code & data size
@@ -125,8 +100,8 @@ void NativeCompiler::IRToNative(std::list<IRInstruction>* ir_global, std::list<I
 	}
 	code_size = _jit->code.length;
 #ifndef CLION
-	GetCurrentTask()->CreateCode(code_size);
-	jit_set_code(GetCurrentTask()->GetCode(), code_size);
+	task->CreateCode(code_size);
+	jit_set_code(task->GetCode(), code_size);
 #endif
 	jit_set_data(NULL, 0, JIT_DISABLE_DATA | JIT_DISABLE_NOTE);
 
@@ -135,14 +110,13 @@ void NativeCompiler::IRToNative(std::list<IRInstruction>* ir_global, std::list<I
 		printf("Code generation failed.\n");
 		while (1);
 	}
-	GetCurrentTask()->SetStart(exec);
+	task->SetStart(exec);
 
 	// Size?
 	jit_get_code(&code_size);
 #ifdef CLION
 	printf("Code size: %ld bytes\n", code_size);
 #endif
-	jit_clear_state();
 }
 
 int NativeCompiler::IdxForVar(int64_t index)

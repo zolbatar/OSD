@@ -10,7 +10,7 @@
 #endif
 #include "../Chrono/Chrono.h"
 #include "OS/OS.h"
-#include "Tasks/GUI.h"
+#include "Tasks/WindowManager.h"
 #include "Tasks/DARICWindow.h"
 #include "Tasks/Desktop.h"
 

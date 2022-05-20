@@ -1,17 +1,19 @@
 #include "NativeCompiler.h"
 #include "../OS/OS.h"
-#include "../Tasks/GUI.h"
+#include "../Tasks/WindowManager.h"
 
 int64_t call_2D_screenwidth()
 {
 	auto task = GetCurrentTask();
 	auto w = (Window*)task->GetWindow();
+	assert(w!=NULL);
 	return w->GetContentWidth();
 }
 
 int64_t call_2D_screenheight()
 {
 	auto w = (Window*)GetCurrentTask()->GetWindow();
+	assert(w!=NULL);
 	return w->GetContentHeight();
 }
 

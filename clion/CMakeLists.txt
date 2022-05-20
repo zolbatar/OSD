@@ -24,7 +24,7 @@ include_directories(../capstone)
 add_executable(
         OSD main.cpp
         ../../OS/OS.cpp ../../OS/OS_Strings.cpp ../../OS/OS_Tasks.cpp
-        ../../Tasks/DARICWindow.cpp ../../Tasks/GUI.cpp ../../Tasks/Desktop.cpp ../../Tasks/TasksWindow.cpp
+        ../../Tasks/DARICWindow.cpp ../../Tasks/WindowManager.cpp ../../Tasks/Desktop.cpp ../../Tasks/TasksWindow.cpp
         ../../GUI/Window.cpp ../../GUI/lvgl.cpp ../../GUI/Style.cpp
         ../../GUI/Controls/Control.cpp ../../GUI/Controls/Canvas.cpp
         ../../GUI/Fonts/plex_sans_10.c

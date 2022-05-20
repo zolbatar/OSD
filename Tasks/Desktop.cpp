@@ -30,13 +30,23 @@ void DesktopStartup()
 
 //	delete these after termination?
 #else
-	auto tasks = NEW TasksWindow(300, 200, 500, 200);
+	auto tasks = NEW TasksWindow(800, 600, 250, 100);
 	std::thread t1(&DARICWindow::Start, tasks);
 	t1.detach();
 
-/*    auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
+    auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
     clock->SetSourceCode(DARIC_clock);
     std::thread t2(&DARICWindow::Start, clock);
-    t2.detach();*/
+    t2.detach();
+
+    auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 600, 400, 400);
+    mandelbrot->SetSourceCode(DARIC_mandelbrot_single);
+    std::thread t3(&DARICWindow::Start, mandelbrot);
+    t3.detach();
+
+    auto mandelbrot2 = NEW DARICWindow("Mandelbrot", false, 400, 300, 500, 500);
+    mandelbrot2->SetSourceCode(DARIC_mandelbrot_single);
+    std::thread t4(&DARICWindow::Start, mandelbrot2);
+    t4.detach();
 #endif
 }

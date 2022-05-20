@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GUI.h"
+#include "WindowManager.h"
 
 class TasksWindow : public OSDTask {
 public:

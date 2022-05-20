@@ -15,7 +15,6 @@ Canvas::Canvas(lv_obj_t* parent, int w, int h)
 Canvas::~Canvas()
 {
 	DELETE buffer;
-	lv_obj_clean(object);
 }
 
 void Canvas::Clear()

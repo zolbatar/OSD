@@ -2226,7 +2226,7 @@ _jit_emit(jit_state_t *_jit) {
         mmap_fd = open("/dev/zero", O_RDWR);
 #endif
         _jit->code.ptr = mmap(NULL, _jit->code.length,
-                              PROT_READ | PROT_WRITE | MAP_JIT,
+                              PROT_READ | PROT_WRITE | MAP_JIT | PROT_EXEC,
                               MAP_PRIVATE | MAP_ANON, mmap_fd, 0);
         pthread_jit_write_protect_np(0);
         assert(_jit->code.ptr != MAP_FAILED);
