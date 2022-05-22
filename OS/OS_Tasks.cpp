@@ -24,6 +24,7 @@
 #include <circle/logger.h>
 #endif
 
+extern void ProcessAllocList();
 extern Input* input;
 std::string string_error = "NOT A VALID STRING";
 
@@ -158,6 +159,11 @@ void OSDTask::RestoreDataLabel(std::string s)
 	data_element_index = f->second;
 }
 
+void OSDTask::FreeString(int64_t index)
+{
+	strings.erase(index);
+}
+
 int64_t OSDTask::AddString(std::string s)
 {
 	auto i = string_index++;
@@ -198,6 +204,7 @@ bool OSDTask::FreeAllocation(void* m)
 			return true;
 		}
 	}
+//	assert(0);
 	return false;
 }
 
@@ -316,6 +323,7 @@ void OSDTask::CompileSource(std::string code)
 
 void OSDTask::Yield()
 {
+	ProcessAllocList();
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->Yield();
@@ -326,6 +334,7 @@ void OSDTask::Yield()
 
 void OSDTask::Sleep(int ms)
 {
+	ProcessAllocList();
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->MsSleep(ms);
@@ -345,9 +354,9 @@ size_t OSDTask::CalculateMemoryUsed()
 	}
 
 	// Strings
-	for (auto& m: strings) {
+/*	for (auto& m: strings) {
 		r += m.second.size();
-	}
+	}*/
 
 	return r;
 }

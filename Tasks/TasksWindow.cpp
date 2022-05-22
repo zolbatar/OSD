@@ -1,5 +1,8 @@
 #include "TasksWindow.h"
 
+extern size_t pre_boot_memory;
+extern size_t kernel_size;
+
 TasksWindow::TasksWindow(int x, int y, int w, int h)
 {
 	this->d_x = x;
@@ -8,11 +11,12 @@ TasksWindow::TasksWindow(int x, int y, int w, int h)
 	this->d_h = h;
 	this->id = std::to_string(task_id++);
 	this->name = "Task Manager";
-	SetNameAndAddToList();
 }
 
 void TasksWindow::Run()
 {
+	SetNameAndAddToList();
+
 	// Create Window
 	auto mess = SendGUIMessage();
 	mess->type = Messages::WM_OpenWindow;
@@ -54,7 +58,8 @@ void TasksWindow::UpdateTasks()
 	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
 	lv_obj_clean(lv_win_get_content(w));
 
-	auto m = CalculateMem();
+	MemorySummary m;
+	CalculateMem(&m);
 	used_history.pop_front();
 	used_history.push_back(m.used);
 
@@ -66,38 +71,8 @@ void TasksWindow::UpdateTasks()
 	lv_obj_set_flex_flow(cont_col, LV_FLEX_FLOW_COLUMN);
 	lv_obj_add_style(cont_col, &style_grid, LV_STATE_DEFAULT);
 
-	// Memory chart
-	auto chart = lv_chart_create(cont_col);
-	lv_obj_set_flex_grow(chart, 1);
-	lv_obj_set_width(chart, lv_pct(100));
-	lv_obj_center(chart);
-	lv_chart_set_type(chart, LV_CHART_TYPE_BAR);
-	lv_obj_update_layout(chart);
-	auto width = lv_obj_get_width(chart);
-	lv_chart_set_point_count(chart, std::min(HISTORY_SIZE, width/8));
-	lv_chart_set_axis_tick(chart, LV_CHART_AXIS_PRIMARY_Y, 0, 0, 0, 0, false, 0);
-	lv_chart_set_div_line_count(chart, 0, 0);
-	lv_obj_add_style(chart, &style_chart, LV_PART_MAIN);
-	lv_obj_add_style(chart, &style_chart_bar, LV_PART_ITEMS);
-
-	/*Add two data series*/
-	lv_chart_series_t* ser1 = lv_chart_add_series(chart, CONTROL_HIGHLIGHT_COLOUR, LV_CHART_AXIS_PRIMARY_Y);
-
-	// Set points
-	auto m1 = 0;
-	for (auto& mc: used_history) {
-		auto m = static_cast<int>(mc);
-		lv_chart_set_next_value(chart, ser1, m);
-		if (m>m1) m1 = m;
-	}
-	lv_chart_set_range(chart, LV_CHART_AXIS_PRIMARY_Y, 0, m1);
-
 	// Container
-#ifndef CLION
-	const int sz = tasks_list.size()+3;
-#else
-	const int sz = tasks_list.size()+1;
-#endif
+	const int sz = tasks_list.size()+4;
 	static lv_coord_t row_dsc[256];
 	for (int i = 0; i<sz; i++)
 		row_dsc[i] = 16;
@@ -128,22 +103,38 @@ void TasksWindow::UpdateTasks()
 	lv_obj_add_style(bar_free, &style_bar, LV_STATE_DEFAULT);
 	lv_obj_add_style(bar_free, &style_bar_indicator, LV_PART_INDICATOR);
 
+	// Kernel size
+	auto kernel_size_title = lv_label_create(cont);
+	lv_obj_set_grid_cell(kernel_size_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
+	lv_label_set_text(kernel_size_title, "Kernel Size");
+	auto kernel = lv_label_create(cont);
+	lv_obj_set_grid_cell(kernel, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
+	lv_label_set_text_fmt(kernel, "%zu KB", kernel_size/1024);
+
+	// Preboot
+	auto preboot_title = lv_label_create(cont);
+	lv_obj_set_grid_cell(preboot_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
+	lv_label_set_text(preboot_title, "Pre-Kernel Allocations");
+	auto preboot = lv_label_create(cont);
+	lv_obj_set_grid_cell(preboot, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
+	lv_label_set_text_fmt(preboot, "%zu KB", pre_boot_memory/1024);
+
 	// Kernel? (Or a leak)
 	auto kernel_used_title = lv_label_create(cont);
-	lv_obj_set_grid_cell(kernel_used_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
+	lv_obj_set_grid_cell(kernel_used_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
 	lv_label_set_text(kernel_used_title, "OS/D Kernel");
 	auto kernel_used_memory = lv_label_create(cont);
-	lv_obj_set_grid_cell(kernel_used_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
+	lv_obj_set_grid_cell(kernel_used_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
 	lv_label_set_text_fmt(kernel_used_memory, "%zu KB", m.lost/1024);
 	auto bar_used = lv_bar_create(cont);
-	lv_obj_set_grid_cell(bar_used, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
+	lv_obj_set_grid_cell(bar_used, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
 	lv_obj_center(bar_used);
 	pc = (m.lost*100)/m.used;
 	lv_bar_set_value(bar_used, pc, LV_ANIM_OFF);
 	lv_obj_add_style(bar_used, &style_bar, LV_STATE_DEFAULT);
 	lv_obj_add_style(bar_used, &style_bar_indicator, LV_PART_INDICATOR);
 
-	size_t i = 2;
+	size_t i = 4;
 
 	// Show tasks
 	for (auto& task: tasks_list) {
@@ -151,16 +142,17 @@ void TasksWindow::UpdateTasks()
 		// Title
 		auto title = lv_label_create(cont);
 		lv_obj_set_grid_cell(title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-		if (task->GetWindowName() == "@") {
+		if (task->GetWindowName()=="@") {
 			lv_label_set_text_fmt(title, "Window Manager");
-		} else {
+		}
+		else {
 			lv_label_set_text_fmt(title, "%s", task->GetWindowName().c_str());
 		}
 
 		// Memory
 		auto memory = lv_label_create(cont);
 		lv_obj_set_grid_cell(memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-		lv_label_set_text_fmt(memory, "%zu KB", task->CalculateMemoryUsed()/1024);
+		lv_label_set_text_fmt(memory, "%zu KB/%zu/%zu/%zu", task->CalculateMemoryUsed()/1024, task->GetStringCount(), task->GetAllocCount(), task->GetMessageQueueCount());
 
 		auto bar = lv_bar_create(cont);
 		lv_obj_set_grid_cell(bar, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, i, 1);

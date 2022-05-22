@@ -12,6 +12,7 @@
 extern int ScreenWidth;
 extern int ScreenHeight;
 size_t kernel_size = 0;
+size_t pre_boot_memory = 0;
 
 int main() {
     OS_Init();

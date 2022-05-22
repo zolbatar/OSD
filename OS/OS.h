@@ -21,6 +21,7 @@
 void OS_Init();
 
 // Strings
+void OS_Strings_Free(int64_t index);
 int64_t OS_Strings_Create(std::string& s);
 std::string& OS_Strings_Get(int64_t idx);
 
@@ -35,5 +36,5 @@ struct MemorySummary {
 	size_t lost;
 };
 
-MemorySummary CalculateMem();
+void CalculateMem(MemorySummary *m);
 void DumpMemory();

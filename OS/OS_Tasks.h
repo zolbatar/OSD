@@ -23,6 +23,7 @@ extern "C"
 #include "../Lightning/jit_private.h"
 }
 
+const size_t ALLOCATION_SIZE = 8192;
 const size_t MIN_MESSAGE_QUEUE = 64;
 const size_t MAX_MESSAGE_QUEUE = 4096;
 
@@ -93,6 +94,9 @@ public:
 	DataElement* GetDataElement();
 	void AddDataLabel(std::string s);
 	void RestoreDataLabel(std::string s);
+
+	// Strings
+	void FreeString(int64_t index);
 	int64_t AddString(std::string s);
 	std::string& GetString(int64_t idx);
 
@@ -138,18 +142,22 @@ public:
 
 	void TerminateTask();
 
-	static void LockVLGL(const char *desc)
+	size_t GetStringCount() { return strings.size(); }
+	size_t GetAllocCount() { return allocations.size(); }
+	size_t GetMessageQueueCount() { return message_queue_size; }
+
+	static void LockVLGL(const char* desc)
 	{
 #ifdef CLION
 		OSDTask::vlgl_mutex.lock();
-		printf("Locking VLGL: %s\n", desc);
+//		printf("Locking VLGL: %s\n", desc);
 #endif
 	}
 
 	static void UnlockVLGL()
 	{
 #ifdef CLION
-		printf("Unlocking VLGL\n");
+//		printf("Unlocking VLGL\n");
 		OSDTask::vlgl_mutex.unlock();
 #endif
 	}
@@ -184,8 +192,9 @@ private:
 	int64_t idx;
 	int64_t string_index = 0;
 	size_t data_element_index = 0;
-	std::vector<TaskAllocRef> allocations;
+	std::array<TaskAllocRef, ALLOCATION_SIZE> allocations;
 	std::map<int64_t, std::string> strings;
+	std::map<int64_t, std::string> statement_strings;
 	std::map<std::string, size_t> data_labels;
 	std::vector<DataElement> data_elements;
 	size_t code_size;
