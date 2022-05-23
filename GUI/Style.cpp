@@ -1,4 +1,7 @@
 #include "Style.h"
+#ifndef CLION
+#include <circle/logger.h>
+#endif
 
 lv_style_t style_background;
 lv_style_t style_window;
@@ -15,6 +18,7 @@ lv_style_t style_chart_bar;
 lv_style_t style_chart;
 const lv_font_t* font_normal;
 const lv_font_t* font_symbols;
+extern lv_font_t* loaded;
 
 void SetupLVGLStyles()
 {
@@ -27,7 +31,8 @@ void SetupLVGLStyles()
 	LV_FONT_DECLARE(plex_sans_20);
 	LV_FONT_DECLARE(plex_mono_16);
 	LV_FONT_DECLARE(symbols_12);
-	auto font_normal = &plex_sans_16;
+	//auto font_normal = &plex_sans_16;
+	auto font_normal = loaded;
 
 	// Disable scrolling
 	lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);
@@ -113,9 +118,9 @@ void SetupLVGLStyles()
 	lv_style_set_bg_color(&style_chart, CONTROL_BACKGROUND_COLOUR);
 	lv_style_set_border_width(&style_chart, 1);
 	lv_style_set_border_color(&style_chart, CONTROL_BORDER_COLOUR);
-    lv_style_set_line_color(&style_chart, CONTROL_BORDER_COLOUR);
+	lv_style_set_line_color(&style_chart, CONTROL_BORDER_COLOUR);
 	lv_style_set_pad_all(&style_chart, 4);
-    lv_style_set_pad_column(&style_chart, 1);
+	lv_style_set_pad_column(&style_chart, 1);
 	lv_style_set_radius(&style_chart, corner_radius_inner);
 
 	lv_style_init(&style_chart_bar);

@@ -4,6 +4,6 @@
     -M raspi3b -d guest_errors,unimp \
     -kernel kernel8.img \
     -usb -device usb-kbd -device usb-mouse \
-    -rtc clock=host -smp 4 -sd noobs1gb.sdimg
+    -rtc clock=host -smp 4 -sd sdcard.sdimg
 #                        -semihosting -monitor telnet:localhost:1235,server,nowait \
 #                        -S -gdb tcp::1234 -serial stdio 

@@ -14,12 +14,13 @@ extern CUSBHCIDevice *USBHCI;
 
 extern "C"
 {
-#include "../Lightning/lightning.h"
-#include "../Lightning/jit_private.h"
+#include "../../Lightning/lightning.h"
+#include "../../Lightning/jit_private.h"
 }
 
 WindowManager::WindowManager()
 {
+	this->id = "@";
 	this->name = "@";
 	message_queue_size = MAX_MESSAGE_QUEUE;
 	message_queue = NEW Message[message_queue_size];
@@ -66,7 +67,6 @@ WindowManager::WindowManager()
 
 	USBHCI->UpdatePlugAndPlay();
 #endif
-	SetNameAndAddToList();
 }
 
 WindowManager::~WindowManager()
@@ -76,6 +76,8 @@ WindowManager::~WindowManager()
 
 void WindowManager::Run()
 {
+	SetNameAndAddToList();
+
 	while (!clvgl->QuitRequested()) {
 #ifndef CLION
 		clvgl->Update(USBHCI->UpdatePlugAndPlay());
@@ -91,8 +93,8 @@ void WindowManager::Run()
 			Message* message = &message_queue[i];
 			OSDTask* source = (OSDTask*)message->source;
 
-//			CLogger::Get()->Write("GUI", LogDebug, "Message received %d %p", message->type, message->source);
-
+			// Use task override, so allocations are allocated to the right task
+			task_override = source;
 			switch (message->type) {
 
 				// Window manager
@@ -162,6 +164,7 @@ void WindowManager::Run()
 #endif
 					assert(0);
 			}
+			task_override = NULL;
 		}
 		message_queue_position = 0;
 	}

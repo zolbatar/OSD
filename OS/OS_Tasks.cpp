@@ -1,6 +1,6 @@
 #include "OS.h"
 #include <iostream>
-#include "../Tasks/WindowManager.h"
+#include "../Tasks/WindowManager/WindowManager.h"
 
 #ifdef CLION
 
@@ -27,6 +27,7 @@
 extern Input* input;
 std::string string_error = "NOT A VALID STRING";
 
+OSDTask* OSDTask::task_override = NULL;
 #ifdef CLION
 std::map<std::string, OSDTask*> OSDTask::tasks;
 std::map<std::thread::id, OSDTask*> OSDTask::task_threads;
@@ -39,6 +40,10 @@ size_t OSDTask::task_id = 0;
 
 OSDTask* GetCurrentTask()
 {
+	// Do we have an override?
+	auto tover = OSDTask::GetTaskOverride();
+	if (tover!=NULL)
+		return tover;
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	return (OSDTask *)mScheduler->GetCurrentTask();
@@ -63,12 +68,12 @@ OSDTask::~OSDTask()
 void OSDTask::SetNameAndAddToList()
 {
 #ifndef CLION
-	SetName(name.c_str());
+	SetName(id.c_str());
 #else
-	SetName(name);
-	tasks.insert(std::make_pair(name, this));
+	SetName(id);
+	tasks.insert(std::make_pair(id, this));
 	auto id = std::this_thread::get_id();
-	printf("Task: %s, thread %d\n", name.c_str(), id);
+	printf("Task: %s, thread %d\n", id.c_str(), id);
 	task_threads.insert(std::make_pair(id, this));
 #endif
 	tasks_list.push_back(this);
@@ -95,7 +100,6 @@ void OSDTask::TerminateTask()
 #ifdef CLION
 	OSDTask::tasks.erase(this->name);
 #else
-	auto mScheduler = CScheduler::Get();
 	Terminate();
 #endif
 }
@@ -213,6 +217,7 @@ size_t OSDTask::GetAllocCount()
 		}
 		i--;
 	}
+	return 0;
 }
 
 Message* OSDTask::SendMessage()

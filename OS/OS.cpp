@@ -37,7 +37,7 @@ void TaskFreeAllocation(void* m)
 	if (kernel_size==0)return;
 
 	// Try current task first
-	auto task =GetCurrentTask();
+	auto task = GetCurrentTask();
 	if (task->FreeAllocation(m))
 		return;
 
@@ -49,7 +49,7 @@ void TaskFreeAllocation(void* m)
 //    assert(0);
 }
 
-void CalculateMem(MemorySummary *m)
+void CalculateMem(MemorySummary* m)
 {
 #ifndef CLION
 	auto mem = CMemorySystem::Get();

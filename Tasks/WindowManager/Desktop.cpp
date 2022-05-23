@@ -1,16 +1,16 @@
 #include "Desktop.h"
-#include "../OS/OS.h"
-#include "DARICWindow.h"
-#include "TasksWindow.h"
-#include "../Applications/Mandelbrot.h"
-#include "../Applications/Tester.h"
-#include "../Applications/Clock.h"
+#include "../../OS/OS.h"
+#include "../DARICWindow.h"
+#include "../TasksWindow.h"
+#include "../../Applications/Mandelbrot.h"
+#include "../../Applications/Tester.h"
+#include "../../Applications/Clock.h"
 #ifdef CLION
 #include <thread>
 #include <pthread.h>
 #endif
 
-void DesktopStartup()	
+void DesktopStartup()
 {
 #ifndef CLION
 	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 100, 400, 400);

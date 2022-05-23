@@ -10,9 +10,10 @@
 #endif
 #include "../Chrono/Chrono.h"
 #include "OS/OS.h"
-#include "Tasks/WindowManager.h"
+#include "Tasks/FontManager/FontManager.h"
+#include "Tasks/WindowManager/WindowManager.h"
 #include "Tasks/DARICWindow.h"
-#include "Tasks/Desktop.h"
+#include "Tasks/WindowManager/Desktop.h"
 
 size_t kernel_size = 0;
 size_t initial_mem_free = 0;
@@ -89,16 +90,18 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	auto memory = CMemorySystem::Get();
 	initial_mem_free = memory->GetHeapFreeSpace(HEAP_ANY);
 	kernel_size = memory->GetMemSize()-initial_mem_free;
-	DumpMemory();
 #else
 	initial_mem_free = 1;
 	kernel_size = 1;
 #endif
 
-	WindowManager gui;
-	gui.Start();
+	auto fm = new FontManager();
+	fm->InitFonts();
+	fm->Start();
+	auto gui = new WindowManager();
+	gui->Start();
 	DesktopStartup();
-	gui.WaitForTermination();
+	gui->WaitForTermination();
 	mLogger.Write("OS/D", LogNotice, "Termination.");
 
 	return ShutdownHalt;

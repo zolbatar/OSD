@@ -9,7 +9,7 @@ TasksWindow::TasksWindow(int x, int y, int w, int h)
 	this->d_y = y;
 	this->d_w = w;
 	this->d_h = h;
-	this->id = std::to_string(task_id++);
+	this->id = "@"+std::to_string(task_id++);
 	this->name = "Task Manager";
 }
 
@@ -22,8 +22,8 @@ void TasksWindow::Run()
 	mess->type = Messages::WM_OpenWindow;
 	mess->source = this;
 	auto m = (WM_OpenWindow*)&mess->data;
-	strcpy(m->id, "TASKS");
-	strcpy(m->title, "Task Manager");
+	strcpy(m->id, this->id.c_str());
+	strcpy(m->title, this->name.c_str());
 	m->x = d_x;
 	m->y = d_y;
 	m->width = d_w;
@@ -39,10 +39,6 @@ void TasksWindow::Run()
 	}
 	while (w==NULL);
 
-	// Fill out history with zeroes
-	for (auto i = 0; i<HISTORY_SIZE; i++)
-		used_history.push_back(0);
-
 	// Do stuff
 	while (1) {
 		UpdateTasks();
@@ -56,8 +52,6 @@ void TasksWindow::UpdateTasks()
 {
 	MemorySummary m;
 	CalculateMem(&m);
-	used_history.pop_front();
-	used_history.push_back(m.used);
 
 	LockVLGL("TasksWindow::UpdateTasks");
 	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
@@ -138,7 +132,14 @@ void TasksWindow::UpdateTasks()
 			lv_label_set_text_fmt(title, "Window Manager");
 		}
 		else {
-			lv_label_set_text_fmt(title, "%s", task->GetWindowName().c_str());
+			if (task->GetWindowID()[0]!='@') {
+				// Module
+				lv_label_set_text_fmt(title, "%s", task->GetWindowName().c_str());
+			}
+			else {
+				// Task
+				lv_label_set_text_fmt(title, "%s [%s]", task->GetWindowName().c_str(), task->GetWindowID().c_str());
+			}
 		}
 
 		// Memory

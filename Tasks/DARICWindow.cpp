@@ -13,7 +13,7 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 	this->d_w = w;
 	this->d_h = h;
 	this->name = name;
-	this->id = std::to_string(task_id++);
+	this->id = "@"+std::to_string(task_id++);
 }
 
 void DARICWindow::SetSourceCode(std::string code)

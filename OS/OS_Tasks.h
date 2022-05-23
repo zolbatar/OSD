@@ -139,12 +139,10 @@ public:
 
 	std::string GetWindowID() { return id; }
 	std::string GetWindowName() { return name; }
-
 	void* GetWindow() { return w; }
-
 	bool IsExclusive() { return exclusive; }
-
 	void TerminateTask();
+	static OSDTask* GetTaskOverride() { return task_override; }
 
 	size_t GetStringCount() { return strings.size(); }
 	size_t GetAllocCount();
@@ -178,6 +176,7 @@ protected:
 #ifdef CLION
 	static std::mutex vlgl_mutex;
 #endif
+	static OSDTask* task_override;
 	OSDTask* GetTask(const char* s);
 	Message* message_queue = NULL;
 	size_t message_queue_position = 0;

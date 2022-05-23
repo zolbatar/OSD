@@ -1,6 +1,6 @@
 #include "NativeCompiler.h"
 #include "../OS/OS.h"
-#include "../Tasks/WindowManager.h"
+#include "../Tasks/WindowManager/WindowManager.h"
 
 int64_t call_2D_screenwidth()
 {

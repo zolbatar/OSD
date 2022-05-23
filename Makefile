@@ -10,7 +10,9 @@ OBJS    = 	main.o kernel.o \
 			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o \
 			Input/Input.o \
 			GUI/Window.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
-			Tasks/WindowManager.o Tasks/DARICWindow.o Tasks/Desktop.o Tasks/TasksWindow.o \
+			Tasks/WindowManager/WindowManager.o Tasks/WindowManager/Desktop.o \
+			Tasks/DARICWindow.o Tasks/TasksWindow.o \
+			Tasks/FontManager/FontManager.o \
 			GUI/lvgl.o GUI/Style.o \
 			GUI/Fonts/plex_sans_10.o GUI/Fonts/plex_sans_12.o GUI/Fonts/plex_sans_14.o GUI/Fonts/plex_sans_16.o GUI/Fonts/plex_sans_18.o GUI/Fonts/plex_sans_20.o \
 			GUI/Fonts/plex_mono_16.o \
@@ -52,9 +54,9 @@ LIBS := "$(NEWLIBDIR)/lib/libm.a" "$(NEWLIBDIR)/lib/libc.a" "$(NEWLIBDIR)/lib/li
   	$(CIRCLEHOME)/lib/sched/libsched.a \
   	$(CIRCLEHOME)/lib/libcircle.a \
 	$(CIRCLEHOME)/addon/wlan/hostap/wpa_supplicant/libwpa_supplicant.a \
-	$(CIRCLEHOME)/addon/wlan/libwlan.a \
-	
-CFLAGS += -I capstone
+	$(CIRCLEHOME)/addon/wlan/libwlan.a
+
+CFLAGS += -I capstone -Wno-unused-function
 CFLAGS += -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no
 
 -include $(DEPS)
