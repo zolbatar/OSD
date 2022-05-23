@@ -24,7 +24,6 @@
 #include <circle/logger.h>
 #endif
 
-extern void ProcessAllocList();
 extern Input* input;
 std::string string_error = "NOT A VALID STRING";
 
@@ -190,9 +189,6 @@ void OSDTask::AddAllocation(size_t size, void* m)
 			return;
 		}
 	}
-
-	// Need more space
-	allocations.emplace_back(TaskAllocRef{ m, size });
 }
 
 bool OSDTask::FreeAllocation(void* m)
@@ -206,6 +202,17 @@ bool OSDTask::FreeAllocation(void* m)
 	}
 //	assert(0);
 	return false;
+}
+
+size_t OSDTask::GetAllocCount()
+{
+	size_t i = ALLOCATION_SIZE-1;
+	for (auto it = allocations.rbegin(); it!=allocations.rend(); ++it) {
+		if (it->m!=0) {
+			return i;
+		}
+		i--;
+	}
 }
 
 Message* OSDTask::SendMessage()
@@ -323,7 +330,6 @@ void OSDTask::CompileSource(std::string code)
 
 void OSDTask::Yield()
 {
-	ProcessAllocList();
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->Yield();
@@ -334,7 +340,6 @@ void OSDTask::Yield()
 
 void OSDTask::Sleep(int ms)
 {
-	ProcessAllocList();
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->MsSleep(ms);

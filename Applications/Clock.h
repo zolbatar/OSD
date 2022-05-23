@@ -11,10 +11,10 @@ DEF Clock()
 		w%=SCREENWIDTH:h%=SCREENHEIGHT
 		S%=INT(MID$(TIME$,23,2))
 
-		si%=h%*0.45:A#=180-S%*6:x%=SIN(RAD(A#))*si%:y%=COS(RAD(A#))*si%
+		si%=h%*0.4:A#=180-S%*6:x%=SIN(RAD(A#))*si%:y%=COS(RAD(A#))*si%
 		COLOUR 0,0,0:LINE w%/2,h%/2,w%/2+x%,h%/2+y%
 
-		si%=h%*0.375:A#=180-M%*6:x%=SIN(RAD(A#))*si%:y%=COS(RAD(A#))*si%
+		si%=h%*0.35:A#=180-M%*6:x%=SIN(RAD(A#))*si%:y%=COS(RAD(A#))*si%
 		COLOUR 60,60,60:LINE w%/2,h%/2,w%/2+x%,h%/2+y%
 
 		si%=h%*0.2:A#=180-H%*6:x%=SIN(RAD(A#))*si%:y%=COS(RAD(A#))*si%

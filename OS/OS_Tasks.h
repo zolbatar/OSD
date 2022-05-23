@@ -60,6 +60,10 @@ public:
 	: CTask()
 #endif
 	{
+		// To be safe, zero these out
+		for (auto it = allocations.begin(); it!=allocations.end(); ++it) {
+			it->m = 0;
+		}
 	}
 
 	~OSDTask();
@@ -143,7 +147,7 @@ public:
 	void TerminateTask();
 
 	size_t GetStringCount() { return strings.size(); }
-	size_t GetAllocCount() { return allocations.size(); }
+	size_t GetAllocCount();
 	size_t GetMessageQueueCount() { return message_queue_size; }
 
 	static void LockVLGL(const char* desc)

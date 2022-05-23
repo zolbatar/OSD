@@ -54,14 +54,14 @@ void TasksWindow::Run()
 
 void TasksWindow::UpdateTasks()
 {
-	LockVLGL("TasksWindow::UpdateTasks");
-	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
-	lv_obj_clean(lv_win_get_content(w));
-
 	MemorySummary m;
 	CalculateMem(&m);
 	used_history.pop_front();
 	used_history.push_back(m.used);
+
+	LockVLGL("TasksWindow::UpdateTasks");
+	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
+	lv_obj_clean(lv_win_get_content(w));
 
 	// Vertical container
 	auto cont_col = lv_obj_create(lv_win_get_content(w));
@@ -72,7 +72,7 @@ void TasksWindow::UpdateTasks()
 	lv_obj_add_style(cont_col, &style_grid, LV_STATE_DEFAULT);
 
 	// Container
-	const int sz = tasks_list.size()+4;
+	const int sz = tasks_list.size()+3;
 	static lv_coord_t row_dsc[256];
 	for (int i = 0; i<sz; i++)
 		row_dsc[i] = 16;
@@ -91,7 +91,7 @@ void TasksWindow::UpdateTasks()
 	// Total memory
 	auto total_memory_title = lv_label_create(cont);
 	lv_obj_set_grid_cell(total_memory_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
-	lv_label_set_text(total_memory_title, "Free memory");
+	lv_label_set_text(total_memory_title, "Free Memory");
 	auto total_memory = lv_label_create(cont);
 	lv_obj_set_grid_cell(total_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
 	lv_label_set_text_fmt(total_memory, "%zu KB", m.free_memory/1024);
@@ -106,35 +106,27 @@ void TasksWindow::UpdateTasks()
 	// Kernel size
 	auto kernel_size_title = lv_label_create(cont);
 	lv_obj_set_grid_cell(kernel_size_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
-	lv_label_set_text(kernel_size_title, "Kernel Size");
+	lv_label_set_text(kernel_size_title, "Boot Size");
 	auto kernel = lv_label_create(cont);
 	lv_obj_set_grid_cell(kernel, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
-	lv_label_set_text_fmt(kernel, "%zu KB", kernel_size/1024);
-
-	// Preboot
-	auto preboot_title = lv_label_create(cont);
-	lv_obj_set_grid_cell(preboot_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
-	lv_label_set_text(preboot_title, "Pre-Kernel Allocations");
-	auto preboot = lv_label_create(cont);
-	lv_obj_set_grid_cell(preboot, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
-	lv_label_set_text_fmt(preboot, "%zu KB", pre_boot_memory/1024);
+	lv_label_set_text_fmt(kernel, "%zu KB", (kernel_size+pre_boot_memory)/1024);
 
 	// Kernel? (Or a leak)
 	auto kernel_used_title = lv_label_create(cont);
-	lv_obj_set_grid_cell(kernel_used_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
+	lv_obj_set_grid_cell(kernel_used_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
 	lv_label_set_text(kernel_used_title, "OS/D Kernel");
 	auto kernel_used_memory = lv_label_create(cont);
-	lv_obj_set_grid_cell(kernel_used_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
+	lv_obj_set_grid_cell(kernel_used_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
 	lv_label_set_text_fmt(kernel_used_memory, "%zu KB", m.lost/1024);
 	auto bar_used = lv_bar_create(cont);
-	lv_obj_set_grid_cell(bar_used, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
+	lv_obj_set_grid_cell(bar_used, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
 	lv_obj_center(bar_used);
 	pc = (m.lost*100)/m.used;
 	lv_bar_set_value(bar_used, pc, LV_ANIM_OFF);
 	lv_obj_add_style(bar_used, &style_bar, LV_STATE_DEFAULT);
 	lv_obj_add_style(bar_used, &style_bar_indicator, LV_PART_INDICATOR);
 
-	size_t i = 4;
+	size_t i = 3;
 
 	// Show tasks
 	for (auto& task: tasks_list) {
@@ -152,7 +144,8 @@ void TasksWindow::UpdateTasks()
 		// Memory
 		auto memory = lv_label_create(cont);
 		lv_obj_set_grid_cell(memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-		lv_label_set_text_fmt(memory, "%zu KB/%zu/%zu/%zu", task->CalculateMemoryUsed()/1024, task->GetStringCount(), task->GetAllocCount(), task->GetMessageQueueCount());
+		lv_label_set_text_fmt(memory, "%zu KB [%zu %zu %zu]", task->CalculateMemoryUsed()/1024, task->GetStringCount(), task->GetAllocCount(),
+				task->GetMessageQueueCount());
 
 		auto bar = lv_bar_create(cont);
 		lv_obj_set_grid_cell(bar, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, i, 1);

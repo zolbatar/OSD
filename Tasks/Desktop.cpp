@@ -13,17 +13,17 @@
 void DesktopStartup()	
 {
 #ifndef CLION
-/*	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 100, 400, 400);
+	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 100, 400, 400);
 	mandelbrot->SetSourceCode(DARIC_mandelbrot);
 	mandelbrot->Start();
 
 	auto mandelbrot2 = NEW DARICWindow("Mandelbrot", false, 400, 300, 500, 500);
 	mandelbrot2->SetSourceCode(DARIC_mandelbrot);
-	mandelbrot2->Start();*/
+	mandelbrot2->Start();
 
-/*	auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
+	auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
 	clock->SetSourceCode(DARIC_clock);
-	clock->Start();*/
+	clock->Start();
 
 	auto tasks = NEW TasksWindow(1200, 400, 600, 500);
 	tasks->Start();

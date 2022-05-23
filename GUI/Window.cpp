@@ -76,12 +76,10 @@ void Window::CloseClicked(_lv_event_t* e)
 
 void Window::DragEventHandler(lv_event_t* e)
 {
-	OSDTask::LockVLGL("Window::DragEventHandler");
 	lv_obj_t* obj = lv_event_get_target(e);
 
 	lv_indev_t* indev = lv_indev_get_act();
 	if (indev==NULL) {
-		OSDTask::UnlockVLGL();
 		return;
 	}
 
@@ -92,5 +90,4 @@ void Window::DragEventHandler(lv_event_t* e)
 	lv_coord_t x = lv_obj_get_x(win)+vect.x;
 	lv_coord_t y = lv_obj_get_y(win)+vect.y;
 	lv_obj_set_pos(win, x, y);
-	OSDTask::UnlockVLGL();
 }
