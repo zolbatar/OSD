@@ -13,7 +13,6 @@
 #include "Tasks/FontManager/FontManager.h"
 #include "Tasks/WindowManager/WindowManager.h"
 #include "Tasks/DARICWindow.h"
-#include "Tasks/WindowManager/Desktop.h"
 
 size_t kernel_size = 0;
 size_t initial_mem_free = 0;
@@ -53,6 +52,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	}
 	mScheduler.SuspendNewTasks();
 	OSDTask::boot_task = mScheduler.GetCurrentTask();
+	mScheduler.RegisterTaskTerminationHandler(OSDTask::TaskTerminationHandler);
 
 #ifdef __arm__
 	mLogger.Write(GetKernelName(), LogNotice, "Defined: ARM");
@@ -100,7 +100,6 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	fm->Start();
 	auto gui = new WindowManager();
 	gui->Start();
-	DesktopStartup();
 	gui->WaitForTermination();
 	mLogger.Write("OS/D", LogNotice, "Termination.");
 

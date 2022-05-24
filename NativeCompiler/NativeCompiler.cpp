@@ -36,8 +36,8 @@ void NativeCompiler::IRToNative(std::list<IRInstruction>* ir_global, std::list<I
 	jit_ret();
 	jit_epilog();
 
-	for (auto& v: global_variables)
-		printf("Global alloc: %d\n", v);
+/*	for (auto& v: global_variables)
+		printf("Global alloc: %d\n", v);*/
 
 	// PROCs etc
 	IRToNativeSection(ir);

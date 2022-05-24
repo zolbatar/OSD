@@ -1,4 +1,7 @@
 #include "Canvas.h"
+#ifndef CLION
+#include <circle/logger.h>
+#endif
 
 Canvas::Canvas(lv_obj_t* parent, int w, int h)
 		:w(w), h(h)

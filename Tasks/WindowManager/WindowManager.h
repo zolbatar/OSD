@@ -5,7 +5,9 @@
 #include "../../GUI/Window.h"
 #include "../../GUI/lvgl.h"
 #include "../../GUI/Style.h"
+#include "../DARICWindow.h"
 #include <map>
+#include <memory>
 
 class WindowManager : public OSDTask {
 public:
@@ -16,5 +18,7 @@ public:
 private:
 	GuiCLVGL* clvgl;
 	std::map<std::string, Window*> windows;
+
+	void DesktopStartup();
 };
 

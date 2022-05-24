@@ -11,6 +11,8 @@ extern CInterruptSystem *interrupt;
 extern CUSBHCIDevice *USBHCI;
 #include "mouse.h"
 #endif
+#include "../../OS/OS.h"
+#include "../TasksWindow.h"
 
 extern "C"
 {
@@ -77,6 +79,9 @@ WindowManager::~WindowManager()
 void WindowManager::Run()
 {
 	SetNameAndAddToList();
+
+	// Startup applications
+	DesktopStartup();
 
 	while (!clvgl->QuitRequested()) {
 #ifndef CLION
@@ -179,4 +184,43 @@ void WindowManager::Run()
 #endif
 }
 
+void WindowManager::DesktopStartup()
+{
+#ifndef CLION
+	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 100, 400, 400);
+	mandelbrot->LoadSourceCode("osd/Welcome/Mandelbrot.daric");
+	mandelbrot->Start();
 
+	auto tester = NEW DARICWindow("Tester", false, 400, 300, 500, 500);
+	tester->LoadSourceCode("osd/Welcome/Tester.daric");
+	tester->Start();
+
+	auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
+	clock->LoadSourceCode("osd/Welcome/Clock.daric");
+	clock->Start();
+
+	auto tasks = NEW TasksWindow(1200, 400, 600, 500);
+	tasks->Start();
+
+	//	delete these after termination?
+#else
+	auto tasks = NEW TasksWindow(800, 600, 250, 500);
+	std::thread t1(&DARICWindow::Start, tasks);
+	t1.detach();
+
+	auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
+	clock->SetSourceCode(DARIC_clock);
+	std::thread t2(&DARICWindow::Start, clock);
+	t2.detach();
+
+/*    auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 600, 400, 400);
+    mandelbrot->SetSourceCode(DARIC_mandelbrot_single);
+    std::thread t3(&DARICWindow::Start, mandelbrot);
+    t3.detach();
+
+    auto mandelbrot2 = NEW DARICWindow("Mandelbrot", false, 400, 300, 500, 500);
+    mandelbrot2->SetSourceCode(DARIC_mandelbrot_single);
+    std::thread t4(&DARICWindow::Start, mandelbrot2);
+    t4.detach();*/
+#endif
+}

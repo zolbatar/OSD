@@ -3,11 +3,7 @@
 #include "../OS/OS.h"
 #include "../Tasks/WindowManager/WindowManager.h"
 #include "../Tasks/DARICWindow.h"
-#include "../Applications/Mandelbrot.h"
-#include "../Applications/Tester.h"
-#include "../Applications/Clock.h"
 #include "../Chrono/Chrono.h"
-#include "../Tasks/WindowManager/Desktop.h"
 #include "../Tasks/FontManager/FontManager.h"
 
 extern int ScreenWidth;
@@ -23,7 +19,6 @@ int main() {
     auto fm = NEW FontManager();
     fm->InitFonts();
     auto gui = NEW WindowManager();
-    DesktopStartup();
     gui->Start();
     gui->WaitForTermination();
     return 0;

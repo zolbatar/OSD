@@ -91,16 +91,28 @@ void OSDTask::TerminateTask()
 	}
 	while (w!=NULL);
 
-	// Any outstanding allocations?
-
 	// Remove
 	tasks_list.remove(this);
-	delete this;
 #ifdef CLION
 	OSDTask::tasks.erase(this->name);
 #else
 	Terminate();
 #endif
+}
+
+void OSDTask::TaskTerminationHandler(CTask* ctask)
+{
+	auto tt = (TaskType*)ctask->GetUserData(TASK_USER_DATA_USER);
+	switch (*tt) {
+		case TaskType::DARIC: {
+			auto dw = (DARICWindow*)ctask;
+			delete dw;
+			break;
+		}
+		default:
+			CLogger::Get()->Write("OS_Tasks", LogDebug, "Unknown terminator handler type: %p/%d", tt, *tt);
+			break;
+	}
 }
 
 #ifdef CLION

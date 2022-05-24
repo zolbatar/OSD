@@ -17,13 +17,14 @@ lv_style_t style_bar;
 lv_style_t style_bar_indicator;
 lv_style_t style_chart_bar;
 lv_style_t style_chart;
+size_t body_font_height = 18;
 
 void SetupLVGLStyles()
 {
 	// Additional fonts
-	auto font_window = FontManager::GetFontByNameAndSize("IBM Plex Sans", 22);
-	auto font_body = FontManager::GetFontByNameAndSize("IBM Plex Sans", 18);
-	auto font_symbol = FontManager::GetFontByNameAndSize("Symbols", 12);
+	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Light", 22);
+	auto font_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", body_font_height);
+	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Symbols", "Light", 12);
 
 	// Disable scrolling
 	lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);

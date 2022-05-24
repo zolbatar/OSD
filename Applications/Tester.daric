@@ -1,7 +1,4 @@
-#pragma once
-#include <string>
-
-const std::string DARIC_tester = R"(CONST const%=100,ccf#=12.5
+CONST const%=100,ccf#=12.5
 
 REM STATIC s%
 TYPE VertexTest
@@ -24,24 +21,42 @@ DEF Start()
 	CLS
     PRINT "Starting tests!"
     Boolean()
+    Yield()
 	Chrono()
+    Yield()
     Comparison()
+    Yield()
     Conversion()
+    Yield()
 	Data()
+    Yield()
 	Functions()
+    Yield()
     GlobalsLocals()
+    Yield()
 	Looping()
+    Yield()
     Maths()
+    Yield()
     Numbers()
+    Yield()
     PrintInput()
+    Yield()
     Strings()
+    Yield()
 	Swap()
+    Yield()
 	Types()
+    Yield()
 	Variables()
+    Yield()
     PRINT "::Misc tests::"
 	TestReturnInOtherwise()
+    Yield()
 	NestedCalling()
+    Yield()
     Containers()
+    Yield()
     PRINT "All tests passed!"
 ENDDEF
 
@@ -395,4 +410,3 @@ DEF Containers()
     PRINT "::Containers::"
     PRINT
 ENDDEF
-)";

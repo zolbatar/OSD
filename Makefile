@@ -10,7 +10,7 @@ OBJS    = 	main.o kernel.o \
 			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o \
 			Input/Input.o \
 			GUI/Window.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
-			Tasks/WindowManager/WindowManager.o Tasks/WindowManager/Desktop.o \
+			Tasks/WindowManager/WindowManager.o \
 			Tasks/DARICWindow.o Tasks/TasksWindow.o \
 			Tasks/FontManager/FontManager.o \
 			GUI/lvgl.o GUI/Style.o \

@@ -1,7 +1,5 @@
-#pragma once
-#include <string>
+Mandelbrot_Single()
 
-const std::string DARIC_mandelbrot = R"(Mandelbrot()
 DEF Mandelbrot()
 	ITERS% = 256:XRANGE# = -1.5:YRANGE# = -1.5:COLS% = 16
 	REPEAT
@@ -31,10 +29,8 @@ DEF Mandelbrot()
 		NEXT
 	UNTIL FALSE
 ENDDEF
-)";
 
-const std::string DARIC_mandelbrot_single = R"(Mandelbrot()
-DEF Mandelbrot()
+DEF Mandelbrot_Single()
 	ITERS% = 256:XRANGE# = -1.5:YRANGE# = -1.5:COLS% = 16
     ww%=SCREENWIDTH():hh%=SCREENHEIGHT()
 	CLS
@@ -61,4 +57,3 @@ DEF Mandelbrot()
 		YIELD
 	NEXT
 ENDDEF
-)";

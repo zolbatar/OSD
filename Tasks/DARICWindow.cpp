@@ -1,9 +1,7 @@
 #include "DARICWindow.h"
 #include <memory.h>
 #include <string.h>
-#ifndef CLION
-#include <circle/logger.h>
-#endif
+#include <fstream>
 
 DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, int h)
 {
@@ -14,11 +12,43 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 	this->d_h = h;
 	this->name = name;
 	this->id = "@"+std::to_string(task_id++);
+	type = TaskType::DARIC;
+#ifndef CLION
+	SetUserData(&type, TASK_USER_DATA_USER);
+#endif
+
 }
 
 void DARICWindow::SetSourceCode(std::string code)
 {
+	task_override = this;
 	this->code = code;
+	task_override = NULL;
+}
+
+void DARICWindow::LoadSourceCode(std::string filename)
+{
+	task_override = this;
+	std::vector<std::string> lines;
+
+	// Open and check exists
+	std::ifstream in(filename);
+	if (!in.is_open()) {
+		CLogger::Get()->Write("DARICWindow", LogDebug, "Error opening source file");
+		assert(0);
+	}
+
+	// Read all lines
+	std::string line;
+	while (std::getline(in, line)) {
+		lines.push_back(line);
+	}
+
+	//  Concatenate
+	std::string s;
+	for (const auto& line : lines) s += line+'\n';
+	this->code = s;
+	task_override = NULL;
 }
 
 void DARICWindow::Run()
@@ -49,6 +79,7 @@ void DARICWindow::Run()
 
 	// Compile (and run)
 	CompileSource(code);
+	code = "";
 	RunCode();
 
 	TerminateTask();

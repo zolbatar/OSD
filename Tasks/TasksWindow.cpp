@@ -2,6 +2,7 @@
 
 extern size_t pre_boot_memory;
 extern size_t kernel_size;
+extern size_t body_font_height;
 
 TasksWindow::TasksWindow(int x, int y, int w, int h)
 {
@@ -11,6 +12,10 @@ TasksWindow::TasksWindow(int x, int y, int w, int h)
 	this->d_h = h;
 	this->id = "@"+std::to_string(task_id++);
 	this->name = "Task Manager";
+	type = TaskType::TaskManager;
+#ifndef CLION
+	this->SetUserData(&type, TASK_USER_DATA_USER);
+#endif
 }
 
 void TasksWindow::Run()
@@ -69,7 +74,7 @@ void TasksWindow::UpdateTasks()
 	const int sz = tasks_list.size()+3;
 	static lv_coord_t row_dsc[256];
 	for (int i = 0; i<sz; i++)
-		row_dsc[i] = 16;
+		row_dsc[i] = body_font_height;
 	row_dsc[sz] = LV_GRID_TEMPLATE_LAST;
 	static lv_coord_t col_dsc[] = { lv_pct(30), lv_pct(30), lv_pct(40), LV_GRID_TEMPLATE_LAST };
 	auto cont = lv_obj_create(cont_col);
@@ -108,7 +113,7 @@ void TasksWindow::UpdateTasks()
 	// Kernel? (Or a leak)
 	auto kernel_used_title = lv_label_create(cont);
 	lv_obj_set_grid_cell(kernel_used_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
-	lv_label_set_text(kernel_used_title, "OS/D Kernel");
+	lv_label_set_text(kernel_used_title, "OS/D Kernel & Freed");
 	auto kernel_used_memory = lv_label_create(cont);
 	lv_obj_set_grid_cell(kernel_used_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
 	lv_label_set_text_fmt(kernel_used_memory, "%zu KB", m.lost/1024);
