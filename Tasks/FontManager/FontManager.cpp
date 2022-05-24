@@ -4,11 +4,7 @@
 #endif
 #include <stdio.h>
 
-size_t FontManager::font_index = 0;
-std::map<std::string, size_t> FontManager::font_indexes;
-std::vector<char*> FontManager::font_alloc;
-std::vector<Font*> FontManager::fonts;
-lv_font_t* loaded = NULL;
+std::map<std::string, Font> FontManager::loaded_fonts;
 
 FontManager::FontManager()
 {
@@ -19,9 +15,10 @@ FontManager::FontManager()
 void FontManager::InitFonts()
 {
 	task_override = this;
-	loaded = LoadFile("Plex Sans", "/osd/fonts/IBMPlexSans-Regular.ttf");
-//	loaded = LoadFile("Plex Sans", "/osd/fonts/IBMPlexMono-Regular.ttf");
-//	loaded = LoadFile("Plex Sans", "/osd/fonts/IBMPlexMono-Regular.ttf");
+	LoadFile("IBM Plex Sans", "/osd/fonts/IBMPlexSans-Regular.ttf");
+	LoadFile("IBM Plex Serif", "/osd/fonts/IBMPlexSerif-Regular.ttf");
+	LoadFile("IBM Plex Mono", "/osd/fonts/IBMPlexMono-Regular.ttf");
+	LoadFile("Symbols", "/osd/fonts/fa-light-300.ttf");
 	task_override = NULL;
 }
 
@@ -37,11 +34,8 @@ void FontManager::Run()
 	TerminateTask();
 }
 
-lv_font_t* FontManager::LoadFile(std::string name, std::string filename)
+void FontManager::LoadFile(std::string name, std::string filename)
 {
-	auto index = font_index++;
-	font_indexes.insert(std::make_pair(name, index));
-
 	// Load and build the actual font
 	auto f = (stbtt_fontinfo*)malloc(sizeof(stbtt_fontinfo));
 	assert(f);
@@ -68,9 +62,6 @@ lv_font_t* FontManager::LoadFile(std::string name, std::string filename)
 	assert(r==sz);
 	fclose(fp);
 
-	// Save into map
-	font_alloc.push_back(ttf_buffer);
-
 	// Now create font
 	auto f_o = stbtt_GetFontOffsetForIndex((const unsigned char*)ttf_buffer, 0);
 	if (stbtt_InitFont(f, (const unsigned char*)ttf_buffer, f_o)==0) {
@@ -79,26 +70,49 @@ lv_font_t* FontManager::LoadFile(std::string name, std::string filename)
 	}
 
 	// Create font
-	auto height_px = 20;
+	Font ff;
+	ff.font = f;
+	loaded_fonts.insert(std::make_pair(name, std::move(ff)));
+}
 
-	auto font = new Font();
-	font->font = f;
-	font->scale = stbtt_ScaleForPixelHeight(f, height_px);
-	fonts.push_back(font);
+lv_font_t* FontManager::GetFontByNameAndSize(std::string name, int size)
+{
+	auto f = loaded_fonts.find(name);
+	if (f==loaded_fonts.end()) {
+		CLogger::Get()->Write("FontManager", LogDebug, "Can't find TTF font");
+		assert(0);
+	}
+
+	// Have we cached it?
+	auto f2 = f->second.sizes.find(size);
+	if (f2!=f->second.sizes.end()) {
+		return f2->second->lv;
+	}
+
+	auto ff = new FontSize();
+	ff->scale = stbtt_ScaleForPixelHeight(f->second.font, size);
 
 	// Baseline
 	int ascent;
-	stbtt_GetFontVMetrics(f, &ascent, 0, 0);
+	int descent;
+	int linegap;
+	stbtt_GetFontVMetrics(f->second.font, &ascent, &descent, &linegap);
+//	CLogger::Get()->Write("FontManager", LogDebug, "%d %d %d", ascent, descent, linegap);
+//	while (1);
 
-	auto ft = (lv_font_t*)malloc(sizeof(lv_font_t));
-	memset(ft, 0, sizeof(lv_font_t));
-	ft->line_height = (int)(static_cast<float>(ascent)*font->scale);
-	ft->get_glyph_dsc = FontManager::GlyphDSCHandler;
-	ft->get_glyph_bitmap = FontManager::GlyphBitmapHandler;
-	ft->dsc = font;
-	ft->base_line = 0;
-//	CLogger::Get()->Write("FontManager", LogDebug, "%d %f %d", ascent, font->scale, ft->base_line);
-	return ft;
+	// Create lv_font_t structure
+	ff->lv = (lv_font_t*)malloc(sizeof(lv_font_t));
+	memset(ff->lv, 0, sizeof(lv_font_t));
+	ff->font = f->second.font;
+	ff->lv->line_height = (static_cast<float>(ascent+abs(descent)+linegap)*ff->scale);
+	ff->lv->get_glyph_dsc = FontManager::GlyphDSCHandler;
+	ff->lv->get_glyph_bitmap = FontManager::GlyphBitmapHandler;
+	ff->lv->dsc = ff;
+	ff->lv->base_line = (static_cast<float>(-descent)*ff->scale);
+
+	// Save for later
+	f->second.sizes.insert(std::make_pair(size, std::move(ff)));
+	return ff->lv;
 }
 
 bool FontManager::GlyphDSCHandler(const lv_font_t* font, lv_font_glyph_dsc_t* dsc_out, uint32_t unicode_letter, uint32_t unicode_letter_next)
@@ -107,7 +121,7 @@ bool FontManager::GlyphDSCHandler(const lv_font_t* font, lv_font_glyph_dsc_t* ds
 		return false;
 	}
 
-	auto* ctx = (Font*)font->dsc;
+	auto* ctx = (FontSize*)font->dsc;
 	if (dsc_out==nullptr) return false;
 	float scale = ctx->scale;
 
@@ -125,9 +139,9 @@ bool FontManager::GlyphDSCHandler(const lv_font_t* font, lv_font_glyph_dsc_t* ds
 	stbtt_GetCodepointHMetrics(ctx->font, (int)unicode_letter, &adv_w, &left_side_bearing);
 
 	int kern = stbtt_GetCodepointKernAdvance(ctx->font, (int)unicode_letter, (int)unicode_letter_next);
-	adv_w = static_cast<int>(roundf(static_cast<float>(adv_w)*scale));
-	kern = static_cast<int>(roundf(static_cast<float>(kern)*scale));
-	left_side_bearing = static_cast<int>(roundf((static_cast<float>(left_side_bearing)*scale)));
+	adv_w = static_cast<int>(truncf(static_cast<float>(adv_w)*scale));
+	kern = static_cast<int>(truncf(static_cast<float>(kern)*scale));
+	left_side_bearing = static_cast<int>(truncf((static_cast<float>(left_side_bearing)*scale)));
 
 	dsc_out->resolved_font = font;
 	dsc_out->adv_w = adv_w+kern;
@@ -145,7 +159,7 @@ const uint8_t* FontManager::GlyphBitmapHandler(const lv_font_t* font, uint32_t u
 		return nullptr;
 	}
 
-	auto ctx = (Font*)font->dsc;
+	auto ctx = (FontSize*)font->dsc;
 	float scale = ctx->scale;
 
 	// Do we have it cached?

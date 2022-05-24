@@ -12,10 +12,16 @@
 #define STBTT_STATIC
 #include "stb_truetype.h"
 
+struct FontSize {
+	stbtt_fontinfo* font;
+	std::map<uint32_t, uint8_t*> cache;
+	float scale;
+	lv_font_t* lv;
+};
+
 struct Font {
 	stbtt_fontinfo* font;
-	float scale;
-	std::map<uint32_t, uint8_t*> cache;
+	std::map<int, FontSize*> sizes;
 };
 
 class FontManager : public OSDTask {
@@ -23,12 +29,10 @@ public:
 	FontManager();
 	void InitFonts();
 	void Run();
-	lv_font_t* LoadFile(std::string name, std::string filename);
+	void LoadFile(std::string name, std::string filename);
+	static lv_font_t* GetFontByNameAndSize(std::string name, int size);
 private:
-	static size_t font_index;
-	static std::map<std::string, size_t> font_indexes;
-	static std::vector<char*> font_alloc;
-	static std::vector<Font*> fonts;
+	static std::map<std::string, Font> loaded_fonts;
 
 	static bool GlyphDSCHandler(const lv_font_t* font, lv_font_glyph_dsc_t* dsc_out, uint32_t unicode_letter, uint32_t unicode_letter_next);
 	static const uint8_t* GlyphBitmapHandler(const lv_font_t* font, uint32_t unicode_letter);
