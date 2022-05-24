@@ -1,53 +1,116 @@
 #include "NativeCompiler.h"
+#ifndef CLION
+#include <circle/logger.h>
+#endif
 
 static bool tabbed = true;
 const int tab_size = 20;
 
-void call_PRINT_NL() {
-//    PRINTC("\n");
+void call_PRINT_NL()
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	mess->type = Messages::Canvas_PrintNewLine;
 }
 
-void call_PRINT_Tabbed() {
-    tabbed = true;
+void call_PRINT_Tabbed()
+{
+	tabbed = true;
 }
 
-void call_PRINT_TabbedOff() {
-    tabbed = false;
+void call_PRINT_TabbedOff()
+{
+	tabbed = false;
 }
 
-void call_PRINT_integer(int64_t v) {
-/*    if (tabbed)
-        PRINTC("%20lld", v);
-    else
-        PRINTC("%lld", v);*/
-    tabbed = false;
+void call_PRINT_integer(int64_t v)
+{
+	char d[64];
+	if (tabbed) {
+		sprintf(d, "%lld", v);
+		auto pos = 20-strlen(d);
+		memset(d, ' ', 64);
+		sprintf(&d[pos], "%d", v);
+	}
+	else {
+		sprintf(d, "%d", v);
+	}
+
+	// Send
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	mess->type = Messages::Canvas_PrintString;
+	strcpy((char*)&mess->data, d);
+
+	tabbed = false;
 }
 
-void call_PRINT_real(double v) {
-/*    if (tabbed) {
-    	char d[64];
+void call_PRINT_real(double v)
+{
+	char d[64];
+	if (tabbed) {
 		sprintf(d, "%f", v);
-        for (auto i = 0; i < 20 - strlen(d); i++)
-            PRINTC(" ");
-        PRINTC("%s", d);
-    } else
-        PRINTC("%f", v);*/
-    tabbed = false;
+		auto pos = 20-strlen(d);
+		memset(d, ' ', 64);
+		sprintf(&d[pos], "%f", v);
+	}
+	else {
+		sprintf(d, "%f", v);
+	}
+
+	// Send
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	mess->type = Messages::Canvas_PrintString;
+	strcpy((char*)&mess->data, d);
+
+	tabbed = false;
 }
 
-void call_PRINT_string(int64_t idx) {
-/*    auto v = OS_Strings_Get(idx);
-    PRINTC("%s", v.c_str());*/
-    tabbed = false;
+void call_PRINT_string(int64_t idx)
+{
+	auto v = OS_Strings_Get(idx);
+
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	if (v.length()<=MESSAGE_BLOCK) {
+		mess->type = Messages::Canvas_PrintString;
+		strcpy((char*)&mess->data, v.c_str());
+	}
+	else {
+		mess->type = Messages::Canvas_PrintStringLong;
+		auto m = (Address*)&mess->data;
+		m->address = (void*)v.c_str();
+		task->Yield();
+	}
+	tabbed = false;
 }
 
-void call_PRINT_SPC(int64_t v) {
-/*    for (auto i = 0; i < 4; i++)
-        PRINTC(" ");*/
+void call_PRINT_SPC(int64_t v)
+{
+	char s[v+1];
+	memset(s, ' ', v);
+	s[v+1] = 0;
+
+	// Send
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	mess->type = Messages::Canvas_PrintString;
+	strcpy((char*)&mess->data, s);
 }
 
-void call_PRINT_TAB(int64_t v) {
-/*    while (Console_X() + 1 != v) {
-        PRINTC(" ");
-    }*/
+void call_PRINT_TAB(int64_t v)
+{
+	// Send
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	mess->type = Messages::Canvas_PrintTab;
+	auto m = (Integer*)&mess->data;
+	m->v = v;
 }

@@ -9,7 +9,7 @@ const lv_color_t WINDOW_BACKGROUND_COLOUR = lv_color_hex(0xF0F0F0);
 const lv_color_t CONTAINER_BACKGROUND_COLOUR = WINDOW_BACKGROUND_COLOUR;/*lv_color_hex(0xb0b0b0);*/
 const lv_color_t CONTROL_BACKGROUND_COLOUR = lv_color_hex(0xE8E8E8);
 const lv_color_t CONTROL_BORDER_COLOUR = lv_color_hex(0xA0A0A0);
-const lv_color_t CONTROL_HIGHLIGHT_COLOUR = lv_color_hex(0x3973ac);
+const lv_color_t CONTROL_HIGHLIGHT_COLOUR = lv_color_hex(0xB0B0B0);
 const lv_color_t WINDOW_FURNITURE_BACKGROUND_COLOUR = lv_color_hex(0xE0E0E0);
 const lv_color_t WINDOW_FURNITURE_FOREGROUND_COLOUR = lv_color_hex(0x000000);
 const lv_color_t WINDOW_FURNITURE_BORDER_COLOUR = lv_color_hex(0x404040);
@@ -32,6 +32,8 @@ extern lv_style_t style_window_furniture;
 extern lv_style_t style_scrollbar;
 extern lv_style_t style_bar;
 extern lv_style_t style_bar_indicator;
+extern lv_style_t style_bar_indicator_green;
+extern lv_style_t style_bar_indicator_red;
 extern lv_style_t style_chart;
 extern lv_style_t style_chart_bar;
 

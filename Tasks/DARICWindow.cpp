@@ -2,6 +2,7 @@
 #include <memory.h>
 #include <string.h>
 #include <fstream>
+#include "../Library/StringLib.h"
 
 DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, int h)
 {
@@ -31,10 +32,17 @@ void DARICWindow::LoadSourceCode(std::string filename)
 	task_override = this;
 	std::vector<std::string> lines;
 
+	// Quick and dirty file stuff until we have a proper file manager
+	replace(filename, ":SD.$.Welcome.", "/osd/Welcome/");
+
 	// Open and check exists
 	std::ifstream in(filename);
 	if (!in.is_open()) {
-		CLogger::Get()->Write("DARICWindow", LogDebug, "Error opening source file");
+#ifndef CLION
+		CLogger::Get()->Write("DARICWindow", LogDebug, "Error opening source file: %s", filename.c_str());
+#else
+		printf("Error opening source file\n");
+#endif
 		assert(0);
 	}
 

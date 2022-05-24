@@ -100,6 +100,7 @@ void OSDTask::TerminateTask()
 #endif
 }
 
+#ifndef CLION
 void OSDTask::TaskTerminationHandler(CTask* ctask)
 {
 	auto tt = (TaskType*)ctask->GetUserData(TASK_USER_DATA_USER);
@@ -114,6 +115,7 @@ void OSDTask::TaskTerminationHandler(CTask* ctask)
 			break;
 	}
 }
+#endif
 
 #ifdef CLION
 
@@ -340,7 +342,11 @@ void OSDTask::CompileSource(std::string code)
 				printf("[Runtime] ");
 				break;
 		}
+#ifdef CLION
 		printf("%s at line %d, column %d", ex.error.c_str(), ex.line_number, ex.char_position);
+#else
+		CLogger::Get()->Write("CompileSource", LogPanic, "%s at line %d, column %d", ex.error.c_str(), ex.line_number, ex.char_position);
+#endif
 	}
 }
 

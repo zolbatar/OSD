@@ -100,7 +100,7 @@ void TasksWindow::UpdateTasks()
 	size_t pc = (m.free_memory*100)/m.total_memory;
 	lv_bar_set_value(bar_free, pc, LV_ANIM_OFF);
 	lv_obj_add_style(bar_free, &style_bar, LV_STATE_DEFAULT);
-	lv_obj_add_style(bar_free, &style_bar_indicator, LV_PART_INDICATOR);
+	lv_obj_add_style(bar_free, &style_bar_indicator_green, LV_PART_INDICATOR);
 
 	// Kernel size
 	auto kernel_size_title = lv_label_create(cont);
@@ -113,7 +113,7 @@ void TasksWindow::UpdateTasks()
 	// Kernel? (Or a leak)
 	auto kernel_used_title = lv_label_create(cont);
 	lv_obj_set_grid_cell(kernel_used_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
-	lv_label_set_text(kernel_used_title, "OS/D Kernel & Freed");
+	lv_label_set_text(kernel_used_title, "OS/D Kernel & Pool");
 	auto kernel_used_memory = lv_label_create(cont);
 	lv_obj_set_grid_cell(kernel_used_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
 	lv_label_set_text_fmt(kernel_used_memory, "%zu KB", m.lost/1024);
@@ -123,7 +123,7 @@ void TasksWindow::UpdateTasks()
 	pc = (m.lost*100)/m.used;
 	lv_bar_set_value(bar_used, pc, LV_ANIM_OFF);
 	lv_obj_add_style(bar_used, &style_bar, LV_STATE_DEFAULT);
-	lv_obj_add_style(bar_used, &style_bar_indicator, LV_PART_INDICATOR);
+	lv_obj_add_style(bar_used, &style_bar_indicator_red, LV_PART_INDICATOR);
 
 	size_t i = 3;
 
@@ -159,7 +159,7 @@ void TasksWindow::UpdateTasks()
 		size_t pc = (task->CalculateMemoryUsed()*100)/m.used;
 		lv_bar_set_value(bar, pc, LV_ANIM_OFF);
 		lv_obj_add_style(bar, &style_bar, LV_STATE_DEFAULT);
-		lv_obj_add_style(bar, &style_bar_indicator, LV_PART_INDICATOR);
+		lv_obj_add_style(bar, &style_bar_indicator_red, LV_PART_INDICATOR);
 
 		i++;
 	}

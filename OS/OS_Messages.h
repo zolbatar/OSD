@@ -9,6 +9,10 @@ enum class Messages {
 	Canvas_PlotPixel,
 	Canvas_SetForegroundColour,
 	Canvas_SetBackgroundColour,
+	Canvas_PrintString,
+	Canvas_PrintStringLong,
+	Canvas_PrintNewLine,
+	Canvas_PrintTab,
 	WM_CloseWindow,
 	WM_OpenWindow,
 };
@@ -38,4 +42,12 @@ struct Canvas_DrawLine {
 
 struct Canvas_Colour {
 	uint32_t colour;
+};
+
+struct Address {
+	void* address;
+};
+
+struct Integer {
+	int64_t v;
 };

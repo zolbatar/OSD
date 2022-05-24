@@ -161,6 +161,32 @@ void WindowManager::Run()
 					w->GetCanvas()->SetBG(m->colour);
 					break;
 				}
+				case Messages::Canvas_PrintString: {
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->PrintString((const char*)&message->data);
+					break;
+				}
+				case Messages::Canvas_PrintNewLine: {
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->PrintNewLine();
+					break;
+				}
+				case Messages::Canvas_PrintStringLong: {
+					auto m = (Address*)&message->data;
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->PrintString((const char*)m->address);
+					break;
+				}
+				case Messages::Canvas_PrintTab: {
+					auto m = (Integer*)&message->data;
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->PrintTab(m->v);
+					break;
+				}
 				default:
 #ifndef CLION
 					CLogger::Get()->Write("GUI", LogDebug, "Unknown message received %d %p", message->type, message->source);
@@ -188,15 +214,15 @@ void WindowManager::DesktopStartup()
 {
 #ifndef CLION
 	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 100, 400, 400);
-	mandelbrot->LoadSourceCode("osd/Welcome/Mandelbrot.daric");
+	mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
 	mandelbrot->Start();
 
-	auto tester = NEW DARICWindow("Tester", false, 400, 300, 500, 500);
-	tester->LoadSourceCode("osd/Welcome/Tester.daric");
+	auto tester = NEW DARICWindow("Tester", false, 400, 300, 500, 700);
+	tester->LoadSourceCode(":SD.$.Welcome.Tester");
 	tester->Start();
 
 	auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
-	clock->LoadSourceCode("osd/Welcome/Clock.daric");
+	clock->LoadSourceCode(":SD.$.Welcome.Clock");
 	clock->Start();
 
 	auto tasks = NEW TasksWindow(1200, 400, 600, 500);

@@ -15,6 +15,8 @@ lv_style_t style_window_furniture;
 lv_style_t style_scrollbar;
 lv_style_t style_bar;
 lv_style_t style_bar_indicator;
+lv_style_t style_bar_indicator_green;
+lv_style_t style_bar_indicator_red;
 lv_style_t style_chart_bar;
 lv_style_t style_chart;
 size_t body_font_height = 18;
@@ -22,7 +24,7 @@ size_t body_font_height = 18;
 void SetupLVGLStyles()
 {
 	// Additional fonts
-	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Light", 22);
+	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", 22);
 	auto font_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", body_font_height);
 	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Symbols", "Light", 12);
 
@@ -96,6 +98,14 @@ void SetupLVGLStyles()
 	lv_style_set_radius(&style_bar_indicator, corner_radius_inner);
 	lv_style_set_border_width(&style_bar_indicator, 0);
 	lv_style_set_bg_color(&style_bar_indicator, CONTROL_HIGHLIGHT_COLOUR);
+	lv_style_init(&style_bar_indicator_green);
+	lv_style_set_radius(&style_bar_indicator_green, corner_radius_inner);
+	lv_style_set_border_width(&style_bar_indicator_green, 0);
+	lv_style_set_bg_color(&style_bar_indicator_green, lv_color_mix(CONTROL_HIGHLIGHT_COLOUR, lv_color_hex(0x00FF000), 192));
+	lv_style_init(&style_bar_indicator_red);
+	lv_style_set_radius(&style_bar_indicator_red, corner_radius_inner);
+	lv_style_set_border_width(&style_bar_indicator_red, 0);
+	lv_style_set_bg_color(&style_bar_indicator_red, lv_color_mix(CONTROL_HIGHLIGHT_COLOUR, lv_color_hex(0xFF00000), 192));
 
 	// Style - grid
 	lv_style_init(&style_grid);

@@ -146,7 +146,9 @@ public:
 		this->w = w;
 	}
 
+#ifndef CLION
 	static void TaskTerminationHandler(CTask* ctask);
+#endif
 
 	std::string GetWindowID() { return id; }
 

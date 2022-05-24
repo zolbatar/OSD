@@ -15,17 +15,9 @@ void IRCompiler::IRPrinter(std::list<std::string>* irl)
 	IRPrinterSection(irl, &ir);
 }
 
-bool replace(std::string& str, const std::string& from, const std::string& to)
-{
-	size_t start_pos = str.find(from);
-	if (start_pos==std::string::npos)
-		return false;
-	str.replace(start_pos, from.length(), to);
-	return true;
-}
+bool replace(std::string& str, const std::string& from, const std::string& to);
 
-void
-IRCompiler::IRPrintValueBased(char* l, IROpcodes o, IROpcodes in, IROpcodes fl, IROpcodes st, std::string fmt, ...)
+void IRCompiler::IRPrintValueBased(char* l, IROpcodes o, IROpcodes in, IROpcodes fl, IROpcodes st, std::string fmt, ...)
 {
 	if (o==in)
 		replace(fmt, "@", "integer");

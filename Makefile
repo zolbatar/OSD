@@ -14,6 +14,7 @@ OBJS    = 	main.o kernel.o \
 			Tasks/DARICWindow.o Tasks/TasksWindow.o \
 			Tasks/FontManager/FontManager.o \
 			GUI/lvgl.o GUI/Style.o \
+			Library/StringLib.o \
 			\
 			Tokeniser/Tokeniser.o Tokeniser/TokeniserNumber.o Tokeniser/TokeniserString.o Tokeniser/TokeniserSymbol.o \
 			Tokeniser/TokeniserText.o Tokeniser/TokeniserPrinter.o \
