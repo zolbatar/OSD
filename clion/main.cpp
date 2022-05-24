@@ -8,6 +8,7 @@
 #include "../Applications/Clock.h"
 #include "../Chrono/Chrono.h"
 #include "../Tasks/WindowManager/Desktop.h"
+#include "../Tasks/FontManager/FontManager.h"
 
 extern int ScreenWidth;
 extern int ScreenHeight;
@@ -19,6 +20,8 @@ int main() {
     ClockInit();
 
     // What to run?
+    auto fm = NEW FontManager();
+    fm->InitFonts();
     auto gui = NEW WindowManager();
     DesktopStartup();
     gui->Start();

@@ -35,11 +35,10 @@ extern lv_style_t style_bar_indicator;
 extern lv_style_t style_chart;
 extern lv_style_t style_chart_bar;
 
-#define LV_SYMBOL_CLOSE           "\xEF\x90\x90" // 0xF00D close
+//#define LV_SYMBOL_CLOSE           "\xEF\x90\x90" // 0xF00D close
 #define LV_SYMBOL_MAXIMISE        "\xEF\x8B\x90" // 0xF2D0 window maximize
 #define LV_SYMBOL_MINIMISE        "\xEF\x8B\x91" // 0xF2D1 window minimise
-#define LV_SYMBOL_RESIZE          "\xEF\x81\xA6" // 0xf066
-// 0xF00D,0xF2D0,0xF2D1,0xf066
+//#define LV_SYMBOL_RESIZE          "\xEF\x81\xA6" // 0xf066
 
 void SetupLVGLStyles();
 

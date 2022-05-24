@@ -73,7 +73,6 @@ void OSDTask::SetNameAndAddToList()
 	SetName(id);
 	tasks.insert(std::make_pair(id, this));
 	auto id = std::this_thread::get_id();
-	printf("Task: %s, thread %d\n", id.c_str(), id);
 	task_threads.insert(std::make_pair(id, this));
 #endif
 	tasks_list.push_back(this);
