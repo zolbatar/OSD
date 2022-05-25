@@ -323,7 +323,7 @@ void GuiCLVGL::FlushCB(lv_disp_drv_t* disp_drv, const lv_area_t* area, lv_color_
 		SDL_SetRenderTarget(renderer, NULL);
 
 		// Background
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+		SDL_SetRenderDrawColor(renderer, 	0, 0, 0, 0);
 		SDL_RenderClear(renderer);
 
 		// Render

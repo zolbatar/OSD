@@ -88,7 +88,6 @@ public:
 
 	void SetName(std::string name)
 	{
-		this->name = name;
 	}
 
 	void Start()

@@ -5,10 +5,8 @@ int main(void)
 {
 	CKernel Kernel;
 	if (!Kernel.Initialize()) {
-#ifndef QEMU
-//		halt();
-//		return EXIT_HALT;
-#endif
+		halt();
+		return EXIT_HALT;
 	}
 
 	CStdlibApp::TShutdownMode ShutdownMode = Kernel.Run();
@@ -21,7 +19,7 @@ int main(void)
 
 		case CStdlibApp::ShutdownHalt:
 		default:
-			while(1);
+			while (1);
 			halt();
 			return EXIT_HALT;
 	}

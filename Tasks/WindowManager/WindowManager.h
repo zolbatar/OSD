@@ -17,7 +17,6 @@ public:
 
 private:
 	GuiCLVGL* clvgl;
-	std::map<std::string, Window*> windows;
 
 	void DesktopStartup();
 };

@@ -1,5 +1,7 @@
 #include "Window.h"
 
+std::map<std::string, Window*> Window::windows;
+
 Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
 		:title(title), x1(x), y1(y), width(w), height(h)
 {
@@ -18,7 +20,8 @@ Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, in
 	header = lv_win_get_header(win);
 	lv_obj_add_style(header, &style_window_header, LV_STATE_DEFAULT);
 	lv_obj_add_style(header, &style_window_header_inactive, LV_STATE_DEFAULT);
-	lv_obj_add_event_cb(header, DragEventHandler, LV_EVENT_PRESSING, NULL);
+	lv_obj_add_event_cb(header, ClickEventHandler, LV_EVENT_CLICKED, this);
+	lv_obj_add_event_cb(header, DragEventHandler, LV_EVENT_PRESSING, this);
 
 	// Content
 	auto content = lv_win_get_content(win);
@@ -42,6 +45,7 @@ Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, in
 	}
 
 	OSDTask::UnlockVLGL();
+	SetActive();
 }
 
 Window::~Window()
@@ -55,23 +59,31 @@ Window::~Window()
 
 void Window::SetActive()
 {
-	OSDTask::LockVLGL("Window::SetActive");
 	lv_obj_add_style(header, &style_window_header_active, 0);
+	lv_obj_move_foreground(this->GetLVGLWindow());
 	this->active = true;
-	OSDTask::UnlockVLGL();
+
+	// Set all others as inactive
+	for (auto& w: windows)
+		w.second->SetInactive();
 }
 
 void Window::SetInactive()
 {
-	OSDTask::LockVLGL("Window::SetInactive");
 	lv_obj_add_style(header, &style_window_header_inactive, 0);
 	this->active = false;
-	OSDTask::UnlockVLGL();
 }
 
 void Window::CloseClicked(_lv_event_t* e)
 {
 
+}
+
+void Window::ClickEventHandler(lv_event_t* e)
+{
+	lv_obj_t* obj = lv_event_get_target(e);
+	auto win = (Window*)e->user_data;
+	win->SetActive();
 }
 
 void Window::DragEventHandler(lv_event_t* e)
@@ -87,7 +99,24 @@ void Window::DragEventHandler(lv_event_t* e)
 	lv_indev_get_vect(indev, &vect);
 
 	lv_obj_t* win = lv_obj_get_parent(obj);
+
+	// Set pos
 	lv_coord_t x = lv_obj_get_x(win)+vect.x;
 	lv_coord_t y = lv_obj_get_y(win)+vect.y;
+
+	// Get size of window, will it fit?
+	auto w = lv_obj_get_width(win);
+	auto h = lv_obj_get_height(win);
+	auto sw = lv_obj_get_width(lv_scr_act());
+	auto sh = lv_obj_get_height(lv_scr_act());
+	if (x<0)
+		x = 0;
+	if (x+w>sw)
+		x = sw-w;
+	if (y<0)
+		y = 0;
+	if (y+h>sh)
+		y = sh-h;
+
 	lv_obj_set_pos(win, x, y);
 }

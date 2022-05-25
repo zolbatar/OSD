@@ -19,6 +19,7 @@ lv_style_t style_bar_indicator_green;
 lv_style_t style_bar_indicator_red;
 lv_style_t style_chart_bar;
 lv_style_t style_chart;
+lv_style_t style_textarea;
 size_t body_font_height = 18;
 
 void SetupLVGLStyles()
@@ -26,7 +27,8 @@ void SetupLVGLStyles()
 	// Additional fonts
 	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", 22);
 	auto font_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", body_font_height);
-	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Symbols", "Light", 12);
+	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Symbols", "Light", 14);
+	auto font_mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", 22);
 
 	// Disable scrolling
 	lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);
@@ -123,9 +125,16 @@ void SetupLVGLStyles()
 	lv_style_set_pad_all(&style_chart, 4);
 	lv_style_set_pad_column(&style_chart, 1);
 	lv_style_set_radius(&style_chart, corner_radius_inner);
-
 	lv_style_init(&style_chart_bar);
 	lv_style_set_border_width(&style_chart_bar, 0);
 	lv_style_set_pad_all(&style_chart_bar, 0);
 	lv_style_set_radius(&style_chart_bar, corner_radius_inner);
+
+	// Style - textarea
+	lv_style_init(&style_textarea);
+	lv_style_set_bg_color(&style_textarea, lv_color_white());
+	lv_style_set_border_width(&style_textarea, 1);
+	lv_style_set_pad_all(&style_textarea, 8);
+	lv_style_set_radius(&style_textarea, corner_radius_inner);
+	lv_style_set_text_font(&style_textarea, font_mono);
 }

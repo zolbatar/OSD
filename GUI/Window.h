@@ -14,9 +14,11 @@ public:
 	void SetActive();
 	void SetInactive();
 
+	static std::map<std::string, Window*> windows;
 private:
 	static void CloseClicked(_lv_event_t* e);
 	static void DragEventHandler(lv_event_t* e);
+	static void ClickEventHandler(lv_event_t* e);
 	std::string title;
 	int x1;
 	int y1;

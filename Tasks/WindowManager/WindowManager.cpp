@@ -107,21 +107,15 @@ void WindowManager::Run()
 				case Messages::WM_OpenWindow: {
 					auto m = (WM_OpenWindow*)&message->data;
 					Window* w = new Window(m->canvas, m->fixed, m->title, m->x, m->y, m->width, m->height);
-					w->SetActive();
-
-					// Set all other windows as inactive
-					for (auto& w: windows)
-						w.second->SetInactive();
-
-					windows.insert(std::make_pair(m->id, w));
+					Window::windows.insert(std::make_pair(m->id, w));
 					source->SetWindow(m->id, w);
 					break;
 				}
 				case Messages::WM_CloseWindow: {
-					auto w = windows.find(source->GetWindowID());
-					if (w!=windows.end()) {
+					auto w = Window::windows.find(source->GetWindowID());
+					if (w!=Window::windows.end()) {
 						DELETE w->second;
-						windows.erase(w);
+						Window::windows.erase(w);
 						source->SetWindow(source->GetWindowID(), NULL);
 					}
 					break;
@@ -230,13 +224,19 @@ void WindowManager::DesktopStartup()
 	tasks->Start();
 
 	auto editor = NEW Editor(200, 450, 700, 600);
+	editor->LoadSourceCode(":SD.$.Welcome.Tester");
 	editor->Start();
 #else
 	auto tasks = NEW TasksWindow(1200, 200, 350, 400);
 	std::thread t1(&DARICWindow::Start, tasks);
 	t1.detach();
 
-/*	auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
+	auto editor = NEW Editor(200, 450, 700, 600);
+	editor->LoadSourceCode(":SD.$.Welcome.Tester");
+	std::thread t2(&Editor::Start, editor);
+	t2.detach();
+
+	/*	auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
 	clock->LoadSourceCode(":SD.$.Welcome.Clock");
 	std::thread t2(&DARICWindow::Start, clock);
 	t2.detach();*/
@@ -244,12 +244,12 @@ void WindowManager::DesktopStartup()
 /*    auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 600, 400, 400);
     mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
     std::thread t3(&DARICWindow::Start, mandelbrot);
-    t3.detach();*/
+    t3.detach();
 
 	auto tester = NEW DARICWindow("Tester", false, 100, 600, 400, 400);
 	tester->LoadSourceCode(":SD.$.Welcome.Tester");
-	std::thread t3(&DARICWindow::Start, tester);
-	t3.detach();
+	std::thread t4(&DARICWindow::Start, tester);
+	t4.detach();*/
 
 #endif
 }
