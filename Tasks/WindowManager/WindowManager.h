@@ -9,6 +9,20 @@
 #include <map>
 #include <memory>
 
+enum class MenuItemType {
+	Item,
+	Separator
+};
+
+struct MenuItem {
+	MenuItemType type;
+	std::string v;
+};
+
+struct Menu {
+	std::list<MenuItem> items;
+};
+
 class WindowManager : public OSDTask {
 public:
 	WindowManager();
@@ -17,7 +31,11 @@ public:
 
 private:
 	GuiCLVGL* clvgl;
+	lv_obj_t* menu_win = NULL;
+	Menu* menu = NULL;
 
 	void DesktopStartup();
+	static void ClickEventHandler(lv_event_t* e);
+	void CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu);
 };
 

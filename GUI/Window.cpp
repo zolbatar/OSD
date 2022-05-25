@@ -2,8 +2,8 @@
 
 std::map<std::string, Window*> Window::windows;
 
-Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
-		:title(title), x1(x), y1(y), width(w), height(h)
+Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
+		:task(task), title(title), x1(x), y1(y), width(w), height(h)
 {
 	OSDTask::LockVLGL("Window::Window");
 	x2 = x1+width;
@@ -37,7 +37,7 @@ Window::Window(bool pure_canvas, bool fixed, std::string title, int x, int y, in
 	auto btn_max = lv_win_add_btn(win, LV_SYMBOL_MAXIMISE, WINDOW_FURNITURE_WIDTH);
 	lv_obj_add_style(btn_max, &style_window_furniture, LV_STATE_DEFAULT);
 	auto btn_close = lv_win_add_btn(win, LV_SYMBOL_CLOSE, WINDOW_FURNITURE_WIDTH);
-	lv_obj_add_event_cb(btn_close, CloseClicked, LV_EVENT_CLICKED, NULL);
+	lv_obj_add_event_cb(btn_close, CloseClicked, LV_EVENT_CLICKED, this);
 	lv_obj_add_style(btn_close, &style_window_furniture, LV_STATE_DEFAULT);
 
 	if (pure_canvas) {
@@ -59,13 +59,13 @@ Window::~Window()
 
 void Window::SetActive()
 {
-	lv_obj_add_style(header, &style_window_header_active, 0);
-	lv_obj_move_foreground(this->GetLVGLWindow());
-	this->active = true;
-
 	// Set all others as inactive
 	for (auto& w: windows)
 		w.second->SetInactive();
+
+	lv_obj_add_style(header, &style_window_header_active, 0);
+	lv_obj_move_foreground(this->GetLVGLWindow());
+	this->active = true;
 }
 
 void Window::SetInactive()
@@ -76,7 +76,8 @@ void Window::SetInactive()
 
 void Window::CloseClicked(_lv_event_t* e)
 {
-
+	auto w = (Window*)e->user_data;
+	w->task->TerminateTask();
 }
 
 void Window::ClickEventHandler(lv_event_t* e)

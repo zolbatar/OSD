@@ -29,8 +29,9 @@
 #include <circle/new.h>
 #else
 #include <stdio.h>
-bool GuiCLVGL::mouse_event = false;
-bool GuiCLVGL::mouse_pressed = false;
+bool GuiCLVGL::mouse_left_pressed = false;
+bool GuiCLVGL::mouse_middle_pressed = false;
+bool GuiCLVGL::mouse_right_pressed = false;
 int GuiCLVGL::mouse_x;
 int GuiCLVGL::mouse_y;
 
@@ -97,7 +98,7 @@ GuiCLVGL::~GuiCLVGL(void)
 	m_pBuffer2 = 0;
 #else
 	TerminalShutdown("SDL/UI");
-//    SDL_DestroyRenderer(renderer);
+	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 #endif
@@ -142,7 +143,7 @@ bool GuiCLVGL::Initialize(void)
 
 	if (m_pMouseDevice != 0) {
 		if (m_pMouseDevice->Setup(nWidth, nHeight)) {
-			m_pMouseDevice->ShowCursor(FALSE);
+			m_pMouseDevice->ShowCursor(TRUE);
 			m_pMouseDevice->RegisterEventHandler(MouseEventHandler);
 			m_pMouseDevice->RegisterRemovedHandler(MouseRemovedHandler);
 		} else {
@@ -219,7 +220,7 @@ void GuiCLVGL::Update(bool bPlugAndPlayUpdated) {
 		if (m_pMouseDevice != 0) {
 			assert(m_pFrameBuffer != 0);
 			if (m_pMouseDevice->Setup(m_pFrameBuffer->GetWidth(), m_pFrameBuffer->GetHeight())) {
-				m_pMouseDevice->ShowCursor(FALSE);
+				m_pMouseDevice->ShowCursor(TRUE);
 				m_pMouseDevice->RegisterEventHandler(MouseEventHandler);
 				m_pMouseDevice->RegisterRemovedHandler(MouseRemovedHandler);
 			}
@@ -290,16 +291,12 @@ void GuiCLVGL::InputInit(bool use_mouse_cursor)
 
 void GuiCLVGL::MouseRead(lv_indev_drv_t* indev_drv_mouse, lv_indev_data_t* data)
 {
-	data->state = (mouse_pressed) ? LV_INDEV_STATE_PRESSED : LV_INDEV_STATE_RELEASED;
-
-	// Event for a USB mouse
-	if (mouse_event) {
-		uint32_t buttons = SDL_GetMouseState(&mouse_x, &mouse_y);
-		data->point.x = mouse_x;
-		data->point.y = mouse_y;
-		data->state = (buttons & SDL_BUTTON_LMASK) ? LV_INDEV_STATE_PRESSED : LV_INDEV_STATE_RELEASED;
-		mouse_event = false;
-	}
+	uint32_t buttons = SDL_GetMouseState(&mouse_x, &mouse_y);
+	data->point.x = mouse_x;
+	data->point.y = mouse_y;
+	data->state = (mouse_left_pressed) ? LV_INDEV_STATE_PRESSED : LV_INDEV_STATE_RELEASED;
+//	data->state = (mouse_middle_pressed) ? LV_INDEV_STATE_MIDDLE_PRESSED : LV_INDEV_STATE_MIDDLE_RELEASED;
+//	data->state = (mouse_right_pressed) ? LV_INDEV_STATE_RIGHT_PRESSED : LV_INDEV_STATE_RIGHT_RELEASED;
 }
 
 void GuiCLVGL::ClearCB(lv_disp_drv_t* disp_drv, uint8_t* buf, uint32_t size)
@@ -323,7 +320,7 @@ void GuiCLVGL::FlushCB(lv_disp_drv_t* disp_drv, const lv_area_t* area, lv_color_
 		SDL_SetRenderTarget(renderer, NULL);
 
 		// Background
-		SDL_SetRenderDrawColor(renderer, 	0, 0, 0, 0);
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 		SDL_RenderClear(renderer);
 
 		// Render
@@ -348,13 +345,29 @@ void GuiCLVGL::ProcessEvents()
 	while (SDL_PollEvent(&e)) {
 		switch (e.type) {
 			case SDL_MOUSEMOTION:
+				mouse_x = e.motion.x;
+				mouse_y = e.motion.y;
+				break;
 			case SDL_MOUSEBUTTONDOWN:
-			case SDL_MOUSEBUTTONUP:
-				mouse_event = true;
-				if ((e.type==SDL_MOUSEBUTTONDOWN || e.type==SDL_MOUSEBUTTONUP) && e.button.button==SDL_BUTTON_LEFT) {
-					mouse_event = true;
-					mouse_pressed = (e.type==SDL_MOUSEBUTTONDOWN);
+				if (e.button.button==SDL_BUTTON_LEFT) {
+					mouse_left_pressed = true;
+					mouse_x = e.motion.x;
+					mouse_y = e.motion.y;
 				}
+				else if (e.button.button==SDL_BUTTON_MIDDLE) {
+					mouse_middle_pressed = true;
+					mouse_x = e.motion.x;
+					mouse_y = e.motion.y;
+				}
+				else if (e.button.button==SDL_BUTTON_RIGHT) {
+					mouse_right_pressed = true;
+					mouse_x = e.motion.x;
+					mouse_y = e.motion.y;
+				}
+				break;
+			case SDL_MOUSEBUTTONUP:
+				if (e.button.button==SDL_BUTTON_LEFT)
+					mouse_left_pressed = false;
 				break;
 			case SDL_QUIT:
 				quit_requested = true;
@@ -410,9 +423,9 @@ void GuiCLVGL::PointerRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData)
 {
 	assert(s_pThis!=0);
 
-	pData->state = s_pThis->m_PointerData.state;
 	pData->point.x = s_pThis->m_PointerData.point.x;
 	pData->point.y = s_pThis->m_PointerData.point.y;
+	pData->state = s_pThis->m_PointerData.state;
 }
 
 void GuiCLVGL::MouseEventHandler(TMouseEvent Event, unsigned nButtons, unsigned nPosX, unsigned nPosY, int nWheelMove) {
@@ -420,10 +433,6 @@ void GuiCLVGL::MouseEventHandler(TMouseEvent Event, unsigned nButtons, unsigned 
 
 	switch (Event) {
 		case MouseEventMouseMove:
-			s_pThis->m_PointerData.state = LV_INDEV_STATE_PR;
-			s_pThis->m_PointerData.point.x = nPosX;
-			s_pThis->m_PointerData.point.y = nPosY;
-			break;
 		case MouseEventMouseDown:
 			if (nButtons & MOUSE_BUTTON_LEFT) {
 				s_pThis->m_PointerData.state = LV_INDEV_STATE_PR;

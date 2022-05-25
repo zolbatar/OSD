@@ -22,11 +22,13 @@ void FontManager::InitFonts()
 	LoadFile("IBM Plex Sans", "Light", "/osd/System/Fonts/IBMPlexSans-Light.ttf");
 	LoadFile("IBM Plex Serif", "Regular", "/osd/System/Fonts/IBMPlexSerif-Regular.ttf");
 	LoadFile("IBM Plex Mono", "Regular", "/osd/System/Fonts/IBMPlexMono-Regular.ttf");
+	LoadFile("IBM Plex Mono", "Medium", "/osd/System/Fonts/IBMPlexMono-Medium.ttf");
 	LoadFile("Symbols", "Light", "/osd/System/Fonts/fa-light-300.ttf");
 #else
 	LoadFile("IBM Plex Sans", "Regular", "/Users/daryl/Dev/osd/fonts/IBMPlexSans-Regular.ttf");
 	LoadFile("IBM Plex Sans", "Light", "/Users/daryl/Dev/osd/fonts/IBMPlexSans-Light.ttf");
 	LoadFile("IBM Plex Serif", "Regular", "/Users/daryl/Dev/osd/fonts/IBMPlexSerif-Regular.ttf");
+	LoadFile("IBM Plex Mono", "Medium", "/Users/daryl/Dev/osd/fonts/IBMPlexMono-Medium.ttf");
 	LoadFile("IBM Plex Mono", "Regular", "/Users/daryl/Dev/osd/fonts/IBMPlexMono-Regular.ttf");
 	LoadFile("Symbols", "Light", "/Users/daryl/Dev/osd/fonts/fa-light-300.ttf");
 #endif

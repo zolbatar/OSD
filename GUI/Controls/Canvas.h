@@ -2,6 +2,8 @@
 #include "../OS/OS.h"
 #include "Control.h"
 
+extern size_t body_font_height;
+
 class Canvas : public Control {
 public:
 	Canvas(lv_obj_t* parent, int w, int h);
@@ -25,9 +27,8 @@ private:
 	lv_color_t bg = lv_color_black();
 	uint8_t* buffer;
 	lv_font_t* mono;
-	int font_size = 18;
-	int size_h = font_size / 2;
-	int size_v = font_size;
+	int size_h = body_font_height / 2;
+	int size_v = body_font_height;
 
 	void ScrollUp();
 };

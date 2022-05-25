@@ -5,6 +5,9 @@
 #include "../Tasks/FontManager/FontManager.h"
 
 lv_style_t style_background;
+lv_style_t style_menu;
+lv_style_t style_menu_container;
+lv_style_t style_menu_item;
 lv_style_t style_window;
 lv_style_t style_window_content;
 lv_style_t style_grid;
@@ -21,14 +24,17 @@ lv_style_t style_chart_bar;
 lv_style_t style_chart;
 lv_style_t style_textarea;
 size_t body_font_height = 18;
+size_t menu_font_height = 22;
+lv_font_t *font_mono;
 
 void SetupLVGLStyles()
 {
 	// Additional fonts
 	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", 22);
 	auto font_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", body_font_height);
-	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Symbols", "Light", 14);
-	auto font_mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", 22);
+	auto menu_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height);
+	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Symbols", "Light", 16);
+	font_mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", body_font_height);
 
 	// Disable scrolling
 	lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);
@@ -38,6 +44,23 @@ void SetupLVGLStyles()
 	lv_style_set_bg_color(&style_background, DESKTOP_COLOUR);
 	lv_style_set_text_color(&style_background, lv_color_white());
 	lv_obj_add_style(lv_scr_act(), &style_background, LV_STATE_DEFAULT);
+
+	// Style - menu
+	lv_style_init(&style_menu);
+	lv_style_set_border_color(&style_menu, WINDOW_BORDER_COLOUR);
+	lv_style_set_text_color(&style_menu, lv_color_white());
+	lv_style_set_border_width(&style_menu, WINDOW_BORDER_WIDTH);
+	lv_style_set_radius(&style_menu, corner_radius_inner);
+	lv_style_set_text_font(&style_menu, menu_body);
+	lv_style_init(&style_menu_container);
+	lv_style_set_bg_color(&style_menu_container, CONTAINER_BACKGROUND_COLOUR);
+	lv_style_set_border_width(&style_menu_container, 0);
+	lv_style_set_pad_all(&style_menu_container, 2);
+	lv_style_set_radius(&style_menu_container, corner_radius_inner);
+	lv_style_set_text_font(&style_menu_container, menu_body);
+	lv_style_init(&style_menu_item);
+	lv_style_set_pad_all(&style_menu_item, 0);
+	lv_style_set_text_font(&style_menu_item, menu_body);
 
 	// Style - window
 	lv_style_init(&style_window);

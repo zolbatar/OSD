@@ -55,7 +55,7 @@ WindowManager::WindowManager()
 
 #ifndef CLION
 	// Mouse cursor
-	static lv_img_dsc_t mouse_cursor_icon;
+/*	static lv_img_dsc_t mouse_cursor_icon;
 	mouse_cursor_icon.header.always_zero = 0;
 	mouse_cursor_icon.header.w = 14;
 	mouse_cursor_icon.header.h = 20;
@@ -66,7 +66,7 @@ WindowManager::WindowManager()
 	//	LV_IMG_DECLARE(mouse_cursor_icon);
 	lv_obj_t *cursor = lv_img_create(lv_scr_act());
 	lv_img_set_src(cursor, &mouse_cursor_icon);
-	lv_indev_set_cursor(clvgl->GetMouse(), cursor);
+	lv_indev_set_cursor(clvgl->GetMouse(), cursor);*/
 
 	USBHCI->UpdatePlugAndPlay();
 #endif
@@ -80,6 +80,9 @@ WindowManager::~WindowManager()
 void WindowManager::Run()
 {
 	SetNameAndAddToList();
+
+	// Add right click menu to desktop
+	lv_obj_add_event_cb(lv_scr_act(), ClickEventHandler, LV_EVENT_LONG_PRESSED, this);
 
 	// Startup applications
 	DesktopStartup();
@@ -106,7 +109,7 @@ void WindowManager::Run()
 				// Window manager
 				case Messages::WM_OpenWindow: {
 					auto m = (WM_OpenWindow*)&message->data;
-					Window* w = new Window(m->canvas, m->fixed, m->title, m->x, m->y, m->width, m->height);
+					Window* w = new Window(source, m->canvas, m->fixed, m->title, m->x, m->y, m->width, m->height);
 					Window::windows.insert(std::make_pair(m->id, w));
 					source->SetWindow(m->id, w);
 					break;
@@ -253,3 +256,76 @@ void WindowManager::DesktopStartup()
 
 #endif
 }
+
+void WindowManager::CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu)
+{
+	this->menu = menu;
+
+	menu_win = lv_win_create(lv_scr_act(), MENU_HEADER_HEIGHT);
+	lv_obj_set_x(menu_win, x);
+	lv_obj_set_y(menu_win, y);
+	lv_obj_set_width(menu_win, 160);
+	lv_obj_set_height(menu_win, 500);
+	lv_obj_add_style(menu_win, &style_menu, LV_STATE_DEFAULT);
+
+	auto content = lv_win_get_content(menu_win);
+	lv_obj_add_style(content, &style_window_content, LV_STATE_DEFAULT);
+
+	// Header
+	lv_win_add_title(menu_win, title.c_str());
+	auto header = lv_win_get_header(menu_win);
+	lv_obj_add_style(header, &style_window_header, LV_STATE_DEFAULT);
+	lv_obj_add_style(header, &style_window_header_inactive, LV_STATE_DEFAULT);
+
+	// Vertical container
+	auto cont_col = lv_obj_create(lv_win_get_content(menu_win));
+	lv_obj_set_width(cont_col, lv_pct(100));
+	lv_obj_set_height(cont_col, lv_pct(100));
+	lv_obj_align(cont_col, LV_ALIGN_TOP_MID, 0, 0);
+	lv_obj_set_flex_flow(cont_col, LV_FLEX_FLOW_COLUMN);
+	lv_obj_add_style(cont_col, &style_menu_container, LV_STATE_DEFAULT);
+
+	// Items
+	for (auto& mi : menu->items) {
+		switch (mi.type) {
+			case MenuItemType::Item: {
+				auto label = lv_label_create(cont_col);
+				lv_label_set_text(label, mi.v.c_str());
+				lv_obj_add_style(label, &style_menu_item, LV_STATE_DEFAULT);
+				break;
+			}
+		}
+	}
+}
+
+void WindowManager::ClickEventHandler(lv_event_t* e)
+{
+	lv_point_t p;
+	lv_indev_t* indev = lv_indev_get_act();
+	lv_indev_type_t indev_type = lv_indev_get_type(indev);
+	if (indev_type==LV_INDEV_TYPE_POINTER) {
+		lv_indev_get_point(indev, &p);
+
+		// Create menu window
+		auto t = (WindowManager*)e->user_data;
+		auto menu = new Menu();
+
+		// Applications
+		MenuItem mi;
+		mi.type = MenuItemType::Item;
+		mi.v = "Mandelbrot";
+		menu->items.push_back(std::move(mi));
+		MenuItem mi2;
+		mi2.type = MenuItemType::Item;
+		mi2.v = "Tester";
+		menu->items.push_back(std::move(mi2));
+		MenuItem mi3;
+		mi3.type = MenuItemType::Item;
+		mi3.v = "Clock";
+		menu->items.push_back(std::move(mi3));
+
+		t->CreateMenu(p.x, p.y, NULL, "OS/D", menu);
+	}
+}
+
+

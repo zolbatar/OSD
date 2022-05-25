@@ -70,7 +70,7 @@ public:
 	void InputInit(bool use_mouse_cursor);
 	static void MouseRead(lv_indev_drv_t* indev_drv_mouse, lv_indev_data_t* data);
 	static void FlushCB(lv_disp_drv_t* disp_drv, const lv_area_t* area, lv_color_t* src);
-	static void ClearCB(lv_disp_drv_t *disp_drv, uint8_t *buf, uint32_t size);
+	static void ClearCB(lv_disp_drv_t* disp_drv, uint8_t* buf, uint32_t size);
 	void ProcessEvents();
 	void Update();
 #endif
@@ -92,8 +92,9 @@ private:
 	lv_obj_t* mouse_cursor;
 #ifdef CLION
 	static int mouse_x, mouse_y;
-	static bool mouse_event;
-	static bool mouse_pressed;
+	static bool mouse_left_pressed;
+	static bool mouse_middle_pressed;
+	static bool mouse_right_pressed;
 #endif
 
 #ifndef CLION

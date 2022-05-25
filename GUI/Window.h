@@ -5,7 +5,7 @@
 
 class Window {
 public:
-	Window(bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h);
+	Window(OSDTask *task, bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h);
 	~Window();
 	lv_obj_t* GetLVGLWindow() { return win; }
 	Canvas* GetCanvas() { return canvas; }
@@ -31,6 +31,7 @@ private:
 	lv_obj_t* win;
 	lv_obj_t* header;
 	Canvas* canvas = NULL;
+	OSDTask *task;
 	std::list<Control> children;
 };
 

@@ -13,7 +13,7 @@ Canvas::Canvas(lv_obj_t* parent, int w, int h)
 	object = lv_canvas_create(parent);
 	lv_canvas_set_buffer(object, buffer, w, h, cf);
 	lv_canvas_fill_bg(object, bg, LV_OPA_COVER);
-	mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", font_size);
+	mono = font_mono;
 }
 
 Canvas::~Canvas()
@@ -71,11 +71,11 @@ void Canvas::PrintString(const char* s)
 
 		if (cursor_x+(size_h)>w) {
 			cursor_x = 0;
-			cursor_y += font_size;
+			cursor_y += body_font_height;
 
 			// Move buffer
 			if (cursor_y+size_v>h) {
-				cursor_y -= font_size;
+				cursor_y -= body_font_height;
 				ScrollUp();
 			}
 		}
@@ -98,7 +98,7 @@ void Canvas::ScrollUp()
 {
 	// Move memory buffer up
 	const int ss = (lv_img_cf_get_px_size(cf)*w)*h/8;
-	const int bs = (lv_img_cf_get_px_size(cf)*w)*font_size/8;
+	const int bs = (lv_img_cf_get_px_size(cf)*w)*body_font_height/8;
 	memcpy(buffer, buffer+bs, ss-bs);
 	lv_obj_invalidate(object);
 
@@ -108,7 +108,7 @@ void Canvas::ScrollUp()
 	rect_dsc.radius = 0;
 	rect_dsc.bg_opa = LV_OPA_COVER;
 	rect_dsc.bg_color = bg;
-	lv_canvas_draw_rect(object, 0, h-font_size, w, font_size, &rect_dsc);
+	lv_canvas_draw_rect(object, 0, h-body_font_height, w, body_font_height, &rect_dsc);
 }
 
 void Canvas::PrintTab(int64_t v)
