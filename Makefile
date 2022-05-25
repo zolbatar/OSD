@@ -13,6 +13,7 @@ OBJS    = 	main.o kernel.o \
 			Tasks/WindowManager/WindowManager.o \
 			Tasks/DARICWindow.o Tasks/TasksWindow.o \
 			Tasks/FontManager/FontManager.o \
+			Tasks/Editor/Editor.o \
 			GUI/lvgl.o GUI/Style.o \
 			Library/StringLib.o \
 			\

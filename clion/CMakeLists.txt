@@ -24,8 +24,9 @@ include_directories(../capstone)
 add_executable(
         OSD main.cpp
         ../../OS/OS.cpp ../../OS/OS_Strings.cpp ../../OS/OS_Tasks.cpp
-        ../../Tasks/DARICWindow.cpp
-        ../../Tasks/WindowManager/WindowManager.cpp ../../Tasks/WindowManager/Desktop.cpp
+        ../../Library/StringLib.cpp
+        ../../Tasks/DARICWindow.cpp ../../Tasks/Editor/Editor.cpp
+        ../../Tasks/WindowManager/WindowManager.cpp
         ../../Tasks/TasksWindow.cpp ../../Tasks/FontManager/FontManager.cpp
         ../../GUI/Window.cpp ../../GUI/lvgl.cpp ../../GUI/Style.cpp
         ../../GUI/Controls/Control.cpp ../../GUI/Controls/Canvas.cpp

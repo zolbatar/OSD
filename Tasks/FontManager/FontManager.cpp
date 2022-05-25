@@ -57,7 +57,7 @@ void FontManager::LoadFile(std::string name, std::string style, std::string file
 #ifdef CLION
 		printf("Error opening font file\n");
 #else
-		CLogger::Get()->Write("FontManager", LogDebug, "Error opening font file");
+		CLogger::Get()->Write("FontManager", LogDebug, "Error opening font file: %s", filename.c_str());
 #endif
 		assert(0);
 	}

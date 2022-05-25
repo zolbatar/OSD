@@ -303,7 +303,6 @@ ENDDEF
 
 DEF Strings()
     PRINT "::Strings::"
-    PRINT FLOAT("10.5")
     PRINT "Asc                = ";:IF ASC("Fred") = 70 AND ASC("") = -1 Pass() ELSE Fail()
     PRINT "Chr$               = ";:IF CHR$(65) = "A" Pass() ELSE Fail()
     PRINT "Instr              = ";:IF INSTR("Test this this string", "this", 1) = 6 Pass() ELSE Fail()

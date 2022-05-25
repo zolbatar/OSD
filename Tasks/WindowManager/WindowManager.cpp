@@ -13,6 +13,7 @@ extern CUSBHCIDevice *USBHCI;
 #endif
 #include "../../OS/OS.h"
 #include "../TasksWindow.h"
+#include "../Editor/Editor.h"
 
 extern "C"
 {
@@ -217,7 +218,7 @@ void WindowManager::DesktopStartup()
 	mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
 	mandelbrot->Start();
 
-	auto tester = NEW DARICWindow("Tester", false, 400, 300, 500, 700);
+	auto tester = NEW DARICWindow("Tester", false, 1250, 100, 500, 700);
 	tester->LoadSourceCode(":SD.$.Welcome.Tester");
 	tester->Start();
 
@@ -225,28 +226,30 @@ void WindowManager::DesktopStartup()
 	clock->LoadSourceCode(":SD.$.Welcome.Clock");
 	clock->Start();
 
-	auto tasks = NEW TasksWindow(1200, 400, 600, 500);
+	auto tasks = NEW TasksWindow(1200, 600, 600, 400);
 	tasks->Start();
 
-	//	delete these after termination?
+	auto editor = NEW Editor(200, 450, 700, 600);
+	editor->Start();
 #else
-	auto tasks = NEW TasksWindow(800, 600, 250, 500);
+	auto tasks = NEW TasksWindow(1200, 200, 350, 400);
 	std::thread t1(&DARICWindow::Start, tasks);
 	t1.detach();
 
-	auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
-	clock->SetSourceCode(DARIC_clock);
+/*	auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
+	clock->LoadSourceCode(":SD.$.Welcome.Clock");
 	std::thread t2(&DARICWindow::Start, clock);
-	t2.detach();
+	t2.detach();*/
 
 /*    auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 600, 400, 400);
-    mandelbrot->SetSourceCode(DARIC_mandelbrot_single);
+    mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
     std::thread t3(&DARICWindow::Start, mandelbrot);
-    t3.detach();
+    t3.detach();*/
 
-    auto mandelbrot2 = NEW DARICWindow("Mandelbrot", false, 400, 300, 500, 500);
-    mandelbrot2->SetSourceCode(DARIC_mandelbrot_single);
-    std::thread t4(&DARICWindow::Start, mandelbrot2);
-    t4.detach();*/
+	auto tester = NEW DARICWindow("Tester", false, 100, 600, 400, 400);
+	tester->LoadSourceCode(":SD.$.Welcome.Tester");
+	std::thread t3(&DARICWindow::Start, tester);
+	t3.detach();
+
 #endif
 }

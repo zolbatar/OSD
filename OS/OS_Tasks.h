@@ -29,7 +29,8 @@ extern "C"
 enum class TaskType {
 	Unknown,
 	DARIC,
-	TaskManager
+	TaskManager,
+	Editor
 };
 
 const size_t ALLOCATION_SIZE = 8192;

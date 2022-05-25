@@ -120,7 +120,6 @@ void Canvas::PrintTab(int64_t v)
 		return;
 
 	while (cursor_x<dest) {
-		CLogger::Get()->Write("Canvas", LogDebug, "%d %d", cursor_x, dest);
 		PrintString(" ");
 	}
 }

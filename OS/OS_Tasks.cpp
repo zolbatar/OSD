@@ -282,8 +282,17 @@ void OSDTask::CompileSource(std::string code)
 	Parser parser;
 	try {
 		// Tokens
+#ifdef CLION
+		auto t1 = std::chrono::system_clock::now();
+#endif
 		token.Parse("[Interactive]", code);
 		parser.Parse(true, token.Tokens());
+#ifdef CLION
+		auto t2 = std::chrono::system_clock::now();
+		double time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
+		time_span /= 1000.0;
+		printf("Parser: %f millis\n", time_span);
+#endif
 #ifdef CLION
 		if (debug_output) {
 			std::list<std::string> tokens;
@@ -297,8 +306,17 @@ void OSDTask::CompileSource(std::string code)
 #endif
 
 		// Compile
+#ifdef CLION
+		t1 = std::chrono::system_clock::now();
+#endif
 		IRCompiler ir_compiler(true);
 		ir_compiler.Compile(parser.Tokens());
+#ifdef CLION
+		t2 = std::chrono::system_clock::now();
+		time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
+		time_span /= 1000.0;
+		printf("IR Compiler: %f millis\n", time_span);
+#endif
 #ifdef CLION
 		if (debug_output) {
 			std::list<std::string> ir;
@@ -313,8 +331,17 @@ void OSDTask::CompileSource(std::string code)
 
 		// Native
 		_jit = jit_new_state();
+#ifdef CLION
+		t1 = std::chrono::system_clock::now();
+#endif
 		NativeCompiler native_compiler(true, _jit, this);
 		native_compiler.IRToNative(ir_compiler.GetGlobalIRInstructions(), ir_compiler.GetIRInstructions());
+#ifdef CLION
+		t2 = std::chrono::system_clock::now();
+		time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
+		time_span /= 1000.0;
+		printf("Native Compiler: %f millis\n", time_span);
+#endif
 #ifdef CLION
 		if (debug_output) {
 			std::list<std::string> disassm;

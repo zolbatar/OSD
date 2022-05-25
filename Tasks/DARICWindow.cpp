@@ -33,7 +33,11 @@ void DARICWindow::LoadSourceCode(std::string filename)
 	std::vector<std::string> lines;
 
 	// Quick and dirty file stuff until we have a proper file manager
+#ifndef CLION
 	replace(filename, ":SD.$.Welcome.", "/osd/Welcome/");
+#else
+	replace(filename, ":SD.$.Welcome.", "/Users/daryl/GitHub/osd/Applications/");
+#endif
 
 	// Open and check exists
 	std::ifstream in(filename);
