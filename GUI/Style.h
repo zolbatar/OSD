@@ -43,7 +43,7 @@ extern lv_style_t style_chart_bar;
 extern lv_style_t style_textarea;
 extern lv_font_t *font_mono;
 
-#define LV_SYMBOL_CLOSE           "\xEF\x8B\x93" // 0xF00D close
+#define LV_SYMBOL_MY_CLOSE        "\xEF\x8B\x93" // 0xF00D close
 #define LV_SYMBOL_MAXIMISE        "\xEF\x8B\x90" // 0xF2D0 window maximize
 #define LV_SYMBOL_MINIMISE        "\xEF\x8B\x91" // 0xF2D1 window minimise
 //#define LV_SYMBOL_RESIZE          "\xEF\x81\xA6" // 0xf066

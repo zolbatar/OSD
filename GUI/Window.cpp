@@ -36,7 +36,7 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	lv_obj_add_style(btn_min, &style_window_furniture, LV_STATE_DEFAULT);
 	auto btn_max = lv_win_add_btn(win, LV_SYMBOL_MAXIMISE, WINDOW_FURNITURE_WIDTH);
 	lv_obj_add_style(btn_max, &style_window_furniture, LV_STATE_DEFAULT);
-	auto btn_close = lv_win_add_btn(win, LV_SYMBOL_CLOSE, WINDOW_FURNITURE_WIDTH);
+	auto btn_close = lv_win_add_btn(win, LV_SYMBOL_MY_CLOSE, WINDOW_FURNITURE_WIDTH);
 	lv_obj_add_event_cb(btn_close, CloseClicked, LV_EVENT_CLICKED, this);
 	lv_obj_add_style(btn_close, &style_window_furniture, LV_STATE_DEFAULT);
 

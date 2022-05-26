@@ -33,7 +33,7 @@ public:
 	FontManager();
 	void InitFonts();
 	void Run();
-	void LoadFile(std::string name, std::string style, std::string filename);
+	void LoadFile(std::string filename);
 	static lv_font_t* GetFontByNameStyleAndSize(std::string name, std::string style_name, int size);
 private:
 	static std::map<std::string, Font*> loaded_fonts;

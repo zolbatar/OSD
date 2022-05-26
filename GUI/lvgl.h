@@ -23,19 +23,25 @@
 #define _lvgl_lvgl_h
 
 #ifdef CLION
+
 #include <thread>
 #include <lvgl.h>
 #include <draw/sdl/lv_draw_sdl_utils.h>
+
 #ifdef WINDOWS
 #define GL_GLEXT_PROTOTYPES 1
 #include <SDL.h>
 #include <SDL_opengl.h>
 #else
 #define GL_GLEXT_PROTOTYPES 1
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
+
 #endif
+
 #include "TerminalOutput.h"
+
 #else
 #include <lvgl/lvgl/lvgl.h>
 #endif
@@ -53,66 +59,69 @@
 class GuiCLVGL {
 public:
 #ifndef CLION
-	GuiCLVGL(CScreenDevice* pScreen, CInterruptSystem* pInterrupt);
-	GuiCLVGL(CBcmFrameBuffer* pFrameBuffer, CInterruptSystem* pInterrupt);
+    GuiCLVGL(CScreenDevice* pScreen, CInterruptSystem* pInterrupt);
+    GuiCLVGL(CBcmFrameBuffer* pFrameBuffer, CInterruptSystem* pInterrupt);
 #else
-	GuiCLVGL();
+    GuiCLVGL();
 #endif
-	~GuiCLVGL(void);
+    ~GuiCLVGL(void);
 
-	bool Initialize(void);
-	bool QuitRequested() { return quit_requested; }
+    bool Initialize(void);
+
+    bool QuitRequested() { return quit_requested; }
 
 #ifndef CLION
-	void Update(bool bPlugAndPlayUpdated = false);
+    void Update(bool bPlugAndPlayUpdated = false);
 #else
-	static lv_disp_t* DisplayInit(SDL_Window* window);
-	void InputInit(bool use_mouse_cursor);
-	static void MouseRead(lv_indev_drv_t* indev_drv_mouse, lv_indev_data_t* data);
-	static void FlushCB(lv_disp_drv_t* disp_drv, const lv_area_t* area, lv_color_t* src);
-	static void ClearCB(lv_disp_drv_t* disp_drv, uint8_t* buf, uint32_t size);
-	void ProcessEvents();
-	void Update();
+    static lv_disp_t *DisplayInit(SDL_Window *window);
+    void InputInit(bool use_mouse_cursor);
+    static void MouseRead(lv_indev_drv_t *indev_drv_mouse, lv_indev_data_t *data);
+    static void FlushCB(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *src);
+    static void ClearCB(lv_disp_drv_t *disp_drv, uint8_t *buf, uint32_t size);
+    void ProcessEvents();
+    void Update();
 #endif
-	lv_indev_t* GetMouse() { return mouse; }
+
+    lv_indev_t *GetMouse() { return mouse; }
 
 private:
-	static void DisplayFlush(lv_disp_drv_t* pDriver, const lv_area_t* pArea, lv_color_t* pBuffer);
-	static void DisplayFlushComplete(unsigned nChannel, bool bStatus, void* pParam);
-	static void PointerRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData);
-	static void LogPrint(const char* pMessage);
+    static void DisplayFlush(lv_disp_drv_t *pDriver, const lv_area_t *pArea, lv_color_t *pBuffer);
+    static void DisplayFlushComplete(unsigned nChannel, bool bStatus, void *pParam);
+    static void PointerRead(lv_indev_drv_t *pDriver, lv_indev_data_t *pData);
+    static void LogPrint(const char *pMessage);
 #ifndef CLION
-	static void MouseEventHandler(TMouseEvent Event, unsigned nButtons, unsigned nPosX, unsigned nPosY, int nWheelMove);
-	static void MouseRemovedHandler(CDevice* pDevice, void* pContext);
+    static void MouseEventHandler(TMouseEvent Event, unsigned nButtons, unsigned nPosX, unsigned nPosY, int nWheelMove);
+    static void MouseRemovedHandler(CDevice* pDevice, void* pContext);
 #endif
 private:
-	bool quit_requested = false;
-	lv_indev_t* mouse;
-	lv_indev_drv_t indev_drv_mouse;
-	lv_obj_t* mouse_cursor;
+    bool quit_requested = false;
+    lv_indev_t *mouse;
+    lv_indev_drv_t indev_drv_mouse;
+    lv_obj_t *mouse_cursor;
 #ifdef CLION
-	static int mouse_x, mouse_y;
-	static bool mouse_left_pressed;
-	static bool mouse_middle_pressed;
-	static bool mouse_right_pressed;
+    static int mouse_x, mouse_y;
+    static bool mouse_left_pressed;
+    static bool mouse_middle_pressed;
+    static bool mouse_right_pressed;
 #endif
 
 #ifndef CLION
-	CScreenDevice* m_pScreen;
-	CBcmFrameBuffer* m_pFrameBuffer;
-	CDMAChannel m_DMAChannel;
-	CMouseDevice* volatile m_pMouseDevice;
-	lv_color_t* m_pBuffer1;
-	lv_color_t* m_pBuffer2;
-	unsigned m_nLastUpdate = 0;
+    CScreenDevice* m_pScreen;
+    CBcmFrameBuffer* m_pFrameBuffer;
+    CDMAChannel m_DMAChannel;
+    CMouseDevice* volatile m_pMouseDevice;
+    lv_color_t* m_pBuffer1;
+    lv_color_t* m_pBuffer2;
+    unsigned m_nLastUpdate = 0;
 #else
-	float dpi_ratio;
-	int desktop_screen_width, desktop_screen_height;
-	SDL_Window* window;
+    float dpi_ratio;
+    int desktop_screen_width, desktop_screen_height;
+    static SDL_Window *window;
+    static SDL_Renderer *renderer;
 #endif
 
-	lv_indev_data_t m_PointerData;
-	static GuiCLVGL* s_pThis;
+    lv_indev_data_t m_PointerData;
+    static GuiCLVGL *s_pThis;
 };
 
 #endif
