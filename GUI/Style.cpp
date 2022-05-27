@@ -25,16 +25,15 @@ lv_style_t style_chart;
 lv_style_t style_textarea;
 size_t body_font_height = 18;
 size_t menu_font_height = 22;
-lv_font_t *font_mono;
+lv_font_t* font_mono;
 
 void SetupLVGLStyles()
 {
-	// Additional fonts
-	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", 22);
+	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height);
 	auto font_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", body_font_height);
 	auto menu_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height);
-	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Symbols", "Light", 16);
 	font_mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", body_font_height);
+	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 12);
 
 	// Disable scrolling
 	lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);
@@ -120,15 +119,15 @@ void SetupLVGLStyles()
 	lv_style_set_pad_all(&style_bar, control_padding);
 	lv_style_set_bg_color(&style_bar, CONTROL_BACKGROUND_COLOUR);
 	lv_style_init(&style_bar_indicator);
-	lv_style_set_radius(&style_bar_indicator, corner_radius_inner);
+	lv_style_set_radius(&style_bar_indicator, 0);
 	lv_style_set_border_width(&style_bar_indicator, 0);
 	lv_style_set_bg_color(&style_bar_indicator, CONTROL_HIGHLIGHT_COLOUR);
 	lv_style_init(&style_bar_indicator_green);
-	lv_style_set_radius(&style_bar_indicator_green, corner_radius_inner);
+	lv_style_set_radius(&style_bar_indicator_green, 0);
 	lv_style_set_border_width(&style_bar_indicator_green, 0);
 	lv_style_set_bg_color(&style_bar_indicator_green, lv_color_mix(CONTROL_HIGHLIGHT_COLOUR, lv_color_hex(0x00FF000), 192));
 	lv_style_init(&style_bar_indicator_red);
-	lv_style_set_radius(&style_bar_indicator_red, corner_radius_inner);
+	lv_style_set_radius(&style_bar_indicator_red, 0);
 	lv_style_set_border_width(&style_bar_indicator_red, 0);
 	lv_style_set_bg_color(&style_bar_indicator_red, lv_color_mix(CONTROL_HIGHLIGHT_COLOUR, lv_color_hex(0xFF00000), 192));
 

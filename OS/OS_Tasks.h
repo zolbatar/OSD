@@ -172,14 +172,14 @@ public:
 	{
 #ifdef CLION
 		OSDTask::vlgl_mutex.lock();
-		printf("Locking VLGL: %s\n", desc);
+//		printf("Locking VLGL: %s\n", desc);
 #endif
 	}
 
 	static void UnlockVLGL()
 	{
 #ifdef CLION
-		printf("Unlocking VLGL\n");
+//		printf("Unlocking VLGL\n");
 		OSDTask::vlgl_mutex.unlock();
 #endif
 	}

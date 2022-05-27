@@ -34,6 +34,7 @@ public:
 	void InitFonts();
 	void Run();
 	void LoadFile(std::string filename);
+	std::string GetName(stbtt_fontinfo*, int id);
 	static lv_font_t* GetFontByNameStyleAndSize(std::string name, std::string style_name, int size);
 private:
 	static std::map<std::string, Font*> loaded_fonts;

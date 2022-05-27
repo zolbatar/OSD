@@ -249,7 +249,6 @@ lv_disp_t *GuiCLVGL::DisplayInit(SDL_Window *window) {
 
     // Setup SDL
     SDL_GetWindowSize(window, &width, &height);
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     // Setup draw buffer

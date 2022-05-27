@@ -9,6 +9,7 @@ conan_basic_setup()
 include_directories("../capstone/include")
 
 find_package(SDL2 REQUIRED)
+find_package(freetype REQUIRED)
 link_directories("/Users/daryl/GitHub/lvgl/lib")
 include_directories("/Users/daryl/GitHub/lvgl/src")
 

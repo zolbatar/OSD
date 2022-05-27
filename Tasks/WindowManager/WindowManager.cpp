@@ -51,6 +51,9 @@ WindowManager::WindowManager()
 	clvgl = NEW GuiCLVGL(screen, interrupt);
 #endif
 	clvgl->Initialize();
+#ifndef CLION
+	CLogger::Get()->Write("FontManager", LogDebug, "Setting up styles");
+#endif
 	SetupLVGLStyles();
 
 #ifndef CLION
@@ -226,9 +229,9 @@ void WindowManager::DesktopStartup()
 	auto tasks = NEW TasksWindow(1200, 600, 600, 400);
 	tasks->Start();
 
-	auto editor = NEW Editor(200, 450, 700, 600);
-	editor->LoadSourceCode(":SD.$.Welcome.Tester");
-	editor->Start();
+/*	auto editor = NEW Editor(200, 450, 700, 600);
+	editor->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
+	editor->Start();*/
 #else
 	auto tasks = NEW TasksWindow(1200, 200, 350, 400);
 	std::thread t1(&DARICWindow::Start, tasks);

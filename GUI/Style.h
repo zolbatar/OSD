@@ -51,7 +51,7 @@ extern lv_font_t *font_mono;
 void SetupLVGLStyles();
 
 const int corner_radius = 4;
-const int corner_radius_inner = 1;
+const int corner_radius_inner = 2;
 const int scrollbar_width = 8;
 const int scrollbar_padding = 3;
-const int control_padding = 3;
+const int control_padding = 2;

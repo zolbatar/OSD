@@ -5,10 +5,7 @@ mmd -i sdcard.sdimg osd
 mmd -i sdcard.sdimg osd/System
 mmd -i sdcard.sdimg osd/System/Fonts
 mmd -i sdcard.sdimg osd/Welcome
-mcopy -i sdcard.sdimg ~/Dropbox/Development/Resource/Fonts/Plex/IBM_Plex_Sans/*.ttf ::osd/System/Fonts
-mcopy -i sdcard.sdimg ~/Dropbox/Development/Resource/Fonts/Plex/IBM_Plex_Sans_Condensed/*.ttf ::osd/System/Fonts
-mcopy -i sdcard.sdimg ~/Dropbox/Development/Resource/Fonts/Plex/IBM_Plex_Serif/*.ttf ::osd/System/Fonts
-mcopy -i sdcard.sdimg ~/Dropbox/Development/Resource/Fonts/Plex/IBM_Plex_Mono/*.ttf ::osd/System/Fonts
-mcopy -i sdcard.sdimg ~/Downloads/fa-light-300.ttf ::osd/System/Fonts
+mcopy -i sdcard.sdimg /Users/daryl/Dev/osd/fonts/IBM*.ttf ::osd/System/Fonts
+mcopy -i sdcard.sdimg /Users/daryl/Dev/osd/fonts/fa-light-300.ttf ::osd/System/Fonts
 mcopy -i sdcard.sdimg Applications/* ::osd/Welcome
 

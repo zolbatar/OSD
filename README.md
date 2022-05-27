@@ -60,3 +60,9 @@ BASIC.Games.Adventures	File Adventures in dir Games in dir @.BASIC
 %.BCPL	File BCPL in the current library
 
 net#MJHardy::disc1.$.mike
+
+# Freetype
+./configure --with-zlib=no --with-bzip2=no --with-png=no --with-harfbuzz=no --with-brotli=no --with-librsvg==no CC=aarch64-none-elf-gcc CFLAGS=-specs=nosys.specs --host=aarch64-none-elf
+
+# Harfbuzz
+./configure CC=aarch64-none-elf-gcc CFLAGS=-specs=nosys.specs --host=aarch64-none-elf

@@ -37,7 +37,7 @@ OBJS    = 	main.o kernel.o \
 			\
 			Lightning/lightning.o Lightning/jit_memory.o Lightning/jit_disasm.o Lightning/jit_size.o Lightning/jit_note.o Lightning/jit_print.o \
 			capstone/arch/AArch64/AArch64BaseInfo.o capstone/arch/AArch64/AArch64Disassembler.o capstone/arch/AArch64/AArch64InstPrinter.o capstone/arch/AArch64/AArch64Mapping.o \
-			capstone/arch/AArch64/AArch64Module.o capstone/cs.o capstone/MCInst.o capstone/MCInstrDesc.o capstone/MCRegisterInfo.o capstone/SStream.o capstone/utils.o
+			capstone/arch/AArch64/AArch64Module.o capstone/cs.o capstone/MCInst.o capstone/MCInstrDesc.o capstone/MCRegisterInfo.o capstone/SStream.o capstone/utils.o \
 
 include $(CIRCLEHOME)/Rules.mk
 
@@ -53,7 +53,8 @@ LIBS := "$(NEWLIBDIR)/lib/libm.a" "$(NEWLIBDIR)/lib/libc.a" "$(NEWLIBDIR)/lib/li
   	$(CIRCLEHOME)/lib/sched/libsched.a \
   	$(CIRCLEHOME)/lib/libcircle.a \
 	$(CIRCLEHOME)/addon/wlan/hostap/wpa_supplicant/libwpa_supplicant.a \
-	$(CIRCLEHOME)/addon/wlan/libwlan.a
+	$(CIRCLEHOME)/addon/wlan/libwlan.a \
+	/Users/daryl/GitHub/freetype/objs/.libs/libfreetype.a
 
 CFLAGS += -I capstone -Wno-unused-function
 CFLAGS += -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no
