@@ -218,12 +218,27 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				break;
 			case IROpcodes::VariableLocalCreateString:
 				local_variables.push_back(jit_allocai(sizeof(int64_t)));
-				jit_movi(JIT_R0, 0);
-				jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
+				local_string_variables.push_back(op.index);
+				jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), 0);
 				break;
 			case IROpcodes::VariableLocalCreateType:
 				local_variables.push_back(jit_allocai(op.iv));
 				break;
+			case IROpcodes::VariableLocalCreateTypeString: {
+
+				// Clear
+				jit_movi(JIT_R2, IdxForVar(op.index));
+				jit_addi(JIT_R2, JIT_R2, op.iv);
+				jit_movi(JIT_R0, 0);
+				jit_stxr_l(JIT_R2, RegForVar(op.index), JIT_R0);
+
+				// Save to clear
+				TypeOffset to;
+				to.index = op.index;
+				to.offset = op.iv;
+				local_string_variables_types.push_back(std::move(to));
+				break;
+			}
 			case IROpcodes::VariableGlobalCreateInteger:
 				global_variables.push_back(jit_allocai(sizeof(int64_t)));
 				break;
@@ -232,12 +247,18 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				break;
 			case IROpcodes::VariableGlobalCreateString:
 				global_variables.push_back(jit_allocai(sizeof(int64_t)));
-				jit_movi(JIT_R0, 0);
-				jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
+				jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), 0);
 				break;
 			case IROpcodes::VariableGlobalCreateType:
 				global_variables.push_back(jit_allocai(op.iv));
 				break;
+			case IROpcodes::VariableGlobalCreateTypeString: {
+				jit_movi(JIT_R2, IdxForVar(op.index));
+				jit_addi(JIT_R2, JIT_R2, op.iv);
+				jit_movi(JIT_R0, 0);
+				jit_stxr_l(JIT_R2, RegForVar(op.index), 0);
+				break;
+			}
 			case IROpcodes::VariableLoadInteger:
 				jit_ldxi_l(JIT_R0, RegForVar(op.index), IdxForVar(op.index));
 				break;
@@ -747,6 +768,8 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				forward_ret = jit_forward();
 				ret_patches.clear();
 				local_variables.clear();
+				local_string_variables.clear();
+				local_string_variables_types.clear();
 				auto call = jit_label();
 				proc_labels.insert(std::make_pair(op.index, call));
 				if (proc_patches.find(op.index)!=proc_patches.end())
@@ -828,6 +851,23 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				else {
 					jit_patch_at(call, proc_labels.find(op.index)->second);
 				}
+
+				// Release any local string variables
+				for (auto& local : local_string_variables) {
+					jit_ldxi_l(JIT_R0, RegForVar(local), IdxForVar(local));
+					jit_prepare();
+					jit_pushargr(JIT_R0);
+					jit_finishi((jit_pointer_t)call_STRING_freepermanent);
+				}
+				for (auto& local : local_string_variables_types) {
+					jit_movi(JIT_R2, IdxForVar(local.index));
+					jit_addi(JIT_R2, JIT_R2, local.offset);
+					jit_ldxr_l(JIT_R0, RegForVar(local.index), JIT_R2);
+					jit_prepare();
+					jit_pushargr(JIT_R0);
+					jit_finishi((jit_pointer_t)call_STRING_freepermanent);
+				}
+
 				if (!returns.empty()) {
 					auto type = returns.top();
 					returns.pop();
@@ -861,6 +901,7 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				jit_finishi((jit_pointer_t)call_DATA_float);
 				break;
 			case IROpcodes::DataString:
+				jit_movr(JIT_V2, JIT_R0);
 				jit_prepare();
 				jit_pushargr(JIT_R0);
 				jit_finishi((jit_pointer_t)call_DATA_string);

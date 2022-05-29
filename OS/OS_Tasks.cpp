@@ -192,19 +192,44 @@ int64_t OSDTask::AddString(std::string s)
 
 int64_t OSDTask::AddStringPermanent(std::string s)
 {
+	// Do we have an existing one the same?
+	for (auto& str: permanent_strings) {
+		if (str.second==s) {
+			return str.first;
+		}
+	}
 	auto i = string_index++;
+	constant_strings.insert(i);
 	permanent_strings.insert(std::make_pair(i, std::move(s)));
 	return i;
 }
 
 void OSDTask::MakeStringPermanent(int64_t idx)
 {
+/*	if (permanent_strings.count(idx)>0) {
+		printf("Already there\n");
+		// Already there, maybe it's a constant or DATA
+		return;
+	}*/
 	auto f = strings.extract(idx);
 	permanent_strings.insert(std::move(f));
 }
 
+void OSDTask::SetConstantString(int64_t idx) {
+	constant_strings.insert(idx);
+}
+
 void OSDTask::FreeStringPermanent(int64_t idx)
 {
+	if (constant_strings.count(idx)>0)
+		return;
+#ifdef CLION
+	if (permanent_strings.count(idx)==0) {
+		return;
+//		printf("%ld %d\n", idx, strings.count(idx));
+//		assert(0);
+	}
+#endif
 	auto f = permanent_strings.extract(idx);
 	strings.insert(std::move(f));
 }
@@ -425,10 +450,10 @@ void OSDTask::Yield()
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->Yield();
+	last_yield = CTimer::Get()->GetClockTicks();
 #else
 //	std::this_thread::sleep_for(std::chrono::milliseconds(50));
 #endif
-	last_yield = CTimer::Get()->GetClockTicks();
 }
 
 void OSDTask::Sleep(int ms)

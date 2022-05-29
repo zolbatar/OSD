@@ -22,6 +22,7 @@ void call_DATA_string(int64_t v)
 	de.type = ValueType::String;
 	de.sv = v;
 	GetCurrentTask()->AddDataElement(std::move(de));
+	GetCurrentTask()->SetConstantString(v); // Is this necessary?
 }
 
 int64_t call_READ_integer()

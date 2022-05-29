@@ -38,8 +38,12 @@
 
 #if defined(__GNUC__)
 #define maybe_unused __attribute__((unused))
+#ifndef unlikely
 #define unlikely(exprn) __builtin_expect(!!(exprn), 0)
+#endif
+#ifndef likely
 #define likely(exprn) __builtin_expect(!!(exprn), 1)
+#endif
 #if (__GNUC__ >= 4)
 #define PUBLIC __attribute__((visibility("default")))
 #define HIDDEN __attribute__((visibility("hidden")))

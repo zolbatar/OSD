@@ -2,7 +2,7 @@ CONST const%=100,ccf#=12.5
 
 REM STATIC s%
 TYPE VertexTest
-	x#,y#,z#,rgb%
+	x#,y#,z#,rgb%,s$
 ENDTYPE
 GVT! = VertexTest(10.0,234.56)
 GVT!rgb%=&FFFFFF
@@ -22,7 +22,7 @@ DEF Start()
 	CLS
     PRINT "Starting tests!"
     Boolean()
-	REM Chrono()
+	Chrono()
     Comparison()
     Conversion()
 	Data()
@@ -32,9 +32,9 @@ DEF Start()
     Maths()
     Numbers()
     PrintInput()
-    REM Strings()
-	REM Swap()
-	REM Types()
+    Strings()
+	Swap()
+	Types()
 	Variables()
     PRINT "::Misc tests::"
 	TestReturnInOtherwise()
@@ -343,8 +343,10 @@ DEF Types()
 	A! = VertexTest()
 	A!y# = 100.5
 	A!rgb% = &FF2080
+	A!s$="Test"
 	PRINT "Load field (float) = ";: IF A!y# = 100.5 Pass() ELSE Fail()
 	PRINT "Load field (int)   = ";: IF A!rgb% = &FF2080 Pass() ELSE Fail()
+	PRINT "Load field (string)= ";: IF A!s$ = "Test" Pass() ELSE Fail()
 	PRINT "Load field (Glob1) = ";: IF GVT!x# = 10.0 AND GVT!y# = 234.56 Pass() ELSE Fail()
 	PRINT "Load field (Glob2) = ";: IF GVT!rgb% = &FFFFFF Pass() ELSE Fail()
 	PRINT

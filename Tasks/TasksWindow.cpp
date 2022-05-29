@@ -155,7 +155,8 @@ void TasksWindow::UpdateTasks()
 		// Memory
 		auto memory = lv_label_create(cont);
 		lv_obj_set_grid_cell(memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-		lv_label_set_text_fmt(memory, "%zu KB [%zu/%zu/%zu]", task->CalculateMemoryUsed()/1024, task->GetStringCount(), task->GetAllocCount(),
+		lv_label_set_text_fmt(memory, "%zu KB [%zu/%zu+%zu/%zu]", task->CalculateMemoryUsed()/1024, task->GetAllocCount(), task->GetStringCount(),
+				task->GetStringCountTemporary(),
 				task->GetMessageQueueCount());
 
 		auto bar = lv_bar_create(cont);

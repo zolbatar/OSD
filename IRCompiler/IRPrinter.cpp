@@ -89,6 +89,10 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 			case IROpcodes::VariableLocalCreateType:
 				sprintf(l, "[Variable] Local create structured type of %lld bytes (%lld)", instruction.iv,
 						instruction.index);
+				break;
+			case IROpcodes::VariableLocalCreateTypeString:
+				sprintf(l, "[Variable] Zero structured string at %lld/%lld", instruction.index, instruction.iv);
+				break;
 			case IROpcodes::VariableGlobalCreateInteger:
 			case IROpcodes::VariableGlobalCreateFloat:
 			case IROpcodes::VariableGlobalCreateString:
@@ -100,6 +104,9 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 			case IROpcodes::VariableGlobalCreateType:
 				sprintf(l, "[Variable] Global create structured type of %lld bytes (%lld)", instruction.iv,
 						instruction.index);
+				break;
+			case IROpcodes::VariableGlobalCreateTypeString:
+				sprintf(l, "[Variable] Global zero structured string at %lld/%lld", instruction.index, instruction.iv);
 				break;
 			case IROpcodes::VariableLoadInteger:
 			case IROpcodes::VariableLoadFloat:

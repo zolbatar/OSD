@@ -22,6 +22,7 @@
 #include <list>
 #include "OS_Messages.h"
 #include <chrono>
+#include <set>
 
 extern "C"
 {
@@ -38,7 +39,7 @@ enum class TaskType {
 
 const size_t ALLOCATION_SIZE = 32768;
 const size_t MIN_MESSAGE_QUEUE = 64;
-const size_t MAX_MESSAGE_QUEUE = 4096;
+const size_t MAX_MESSAGE_QUEUE = 16384;
 
 extern std::string string_error;
 typedef void (* start)(void);
@@ -119,6 +120,7 @@ public:
 	void ClearTemporaryStrings();
 	void MakeStringPermanent(int64_t idx);
 	void FreeStringPermanent(int64_t idx);
+	void SetConstantString(int64_t idx);
 
 	// Malloc
 	void AddAllocation(size_t size, void* m);
@@ -169,7 +171,8 @@ public:
 
 	static OSDTask* GetTaskOverride() { return task_override; }
 
-	size_t GetStringCount() { return strings.size()+permanent_strings.size(); }
+	size_t GetStringCount() { return permanent_strings.size(); }
+	size_t GetStringCountTemporary() { return strings.size(); }
 
 	size_t GetAllocCount();
 
@@ -226,6 +229,7 @@ private:
 	std::array<TaskAllocRef, ALLOCATION_SIZE> allocations;
 	std::map<int64_t, std::string> strings;
 	std::map<int64_t, std::string> permanent_strings;
+	std::set<int64_t> constant_strings;
 	std::map<std::string, size_t> data_labels;
 	std::vector<DataElement> data_elements;
 	size_t code_size;

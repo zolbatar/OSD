@@ -50,6 +50,9 @@ Line   20:  2 [292]: DEF 'Start'
         Line   24:  6 [260]: PROC call [Boolean], no return
           Expression 0:
             Line   24: 13 [258]: Sub-expression
+        Line   25:  3 [260]: PROC call [Chrono], no return
+          Expression 0:
+            Line   25:  9 [258]: Sub-expression
         Line   26:  6 [260]: PROC call [Comparison], no return
           Expression 0:
             Line   26: 16 [258]: Sub-expression
@@ -77,6 +80,15 @@ Line   20:  2 [292]: DEF 'Start'
         Line   34:  6 [260]: PROC call [PrintInput], no return
           Expression 0:
             Line   34: 16 [258]: Sub-expression
+        Line   35:  6 [260]: PROC call [Strings], no return
+          Expression 0:
+            Line   35: 13 [258]: Sub-expression
+        Line   36:  3 [260]: PROC call [Swap], no return
+          Expression 0:
+            Line   36:  7 [258]: Sub-expression
+        Line   37:  3 [260]: PROC call [Types], no return
+          Expression 0:
+            Line   37:  8 [258]: Sub-expression
         Line   38:  3 [260]: PROC call [Variables], no return
           Expression 0:
             Line   38: 12 [258]: Sub-expression
@@ -3232,235 +3244,232 @@ Line  341:  2 [292]: DEF 'Types'
         Line  345: 12 [269]: Integer 16720000
       Stack:
         Line  345:  5 [268]: Integer field 'rgb%', offset 24
-    Line  346:  3 [317]: PRINT
+    Line  346:  3 [262]: Type assignment 'A!' (type VertexTest), index 0
       Expression 0:
-        Line  346:  3 [319]: PRINT tabbed mode on
-      Expression 1:
-        Line  346:  9 [271]: String 'Load field (float) = '
-        Line  346:  3 [320]: PRINT tabbed mode off
-      Expression 2:
-    Line  346: 35 [310]: IF
-      Expression 0:
-        Line  346: 38 [272]: Identifier 'A!'/0
-          Stack:
-            Line  346: 40 [268]: Float field 'y#', offset 8
-        Line  346: 45 [270]: Float 100.500000
-        Line  346: 43 [ 61]: =
-      Branch 0:
-        Line  346: 51 [260]: PROC call [Pass], no return
-          Expression 0:
-            Line  346: 55 [258]: Sub-expression
-      Branch 1:
-        Line  346: 63 [260]: PROC call [Fail], no return
-          Expression 0:
-            Line  346: 67 [258]: Sub-expression
+        Line  346:  8 [271]: String 'Test'
+      Stack:
+        Line  346:  5 [268]: String field 's$', offset 32
     Line  347:  3 [317]: PRINT
       Expression 0:
         Line  347:  3 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  347:  9 [271]: String 'Load field (int)   = '
+        Line  347:  9 [271]: String 'Load field (float) = '
         Line  347:  3 [320]: PRINT tabbed mode off
       Expression 2:
     Line  347: 35 [310]: IF
       Expression 0:
         Line  347: 38 [272]: Identifier 'A!'/0
           Stack:
-            Line  347: 40 [268]: Integer field 'rgb%', offset 24
-        Line  347: 47 [269]: Integer 16720000
-        Line  347: 45 [ 61]: =
+            Line  347: 40 [268]: Float field 'y#', offset 8
+        Line  347: 45 [270]: Float 100.500000
+        Line  347: 43 [ 61]: =
       Branch 0:
-        Line  347: 55 [260]: PROC call [Pass], no return
+        Line  347: 51 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  347: 59 [258]: Sub-expression
+            Line  347: 55 [258]: Sub-expression
       Branch 1:
-        Line  347: 67 [260]: PROC call [Fail], no return
+        Line  347: 63 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  347: 71 [258]: Sub-expression
+            Line  347: 67 [258]: Sub-expression
     Line  348:  3 [317]: PRINT
       Expression 0:
         Line  348:  3 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  348:  9 [271]: String 'Load field (Glob1) = '
+        Line  348:  9 [271]: String 'Load field (int)   = '
         Line  348:  3 [320]: PRINT tabbed mode off
       Expression 2:
     Line  348: 35 [310]: IF
       Expression 0:
-        Line  348: 38 [272]: Identifier 'GVT!'/-1
+        Line  348: 38 [272]: Identifier 'A!'/0
           Stack:
-            Line  348: 42 [268]: Float field 'x#', offset 0
-        Line  348: 47 [270]: Float 10.000000
+            Line  348: 40 [268]: Integer field 'rgb%', offset 24
+        Line  348: 47 [269]: Integer 16720000
         Line  348: 45 [ 61]: =
-        Line  348: 56 [272]: Identifier 'GVT!'/-1
-          Stack:
-            Line  348: 60 [268]: Float field 'y#', offset 8
-        Line  348: 65 [270]: Float 234.560000
-        Line  348: 63 [ 61]: =
-        Line  348: 52 [390]: AND
       Branch 0:
-        Line  348: 72 [260]: PROC call [Pass], no return
+        Line  348: 55 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  348: 76 [258]: Sub-expression
+            Line  348: 59 [258]: Sub-expression
       Branch 1:
-        Line  348: 84 [260]: PROC call [Fail], no return
+        Line  348: 67 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  348: 88 [258]: Sub-expression
+            Line  348: 71 [258]: Sub-expression
     Line  349:  3 [317]: PRINT
       Expression 0:
         Line  349:  3 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  349:  9 [271]: String 'Load field (Glob2) = '
+        Line  349:  9 [271]: String 'Load field (string)= '
         Line  349:  3 [320]: PRINT tabbed mode off
       Expression 2:
     Line  349: 35 [310]: IF
       Expression 0:
-        Line  349: 38 [272]: Identifier 'GVT!'/-1
+        Line  349: 38 [272]: Identifier 'A!'/0
           Stack:
-            Line  349: 42 [268]: Integer field 'rgb%', offset 24
-        Line  349: 49 [269]: Integer 16777215
-        Line  349: 47 [ 61]: =
+            Line  349: 40 [268]: String field 's$', offset 32
+        Line  349: 45 [271]: String 'Test'
+        Line  349: 43 [ 61]: =
       Branch 0:
-        Line  349: 57 [260]: PROC call [Pass], no return
+        Line  349: 52 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  349: 61 [258]: Sub-expression
+            Line  349: 56 [258]: Sub-expression
       Branch 1:
-        Line  349: 69 [260]: PROC call [Fail], no return
+        Line  349: 64 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  349: 73 [258]: Sub-expression
+            Line  349: 68 [258]: Sub-expression
     Line  350:  3 [317]: PRINT
       Expression 0:
         Line  350:  3 [319]: PRINT tabbed mode on
       Expression 1:
-    Line  350:  3 [318]: PRINT newline
+        Line  350:  9 [271]: String 'Load field (Glob1) = '
+        Line  350:  3 [320]: PRINT tabbed mode off
+      Expression 2:
+    Line  350: 35 [310]: IF
+      Expression 0:
+        Line  350: 38 [272]: Identifier 'GVT!'/-1
+          Stack:
+            Line  350: 42 [268]: Float field 'x#', offset 0
+        Line  350: 47 [270]: Float 10.000000
+        Line  350: 45 [ 61]: =
+        Line  350: 56 [272]: Identifier 'GVT!'/-1
+          Stack:
+            Line  350: 60 [268]: Float field 'y#', offset 8
+        Line  350: 65 [270]: Float 234.560000
+        Line  350: 63 [ 61]: =
+        Line  350: 52 [390]: AND
+      Branch 0:
+        Line  350: 72 [260]: PROC call [Pass], no return
+          Expression 0:
+            Line  350: 76 [258]: Sub-expression
+      Branch 1:
+        Line  350: 84 [260]: PROC call [Fail], no return
+          Expression 0:
+            Line  350: 88 [258]: Sub-expression
+    Line  351:  3 [317]: PRINT
+      Expression 0:
+        Line  351:  3 [319]: PRINT tabbed mode on
+      Expression 1:
+        Line  351:  9 [271]: String 'Load field (Glob2) = '
+        Line  351:  3 [320]: PRINT tabbed mode off
+      Expression 2:
+    Line  351: 35 [310]: IF
+      Expression 0:
+        Line  351: 38 [272]: Identifier 'GVT!'/-1
+          Stack:
+            Line  351: 42 [268]: Integer field 'rgb%', offset 24
+        Line  351: 49 [269]: Integer 16777215
+        Line  351: 47 [ 61]: =
+      Branch 0:
+        Line  351: 57 [260]: PROC call [Pass], no return
+          Expression 0:
+            Line  351: 61 [258]: Sub-expression
+      Branch 1:
+        Line  351: 69 [260]: PROC call [Fail], no return
+          Expression 0:
+            Line  351: 73 [258]: Sub-expression
+    Line  352:  3 [317]: PRINT
+      Expression 0:
+        Line  352:  3 [319]: PRINT tabbed mode on
+      Expression 1:
+    Line  352:  3 [318]: PRINT newline
     Line  341:  2 [325]: RETURN (no value)
-Line  353:  2 [292]: DEF 'Variables'
+Line  355:  2 [292]: DEF 'Variables'
   Branch 0:
-    Line  354:  3 [313]: LOCAL-NOINIT 'A%' Integer, index 0
-    Line  354:  3 [262]: Integer assignment 'A%', index 0
+    Line  356:  3 [313]: LOCAL-NOINIT 'A%' Integer, index 0
+    Line  356:  3 [262]: Integer assignment 'A%', index 0
       Expression 0:
-        Line  354:  6 [269]: Integer 0
-    Line  354:  8 [313]: LOCAL-NOINIT 'A#' Float, index 1
-    Line  354:  8 [262]: Float assignment 'A#', index 1
+        Line  356:  6 [269]: Integer 0
+    Line  356:  8 [313]: LOCAL-NOINIT 'A#' Float, index 1
+    Line  356:  8 [262]: Float assignment 'A#', index 1
       Expression 0:
-        Line  354: 11 [269]: Integer 0
-    Line  354: 13 [313]: LOCAL-NOINIT 'A$' String, index 2
-    Line  354: 13 [262]: String assignment 'A$', index 2
+        Line  356: 11 [269]: Integer 0
+    Line  356: 13 [313]: LOCAL-NOINIT 'A$' String, index 2
+    Line  356: 13 [262]: String assignment 'A$', index 2
       Expression 0:
-        Line  354: 16 [271]: String ''
-    Line  354: 19 [313]: LOCAL-NOINIT 'B%' Integer, index 3
-    Line  354: 19 [262]: Integer assignment 'B%', index 3
+        Line  356: 16 [271]: String ''
+    Line  356: 19 [313]: LOCAL-NOINIT 'B%' Integer, index 3
+    Line  356: 19 [262]: Integer assignment 'B%', index 3
       Expression 0:
-        Line  354: 22 [269]: Integer 5
-        Line  354: 24 [269]: Integer 5
-        Line  354: 23 [ 43]: +
-    Line  354: 26 [313]: LOCAL-NOINIT 'B#' Float, index 4
-    Line  354: 26 [262]: Float assignment 'B#', index 4
+        Line  356: 22 [269]: Integer 5
+        Line  356: 24 [269]: Integer 5
+        Line  356: 23 [ 43]: +
+    Line  356: 26 [313]: LOCAL-NOINIT 'B#' Float, index 4
+    Line  356: 26 [262]: Float assignment 'B#', index 4
       Expression 0:
-        Line  354: 29 [270]: Float 123.450000
-    Line  354: 36 [313]: LOCAL-NOINIT 'B$' String, index 5
-    Line  354: 36 [262]: String assignment 'B$', index 5
+        Line  356: 29 [270]: Float 123.450000
+    Line  356: 36 [313]: LOCAL-NOINIT 'B$' String, index 5
+    Line  356: 36 [262]: String assignment 'B$', index 5
       Expression 0:
-        Line  354: 39 [271]: String 'Test'
-    Line  354: 46 [313]: LOCAL-NOINIT 'C%' Integer, index 6
-    Line  354: 46 [262]: Integer assignment 'C%', index 6
+        Line  356: 39 [271]: String 'Test'
+    Line  356: 46 [313]: LOCAL-NOINIT 'C%' Integer, index 6
+    Line  356: 46 [262]: Integer assignment 'C%', index 6
       Expression 0:
-        Line  354: 49 [269]: Integer 0
-    Line  354: 51 [313]: LOCAL-NOINIT 'C#' Float, index 7
-    Line  354: 51 [262]: Float assignment 'C#', index 7
+        Line  356: 49 [269]: Integer 0
+    Line  356: 51 [313]: LOCAL-NOINIT 'C#' Float, index 7
+    Line  356: 51 [262]: Float assignment 'C#', index 7
       Expression 0:
-        Line  354: 54 [269]: Integer 0
-    Line  355:  6 [317]: PRINT
+        Line  356: 54 [269]: Integer 0
+    Line  357:  6 [317]: PRINT
       Expression 0:
-        Line  355:  6 [319]: PRINT tabbed mode on
+        Line  357:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  355: 12 [271]: String '::Variables::'
-    Line  355:  6 [318]: PRINT newline
-    Line  356:  3 [262]: Integer assignment 'C%', index 6
+        Line  357: 12 [271]: String '::Variables::'
+    Line  357:  6 [318]: PRINT newline
+    Line  358:  3 [262]: Integer assignment 'C%', index 6
       Expression 0:
-        Line  356:  6 [269]: Integer 100
-    Line  357:  7 [262]: Float assignment 'C#', index 7
+        Line  358:  6 [269]: Integer 100
+    Line  359:  7 [262]: Float assignment 'C#', index 7
       Expression 0:
-        Line  357: 10 [270]: Float 99.900000
-    Line  358:  6 [317]: PRINT
-      Expression 0:
-        Line  358:  6 [319]: PRINT tabbed mode on
-      Expression 1:
-        Line  358: 12 [271]: String 'Local integer (0)  = '
-        Line  358:  6 [320]: PRINT tabbed mode off
-      Expression 2:
-    Line  358: 37 [310]: IF
-      Expression 0:
-        Line  358: 40 [272]: Identifier 'A%'/0
-        Line  358: 43 [269]: Integer 0
-        Line  358: 42 [ 61]: =
-      Branch 0:
-        Line  358: 45 [260]: PROC call [Pass], no return
-          Expression 0:
-            Line  358: 49 [258]: Sub-expression
-      Branch 1:
-        Line  358: 57 [260]: PROC call [Fail], no return
-          Expression 0:
-            Line  358: 61 [258]: Sub-expression
-    Line  359:  6 [317]: PRINT
-      Expression 0:
-        Line  359:  6 [319]: PRINT tabbed mode on
-      Expression 1:
-        Line  359: 12 [271]: String 'Local float (0)    = '
-        Line  359:  6 [320]: PRINT tabbed mode off
-      Expression 2:
-    Line  359: 37 [310]: IF
-      Expression 0:
-        Line  359: 40 [272]: Identifier 'A#'/1
-        Line  359: 43 [270]: Float 0.000000
-        Line  359: 42 [ 61]: =
-      Branch 0:
-        Line  359: 47 [260]: PROC call [Pass], no return
-          Expression 0:
-            Line  359: 51 [258]: Sub-expression
-      Branch 1:
-        Line  359: 59 [260]: PROC call [Fail], no return
-          Expression 0:
-            Line  359: 63 [258]: Sub-expression
+        Line  359: 10 [270]: Float 99.900000
     Line  360:  6 [317]: PRINT
       Expression 0:
         Line  360:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  360: 12 [271]: String 'Local string (0 )  = '
+        Line  360: 12 [271]: String 'Local integer (0)  = '
         Line  360:  6 [320]: PRINT tabbed mode off
       Expression 2:
     Line  360: 37 [310]: IF
       Expression 0:
-        Line  360: 40 [272]: Identifier 'A$'/2
-        Line  360: 43 [271]: String ''
+        Line  360: 40 [272]: Identifier 'A%'/0
+        Line  360: 43 [269]: Integer 0
         Line  360: 42 [ 61]: =
       Branch 0:
-        Line  360: 46 [260]: PROC call [Pass], no return
+        Line  360: 45 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  360: 50 [258]: Sub-expression
+            Line  360: 49 [258]: Sub-expression
       Branch 1:
-        Line  360: 58 [260]: PROC call [Fail], no return
+        Line  360: 57 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  360: 62 [258]: Sub-expression
-    Line  361:  3 [317]: PRINT
+            Line  360: 61 [258]: Sub-expression
+    Line  361:  6 [317]: PRINT
       Expression 0:
-        Line  361:  3 [319]: PRINT tabbed mode on
+        Line  361:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  361:  9 [272]: Identifier 'B%'/3
+        Line  361: 12 [271]: String 'Local float (0)    = '
+        Line  361:  6 [320]: PRINT tabbed mode off
       Expression 2:
-        Line  361:  3 [319]: PRINT tabbed mode on
-      Expression 3:
-        Line  361: 12 [272]: Identifier 'B#'/4
-    Line  361:  3 [318]: PRINT newline
+    Line  361: 37 [310]: IF
+      Expression 0:
+        Line  361: 40 [272]: Identifier 'A#'/1
+        Line  361: 43 [270]: Float 0.000000
+        Line  361: 42 [ 61]: =
+      Branch 0:
+        Line  361: 47 [260]: PROC call [Pass], no return
+          Expression 0:
+            Line  361: 51 [258]: Sub-expression
+      Branch 1:
+        Line  361: 59 [260]: PROC call [Fail], no return
+          Expression 0:
+            Line  361: 63 [258]: Sub-expression
     Line  362:  6 [317]: PRINT
       Expression 0:
         Line  362:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  362: 12 [271]: String 'Local integer      = '
+        Line  362: 12 [271]: String 'Local string (0 )  = '
         Line  362:  6 [320]: PRINT tabbed mode off
       Expression 2:
     Line  362: 37 [310]: IF
       Expression 0:
-        Line  362: 40 [272]: Identifier 'B%'/3
-        Line  362: 43 [269]: Integer 10
+        Line  362: 40 [272]: Identifier 'A$'/2
+        Line  362: 43 [271]: String ''
         Line  362: 42 [ 61]: =
       Branch 0:
         Line  362: 46 [260]: PROC call [Pass], no return
@@ -3470,241 +3479,243 @@ Line  353:  2 [292]: DEF 'Variables'
         Line  362: 58 [260]: PROC call [Fail], no return
           Expression 0:
             Line  362: 62 [258]: Sub-expression
-    Line  363:  6 [317]: PRINT
+    Line  363:  3 [317]: PRINT
       Expression 0:
-        Line  363:  6 [319]: PRINT tabbed mode on
+        Line  363:  3 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  363: 12 [271]: String 'Local float        = '
-        Line  363:  6 [320]: PRINT tabbed mode off
+        Line  363:  9 [272]: Identifier 'B%'/3
       Expression 2:
-    Line  363: 37 [310]: IF
-      Expression 0:
-        Line  363: 40 [272]: Identifier 'B#'/4
-        Line  363: 43 [270]: Float 123.450000
-        Line  363: 42 [ 61]: =
-      Branch 0:
-        Line  363: 50 [260]: PROC call [Pass], no return
-          Expression 0:
-            Line  363: 54 [258]: Sub-expression
-      Branch 1:
-        Line  363: 62 [260]: PROC call [Fail], no return
-          Expression 0:
-            Line  363: 66 [258]: Sub-expression
+        Line  363:  3 [319]: PRINT tabbed mode on
+      Expression 3:
+        Line  363: 12 [272]: Identifier 'B#'/4
+    Line  363:  3 [318]: PRINT newline
     Line  364:  6 [317]: PRINT
       Expression 0:
         Line  364:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  364: 12 [271]: String 'Local string       = '
+        Line  364: 12 [271]: String 'Local integer      = '
         Line  364:  6 [320]: PRINT tabbed mode off
       Expression 2:
     Line  364: 37 [310]: IF
       Expression 0:
-        Line  364: 40 [272]: Identifier 'B$'/5
-        Line  364: 43 [271]: String 'Test'
+        Line  364: 40 [272]: Identifier 'B%'/3
+        Line  364: 43 [269]: Integer 10
         Line  364: 42 [ 61]: =
       Branch 0:
-        Line  364: 50 [260]: PROC call [Pass], no return
+        Line  364: 46 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  364: 54 [258]: Sub-expression
+            Line  364: 50 [258]: Sub-expression
       Branch 1:
-        Line  364: 62 [260]: PROC call [Fail], no return
+        Line  364: 58 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  364: 66 [258]: Sub-expression
+            Line  364: 62 [258]: Sub-expression
     Line  365:  6 [317]: PRINT
       Expression 0:
         Line  365:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  365: 12 [271]: String 'Constants       	  = '
+        Line  365: 12 [271]: String 'Local float        = '
         Line  365:  6 [320]: PRINT tabbed mode off
       Expression 2:
     Line  365: 37 [310]: IF
       Expression 0:
-        Line  365: 40 [273]: Constant 'const%'
-        Line  365: 47 [269]: Integer 100
-        Line  365: 46 [ 61]: =
-        Line  365: 55 [273]: Constant 'ccf#'
-        Line  365: 60 [270]: Float 12.500000
-        Line  365: 59 [ 61]: =
-        Line  365: 51 [390]: AND
+        Line  365: 40 [272]: Identifier 'B#'/4
+        Line  365: 43 [270]: Float 123.450000
+        Line  365: 42 [ 61]: =
       Branch 0:
-        Line  365: 65 [260]: PROC call [Pass], no return
+        Line  365: 50 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  365: 69 [258]: Sub-expression
+            Line  365: 54 [258]: Sub-expression
       Branch 1:
-        Line  365: 77 [260]: PROC call [Fail], no return
+        Line  365: 62 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  365: 81 [258]: Sub-expression
+            Line  365: 66 [258]: Sub-expression
     Line  366:  6 [317]: PRINT
       Expression 0:
         Line  366:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  366: 12 [271]: String 'Implicit LET       = '
+        Line  366: 12 [271]: String 'Local string       = '
         Line  366:  6 [320]: PRINT tabbed mode off
       Expression 2:
     Line  366: 37 [310]: IF
       Expression 0:
-        Line  366: 40 [272]: Identifier 'C%'/6
-        Line  366: 43 [269]: Integer 100
+        Line  366: 40 [272]: Identifier 'B$'/5
+        Line  366: 43 [271]: String 'Test'
         Line  366: 42 [ 61]: =
       Branch 0:
-        Line  366: 47 [260]: PROC call [Pass], no return
+        Line  366: 50 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  366: 51 [258]: Sub-expression
+            Line  366: 54 [258]: Sub-expression
       Branch 1:
-        Line  366: 59 [260]: PROC call [Fail], no return
+        Line  366: 62 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  366: 63 [258]: Sub-expression
+            Line  366: 66 [258]: Sub-expression
     Line  367:  6 [317]: PRINT
       Expression 0:
         Line  367:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  367: 12 [271]: String 'Explicit LET       = '
+        Line  367: 12 [271]: String 'Constants       	  = '
         Line  367:  6 [320]: PRINT tabbed mode off
       Expression 2:
     Line  367: 37 [310]: IF
       Expression 0:
-        Line  367: 40 [272]: Identifier 'C#'/7
-        Line  367: 43 [270]: Float 99.900000
-        Line  367: 42 [ 61]: =
+        Line  367: 40 [273]: Constant 'const%'
+        Line  367: 47 [269]: Integer 100
+        Line  367: 46 [ 61]: =
+        Line  367: 55 [273]: Constant 'ccf#'
+        Line  367: 60 [270]: Float 12.500000
+        Line  367: 59 [ 61]: =
+        Line  367: 51 [390]: AND
       Branch 0:
-        Line  367: 48 [260]: PROC call [Pass], no return
+        Line  367: 65 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  367: 52 [258]: Sub-expression
+            Line  367: 69 [258]: Sub-expression
       Branch 1:
-        Line  367: 60 [260]: PROC call [Fail], no return
+        Line  367: 77 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  367: 64 [258]: Sub-expression
-    Line  368:  3 [262]: Integer assignment 'A%', index 0
+            Line  367: 81 [258]: Sub-expression
+    Line  368:  6 [317]: PRINT
       Expression 0:
-        Line  368:  6 [269]: Integer 10
-    Line  368:  9 [262]: Integer assignment 'A%', index 0
-      Expression 0:
-        Line  368:  9 [272]: Identifier ''/0
-        Line  368: 13 [269]: Integer 10
-        Line  368:  9 [ 43]: +
-    Line  369:  3 [317]: PRINT
-      Expression 0:
-        Line  369:  3 [319]: PRINT tabbed mode on
+        Line  368:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  369:  9 [271]: String 'Var integer +=     = '
-        Line  369:  3 [320]: PRINT tabbed mode off
+        Line  368: 12 [271]: String 'Implicit LET       = '
+        Line  368:  6 [320]: PRINT tabbed mode off
       Expression 2:
-    Line  369: 34 [310]: IF
+    Line  368: 37 [310]: IF
       Expression 0:
-        Line  369: 37 [272]: Identifier 'A%'/0
-        Line  369: 40 [269]: Integer 20
-        Line  369: 39 [ 61]: =
+        Line  368: 40 [272]: Identifier 'C%'/6
+        Line  368: 43 [269]: Integer 100
+        Line  368: 42 [ 61]: =
       Branch 0:
-        Line  369: 43 [260]: PROC call [Pass], no return
+        Line  368: 47 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  369: 47 [258]: Sub-expression
+            Line  368: 51 [258]: Sub-expression
       Branch 1:
-        Line  369: 55 [260]: PROC call [Fail], no return
+        Line  368: 59 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  369: 59 [258]: Sub-expression
-    Line  370:  3 [262]: Float assignment 'A#', index 1
+            Line  368: 63 [258]: Sub-expression
+    Line  369:  6 [317]: PRINT
       Expression 0:
-        Line  370:  6 [270]: Float 10.500000
-    Line  370: 11 [262]: Float assignment 'A#', index 1
+        Line  369:  6 [319]: PRINT tabbed mode on
+      Expression 1:
+        Line  369: 12 [271]: String 'Explicit LET       = '
+        Line  369:  6 [320]: PRINT tabbed mode off
+      Expression 2:
+    Line  369: 37 [310]: IF
       Expression 0:
-        Line  370: 11 [272]: Identifier ''/1
-        Line  370: 15 [270]: Float 10.500000
-        Line  370: 11 [ 43]: +
+        Line  369: 40 [272]: Identifier 'C#'/7
+        Line  369: 43 [270]: Float 99.900000
+        Line  369: 42 [ 61]: =
+      Branch 0:
+        Line  369: 48 [260]: PROC call [Pass], no return
+          Expression 0:
+            Line  369: 52 [258]: Sub-expression
+      Branch 1:
+        Line  369: 60 [260]: PROC call [Fail], no return
+          Expression 0:
+            Line  369: 64 [258]: Sub-expression
+    Line  370:  3 [262]: Integer assignment 'A%', index 0
+      Expression 0:
+        Line  370:  6 [269]: Integer 10
+    Line  370:  9 [262]: Integer assignment 'A%', index 0
+      Expression 0:
+        Line  370:  9 [272]: Identifier ''/0
+        Line  370: 13 [269]: Integer 10
+        Line  370:  9 [ 43]: +
     Line  371:  3 [317]: PRINT
       Expression 0:
         Line  371:  3 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  371:  9 [271]: String 'Var float +=       = '
+        Line  371:  9 [271]: String 'Var integer +=     = '
         Line  371:  3 [320]: PRINT tabbed mode off
       Expression 2:
     Line  371: 34 [310]: IF
       Expression 0:
-        Line  371: 37 [272]: Identifier 'A#'/1
-        Line  371: 40 [270]: Float 21.000000
+        Line  371: 37 [272]: Identifier 'A%'/0
+        Line  371: 40 [269]: Integer 20
         Line  371: 39 [ 61]: =
       Branch 0:
-        Line  371: 45 [260]: PROC call [Pass], no return
+        Line  371: 43 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  371: 49 [258]: Sub-expression
+            Line  371: 47 [258]: Sub-expression
       Branch 1:
-        Line  371: 57 [260]: PROC call [Fail], no return
+        Line  371: 55 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  371: 61 [258]: Sub-expression
-    Line  372:  3 [262]: Integer assignment 'A%', index 0
+            Line  371: 59 [258]: Sub-expression
+    Line  372:  3 [262]: Float assignment 'A#', index 1
       Expression 0:
-        Line  372:  6 [269]: Integer 10
-    Line  372:  9 [262]: Integer assignment 'A%', index 0
+        Line  372:  6 [270]: Float 10.500000
+    Line  372: 11 [262]: Float assignment 'A#', index 1
       Expression 0:
-        Line  372:  9 [272]: Identifier ''/0
-        Line  372: 13 [269]: Integer 5
-        Line  372:  9 [ 45]: -
+        Line  372: 11 [272]: Identifier ''/1
+        Line  372: 15 [270]: Float 10.500000
+        Line  372: 11 [ 43]: +
     Line  373:  3 [317]: PRINT
       Expression 0:
         Line  373:  3 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  373:  9 [271]: String 'Var integer -=     = '
+        Line  373:  9 [271]: String 'Var float +=       = '
         Line  373:  3 [320]: PRINT tabbed mode off
       Expression 2:
     Line  373: 34 [310]: IF
       Expression 0:
-        Line  373: 37 [272]: Identifier 'A%'/0
-        Line  373: 40 [269]: Integer 5
+        Line  373: 37 [272]: Identifier 'A#'/1
+        Line  373: 40 [270]: Float 21.000000
         Line  373: 39 [ 61]: =
       Branch 0:
-        Line  373: 42 [260]: PROC call [Pass], no return
+        Line  373: 45 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  373: 46 [258]: Sub-expression
+            Line  373: 49 [258]: Sub-expression
       Branch 1:
-        Line  373: 54 [260]: PROC call [Fail], no return
+        Line  373: 57 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  373: 58 [258]: Sub-expression
+            Line  373: 61 [258]: Sub-expression
     Line  374:  3 [262]: Integer assignment 'A%', index 0
       Expression 0:
         Line  374:  6 [269]: Integer 10
     Line  374:  9 [262]: Integer assignment 'A%', index 0
       Expression 0:
         Line  374:  9 [272]: Identifier ''/0
-        Line  374: 13 [269]: Integer 2
-        Line  374:  9 [ 42]: *
+        Line  374: 13 [269]: Integer 5
+        Line  374:  9 [ 45]: -
     Line  375:  3 [317]: PRINT
       Expression 0:
         Line  375:  3 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  375:  9 [271]: String 'Var integer *=     = '
+        Line  375:  9 [271]: String 'Var integer -=     = '
         Line  375:  3 [320]: PRINT tabbed mode off
       Expression 2:
     Line  375: 34 [310]: IF
       Expression 0:
         Line  375: 37 [272]: Identifier 'A%'/0
-        Line  375: 40 [269]: Integer 20
+        Line  375: 40 [269]: Integer 5
         Line  375: 39 [ 61]: =
       Branch 0:
-        Line  375: 43 [260]: PROC call [Pass], no return
+        Line  375: 42 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  375: 47 [258]: Sub-expression
+            Line  375: 46 [258]: Sub-expression
       Branch 1:
-        Line  375: 55 [260]: PROC call [Fail], no return
+        Line  375: 54 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  375: 59 [258]: Sub-expression
+            Line  375: 58 [258]: Sub-expression
     Line  376:  3 [262]: Integer assignment 'A%', index 0
       Expression 0:
         Line  376:  6 [269]: Integer 10
     Line  376:  9 [262]: Integer assignment 'A%', index 0
       Expression 0:
         Line  376:  9 [272]: Identifier ''/0
-        Line  376: 14 [269]: Integer 2
-        Line  376:  9 [277]: <<
+        Line  376: 13 [269]: Integer 2
+        Line  376:  9 [ 42]: *
     Line  377:  3 [317]: PRINT
       Expression 0:
         Line  377:  3 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  377:  9 [271]: String 'Var integer <<=    = '
+        Line  377:  9 [271]: String 'Var integer *=     = '
         Line  377:  3 [320]: PRINT tabbed mode off
       Expression 2:
     Line  377: 34 [310]: IF
       Expression 0:
         Line  377: 37 [272]: Identifier 'A%'/0
-        Line  377: 40 [269]: Integer 40
+        Line  377: 40 [269]: Integer 20
         Line  377: 39 [ 61]: =
       Branch 0:
         Line  377: 43 [260]: PROC call [Pass], no return
@@ -3721,63 +3732,91 @@ Line  353:  2 [292]: DEF 'Variables'
       Expression 0:
         Line  378:  9 [272]: Identifier ''/0
         Line  378: 14 [269]: Integer 2
-        Line  378:  9 [278]: >>
+        Line  378:  9 [277]: <<
     Line  379:  3 [317]: PRINT
       Expression 0:
         Line  379:  3 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  379:  9 [271]: String 'Var integer >>=    = '
+        Line  379:  9 [271]: String 'Var integer <<=    = '
         Line  379:  3 [320]: PRINT tabbed mode off
       Expression 2:
     Line  379: 34 [310]: IF
       Expression 0:
         Line  379: 37 [272]: Identifier 'A%'/0
-        Line  379: 40 [269]: Integer 2
+        Line  379: 40 [269]: Integer 40
         Line  379: 39 [ 61]: =
       Branch 0:
-        Line  379: 42 [260]: PROC call [Pass], no return
+        Line  379: 43 [260]: PROC call [Pass], no return
           Expression 0:
-            Line  379: 46 [258]: Sub-expression
+            Line  379: 47 [258]: Sub-expression
       Branch 1:
-        Line  379: 54 [260]: PROC call [Fail], no return
+        Line  379: 55 [260]: PROC call [Fail], no return
           Expression 0:
-            Line  379: 58 [258]: Sub-expression
-    Line  380:  3 [317]: PRINT
+            Line  379: 59 [258]: Sub-expression
+    Line  380:  3 [262]: Integer assignment 'A%', index 0
       Expression 0:
-        Line  380:  3 [319]: PRINT tabbed mode on
+        Line  380:  6 [269]: Integer 10
+    Line  380:  9 [262]: Integer assignment 'A%', index 0
+      Expression 0:
+        Line  380:  9 [272]: Identifier ''/0
+        Line  380: 14 [269]: Integer 2
+        Line  380:  9 [278]: >>
+    Line  381:  3 [317]: PRINT
+      Expression 0:
+        Line  381:  3 [319]: PRINT tabbed mode on
       Expression 1:
-    Line  380:  3 [318]: PRINT newline
-    Line  353:  2 [325]: RETURN (no value)
-Line  383:  2 [292]: DEF 'Pass'
+        Line  381:  9 [271]: String 'Var integer >>=    = '
+        Line  381:  3 [320]: PRINT tabbed mode off
+      Expression 2:
+    Line  381: 34 [310]: IF
+      Expression 0:
+        Line  381: 37 [272]: Identifier 'A%'/0
+        Line  381: 40 [269]: Integer 2
+        Line  381: 39 [ 61]: =
+      Branch 0:
+        Line  381: 42 [260]: PROC call [Pass], no return
+          Expression 0:
+            Line  381: 46 [258]: Sub-expression
+      Branch 1:
+        Line  381: 54 [260]: PROC call [Fail], no return
+          Expression 0:
+            Line  381: 58 [258]: Sub-expression
+    Line  382:  3 [317]: PRINT
+      Expression 0:
+        Line  382:  3 [319]: PRINT tabbed mode on
+      Expression 1:
+    Line  382:  3 [318]: PRINT newline
+    Line  355:  2 [325]: RETURN (no value)
+Line  385:  2 [292]: DEF 'Pass'
   Branch 0:
-    Line  384:  6 [317]: PRINT
+    Line  386:  6 [317]: PRINT
       Expression 0:
-        Line  384:  6 [319]: PRINT tabbed mode on
+        Line  386:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  384: 12 [271]: String 'PASS!'
-    Line  384:  6 [318]: PRINT newline
-    Line  383:  2 [325]: RETURN (no value)
-Line  387:  2 [292]: DEF 'Fail'
+        Line  386: 12 [271]: String 'PASS!'
+    Line  386:  6 [318]: PRINT newline
+    Line  385:  2 [325]: RETURN (no value)
+Line  389:  2 [292]: DEF 'Fail'
   Branch 0:
-    Line  388:  6 [317]: PRINT
+    Line  390:  6 [317]: PRINT
       Expression 0:
-        Line  388:  6 [319]: PRINT tabbed mode on
+        Line  390:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  388: 12 [271]: String '!! FAILED TEST !!'
-    Line  388:  6 [318]: PRINT newline
-    Line  389: 32 [295]: END
-    Line  387:  2 [325]: RETURN (no value)
-Line  391:  2 [292]: DEF 'Containers'
+        Line  390: 12 [271]: String '!! FAILED TEST !!'
+    Line  390:  6 [318]: PRINT newline
+    Line  391: 32 [295]: END
+    Line  389:  2 [325]: RETURN (no value)
+Line  393:  2 [292]: DEF 'Containers'
   Branch 0:
-    Line  392:  6 [317]: PRINT
+    Line  394:  6 [317]: PRINT
       Expression 0:
-        Line  392:  6 [319]: PRINT tabbed mode on
+        Line  394:  6 [319]: PRINT tabbed mode on
       Expression 1:
-        Line  392: 12 [271]: String '::Containers::'
-    Line  392:  6 [318]: PRINT newline
-    Line  393:  6 [317]: PRINT
+        Line  394: 12 [271]: String '::Containers::'
+    Line  394:  6 [318]: PRINT newline
+    Line  395:  6 [317]: PRINT
       Expression 0:
-        Line  393:  6 [319]: PRINT tabbed mode on
+        Line  395:  6 [319]: PRINT tabbed mode on
       Expression 1:
-    Line  393:  6 [318]: PRINT newline
-    Line  391:  2 [325]: RETURN (no value)
+    Line  395:  6 [318]: PRINT newline
+    Line  393:  2 [325]: RETURN (no value)
