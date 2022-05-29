@@ -218,6 +218,8 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				break;
 			case IROpcodes::VariableLocalCreateString:
 				local_variables.push_back(jit_allocai(sizeof(int64_t)));
+				jit_movi(JIT_R0, 0);
+				jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
 				break;
 			case IROpcodes::VariableLocalCreateType:
 				local_variables.push_back(jit_allocai(op.iv));
@@ -230,6 +232,8 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				break;
 			case IROpcodes::VariableGlobalCreateString:
 				global_variables.push_back(jit_allocai(sizeof(int64_t)));
+				jit_movi(JIT_R0, 0);
+				jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
 				break;
 			case IROpcodes::VariableGlobalCreateType:
 				global_variables.push_back(jit_allocai(op.iv));
@@ -250,7 +254,22 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				SF(jit_stxi)(IdxForVar(op.index), RegForVar(op.index), JIT_F0);
 				break;
 			case IROpcodes::VariableStoreString:
+				jit_movr(JIT_V2, JIT_R0);
+
+				// Free old value
+				jit_ldxi_l(JIT_R0, RegForVar(op.index), IdxForVar(op.index));
+				jit_prepare();
+				jit_pushargr(JIT_R0);
+				jit_finishi((jit_pointer_t)call_STRING_freepermanent);
+
+				// Store
+				jit_movr(JIT_R0, JIT_V2);
 				jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
+
+				// Make permanent
+				jit_prepare();
+				jit_pushargr(JIT_R0);
+				jit_finishi((jit_pointer_t)call_STRING_makepermanent);
 				break;
 
 				// Offsets
@@ -280,11 +299,27 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				SF(jit_stxr)(JIT_R2, RegForVar(op.index), JIT_F0);
 				break;
 			case IROpcodes::VariableStoreStringWithOffset:
+				jit_movr(JIT_V2, JIT_R0);
+
+				// Free old value
+				jit_movi(JIT_R2, IdxForVar(op.index));
+				jit_addi(JIT_R2, JIT_R2, op.iv);
+				jit_ldxr_l(JIT_R0, RegForVar(op.index), JIT_R2);
+				jit_prepare();
+				jit_pushargr(JIT_R0);
+				jit_finishi((jit_pointer_t)call_STRING_freepermanent);
+
+				// Store
+				jit_movr(JIT_R0, JIT_V2);
 				jit_movi(JIT_R2, IdxForVar(op.index));
 				jit_addi(JIT_R2, JIT_R2, op.iv);
 				jit_stxr_l(JIT_R2, RegForVar(op.index), JIT_R0);
-				break;
 
+				// Make permanent
+				jit_prepare();
+				jit_pushargr(JIT_R0);
+				jit_finishi((jit_pointer_t)call_STRING_makepermanent);
+				break;
 
 				// Swap
 			case IROpcodes::VariableSwapSourceInteger:
@@ -323,7 +358,7 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				SF(jit_movi)(JIT_F0, op.rv);
 				break;
 			case IROpcodes::LiteralString: {
-				auto idx = OS_Strings_Create(op.sv);
+				auto idx = OS_Strings_CreatePermanent(op.sv);
 				jit_movi(JIT_R0, idx);
 				break;
 			}

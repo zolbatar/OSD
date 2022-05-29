@@ -18,30 +18,30 @@ G%=5
 Start()
 
 DEF Start()
-REPEAT
+    REPEAT
 	CLS
     PRINT "Starting tests!"
-    Boolean():YIELD
-	Chrono():YIELD
-    Comparison():YIELD
-    Conversion():YIELD
-	Data():YIELD
-	Functions():YIELD
-    GlobalsLocals():YIELD
-	Looping():YIELD
-    Maths():YIELD
-    Numbers():YIELD
-    PrintInput():YIELD
-    Strings():YIELD
-	Swap():YIELD
-	Types():YIELD
-	Variables():YIELD
+    Boolean()
+	REM Chrono()
+    Comparison()
+    Conversion()
+	Data()
+	Functions()
+    GlobalsLocals()
+	Looping()
+    Maths()
+    Numbers()
+    PrintInput()
+    REM Strings()
+	REM Swap()
+	REM Types()
+	Variables()
     PRINT "::Misc tests::"
-	TestReturnInOtherwise():YIELD
-	NestedCalling():YIELD
-    Containers():YIELD
+	TestReturnInOtherwise()
+	NestedCalling()
+    Containers()
     PRINT "All tests passed!"
-   UNTIL FALSE
+    UNTIL FALSE
 ENDDEF
 
 DEF Boolean()
@@ -58,7 +58,6 @@ ENDDEF
 DEF Chrono()
 	PRINT "::Chrono::"
 	PRINT "Time               = ";:IF TIME > 0 Pass() ELSE Fail()
-PRINT TIME$
 	PRINT "Time$              = ";:IF LEN(TIME$) = 24 Pass() ELSE Fail()
 	PRINT
 ENDDEF

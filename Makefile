@@ -53,8 +53,7 @@ LIBS := "$(NEWLIBDIR)/lib/libm.a" "$(NEWLIBDIR)/lib/libc.a" "$(NEWLIBDIR)/lib/li
   	$(CIRCLEHOME)/lib/sched/libsched.a \
   	$(CIRCLEHOME)/lib/libcircle.a \
 	$(CIRCLEHOME)/addon/wlan/hostap/wpa_supplicant/libwpa_supplicant.a \
-	$(CIRCLEHOME)/addon/wlan/libwlan.a \
-	/Users/daryl/GitHub/freetype/objs/.libs/libfreetype.a
+	$(CIRCLEHOME)/addon/wlan/libwlan.a
 
 CFLAGS += -I capstone -Wno-unused-function
 CFLAGS += -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no

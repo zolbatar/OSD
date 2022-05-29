@@ -5,5 +5,6 @@
     -kernel kernel8.img \
     -usb -device usb-kbd -device usb-mouse \
     -rtc clock=host -smp 4 -sd sdcard.sdimg
+#    -global bcm2835-fb.xres=3840 -global bcm2835-fb.yres=2160 \
 #                        -semihosting -monitor telnet:localhost:1235,server,nowait \
 #                        -S -gdb tcp::1234 -serial stdio 

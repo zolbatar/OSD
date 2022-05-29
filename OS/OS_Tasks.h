@@ -5,6 +5,8 @@
 #include <circle/sysconfig.h>
 #include <circle/new.h>
 #include <circle/alloc.h>
+#include <circle/timer.h>
+#include <circle/timer.h>
 #define NEW new(HEAP_ANY)
 #else
 
@@ -19,6 +21,7 @@
 #include <vector>
 #include <list>
 #include "OS_Messages.h"
+#include <chrono>
 
 extern "C"
 {
@@ -33,7 +36,7 @@ enum class TaskType {
 	Editor
 };
 
-const size_t ALLOCATION_SIZE = 8192;
+const size_t ALLOCATION_SIZE = 32768;
 const size_t MIN_MESSAGE_QUEUE = 64;
 const size_t MAX_MESSAGE_QUEUE = 4096;
 
@@ -111,7 +114,11 @@ public:
 	// Strings
 	void FreeString(int64_t index);
 	int64_t AddString(std::string s);
+	int64_t AddStringPermanent(std::string s);
 	std::string& GetString(int64_t idx);
+	void ClearTemporaryStrings();
+	void MakeStringPermanent(int64_t idx);
+	void FreeStringPermanent(int64_t idx);
 
 	// Malloc
 	void AddAllocation(size_t size, void* m);
@@ -162,7 +169,7 @@ public:
 
 	static OSDTask* GetTaskOverride() { return task_override; }
 
-	size_t GetStringCount() { return strings.size(); }
+	size_t GetStringCount() { return strings.size()+permanent_strings.size(); }
 
 	size_t GetAllocCount();
 
@@ -214,14 +221,17 @@ protected:
 private:
 	void* w = NULL;
 	int64_t idx;
-	int64_t string_index = 0;
+	int64_t string_index = 1;
 	size_t data_element_index = 0;
 	std::array<TaskAllocRef, ALLOCATION_SIZE> allocations;
 	std::map<int64_t, std::string> strings;
-	std::map<int64_t, std::string> statement_strings;
+	std::map<int64_t, std::string> permanent_strings;
 	std::map<std::string, size_t> data_labels;
 	std::vector<DataElement> data_elements;
 	size_t code_size;
 	uint8_t* code = NULL;
 	jit_state_t* _jit = NULL;
+#ifndef CLION
+	unsigned int last_yield = CTimer::Get()->GetClockTicks();
+#endif
 };

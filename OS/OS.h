@@ -24,6 +24,9 @@ void OS_Init();
 void OS_Strings_Free(int64_t index);
 int64_t OS_Strings_Create(std::string& s);
 std::string& OS_Strings_Get(int64_t idx);
+int64_t OS_Strings_CreatePermanent(std::string& s);
+void OS_Strings_MakePermanent(int64_t s);
+void OS_Strings_FreePermanent(int64_t s);
 
 // Tasks
 OSDTask* GetCurrentTask();
@@ -36,5 +39,5 @@ struct MemorySummary {
 	size_t lost;
 };
 
-void CalculateMem(MemorySummary *m);
+void CalculateMem(MemorySummary* m);
 void DumpMemory();

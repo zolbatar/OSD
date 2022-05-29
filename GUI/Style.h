@@ -41,6 +41,7 @@ extern lv_style_t style_bar_indicator_red;
 extern lv_style_t style_chart;
 extern lv_style_t style_chart_bar;
 extern lv_style_t style_textarea;
+extern lv_style_t style_boldbodyfont;
 extern lv_font_t *font_mono;
 
 #define LV_SYMBOL_MY_CLOSE        "\xEF\x8B\x93" // 0xF00D close
@@ -54,4 +55,4 @@ const int corner_radius = 4;
 const int corner_radius_inner = 2;
 const int scrollbar_width = 8;
 const int scrollbar_padding = 3;
-const int control_padding = 2;
+const int control_padding = 1;

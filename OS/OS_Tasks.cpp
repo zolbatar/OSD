@@ -184,14 +184,49 @@ int64_t OSDTask::AddString(std::string s)
 {
 	auto i = string_index++;
 	strings.insert(std::make_pair(i, std::move(s)));
+#ifdef CLION
+	printf("String size: %zu\n", strings.size());
+#endif
 	return i;
+}
+
+int64_t OSDTask::AddStringPermanent(std::string s)
+{
+	auto i = string_index++;
+	permanent_strings.insert(std::make_pair(i, std::move(s)));
+	return i;
+}
+
+void OSDTask::MakeStringPermanent(int64_t idx)
+{
+	auto f = strings.extract(idx);
+	permanent_strings.insert(std::move(f));
+}
+
+void OSDTask::FreeStringPermanent(int64_t idx)
+{
+	auto f = permanent_strings.extract(idx);
+	strings.insert(std::move(f));
+}
+
+void OSDTask::ClearTemporaryStrings()
+{
+	std::list<int64_t> del;
+#ifdef CLION
+	printf("Deleting %zu strings\n", strings.size());
+#endif
+	strings.clear();
 }
 
 std::string& OSDTask::GetString(int64_t idx)
 {
 	auto f = strings.find(idx);
 	if (f==strings.end()) {
-		return string_error;
+		auto f = permanent_strings.find(idx);
+		if (f==permanent_strings.end()) {
+			return string_error;
+		}
+		return f->second;
 	}
 	return f->second;
 }
@@ -240,12 +275,12 @@ Message* OSDTask::SendMessage()
 		message_queue = NEW Message[message_queue_size];
 	}
 	while (message_queue_position==message_queue_size) {
-		Yield();
 #ifndef CLION
 		CLogger::Get()->Write("GUI", LogDebug, "Full thread");
 #else
 		printf("Full thread");
 #endif
+		Yield();
 	}
 	Message* m = &message_queue[message_queue_position++];
 	return m;
@@ -253,6 +288,14 @@ Message* OSDTask::SendMessage()
 
 Message* OSDTask::SendGUIMessage()
 {
+	// How long since last message?
+#ifndef CLION
+	auto t = std::chrono::system_clock::now();
+	auto diff = CTimer::Get()->GetClockTicks()-last_yield;
+	if (diff>=10000) {
+		Yield();
+	}
+#endif
 	auto gui = GetTask("@");
 	return gui->SendMessage();
 }
@@ -277,7 +320,7 @@ OSDTask* OSDTask::GetTask(const char* s)
 
 void OSDTask::CompileSource(std::string code)
 {
-	const bool debug_output = false;
+	const bool debug_output = true;
 	Tokeniser token;
 	Parser parser;
 	try {
@@ -383,8 +426,9 @@ void OSDTask::Yield()
 	auto mScheduler = CScheduler::Get();
 	mScheduler->Yield();
 #else
-	std::this_thread::sleep_for(std::chrono::milliseconds(50));
+//	std::this_thread::sleep_for(std::chrono::milliseconds(50));
 #endif
+	last_yield = CTimer::Get()->GetClockTicks();
 }
 
 void OSDTask::Sleep(int ms)

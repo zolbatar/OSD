@@ -15,6 +15,8 @@ extern CUSBHCIDevice *USBHCI;
 #include "../TasksWindow.h"
 #include "../Editor/Editor.h"
 
+extern int dm;
+
 extern "C"
 {
 #include "../../Lightning/lightning.h"
@@ -214,48 +216,48 @@ void WindowManager::Run()
 void WindowManager::DesktopStartup()
 {
 #ifndef CLION
-	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 100, 400, 400);
+	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 100*dm, 400*dm, 400*dm);
 	mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
 	mandelbrot->Start();
 
-	auto tester = NEW DARICWindow("Tester", false, 1250, 100, 500, 700);
+	auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
 	tester->LoadSourceCode(":SD.$.Welcome.Tester");
 	tester->Start();
 
-	auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
+	auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
 	clock->LoadSourceCode(":SD.$.Welcome.Clock");
 	clock->Start();
 
-	auto tasks = NEW TasksWindow(1200, 600, 600, 400);
+	auto tasks = NEW TasksWindow(1200*dm, 600*dm, 600*dm, 400*dm);
 	tasks->Start();
 
-/*	auto editor = NEW Editor(200, 450, 700, 600);
+	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
 	editor->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-	editor->Start();*/
+	editor->Start();
 #else
-	auto tasks = NEW TasksWindow(1200, 200, 350, 400);
+/*	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 350*dm, 400*dm);
 	std::thread t1(&DARICWindow::Start, tasks);
 	t1.detach();
 
-	auto editor = NEW Editor(200, 450, 700, 600);
+	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
 	editor->LoadSourceCode(":SD.$.Welcome.Tester");
 	std::thread t2(&Editor::Start, editor);
-	t2.detach();
+	t2.detach();*/
 
-	/*	auto clock = NEW DARICWindow("Clock", false, 1000, 100, 400, 300);
+/*	auto clock = NEW DARICWindow("Clock", false, 1000*dm, 100*dm, 400*dm, 300*dm);
 	clock->LoadSourceCode(":SD.$.Welcome.Clock");
 	std::thread t2(&DARICWindow::Start, clock);
 	t2.detach();*/
 
-/*    auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100, 600, 400, 400);
-    mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-    std::thread t3(&DARICWindow::Start, mandelbrot);
-    t3.detach();
+	/*    auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 600*dm, 400*dm, 400*dm);
+		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
+		std::thread t3(&DARICWindow::Start, mandelbrot);
+		t3.detach();*/
 
-	auto tester = NEW DARICWindow("Tester", false, 100, 600, 400, 400);
-	tester->LoadSourceCode(":SD.$.Welcome.Tester");
-	std::thread t4(&DARICWindow::Start, tester);
-	t4.detach();*/
+		auto tester = NEW DARICWindow("Tester", false, 100*dm, 600*dm, 400*dm, 400*dm);
+		tester->LoadSourceCode(":SD.$.Welcome.Tester");
+		std::thread t4(&DARICWindow::Start, tester);
+		t4.detach();
 
 #endif
 }

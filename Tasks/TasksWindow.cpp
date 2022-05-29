@@ -3,6 +3,7 @@
 extern size_t pre_boot_memory;
 extern size_t kernel_size;
 extern size_t body_font_height;
+extern int dm;
 
 TasksWindow::TasksWindow(int x, int y, int w, int h)
 {
@@ -74,7 +75,7 @@ void TasksWindow::UpdateTasks()
 	const int sz = tasks_list.size()+3;
 	static lv_coord_t row_dsc[256];
 	for (int i = 0; i<sz; i++)
-		row_dsc[i] = body_font_height;
+		row_dsc[i] = body_font_height*dm;
 	row_dsc[sz] = LV_GRID_TEMPLATE_LAST;
 	static lv_coord_t col_dsc[] = { lv_pct(30), lv_pct(30), lv_pct(40), LV_GRID_TEMPLATE_LAST };
 	auto cont = lv_obj_create(cont_col);
@@ -146,11 +147,15 @@ void TasksWindow::UpdateTasks()
 				lv_label_set_text_fmt(title, "%s [%s]", task->GetWindowName().c_str(), task->GetWindowID().c_str());
 			}
 		}
+		auto w = (Window*)task->GetWindow();
+		if (w->GetActive()) {
+			lv_obj_add_style(title, &style_boldbodyfont, LV_STATE_DEFAULT);
+		}
 
 		// Memory
 		auto memory = lv_label_create(cont);
 		lv_obj_set_grid_cell(memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-		lv_label_set_text_fmt(memory, "%zu KB [%zu %zu %zu]", task->CalculateMemoryUsed()/1024, task->GetStringCount(), task->GetAllocCount(),
+		lv_label_set_text_fmt(memory, "%zu KB [%zu/%zu/%zu]", task->CalculateMemoryUsed()/1024, task->GetStringCount(), task->GetAllocCount(),
 				task->GetMessageQueueCount());
 
 		auto bar = lv_bar_create(cont);

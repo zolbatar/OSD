@@ -12,6 +12,9 @@ void call_PRINT_NL()
 	auto mess = task->SendGUIMessage();
 	mess->source = task;
 	mess->type = Messages::Canvas_PrintNewLine;
+#ifdef CLION
+	printf("\n");
+#endif
 }
 
 void call_PRINT_Tabbed()
@@ -43,6 +46,9 @@ void call_PRINT_integer(int64_t v)
 	mess->source = task;
 	mess->type = Messages::Canvas_PrintString;
 	strcpy((char*)&mess->data, d);
+#ifdef CLION
+	printf("%s", d);
+#endif
 
 	tabbed = false;
 }
@@ -66,6 +72,9 @@ void call_PRINT_real(double v)
 	mess->source = task;
 	mess->type = Messages::Canvas_PrintString;
 	strcpy((char*)&mess->data, d);
+#ifdef CLION
+	printf("%s", d);
+#endif
 
 	tabbed = false;
 }
@@ -87,6 +96,9 @@ void call_PRINT_string(int64_t idx)
 		m->address = (void*)v.c_str();
 		task->Yield();
 	}
+#ifdef CLION
+	printf("%s", v.c_str());
+#endif
 	tabbed = false;
 }
 

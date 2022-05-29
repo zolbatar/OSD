@@ -2,7 +2,7 @@
 
 #include <chrono>
 
-extern std::chrono::steady_clock::time_point t1;
+extern std::chrono::system_clock::time_point t1;
 extern uint64_t GetClock();
 
 int64_t call_TIME()

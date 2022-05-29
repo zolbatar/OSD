@@ -167,3 +167,13 @@ int64_t call_STRING_realtostring(double v)
 	auto r = OS_Strings_Create(ss);
 	return r;
 }
+
+void call_STRING_makepermanent(int64_t s)
+{
+	OS_Strings_MakePermanent(s);
+}
+
+void call_STRING_freepermanent(int64_t s)
+{
+	OS_Strings_FreePermanent(s);
+}

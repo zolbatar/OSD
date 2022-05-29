@@ -3,6 +3,7 @@
 #include "Control.h"
 
 extern size_t body_font_height;
+extern int dm;
 
 class Canvas : public Control {
 public:
@@ -27,8 +28,8 @@ private:
 	lv_color_t bg = lv_color_black();
 	uint8_t* buffer;
 	lv_font_t* mono;
-	int size_h = body_font_height / 2;
-	int size_v = body_font_height;
+	int size_h = body_font_height/2*dm;
+	int size_v = body_font_height*dm;
 
 	void ScrollUp();
 };
