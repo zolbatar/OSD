@@ -58,7 +58,6 @@ bool Parser::Parse(bool optimise, std::list<Token>* tokens)
 
 	// Fast scan of all DEFs for forward lookup
 	// Top level
-	bool done = false;
 	Token* t;
 	do {
 		t = GetToken();
@@ -112,7 +111,7 @@ void Parser::ParseSequenceOfStatements(Token* t, std::set<TokenType> block_termi
 {
 	// Do we have any leading colons or newlines?
 	auto tt = GetToken();
-	bool single_line = block_terminator.contains(TokenType::NEWLINE);
+	bool single_line = block_terminator.count(TokenType::NEWLINE) > 0;
 	if (!single_line) {
 		while (tt->type==TokenType::COLON || tt->type==TokenType::NEWLINE)
 			tt = GetToken();
@@ -306,9 +305,9 @@ Token* Parser::GetToken()
 	Token* t = &*it;
 	previous = it;
 	it++;
-	if (t->line_number == 27 && t->char_number == 10) {
+/*	if (t->line_number == 27 && t->char_number == 10) {
 		int a = 1;
-	}
+	}*/
 	return t;
 }
 
@@ -333,7 +332,7 @@ bool Parser::IsStatementTerminator(bool assignment, Token* t)
 
 bool Parser::IsBlockTerminator(bool assignment, Token* t, std::set<TokenType> block_terminator)
 {
-	return block_terminator.contains(t->type);
+	return block_terminator.count(t->type) > 0;
 }
 
 void Parser::CreateLocalVariable(Token* tt, bool init)

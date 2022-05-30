@@ -185,7 +185,7 @@ int64_t OSDTask::AddString(std::string s)
 	auto i = string_index++;
 	strings.insert(std::make_pair(i, std::move(s)));
 #ifdef CLION
-	printf("String size: %zu\n", strings.size());
+//	printf("String size: %zu\n", strings.size());
 #endif
 	return i;
 }
@@ -238,7 +238,7 @@ void OSDTask::ClearTemporaryStrings()
 {
 	std::list<int64_t> del;
 #ifdef CLION
-	printf("Deleting %zu strings\n", strings.size());
+//	printf("Deleting %zu strings\n", strings.size());
 #endif
 	strings.clear();
 }
@@ -352,7 +352,6 @@ void OSDTask::CompileSource(std::string code)
 		// Tokens
 #ifdef CLION
 		auto t1 = std::chrono::system_clock::now();
-#endif
 		token.Parse("[Interactive]", code);
 		if (debug_output) {
 			std::list<std::string> tokens;
@@ -363,14 +362,13 @@ void OSDTask::CompileSource(std::string code)
 			}
 			tokens_out.close();
 		}
+#endif
 		parser.Parse(true, token.Tokens());
 #ifdef CLION
 		auto t2 = std::chrono::system_clock::now();
 		double time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
 		time_span /= 1000.0;
 		printf("Parser: %f millis\n", time_span);
-#endif
-#ifdef CLION
 		if (debug_output) {
 			std::list<std::string> tokens;
 			token.PrintTokensPtr(parser.Tokens(), 0, &tokens);

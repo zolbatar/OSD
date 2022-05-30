@@ -438,6 +438,13 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				jit_finishi((jit_pointer_t)call_STRING_realtostring);
 				jit_retval_l(JIT_R0);
 				break;
+			case IROpcodes::ConvertOperand1IntToString1:
+				jit_prepare();
+				SF(jit_pushargr)(JIT_R0);
+				jit_finishi((jit_pointer_t)call_STRING_inttostring);
+				jit_retval_l(JIT_R0);
+				break;
+
 			case IROpcodes::ConvertOperand1IntToFloat1:
 				SF(jit_extr)(JIT_F0, JIT_R0);
 				break;

@@ -41,6 +41,7 @@ int64_t call_STRING_strings(int64_t s1, int64_t s2);
 double call_STRING_stringToFloat(int64_t s);
 int64_t call_STRING_stringToInt(int64_t s);
 int64_t call_STRING_realtostring(double v);
+int64_t call_STRING_inttostring(int64_t v);
 void call_STRING_makepermanent(int64_t s);
 void call_STRING_freepermanent(int64_t s);
 

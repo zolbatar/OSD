@@ -33,7 +33,7 @@ OBJS    = 	main.o kernel.o \
 			\
 			NativeCompiler/Disassemble.o NativeCompiler/LibPrint.o NativeCompiler/NativeCompiler.o NativeCompiler/NativeStack.o \
 			NativeCompiler/LibMaths.o NativeCompiler/LibString.o NativeCompiler/LibGeneral.o NativeCompiler/LibChrono.o \
-			NativeCompiler/LibGraphics2D.o NativeCompiler/LibData.o \
+			NativeCompiler/LibGraphics2D.o NativeCompiler/LibData.o NativeCompiler/LibKeyboardMouse.o \
 			\
 			Lightning/lightning.o Lightning/jit_memory.o Lightning/jit_disasm.o Lightning/jit_size.o Lightning/jit_note.o Lightning/jit_print.o \
 			capstone/arch/AArch64/AArch64BaseInfo.o capstone/arch/AArch64/AArch64Disassembler.o capstone/arch/AArch64/AArch64InstPrinter.o capstone/arch/AArch64/AArch64Mapping.o \

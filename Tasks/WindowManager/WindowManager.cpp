@@ -231,9 +231,13 @@ void WindowManager::DesktopStartup()
 	auto tasks = NEW TasksWindow(1200*dm, 600*dm, 600*dm, 400*dm);
 	tasks->Start();
 
-	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
+/*	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
 	editor->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-	editor->Start();
+	editor->Start();*/
+
+	auto clock3 = NEW DARICWindow("Clock3", false, 200*dm, 450*dm, 700*dm, 600*dm);
+	clock->LoadSourceCode(":SD.$.Welcome.Clock3");
+	clock3->Start();
 #else
 /*	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 350*dm, 400*dm);
 	std::thread t1(&DARICWindow::Start, tasks);

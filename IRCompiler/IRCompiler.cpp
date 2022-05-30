@@ -454,8 +454,17 @@ void IRCompiler::CheckParamType(Token* token, ValueType wanted_type)
 	if (type_stack.empty())
 		Error(token, "Stack empty, expected value.");
 	auto type = PopType(token);
-	if (type!=wanted_type)
-		TypeError(token);
+	if (type!=wanted_type) {
+		// Conversion?
+		if (wanted_type==ValueType::Integer && type==ValueType::Float) {
+			AddIR(IROpcodes::StackPopFloatOperand1);
+			AddIR(IROpcodes::ConvertOperand1FloatToInt1);
+			AddIR(IROpcodes::StackPushIntOperand1);
+		}
+		else {
+			TypeError(token);
+		}
+	}
 	switch (type) {
 		case ValueType::Integer:
 			AddIR(IROpcodes::ArgumentInteger);

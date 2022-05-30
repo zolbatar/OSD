@@ -168,6 +168,15 @@ int64_t call_STRING_realtostring(double v)
 	return r;
 }
 
+int64_t call_STRING_inttostring(int64_t v)
+{
+	char d[64];
+	sprintf(d, "%d", v);
+	std::string ss(d);
+	auto r = OS_Strings_Create(ss);
+	return r;
+}
+
 void call_STRING_makepermanent(int64_t s)
 {
 	OS_Strings_MakePermanent(s);
