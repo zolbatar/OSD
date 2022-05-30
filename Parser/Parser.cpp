@@ -39,6 +39,10 @@ Parser::Parser()
 	generic_functions_ptr.insert(std::make_pair(TokenType::PLOT, (void*)&call_2D_plot));
 	generic_functions.insert(std::make_pair(TokenType::LINE, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::LINE, (void*)&call_2D_line));
+
+	// Keyboard
+	generic_functions.insert(std::make_pair(TokenType::INKEY, fp{ TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::INKEY, (void*)&call_INKEY));
 }
 
 bool Parser::Parse(bool optimise, std::list<Token>* tokens)
@@ -124,9 +128,6 @@ void Parser::ParseSequenceOfStatements(Token* t, std::set<TokenType> block_termi
 	auto to = &t->branches[t->branches.size()-1];
 	do {
 		tt = GetToken();
-		if (tt->line_number == 17) {
-			int a = 1;
-		}
 		ParseStatement(tt, to);
 
 		// Trailing colons??
@@ -181,7 +182,7 @@ void Parser::ParserStatementGeneric(Token* t, std::list<Token*>* tokens_out, fp*
 	for (auto p: t->required_types) {
 
 		// Get expression
-		ParseExpression(false, false, &t->expressions[i--]);
+		ParseExpression(false, optional_parens, &t->expressions[i--]);
 
 		// Do we have a comma (and need one)?
 		done++;
@@ -305,6 +306,9 @@ Token* Parser::GetToken()
 	Token* t = &*it;
 	previous = it;
 	it++;
+	if (t->line_number == 27 && t->char_number == 10) {
+		int a = 1;
+	}
 	return t;
 }
 

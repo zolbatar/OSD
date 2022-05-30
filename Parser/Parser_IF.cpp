@@ -39,6 +39,12 @@ void Parser::Parser_IF(Token* t, std::list<Token*>* tokens_out)
 		if (tt->type==TokenType::ELSE) {
 			ParseSequenceOfStatements(t, { TokenType::NEWLINE });
 		}
+		else if (tt->type==TokenType::ELSE) {
+			// Do nothing, end
+		}
+		else {
+			PushTokenBack();
+		}
 	}
 	tokens_out->push_back(t);
 }

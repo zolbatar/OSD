@@ -63,3 +63,5 @@ double call_READ_float();
 int64_t call_READ_string();
 void call_DATA_label(int64_t v);
 void call_DATA_restore(int64_t v);
+
+int64_t call_INKEY(int64_t);

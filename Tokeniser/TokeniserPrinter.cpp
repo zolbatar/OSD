@@ -84,6 +84,21 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 		case TokenType::LINE_NUMBER:
 			sprintf(m, "Line No.");
 			break;
+		case TokenType::IDENTIFIER:
+			sprintf(m, "Identifier '%s'", token->text.c_str());
+			break;
+		case TokenType::IDENTIFIER_INTEGER:
+			sprintf(m, "Identifier integer '%s'", token->text.c_str());
+			break;
+		case TokenType::IDENTIFIER_FLOAT:
+			sprintf(m, "Identifier float '%s'", token->text.c_str());
+			break;
+		case TokenType::IDENTIFIER_STRING:
+			sprintf(m, "Identifier string '%s'", token->text.c_str());
+			break;
+		case TokenType::IDENTIFIER_TYPE:
+			sprintf(m, "Identifier type '%s'", token->text.c_str());
+			break;
 		case TokenType::VARIABLE:
 			sprintf(m, "Identifier '%s'/%lld", token->name.c_str(), token->index);
 			break;
@@ -236,6 +251,8 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 			}
 			else if (top.IsString()) {
 				sprintf(m, "RETURN string");
+			} else {
+				sprintf(m, "RETURN (No type yet)");
 			}
 			break;
 		}

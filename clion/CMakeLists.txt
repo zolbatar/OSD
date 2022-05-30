@@ -9,7 +9,6 @@ conan_basic_setup()
 include_directories("../capstone/include")
 
 find_package(SDL2 REQUIRED)
-find_package(freetype REQUIRED)
 link_directories("/Users/daryl/GitHub/lvgl/lib")
 include_directories("/Users/daryl/GitHub/lvgl/src")
 
@@ -47,7 +46,7 @@ add_executable(
         ../../NativeCompiler/NativeCompiler.cpp ../../NativeCompiler/NativeStack.cpp ../../NativeCompiler/LibPrint.cpp
         ../../NativeCompiler/Disassemble.cpp ../../NativeCompiler/LibMaths.cpp ../../NativeCompiler/LibGeneral.cpp
         ../../NativeCompiler/LibString.cpp ../../NativeCompiler/LibChrono.cpp ../../NativeCompiler/LibGraphics2D.cpp
-        ../../NativeCompiler/LibData.cpp
+        ../../NativeCompiler/LibData.cpp ../../NativeCompiler/LibKeyboardMouse.cpp
         ../../Lightning/lightning_orig.c ../../Lightning/jit_memory.c ../../Lightning/jit_print.c
         ../../Lightning/jit_disasm.c ../../Lightning/jit_size.c ../../Lightning/jit_note.c
         ../../capstone/arch/AArch64/AArch64BaseInfo.c ../../capstone/arch/AArch64/AArch64Disassembler.c ../../capstone/arch/AArch64/AArch64InstPrinter.c
