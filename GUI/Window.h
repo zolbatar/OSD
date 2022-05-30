@@ -28,7 +28,7 @@ private:
 	int width;
 	int height;
 	int z = 0;
-	bool active = true;
+	bool active = false;
 	lv_obj_t* win;
 	lv_obj_t* header;
 	Canvas* canvas = NULL;

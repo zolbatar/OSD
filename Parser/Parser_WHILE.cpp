@@ -7,7 +7,7 @@ void Parser::Parser_WHILE(Token *t, std::list<Token *> *tokens_out) {
     ParseExpression(false, false, &t->expressions[0]);
 
     // Create statement(s)
-    ParseSequenceOfStatements(t, false);
+    ParseSequenceOfStatements(t, { TokenType::ENDWHILE });
 
     // Next up should be an ENDWHILE
     auto tt = GetToken();

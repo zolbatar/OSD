@@ -3,7 +3,7 @@
 void Parser::Parser_REPEAT(Token* t, std::list<Token*>* tokens_out)
 {
 	// Create statement(s)
-	ParseSequenceOfStatements(t, false);
+	ParseSequenceOfStatements(t, { TokenType::UNTIL });
 
 	// Next up should be an UNTIL
 	auto tt = GetToken();

@@ -17,11 +17,11 @@ void Parser::Parser_IF(Token* t, std::list<Token*>* tokens_out)
 			Error("New line expected", tt);
 
 		// Create statement(s)
-		ParseSequenceOfStatements(t, false);
+		ParseSequenceOfStatements(t, { TokenType::ELSE, TokenType::ENDIF });
 
 		tt = GetToken();
 		if (tt->type==TokenType::ELSE) {
-			ParseSequenceOfStatements(t, false);
+			ParseSequenceOfStatements(t, { TokenType::ENDIF });
 		}
 
 		// Should finish with an ENDIF
@@ -34,10 +34,10 @@ void Parser::Parser_IF(Token* t, std::list<Token*>* tokens_out)
 		PushTokenBack();
 
 		// Create statement(s)
-		ParseSequenceOfStatements(t, true);
+		ParseSequenceOfStatements(t, { TokenType::ELSE, TokenType::NEWLINE });
 		tt = GetToken();
 		if (tt->type==TokenType::ELSE) {
-			ParseSequenceOfStatements(t, true);
+			ParseSequenceOfStatements(t, { TokenType::NEWLINE });
 		}
 	}
 	tokens_out->push_back(t);

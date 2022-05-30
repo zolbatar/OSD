@@ -254,9 +254,14 @@ void WindowManager::DesktopStartup()
 		std::thread t3(&DARICWindow::Start, mandelbrot);
 		t3.detach();*/
 
-		auto tester = NEW DARICWindow("Tester", false, 100*dm, 600*dm, 400*dm, 400*dm);
+/*		auto tester = NEW DARICWindow("Tester", false, 100*dm, 600*dm, 400*dm, 400*dm);
 		tester->LoadSourceCode(":SD.$.Welcome.Tester");
 		std::thread t4(&DARICWindow::Start, tester);
+		t4.detach();*/
+
+		auto clock3 = NEW DARICWindow("Clock3", false, 100*dm, 600*dm, 400*dm, 400*dm);
+		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
+		std::thread t4(&DARICWindow::Start, clock3);
 		t4.detach();
 
 #endif

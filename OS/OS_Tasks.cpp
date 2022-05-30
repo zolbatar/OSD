@@ -354,6 +354,15 @@ void OSDTask::CompileSource(std::string code)
 		auto t1 = std::chrono::system_clock::now();
 #endif
 		token.Parse("[Interactive]", code);
+		if (debug_output) {
+			std::list<std::string> tokens;
+			token.PrintTokens(token.Tokens(), 0, &tokens);
+			std::ofstream tokens_out("../../tokeniser.txt");
+			for (auto& s: tokens) {
+				tokens_out << s << std::endl;
+			}
+			tokens_out.close();
+		}
 		parser.Parse(true, token.Tokens());
 #ifdef CLION
 		auto t2 = std::chrono::system_clock::now();

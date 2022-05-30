@@ -116,7 +116,7 @@ void Parser::Parser_DEF(Token* t, std::list<Token*>* tokens_out)
 	// Body of PROC
 	inside_function = true;
 	current_def = t;
-	ParseSequenceOfStatements(t, false);
+	ParseSequenceOfStatements(t, { TokenType::ENDDEF });
 
 	// Add explicit return
 	Token tn = CreateToken(t, TokenType::RETURN);

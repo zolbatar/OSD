@@ -104,12 +104,19 @@ bool Parser::Parse(bool optimise, std::list<Token>* tokens)
 	return false;
 }
 
-void Parser::ParseSequenceOfStatements(Token* t, bool single_line)
+void Parser::ParseSequenceOfStatements(Token* t, std::set<TokenType> block_terminator)
 {
 	// Do we have any leading colons or newlines?
 	auto tt = GetToken();
-	while (tt->type==TokenType::COLON || tt->type==TokenType::NEWLINE)
-		tt = GetToken();
+	bool single_line = block_terminator.contains(TokenType::NEWLINE);
+	if (!single_line) {
+		while (tt->type==TokenType::COLON || tt->type==TokenType::NEWLINE)
+			tt = GetToken();
+	}
+	else {
+		while (tt->type==TokenType::COLON)
+			tt = GetToken();
+	}
 	PushTokenBack();
 
 	// Create new branch
@@ -117,6 +124,9 @@ void Parser::ParseSequenceOfStatements(Token* t, bool single_line)
 	auto to = &t->branches[t->branches.size()-1];
 	do {
 		tt = GetToken();
+		if (tt->line_number == 17) {
+			int a = 1;
+		}
 		ParseStatement(tt, to);
 
 		// Trailing colons??
@@ -131,7 +141,7 @@ void Parser::ParseSequenceOfStatements(Token* t, bool single_line)
 		}
 		PushTokenBack();
 	}
-	while (single_line ? !IsStatementTerminator(false, tt) : !IsBlockTerminator(false, tt));
+	while (single_line ? !IsStatementTerminator(false, tt) : !IsBlockTerminator(false, tt, block_terminator));
 
 	// Trailing colons or new lines??
 	while (tt->type==TokenType::COLON || tt->type==TokenType::NEWLINE)
@@ -317,23 +327,9 @@ bool Parser::IsStatementTerminator(bool assignment, Token* t)
 	return false;
 }
 
-bool Parser::IsBlockTerminator(bool assignment, Token* t)
+bool Parser::IsBlockTerminator(bool assignment, Token* t, std::set<TokenType> block_terminator)
 {
-	switch (t->type) {
-		case TokenType::ELSE:
-		case TokenType::ENDCASE:
-		case TokenType::ENDDEF:
-		case TokenType::ENDIF:
-		case TokenType::ENDWHILE:
-		case TokenType::OTHERWISE:
-		case TokenType::THEN:
-		case TokenType::UNTIL:
-		case TokenType::WHEN:
-			return true;
-		default:
-			return false;
-	}
-	return false;
+	return block_terminator.contains(t->type);
 }
 
 void Parser::CreateLocalVariable(Token* tt, bool init)

@@ -46,8 +46,8 @@ private:
     bool IsExpressionTerminator(bool assignment, Token *t, bool last_is_operator);
 
     bool IsStatementTerminator(bool assignment, Token *t);
-    bool IsBlockTerminator(bool assignment, Token *t);
-    void ParseSequenceOfStatements(Token *t, bool single_line);
+    bool IsBlockTerminator(bool assignment, Token *t, std::set<TokenType> block_terminator);
+    void ParseSequenceOfStatements(Token *t, std::set<TokenType> block_terminator);
 
     void ParseStatement(Token *t, std::list<Token *> *tokens_out);
     void ParseExpression(bool assignment, bool subexpression, std::list<Token *> *stack);

@@ -1,0 +1,74 @@
+TTAL%=0
+
+DEFClock3()
+CLS:TTAL%=0
+REM > ClockSp 3.00 (RTR)
+REM Calculate CPU clock speed
+PRINT"BBC BASIC CPU Timing Program"
+A%=0:T%=TIME:REPEAT:A%=A%+1:UNTIL TIME>T%+50
+Z#=0:Z%=0:B#=1.0:B%=1:F#=1/10:C#=100:C%=100:D#=510:D%=510:F%=3
+REPEAT:C#=C#*10:C%=C%*10:D#=D#*10:D%=D%*10:F%=F%*10:F#=F#*10:A%=A% DIV 10:UNTIL A%<50
+Z#=Z#+0.5:C#=C#+0.5:D#=D#+0.5:TTAL%=0
+PRINT "Really real REPEAT loop ";:T%=TIME:A#=Z#:REPEAT:A#=A#+B#:UNTIL A#>C#:T%=TIME-T%:p(F#*41000/T%)
+PRINT "Integer REPEAT loop     ";:T%=TIME:A%=Z%:REPEAT:A%=A%+B%:UNTIL A%>C%:T%=TIME-T%:p(F#*23900/T%)
+PRINT "Really real FOR loop    ";:T%=TIME:FOR A#=Z# TO D# STEP B#:NEXT:T%=TIME-T%:p(F#*51200/T%)
+PRINT "Integer FOR loop        ";:T%=TIME:FOR A%=Z% TO D% STEP B%:NEXT:T%=TIME-T%:p(F#*17800/T%)
+PRINT "Trig/Log test           ";:IF COS(0)=0:PRINT "    <none>"
+IF COS(0)<>0:A#=1:T%=TIME:FOR J%=1 TO F%:A#=TAN(ATN(EXP(LN(SQR(A#*A#)))))+1:NEXT:T%=TIME-T%:p(F#*68800/T%)
+REM PRINT"Ackermann Recursion ";
+REM M%=3:T%=TIME:FORN%=1 TO 3:Z%=Ack(M%,N%):NEXT:T%=TIME-T%:p(F#*255400/T%)
+PRINT"String manipulation     ";
+T%=TIME:A$="STRINGMANIPULATIONTEST":FOR A%=0 TO F%*4:A$=RIGHT$(MID$(A$,LEN(A$)/2,LEN(A$)/4+1)+RIGHT$(A$,LEN(A$)/4)+MID$(A$,LEN(A$)/2,2)+LEFT$(A$,LEN(A$)/4)+MID$(A$,LEN(A$)/4,LEN(A$)/4+1),LEN(A$)):NEXT:T%=TIME-T%:p(F#*72750/T%)
+PRINT"Procedure call          ";:T%=TIME:FOR A%=Z% TO D%:PROCtest():NEXT:T%=TIME-T%:p(F#*80500/T%)
+PRINT"Combined Average        ";:p(TTAL%/7)
+PRINT'"Compared with a 2.00MHz BBC B"
+PRINT "Press a key to return to the menu":INKEY(5000)
+ENDDEF
+
+DEFAck%(M%,N%)
+IF M%=0 RETURN N%+1
+IF N%=0 RETURN PROCAck%(M%-1,1)
+RETURN PROCAck%(M%-1,PROCAck%(M%,N%-1))
+ENDDEF
+
+DEF test()
+ENDDEF
+
+DEFp(T%)
+PRINT RIGHT$("     "+STRING(T% DIV 100),9);".";RIGHT$("0"+STRING(T%),2);"MHz":TTAL%=TTAL%+T%
+ENDDEF
+
+REM This is calibrated against a
+REM BBC model B with no second
+REM processor, running BASIC II
+REM and with almost all interupts
+REM turned off using:
+REM ?&FE4E=&3F
+REM This gives 2.00MHz.
+
+REM Savage Floating Point test and
+REM Ackermann Recursion test added
+REM -Mar-1993, based on A&B Jan 90.
+
+REM Version 2.00 recalibrates
+REM itself for faster systems
+REM 15-Mar-2002
+
+DEFspeed%()
+LOCAL A#=0:LOCAL B#=1:LOCAL C#=100:LOCAL D#=510:LOCAL F#=1/10:LOCAL Z#=0
+LOCAL A%=0:LOCAL B%=1:LOCAL C%=100:LOCAL D%=510:LOCAL F%=3:LOCAL Q%=0:LOCAL R%=0:LOCAL S%=0:LOCAL U%=0:LOCAL V%=0:LOCAL W%=0:LOCAL X%=0:LOCAL Y%=0:LOCAL Z%=0
+T%=TIME:REPEAT A%=A%+1:UNTIL TIME>T%+50
+Z#=Z#+0.5:C#=C#+0.5:D#=D#+0.5
+REPEAT:C#=C#*10:C%=C%*10:D#=D#*10:D%=D%*10:F%=F%*10:F#=F#*10:A%=A% DIV 10:UNTIL A%<50
+T%=TIME:A#=Z#:REPEAT:A#=A#+B#:UNTIL A#>C#:T%=TIME-T%:U%=F#*41000/T%
+T%=TIME:A%=Z%:REPEAT:A%=A%+B%:UNTIL A%>C%:T%=TIME-T%:V%=F#*23900/T%
+T%=TIME:FOR A#=Z# TO D# STEP B#:NEXT:T%=TIME-T%:W%=F#*51200/T%
+T%=TIME:FOR A%=Z% TO D% STEP B%:NEXT:T%=TIME-T%:X%=F#*17800/T%
+Y%=X%:IF COS(0)<>0:A#=1:T%=TIME:FOR J%=1 TO F%:A#=TAN(ATN(EXP(LN(SQR(A#*A#)))))+1:NEXT:T%=TIME-T%:Y%=F#*68800/T%
+T%=TIME:A$="STRINGMANIPULATIONTEST":FOR A%=0 TO F%*4:A$=RIGHT$(MID$(A$,LEN(A$)/2,LEN(A$)/4+1)+RIGHT$(A$,LEN(A$)/4)+MID$(A$,LEN(A$)/2,2)+LEFT$(A$,LEN(A$)/4)+MID$(A$,LEN(A$)/4,LEN(A$)/4+1),LEN(A$)):NEXT:T%=TIME-T%:S%=F#*72750/T%
+T%=TIME:FOR A%=Z% TO D%:PROCtest():NEXT:T%=TIME-T%:R%=F#*80500/T%
+REM Q%=0:REM T%=TIME:FOR A%=Z% TO D%:GOSUB 300:NEXT:T%=TIME-T%:Q%=F#*90000/T%
+RETURN INT((Q%+R%+S%+U%+V%+W%+X%+Y%)/(78/10))
+ENDDEF
+
+REM Returns CPU speed*100

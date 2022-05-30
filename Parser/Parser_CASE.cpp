@@ -42,7 +42,7 @@ void Parser::Parser_CASE(Token* t, std::list<Token*>* tokens_out)
 			}
 
 			// Parse statements
-			ParseSequenceOfStatements(tt, false);
+			ParseSequenceOfStatements(tt, { TokenType::WHEN, TokenType::OTHERWISE, TokenType::ENDCASE });
 			t->stack.push_back(tt);
 		}
 		else if (tt->type==TokenType::OTHERWISE) {
@@ -51,7 +51,7 @@ void Parser::Parser_CASE(Token* t, std::list<Token*>* tokens_out)
 			while (tt->type==TokenType::NEWLINE)
 				tt = GetToken();
 			PushTokenBack();
-			ParseSequenceOfStatements(t, false);
+			ParseSequenceOfStatements(t, { TokenType::ENDCASE });
 		}
 		else if (tt->type==TokenType::ENDCASE) {
 			// We are done

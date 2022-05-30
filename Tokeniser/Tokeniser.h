@@ -60,9 +60,11 @@ public:
 		return &tokens;
 	}
 
+	void PrintTokens(std::list<Token>* tokens, int depth, std::list<std::string>* output);
 	void PrintTokensPtr(std::list<Token*>* tokens, int depth, std::list<std::string>* output);
 
 private:
+	void PrintToken(Token* token, int depth, std::list<std::string>* output);
 	void AddKeyword(TokenDef def);
 	void EndOfToken();
 	void CreateTokenAndAdd(TokenType type);
