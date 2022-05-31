@@ -34,10 +34,10 @@ void call_PRINT_integer(int64_t v)
 		sprintf(d, "%lld", v);
 		auto pos = 20-strlen(d);
 		memset(d, ' ', 64);
-		sprintf(&d[pos], "%d", v);
+		sprintf(&d[pos], "%lld", v);
 	}
 	else {
-		sprintf(d, "%d", v);
+		sprintf(d, "%lld", v);
 	}
 
 	// Send

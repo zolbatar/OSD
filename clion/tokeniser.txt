@@ -2,699 +2,739 @@ Line    1:  1 [264]: Identifier integer 'TTAL%'
 Line    1:  6 [ 61]: =
 Line    1:  7 [269]: Integer 0
 Line    1:  8 [257]: Newline
-Line    2:  2 [263]: Identifier 'Clock3'
-Line    2:  8 [ 40]: (
-Line    2:  9 [ 41]: )
-Line    2: 10 [257]: Newline
-Line    4:  2 [295]: END
-Line    4:  2 [257]: Newline
-Line    5:  2 [292]: DEF ''
-Line    5:  5 [263]: Identifier 'Clock3'
-Line    5: 11 [ 40]: (
-Line    5: 12 [ 41]: )
-Line    5: 13 [257]: Newline
-Line    6:  2 [351]: CLS
-Line    6:  5 [ 58]: :
-Line    6:  6 [264]: Identifier integer 'TTAL%'
-Line    6: 11 [ 61]: =
-Line    6: 12 [269]: Integer 0
-Line    6: 13 [257]: Newline
-Line    7:  2 [322]: REM
-Line    8:  2 [322]: REM
-Line    9:  2 [317]: PRINT
-Line    9:  7 [271]: String 'BBC BASIC CPU Timing Program'
-Line    9: 37 [ 58]: :
-Line    9: 38 [339]: YIELD
-Line    9: 43 [257]: Newline
-Line   10:  2 [264]: Identifier integer 'A%'
-Line   10:  4 [ 61]: =
-Line   10:  5 [269]: Integer 0
-Line   10:  6 [ 58]: :
-Line   10:  7 [264]: Identifier integer 'T%'
-Line   10:  9 [ 61]: =
-Line   10: 10 [332]: TIME
-Line   10: 14 [ 58]: :
-Line   10: 15 [323]: REPEAT
-Line   10: 21 [ 58]: :
-Line   10: 22 [264]: Identifier integer 'A%'
-Line   10: 24 [ 61]: =
-Line   10: 25 [264]: Identifier integer 'A%'
-Line   10: 27 [ 43]: +
-Line   10: 28 [269]: Integer 1
-Line   10: 29 [ 58]: :
-Line   10: 30 [336]: UNTIL
-Line   10: 35 [332]: TIME
-Line   10: 39 [ 62]: >
-Line   10: 40 [264]: Identifier integer 'T%'
-Line   10: 42 [ 43]: +
-Line   10: 43 [269]: Integer 50
-Line   10: 45 [257]: Newline
-Line   11:  2 [265]: Identifier float 'Z#'
-Line   11:  4 [ 61]: =
-Line   11:  5 [269]: Integer 0
-Line   11:  6 [ 58]: :
-Line   11:  7 [264]: Identifier integer 'Z%'
-Line   11:  9 [ 61]: =
-Line   11: 10 [269]: Integer 0
-Line   11: 11 [ 58]: :
-Line   11: 12 [265]: Identifier float 'B#'
-Line   11: 14 [ 61]: =
-Line   11: 15 [270]: Float 1.000000
-Line   11: 18 [ 58]: :
-Line   11: 19 [264]: Identifier integer 'B%'
-Line   11: 21 [ 61]: =
-Line   11: 22 [269]: Integer 1
-Line   11: 23 [ 58]: :
-Line   11: 24 [265]: Identifier float 'F#'
-Line   11: 26 [ 61]: =
-Line   11: 27 [269]: Integer 1
-Line   11: 28 [ 47]: /
-Line   11: 29 [269]: Integer 10
-Line   11: 31 [ 58]: :
-Line   11: 32 [265]: Identifier float 'C#'
-Line   11: 34 [ 61]: =
-Line   11: 35 [269]: Integer 100
-Line   11: 38 [ 58]: :
-Line   11: 39 [264]: Identifier integer 'C%'
-Line   11: 41 [ 61]: =
-Line   11: 42 [269]: Integer 100
-Line   11: 45 [ 58]: :
-Line   11: 46 [265]: Identifier float 'D#'
-Line   11: 48 [ 61]: =
-Line   11: 49 [269]: Integer 510
-Line   11: 52 [ 58]: :
-Line   11: 53 [264]: Identifier integer 'D%'
-Line   11: 55 [ 61]: =
-Line   11: 56 [269]: Integer 510
-Line   11: 59 [ 58]: :
-Line   11: 60 [264]: Identifier integer 'F%'
-Line   11: 62 [ 61]: =
-Line   11: 63 [269]: Integer 3
-Line   11: 64 [257]: Newline
-Line   12:  2 [323]: REPEAT
-Line   12:  8 [ 58]: :
-Line   12:  9 [265]: Identifier float 'C#'
-Line   12: 11 [ 61]: =
-Line   12: 12 [265]: Identifier float 'C#'
-Line   12: 14 [ 42]: *
-Line   12: 15 [269]: Integer 10
-Line   12: 17 [ 58]: :
-Line   12: 18 [264]: Identifier integer 'C%'
-Line   12: 20 [ 61]: =
-Line   12: 21 [264]: Identifier integer 'C%'
-Line   12: 23 [ 42]: *
-Line   12: 24 [269]: Integer 10
-Line   12: 26 [ 58]: :
-Line   12: 27 [265]: Identifier float 'D#'
-Line   12: 29 [ 61]: =
-Line   12: 30 [265]: Identifier float 'D#'
-Line   12: 32 [ 42]: *
-Line   12: 33 [269]: Integer 10
-Line   12: 35 [ 58]: :
-Line   12: 36 [264]: Identifier integer 'D%'
-Line   12: 38 [ 61]: =
-Line   12: 39 [264]: Identifier integer 'D%'
-Line   12: 41 [ 42]: *
-Line   12: 42 [269]: Integer 10
-Line   12: 44 [ 58]: :
-Line   12: 45 [264]: Identifier integer 'F%'
-Line   12: 47 [ 61]: =
-Line   12: 48 [264]: Identifier integer 'F%'
-Line   12: 50 [ 42]: *
-Line   12: 51 [269]: Integer 10
-Line   12: 53 [ 58]: :
-Line   12: 54 [265]: Identifier float 'F#'
-Line   12: 56 [ 61]: =
-Line   12: 57 [265]: Identifier float 'F#'
-Line   12: 59 [ 42]: *
-Line   12: 60 [269]: Integer 10
-Line   12: 62 [ 58]: :
-Line   12: 63 [264]: Identifier integer 'A%'
-Line   12: 65 [ 61]: =
-Line   12: 66 [264]: Identifier integer 'A%'
-Line   12: 68 [397]: DIV
-Line   12: 71 [269]: Integer 10
-Line   12: 73 [ 58]: :
-Line   12: 74 [336]: UNTIL
-Line   12: 79 [264]: Identifier integer 'A%'
-Line   12: 81 [ 60]: <
-Line   12: 82 [269]: Integer 50
-Line   12: 84 [257]: Newline
-Line   13:  2 [265]: Identifier float 'Z#'
+Line    2:  2 [317]: PRINT
+Line    2:  8 [269]: Integer 1844674407370955161
+Line    2: 27 [257]: Newline
+Line    3:  2 [317]: PRINT
+Line    3:  8 [269]: Integer 1844674407370955161
+Line    3: 27 [257]: Newline
+Line    4:  2 [317]: PRINT
+Line    4:  8 [269]: Integer 1844674407370955161
+Line    4: 27 [257]: Newline
+Line    5:  2 [263]: Identifier 'Clock3'
+Line    5:  8 [ 40]: (
+Line    5:  9 [ 41]: )
+Line    5: 10 [257]: Newline
+Line    7:  2 [295]: END
+Line    7:  2 [257]: Newline
+Line    8:  2 [292]: DEF ''
+Line    8:  5 [263]: Identifier 'Clock3'
+Line    8: 11 [ 40]: (
+Line    8: 12 [ 41]: )
+Line    8: 13 [257]: Newline
+Line    9:  2 [351]: CLS
+Line    9:  5 [ 58]: :
+Line    9:  6 [264]: Identifier integer 'TTAL%'
+Line    9: 11 [ 61]: =
+Line    9: 12 [269]: Integer 0
+Line    9: 13 [257]: Newline
+Line   10:  2 [322]: REM
+Line   11:  2 [322]: REM
+Line   12:  2 [317]: PRINT
+Line   12:  7 [271]: String 'BBC BASIC CPU Timing Program'
+Line   12: 37 [ 58]: :
+Line   12: 38 [339]: YIELD
+Line   12: 43 [257]: Newline
+Line   13:  2 [264]: Identifier integer 'A%'
 Line   13:  4 [ 61]: =
-Line   13:  5 [265]: Identifier float 'Z#'
-Line   13:  7 [ 43]: +
-Line   13:  8 [270]: Float 0.500000
-Line   13: 11 [ 58]: :
-Line   13: 12 [265]: Identifier float 'C#'
-Line   13: 14 [ 61]: =
-Line   13: 15 [265]: Identifier float 'C#'
-Line   13: 17 [ 43]: +
-Line   13: 18 [270]: Float 0.500000
+Line   13:  5 [269]: Integer 0
+Line   13:  6 [ 58]: :
+Line   13:  7 [264]: Identifier integer 'T%'
+Line   13:  9 [ 61]: =
+Line   13: 10 [332]: TIME
+Line   13: 14 [ 58]: :
+Line   13: 15 [323]: REPEAT
 Line   13: 21 [ 58]: :
-Line   13: 22 [265]: Identifier float 'D#'
+Line   13: 22 [264]: Identifier integer 'A%'
 Line   13: 24 [ 61]: =
-Line   13: 25 [265]: Identifier float 'D#'
+Line   13: 25 [264]: Identifier integer 'A%'
 Line   13: 27 [ 43]: +
-Line   13: 28 [270]: Float 0.500000
-Line   13: 31 [257]: Newline
-Line   14:  2 [317]: PRINT
-Line   14:  8 [271]: String 'Really real REPEAT loop '
-Line   14: 34 [ 59]: ;
-Line   14: 35 [ 58]: :
-Line   14: 36 [264]: Identifier integer 'T%'
-Line   14: 38 [ 61]: =
-Line   14: 39 [332]: TIME
-Line   14: 43 [ 58]: :
-Line   14: 44 [265]: Identifier float 'A#'
-Line   14: 46 [ 61]: =
-Line   14: 47 [265]: Identifier float 'Z#'
-Line   14: 49 [ 58]: :
-Line   14: 50 [323]: REPEAT
-Line   14: 56 [ 58]: :
-Line   14: 57 [265]: Identifier float 'A#'
-Line   14: 59 [ 61]: =
-Line   14: 60 [265]: Identifier float 'A#'
-Line   14: 62 [ 43]: +
-Line   14: 63 [265]: Identifier float 'B#'
-Line   14: 65 [ 58]: :
-Line   14: 66 [336]: UNTIL
-Line   14: 71 [265]: Identifier float 'A#'
-Line   14: 73 [ 62]: >
-Line   14: 74 [265]: Identifier float 'C#'
-Line   14: 76 [ 58]: :
-Line   14: 77 [264]: Identifier integer 'T%'
-Line   14: 79 [ 61]: =
-Line   14: 80 [332]: TIME
-Line   14: 84 [ 45]: -
-Line   14: 85 [264]: Identifier integer 'T%'
-Line   14: 87 [ 58]: :
-Line   14: 88 [263]: Identifier 'p'
-Line   14: 89 [ 40]: (
-Line   14: 90 [265]: Identifier float 'F#'
-Line   14: 92 [ 42]: *
-Line   14: 93 [269]: Integer 41000
-Line   14: 98 [ 47]: /
-Line   14: 99 [264]: Identifier integer 'T%'
-Line   14:101 [ 41]: )
-Line   14:102 [ 58]: :
-Line   14:103 [339]: YIELD
-Line   14:108 [257]: Newline
-Line   15:  2 [317]: PRINT
-Line   15:  8 [271]: String 'Integer REPEAT loop     '
-Line   15: 34 [ 59]: ;
+Line   13: 28 [269]: Integer 1
+Line   13: 29 [ 58]: :
+Line   13: 30 [336]: UNTIL
+Line   13: 35 [332]: TIME
+Line   13: 39 [ 62]: >
+Line   13: 40 [264]: Identifier integer 'T%'
+Line   13: 42 [ 43]: +
+Line   13: 43 [269]: Integer 50
+Line   13: 45 [257]: Newline
+Line   14:  2 [265]: Identifier float 'Z#'
+Line   14:  4 [ 61]: =
+Line   14:  5 [269]: Integer 0
+Line   14:  6 [ 58]: :
+Line   14:  7 [264]: Identifier integer 'Z%'
+Line   14:  9 [ 61]: =
+Line   14: 10 [269]: Integer 0
+Line   14: 11 [ 58]: :
+Line   14: 12 [265]: Identifier float 'B#'
+Line   14: 14 [ 61]: =
+Line   14: 15 [270]: Float 1.000000
+Line   14: 18 [ 58]: :
+Line   14: 19 [264]: Identifier integer 'B%'
+Line   14: 21 [ 61]: =
+Line   14: 22 [269]: Integer 1
+Line   14: 23 [ 58]: :
+Line   14: 24 [265]: Identifier float 'F#'
+Line   14: 26 [ 61]: =
+Line   14: 27 [269]: Integer 1
+Line   14: 28 [ 47]: /
+Line   14: 29 [269]: Integer 10
+Line   14: 31 [ 58]: :
+Line   14: 32 [265]: Identifier float 'C#'
+Line   14: 34 [ 61]: =
+Line   14: 35 [269]: Integer 100
+Line   14: 38 [ 58]: :
+Line   14: 39 [264]: Identifier integer 'C%'
+Line   14: 41 [ 61]: =
+Line   14: 42 [269]: Integer 100
+Line   14: 45 [ 58]: :
+Line   14: 46 [265]: Identifier float 'D#'
+Line   14: 48 [ 61]: =
+Line   14: 49 [269]: Integer 510
+Line   14: 52 [ 58]: :
+Line   14: 53 [264]: Identifier integer 'D%'
+Line   14: 55 [ 61]: =
+Line   14: 56 [269]: Integer 510
+Line   14: 59 [ 58]: :
+Line   14: 60 [264]: Identifier integer 'F%'
+Line   14: 62 [ 61]: =
+Line   14: 63 [269]: Integer 3
+Line   14: 64 [257]: Newline
+Line   15:  2 [323]: REPEAT
+Line   15:  8 [ 58]: :
+Line   15:  9 [265]: Identifier float 'C#'
+Line   15: 11 [ 61]: =
+Line   15: 12 [265]: Identifier float 'C#'
+Line   15: 14 [ 42]: *
+Line   15: 15 [269]: Integer 10
+Line   15: 17 [ 58]: :
+Line   15: 18 [264]: Identifier integer 'C%'
+Line   15: 20 [ 61]: =
+Line   15: 21 [264]: Identifier integer 'C%'
+Line   15: 23 [ 42]: *
+Line   15: 24 [269]: Integer 10
+Line   15: 26 [ 58]: :
+Line   15: 27 [265]: Identifier float 'D#'
+Line   15: 29 [ 61]: =
+Line   15: 30 [265]: Identifier float 'D#'
+Line   15: 32 [ 42]: *
+Line   15: 33 [269]: Integer 10
 Line   15: 35 [ 58]: :
-Line   15: 36 [264]: Identifier integer 'T%'
+Line   15: 36 [264]: Identifier integer 'D%'
 Line   15: 38 [ 61]: =
-Line   15: 39 [332]: TIME
-Line   15: 43 [ 58]: :
-Line   15: 44 [264]: Identifier integer 'A%'
-Line   15: 46 [ 61]: =
-Line   15: 47 [264]: Identifier integer 'Z%'
-Line   15: 49 [ 58]: :
-Line   15: 50 [323]: REPEAT
-Line   15: 56 [ 58]: :
-Line   15: 57 [264]: Identifier integer 'A%'
-Line   15: 59 [ 61]: =
-Line   15: 60 [264]: Identifier integer 'A%'
-Line   15: 62 [ 43]: +
-Line   15: 63 [264]: Identifier integer 'B%'
-Line   15: 65 [ 58]: :
-Line   15: 66 [336]: UNTIL
-Line   15: 71 [264]: Identifier integer 'A%'
-Line   15: 73 [ 62]: >
-Line   15: 74 [264]: Identifier integer 'C%'
-Line   15: 76 [ 58]: :
-Line   15: 77 [264]: Identifier integer 'T%'
-Line   15: 79 [ 61]: =
-Line   15: 80 [332]: TIME
-Line   15: 84 [ 45]: -
-Line   15: 85 [264]: Identifier integer 'T%'
-Line   15: 87 [ 58]: :
-Line   15: 88 [263]: Identifier 'p'
-Line   15: 89 [ 40]: (
-Line   15: 90 [265]: Identifier float 'F#'
-Line   15: 92 [ 42]: *
-Line   15: 93 [269]: Integer 23900
-Line   15: 98 [ 47]: /
-Line   15: 99 [264]: Identifier integer 'T%'
-Line   15:101 [ 41]: )
-Line   15:102 [ 58]: :
-Line   15:103 [339]: YIELD
-Line   15:108 [257]: Newline
-Line   16:  2 [317]: PRINT
-Line   16:  8 [271]: String 'Really real FOR loop    '
-Line   16: 34 [ 59]: ;
-Line   16: 35 [ 58]: :
-Line   16: 36 [264]: Identifier integer 'T%'
-Line   16: 38 [ 61]: =
-Line   16: 39 [332]: TIME
-Line   16: 43 [ 58]: :
-Line   16: 44 [302]: :
-Line   16: 48 [265]: Identifier float 'A#'
-Line   16: 50 [ 61]: =
-Line   16: 51 [265]: Identifier float 'Z#'
-Line   16: 53 [331]: TO
-Line   16: 55 [265]: Identifier float 'D#'
-Line   16: 57 [327]: STEP
-Line   16: 61 [265]: Identifier float 'B#'
-Line   16: 63 [ 58]: :
-Line   16: 64 [314]: NEXT 105553172340673
-Line   16: 68 [ 58]: :
-Line   16: 69 [264]: Identifier integer 'T%'
-Line   16: 71 [ 61]: =
-Line   16: 72 [332]: TIME
-Line   16: 76 [ 45]: -
-Line   16: 77 [264]: Identifier integer 'T%'
-Line   16: 79 [ 58]: :
-Line   16: 80 [263]: Identifier 'p'
-Line   16: 81 [ 40]: (
-Line   16: 82 [265]: Identifier float 'F#'
-Line   16: 84 [ 42]: *
-Line   16: 85 [269]: Integer 51200
-Line   16: 90 [ 47]: /
-Line   16: 91 [264]: Identifier integer 'T%'
-Line   16: 93 [ 41]: )
-Line   16: 94 [ 58]: :
-Line   16: 95 [339]: YIELD
-Line   16:100 [257]: Newline
+Line   15: 39 [264]: Identifier integer 'D%'
+Line   15: 41 [ 42]: *
+Line   15: 42 [269]: Integer 10
+Line   15: 44 [ 58]: :
+Line   15: 45 [264]: Identifier integer 'F%'
+Line   15: 47 [ 61]: =
+Line   15: 48 [264]: Identifier integer 'F%'
+Line   15: 50 [ 42]: *
+Line   15: 51 [269]: Integer 10
+Line   15: 53 [ 58]: :
+Line   15: 54 [265]: Identifier float 'F#'
+Line   15: 56 [ 61]: =
+Line   15: 57 [265]: Identifier float 'F#'
+Line   15: 59 [ 42]: *
+Line   15: 60 [269]: Integer 10
+Line   15: 62 [ 58]: :
+Line   15: 63 [264]: Identifier integer 'A%'
+Line   15: 65 [ 61]: =
+Line   15: 66 [264]: Identifier integer 'A%'
+Line   15: 68 [397]: DIV
+Line   15: 71 [269]: Integer 10
+Line   15: 73 [ 58]: :
+Line   15: 74 [336]: UNTIL
+Line   15: 79 [264]: Identifier integer 'A%'
+Line   15: 81 [ 60]: <
+Line   15: 82 [269]: Integer 50
+Line   15: 84 [257]: Newline
+Line   16:  2 [265]: Identifier float 'Z#'
+Line   16:  4 [ 61]: =
+Line   16:  5 [265]: Identifier float 'Z#'
+Line   16:  7 [ 43]: +
+Line   16:  8 [270]: Float 0.500000
+Line   16: 11 [ 58]: :
+Line   16: 12 [265]: Identifier float 'C#'
+Line   16: 14 [ 61]: =
+Line   16: 15 [265]: Identifier float 'C#'
+Line   16: 17 [ 43]: +
+Line   16: 18 [270]: Float 0.500000
+Line   16: 21 [ 58]: :
+Line   16: 22 [265]: Identifier float 'D#'
+Line   16: 24 [ 61]: =
+Line   16: 25 [265]: Identifier float 'D#'
+Line   16: 27 [ 43]: +
+Line   16: 28 [270]: Float 0.500000
+Line   16: 31 [257]: Newline
 Line   17:  2 [317]: PRINT
-Line   17:  8 [271]: String 'Integer FOR loop        '
+Line   17:  8 [271]: String 'Really real REPEAT loop '
 Line   17: 34 [ 59]: ;
 Line   17: 35 [ 58]: :
 Line   17: 36 [264]: Identifier integer 'T%'
 Line   17: 38 [ 61]: =
 Line   17: 39 [332]: TIME
 Line   17: 43 [ 58]: :
-Line   17: 44 [302]: :
-Line   17: 48 [264]: Identifier integer 'A%'
-Line   17: 50 [ 61]: =
-Line   17: 51 [264]: Identifier integer 'Z%'
-Line   17: 53 [331]: TO
-Line   17: 55 [264]: Identifier integer 'D%'
-Line   17: 57 [327]: STEP
-Line   17: 61 [264]: Identifier integer 'B%'
-Line   17: 63 [ 58]: :
-Line   17: 64 [314]: NEXT 105553172340625
-Line   17: 68 [ 58]: :
-Line   17: 69 [264]: Identifier integer 'T%'
-Line   17: 71 [ 61]: =
-Line   17: 72 [332]: TIME
-Line   17: 76 [ 45]: -
+Line   17: 44 [265]: Identifier float 'A#'
+Line   17: 46 [ 61]: =
+Line   17: 47 [265]: Identifier float 'Z#'
+Line   17: 49 [ 58]: :
+Line   17: 50 [323]: REPEAT
+Line   17: 56 [ 58]: :
+Line   17: 57 [265]: Identifier float 'A#'
+Line   17: 59 [ 61]: =
+Line   17: 60 [265]: Identifier float 'A#'
+Line   17: 62 [ 43]: +
+Line   17: 63 [265]: Identifier float 'B#'
+Line   17: 65 [ 58]: :
+Line   17: 66 [336]: UNTIL
+Line   17: 71 [265]: Identifier float 'A#'
+Line   17: 73 [ 62]: >
+Line   17: 74 [265]: Identifier float 'C#'
+Line   17: 76 [ 58]: :
 Line   17: 77 [264]: Identifier integer 'T%'
-Line   17: 79 [ 58]: :
-Line   17: 80 [263]: Identifier 'p'
-Line   17: 81 [ 40]: (
-Line   17: 82 [265]: Identifier float 'F#'
-Line   17: 84 [ 42]: *
-Line   17: 85 [269]: Integer 17800
-Line   17: 90 [ 47]: /
-Line   17: 91 [264]: Identifier integer 'T%'
-Line   17: 93 [ 41]: )
-Line   17: 94 [ 58]: :
-Line   17: 95 [339]: YIELD
-Line   17:100 [257]: Newline
+Line   17: 79 [ 61]: =
+Line   17: 80 [332]: TIME
+Line   17: 84 [ 45]: -
+Line   17: 85 [264]: Identifier integer 'T%'
+Line   17: 87 [ 58]: :
+Line   17: 88 [263]: Identifier 'p'
+Line   17: 89 [ 40]: (
+Line   17: 90 [265]: Identifier float 'F#'
+Line   17: 92 [ 42]: *
+Line   17: 93 [269]: Integer 41000
+Line   17: 98 [ 47]: /
+Line   17: 99 [264]: Identifier integer 'T%'
+Line   17:101 [ 41]: )
+Line   17:102 [ 58]: :
+Line   17:103 [339]: YIELD
+Line   17:108 [257]: Newline
 Line   18:  2 [317]: PRINT
-Line   18:  8 [271]: String 'Trig/Log test           '
+Line   18:  8 [271]: String 'Integer REPEAT loop     '
 Line   18: 34 [ 59]: ;
 Line   18: 35 [ 58]: :
-Line   18: 36 [310]: IF
-Line   18: 39 [405]: COS
-Line   18: 42 [269]: Integer 0
-Line   18: 43 [ 61]: =
-Line   18: 44 [269]: Integer 0
-Line   18: 45 [ 58]: :
-Line   18: 46 [317]: PRINT
-Line   18: 52 [271]: String '    <none>'
-Line   18: 64 [ 58]: :
-Line   18: 65 [339]: YIELD
-Line   18: 70 [257]: Newline
-Line   19:  2 [310]: IF
-Line   19:  5 [405]: COS
-Line   19:  8 [269]: Integer 0
-Line   19:  9 [279]: <>
-Line   19: 11 [269]: Integer 0
-Line   19: 12 [ 58]: :
-Line   19: 13 [265]: Identifier float 'A#'
-Line   19: 15 [ 61]: =
-Line   19: 16 [269]: Integer 1
-Line   19: 17 [ 58]: :
-Line   19: 18 [264]: Identifier integer 'T%'
-Line   19: 20 [ 61]: =
-Line   19: 21 [332]: TIME
-Line   19: 25 [ 58]: :
-Line   19: 26 [302]: :
-Line   19: 30 [264]: Identifier integer 'J%'
-Line   19: 32 [ 61]: =
-Line   19: 33 [269]: Integer 1
-Line   19: 35 [331]: TO
-Line   19: 38 [264]: Identifier integer 'F%'
-Line   19: 40 [ 58]: :
-Line   19: 41 [265]: Identifier float 'A#'
-Line   19: 43 [ 61]: =
-Line   19: 44 [404]: TAN
-Line   19: 47 [ 40]: (
-Line   19: 48 [403]: ATN
-Line   19: 51 [ 40]: (
-Line   19: 52 [402]: EXP
-Line   19: 55 [ 40]: (
-Line   19: 56 [400]: LN
-Line   19: 58 [ 40]: (
-Line   19: 59 [399]: SQR
-Line   19: 62 [ 40]: (
-Line   19: 63 [265]: Identifier float 'A#'
-Line   19: 65 [ 42]: *
-Line   19: 66 [265]: Identifier float 'A#'
-Line   19: 68 [ 41]: )
-Line   19: 69 [ 41]: )
-Line   19: 70 [ 41]: )
-Line   19: 71 [ 41]: )
-Line   19: 72 [ 41]: )
-Line   19: 73 [ 43]: +
-Line   19: 74 [269]: Integer 1
-Line   19: 75 [ 58]: :
-Line   19: 76 [314]: NEXT 105553172340577
-Line   19: 80 [ 58]: :
-Line   19: 81 [264]: Identifier integer 'T%'
-Line   19: 83 [ 61]: =
-Line   19: 84 [332]: TIME
-Line   19: 88 [ 45]: -
-Line   19: 89 [264]: Identifier integer 'T%'
-Line   19: 91 [ 58]: :
-Line   19: 92 [263]: Identifier 'p'
-Line   19: 93 [ 40]: (
-Line   19: 94 [265]: Identifier float 'F#'
-Line   19: 96 [ 42]: *
-Line   19: 97 [269]: Integer 68800
-Line   19:102 [ 47]: /
-Line   19:103 [264]: Identifier integer 'T%'
-Line   19:105 [ 41]: )
-Line   19:106 [257]: Newline
-Line   20:  2 [325]: RETURN (No type yet)
-Line   20:  8 [257]: Newline
+Line   18: 36 [264]: Identifier integer 'T%'
+Line   18: 38 [ 61]: =
+Line   18: 39 [332]: TIME
+Line   18: 43 [ 58]: :
+Line   18: 44 [264]: Identifier integer 'A%'
+Line   18: 46 [ 61]: =
+Line   18: 47 [264]: Identifier integer 'Z%'
+Line   18: 49 [ 58]: :
+Line   18: 50 [323]: REPEAT
+Line   18: 56 [ 58]: :
+Line   18: 57 [264]: Identifier integer 'A%'
+Line   18: 59 [ 61]: =
+Line   18: 60 [264]: Identifier integer 'A%'
+Line   18: 62 [ 43]: +
+Line   18: 63 [264]: Identifier integer 'B%'
+Line   18: 65 [ 58]: :
+Line   18: 66 [336]: UNTIL
+Line   18: 71 [264]: Identifier integer 'A%'
+Line   18: 73 [ 62]: >
+Line   18: 74 [264]: Identifier integer 'C%'
+Line   18: 76 [ 58]: :
+Line   18: 77 [264]: Identifier integer 'T%'
+Line   18: 79 [ 61]: =
+Line   18: 80 [332]: TIME
+Line   18: 84 [ 45]: -
+Line   18: 85 [264]: Identifier integer 'T%'
+Line   18: 87 [ 58]: :
+Line   18: 88 [263]: Identifier 'p'
+Line   18: 89 [ 40]: (
+Line   18: 90 [265]: Identifier float 'F#'
+Line   18: 92 [ 42]: *
+Line   18: 93 [269]: Integer 23900
+Line   18: 98 [ 47]: /
+Line   18: 99 [264]: Identifier integer 'T%'
+Line   18:101 [ 41]: )
+Line   18:102 [ 58]: :
+Line   18:103 [339]: YIELD
+Line   18:108 [257]: Newline
+Line   19:  2 [317]: PRINT
+Line   19:  8 [271]: String 'Really real FOR loop    '
+Line   19: 34 [ 59]: ;
+Line   19: 35 [ 58]: :
+Line   19: 36 [264]: Identifier integer 'T%'
+Line   19: 38 [ 61]: =
+Line   19: 39 [332]: TIME
+Line   19: 43 [ 58]: :
+Line   19: 44 [302]: :
+Line   19: 48 [265]: Identifier float 'A#'
+Line   19: 50 [ 61]: =
+Line   19: 51 [265]: Identifier float 'Z#'
+Line   19: 53 [331]: TO
+Line   19: 55 [265]: Identifier float 'D#'
+Line   19: 57 [327]: STEP
+Line   19: 61 [265]: Identifier float 'B#'
+Line   19: 63 [ 58]: :
+Line   19: 64 [314]: NEXT 105553155067761
+Line   19: 68 [ 58]: :
+Line   19: 69 [264]: Identifier integer 'T%'
+Line   19: 71 [ 61]: =
+Line   19: 72 [332]: TIME
+Line   19: 76 [ 45]: -
+Line   19: 77 [264]: Identifier integer 'T%'
+Line   19: 79 [ 58]: :
+Line   19: 80 [263]: Identifier 'p'
+Line   19: 81 [ 40]: (
+Line   19: 82 [265]: Identifier float 'F#'
+Line   19: 84 [ 42]: *
+Line   19: 85 [269]: Integer 51200
+Line   19: 90 [ 47]: /
+Line   19: 91 [264]: Identifier integer 'T%'
+Line   19: 93 [ 41]: )
+Line   19: 94 [ 58]: :
+Line   19: 95 [339]: YIELD
+Line   19:100 [257]: Newline
+Line   20:  2 [317]: PRINT
+Line   20:  8 [271]: String 'Integer FOR loop        '
+Line   20: 34 [ 59]: ;
+Line   20: 35 [ 58]: :
+Line   20: 36 [264]: Identifier integer 'T%'
+Line   20: 38 [ 61]: =
+Line   20: 39 [332]: TIME
+Line   20: 43 [ 58]: :
+Line   20: 44 [302]: :
+Line   20: 48 [264]: Identifier integer 'A%'
+Line   20: 50 [ 61]: =
+Line   20: 51 [264]: Identifier integer 'Z%'
+Line   20: 53 [331]: TO
+Line   20: 55 [264]: Identifier integer 'D%'
+Line   20: 57 [327]: STEP
+Line   20: 61 [264]: Identifier integer 'B%'
+Line   20: 63 [ 58]: :
+Line   20: 64 [314]: NEXT 105553155067713
+Line   20: 68 [ 58]: :
+Line   20: 69 [264]: Identifier integer 'T%'
+Line   20: 71 [ 61]: =
+Line   20: 72 [332]: TIME
+Line   20: 76 [ 45]: -
+Line   20: 77 [264]: Identifier integer 'T%'
+Line   20: 79 [ 58]: :
+Line   20: 80 [263]: Identifier 'p'
+Line   20: 81 [ 40]: (
+Line   20: 82 [265]: Identifier float 'F#'
+Line   20: 84 [ 42]: *
+Line   20: 85 [269]: Integer 17800
+Line   20: 90 [ 47]: /
+Line   20: 91 [264]: Identifier integer 'T%'
+Line   20: 93 [ 41]: )
+Line   20: 94 [ 58]: :
+Line   20: 95 [339]: YIELD
+Line   20:100 [257]: Newline
 Line   21:  2 [317]: PRINT
-Line   21:  7 [271]: String 'String manipulation     '
-Line   21: 33 [ 59]: ;
-Line   21: 34 [257]: Newline
-Line   22:  2 [264]: Identifier integer 'T%'
-Line   22:  4 [ 61]: =
-Line   22:  5 [332]: TIME
-Line   22:  9 [ 58]: :
-Line   22: 10 [266]: Identifier string 'A$'
-Line   22: 12 [ 61]: =
-Line   22: 13 [271]: String 'STRINGMANIPULATIONTEST'
-Line   22: 37 [ 58]: :
-Line   22: 38 [302]: :
-Line   22: 42 [264]: Identifier integer 'A%'
-Line   22: 44 [ 61]: =
-Line   22: 45 [269]: Integer 0
-Line   22: 47 [331]: TO
-Line   22: 50 [264]: Identifier integer 'F%'
-Line   22: 52 [ 42]: *
-Line   22: 53 [269]: Integer 4
-Line   22: 54 [ 58]: :
-Line   22: 55 [266]: Identifier string 'A$'
-Line   22: 57 [ 61]: =
-Line   22: 58 [386]: RIGHT$
-Line   22: 64 [ 40]: (
-Line   22: 65 [385]: MID$
-Line   22: 69 [ 40]: (
-Line   22: 70 [266]: Identifier string 'A$'
-Line   22: 72 [ 44]: ,
-Line   22: 73 [387]: LEN
-Line   22: 76 [266]: Identifier string 'A$'
-Line   22: 78 [ 47]: /
-Line   22: 79 [269]: Integer 2
-Line   22: 80 [ 44]: ,
-Line   22: 81 [387]: LEN
-Line   22: 84 [266]: Identifier string 'A$'
-Line   22: 86 [ 47]: /
-Line   22: 87 [269]: Integer 4
-Line   22: 88 [ 43]: +
-Line   22: 89 [269]: Integer 1
-Line   22: 90 [ 41]: )
-Line   22: 91 [ 43]: +
-Line   22: 92 [386]: RIGHT$
-Line   22: 98 [ 40]: (
-Line   22: 99 [266]: Identifier string 'A$'
-Line   22:101 [ 44]: ,
-Line   22:102 [387]: LEN
-Line   22:105 [266]: Identifier string 'A$'
-Line   22:107 [ 47]: /
-Line   22:108 [269]: Integer 4
-Line   22:109 [ 41]: )
-Line   22:110 [ 43]: +
-Line   22:111 [385]: MID$
-Line   22:115 [ 40]: (
-Line   22:116 [266]: Identifier string 'A$'
-Line   22:118 [ 44]: ,
-Line   22:119 [387]: LEN
-Line   22:122 [266]: Identifier string 'A$'
-Line   22:124 [ 47]: /
-Line   22:125 [269]: Integer 2
-Line   22:126 [ 44]: ,
-Line   22:127 [269]: Integer 2
-Line   22:128 [ 41]: )
-Line   22:129 [ 43]: +
-Line   22:130 [384]: LEFT$
-Line   22:135 [ 40]: (
-Line   22:136 [266]: Identifier string 'A$'
-Line   22:138 [ 44]: ,
-Line   22:139 [387]: LEN
-Line   22:142 [266]: Identifier string 'A$'
-Line   22:144 [ 47]: /
-Line   22:145 [269]: Integer 4
-Line   22:146 [ 41]: )
-Line   22:147 [ 43]: +
-Line   22:148 [385]: MID$
-Line   22:152 [ 40]: (
-Line   22:153 [266]: Identifier string 'A$'
-Line   22:155 [ 44]: ,
-Line   22:156 [387]: LEN
-Line   22:159 [266]: Identifier string 'A$'
-Line   22:161 [ 47]: /
-Line   22:162 [269]: Integer 4
-Line   22:163 [ 44]: ,
-Line   22:164 [387]: LEN
-Line   22:167 [266]: Identifier string 'A$'
-Line   22:169 [ 47]: /
-Line   22:170 [269]: Integer 4
-Line   22:171 [ 43]: +
-Line   22:172 [269]: Integer 1
-Line   22:173 [ 41]: )
-Line   22:174 [ 44]: ,
-Line   22:175 [387]: LEN
-Line   22:178 [266]: Identifier string 'A$'
-Line   22:180 [ 41]: )
-Line   22:181 [ 58]: :
-Line   22:182 [314]: NEXT 105553172340145
-Line   22:186 [ 58]: :
-Line   22:187 [264]: Identifier integer 'T%'
-Line   22:189 [ 61]: =
-Line   22:190 [332]: TIME
-Line   22:194 [ 45]: -
-Line   22:195 [264]: Identifier integer 'T%'
-Line   22:197 [ 58]: :
-Line   22:198 [263]: Identifier 'p'
-Line   22:199 [ 40]: (
-Line   22:200 [265]: Identifier float 'F#'
-Line   22:202 [ 42]: *
-Line   22:203 [269]: Integer 72750
-Line   22:208 [ 47]: /
-Line   22:209 [264]: Identifier integer 'T%'
-Line   22:211 [ 41]: )
-Line   22:212 [ 58]: :
-Line   22:213 [339]: YIELD
-Line   22:218 [257]: Newline
-Line   23:  2 [317]: PRINT
-Line   23:  7 [271]: String 'Procedure call          '
-Line   23: 33 [ 59]: ;
-Line   23: 34 [ 58]: :
-Line   23: 35 [264]: Identifier integer 'T%'
-Line   23: 37 [ 61]: =
-Line   23: 38 [332]: TIME
-Line   23: 42 [ 58]: :
-Line   23: 43 [302]: :
-Line   23: 47 [264]: Identifier integer 'A%'
-Line   23: 49 [ 61]: =
-Line   23: 50 [264]: Identifier integer 'Z%'
-Line   23: 53 [331]: TO
-Line   23: 56 [264]: Identifier integer 'D%'
-Line   23: 58 [ 58]: :
-Line   23: 59 [263]: Identifier 'test'
-Line   23: 63 [ 40]: (
-Line   23: 64 [ 41]: )
-Line   23: 65 [ 58]: :
-Line   23: 66 [314]: NEXT 105553172340817
-Line   23: 70 [ 58]: :
-Line   23: 71 [264]: Identifier integer 'T%'
-Line   23: 73 [ 61]: =
-Line   23: 74 [332]: TIME
-Line   23: 78 [ 45]: -
-Line   23: 79 [264]: Identifier integer 'T%'
-Line   23: 81 [ 58]: :
-Line   23: 82 [263]: Identifier 'p'
-Line   23: 83 [ 40]: (
-Line   23: 84 [265]: Identifier float 'F#'
-Line   23: 86 [ 42]: *
-Line   23: 87 [269]: Integer 80500
-Line   23: 92 [ 47]: /
-Line   23: 93 [264]: Identifier integer 'T%'
-Line   23: 95 [ 41]: )
-Line   23: 96 [ 58]: :
-Line   23: 97 [339]: YIELD
-Line   23:102 [257]: Newline
+Line   21:  8 [271]: String 'Trig/Log test           '
+Line   21: 34 [ 59]: ;
+Line   21: 35 [ 58]: :
+Line   21: 36 [310]: IF
+Line   21: 39 [405]: COS
+Line   21: 42 [269]: Integer 0
+Line   21: 43 [ 61]: =
+Line   21: 44 [269]: Integer 0
+Line   21: 45 [ 58]: :
+Line   21: 46 [317]: PRINT
+Line   21: 52 [271]: String '    <none>'
+Line   21: 64 [ 58]: :
+Line   21: 65 [339]: YIELD
+Line   21: 70 [257]: Newline
+Line   22:  2 [310]: IF
+Line   22:  5 [405]: COS
+Line   22:  8 [269]: Integer 0
+Line   22:  9 [279]: <>
+Line   22: 11 [269]: Integer 0
+Line   22: 12 [ 58]: :
+Line   22: 13 [265]: Identifier float 'A#'
+Line   22: 15 [ 61]: =
+Line   22: 16 [269]: Integer 1
+Line   22: 17 [ 58]: :
+Line   22: 18 [264]: Identifier integer 'T%'
+Line   22: 20 [ 61]: =
+Line   22: 21 [332]: TIME
+Line   22: 25 [ 58]: :
+Line   22: 26 [302]: :
+Line   22: 30 [264]: Identifier integer 'J%'
+Line   22: 32 [ 61]: =
+Line   22: 33 [269]: Integer 1
+Line   22: 35 [331]: TO
+Line   22: 38 [264]: Identifier integer 'F%'
+Line   22: 40 [ 58]: :
+Line   22: 41 [265]: Identifier float 'A#'
+Line   22: 43 [ 61]: =
+Line   22: 44 [404]: TAN
+Line   22: 47 [ 40]: (
+Line   22: 48 [403]: ATN
+Line   22: 51 [ 40]: (
+Line   22: 52 [402]: EXP
+Line   22: 55 [ 40]: (
+Line   22: 56 [400]: LN
+Line   22: 58 [ 40]: (
+Line   22: 59 [399]: SQR
+Line   22: 62 [ 40]: (
+Line   22: 63 [265]: Identifier float 'A#'
+Line   22: 65 [ 42]: *
+Line   22: 66 [265]: Identifier float 'A#'
+Line   22: 68 [ 41]: )
+Line   22: 69 [ 41]: )
+Line   22: 70 [ 41]: )
+Line   22: 71 [ 41]: )
+Line   22: 72 [ 41]: )
+Line   22: 73 [ 43]: +
+Line   22: 74 [269]: Integer 1
+Line   22: 75 [ 58]: :
+Line   22: 76 [314]: NEXT 105553155067665
+Line   22: 80 [ 58]: :
+Line   22: 81 [264]: Identifier integer 'T%'
+Line   22: 83 [ 61]: =
+Line   22: 84 [332]: TIME
+Line   22: 88 [ 45]: -
+Line   22: 89 [264]: Identifier integer 'T%'
+Line   22: 91 [ 58]: :
+Line   22: 92 [263]: Identifier 'p'
+Line   22: 93 [ 40]: (
+Line   22: 94 [265]: Identifier float 'F#'
+Line   22: 96 [ 42]: *
+Line   22: 97 [269]: Integer 68800
+Line   22:102 [ 47]: /
+Line   22:103 [264]: Identifier integer 'T%'
+Line   22:105 [ 41]: )
+Line   22:106 [257]: Newline
+Line   23:  2 [325]: RETURN (No type yet)
+Line   23:  8 [257]: Newline
 Line   24:  2 [317]: PRINT
-Line   24:  7 [271]: String 'Combined Average        '
+Line   24:  7 [271]: String 'String manipulation     '
 Line   24: 33 [ 59]: ;
-Line   24: 34 [ 58]: :
-Line   24: 35 [263]: Identifier 'p'
-Line   24: 36 [ 40]: (
-Line   24: 37 [264]: Identifier integer 'TTAL%'
-Line   24: 42 [ 47]: /
-Line   24: 43 [269]: Integer 7
-Line   24: 44 [ 41]: )
-Line   24: 45 [257]: Newline
-Line   25:  2 [317]: PRINT
-Line   25:  7 [ 39]: '
-Line   25:  8 [271]: String 'Compared with a 2.00MHz BBC B'
-Line   25: 39 [257]: Newline
+Line   24: 34 [257]: Newline
+Line   25:  2 [264]: Identifier integer 'T%'
+Line   25:  4 [ 61]: =
+Line   25:  5 [332]: TIME
+Line   25:  9 [ 58]: :
+Line   25: 10 [266]: Identifier string 'A$'
+Line   25: 12 [ 61]: =
+Line   25: 13 [271]: String 'STRINGMANIPULATIONTEST'
+Line   25: 37 [ 58]: :
+Line   25: 38 [302]: :
+Line   25: 42 [264]: Identifier integer 'A%'
+Line   25: 44 [ 61]: =
+Line   25: 45 [269]: Integer 0
+Line   25: 47 [331]: TO
+Line   25: 50 [264]: Identifier integer 'F%'
+Line   25: 52 [ 42]: *
+Line   25: 53 [269]: Integer 4
+Line   25: 54 [ 58]: :
+Line   25: 55 [266]: Identifier string 'A$'
+Line   25: 57 [ 61]: =
+Line   25: 58 [386]: RIGHT$
+Line   25: 64 [ 40]: (
+Line   25: 65 [385]: MID$
+Line   25: 69 [ 40]: (
+Line   25: 70 [266]: Identifier string 'A$'
+Line   25: 72 [ 44]: ,
+Line   25: 73 [387]: LEN
+Line   25: 76 [266]: Identifier string 'A$'
+Line   25: 78 [ 47]: /
+Line   25: 79 [269]: Integer 2
+Line   25: 80 [ 44]: ,
+Line   25: 81 [387]: LEN
+Line   25: 84 [266]: Identifier string 'A$'
+Line   25: 86 [ 47]: /
+Line   25: 87 [269]: Integer 4
+Line   25: 88 [ 43]: +
+Line   25: 89 [269]: Integer 1
+Line   25: 90 [ 41]: )
+Line   25: 91 [ 43]: +
+Line   25: 92 [386]: RIGHT$
+Line   25: 98 [ 40]: (
+Line   25: 99 [266]: Identifier string 'A$'
+Line   25:101 [ 44]: ,
+Line   25:102 [387]: LEN
+Line   25:105 [266]: Identifier string 'A$'
+Line   25:107 [ 47]: /
+Line   25:108 [269]: Integer 4
+Line   25:109 [ 41]: )
+Line   25:110 [ 43]: +
+Line   25:111 [385]: MID$
+Line   25:115 [ 40]: (
+Line   25:116 [266]: Identifier string 'A$'
+Line   25:118 [ 44]: ,
+Line   25:119 [387]: LEN
+Line   25:122 [266]: Identifier string 'A$'
+Line   25:124 [ 47]: /
+Line   25:125 [269]: Integer 2
+Line   25:126 [ 44]: ,
+Line   25:127 [269]: Integer 2
+Line   25:128 [ 41]: )
+Line   25:129 [ 43]: +
+Line   25:130 [384]: LEFT$
+Line   25:135 [ 40]: (
+Line   25:136 [266]: Identifier string 'A$'
+Line   25:138 [ 44]: ,
+Line   25:139 [387]: LEN
+Line   25:142 [266]: Identifier string 'A$'
+Line   25:144 [ 47]: /
+Line   25:145 [269]: Integer 4
+Line   25:146 [ 41]: )
+Line   25:147 [ 43]: +
+Line   25:148 [385]: MID$
+Line   25:152 [ 40]: (
+Line   25:153 [266]: Identifier string 'A$'
+Line   25:155 [ 44]: ,
+Line   25:156 [387]: LEN
+Line   25:159 [266]: Identifier string 'A$'
+Line   25:161 [ 47]: /
+Line   25:162 [269]: Integer 4
+Line   25:163 [ 44]: ,
+Line   25:164 [387]: LEN
+Line   25:167 [266]: Identifier string 'A$'
+Line   25:169 [ 47]: /
+Line   25:170 [269]: Integer 4
+Line   25:171 [ 43]: +
+Line   25:172 [269]: Integer 1
+Line   25:173 [ 41]: )
+Line   25:174 [ 44]: ,
+Line   25:175 [387]: LEN
+Line   25:178 [266]: Identifier string 'A$'
+Line   25:180 [ 41]: )
+Line   25:181 [ 58]: :
+Line   25:182 [314]: NEXT 105553155067233
+Line   25:186 [ 58]: :
+Line   25:187 [264]: Identifier integer 'T%'
+Line   25:189 [ 61]: =
+Line   25:190 [332]: TIME
+Line   25:194 [ 45]: -
+Line   25:195 [264]: Identifier integer 'T%'
+Line   25:197 [ 58]: :
+Line   25:198 [263]: Identifier 'p'
+Line   25:199 [ 40]: (
+Line   25:200 [265]: Identifier float 'F#'
+Line   25:202 [ 42]: *
+Line   25:203 [269]: Integer 72750
+Line   25:208 [ 47]: /
+Line   25:209 [264]: Identifier integer 'T%'
+Line   25:211 [ 41]: )
+Line   25:212 [ 58]: :
+Line   25:213 [339]: YIELD
+Line   25:218 [257]: Newline
 Line   26:  2 [317]: PRINT
-Line   26:  8 [271]: String 'Press a key to return to the menu'
-Line   26: 43 [ 58]: :
-Line   26: 44 [307]: INKEY
-Line   26: 49 [ 40]: (
-Line   26: 50 [269]: Integer 5000
-Line   26: 54 [ 41]: )
-Line   26: 55 [ 58]: :
-Line   26: 56 [339]: YIELD
-Line   26: 61 [257]: Newline
-Line   27:  2 [298]: ENDDEF
-Line   27:  8 [257]: Newline
-Line   28:  2 [257]: Newline
-Line   29:  2 [292]: DEF ''
-Line   29:  5 [264]: Identifier integer 'Ack%'
-Line   29:  9 [ 40]: (
-Line   29: 10 [264]: Identifier integer 'M%'
-Line   29: 12 [ 44]: ,
-Line   29: 13 [264]: Identifier integer 'N%'
-Line   29: 15 [ 41]: )
-Line   29: 16 [257]: Newline
-Line   30:  2 [310]: IF
-Line   30:  5 [264]: Identifier integer 'M%'
-Line   30:  7 [ 61]: =
-Line   30:  8 [269]: Integer 0
-Line   30: 10 [325]: RETURN (No type yet)
-Line   30: 17 [264]: Identifier integer 'N%'
-Line   30: 19 [ 43]: +
-Line   30: 20 [269]: Integer 1
-Line   30: 21 [257]: Newline
-Line   31:  2 [310]: IF
-Line   31:  5 [264]: Identifier integer 'N%'
-Line   31:  7 [ 61]: =
-Line   31:  8 [269]: Integer 0
-Line   31: 10 [325]: RETURN (No type yet)
-Line   31: 17 [264]: Identifier integer 'Ack%'
-Line   31: 21 [ 40]: (
-Line   31: 22 [264]: Identifier integer 'M%'
-Line   31: 24 [ 45]: -
-Line   31: 25 [269]: Integer 1
-Line   31: 26 [ 44]: ,
-Line   31: 27 [269]: Integer 1
-Line   31: 28 [ 41]: )
-Line   31: 29 [257]: Newline
-Line   32:  2 [325]: RETURN (No type yet)
-Line   32:  9 [264]: Identifier integer 'Ack%'
-Line   32: 13 [ 40]: (
-Line   32: 14 [264]: Identifier integer 'M%'
-Line   32: 16 [ 45]: -
-Line   32: 17 [269]: Integer 1
-Line   32: 18 [ 44]: ,
-Line   32: 19 [264]: Identifier integer 'Ack%'
-Line   32: 23 [ 40]: (
-Line   32: 24 [264]: Identifier integer 'M%'
-Line   32: 26 [ 44]: ,
-Line   32: 27 [264]: Identifier integer 'N%'
-Line   32: 29 [ 45]: -
-Line   32: 30 [269]: Integer 1
-Line   32: 31 [ 41]: )
-Line   32: 32 [ 41]: )
-Line   32: 33 [257]: Newline
-Line   33:  2 [298]: ENDDEF
-Line   33:  8 [257]: Newline
-Line   34:  2 [257]: Newline
-Line   35:  2 [292]: DEF ''
-Line   35:  6 [263]: Identifier 'test'
-Line   35: 10 [ 40]: (
-Line   35: 11 [ 41]: )
-Line   35: 12 [257]: Newline
+Line   26:  7 [271]: String 'Procedure call          '
+Line   26: 33 [ 59]: ;
+Line   26: 34 [ 58]: :
+Line   26: 35 [264]: Identifier integer 'T%'
+Line   26: 37 [ 61]: =
+Line   26: 38 [332]: TIME
+Line   26: 42 [ 58]: :
+Line   26: 43 [302]: :
+Line   26: 47 [264]: Identifier integer 'A%'
+Line   26: 49 [ 61]: =
+Line   26: 50 [264]: Identifier integer 'Z%'
+Line   26: 53 [331]: TO
+Line   26: 56 [264]: Identifier integer 'D%'
+Line   26: 58 [ 58]: :
+Line   26: 59 [263]: Identifier 'test'
+Line   26: 63 [ 40]: (
+Line   26: 64 [ 41]: )
+Line   26: 65 [ 58]: :
+Line   26: 66 [314]: NEXT 105553155067905
+Line   26: 70 [ 58]: :
+Line   26: 71 [264]: Identifier integer 'T%'
+Line   26: 73 [ 61]: =
+Line   26: 74 [332]: TIME
+Line   26: 78 [ 45]: -
+Line   26: 79 [264]: Identifier integer 'T%'
+Line   26: 81 [ 58]: :
+Line   26: 82 [263]: Identifier 'p'
+Line   26: 83 [ 40]: (
+Line   26: 84 [265]: Identifier float 'F#'
+Line   26: 86 [ 42]: *
+Line   26: 87 [269]: Integer 80500
+Line   26: 92 [ 47]: /
+Line   26: 93 [264]: Identifier integer 'T%'
+Line   26: 95 [ 41]: )
+Line   26: 96 [ 58]: :
+Line   26: 97 [339]: YIELD
+Line   26:102 [257]: Newline
+Line   27:  2 [317]: PRINT
+Line   27:  7 [271]: String 'Combined Average        '
+Line   27: 33 [ 59]: ;
+Line   27: 34 [ 58]: :
+Line   27: 35 [263]: Identifier 'p'
+Line   27: 36 [ 40]: (
+Line   27: 37 [264]: Identifier integer 'TTAL%'
+Line   27: 42 [ 47]: /
+Line   27: 43 [269]: Integer 7
+Line   27: 44 [ 41]: )
+Line   27: 45 [257]: Newline
+Line   28:  2 [317]: PRINT
+Line   28:  7 [ 39]: '
+Line   28:  8 [271]: String 'Compared with a 2.00MHz BBC B'
+Line   28: 39 [257]: Newline
+Line   29:  2 [317]: PRINT
+Line   29:  8 [271]: String 'Press a key to return to the menu'
+Line   29: 43 [ 58]: :
+Line   29: 44 [307]: INKEY
+Line   29: 49 [ 40]: (
+Line   29: 50 [269]: Integer 5000
+Line   29: 54 [ 41]: )
+Line   29: 55 [ 58]: :
+Line   29: 56 [339]: YIELD
+Line   29: 61 [257]: Newline
+Line   30:  2 [298]: ENDDEF
+Line   30:  8 [257]: Newline
+Line   31:  2 [257]: Newline
+Line   32:  2 [292]: DEF ''
+Line   32:  5 [264]: Identifier integer 'Ack%'
+Line   32:  9 [ 40]: (
+Line   32: 10 [264]: Identifier integer 'M%'
+Line   32: 12 [ 44]: ,
+Line   32: 13 [264]: Identifier integer 'N%'
+Line   32: 15 [ 41]: )
+Line   32: 16 [257]: Newline
+Line   33:  2 [310]: IF
+Line   33:  5 [264]: Identifier integer 'M%'
+Line   33:  7 [ 61]: =
+Line   33:  8 [269]: Integer 0
+Line   33: 10 [325]: RETURN (No type yet)
+Line   33: 17 [264]: Identifier integer 'N%'
+Line   33: 19 [ 43]: +
+Line   33: 20 [269]: Integer 1
+Line   33: 21 [257]: Newline
+Line   34:  2 [310]: IF
+Line   34:  5 [264]: Identifier integer 'N%'
+Line   34:  7 [ 61]: =
+Line   34:  8 [269]: Integer 0
+Line   34: 10 [325]: RETURN (No type yet)
+Line   34: 17 [264]: Identifier integer 'Ack%'
+Line   34: 21 [ 40]: (
+Line   34: 22 [264]: Identifier integer 'M%'
+Line   34: 24 [ 45]: -
+Line   34: 25 [269]: Integer 1
+Line   34: 26 [ 44]: ,
+Line   34: 27 [269]: Integer 1
+Line   34: 28 [ 41]: )
+Line   34: 29 [257]: Newline
+Line   35:  2 [325]: RETURN (No type yet)
+Line   35:  9 [264]: Identifier integer 'Ack%'
+Line   35: 13 [ 40]: (
+Line   35: 14 [264]: Identifier integer 'M%'
+Line   35: 16 [ 45]: -
+Line   35: 17 [269]: Integer 1
+Line   35: 18 [ 44]: ,
+Line   35: 19 [264]: Identifier integer 'Ack%'
+Line   35: 23 [ 40]: (
+Line   35: 24 [264]: Identifier integer 'M%'
+Line   35: 26 [ 44]: ,
+Line   35: 27 [264]: Identifier integer 'N%'
+Line   35: 29 [ 45]: -
+Line   35: 30 [269]: Integer 1
+Line   35: 31 [ 41]: )
+Line   35: 32 [ 41]: )
+Line   35: 33 [257]: Newline
 Line   36:  2 [298]: ENDDEF
 Line   36:  8 [257]: Newline
 Line   37:  2 [257]: Newline
 Line   38:  2 [292]: DEF ''
-Line   38:  5 [263]: Identifier 'p'
-Line   38:  6 [ 40]: (
-Line   38:  7 [264]: Identifier integer 'T%'
-Line   38:  9 [ 41]: )
-Line   38: 10 [257]: Newline
-Line   39:  2 [317]: PRINT
-Line   39:  8 [264]: Identifier integer 'T%'
-Line   39: 10 [257]: Newline
-Line   40:  2 [317]: PRINT
-Line   40:  8 [389]: STR$
-Line   40: 12 [ 40]: (
-Line   40: 13 [264]: Identifier integer 'T%'
-Line   40: 15 [ 41]: )
-Line   40: 16 [257]: Newline
-Line   41:  2 [317]: PRINT
-Line   41:  8 [386]: RIGHT$
-Line   41: 14 [ 40]: (
-Line   41: 15 [389]: STR$
-Line   41: 19 [ 40]: (
-Line   41: 20 [264]: Identifier integer 'T%'
-Line   41: 22 [ 41]: )
-Line   41: 23 [ 44]: ,
-Line   41: 24 [269]: Integer 2
-Line   41: 25 [ 41]: )
-Line   41: 26 [257]: Newline
+Line   38:  6 [263]: Identifier 'test'
+Line   38: 10 [ 40]: (
+Line   38: 11 [ 41]: )
+Line   38: 12 [257]: Newline
+Line   39:  2 [298]: ENDDEF
+Line   39:  8 [257]: Newline
+Line   40:  2 [257]: Newline
+Line   41:  2 [292]: DEF ''
+Line   41:  5 [263]: Identifier 'p'
+Line   41:  6 [ 40]: (
+Line   41:  7 [264]: Identifier integer 'T%'
+Line   41:  9 [ 41]: )
+Line   41: 10 [257]: Newline
 Line   42:  2 [317]: PRINT
-Line   42:  8 [386]: RIGHT$
-Line   42: 14 [ 40]: (
-Line   42: 15 [271]: String '     '
-Line   42: 22 [ 43]: +
-Line   42: 23 [389]: STR$
-Line   42: 27 [ 40]: (
-Line   42: 28 [264]: Identifier integer 'T%'
-Line   42: 30 [397]: DIV
-Line   42: 33 [269]: Integer 100
-Line   42: 36 [ 41]: )
-Line   42: 37 [ 44]: ,
-Line   42: 38 [269]: Integer 15
-Line   42: 40 [ 41]: )
-Line   42: 41 [ 59]: ;
-Line   42: 42 [271]: String '.'
-Line   42: 45 [ 59]: ;
-Line   42: 46 [386]: RIGHT$
-Line   42: 52 [ 40]: (
-Line   42: 53 [271]: String '0'
-Line   42: 56 [ 43]: +
-Line   42: 57 [389]: STR$
-Line   42: 61 [ 40]: (
-Line   42: 62 [264]: Identifier integer 'T%'
-Line   42: 64 [ 41]: )
-Line   42: 65 [ 44]: ,
-Line   42: 66 [269]: Integer 2
-Line   42: 67 [ 41]: )
-Line   42: 68 [ 59]: ;
-Line   42: 69 [271]: String 'MHz'
-Line   42: 74 [ 58]: :
-Line   42: 75 [264]: Identifier integer 'TTAL%'
-Line   42: 80 [ 61]: =
-Line   42: 81 [264]: Identifier integer 'TTAL%'
-Line   42: 86 [ 43]: +
-Line   42: 87 [264]: Identifier integer 'T%'
-Line   42: 89 [257]: Newline
-Line   43:  2 [298]: ENDDEF
-Line   43:  8 [257]: Newline
-Line   44:  2 [257]: Newline
-Line   44:  2 [256]: None/End of tokens
+Line   42:  8 [264]: Identifier integer 'T%'
+Line   42: 10 [257]: Newline
+Line   43:  2 [317]: PRINT
+Line   43:  8 [264]: Identifier integer 'T%'
+Line   43: 10 [257]: Newline
+Line   44:  2 [317]: PRINT
+Line   44:  8 [264]: Identifier integer 'T%'
+Line   44: 10 [257]: Newline
+Line   45:  2 [317]: PRINT
+Line   45:  8 [264]: Identifier integer 'T%'
+Line   45: 10 [257]: Newline
+Line   46:  2 [317]: PRINT
+Line   46:  8 [389]: STR$
+Line   46: 12 [ 40]: (
+Line   46: 13 [264]: Identifier integer 'T%'
+Line   46: 15 [ 41]: )
+Line   46: 16 [257]: Newline
+Line   47:  2 [317]: PRINT
+Line   47:  8 [389]: STR$
+Line   47: 12 [ 40]: (
+Line   47: 13 [264]: Identifier integer 'T%'
+Line   47: 15 [ 41]: )
+Line   47: 16 [257]: Newline
+Line   48:  2 [317]: PRINT
+Line   48:  8 [389]: STR$
+Line   48: 12 [ 40]: (
+Line   48: 13 [264]: Identifier integer 'T%'
+Line   48: 15 [ 41]: )
+Line   48: 16 [257]: Newline
+Line   49:  2 [317]: PRINT
+Line   49:  8 [389]: STR$
+Line   49: 12 [ 40]: (
+Line   49: 13 [264]: Identifier integer 'T%'
+Line   49: 15 [ 41]: )
+Line   49: 16 [257]: Newline
+Line   50:  2 [317]: PRINT
+Line   50:  8 [264]: Identifier integer 'T%'
+Line   50: 10 [257]: Newline
+Line   52:  2 [295]: END
+Line   52:  2 [317]: PRINT
+Line   52:  8 [386]: RIGHT$
+Line   52: 14 [ 40]: (
+Line   52: 15 [389]: STR$
+Line   52: 19 [ 40]: (
+Line   52: 20 [264]: Identifier integer 'T%'
+Line   52: 22 [ 41]: )
+Line   52: 23 [ 44]: ,
+Line   52: 24 [269]: Integer 2
+Line   52: 25 [ 41]: )
+Line   52: 26 [257]: Newline
+Line   53:  2 [317]: PRINT
+Line   53:  8 [386]: RIGHT$
+Line   53: 14 [ 40]: (
+Line   53: 15 [271]: String '     '
+Line   53: 22 [ 43]: +
+Line   53: 23 [389]: STR$
+Line   53: 27 [ 40]: (
+Line   53: 28 [264]: Identifier integer 'T%'
+Line   53: 30 [397]: DIV
+Line   53: 33 [269]: Integer 100
+Line   53: 36 [ 41]: )
+Line   53: 37 [ 44]: ,
+Line   53: 38 [269]: Integer 15
+Line   53: 40 [ 41]: )
+Line   53: 41 [ 59]: ;
+Line   53: 42 [271]: String '.'
+Line   53: 45 [ 59]: ;
+Line   53: 46 [386]: RIGHT$
+Line   53: 52 [ 40]: (
+Line   53: 53 [271]: String '0'
+Line   53: 56 [ 43]: +
+Line   53: 57 [389]: STR$
+Line   53: 61 [ 40]: (
+Line   53: 62 [264]: Identifier integer 'T%'
+Line   53: 64 [ 41]: )
+Line   53: 65 [ 44]: ,
+Line   53: 66 [269]: Integer 2
+Line   53: 67 [ 41]: )
+Line   53: 68 [ 59]: ;
+Line   53: 69 [271]: String 'MHz'
+Line   53: 74 [ 58]: :
+Line   53: 75 [264]: Identifier integer 'TTAL%'
+Line   53: 80 [ 61]: =
+Line   53: 81 [264]: Identifier integer 'TTAL%'
+Line   53: 86 [ 43]: +
+Line   53: 87 [264]: Identifier integer 'T%'
+Line   53: 89 [257]: Newline
+Line   54:  2 [298]: ENDDEF
+Line   54:  8 [257]: Newline
+Line   55:  2 [257]: Newline
+Line   55:  2 [256]: None/End of tokens

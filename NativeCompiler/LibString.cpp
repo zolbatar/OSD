@@ -171,7 +171,7 @@ int64_t call_STRING_realtostring(double v)
 int64_t call_STRING_inttostring(int64_t v)
 {
 	char d[64];
-	sprintf(d, "%ld", v);
+	sprintf(d, "%lld", v);
 	std::string ss(d);
 	auto r = OS_Strings_Create(ss);
 	return r;

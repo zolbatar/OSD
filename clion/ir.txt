@@ -2,6 +2,24 @@
 [Variable] Global create integer (-1)
 [Stack   ] Literal integer 0
 [Variable] Store integer (-1)
+[Func    ] Call function: (0x105cdb320)
+[Stack   ] Literal integer 1844674407370955161
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Func    ] Call function: (0x105cdb340)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
+[Stack   ] Literal integer 1844674407370955161
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Func    ] Call function: (0x105cdb340)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
+[Stack   ] Literal integer 1844674407370955161
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Func    ] Call function: (0x105cdb340)
+[Func    ] Call function: (0x105cdb2d0)
 [Proc    ] PROC call: (0/Clock3)
 [General ] End
 
@@ -24,20 +42,20 @@
 [Variable] Local create integer (14)
 [Variable] Local create integer (15)
 [Variable] Local create string (16)
-[Func    ] Call function: (0x1004a2e70)
+[Func    ] Call function: (0x105cdee70)
 [Stack   ] Literal integer 0
 [Variable] Store integer (-1)
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'BBC BASIC CPU Timing Program'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
-[Func    ] Call function: (0x10049f2d0)
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
 [General ] Yield
 [Stack   ] Literal integer 0
 [Variable] Store integer (0)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Branch  ] Jump create: (0)
@@ -48,7 +66,7 @@
 [Maths   ] +, integer
 [Variable] Store integer (0)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Variable] Load integer (1)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 50
@@ -156,14 +174,14 @@
 [Stack   ] Pop float to Operand2
 [Maths   ] +, float
 [Variable] Store float (9)
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'Really real REPEAT loop '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load float (2)
@@ -182,7 +200,7 @@
 [Variable] Compare > float
 [Branch  ] Jump on false: (2)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -203,14 +221,14 @@
 [Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'Integer REPEAT loop     '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load integer (3)
@@ -229,7 +247,7 @@
 [Variable] Compare > integer
 [Branch  ] Jump on false: (3)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -250,14 +268,14 @@
 [Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'Really real FOR loop    '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load float (2)
@@ -301,7 +319,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (4)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -322,14 +340,14 @@
 [Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'Integer FOR loop        '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load integer (3)
@@ -372,7 +390,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (5)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -393,12 +411,12 @@
 [Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'Trig/Log test           '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Stack   ] Literal integer 0
 [Convert ] Operand1, integer to float
 [Maths   ] COS, float
@@ -412,12 +430,12 @@
 [Branch  ] Jump create (forward): (7)
 [Stack   ] Pop integer to Operand1
 [Branch  ] Jump on false (forward): (6)
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string '    <none>'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
-[Func    ] Call function: (0x10049f2d0)
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
 [General ] Yield
 [Branch  ] Jump (forward): (7)
 [Branch  ] Jump destination: (6)
@@ -439,7 +457,7 @@
 [Convert ] Operand1, integer to float
 [Variable] Store float (12)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Stack   ] Literal integer 1
@@ -491,7 +509,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (10)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -515,14 +533,14 @@
 [Branch  ] Jump destination: (8)
 [Branch  ] Jump destination: (9)
 [Proc    ] Return none, final:0
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'String manipulation     '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Stack   ] Literal string 'STRINGMANIPULATIONTEST'
@@ -728,7 +746,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (11)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -749,14 +767,14 @@
 [Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'Procedure call          '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load integer (3)
@@ -793,7 +811,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (12)
 [Argument] Return type is integer
-[Func    ] Call function: (0x1004a2a70)
+[Func    ] Call function: (0x105cdea70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -814,12 +832,12 @@
 [Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'Combined Average        '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Variable] Load integer (-1)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 7
@@ -831,24 +849,24 @@
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
-[Func    ] Call function: (0x10049f320)
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'Compared with a 2.00MHz BBC B'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
-[Func    ] Call function: (0x10049f2d0)
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string 'Press a key to return to the menu'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
-[Func    ] Call function: (0x10049f2d0)
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
 [Argument] Return type is integer
 [Stack   ] Literal integer 5000
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x1004a38d0)
+[Func    ] Call function: (0x105cdf8d0)
 [General ] Yield
 [Proc    ] Return none, final:1
 [Proc    ] PROC end: (0)
@@ -906,22 +924,68 @@
 [Proc    ] PROC start: (3/p)
 [Variable] Local create integer (0)
 [Proc    ] Parameter integer, 0
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb320)
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10049f340)
+[Func    ] Call function: (0x105cdb340)
 [Variable] Load integer (0)
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10049f340)
-[Func    ] Call function: (0x10049f2d0)
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb340)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Func    ] Call function: (0x105cdb340)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Func    ] Call function: (0x105cdb340)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Func    ] Call function: (0x105cdb340)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
 [Variable] Load integer (0)
 [Convert ] Operand1, int to string
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
-[Func    ] Call function: (0x10049f2d0)
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
+[Variable] Load integer (0)
+[Convert ] Operand1, int to string
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
+[Variable] Load integer (0)
+[Convert ] Operand1, int to string
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
+[Variable] Load integer (0)
+[Convert ] Operand1, int to string
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Func    ] Call function: (0x105cdb340)
+[Func    ] Call function: (0x105cdb2d0)
+[General ] End
+[Func    ] Call function: (0x105cdb320)
 [Variable] Load integer (0)
 [Convert ] Operand1, int to string
 [Stack   ] Push string Operand1
@@ -932,9 +996,9 @@
 [Strings ] RIGHT$
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
-[Func    ] Call function: (0x10049f2d0)
-[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
+[Func    ] Call function: (0x105cdb320)
 [Stack   ] Literal string '     '
 [Stack   ] Push string Operand1
 [Variable] Load integer (0)
@@ -954,14 +1018,14 @@
 [Argument] Parameter is string
 [Strings ] RIGHT$
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Stack   ] Literal string '.'
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Stack   ] Literal string '0'
 [Stack   ] Push string Operand1
 [Variable] Load integer (0)
@@ -977,14 +1041,14 @@
 [Argument] Parameter is string
 [Strings ] RIGHT$
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10049f330)
+[Func    ] Call function: (0x105cdb330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x105cdb580)
 [Stack   ] Literal string 'MHz'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x10049f580)
-[Func    ] Call function: (0x10049f2d0)
+[Func    ] Call function: (0x105cdb580)
+[Func    ] Call function: (0x105cdb2d0)
 [Variable] Load integer (-1)
 [Stack   ] Push integer Operand1
 [Variable] Load integer (0)
