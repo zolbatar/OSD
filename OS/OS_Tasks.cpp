@@ -97,6 +97,7 @@ void OSDTask::TerminateTask()
 	OSDTask::tasks.erase(this->name);
 #else
 	Terminate();
+	exit(1);
 #endif
 }
 

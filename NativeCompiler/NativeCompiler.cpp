@@ -440,7 +440,7 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				break;
 			case IROpcodes::ConvertOperand1IntToString1:
 				jit_prepare();
-				SF(jit_pushargr)(JIT_R0);
+				jit_pushargr(JIT_R0);
 				jit_finishi((jit_pointer_t)call_STRING_inttostring);
 				jit_retval_l(JIT_R0);
 				break;

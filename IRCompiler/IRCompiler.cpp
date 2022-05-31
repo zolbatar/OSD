@@ -384,7 +384,7 @@ void IRCompiler::AddIRWithStringLiteral(IROpcodes type, std::string v)
 void IRCompiler::AddIRWithStringLiteralWithInteger(IROpcodes type, std::string v, int64_t iv)
 {
 	if (is_global)
-		ir_global.emplace_back(type, 0, iv, 0.0, v, nullptr);
+		ir_global.emplace_back(type, iv, 0, 0.0, v, nullptr);
 	else
 		current_def.emplace_back(type, iv, 0, 0.0, v, nullptr);
 }
@@ -465,7 +465,7 @@ void IRCompiler::CheckParamType(Token* token, ValueType wanted_type)
 			TypeError(token);
 		}
 	}
-	switch (type) {
+	switch (wanted_type) {
 		case ValueType::Integer:
 			AddIR(IROpcodes::ArgumentInteger);
 			break;

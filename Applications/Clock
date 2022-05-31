@@ -18,4 +18,4 @@ DEF Clock()
 		COLOUR 120,120,120:LINE w%/2,h%/2,w%/2+x%,h%/2+y%
 		YIELD
 	UNTIL FALSE
-ENDDEF
+ENDDEFssss

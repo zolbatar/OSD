@@ -24,20 +24,20 @@
 [Variable] Local create integer (14)
 [Variable] Local create integer (15)
 [Variable] Local create string (16)
-[Func    ] Call function: (0x10832ce20)
+[Func    ] Call function: (0x1004a2e70)
 [Stack   ] Literal integer 0
 [Variable] Store integer (-1)
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'BBC BASIC CPU Timing Program'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
-[Func    ] Call function: (0x108329280)
+[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x10049f2d0)
 [General ] Yield
 [Stack   ] Literal integer 0
 [Variable] Store integer (0)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Branch  ] Jump create: (0)
@@ -48,7 +48,7 @@
 [Maths   ] +, integer
 [Variable] Store integer (0)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Variable] Load integer (1)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 50
@@ -156,14 +156,14 @@
 [Stack   ] Pop float to Operand2
 [Maths   ] +, float
 [Variable] Store float (9)
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'Really real REPEAT loop '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load float (2)
@@ -182,33 +182,11 @@
 [Variable] Compare > float
 [Branch  ] Jump on false: (2)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
 [Variable] Store integer (1)
-[Func    ] Call function: (0x1083292d0)
-[Variable] Load integer (1)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x1083292f0)
-[Func    ] Call function: (0x108329280)
-[Func    ] Call function: (0x1083292d0)
-[Variable] Load float (6)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 41000
-[Stack   ] Push integer Operand1
-[Variable] Load integer (1)
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Stack   ] Push float Operand1
-[Argument] Parameter is float
-[Func    ] Call function: (0x108329410)
-[Func    ] Call function: (0x108329280)
 [Variable] Load float (6)
 [Stack   ] Push float Operand1
 [Stack   ] Literal integer 41000
@@ -222,17 +200,17 @@
 [Maths   ] *, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'Integer REPEAT loop     '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load integer (3)
@@ -251,33 +229,11 @@
 [Variable] Compare > integer
 [Branch  ] Jump on false: (3)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
 [Variable] Store integer (1)
-[Func    ] Call function: (0x1083292d0)
-[Variable] Load integer (1)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x1083292f0)
-[Func    ] Call function: (0x108329280)
-[Func    ] Call function: (0x1083292d0)
-[Variable] Load float (6)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 23900
-[Stack   ] Push integer Operand1
-[Variable] Load integer (1)
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Stack   ] Push float Operand1
-[Argument] Parameter is float
-[Func    ] Call function: (0x108329410)
-[Func    ] Call function: (0x108329280)
 [Variable] Load float (6)
 [Stack   ] Push float Operand1
 [Stack   ] Literal integer 23900
@@ -291,18 +247,17 @@
 [Maths   ] *, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[General ] End
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'Really real FOR loop    '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load float (2)
@@ -346,7 +301,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (4)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -364,17 +319,17 @@
 [Maths   ] *, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'Integer FOR loop        '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load integer (3)
@@ -417,7 +372,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (5)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -435,15 +390,15 @@
 [Maths   ] *, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'Trig/Log test           '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Stack   ] Literal integer 0
 [Convert ] Operand1, integer to float
 [Maths   ] COS, float
@@ -457,17 +412,16 @@
 [Branch  ] Jump create (forward): (7)
 [Stack   ] Pop integer to Operand1
 [Branch  ] Jump on false (forward): (6)
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string '    <none>'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
-[Func    ] Call function: (0x108329280)
+[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x10049f2d0)
 [General ] Yield
 [Branch  ] Jump (forward): (7)
 [Branch  ] Jump destination: (6)
 [Branch  ] Jump destination: (7)
-[Proc    ] Return none, final:0
 [Stack   ] Literal integer 0
 [Convert ] Operand1, integer to float
 [Maths   ] COS, float
@@ -485,7 +439,7 @@
 [Convert ] Operand1, integer to float
 [Variable] Store float (12)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Stack   ] Literal integer 1
@@ -537,7 +491,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (10)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -555,19 +509,20 @@
 [Maths   ] *, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [Branch  ] Jump (forward): (9)
 [Branch  ] Jump destination: (8)
 [Branch  ] Jump destination: (9)
-[Func    ] Call function: (0x1083292d0)
+[Proc    ] Return none, final:0
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'String manipulation     '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Stack   ] Literal string 'STRINGMANIPULATIONTEST'
@@ -619,11 +574,11 @@
 [Maths   ] +, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Stack   ] Pop float to Operand1
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Argument] Parameter is string
 [Strings ] MID$
 [Stack   ] Push string Operand1
@@ -641,7 +596,7 @@
 [Maths   ] /, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Argument] Parameter is string
 [Strings ] RIGHT$
 [Stack   ] Push string Operand1
@@ -664,7 +619,7 @@
 [Stack   ] Pop float to Operand1
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Argument] Parameter is string
 [Strings ] MID$
 [Stack   ] Push string Operand1
@@ -682,7 +637,7 @@
 [Maths   ] /, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Argument] Parameter is string
 [Strings ] LEFT$
 [Stack   ] Push string Operand1
@@ -716,11 +671,11 @@
 [Maths   ] +, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Stack   ] Pop float to Operand1
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Argument] Parameter is string
 [Strings ] MID$
 [Stack   ] Push string Operand1
@@ -773,7 +728,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (11)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -791,17 +746,17 @@
 [Maths   ] *, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'Procedure call          '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Variable] Load integer (3)
@@ -838,7 +793,7 @@
 [Variable] Compare >= integer
 [Branch  ] Jump on true: (12)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
+[Func    ] Call function: (0x1004a2a70)
 [Variable] Load integer (1)
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
@@ -856,15 +811,15 @@
 [Maths   ] *, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
 [General ] Yield
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'Combined Average        '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Variable] Load integer (-1)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 7
@@ -874,26 +829,26 @@
 [Maths   ] /, float
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Argument] Parameter is float
+[Argument] Parameter is integer
 [Proc    ] PROC call: (3/p)
-[Func    ] Call function: (0x1083292d0)
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'Compared with a 2.00MHz BBC B'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
-[Func    ] Call function: (0x108329280)
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x10049f2d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string 'Press a key to return to the menu'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
-[Func    ] Call function: (0x108329280)
+[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x10049f2d0)
 [Argument] Return type is integer
 [Stack   ] Literal integer 5000
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10832d880)
+[Func    ] Call function: (0x1004a38d0)
 [General ] Yield
 [Proc    ] Return none, final:1
 [Proc    ] PROC end: (0)
@@ -951,27 +906,35 @@
 [Proc    ] PROC start: (3/p)
 [Variable] Local create integer (0)
 [Proc    ] Parameter integer, 0
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f320)
 [Argument] Parameter is integer
-[Func    ] Call function: (0x1083292f0)
+[Func    ] Call function: (0x10049f340)
 [Variable] Load integer (0)
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x1083292f0)
-[Func    ] Call function: (0x108329280)
-[Func    ] Call function: (0x1083292d0)
+[Func    ] Call function: (0x10049f340)
+[Func    ] Call function: (0x10049f2d0)
+[Func    ] Call function: (0x10049f320)
 [Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 100
-[Stack   ] Pop integer to Operand2
-[Maths   ] DIV, float
+[Convert ] Operand1, int to string
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x10049f2d0)
+[Func    ] Call function: (0x10049f320)
+[Variable] Load integer (0)
+[Convert ] Operand1, int to string
+[Stack   ] Push string Operand1
+[Stack   ] Literal integer 2
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x1083292f0)
-[Func    ] Call function: (0x108329280)
-[Func    ] Call function: (0x1083292d0)
-[Func    ] Call function: (0x108329280)
-[Func    ] Call function: (0x1083292d0)
+[Argument] Parameter is string
+[Strings ] RIGHT$
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x10049f2d0)
+[Func    ] Call function: (0x10049f320)
 [Stack   ] Literal string '     '
 [Stack   ] Push string Operand1
 [Variable] Load integer (0)
@@ -985,20 +948,20 @@
 [Stack   ] Pop string Operand2
 [Maths   ] +, string
 [Stack   ] Push string Operand1
-[Stack   ] Literal integer 9
+[Stack   ] Literal integer 15
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
 [Argument] Parameter is string
 [Strings ] RIGHT$
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Stack   ] Literal string '.'
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Stack   ] Literal string '0'
 [Stack   ] Push string Operand1
 [Variable] Load integer (0)
@@ -1014,14 +977,14 @@
 [Argument] Parameter is string
 [Strings ] RIGHT$
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x1083292e0)
+[Func    ] Call function: (0x10049f330)
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
+[Func    ] Call function: (0x10049f580)
 [Stack   ] Literal string 'MHz'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x108329530)
-[Func    ] Call function: (0x108329280)
+[Func    ] Call function: (0x10049f580)
+[Func    ] Call function: (0x10049f2d0)
 [Variable] Load integer (-1)
 [Stack   ] Push integer Operand1
 [Variable] Load integer (0)
@@ -1030,794 +993,3 @@
 [Variable] Store integer (-1)
 [Proc    ] Return none, final:1
 [Proc    ] PROC end: (3)
-[Proc    ] PROC start: (4/speed%)
-[Variable] Local create float (0)
-[Variable] Local create float (1)
-[Variable] Local create float (2)
-[Variable] Local create float (3)
-[Variable] Local create float (4)
-[Variable] Local create float (5)
-[Variable] Local create integer (6)
-[Variable] Local create integer (7)
-[Variable] Local create integer (8)
-[Variable] Local create integer (9)
-[Variable] Local create integer (10)
-[Variable] Local create integer (11)
-[Variable] Local create integer (12)
-[Variable] Local create integer (13)
-[Variable] Local create integer (14)
-[Variable] Local create integer (15)
-[Variable] Local create integer (16)
-[Variable] Local create integer (17)
-[Variable] Local create integer (18)
-[Variable] Local create integer (19)
-[Variable] Local create integer (20)
-[Variable] Local create integer (21)
-[Variable] Local create integer (22)
-[Variable] Local create integer (23)
-[Variable] Local create string (24)
-[Stack   ] Literal integer 0
-[Convert ] Operand1, integer to float
-[Variable] Store float (0)
-[Stack   ] Literal integer 1
-[Convert ] Operand1, integer to float
-[Variable] Store float (1)
-[Stack   ] Literal integer 100
-[Convert ] Operand1, integer to float
-[Variable] Store float (2)
-[Stack   ] Literal integer 510
-[Convert ] Operand1, integer to float
-[Variable] Store float (3)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Variable] Store float (4)
-[Stack   ] Literal integer 0
-[Convert ] Operand1, integer to float
-[Variable] Store float (5)
-[Stack   ] Literal integer 0
-[Variable] Store integer (6)
-[Stack   ] Literal integer 1
-[Variable] Store integer (7)
-[Stack   ] Literal integer 100
-[Variable] Store integer (8)
-[Stack   ] Literal integer 510
-[Variable] Store integer (9)
-[Stack   ] Literal integer 3
-[Variable] Store integer (10)
-[Stack   ] Literal integer 0
-[Variable] Store integer (11)
-[Stack   ] Literal integer 0
-[Variable] Store integer (12)
-[Stack   ] Literal integer 0
-[Variable] Store integer (13)
-[Stack   ] Literal integer 0
-[Variable] Store integer (14)
-[Stack   ] Literal integer 0
-[Variable] Store integer (15)
-[Stack   ] Literal integer 0
-[Variable] Store integer (16)
-[Stack   ] Literal integer 0
-[Variable] Store integer (17)
-[Stack   ] Literal integer 0
-[Variable] Store integer (18)
-[Stack   ] Literal integer 0
-[Variable] Store integer (19)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Stack   ] Pop integer to Operand1
-[Variable] Store integer (20)
-[Branch  ] Jump create: (17)
-[Variable] Load integer (6)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (6)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Variable] Load integer (20)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 50
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Pop integer to Operand2
-[Variable] Compare > integer
-[Branch  ] Jump on false: (17)
-[Variable] Load float (5)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 0.500000
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Variable] Store float (5)
-[Variable] Load float (2)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 0.500000
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Variable] Store float (2)
-[Variable] Load float (3)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 0.500000
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Variable] Store float (3)
-[Branch  ] Jump create: (18)
-[Variable] Load float (2)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 10
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Variable] Store float (2)
-[Variable] Load integer (8)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Maths   ] *, integer
-[Variable] Store integer (8)
-[Variable] Load float (3)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 10
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Variable] Store float (3)
-[Variable] Load integer (9)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Maths   ] *, integer
-[Variable] Store integer (9)
-[Variable] Load integer (10)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Maths   ] *, integer
-[Variable] Store integer (10)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 10
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Variable] Store float (4)
-[Variable] Load integer (6)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Maths   ] DIV, float
-[Variable] Store integer (6)
-[Variable] Load integer (6)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 50
-[Stack   ] Pop integer to Operand2
-[Variable] Compare < integer
-[Branch  ] Jump on false: (18)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Stack   ] Pop integer to Operand1
-[Variable] Store integer (20)
-[Variable] Load float (5)
-[Variable] Store float (0)
-[Branch  ] Jump create: (19)
-[Variable] Load float (0)
-[Stack   ] Push float Operand1
-[Variable] Load float (1)
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Variable] Store float (0)
-[Variable] Load float (0)
-[Stack   ] Push float Operand1
-[Variable] Load float (2)
-[Stack   ] Pop float to Operand2
-[Variable] Compare > float
-[Branch  ] Jump on false: (19)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Maths   ] -, integer
-[Variable] Store integer (20)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 41000
-[Stack   ] Push integer Operand1
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (14)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Stack   ] Pop integer to Operand1
-[Variable] Store integer (20)
-[Variable] Load integer (19)
-[Variable] Store integer (6)
-[Branch  ] Jump create: (20)
-[Variable] Load integer (6)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (6)
-[Variable] Load integer (6)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (8)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare > integer
-[Branch  ] Jump on false: (20)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Maths   ] -, integer
-[Variable] Store integer (20)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 23900
-[Stack   ] Push integer Operand1
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (15)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Stack   ] Pop integer to Operand1
-[Variable] Store integer (20)
-[Variable] Load float (5)
-[Variable] Store float (0)
-[Stack   ] Push float Operand1
-[Variable] Load float (3)
-[Operand ] Float operand 1 to 2
-[Stack   ] Pop float to Operand1
-[Maths   ] -, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (1)
-[Variable] Load float (1)
-[Variable] Store float (2)
-[Variable] Load float (2)
-[Stack   ] Push float Operand1
-[Variable] Load float (1)
-[Operand ] Float operand 1 to 2
-[Stack   ] Pop float to Operand1
-[Maths   ] /, float
-[Variable] Store float (1)
-[Branch  ] Jump create: (21)
-[Variable] Load float (2)
-[Stack   ] Push float Operand1
-[Variable] Load float (0)
-[Operand ] Float operand 1 to 2
-[Stack   ] Pop float to Operand1
-[Maths   ] +, float
-[Variable] Store float (0)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (1)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (1)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (1)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (21)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Maths   ] -, integer
-[Variable] Store integer (20)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 51200
-[Stack   ] Push integer Operand1
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (16)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Stack   ] Pop integer to Operand1
-[Variable] Store integer (20)
-[Variable] Load integer (19)
-[Variable] Store integer (6)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (9)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (7)
-[Variable] Load integer (7)
-[Variable] Store integer (8)
-[Variable] Load integer (8)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] DIV, float
-[Variable] Store integer (7)
-[Branch  ] Jump create: (22)
-[Variable] Load integer (8)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (6)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] +, integer
-[Variable] Store integer (6)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (7)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (22)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Maths   ] -, integer
-[Variable] Store integer (20)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 17800
-[Stack   ] Push integer Operand1
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (17)
-[Variable] Load integer (17)
-[Variable] Store integer (18)
-[Stack   ] Literal integer 0
-[Convert ] Operand1, integer to float
-[Maths   ] COS, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 0
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Variable] Compare <> float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (23)
-[Branch  ] Jump create (forward): (24)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (23)
-[Stack   ] Literal integer 1
-[Convert ] Operand1, integer to float
-[Variable] Store float (0)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Stack   ] Pop integer to Operand1
-[Variable] Store integer (20)
-[Stack   ] Literal integer 1
-[Variable] Store integer (21)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (10)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (22)
-[Stack   ] Literal integer 1
-[Variable] Store integer (23)
-[Branch  ] Jump create: (25)
-[Variable] Load float (0)
-[Stack   ] Push float Operand1
-[Variable] Load float (0)
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Maths   ] SQR, float
-[Maths   ] LN, float
-[Maths   ] LOG, float
-[Maths   ] ATN, float
-[Maths   ] TAN, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 1
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Variable] Store float (0)
-[Variable] Load integer (23)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (21)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] +, integer
-[Variable] Store integer (21)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (22)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (22)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (22)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (25)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Maths   ] -, integer
-[Variable] Store integer (20)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 68800
-[Stack   ] Push integer Operand1
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (18)
-[Branch  ] Jump (forward): (24)
-[Branch  ] Jump destination: (23)
-[Branch  ] Jump destination: (24)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Stack   ] Pop integer to Operand1
-[Variable] Store integer (20)
-[Stack   ] Literal string 'STRINGMANIPULATIONTEST'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (24)
-[Stack   ] Literal integer 0
-[Variable] Store integer (6)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (10)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Maths   ] *, integer
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (7)
-[Stack   ] Literal integer 1
-[Variable] Store integer (8)
-[Branch  ] Jump create: (26)
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] LEN
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Push float Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] LEN
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 1
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Argument] Parameter is float
-[Stack   ] Pop float to Operand1
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Argument] Parameter is float
-[Argument] Parameter is string
-[Strings ] MID$
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] LEN
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Argument] Parameter is float
-[Argument] Parameter is string
-[Strings ] RIGHT$
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] LEN
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Stack   ] Pop float to Operand1
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Argument] Parameter is float
-[Argument] Parameter is string
-[Strings ] MID$
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] LEN
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Argument] Parameter is float
-[Argument] Parameter is string
-[Strings ] LEFT$
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] LEN
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Push float Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] LEN
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 1
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Argument] Parameter is float
-[Stack   ] Pop float to Operand1
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Argument] Parameter is float
-[Argument] Parameter is string
-[Strings ] MID$
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Maths   ] +, string
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Maths   ] +, string
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Maths   ] +, string
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Maths   ] +, string
-[Stack   ] Push string Operand1
-[Variable] Load string (24)
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] LEN
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Argument] Parameter is string
-[Strings ] RIGHT$
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (24)
-[Variable] Load integer (8)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (6)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] +, integer
-[Variable] Store integer (6)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (7)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (26)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Maths   ] -, integer
-[Variable] Store integer (20)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 72750
-[Stack   ] Push integer Operand1
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (13)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Stack   ] Pop integer to Operand1
-[Variable] Store integer (20)
-[Variable] Load integer (19)
-[Variable] Store integer (6)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (9)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (7)
-[Stack   ] Literal integer 1
-[Variable] Store integer (8)
-[Branch  ] Jump create: (27)
-[Proc    ] PROC call: (2/test)
-[Variable] Load integer (8)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (6)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] +, integer
-[Variable] Store integer (6)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (7)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (27)
-[Argument] Return type is integer
-[Func    ] Call function: (0x10832ca20)
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Maths   ] -, integer
-[Variable] Store integer (20)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 80500
-[Stack   ] Push integer Operand1
-[Variable] Load integer (20)
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (12)
-[Variable] Load integer (11)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (12)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (13)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (14)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (15)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (16)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (17)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (18)
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 78
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Convert ] Operand1, integer to float
-[Convert ] Operand2, integer to float
-[Maths   ] /, float
-[Operand ] Float operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Convert ] Operand1, integer to float
-[Stack   ] Push float Operand1
-[Operand ] Float operand 2 to 1
-[Stack   ] Pop float to Operand2
-[Maths   ] /, float
-[Convert ] Operand1, float to integer
-[Proc    ] Return integer, final:0
-[Stack   ] Literal integer 0
-[Proc    ] Return integer, final:1
-[Proc    ] PROC end: (4)
