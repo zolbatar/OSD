@@ -199,7 +199,3 @@ enum class TokenType {
 	PI
 };
 
-struct TokenDef {
-	std::string name;
-	TokenType type;
-};

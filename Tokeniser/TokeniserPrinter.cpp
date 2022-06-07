@@ -133,7 +133,9 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 			sprintf(m, "NEXT %lld", token->index);
 			break;
 		case TokenType::CONST:
-			if (token->vtype.IsInteger())
+			if (token->vtype.IsNone())
+				sprintf(m, "Constant");
+			else if (token->vtype.IsInteger())
 				sprintf(m, "Integer constant '%s'=%lld", token->name.c_str(), token->integer);
 			else if (token->vtype.IsFloat())
 				sprintf(m, "Float constant '%s'=%f", token->name.c_str(), token->real);
@@ -262,6 +264,7 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 				sprintf(m, "%c", (char)token->type);
 			}
 			else {
+#ifdef CLION
 				auto kw = keyword_lookup.find(token->type);
 				if (kw!=keyword_lookup.end()) {
 					sprintf(m, "%s", kw->second.name.c_str());
@@ -269,6 +272,9 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 				else {
 					sprintf(m, "Unknown: %d", (int)token->type);
 				}
+#else
+				assert(0);
+#endif
 			}
 			break;
 	}

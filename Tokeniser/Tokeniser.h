@@ -19,6 +19,17 @@ enum class TokeniserState {
 	REM
 };
 
+struct TokenDef {
+	std::string name;
+	TokenType type;
+};
+
+class Leaf {
+public:
+	TokenDef token { "", TokenType::NONE};
+	std::map<char, Leaf> leaves;
+};
+
 struct Token {
 	// Type
 	TokenType type = TokenType::NONE;
@@ -53,7 +64,9 @@ struct Token {
 
 class Tokeniser {
 public:
-	Tokeniser(std::string filename, std::istream* stream);
+	Tokeniser(std::string filename, std::istream* stream)
+			:filename(filename), stream(stream) { }
+	static void Init();
 	void Parse();
 
 	std::list<Token>* Tokens()
@@ -66,12 +79,12 @@ public:
 
 private:
 	void PrintToken(Token* token, int depth, std::list<std::string>* output);
-	void AddKeyword(TokenDef def);
+	static void AddKeyword(TokenDef def);
 	void EndOfToken();
 	void CreateTokenAndAdd(TokenType type);
 	void Error(std::string error);
 	void NewLine();
-	bool KeywordCheck(bool complete);
+	bool KeywordCheck(bool complete, bool ignore = false);
 
 	Token CreateToken()
 	{
@@ -99,9 +112,12 @@ private:
 	std::string search;
 	TokeniserState state = TokeniserState::NONE;
 	std::list<Token> tokens;
-	std::list<TokenDef*> current_match_list;
+	Leaf* keyword_tree = &root;
 
-	std::map<char, std::list<TokenDef>> keywords;
-	std::map<TokenType, TokenDef> keyword_lookup;
-	std::map<std::string, TokenType> symbols;
+	static Leaf root;
+#ifdef CLION
+	static std::map<TokenType, TokenDef> keyword_lookup;
+#endif
+	static std::map<std::string, TokenType> symbols;
+	static std::list<TokenDef> tokendefs;
 };

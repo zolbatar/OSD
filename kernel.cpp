@@ -13,6 +13,7 @@
 #include "Tasks/FontManager/FontManager.h"
 #include "Tasks/WindowManager/WindowManager.h"
 #include "Tasks/DARICWindow.h"
+#include "Tokeniser/Tokeniser.h"
 
 size_t kernel_size = 0;
 size_t initial_mem_free = 0;
@@ -78,6 +79,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	// Init clock and input stuff
 	OS_Init();
 	ClockInit();
+	Tokeniser::Init();
 
 	/*	CString IPString;
 	mNet.GetConfig()->GetIPAddress()->Format(&IPString);

@@ -6,6 +6,7 @@
 #include "../Tasks/DARICWindow.h"
 #include "../Chrono/Chrono.h"
 #include "../Tasks/FontManager/FontManager.h"
+#include "../Tokeniser/Tokeniser.h"
 
 extern int ScreenWidth;
 extern int ScreenHeight;
@@ -32,6 +33,7 @@ int main()
 {
 	OS_Init();
 	ClockInit();
+	Tokeniser::Init();
 
 	// What to run?
 	Benchmark();

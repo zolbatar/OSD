@@ -3,14 +3,14 @@
 #include <iterator>
 #include "../Exception/DARICException.h"
 
-Tokeniser::Tokeniser(std::string filename, std::istream* stream)
-		:filename(filename), stream(stream)
-{
-	// Add for each letter
-	for (char c = 'A'; c<='Z'; c++) {
-		keywords.insert(std::make_pair(c, std::list<TokenDef>()));
-	}
+Leaf Tokeniser::root;
+#ifdef CLION
+std::map<TokenType, TokenDef> Tokeniser::keyword_lookup;
+#endif
+std::map<std::string, TokenType> Tokeniser::symbols;
 
+void Tokeniser::Init()
+{
 	// Symbols
 	symbols.insert(std::make_pair("=", TokenType::EQUAL));
 	symbols.insert(std::make_pair("~", TokenType::TILDE));
@@ -50,12 +50,14 @@ Tokeniser::Tokeniser(std::string filename, std::istream* stream)
 	symbols.insert(std::make_pair(">>=", TokenType::SHIFT_RIGHT_EQUAL));
 
 	// Add symbols to reverse lookup
+#ifdef CLION
 	for (auto& s: symbols) {
 		TokenDef def;
 		def.type = s.second;
 		def.name = s.first;
 		keyword_lookup.insert(std::make_pair(def.type, def));
 	}
+#endif
 
 	// Standard
 	AddKeyword(TokenDef{ "CASE", TokenType::CASE });
@@ -201,9 +203,31 @@ Tokeniser::Tokeniser(std::string filename, std::istream* stream)
 
 void Tokeniser::AddKeyword(TokenDef def)
 {
-	keyword_lookup.insert(std::make_pair(def.type, def));
-	char c = def.name[0];
-	keywords.find(c)->second.push_back(std::move(def));
+	// Start at the top
+	Leaf* start = &root;
+	auto name = def.name;
+	while (name.length()>0) {
+		auto c = name[0];
+
+		// Key?
+		auto f = start->leaves.find(c);
+		if (f==start->leaves.end()) {
+			start->leaves.insert(std::make_pair(c, Leaf()));
+			f = start->leaves.find(c);
+		}
+
+		// Next level
+		start = &f->second;
+
+		// Remainder
+		name = name.substr(1);
+	}
+
+	// Add to end
+	start->token = def;
+#ifdef CLION
+	keyword_lookup.insert(std::make_pair(def.type, std::move(def)));
+#endif
 }
 
 void Tokeniser::Parse()
@@ -214,7 +238,7 @@ void Tokeniser::Parse()
 	search = "";
 	state = TokeniserState::NONE;
 	tokens.clear();
-	current_match_list.clear();
+	keyword_tree = &root;
 
 	// So, we simply keep reading characters and let the tokeniser convert these into tokens
 	char c;

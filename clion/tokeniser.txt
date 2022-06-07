@@ -1,4 +1,4 @@
-Line    1:  1 [289]: ÐPE¾÷
+Line    1:  1 [289]: Constant
 Line    1:  7 [264]: Identifier integer 'const%'
 Line    1: 13 [ 61]: =
 Line    1: 14 [269]: Integer 100
@@ -1161,7 +1161,7 @@ Line  157:  9 [264]: Identifier integer 'I%'
 Line  157: 12 [ 43]: +
 Line  157: 14 [269]: Integer 1
 Line  157: 15 [257]: Newline
-Line  158:  3 [314]: NEXT 105553169079537
+Line  158:  3 [314]: NEXT 0
 Line  158:  7 [257]: Newline
 Line  159:  3 [317]: PRINT
 Line  159:  9 [271]: String 'FOR (Int)          = '
@@ -1198,7 +1198,7 @@ Line  162:  9 [264]: Identifier integer 'I%'
 Line  162: 12 [ 43]: +
 Line  162: 14 [269]: Integer 1
 Line  162: 15 [257]: Newline
-Line  163:  3 [314]: NEXT 105553169079537
+Line  163:  3 [314]: NEXT 0
 Line  163:  7 [257]: Newline
 Line  164:  3 [317]: PRINT
 Line  164:  9 [271]: String 'FOR + Step (Int)   = '
@@ -1235,7 +1235,7 @@ Line  167:  9 [264]: Identifier integer 'I%'
 Line  167: 12 [ 43]: +
 Line  167: 14 [269]: Integer 1
 Line  167: 15 [257]: Newline
-Line  168:  3 [314]: NEXT 105553169079537
+Line  168:  3 [314]: NEXT 0
 Line  168:  7 [257]: Newline
 Line  169:  3 [317]: PRINT
 Line  169:  9 [271]: String 'FOR - (Int)        = '
@@ -1270,7 +1270,7 @@ Line  172:  9 [264]: Identifier integer 'I%'
 Line  172: 12 [ 43]: +
 Line  172: 14 [269]: Integer 1
 Line  172: 15 [257]: Newline
-Line  173:  3 [314]: NEXT 105553169079537
+Line  173:  3 [314]: NEXT 0
 Line  173:  7 [257]: Newline
 Line  174:  3 [317]: PRINT
 Line  174:  9 [271]: String 'FOR (Float)        = '
@@ -1307,7 +1307,7 @@ Line  177:  9 [264]: Identifier integer 'I%'
 Line  177: 12 [ 43]: +
 Line  177: 14 [269]: Integer 1
 Line  177: 15 [257]: Newline
-Line  178:  3 [314]: NEXT 105553169079537
+Line  178:  3 [314]: NEXT 0
 Line  178:  7 [257]: Newline
 Line  179:  3 [317]: PRINT
 Line  179:  9 [271]: String 'FOR + Step (Float) = '

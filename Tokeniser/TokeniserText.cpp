@@ -64,7 +64,7 @@ void Tokeniser::HandleText(const char& c)
 	else {
 		if (c=='\n')
 			NewLine();
-		if (KeywordCheck(true)) {
+		if (KeywordCheck(true, true)) {
 			if (c!='\n')
 				HandleCharacter(c);
 			return;
@@ -79,41 +79,40 @@ void Tokeniser::HandleText(const char& c)
 	}
 }
 
-bool Tokeniser::KeywordCheck(bool complete)
+bool Tokeniser::KeywordCheck(bool complete, bool ignore)
 {
 	// If fresh search, clean the match list
 	if (search.length()==1) {
-		current_match_list.clear();
-		char c = search[0];
-		auto kw = keywords.find(c);
-		if (kw!=keywords.end()) {
-			for (auto it = kw->second.begin(); it!=kw->second.end(); ++it) {
-				current_match_list.push_back(&*it);
-			}
-		}
+		keyword_tree = &root;
+	}
+	else if (keyword_tree==nullptr) {
+		return false;
 	}
 
-	// If this is completed, do exact match
+	// Scan and find
+	if (!ignore) {
+		char c = search.back();
+		auto f = keyword_tree->leaves.find(c);
+		if (f==keyword_tree->leaves.end()) {
+			// Can't find
+			keyword_tree = nullptr;
+			return false;
+		}
+		keyword_tree = &f->second;
+	}
+
+	// Complete?
 	if (complete) {
-		for (auto it = current_match_list.begin(); it!=current_match_list.end(); ++it) {
-			if (search.compare((*it)->name)==0) {
-				CreateTokenAndAdd((*it)->type);
-				return true;
-			}
-		}
-	}
-	else {
-		if (search.length()>1) {
-			current_match_list.remove_if([&](const TokenDef* x) -> bool {
-				return x->name.substr(0, search.length()).compare(search);
-			});
-		}
-
-		// Do we have one match, if so, check it's an exact match
-		if (current_match_list.size()==1 && current_match_list.front()->name.compare(search)==0) {
-			CreateTokenAndAdd(current_match_list.front()->type);
+		if (keyword_tree->token.type!=TokenType::NONE) {
+			CreateTokenAndAdd(keyword_tree->token.type);
 			return true;
 		}
+	}
+
+	// Do we have a match?
+	if (keyword_tree->token.type!=TokenType::NONE && keyword_tree->leaves.empty()) {
+		CreateTokenAndAdd(keyword_tree->token.type);
+		return true;
 	}
 
 	return false;

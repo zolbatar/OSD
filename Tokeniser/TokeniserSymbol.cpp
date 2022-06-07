@@ -2,16 +2,6 @@
 
 void Tokeniser::HandleSymbol(const char& c)
 {
-	/*if ((c=='-' && search.length()==1 && search[0]=='-') ||
-			(c=='-' && search.length()==1 && search[0]=='+') ||
-			(c=='+' && search.length()==1 && search[0]=='-') ||
-			(c=='+' && search.length()==1 && search[0]=='+')) {
-		// Binary followed by unary minus
-		auto found = symbols.find(search);
-		CreateTokenAndAdd((*found).second);
-		HandleCharacter(c);
-	}
-	else */
 	if (std::isalnum(c) || c==' ' || c=='\n' || c==':') {
 		// If this is alphanumeric it's probably end of token
 		auto found = symbols.find(search);
