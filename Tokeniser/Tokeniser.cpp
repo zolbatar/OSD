@@ -1,10 +1,10 @@
 #include "Tokeniser.h"
 #include <algorithm>
-#include <iostream>
 #include <iterator>
 #include "../Exception/DARICException.h"
 
-Tokeniser::Tokeniser()
+Tokeniser::Tokeniser(std::string filename, std::istream* stream)
+		:filename(filename), stream(stream)
 {
 	// Add for each letter
 	for (char c = 'A'; c<='Z'; c++) {
@@ -206,9 +206,8 @@ void Tokeniser::AddKeyword(TokenDef def)
 	keywords.find(c)->second.push_back(std::move(def));
 }
 
-void Tokeniser::Parse(std::string filename, std::string in)
+void Tokeniser::Parse()
 {
-	this->filename = filename;
 	file_number = 0;
 	line_number = 1;
 	char_number = 1;
@@ -218,7 +217,8 @@ void Tokeniser::Parse(std::string filename, std::string in)
 	current_match_list.clear();
 
 	// So, we simply keep reading characters and let the tokeniser convert these into tokens
-	for (char c: in) {
+	char c;
+	while (stream->get(c)) {
 		HandleCharacter(c);
 		char_number++;
 	}

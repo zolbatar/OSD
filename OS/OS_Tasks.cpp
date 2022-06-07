@@ -1,6 +1,7 @@
 #include "OS.h"
 #include <iostream>
 #include "../Tasks/WindowManager/WindowManager.h"
+#include "../Library/StringLib.h"
 
 #ifdef CLION
 
@@ -216,7 +217,8 @@ void OSDTask::MakeStringPermanent(int64_t idx)
 	permanent_strings.insert(std::move(f));
 }
 
-void OSDTask::SetConstantString(int64_t idx) {
+void OSDTask::SetConstantString(int64_t idx)
+{
 	constant_strings.insert(idx);
 }
 
@@ -344,16 +346,47 @@ OSDTask* OSDTask::GetTask(const char* s)
 #endif
 }
 
-void OSDTask::CompileSource(std::string code)
+std::ifstream OSDTask::LoadSource(std::string filename)
+{
+	std::vector<std::string> lines;
+
+	// Quick and dirty file stuff until we have a proper file manager
+#ifndef CLION
+	replace(filename, ":SD.$.Welcome.", "/osd/Welcome/");
+#else
+	replace(filename, ":SD.$.Welcome.", "/Users/daryl/GitHub/osd/Applications/");
+#endif
+
+// Open and check exists
+	std::ifstream in(filename);
+	if (!in.is_open()) {
+#ifndef CLION
+		CLogger::Get()->Write("DARICWindow", LogDebug, "Error opening source file: %s", filename.c_str());
+#else
+		printf("Error opening source file\n");
+#endif
+		assert(0);
+	}
+
+	return in;
+}
+
+void OSDTask::CompileSource(std::string filename, std::ifstream* stream)
 {
 	const bool debug_output = true;
-	Tokeniser token;
+	Tokeniser token(filename, stream);
 	Parser parser;
+	double total_time_span = 0;
 	try {
 		// Tokens
 #ifdef CLION
 		auto t1 = std::chrono::system_clock::now();
-		token.Parse("[Interactive]", code);
+		token.Parse();
+		auto t2 = std::chrono::system_clock::now();
+		double time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
+		time_span /= 1000.0;
+		total_time_span += time_span;
+		printf("Tokeniser: %f millis\n", time_span);
 		if (debug_output) {
 			std::list<std::string> tokens;
 			token.PrintTokens(token.Tokens(), 0, &tokens);
@@ -364,11 +397,13 @@ void OSDTask::CompileSource(std::string code)
 			tokens_out.close();
 		}
 #endif
+		t1 = std::chrono::system_clock::now();
 		parser.Parse(true, token.Tokens());
 #ifdef CLION
-		auto t2 = std::chrono::system_clock::now();
-		double time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
+		t2 = std::chrono::system_clock::now();
+		time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
 		time_span /= 1000.0;
+		total_time_span += time_span;
 		printf("Parser: %f millis\n", time_span);
 		if (debug_output) {
 			std::list<std::string> tokens;
@@ -391,6 +426,7 @@ void OSDTask::CompileSource(std::string code)
 		t2 = std::chrono::system_clock::now();
 		time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
 		time_span /= 1000.0;
+		total_time_span += time_span;
 		printf("IR Compiler: %f millis\n", time_span);
 #endif
 #ifdef CLION
@@ -416,6 +452,7 @@ void OSDTask::CompileSource(std::string code)
 		t2 = std::chrono::system_clock::now();
 		time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
 		time_span /= 1000.0;
+		total_time_span += time_span;
 		printf("Native Compiler: %f millis\n", time_span);
 #endif
 #ifdef CLION
@@ -446,11 +483,14 @@ void OSDTask::CompileSource(std::string code)
 				break;
 		}
 #ifdef CLION
-		printf("%s at line %d, column %d", ex.error.c_str(), ex.line_number, ex.char_position);
+		printf("%s at line %d, column %d\n", ex.error.c_str(), ex.line_number, ex.char_position);
 #else
 		CLogger::Get()->Write("CompileSource", LogPanic, "%s at line %d, column %d", ex.error.c_str(), ex.line_number, ex.char_position);
 #endif
 	}
+#ifdef CLION
+	printf("Total: %f millis\n", total_time_span);
+#endif
 }
 
 void OSDTask::Yield()

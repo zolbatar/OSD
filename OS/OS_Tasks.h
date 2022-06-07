@@ -105,7 +105,8 @@ public:
 
 #endif
 
-	void CompileSource(std::string code);
+	std::ifstream LoadSource(std::string filename);
+	void CompileSource(std::string filename, std::ifstream* stream);
 	void RunCode();
 	void AddDataElement(DataElement de);
 	DataElement* GetDataElement();
@@ -203,6 +204,11 @@ public:
 	static CTask *boot_task;
 #endif
 	TaskType type = TaskType::Unknown;
+
+	void SetID(std::string id)
+	{
+		this->id = id;
+	}
 protected:
 #ifdef CLION
 	static std::mutex vlgl_mutex;

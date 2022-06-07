@@ -8,6 +8,7 @@
 #include <vector>
 #include <vector>
 #include "Types.h"
+#include <istream>
 
 enum class TokeniserState {
 	NONE,
@@ -52,8 +53,8 @@ struct Token {
 
 class Tokeniser {
 public:
-	Tokeniser();
-	void Parse(std::string filename, std::string in);
+	Tokeniser(std::string filename, std::istream* stream);
+	void Parse();
 
 	std::list<Token>* Tokens()
 	{
@@ -90,6 +91,7 @@ private:
 	void HandleString(const char& c);
 
 	std::string filename;
+	std::istream* stream;
 	int file_number = 0;
 	int char_number = 1;
 	int token_char_number;
@@ -97,7 +99,7 @@ private:
 	std::string search;
 	TokeniserState state = TokeniserState::NONE;
 	std::list<Token> tokens;
-	std::list<TokenDef> current_match_list;
+	std::list<TokenDef*> current_match_list;
 
 	std::map<char, std::list<TokenDef>> keywords;
 	std::map<TokenType, TokenDef> keyword_lookup;

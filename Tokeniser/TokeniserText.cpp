@@ -81,18 +81,14 @@ void Tokeniser::HandleText(const char& c)
 
 bool Tokeniser::KeywordCheck(bool complete)
 {
-	// Create upper case version
-	std::string upper_search = search;
-	char c = upper_search[0];
-//    std::transform(upper_search.begin(), upper_search.end(), upper_search.begin(), ::toupper);
-
 	// If fresh search, clean the match list
 	if (search.length()==1) {
 		current_match_list.clear();
+		char c = search[0];
 		auto kw = keywords.find(c);
 		if (kw!=keywords.end()) {
 			for (auto it = kw->second.begin(); it!=kw->second.end(); ++it) {
-				current_match_list.push_back(*it);
+				current_match_list.push_back(&*it);
 			}
 		}
 	}
@@ -100,22 +96,22 @@ bool Tokeniser::KeywordCheck(bool complete)
 	// If this is completed, do exact match
 	if (complete) {
 		for (auto it = current_match_list.begin(); it!=current_match_list.end(); ++it) {
-			if (upper_search.compare((*it).name)==0) {
-				CreateTokenAndAdd((*it).type);
+			if (search.compare((*it)->name)==0) {
+				CreateTokenAndAdd((*it)->type);
 				return true;
 			}
 		}
 	}
 	else {
-		if (upper_search.length()>1) {
-			current_match_list.remove_if([&](const TokenDef& x) -> bool {
-				return x.name.substr(0, upper_search.length()).compare(upper_search);
+		if (search.length()>1) {
+			current_match_list.remove_if([&](const TokenDef* x) -> bool {
+				return x->name.substr(0, search.length()).compare(search);
 			});
 		}
 
 		// Do we have one match, if so, check it's an exact match
-		if (current_match_list.size()==1 && current_match_list.front().name.compare(upper_search)==0) {
-			CreateTokenAndAdd(current_match_list.front().type);
+		if (current_match_list.size()==1 && current_match_list.front()->name.compare(search)==0) {
+			CreateTokenAndAdd(current_match_list.front()->type);
 			return true;
 		}
 	}

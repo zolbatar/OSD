@@ -2,7 +2,6 @@
 #include <memory.h>
 #include <string.h>
 #include <fstream>
-#include "../Library/StringLib.h"
 
 DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, int h)
 {
@@ -23,43 +22,14 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 void DARICWindow::SetSourceCode(std::string code)
 {
 	task_override = this;
-	this->code = code;
+//	this->code = code;
 	task_override = NULL;
 }
 
 void DARICWindow::LoadSourceCode(std::string filename)
 {
 	task_override = this;
-	std::vector<std::string> lines;
-
-	// Quick and dirty file stuff until we have a proper file manager
-#ifndef CLION
-	replace(filename, ":SD.$.Welcome.", "/osd/Welcome/");
-#else
-	replace(filename, ":SD.$.Welcome.", "/Users/daryl/GitHub/osd/Applications/");
-#endif
-
-	// Open and check exists
-	std::ifstream in(filename);
-	if (!in.is_open()) {
-#ifndef CLION
-		CLogger::Get()->Write("DARICWindow", LogDebug, "Error opening source file: %s", filename.c_str());
-#else
-		printf("Error opening source file\n");
-#endif
-		assert(0);
-	}
-
-	// Read all lines
-	std::string line;
-	while (std::getline(in, line)) {
-		lines.push_back(line);
-	}
-
-	//  Concatenate
-	std::string s;
-	for (const auto& line : lines) s += line+'\n';
-	this->code = s;
+//	this->code = this->LoadSource(filename);
 	task_override = NULL;
 }
 
@@ -90,9 +60,9 @@ void DARICWindow::Run()
 	while (w==NULL);
 
 	// Compile (and run)
-	CompileSource(code);
-	code = "";
-	RunCode();
+//	CompileSource(code);
+//	code = "";
+//	RunCode();
 
 	TerminateTask();
 }

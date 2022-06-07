@@ -26,21 +26,25 @@ public:
     }
 
     void Integer() {
+    	is_none = false;
         is_standard = true;
         standard = ValueType::Integer;
     }
 
     void Float() {
+    	is_none = false;
         is_standard = true;
         standard = ValueType::Float;
     }
 
     void String() {
+    	is_none = false;
         is_standard = true;
         standard = ValueType::String;
     }
 
     void Struct(Type *type) {
+    	is_none = false;
         is_type = true;
         this->type = type;
     }
@@ -69,7 +73,7 @@ public:
 
 private:
     bool is_standard = false;
-    bool is_none = false;
+    bool is_none = true;
     bool is_type = false;
     ValueType standard;
     struct Type *type;

@@ -11,7 +11,4 @@ public:
 	void Run();
 	void LoadSourceCode(std::string filename);
 	void SetSourceCode(std::string code);
-private:
-	std::string code;
-
 };
