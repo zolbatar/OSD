@@ -97,7 +97,7 @@ private:
 
     void Init_AddIR(IROpcodes type);
     void AddIR(IROpcodes type);
-    void AddIRWithAddress(IROpcodes type, void *func);
+    void AddIRWithAddress(IROpcodes type, void *func, std::string name);
     void AddIRWithIndex(IROpcodes type, int64_t index);
     void AddIRWithIntegerLiteral(IROpcodes type, int64_t v);
     void AddIRWithFloatLiteral(IROpcodes type, double v);

@@ -143,7 +143,11 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 				sprintf(m, "String constant '%s'='%s'", token->name.c_str(), token->text.c_str());
 			break;
 		case TokenType::DEF:
-			sprintf(m, "DEF '%s'", token->text.c_str());
+			if (token->text.length() > 0) {
+				sprintf(m, "DEF '%s'", token->text.c_str());
+			} else {
+				sprintf(m, "DEF");
+			}
 			break;
 		case TokenType::CONSTANT:
 			sprintf(m, "Constant '%s'", token->name.c_str());

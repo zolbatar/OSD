@@ -13,12 +13,6 @@ extern int ScreenHeight;
 size_t kernel_size = 0;
 size_t pre_boot_memory = 0;
 
-//Tokeniser: 9.459000 millis
-//Parser: 3.370000 millis
-//IR Compiler: 2.258000 millis
-//Native Compiler: 6.169000 millis
-//Total: 21.793 millis
-
 void Benchmark()
 {
 	OSDTask task;
@@ -36,11 +30,10 @@ int main()
 	Tokeniser::Init();
 
 	// What to run?
-	Benchmark();
-/*    auto fm = NEW FontManager();
+    auto fm = NEW FontManager();
     fm->InitFonts();
     auto gui = NEW WindowManager();
     gui->Start();
-    gui->WaitForTermination();*/
+    gui->WaitForTermination();
 	return 0;
 }

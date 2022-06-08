@@ -1,7 +1,4 @@
 TTAL%=0
-PRINT 1844674407370955161
-PRINT 1844674407370955161
-PRINT 1844674407370955161
 Clock3()
 END
 
@@ -9,46 +6,27 @@ DEFClock3()
 CLS:TTAL%=0
 REM > ClockSp 3.00 (RTR)
 REM Calculate CPU clock speed
-PRINT"BBC BASIC CPU Timing Program":YIELD
+PRINT"BBC BASIC CPU Timing Program"
 A%=0:T%=TIME:REPEAT:A%=A%+1:UNTILTIME>T%+50
 Z#=0:Z%=0:B#=1.0:B%=1:F#=1/10:C#=100:C%=100:D#=510:D%=510:F%=3
 REPEAT:C#=C#*10:C%=C%*10:D#=D#*10:D%=D%*10:F%=F%*10:F#=F#*10:A%=A%DIV10:UNTILA%<50
 Z#=Z#+0.5:C#=C#+0.5:D#=D#+0.5
-PRINT "Really real REPEAT loop ";:T%=TIME:A#=Z#:REPEAT:A#=A#+B#:UNTILA#>C#:T%=TIME-T%:p(F#*41000/T%):YIELD
-PRINT "Integer REPEAT loop     ";:T%=TIME:A%=Z%:REPEAT:A%=A%+B%:UNTILA%>C%:T%=TIME-T%:p(F#*23900/T%):YIELD
-PRINT "Really real FOR loop    ";:T%=TIME:FOR A#=Z#TOD#STEPB#:NEXT:T%=TIME-T%:p(F#*51200/T%):YIELD
-PRINT "Integer FOR loop        ";:T%=TIME:FOR A%=Z%TOD%STEPB%:NEXT:T%=TIME-T%:p(F#*17800/T%):YIELD
-PRINT "Trig/Log test           ";:IF COS0=0:PRINT "    <none>":YIELD
+PRINT "Really real REPEAT loop ";:T%=TIME:A#=Z#:REPEAT:A#=A#+B#:UNTILA#>C#:T%=TIME-T%:p(F#*41000/T%)
+PRINT "Integer REPEAT loop     ";:T%=TIME:A%=Z%:REPEAT:A%=A%+B%:UNTILA%>C%:T%=TIME-T%:p(F#*23900/T%)
+PRINT "Really real FOR loop    ";:T%=TIME:FOR A#=Z#TOD#STEPB#:NEXT:T%=TIME-T%:p(F#*51200/T%)
+PRINT "Integer FOR loop        ";:T%=TIME:FOR A%=Z%TOD%STEPB%:NEXT:T%=TIME-T%:p(F#*17800/T%)
+PRINT "Trig/Log test           ";:IF COS0=0:PRINT "    <none>"
 IF COS0<>0:A#=1:T%=TIME:FOR J%=1 TO F%:A#=TAN(ATN(EXP(LN(SQR(A#*A#)))))+1:NEXT:T%=TIME-T%:p(F#*68800/T%)
-RETURN
 PRINT"String manipulation     ";
-T%=TIME:A$="STRINGMANIPULATIONTEST":FOR A%=0 TO F%*4:A$=RIGHT$(MID$(A$,LENA$/2,LENA$/4+1)+RIGHT$(A$,LENA$/4)+MID$(A$,LENA$/2,2)+LEFT$(A$,LENA$/4)+MID$(A$,LENA$/4,LENA$/4+1),LENA$):NEXT:T%=TIME-T%:p(F#*72750/T%):YIELD
-PRINT"Procedure call          ";:T%=TIME:FOR A%=Z% TO D%:test():NEXT:T%=TIME-T%:p(F#*80500/T%):YIELD
+T%=TIME:A$="STRINGMANIPULATIONTEST":FOR A%=0 TO F%*4/100:A$=RIGHT$(MID$(A$,LENA$/2,LENA$/4+1)+RIGHT$(A$,LENA$/4)+MID$(A$,LENA$/2,2)+LEFT$(A$,LENA$/4)+MID$(A$,LENA$/4,LENA$/4+1),LENA$):NEXT:T%=TIME-T%:T%=T%*100:p(F#*72750/T%)
+PRINT"Procedure call          ";:T%=TIME:FOR A%=Z% TO D%:test():NEXT:T%=TIME-T%:p(F#*80500/T%)
 PRINT"Combined Average        ";:p(TTAL%/7)
 PRINT'"Compared with a 2.00MHz BBC B"
-PRINT "Press a key to return to the menu":INKEY(5000):YIELD
-ENDDEF
-
-DEFAck%(M%,N%)
-IF M%=0 RETURN N%+1
-IF N%=0 RETURN Ack%(M%-1,1)
-RETURN Ack%(M%-1,Ack%(M%,N%-1))
 ENDDEF
 
 DEF test()
 ENDDEF
 
 DEFp(T%)
-PRINT T%
-PRINT T%
-PRINT T%
-PRINT T%
-PRINT STR$(T%)
-PRINT STR$(T%)
-PRINT STR$(T%)
-PRINT STR$(T%)
-PRINT T%
-END
-PRINT RIGHT$(STR$(T%),2)
-PRINT RIGHT$("     "+STR$(T%DIV100),15);".";RIGHT$("0"+STR$(T%),2);"MHz":TTAL%=TTAL%+T%
+PRINT RIGHT$("         "+STR$(T%DIV100),9);".";RIGHT$("0"+STR$(T%),2);"MHz":TTAL%=TTAL%+T%
 ENDDEF

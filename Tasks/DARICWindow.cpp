@@ -1,4 +1,5 @@
 #include "DARICWindow.h"
+#include "../Exception/DARICException.h"
 #include <memory.h>
 #include <string.h>
 #include <fstream>
@@ -19,17 +20,11 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 
 }
 
-void DARICWindow::SetSourceCode(std::string code)
-{
-	task_override = this;
-//	this->code = code;
-	task_override = NULL;
-}
-
 void DARICWindow::LoadSourceCode(std::string filename)
 {
 	task_override = this;
-//	this->code = this->LoadSource(filename);
+	this->filename = filename;
+	this->code = this->LoadSource(filename);
 	task_override = NULL;
 }
 
@@ -60,9 +55,32 @@ void DARICWindow::Run()
 	while (w==NULL);
 
 	// Compile (and run)
-//	CompileSource(code);
-//	code = "";
-//	RunCode();
+	try {
+		if (CompileSource(filename, &code)) {
+			RunCode();
+		}
+	}
+	catch (DARICException& ex) {
+		switch (ex.type) {
+			case ExceptionType::COMPILER:
+				printf("[Compiler] ");
+				break;
+			case ExceptionType::TOKENISER:
+				printf("[Tokeniser] ");
+				break;
+			case ExceptionType::PARSER:
+				printf("[Parser] ");
+				break;
+			case ExceptionType::RUNTIME:
+				printf("[Runtime] ");
+				break;
+		}
+#ifdef CLION
+		printf("%s at line %d, column %d\n", ex.error.c_str(), ex.line_number, ex.char_position);
+#else
+		CLogger::Get()->Write("CompileSource", LogPanic, "%s at line %d, column %d", ex.error.c_str(), ex.line_number, ex.char_position);
+#endif
+	}
 
 	TerminateTask();
 }

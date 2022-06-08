@@ -1,3404 +1,609 @@
-Line    1:  1 [289]: Constant
-Line    1:  7 [264]: Identifier integer 'const%'
-Line    1: 13 [ 61]: =
-Line    1: 14 [269]: Integer 100
-Line    1: 17 [ 44]: ,
-Line    1: 18 [265]: Identifier float 'ccf#'
-Line    1: 22 [ 61]: =
-Line    1: 23 [270]: Float 12.500000
-Line    1: 27 [257]: Newline
-Line    2:  2 [257]: Newline
-Line    3:  2 [322]: REM
-Line    4:  2 [335]: TYPE
-Line    5:  7 [263]: Identifier 'VertexTest'
-Line    5:  3 [265]: Identifier float 'x#'
-Line    5:  5 [ 44]: ,
-Line    5:  6 [265]: Identifier float 'y#'
-Line    5:  8 [ 44]: ,
-Line    5:  9 [265]: Identifier float 'z#'
-Line    5: 11 [ 44]: ,
-Line    5: 12 [264]: Identifier integer 'rgb%'
-Line    5: 16 [ 44]: ,
-Line    5: 17 [266]: Identifier string 's$'
-Line    5: 19 [257]: Newline
-Line    6:  2 [299]: ENDTYPE
-Line    6:  9 [257]: Newline
-Line    7:  2 [267]: Identifier type 'GVT!'
-Line    7:  7 [ 61]: =
-Line    7:  9 [263]: Identifier 'VertexTest'
-Line    7: 19 [ 40]: (
-Line    7: 20 [270]: Float 10.000000
-Line    7: 24 [ 44]: ,
-Line    7: 25 [270]: Float 234.560000
-Line    7: 31 [ 41]: )
-Line    7: 32 [257]: Newline
-Line    8:  2 [267]: Identifier type 'GVT!'
-Line    8:  6 [264]: Identifier integer 'rgb%'
-Line    8: 10 [ 61]: =
-Line    8: 11 [269]: Integer 16777215
-Line    8: 18 [257]: Newline
-Line    9:  2 [257]: Newline
-Line   10:  2 [291]: DATALABEL
-Line   10: 12 [271]: String 'Start'
-Line   10: 19 [257]: Newline
-Line   11:  2 [290]: DATA
-Line   11:  7 [269]: Integer 100
-Line   11: 10 [ 44]: ,
-Line   11: 12 [271]: String 'Fred'
-Line   11: 18 [ 44]: ,
-Line   11: 20 [270]: Float 15.500000
-Line   11: 24 [257]: Newline
-Line   12:  2 [291]: DATALABEL
-Line   12: 12 [271]: String 'Duff'
-Line   12: 18 [257]: Newline
-Line   13:  2 [290]: DATA
-Line   13:  7 [269]: Integer 150
-Line   13: 10 [257]: Newline
-Line   14:  2 [291]: DATALABEL
-Line   14: 12 [271]: String 'Label'
-Line   14: 19 [257]: Newline
-Line   15:  2 [290]: DATA
-Line   15:  7 [269]: Integer 200
-Line   15: 10 [257]: Newline
-Line   16:  2 [264]: Identifier integer 'G%'
-Line   16:  4 [ 61]: =
-Line   16:  5 [269]: Integer 5
-Line   16:  6 [257]: Newline
-Line   17:  2 [257]: Newline
-Line   18:  2 [263]: Identifier 'Start'
-Line   18:  7 [ 40]: (
-Line   18:  8 [ 41]: )
-Line   18:  9 [257]: Newline
-Line   19:  2 [257]: Newline
-Line   20:  2 [292]: DEF ''
-Line   20:  6 [263]: Identifier 'Start'
-Line   20: 11 [ 40]: (
-Line   20: 12 [ 41]: )
-Line   20: 13 [257]: Newline
-Line   21:  6 [323]: REPEAT
-Line   21: 12 [257]: Newline
-Line   22:  3 [351]: CLS
-Line   22:  6 [257]: Newline
-Line   23:  6 [317]: PRINT
-Line   23: 12 [271]: String 'Starting tests!'
-Line   23: 29 [257]: Newline
-Line   24:  6 [263]: Identifier 'Boolean'
-Line   24: 13 [ 40]: (
-Line   24: 14 [ 41]: )
-Line   24: 15 [257]: Newline
-Line   25:  3 [263]: Identifier 'Chrono'
-Line   25:  9 [ 40]: (
-Line   25: 10 [ 41]: )
-Line   25: 11 [257]: Newline
-Line   26:  6 [263]: Identifier 'Comparison'
-Line   26: 16 [ 40]: (
-Line   26: 17 [ 41]: )
-Line   26: 18 [257]: Newline
-Line   27:  6 [263]: Identifier 'Conversion'
-Line   27: 16 [ 40]: (
-Line   27: 17 [ 41]: )
-Line   27: 18 [257]: Newline
-Line   28:  3 [263]: Identifier 'Data'
-Line   28:  7 [ 40]: (
-Line   28:  8 [ 41]: )
-Line   28:  9 [257]: Newline
-Line   29:  3 [263]: Identifier 'Functions'
-Line   29: 12 [ 40]: (
-Line   29: 13 [ 41]: )
-Line   29: 14 [257]: Newline
-Line   30:  6 [263]: Identifier 'GlobalsLocals'
-Line   30: 19 [ 40]: (
-Line   30: 20 [ 41]: )
-Line   30: 21 [257]: Newline
-Line   31:  3 [263]: Identifier 'Looping'
-Line   31: 10 [ 40]: (
-Line   31: 11 [ 41]: )
-Line   31: 12 [257]: Newline
-Line   32:  6 [263]: Identifier 'Maths'
-Line   32: 11 [ 40]: (
-Line   32: 12 [ 41]: )
-Line   32: 13 [257]: Newline
-Line   33:  6 [263]: Identifier 'Numbers'
-Line   33: 13 [ 40]: (
-Line   33: 14 [ 41]: )
-Line   33: 15 [257]: Newline
-Line   34:  6 [263]: Identifier 'PrintInput'
-Line   34: 16 [ 40]: (
-Line   34: 17 [ 41]: )
-Line   34: 18 [257]: Newline
-Line   35:  6 [263]: Identifier 'Strings'
-Line   35: 13 [ 40]: (
-Line   35: 14 [ 41]: )
-Line   35: 15 [257]: Newline
-Line   36:  3 [263]: Identifier 'Swap'
-Line   36:  7 [ 40]: (
-Line   36:  8 [ 41]: )
-Line   36:  9 [257]: Newline
-Line   37:  3 [263]: Identifier 'Types'
-Line   37:  8 [ 40]: (
-Line   37:  9 [ 41]: )
-Line   37: 10 [257]: Newline
-Line   38:  3 [263]: Identifier 'Variables'
-Line   38: 12 [ 40]: (
-Line   38: 13 [ 41]: )
-Line   38: 14 [257]: Newline
-Line   39:  6 [317]: PRINT
-Line   39: 12 [271]: String '::Misc tests::'
-Line   39: 28 [257]: Newline
-Line   40:  3 [263]: Identifier 'TestReturnInOtherwise'
-Line   40: 24 [ 40]: (
-Line   40: 25 [ 41]: )
-Line   40: 26 [257]: Newline
-Line   41:  3 [263]: Identifier 'NestedCalling'
-Line   41: 16 [ 40]: (
-Line   41: 17 [ 41]: )
-Line   41: 18 [257]: Newline
-Line   42:  6 [263]: Identifier 'Containers'
-Line   42: 16 [ 40]: (
-Line   42: 17 [ 41]: )
-Line   42: 18 [257]: Newline
-Line   43:  6 [317]: PRINT
-Line   43: 12 [271]: String 'All tests passed!'
-Line   43: 31 [257]: Newline
-Line   44:  6 [336]: UNTIL
-Line   44: 12 [301]: FALSE
-Line   44: 17 [257]: Newline
-Line   45:  2 [298]: ENDDEF
-Line   45:  8 [257]: Newline
-Line   46:  2 [257]: Newline
-Line   47:  2 [292]: DEF ''
-Line   47:  6 [263]: Identifier 'Boolean'
-Line   47: 13 [ 40]: (
-Line   47: 14 [ 41]: )
-Line   47: 15 [257]: Newline
-Line   48:  6 [317]: PRINT
-Line   48: 12 [271]: String '::Boolean::'
-Line   48: 25 [257]: Newline
-Line   49:  6 [317]: PRINT
-Line   49: 12 [271]: String 'Or                 = '
-Line   49: 35 [ 59]: ;
-Line   49: 36 [ 58]: :
-Line   49: 37 [310]: IF
-Line   49: 40 [ 40]: (
-Line   49: 41 [ 40]: (
-Line   49: 42 [269]: Integer 240
-Line   49: 46 [392]: OR
-Line   49: 49 [269]: Integer 240
-Line   49: 52 [ 41]: )
-Line   49: 54 [ 61]: =
-Line   49: 56 [269]: Integer 240
-Line   49: 59 [ 41]: )
-Line   49: 61 [390]: AND
-Line   49: 65 [ 40]: (
-Line   49: 66 [ 40]: (
-Line   49: 67 [269]: Integer 240
-Line   49: 71 [392]: OR
-Line   49: 74 [269]: Integer 15
-Line   49: 77 [ 41]: )
-Line   49: 79 [ 61]: =
-Line   49: 81 [269]: Integer 255
-Line   49: 84 [ 41]: )
-Line   49: 86 [263]: Identifier 'Pass'
-Line   49: 90 [ 40]: (
-Line   49: 91 [ 41]: )
-Line   49: 93 [294]: ELSE
-Line   49: 98 [263]: Identifier 'Fail'
-Line   49:102 [ 40]: (
-Line   49:103 [ 41]: )
-Line   49:104 [257]: Newline
-Line   50:  6 [317]: PRINT
-Line   50: 12 [271]: String 'Eor                = '
-Line   50: 35 [ 59]: ;
-Line   50: 36 [ 58]: :
-Line   50: 37 [310]: IF
-Line   50: 40 [ 40]: (
-Line   50: 41 [ 40]: (
-Line   50: 42 [269]: Integer 1
-Line   50: 44 [391]: EOR
-Line   50: 48 [269]: Integer 1
-Line   50: 49 [ 41]: )
-Line   50: 51 [ 61]: =
-Line   50: 53 [269]: Integer 0
-Line   50: 54 [ 41]: )
-Line   50: 56 [390]: AND
-Line   50: 60 [ 40]: (
-Line   50: 61 [ 40]: (
-Line   50: 62 [269]: Integer 1
-Line   50: 64 [391]: EOR
-Line   50: 68 [269]: Integer 0
-Line   50: 69 [ 41]: )
-Line   50: 71 [ 61]: =
-Line   50: 73 [269]: Integer 1
-Line   50: 74 [ 41]: )
-Line   50: 76 [390]: AND
-Line   50: 80 [ 40]: (
-Line   50: 81 [ 40]: (
-Line   50: 82 [269]: Integer 0
-Line   50: 84 [391]: EOR
-Line   50: 88 [269]: Integer 0
-Line   50: 89 [ 41]: )
-Line   50: 91 [ 61]: =
-Line   50: 93 [269]: Integer 0
-Line   50: 94 [ 41]: )
-Line   50: 96 [263]: Identifier 'Pass'
-Line   50:100 [ 40]: (
-Line   50:101 [ 41]: )
-Line   50:103 [294]: ELSE
-Line   50:108 [263]: Identifier 'Fail'
-Line   50:112 [ 40]: (
-Line   50:113 [ 41]: )
-Line   50:114 [257]: Newline
-Line   51:  6 [317]: PRINT
-Line   51: 12 [271]: String 'And                = '
-Line   51: 35 [ 59]: ;
-Line   51: 36 [ 58]: :
-Line   51: 37 [310]: IF
-Line   51: 40 [ 40]: (
-Line   51: 41 [ 40]: (
-Line   51: 42 [269]: Integer 240
-Line   51: 46 [390]: AND
-Line   51: 50 [269]: Integer 240
-Line   51: 53 [ 41]: )
-Line   51: 55 [ 61]: =
-Line   51: 57 [269]: Integer 240
-Line   51: 60 [ 41]: )
-Line   51: 62 [390]: AND
-Line   51: 66 [ 40]: (
-Line   51: 67 [ 40]: (
-Line   51: 68 [269]: Integer 240
-Line   51: 72 [390]: AND
-Line   51: 76 [269]: Integer 15
-Line   51: 79 [ 41]: )
-Line   51: 81 [ 61]: =
-Line   51: 83 [269]: Integer 0
-Line   51: 85 [ 41]: )
-Line   51: 87 [263]: Identifier 'Pass'
-Line   51: 91 [ 40]: (
-Line   51: 92 [ 41]: )
-Line   51: 94 [294]: ELSE
-Line   51: 99 [263]: Identifier 'Fail'
-Line   51:103 [ 40]: (
-Line   51:104 [ 41]: )
-Line   51:105 [257]: Newline
-Line   52:  6 [317]: PRINT
-Line   52: 12 [271]: String 'Not                = '
-Line   52: 35 [ 59]: ;
-Line   52: 36 [ 58]: :
-Line   52: 37 [310]: IF
-Line   52: 40 [393]: NOT
-Line   52: 44 [269]: Integer 1
-Line   52: 46 [ 61]: =
-Line   52: 48 [269]: Integer -2
-Line   52: 51 [263]: Identifier 'Pass'
-Line   52: 55 [ 40]: (
-Line   52: 56 [ 41]: )
-Line   52: 58 [294]: ELSE
-Line   52: 63 [263]: Identifier 'Fail'
-Line   52: 67 [ 40]: (
-Line   52: 68 [ 41]: )
-Line   52: 69 [257]: Newline
-Line   53:  6 [317]: PRINT
-Line   53: 12 [271]: String 'True               = '
-Line   53: 35 [ 59]: ;
-Line   53: 36 [ 58]: :
-Line   53: 37 [310]: IF
-Line   53: 40 [334]: TRUE
-Line   53: 45 [263]: Identifier 'Pass'
-Line   53: 49 [ 40]: (
-Line   53: 50 [ 41]: )
-Line   53: 52 [294]: ELSE
-Line   53: 57 [263]: Identifier 'Fail'
-Line   53: 61 [ 40]: (
-Line   53: 62 [ 41]: )
-Line   53: 63 [257]: Newline
-Line   54:  6 [317]: PRINT
-Line   54: 12 [271]: String 'False              = '
-Line   54: 35 [ 59]: ;
-Line   54: 36 [ 58]: :
-Line   54: 37 [310]: IF
-Line   54: 40 [393]: NOT
-Line   54: 44 [301]: FALSE
-Line   54: 50 [263]: Identifier 'Pass'
-Line   54: 54 [ 40]: (
-Line   54: 55 [ 41]: )
-Line   54: 57 [294]: ELSE
-Line   54: 62 [263]: Identifier 'Fail'
-Line   54: 66 [ 40]: (
-Line   54: 67 [ 41]: )
-Line   54: 68 [257]: Newline
-Line   55:  6 [317]: PRINT
-Line   55: 11 [257]: Newline
-Line   56:  2 [298]: ENDDEF
-Line   56:  8 [257]: Newline
-Line   57:  2 [257]: Newline
-Line   58:  2 [292]: DEF ''
-Line   58:  6 [263]: Identifier 'Chrono'
-Line   58: 12 [ 40]: (
-Line   58: 13 [ 41]: )
-Line   58: 14 [257]: Newline
-Line   59:  3 [317]: PRINT
-Line   59:  9 [271]: String '::Chrono::'
-Line   59: 21 [257]: Newline
-Line   60:  3 [317]: PRINT
-Line   60:  9 [271]: String 'Time               = '
-Line   60: 32 [ 59]: ;
-Line   60: 33 [ 58]: :
-Line   60: 34 [310]: IF
-Line   60: 37 [332]: TIME
-Line   60: 42 [ 62]: >
-Line   60: 44 [269]: Integer 0
-Line   60: 46 [263]: Identifier 'Pass'
-Line   60: 50 [ 40]: (
-Line   60: 51 [ 41]: )
-Line   60: 53 [294]: ELSE
-Line   60: 58 [263]: Identifier 'Fail'
-Line   60: 62 [ 40]: (
-Line   60: 63 [ 41]: )
-Line   60: 64 [257]: Newline
-Line   61:  3 [317]: PRINT
-Line   61:  9 [271]: String 'Time$              = '
-Line   61: 32 [ 59]: ;
-Line   61: 33 [ 58]: :
-Line   61: 34 [310]: IF
-Line   61: 37 [387]: LEN
-Line   61: 40 [ 40]: (
-Line   61: 41 [333]: TIME$
-Line   61: 46 [ 41]: )
-Line   61: 48 [ 61]: =
-Line   61: 50 [269]: Integer 24
-Line   61: 53 [263]: Identifier 'Pass'
-Line   61: 57 [ 40]: (
-Line   61: 58 [ 41]: )
-Line   61: 60 [294]: ELSE
-Line   61: 65 [263]: Identifier 'Fail'
-Line   61: 69 [ 40]: (
-Line   61: 70 [ 41]: )
-Line   61: 71 [257]: Newline
-Line   62:  3 [317]: PRINT
-Line   62:  8 [257]: Newline
-Line   63:  2 [298]: ENDDEF
-Line   63:  8 [257]: Newline
-Line   64:  2 [257]: Newline
-Line   65:  2 [292]: DEF ''
-Line   65:  6 [263]: Identifier 'Comparison'
-Line   65: 16 [ 40]: (
-Line   65: 17 [ 41]: )
-Line   65: 18 [257]: Newline
-Line   66:  6 [317]: PRINT
-Line   66: 12 [271]: String '::Comparison::'
-Line   66: 28 [257]: Newline
-Line   67:  6 [317]: PRINT
-Line   67: 12 [271]: String 'Int =              = '
-Line   67: 35 [ 59]: ;
-Line   67: 36 [ 58]: :
-Line   67: 37 [310]: IF
-Line   67: 40 [269]: Integer 5
-Line   67: 42 [ 61]: =
-Line   67: 44 [269]: Integer 5
-Line   67: 46 [263]: Identifier 'Pass'
-Line   67: 50 [ 40]: (
-Line   67: 51 [ 41]: )
-Line   67: 53 [294]: ELSE
-Line   67: 58 [263]: Identifier 'Fail'
-Line   67: 62 [ 40]: (
-Line   67: 63 [ 41]: )
-Line   67: 64 [257]: Newline
-Line   68:  6 [317]: PRINT
-Line   68: 12 [271]: String 'Int <>             = '
-Line   68: 35 [ 59]: ;
-Line   68: 36 [ 58]: :
-Line   68: 37 [310]: IF
-Line   68: 40 [269]: Integer 5
-Line   68: 42 [279]: <>
-Line   68: 45 [269]: Integer 6
-Line   68: 47 [263]: Identifier 'Pass'
-Line   68: 51 [ 40]: (
-Line   68: 52 [ 41]: )
-Line   68: 54 [294]: ELSE
-Line   68: 59 [263]: Identifier 'Fail'
-Line   68: 63 [ 40]: (
-Line   68: 64 [ 41]: )
-Line   68: 65 [257]: Newline
-Line   69:  6 [317]: PRINT
-Line   69: 12 [271]: String 'Int <              = '
-Line   69: 35 [ 59]: ;
-Line   69: 36 [ 58]: :
-Line   69: 37 [310]: IF
-Line   69: 40 [269]: Integer 5
-Line   69: 42 [ 60]: <
-Line   69: 44 [269]: Integer 10
-Line   69: 47 [263]: Identifier 'Pass'
-Line   69: 51 [ 40]: (
-Line   69: 52 [ 41]: )
-Line   69: 54 [294]: ELSE
-Line   69: 59 [263]: Identifier 'Fail'
-Line   69: 63 [ 40]: (
-Line   69: 64 [ 41]: )
-Line   69: 65 [257]: Newline
-Line   70:  6 [317]: PRINT
-Line   70: 12 [271]: String 'Int <= (<)         = '
-Line   70: 35 [ 59]: ;
-Line   70: 36 [ 58]: :
-Line   70: 37 [310]: IF
-Line   70: 40 [269]: Integer 4
-Line   70: 42 [280]: <=
-Line   70: 45 [269]: Integer 5
-Line   70: 47 [263]: Identifier 'Pass'
-Line   70: 51 [ 40]: (
-Line   70: 52 [ 41]: )
-Line   70: 54 [294]: ELSE
-Line   70: 59 [263]: Identifier 'Fail'
-Line   70: 63 [ 40]: (
-Line   70: 64 [ 41]: )
-Line   70: 65 [257]: Newline
-Line   71:  6 [317]: PRINT
-Line   71: 12 [271]: String 'Int <= (=)         = '
-Line   71: 35 [ 59]: ;
-Line   71: 36 [ 58]: :
-Line   71: 37 [310]: IF
-Line   71: 40 [269]: Integer 5
-Line   71: 42 [280]: <=
-Line   71: 45 [269]: Integer 5
-Line   71: 47 [263]: Identifier 'Pass'
-Line   71: 51 [ 40]: (
-Line   71: 52 [ 41]: )
-Line   71: 54 [294]: ELSE
-Line   71: 59 [263]: Identifier 'Fail'
-Line   71: 63 [ 40]: (
-Line   71: 64 [ 41]: )
-Line   71: 65 [257]: Newline
-Line   72:  6 [317]: PRINT
-Line   72: 12 [271]: String 'Int >              = '
-Line   72: 35 [ 59]: ;
-Line   72: 36 [ 58]: :
-Line   72: 37 [310]: IF
-Line   72: 40 [269]: Integer 10
-Line   72: 43 [ 62]: >
-Line   72: 45 [269]: Integer 5
-Line   72: 47 [263]: Identifier 'Pass'
-Line   72: 51 [ 40]: (
-Line   72: 52 [ 41]: )
-Line   72: 54 [294]: ELSE
-Line   72: 59 [263]: Identifier 'Fail'
-Line   72: 63 [ 40]: (
-Line   72: 64 [ 41]: )
-Line   72: 65 [257]: Newline
-Line   73:  6 [317]: PRINT
-Line   73: 12 [271]: String 'Int >= (>)         = '
-Line   73: 35 [ 59]: ;
-Line   73: 36 [ 58]: :
-Line   73: 37 [310]: IF
-Line   73: 40 [269]: Integer 10
-Line   73: 43 [281]: >=
-Line   73: 46 [269]: Integer 5
-Line   73: 48 [263]: Identifier 'Pass'
-Line   73: 52 [ 40]: (
-Line   73: 53 [ 41]: )
-Line   73: 55 [294]: ELSE
-Line   73: 60 [263]: Identifier 'Fail'
-Line   73: 64 [ 40]: (
-Line   73: 65 [ 41]: )
-Line   73: 66 [257]: Newline
-Line   74:  6 [317]: PRINT
-Line   74: 12 [271]: String 'Int >= (>=)        = '
-Line   74: 35 [ 59]: ;
-Line   74: 36 [ 58]: :
-Line   74: 37 [310]: IF
-Line   74: 40 [269]: Integer 5
-Line   74: 42 [281]: >=
-Line   74: 45 [269]: Integer 5
-Line   74: 47 [263]: Identifier 'Pass'
-Line   74: 51 [ 40]: (
-Line   74: 52 [ 41]: )
-Line   74: 54 [294]: ELSE
-Line   74: 59 [263]: Identifier 'Fail'
-Line   74: 63 [ 40]: (
-Line   74: 64 [ 41]: )
-Line   74: 65 [257]: Newline
-Line   75:  6 [317]: PRINT
-Line   75: 12 [271]: String 'Float =            = '
-Line   75: 35 [ 59]: ;
-Line   75: 36 [ 58]: :
-Line   75: 37 [310]: IF
-Line   75: 40 [270]: Float 5.000000
-Line   75: 44 [ 61]: =
-Line   75: 46 [270]: Float 5.000000
-Line   75: 50 [263]: Identifier 'Pass'
-Line   75: 54 [ 40]: (
-Line   75: 55 [ 41]: )
-Line   75: 57 [294]: ELSE
-Line   75: 62 [263]: Identifier 'Fail'
-Line   75: 66 [ 40]: (
-Line   75: 67 [ 41]: )
-Line   75: 68 [257]: Newline
-Line   76:  6 [317]: PRINT
-Line   76: 12 [271]: String 'Float <>           = '
-Line   76: 35 [ 59]: ;
-Line   76: 36 [ 58]: :
-Line   76: 37 [310]: IF
-Line   76: 40 [270]: Float 5.000000
-Line   76: 44 [279]: <>
-Line   76: 47 [270]: Float 6.000000
-Line   76: 51 [263]: Identifier 'Pass'
-Line   76: 55 [ 40]: (
-Line   76: 56 [ 41]: )
-Line   76: 58 [294]: ELSE
-Line   76: 63 [263]: Identifier 'Fail'
-Line   76: 67 [ 40]: (
-Line   76: 68 [ 41]: )
-Line   76: 69 [257]: Newline
-Line   77:  6 [317]: PRINT
-Line   77: 12 [271]: String 'Float <            = '
-Line   77: 35 [ 59]: ;
-Line   77: 36 [ 58]: :
-Line   77: 37 [310]: IF
-Line   77: 40 [270]: Float 5.000000
-Line   77: 44 [ 60]: <
-Line   77: 46 [270]: Float 10.000000
-Line   77: 51 [263]: Identifier 'Pass'
-Line   77: 55 [ 40]: (
-Line   77: 56 [ 41]: )
-Line   77: 58 [294]: ELSE
-Line   77: 63 [263]: Identifier 'Fail'
-Line   77: 67 [ 40]: (
-Line   77: 68 [ 41]: )
-Line   77: 69 [257]: Newline
-Line   78:  6 [317]: PRINT
-Line   78: 12 [271]: String 'Float <= (<)       = '
-Line   78: 35 [ 59]: ;
-Line   78: 36 [ 58]: :
-Line   78: 37 [310]: IF
-Line   78: 40 [270]: Float 4.000000
-Line   78: 44 [280]: <=
-Line   78: 47 [270]: Float 5.000000
-Line   78: 51 [263]: Identifier 'Pass'
-Line   78: 55 [ 40]: (
-Line   78: 56 [ 41]: )
-Line   78: 58 [294]: ELSE
-Line   78: 63 [263]: Identifier 'Fail'
-Line   78: 67 [ 40]: (
-Line   78: 68 [ 41]: )
-Line   78: 69 [257]: Newline
-Line   79:  6 [317]: PRINT
-Line   79: 12 [271]: String 'Float <= (=)       = '
-Line   79: 35 [ 59]: ;
-Line   79: 36 [ 58]: :
-Line   79: 37 [310]: IF
-Line   79: 40 [270]: Float 5.000000
-Line   79: 44 [280]: <=
-Line   79: 47 [270]: Float 5.000000
-Line   79: 51 [263]: Identifier 'Pass'
-Line   79: 55 [ 40]: (
-Line   79: 56 [ 41]: )
-Line   79: 58 [294]: ELSE
-Line   79: 63 [263]: Identifier 'Fail'
-Line   79: 67 [ 40]: (
-Line   79: 68 [ 41]: )
-Line   79: 69 [257]: Newline
-Line   80:  6 [317]: PRINT
-Line   80: 12 [271]: String 'Float >            = '
-Line   80: 35 [ 59]: ;
-Line   80: 36 [ 58]: :
-Line   80: 37 [310]: IF
-Line   80: 40 [270]: Float 10.000000
-Line   80: 45 [ 62]: >
-Line   80: 47 [270]: Float 5.000000
-Line   80: 51 [263]: Identifier 'Pass'
-Line   80: 55 [ 40]: (
-Line   80: 56 [ 41]: )
-Line   80: 58 [294]: ELSE
-Line   80: 63 [263]: Identifier 'Fail'
-Line   80: 67 [ 40]: (
-Line   80: 68 [ 41]: )
-Line   80: 69 [257]: Newline
-Line   81:  6 [317]: PRINT
-Line   81: 12 [271]: String 'Float >= (>)       = '
-Line   81: 35 [ 59]: ;
-Line   81: 36 [ 58]: :
-Line   81: 37 [310]: IF
-Line   81: 40 [270]: Float 10.000000
-Line   81: 45 [281]: >=
-Line   81: 48 [270]: Float 5.000000
-Line   81: 52 [263]: Identifier 'Pass'
-Line   81: 56 [ 40]: (
-Line   81: 57 [ 41]: )
-Line   81: 59 [294]: ELSE
-Line   81: 64 [263]: Identifier 'Fail'
-Line   81: 68 [ 40]: (
-Line   81: 69 [ 41]: )
-Line   81: 70 [257]: Newline
-Line   82:  6 [317]: PRINT
-Line   82: 12 [271]: String 'Float >= (>=)      = '
-Line   82: 35 [ 59]: ;
-Line   82: 36 [ 58]: :
-Line   82: 37 [310]: IF
-Line   82: 40 [270]: Float 5.000000
-Line   82: 44 [281]: >=
-Line   82: 47 [270]: Float 5.000000
-Line   82: 51 [263]: Identifier 'Pass'
-Line   82: 55 [ 40]: (
-Line   82: 56 [ 41]: )
-Line   82: 58 [294]: ELSE
-Line   82: 63 [263]: Identifier 'Fail'
-Line   82: 67 [ 40]: (
-Line   82: 68 [ 41]: )
-Line   82: 69 [257]: Newline
-Line   83:  6 [317]: PRINT
-Line   83: 12 [271]: String 'String =           = '
-Line   83: 35 [ 59]: ;
-Line   83: 36 [ 58]: :
-Line   83: 37 [310]: IF
-Line   83: 40 [271]: String 'Fred'
-Line   83: 47 [ 61]: =
-Line   83: 49 [271]: String 'Fred'
-Line   83: 56 [263]: Identifier 'Pass'
-Line   83: 60 [ 40]: (
-Line   83: 61 [ 41]: )
-Line   83: 63 [294]: ELSE
-Line   83: 68 [263]: Identifier 'Fail'
-Line   83: 72 [ 40]: (
-Line   83: 73 [ 41]: )
-Line   83: 74 [257]: Newline
-Line   84:  6 [317]: PRINT
-Line   84: 12 [271]: String 'String <>          = '
-Line   84: 35 [ 59]: ;
-Line   84: 36 [ 58]: :
-Line   84: 37 [310]: IF
-Line   84: 40 [271]: String 'Fred'
-Line   84: 47 [279]: <>
-Line   84: 50 [271]: String 'fred'
-Line   84: 57 [263]: Identifier 'Pass'
-Line   84: 61 [ 40]: (
-Line   84: 62 [ 41]: )
-Line   84: 64 [294]: ELSE
-Line   84: 69 [263]: Identifier 'Fail'
-Line   84: 73 [ 40]: (
-Line   84: 74 [ 41]: )
-Line   84: 75 [257]: Newline
-Line   85:  6 [317]: PRINT
-Line   85: 12 [271]: String 'String <           = '
-Line   85: 35 [ 59]: ;
-Line   85: 36 [ 58]: :
-Line   85: 37 [310]: IF
-Line   85: 40 [271]: String 'Fred'
-Line   85: 47 [ 60]: <
-Line   85: 49 [271]: String 'fred'
-Line   85: 56 [263]: Identifier 'Pass'
-Line   85: 60 [ 40]: (
-Line   85: 61 [ 41]: )
-Line   85: 63 [294]: ELSE
-Line   85: 68 [263]: Identifier 'Fail'
-Line   85: 72 [ 40]: (
-Line   85: 73 [ 41]: )
-Line   85: 74 [257]: Newline
-Line   86:  6 [317]: PRINT
-Line   86: 12 [271]: String 'String <= (<)      = '
-Line   86: 35 [ 59]: ;
-Line   86: 36 [ 58]: :
-Line   86: 37 [310]: IF
-Line   86: 40 [271]: String 'Fred'
-Line   86: 47 [280]: <=
-Line   86: 50 [271]: String 'fred'
-Line   86: 57 [263]: Identifier 'Pass'
-Line   86: 61 [ 40]: (
-Line   86: 62 [ 41]: )
-Line   86: 64 [294]: ELSE
-Line   86: 69 [263]: Identifier 'Fail'
-Line   86: 73 [ 40]: (
-Line   86: 74 [ 41]: )
-Line   86: 75 [257]: Newline
-Line   87:  6 [317]: PRINT
-Line   87: 12 [271]: String 'String <= (=)      = '
-Line   87: 35 [ 59]: ;
-Line   87: 36 [ 58]: :
-Line   87: 37 [310]: IF
-Line   87: 40 [271]: String 'Fred'
-Line   87: 47 [280]: <=
-Line   87: 50 [271]: String 'Fred'
-Line   87: 57 [263]: Identifier 'Pass'
-Line   87: 61 [ 40]: (
-Line   87: 62 [ 41]: )
-Line   87: 64 [294]: ELSE
-Line   87: 69 [263]: Identifier 'Fail'
-Line   87: 73 [ 40]: (
-Line   87: 74 [ 41]: )
-Line   87: 75 [257]: Newline
-Line   88:  6 [317]: PRINT
-Line   88: 12 [271]: String 'String >           = '
-Line   88: 35 [ 59]: ;
-Line   88: 36 [ 58]: :
-Line   88: 37 [310]: IF
-Line   88: 40 [271]: String 'fred'
-Line   88: 47 [ 62]: >
-Line   88: 49 [271]: String 'Fred'
-Line   88: 56 [263]: Identifier 'Pass'
-Line   88: 60 [ 40]: (
-Line   88: 61 [ 41]: )
-Line   88: 63 [294]: ELSE
-Line   88: 68 [263]: Identifier 'Fail'
-Line   88: 72 [ 40]: (
-Line   88: 73 [ 41]: )
-Line   88: 74 [257]: Newline
-Line   89:  6 [317]: PRINT
-Line   89: 12 [271]: String 'String >= (>)      = '
-Line   89: 35 [ 59]: ;
-Line   89: 36 [ 58]: :
-Line   89: 37 [310]: IF
-Line   89: 40 [271]: String 'fred'
-Line   89: 47 [281]: >=
-Line   89: 50 [271]: String 'Fred'
-Line   89: 57 [263]: Identifier 'Pass'
-Line   89: 61 [ 40]: (
-Line   89: 62 [ 41]: )
-Line   89: 64 [294]: ELSE
-Line   89: 69 [263]: Identifier 'Fail'
-Line   89: 73 [ 40]: (
-Line   89: 74 [ 41]: )
-Line   89: 75 [257]: Newline
-Line   90:  6 [317]: PRINT
-Line   90: 12 [271]: String 'String >= (>=)     = '
-Line   90: 35 [ 59]: ;
-Line   90: 36 [ 58]: :
-Line   90: 37 [310]: IF
-Line   90: 40 [271]: String 'Fred'
-Line   90: 47 [281]: >=
-Line   90: 50 [271]: String 'Fred'
-Line   90: 57 [263]: Identifier 'Pass'
-Line   90: 61 [ 40]: (
-Line   90: 62 [ 41]: )
-Line   90: 64 [294]: ELSE
-Line   90: 69 [263]: Identifier 'Fail'
-Line   90: 73 [ 40]: (
-Line   90: 74 [ 41]: )
-Line   90: 75 [257]: Newline
-Line   91:  6 [317]: PRINT
-Line   91: 11 [257]: Newline
-Line   92:  2 [298]: ENDDEF
-Line   92:  8 [257]: Newline
-Line   93:  2 [257]: Newline
-Line   94:  2 [292]: DEF ''
-Line   94:  6 [263]: Identifier 'Conversion'
-Line   94: 16 [ 40]: (
-Line   94: 17 [ 41]: )
-Line   94: 18 [257]: Newline
-Line   95:  6 [317]: PRINT
-Line   95: 12 [271]: String '::Conversion::'
-Line   95: 28 [257]: Newline
-Line   96:  6 [317]: PRINT
-Line   96: 12 [271]: String '10 + 15.5          = '
-Line   96: 35 [ 59]: ;
-Line   96: 36 [ 58]: :
-Line   96: 37 [310]: IF
-Line   96: 40 [269]: Integer 10
-Line   96: 43 [ 43]: +
-Line   96: 45 [270]: Float 15.500000
-Line   96: 50 [ 61]: =
-Line   96: 52 [270]: Float 25.500000
-Line   96: 57 [263]: Identifier 'Pass'
-Line   96: 61 [ 40]: (
-Line   96: 62 [ 41]: )
-Line   96: 64 [294]: ELSE
-Line   96: 69 [263]: Identifier 'Fail'
-Line   96: 73 [ 40]: (
-Line   96: 74 [ 41]: )
-Line   96: 75 [257]: Newline
-Line   97:  6 [317]: PRINT
-Line   97: 11 [257]: Newline
-Line   98:  2 [298]: ENDDEF
-Line   98:  8 [257]: Newline
-Line   99:  2 [257]: Newline
-Line  100:  2 [292]: DEF ''
-Line  100:  6 [263]: Identifier 'Data'
-Line  100: 10 [ 40]: (
-Line  100: 11 [ 41]: )
-Line  100: 12 [257]: Newline
-Line  101:  3 [317]: PRINT
-Line  101:  9 [271]: String '::Data::'
-Line  101: 19 [257]: Newline
-Line  102:  3 [321]: READ
-Line  102:  8 [264]: Identifier integer 'd1%'
-Line  102: 11 [ 44]: ,
-Line  102: 13 [266]: Identifier string 'd2$'
-Line  102: 16 [ 44]: ,
-Line  102: 18 [265]: Identifier float 'd3#'
-Line  102: 21 [257]: Newline
-Line  103:  3 [317]: PRINT
-Line  103:  9 [271]: String 'Data (Int)         = '
-Line  103: 32 [ 59]: ;
-Line  103: 33 [ 58]: :
-Line  103: 34 [310]: IF
-Line  103: 37 [264]: Identifier integer 'd1%'
-Line  103: 41 [ 61]: =
-Line  103: 43 [269]: Integer 100
-Line  103: 47 [263]: Identifier 'Pass'
-Line  103: 51 [ 40]: (
-Line  103: 52 [ 41]: )
-Line  103: 54 [294]: ELSE
-Line  103: 59 [263]: Identifier 'Fail'
-Line  103: 63 [ 40]: (
-Line  103: 64 [ 41]: )
-Line  103: 65 [257]: Newline
-Line  104:  3 [317]: PRINT
-Line  104:  9 [271]: String 'Data (Float)       = '
-Line  104: 32 [ 59]: ;
-Line  104: 33 [ 58]: :
-Line  104: 34 [310]: IF
-Line  104: 37 [265]: Identifier float 'd3#'
-Line  104: 41 [ 61]: =
-Line  104: 43 [270]: Float 15.500000
-Line  104: 48 [263]: Identifier 'Pass'
-Line  104: 52 [ 40]: (
-Line  104: 53 [ 41]: )
-Line  104: 55 [294]: ELSE
-Line  104: 60 [263]: Identifier 'Fail'
-Line  104: 64 [ 40]: (
-Line  104: 65 [ 41]: )
-Line  104: 66 [257]: Newline
-Line  105:  3 [317]: PRINT
-Line  105:  9 [271]: String 'Data (String)      = '
-Line  105: 32 [ 59]: ;
-Line  105: 33 [ 58]: :
-Line  105: 34 [310]: IF
-Line  105: 37 [266]: Identifier string 'd2$'
-Line  105: 41 [ 61]: =
-Line  105: 43 [271]: String 'Fred'
-Line  105: 50 [263]: Identifier 'Pass'
-Line  105: 54 [ 40]: (
-Line  105: 55 [ 41]: )
-Line  105: 57 [294]: ELSE
-Line  105: 62 [263]: Identifier 'Fail'
-Line  105: 66 [ 40]: (
-Line  105: 67 [ 41]: )
-Line  105: 68 [257]: Newline
-Line  106:  3 [324]: RESTORE
-Line  106: 11 [271]: String 'Label'
-Line  106: 18 [257]: Newline
-Line  107:  3 [321]: READ
-Line  107:  8 [264]: Identifier integer 'd1%'
-Line  107: 11 [257]: Newline
-Line  108:  3 [317]: PRINT
-Line  108:  9 [271]: String 'Data+Restore       = '
-Line  108: 32 [ 59]: ;
-Line  108: 33 [ 58]: :
-Line  108: 34 [310]: IF
-Line  108: 37 [264]: Identifier integer 'd1%'
-Line  108: 41 [ 61]: =
-Line  108: 43 [269]: Integer 200
-Line  108: 47 [263]: Identifier 'Pass'
-Line  108: 51 [ 40]: (
-Line  108: 52 [ 41]: )
-Line  108: 54 [294]: ELSE
-Line  108: 59 [263]: Identifier 'Fail'
-Line  108: 63 [ 40]: (
-Line  108: 64 [ 41]: )
-Line  108: 65 [257]: Newline
-Line  109:  3 [317]: PRINT
-Line  109:  8 [257]: Newline
-Line  110:  2 [298]: ENDDEF
-Line  110:  8 [257]: Newline
-Line  111:  2 [257]: Newline
-Line  112:  2 [292]: DEF ''
-Line  112:  6 [263]: Identifier 'Functions'
-Line  112: 15 [ 40]: (
-Line  112: 16 [ 41]: )
-Line  112: 17 [257]: Newline
-Line  113:  3 [317]: PRINT
-Line  113:  9 [271]: String '::Functions::'
-Line  113: 24 [257]: Newline
-Line  114:  3 [263]: Identifier 'ReturnValues'
-Line  114: 15 [ 40]: (
-Line  114: 16 [ 41]: )
-Line  114: 17 [257]: Newline
-Line  115:  4 [263]: Identifier 'SendParameter'
-Line  115: 17 [ 40]: (
-Line  115: 18 [269]: Integer 15
-Line  115: 20 [ 43]: +
-Line  115: 21 [269]: Integer 10
-Line  115: 23 [ 44]: ,
-Line  115: 24 [270]: Float 123.100000
-Line  115: 29 [ 44]: ,
-Line  115: 30 [271]: String 'Test'
-Line  115: 36 [ 41]: )
-Line  115: 37 [257]: Newline
-Line  116:  3 [317]: PRINT
-Line  116:  8 [257]: Newline
-Line  117:  2 [298]: ENDDEF
-Line  117:  8 [257]: Newline
-Line  118:  2 [257]: Newline
-Line  119:  2 [292]: DEF ''
-Line  119:  6 [263]: Identifier 'SendParameter'
-Line  119: 19 [ 40]: (
-Line  119: 20 [264]: Identifier integer 'A%'
-Line  119: 22 [ 44]: ,
-Line  119: 23 [265]: Identifier float 'B#'
-Line  119: 25 [ 44]: ,
-Line  119: 26 [266]: Identifier string 'C$'
-Line  119: 28 [ 41]: )
-Line  119: 29 [257]: Newline
-Line  120:  3 [317]: PRINT
-Line  120:  9 [271]: String 'Send parameter%    = '
-Line  120: 32 [ 59]: ;
-Line  120: 33 [ 58]: :
-Line  120: 34 [310]: IF
-Line  120: 37 [264]: Identifier integer 'A%'
-Line  120: 40 [ 61]: =
-Line  120: 42 [269]: Integer 25
-Line  120: 45 [263]: Identifier 'Pass'
-Line  120: 49 [ 40]: (
-Line  120: 50 [ 41]: )
-Line  120: 52 [294]: ELSE
-Line  120: 57 [263]: Identifier 'Fail'
-Line  120: 61 [ 40]: (
-Line  120: 62 [ 41]: )
-Line  120: 63 [257]: Newline
-Line  121:  3 [317]: PRINT
-Line  121:  9 [271]: String 'Send parameter#    = '
-Line  121: 32 [ 59]: ;
-Line  121: 33 [ 58]: :
-Line  121: 34 [310]: IF
-Line  121: 37 [265]: Identifier float 'B#'
-Line  121: 40 [ 61]: =
-Line  121: 42 [270]: Float 123.100000
-Line  121: 48 [263]: Identifier 'Pass'
-Line  121: 52 [ 40]: (
-Line  121: 53 [ 41]: )
-Line  121: 55 [294]: ELSE
-Line  121: 60 [263]: Identifier 'Fail'
-Line  121: 64 [ 40]: (
-Line  121: 65 [ 41]: )
-Line  121: 66 [257]: Newline
-Line  122:  3 [317]: PRINT
-Line  122:  9 [271]: String 'Send parameter$    = '
-Line  122: 32 [ 59]: ;
-Line  122: 33 [ 58]: :
-Line  122: 34 [310]: IF
-Line  122: 37 [266]: Identifier string 'C$'
-Line  122: 40 [ 61]: =
-Line  122: 42 [271]: String 'Test'
-Line  122: 49 [263]: Identifier 'Pass'
-Line  122: 53 [ 40]: (
-Line  122: 54 [ 41]: )
-Line  122: 56 [294]: ELSE
-Line  122: 61 [263]: Identifier 'Fail'
-Line  122: 65 [ 40]: (
-Line  122: 66 [ 41]: )
-Line  122: 67 [257]: Newline
-Line  123:  2 [298]: ENDDEF
-Line  123:  8 [257]: Newline
-Line  124:  2 [257]: Newline
-Line  125:  2 [292]: DEF ''
-Line  125:  6 [263]: Identifier 'GlobalsLocals'
-Line  125: 19 [ 40]: (
-Line  125: 20 [ 41]: )
-Line  125: 21 [257]: Newline
-Line  126:  3 [317]: PRINT
-Line  126:  9 [271]: String '::Locals & Globals::'
-Line  126: 31 [257]: Newline
-Line  127:  3 [263]: Identifier 'LocalVars'
-Line  127: 12 [ 40]: (
-Line  127: 13 [ 41]: )
-Line  127: 14 [257]: Newline
-Line  128:  3 [317]: PRINT
-Line  128:  9 [271]: String 'Preserving Global  = '
-Line  128: 32 [ 59]: ;
-Line  128: 33 [ 58]: :
-Line  128: 34 [310]: IF
-Line  128: 37 [264]: Identifier integer 'G%'
-Line  128: 40 [ 61]: =
-Line  128: 42 [269]: Integer 5
-Line  128: 44 [263]: Identifier 'Pass'
-Line  128: 48 [ 40]: (
-Line  128: 49 [ 41]: )
-Line  128: 51 [294]: ELSE
-Line  128: 56 [263]: Identifier 'Fail'
-Line  128: 60 [ 40]: (
-Line  128: 61 [ 41]: )
-Line  128: 62 [257]: Newline
-Line  129:  3 [317]: PRINT
-Line  129:  8 [257]: Newline
-Line  130:  2 [298]: ENDDEF
-Line  130:  8 [257]: Newline
-Line  131:  2 [257]: Newline
-Line  132:  2 [292]: DEF ''
-Line  132:  6 [263]: Identifier 'LocalVars'
-Line  132: 15 [ 40]: (
-Line  132: 16 [ 41]: )
-Line  132: 17 [257]: Newline
-Line  133:  4 [312]: Newline
-Line  133: 10 [264]: Identifier integer 'G%'
-Line  133: 13 [ 61]: =
-Line  133: 15 [269]: Integer 10
-Line  133: 17 [257]: Newline
-Line  134:  2 [298]: ENDDEF
-Line  134:  8 [257]: Newline
-Line  135:  2 [257]: Newline
-Line  136:  2 [292]: DEF ''
-Line  136:  6 [263]: Identifier 'Looping'
-Line  136: 13 [ 40]: (
-Line  136: 14 [ 41]: )
-Line  136: 15 [257]: Newline
-Line  137:  3 [317]: PRINT
-Line  137:  9 [271]: String '::Looping::'
-Line  137: 22 [257]: Newline
-Line  138:  3 [317]: PRINT
-Line  138:  9 [271]: String 'One line IF        = '
-Line  138: 32 [ 59]: ;
-Line  138: 33 [ 58]: :
-Line  138: 34 [310]: IF
-Line  138: 37 [269]: Integer 1
-Line  138: 39 [ 61]: =
-Line  138: 41 [269]: Integer 1
-Line  138: 43 [263]: Identifier 'Pass'
-Line  138: 47 [ 40]: (
-Line  138: 48 [ 41]: )
-Line  138: 50 [294]: ELSE
-Line  138: 55 [263]: Identifier 'Fail'
-Line  138: 59 [ 40]: (
-Line  138: 60 [ 41]: )
-Line  138: 61 [257]: Newline
-Line  139:  3 [317]: PRINT
-Line  139:  9 [271]: String 'Multiline IF       = '
-Line  139: 32 [ 59]: ;
-Line  139: 33 [257]: Newline
-Line  140:  3 [310]: IF
-Line  140:  6 [269]: Integer 1
-Line  140:  8 [ 61]: =
-Line  140: 10 [269]: Integer 1
-Line  140: 12 [330]: THEN
-Line  140: 16 [257]: Newline
-Line  141:  4 [263]: Identifier 'Pass'
-Line  141:  8 [ 40]: (
-Line  141:  9 [ 41]: )
-Line  141: 10 [257]: Newline
-Line  142:  3 [294]: ELSE
-Line  142:  7 [257]: Newline
-Line  143:  4 [263]: Identifier 'Fail'
-Line  143:  8 [ 40]: (
-Line  143:  9 [ 41]: )
-Line  143: 10 [257]: Newline
-Line  144:  3 [297]: ENDIF
-Line  144:  8 [257]: Newline
-Line  145:  3 [264]: Identifier integer 'I%'
-Line  145:  6 [ 61]: =
-Line  145:  8 [269]: Integer 0
-Line  145:  9 [257]: Newline
-Line  146:  3 [323]: REPEAT
-Line  146:  9 [257]: Newline
-Line  147:  4 [264]: Identifier integer 'I%'
-Line  147:  7 [ 61]: =
-Line  147:  9 [264]: Identifier integer 'I%'
-Line  147: 12 [ 43]: +
-Line  147: 14 [269]: Integer 1
-Line  147: 15 [257]: Newline
-Line  148:  3 [336]: UNTIL
-Line  148:  9 [264]: Identifier integer 'I%'
-Line  148: 12 [ 61]: =
-Line  148: 14 [269]: Integer 10
-Line  148: 16 [257]: Newline
-Line  149:  3 [317]: PRINT
-Line  149:  9 [271]: String 'Repeat             = '
-Line  149: 32 [ 59]: ;
-Line  149: 33 [ 58]: :
-Line  149: 34 [310]: IF
-Line  149: 37 [264]: Identifier integer 'I%'
-Line  149: 40 [ 61]: =
-Line  149: 42 [269]: Integer 10
-Line  149: 45 [263]: Identifier 'Pass'
-Line  149: 49 [ 40]: (
-Line  149: 50 [ 41]: )
-Line  149: 52 [294]: ELSE
-Line  149: 57 [263]: Identifier 'Fail'
-Line  149: 61 [ 40]: (
-Line  149: 62 [ 41]: )
-Line  149: 63 [257]: Newline
-Line  150:  3 [264]: Identifier integer 'I%'
-Line  150:  6 [ 61]: =
-Line  150:  8 [269]: Integer 0
-Line  150:  9 [257]: Newline
-Line  151:  3 [338]: WHILE
-Line  151:  9 [264]: Identifier integer 'I%'
-Line  151: 12 [ 60]: <
-Line  151: 14 [269]: Integer 10
-Line  151: 16 [257]: Newline
-Line  152:  4 [264]: Identifier integer 'I%'
-Line  152:  7 [ 61]: =
-Line  152:  9 [264]: Identifier integer 'I%'
-Line  152: 12 [ 43]: +
-Line  152: 14 [269]: Integer 1
-Line  152: 15 [257]: Newline
-Line  153:  3 [300]: ENDWHILE
-Line  153: 11 [257]: Newline
-Line  154:  3 [317]: PRINT
-Line  154:  9 [271]: String 'While              = '
-Line  154: 32 [ 59]: ;
-Line  154: 33 [ 58]: :
-Line  154: 34 [310]: IF
-Line  154: 37 [264]: Identifier integer 'I%'
-Line  154: 40 [ 61]: =
-Line  154: 42 [269]: Integer 10
-Line  154: 45 [263]: Identifier 'Pass'
-Line  154: 49 [ 40]: (
-Line  154: 50 [ 41]: )
-Line  154: 52 [294]: ELSE
-Line  154: 57 [263]: Identifier 'Fail'
-Line  154: 61 [ 40]: (
-Line  154: 62 [ 41]: )
-Line  154: 63 [257]: Newline
-Line  155:  3 [264]: Identifier integer 'I%'
-Line  155:  6 [ 61]: =
-Line  155:  8 [269]: Integer 0
-Line  155:  9 [257]: Newline
-Line  156:  3 [302]: Newline
-Line  156:  7 [264]: Identifier integer 'J%'
-Line  156: 10 [ 61]: =
-Line  156: 12 [269]: Integer 0
-Line  156: 14 [331]: TO
-Line  156: 17 [269]: Integer 9
-Line  156: 18 [257]: Newline
-Line  157:  4 [264]: Identifier integer 'I%'
-Line  157:  7 [ 61]: =
-Line  157:  9 [264]: Identifier integer 'I%'
-Line  157: 12 [ 43]: +
-Line  157: 14 [269]: Integer 1
-Line  157: 15 [257]: Newline
-Line  158:  3 [314]: NEXT 0
-Line  158:  7 [257]: Newline
-Line  159:  3 [317]: PRINT
-Line  159:  9 [271]: String 'FOR (Int)          = '
-Line  159: 32 [ 59]: ;
-Line  159: 33 [ 58]: :
-Line  159: 34 [310]: IF
-Line  159: 37 [264]: Identifier integer 'I%'
-Line  159: 40 [ 61]: =
-Line  159: 42 [269]: Integer 10
-Line  159: 45 [263]: Identifier 'Pass'
-Line  159: 49 [ 40]: (
-Line  159: 50 [ 41]: )
-Line  159: 52 [294]: ELSE
-Line  159: 57 [263]: Identifier 'Fail'
-Line  159: 61 [ 40]: (
-Line  159: 62 [ 41]: )
-Line  159: 63 [257]: Newline
-Line  160:  3 [264]: Identifier integer 'I%'
-Line  160:  6 [ 61]: =
-Line  160:  8 [269]: Integer 0
-Line  160:  9 [257]: Newline
-Line  161:  3 [302]: Newline
-Line  161:  7 [264]: Identifier integer 'J%'
-Line  161: 10 [ 61]: =
-Line  161: 12 [269]: Integer 0
-Line  161: 14 [331]: TO
-Line  161: 17 [269]: Integer 9
-Line  161: 19 [327]: STEP
-Line  161: 24 [269]: Integer 2
-Line  161: 25 [257]: Newline
-Line  162:  4 [264]: Identifier integer 'I%'
-Line  162:  7 [ 61]: =
-Line  162:  9 [264]: Identifier integer 'I%'
-Line  162: 12 [ 43]: +
-Line  162: 14 [269]: Integer 1
-Line  162: 15 [257]: Newline
-Line  163:  3 [314]: NEXT 0
-Line  163:  7 [257]: Newline
-Line  164:  3 [317]: PRINT
-Line  164:  9 [271]: String 'FOR + Step (Int)   = '
-Line  164: 32 [ 59]: ;
-Line  164: 33 [ 58]: :
-Line  164: 34 [310]: IF
-Line  164: 37 [264]: Identifier integer 'I%'
-Line  164: 40 [ 61]: =
-Line  164: 42 [269]: Integer 5
-Line  164: 44 [263]: Identifier 'Pass'
-Line  164: 48 [ 40]: (
-Line  164: 49 [ 41]: )
-Line  164: 51 [294]: ELSE
-Line  164: 56 [263]: Identifier 'Fail'
-Line  164: 60 [ 40]: (
-Line  164: 61 [ 41]: )
-Line  164: 62 [257]: Newline
-Line  165:  3 [264]: Identifier integer 'I%'
-Line  165:  6 [ 61]: =
-Line  165:  8 [269]: Integer 0
-Line  165:  9 [257]: Newline
-Line  166:  3 [302]: Newline
-Line  166:  7 [264]: Identifier integer 'J%'
-Line  166: 10 [ 61]: =
-Line  166: 12 [269]: Integer 9
-Line  166: 14 [331]: TO
-Line  166: 17 [269]: Integer 0
-Line  166: 19 [327]: STEP
-Line  166: 24 [269]: Integer -1
-Line  166: 26 [257]: Newline
-Line  167:  4 [264]: Identifier integer 'I%'
-Line  167:  7 [ 61]: =
-Line  167:  9 [264]: Identifier integer 'I%'
-Line  167: 12 [ 43]: +
-Line  167: 14 [269]: Integer 1
-Line  167: 15 [257]: Newline
-Line  168:  3 [314]: NEXT 0
-Line  168:  7 [257]: Newline
-Line  169:  3 [317]: PRINT
-Line  169:  9 [271]: String 'FOR - (Int)        = '
-Line  169: 32 [ 59]: ;
-Line  169: 33 [ 58]: :
-Line  169: 34 [310]: IF
-Line  169: 37 [264]: Identifier integer 'I%'
-Line  169: 40 [ 61]: =
-Line  169: 42 [269]: Integer 10
-Line  169: 45 [263]: Identifier 'Pass'
-Line  169: 49 [ 40]: (
-Line  169: 50 [ 41]: )
-Line  169: 52 [294]: ELSE
-Line  169: 57 [263]: Identifier 'Fail'
-Line  169: 61 [ 40]: (
-Line  169: 62 [ 41]: )
-Line  169: 63 [257]: Newline
-Line  170:  3 [264]: Identifier integer 'I%'
-Line  170:  6 [ 61]: =
-Line  170:  8 [269]: Integer 0
-Line  170:  9 [257]: Newline
-Line  171:  3 [302]: Newline
-Line  171:  7 [265]: Identifier float 'J#'
-Line  171: 10 [ 61]: =
-Line  171: 12 [270]: Float 0.000000
-Line  171: 16 [331]: TO
-Line  171: 19 [270]: Float 9.000000
-Line  171: 22 [257]: Newline
-Line  172:  4 [264]: Identifier integer 'I%'
-Line  172:  7 [ 61]: =
-Line  172:  9 [264]: Identifier integer 'I%'
-Line  172: 12 [ 43]: +
-Line  172: 14 [269]: Integer 1
-Line  172: 15 [257]: Newline
-Line  173:  3 [314]: NEXT 0
-Line  173:  7 [257]: Newline
-Line  174:  3 [317]: PRINT
-Line  174:  9 [271]: String 'FOR (Float)        = '
-Line  174: 32 [ 59]: ;
-Line  174: 33 [ 58]: :
-Line  174: 34 [310]: IF
-Line  174: 37 [264]: Identifier integer 'I%'
-Line  174: 40 [ 61]: =
-Line  174: 42 [269]: Integer 10
-Line  174: 45 [263]: Identifier 'Pass'
-Line  174: 49 [ 40]: (
-Line  174: 50 [ 41]: )
-Line  174: 52 [294]: ELSE
-Line  174: 57 [263]: Identifier 'Fail'
-Line  174: 61 [ 40]: (
-Line  174: 62 [ 41]: )
-Line  174: 63 [257]: Newline
-Line  175:  3 [264]: Identifier integer 'I%'
-Line  175:  6 [ 61]: =
-Line  175:  8 [269]: Integer 0
-Line  175:  9 [257]: Newline
-Line  176:  3 [302]: Newline
-Line  176:  7 [265]: Identifier float 'J#'
-Line  176: 10 [ 61]: =
-Line  176: 12 [270]: Float 0.000000
-Line  176: 16 [331]: TO
-Line  176: 19 [270]: Float 9.000000
-Line  176: 23 [327]: STEP
-Line  176: 28 [270]: Float 2.000000
-Line  176: 31 [257]: Newline
-Line  177:  4 [264]: Identifier integer 'I%'
-Line  177:  7 [ 61]: =
-Line  177:  9 [264]: Identifier integer 'I%'
-Line  177: 12 [ 43]: +
-Line  177: 14 [269]: Integer 1
-Line  177: 15 [257]: Newline
-Line  178:  3 [314]: NEXT 0
-Line  178:  7 [257]: Newline
-Line  179:  3 [317]: PRINT
-Line  179:  9 [271]: String 'FOR + Step (Float) = '
-Line  179: 32 [ 59]: ;
-Line  179: 33 [ 58]: :
-Line  179: 34 [310]: IF
-Line  179: 37 [264]: Identifier integer 'I%'
-Line  179: 40 [ 61]: =
-Line  179: 42 [269]: Integer 5
-Line  179: 44 [263]: Identifier 'Pass'
-Line  179: 48 [ 40]: (
-Line  179: 49 [ 41]: )
-Line  179: 51 [294]: ELSE
-Line  179: 56 [263]: Identifier 'Fail'
-Line  179: 60 [ 40]: (
-Line  179: 61 [ 41]: )
-Line  179: 62 [257]: Newline
-Line  180:  3 [317]: PRINT
-Line  180:  9 [271]: String 'Case               = '
-Line  180: 32 [ 59]: ;
-Line  180: 33 [257]: Newline
-Line  181:  3 [264]: Identifier integer 'I%'
-Line  181:  5 [ 61]: =
-Line  181:  6 [269]: Integer 1
-Line  181:  7 [257]: Newline
-Line  182:  3 [288]: CASE
-Line  182:  8 [264]: Identifier integer 'I%'
-Line  182: 11 [315]: OF
-Line  182: 13 [257]: Newline
-Line  183:  4 [337]: WHEN
-Line  183:  9 [269]: Integer 0
-Line  183: 10 [ 44]: ,
-Line  183: 12 [269]: Integer 1
-Line  183: 13 [ 44]: ,
-Line  183: 15 [269]: Integer 2
-Line  183: 16 [ 58]: :
-Line  183: 18 [263]: Identifier 'Pass'
-Line  183: 22 [ 40]: (
-Line  183: 23 [ 41]: )
-Line  183: 24 [257]: Newline
-Line  184:  4 [337]: WHEN
-Line  184:  9 [269]: Integer 3
-Line  184: 10 [ 58]: :
-Line  184: 12 [263]: Identifier 'Fail'
-Line  184: 16 [ 40]: (
-Line  184: 17 [ 41]: )
-Line  184: 18 [257]: Newline
-Line  185:  4 [316]: OTHERWISE
-Line  185: 14 [263]: Identifier 'Fail'
-Line  185: 18 [ 40]: (
-Line  185: 19 [ 41]: )
-Line  185: 20 [257]: Newline
-Line  186:  3 [296]: ENDCASE
-Line  186: 10 [257]: Newline
-Line  187:  3 [317]: PRINT
-Line  187:  9 [271]: String 'Case (not first)   = '
-Line  187: 32 [ 59]: ;
-Line  187: 33 [257]: Newline
-Line  188:  3 [264]: Identifier integer 'I%'
-Line  188:  5 [ 61]: =
-Line  188:  6 [269]: Integer 2
-Line  188:  7 [257]: Newline
-Line  189:  3 [288]: CASE
-Line  189:  8 [264]: Identifier integer 'I%'
-Line  189: 11 [315]: OF
-Line  189: 13 [257]: Newline
-Line  190:  4 [337]: WHEN
-Line  190:  9 [269]: Integer 0
-Line  190: 10 [ 44]: ,
-Line  190: 11 [269]: Integer 1
-Line  190: 12 [ 58]: :
-Line  190: 14 [263]: Identifier 'Fail'
-Line  190: 18 [ 40]: (
-Line  190: 19 [ 41]: )
-Line  190: 20 [257]: Newline
-Line  191:  4 [337]: WHEN
-Line  191:  9 [269]: Integer 2
-Line  191: 10 [ 58]: :
-Line  191: 12 [263]: Identifier 'Pass'
-Line  191: 16 [ 40]: (
-Line  191: 17 [ 41]: )
-Line  191: 18 [257]: Newline
-Line  192:  4 [316]: OTHERWISE
-Line  192: 14 [263]: Identifier 'Fail'
-Line  192: 18 [ 40]: (
-Line  192: 19 [ 41]: )
-Line  192: 20 [257]: Newline
-Line  193:  3 [296]: ENDCASE
-Line  193: 10 [257]: Newline
-Line  194:  3 [317]: PRINT
-Line  194:  9 [271]: String 'Case (Otherwise)   = '
-Line  194: 32 [ 59]: ;
-Line  194: 33 [257]: Newline
-Line  195:  3 [264]: Identifier integer 'I%'
-Line  195:  5 [ 61]: =
-Line  195:  6 [269]: Integer 4
-Line  195:  7 [257]: Newline
-Line  196:  3 [288]: CASE
-Line  196:  8 [264]: Identifier integer 'I%'
-Line  196: 11 [315]: OF
-Line  196: 13 [257]: Newline
-Line  197:  4 [337]: WHEN
-Line  197:  9 [269]: Integer 0
-Line  197: 10 [ 44]: ,
-Line  197: 12 [269]: Integer 1
-Line  197: 13 [ 44]: ,
-Line  197: 15 [269]: Integer 2
-Line  197: 16 [ 58]: :
-Line  197: 18 [263]: Identifier 'Fail'
-Line  197: 22 [ 40]: (
-Line  197: 23 [ 41]: )
-Line  197: 24 [257]: Newline
-Line  198:  4 [337]: WHEN
-Line  198:  9 [269]: Integer 3
-Line  198: 10 [ 58]: :
-Line  198: 12 [263]: Identifier 'Fail'
-Line  198: 16 [ 40]: (
-Line  198: 17 [ 41]: )
-Line  198: 18 [257]: Newline
-Line  199:  4 [316]: OTHERWISE
-Line  199: 14 [263]: Identifier 'Pass'
-Line  199: 18 [ 40]: (
-Line  199: 19 [ 41]: )
-Line  199: 20 [257]: Newline
-Line  200:  3 [296]: ENDCASE
-Line  200: 10 [257]: Newline
-Line  201:  3 [317]: PRINT
-Line  201:  9 [271]: String 'Case (String)      = '
-Line  201: 32 [ 59]: ;
-Line  201: 33 [257]: Newline
-Line  202:  3 [266]: Identifier string 'A$'
-Line  202:  5 [ 61]: =
-Line  202:  6 [271]: String 'B'
-Line  202:  9 [257]: Newline
-Line  203:  3 [288]: CASE
-Line  203:  8 [266]: Identifier string 'A$'
-Line  203: 11 [315]: OF
-Line  203: 13 [257]: Newline
-Line  204:  5 [337]: WHEN
-Line  204: 10 [271]: String 'A'
-Line  204: 13 [ 58]: :
-Line  204: 14 [263]: Identifier 'Fail'
-Line  204: 18 [ 40]: (
-Line  204: 19 [ 41]: )
-Line  204: 20 [257]: Newline
-Line  205:  5 [337]: WHEN
-Line  205: 10 [271]: String 'B'
-Line  205: 13 [ 58]: :
-Line  205: 14 [263]: Identifier 'Pass'
-Line  205: 18 [ 40]: (
-Line  205: 19 [ 41]: )
-Line  205: 20 [257]: Newline
-Line  206:  4 [316]: OTHERWISE
-Line  206: 14 [263]: Identifier 'Fail'
-Line  206: 18 [ 40]: (
-Line  206: 19 [ 41]: )
-Line  206: 20 [257]: Newline
-Line  207:  3 [296]: ENDCASE
-Line  207: 10 [257]: Newline
-Line  208:  2 [298]: ENDDEF
-Line  208:  8 [257]: Newline
-Line  209:  2 [257]: Newline
-Line  210:  2 [292]: DEF ''
-Line  210:  6 [263]: Identifier 'Maths'
-Line  210: 11 [ 40]: (
-Line  210: 12 [ 41]: )
-Line  210: 13 [257]: Newline
-Line  211:  6 [317]: PRINT
-Line  211: 12 [271]: String '::Maths::'
-Line  211: 23 [257]: Newline
-Line  212:  6 [317]: PRINT
-Line  212: 12 [271]: String '- (Unary)          = '
-Line  212: 35 [ 59]: ;
-Line  212: 36 [ 58]: :
-Line  212: 37 [310]: IF
-Line  212: 40 [269]: Integer 2
-Line  212: 42 [ 45]: -
-Line  212: 44 [269]: Integer -2
-Line  212: 47 [ 61]: =
-Line  212: 49 [269]: Integer 4
-Line  212: 51 [263]: Identifier 'Pass'
-Line  212: 55 [ 40]: (
-Line  212: 56 [ 41]: )
-Line  212: 58 [294]: ELSE
-Line  212: 63 [263]: Identifier 'Fail'
-Line  212: 67 [ 40]: (
-Line  212: 68 [ 41]: )
-Line  212: 69 [257]: Newline
-Line  213:  6 [317]: PRINT
-Line  213: 12 [271]: String '- (Int)            = '
-Line  213: 35 [ 59]: ;
-Line  213: 36 [ 58]: :
-Line  213: 37 [310]: IF
-Line  213: 40 [269]: Integer 10
-Line  213: 43 [ 45]: -
-Line  213: 45 [269]: Integer 8
-Line  213: 47 [ 61]: =
-Line  213: 49 [269]: Integer 2
-Line  213: 51 [263]: Identifier 'Pass'
-Line  213: 55 [ 40]: (
-Line  213: 56 [ 41]: )
-Line  213: 58 [294]: ELSE
-Line  213: 63 [263]: Identifier 'Fail'
-Line  213: 67 [ 40]: (
-Line  213: 68 [ 41]: )
-Line  213: 69 [257]: Newline
-Line  214:  6 [317]: PRINT
-Line  214: 12 [271]: String '+ (Int)            = '
-Line  214: 35 [ 59]: ;
-Line  214: 36 [ 58]: :
-Line  214: 37 [310]: IF
-Line  214: 40 [269]: Integer 10
-Line  214: 43 [ 43]: +
-Line  214: 45 [269]: Integer 8
-Line  214: 47 [ 61]: =
-Line  214: 49 [269]: Integer 18
-Line  214: 52 [263]: Identifier 'Pass'
-Line  214: 56 [ 40]: (
-Line  214: 57 [ 41]: )
-Line  214: 59 [294]: ELSE
-Line  214: 64 [263]: Identifier 'Fail'
-Line  214: 68 [ 40]: (
-Line  214: 69 [ 41]: )
-Line  214: 70 [257]: Newline
-Line  215:  6 [317]: PRINT
-Line  215: 12 [271]: String '* (Int)            = '
-Line  215: 35 [ 59]: ;
-Line  215: 36 [ 58]: :
-Line  215: 37 [310]: IF
-Line  215: 40 [269]: Integer 10
-Line  215: 43 [ 42]: *
-Line  215: 45 [269]: Integer 8
-Line  215: 47 [ 61]: =
-Line  215: 49 [269]: Integer 80
-Line  215: 52 [263]: Identifier 'Pass'
-Line  215: 56 [ 40]: (
-Line  215: 57 [ 41]: )
-Line  215: 59 [294]: ELSE
-Line  215: 64 [263]: Identifier 'Fail'
-Line  215: 68 [ 40]: (
-Line  215: 69 [ 41]: )
-Line  215: 70 [257]: Newline
-Line  216:  6 [317]: PRINT
-Line  216: 12 [271]: String '^ (Int)            = '
-Line  216: 35 [ 59]: ;
-Line  216: 36 [ 58]: :
-Line  216: 37 [310]: IF
-Line  216: 40 [269]: Integer 2
-Line  216: 42 [ 94]: ^
-Line  216: 44 [269]: Integer 3
-Line  216: 46 [ 61]: =
-Line  216: 48 [269]: Integer 8
-Line  216: 50 [263]: Identifier 'Pass'
-Line  216: 54 [ 40]: (
-Line  216: 55 [ 41]: )
-Line  216: 57 [294]: ELSE
-Line  216: 62 [263]: Identifier 'Fail'
-Line  216: 66 [ 40]: (
-Line  216: 67 [ 41]: )
-Line  216: 68 [257]: Newline
-Line  217:  6 [317]: PRINT
-Line  217: 12 [271]: String 'Mod (Int)          = '
-Line  217: 35 [ 59]: ;
-Line  217: 36 [ 58]: :
-Line  217: 37 [310]: IF
-Line  217: 40 [269]: Integer 11
-Line  217: 43 [398]: MOD
-Line  217: 47 [269]: Integer 5
-Line  217: 49 [ 61]: =
-Line  217: 51 [269]: Integer 1
-Line  217: 53 [263]: Identifier 'Pass'
-Line  217: 57 [ 40]: (
-Line  217: 58 [ 41]: )
-Line  217: 60 [294]: ELSE
-Line  217: 65 [263]: Identifier 'Fail'
-Line  217: 69 [ 40]: (
-Line  217: 70 [ 41]: )
-Line  217: 71 [257]: Newline
-Line  218:  6 [317]: PRINT
-Line  218: 12 [271]: String 'Div (Int)          = '
-Line  218: 35 [ 59]: ;
-Line  218: 36 [ 58]: :
-Line  218: 37 [310]: IF
-Line  218: 40 [269]: Integer 11
-Line  218: 43 [397]: DIV
-Line  218: 47 [269]: Integer 5
-Line  218: 49 [ 61]: =
-Line  218: 51 [269]: Integer 2
-Line  218: 53 [263]: Identifier 'Pass'
-Line  218: 57 [ 40]: (
-Line  218: 58 [ 41]: )
-Line  218: 60 [294]: ELSE
-Line  218: 65 [263]: Identifier 'Fail'
-Line  218: 69 [ 40]: (
-Line  218: 70 [ 41]: )
-Line  218: 71 [257]: Newline
-Line  219:  6 [317]: PRINT
-Line  219: 12 [271]: String 'Abs (Int)          = '
-Line  219: 35 [ 59]: ;
-Line  219: 36 [ 58]: :
-Line  219: 37 [310]: IF
-Line  219: 40 [408]: ABS
-Line  219: 43 [ 40]: (
-Line  219: 44 [269]: Integer -10
-Line  219: 47 [ 41]: )
-Line  219: 49 [ 61]: =
-Line  219: 51 [269]: Integer 10
-Line  219: 54 [263]: Identifier 'Pass'
-Line  219: 58 [ 40]: (
-Line  219: 59 [ 41]: )
-Line  219: 61 [294]: ELSE
-Line  219: 66 [263]: Identifier 'Fail'
-Line  219: 70 [ 40]: (
-Line  219: 71 [ 41]: )
-Line  219: 72 [257]: Newline
-Line  220:  6 [317]: PRINT
-Line  220: 12 [271]: String '- (Float)          = '
-Line  220: 35 [ 59]: ;
-Line  220: 36 [ 58]: :
-Line  220: 37 [310]: IF
-Line  220: 40 [270]: Float 10.500000
-Line  220: 45 [ 45]: -
-Line  220: 47 [270]: Float 8.250000
-Line  220: 52 [ 61]: =
-Line  220: 54 [270]: Float 2.250000
-Line  220: 59 [263]: Identifier 'Pass'
-Line  220: 63 [ 40]: (
-Line  220: 64 [ 41]: )
-Line  220: 66 [294]: ELSE
-Line  220: 71 [263]: Identifier 'Fail'
-Line  220: 75 [ 40]: (
-Line  220: 76 [ 41]: )
-Line  220: 77 [257]: Newline
-Line  221:  6 [317]: PRINT
-Line  221: 12 [271]: String '+ (Float)          = '
-Line  221: 35 [ 59]: ;
-Line  221: 36 [ 58]: :
-Line  221: 37 [310]: IF
-Line  221: 40 [270]: Float 10.400000
-Line  221: 45 [ 43]: +
-Line  221: 47 [270]: Float 8.100000
-Line  221: 51 [ 61]: =
-Line  221: 53 [270]: Float 18.500000
-Line  221: 58 [263]: Identifier 'Pass'
-Line  221: 62 [ 40]: (
-Line  221: 63 [ 41]: )
-Line  221: 65 [294]: ELSE
-Line  221: 70 [263]: Identifier 'Fail'
-Line  221: 74 [ 40]: (
-Line  221: 75 [ 41]: )
-Line  221: 76 [257]: Newline
-Line  222:  6 [317]: PRINT
-Line  222: 12 [271]: String '* (Float)          = '
-Line  222: 35 [ 59]: ;
-Line  222: 36 [ 58]: :
-Line  222: 37 [310]: IF
-Line  222: 40 [270]: Float 2.500000
-Line  222: 44 [ 42]: *
-Line  222: 46 [270]: Float 4.500000
-Line  222: 50 [ 61]: =
-Line  222: 52 [270]: Float 11.250000
-Line  222: 58 [263]: Identifier 'Pass'
-Line  222: 62 [ 40]: (
-Line  222: 63 [ 41]: )
-Line  222: 65 [294]: ELSE
-Line  222: 70 [263]: Identifier 'Fail'
-Line  222: 74 [ 40]: (
-Line  222: 75 [ 41]: )
-Line  222: 76 [257]: Newline
-Line  223:  6 [317]: PRINT
-Line  223: 12 [271]: String '/ (Float)          = '
-Line  223: 35 [ 59]: ;
-Line  223: 36 [ 58]: :
-Line  223: 37 [310]: IF
-Line  223: 40 [270]: Float 8.400000
-Line  223: 44 [ 47]: /
-Line  223: 46 [270]: Float 4.200000
-Line  223: 50 [ 61]: =
-Line  223: 52 [270]: Float 2.000000
-Line  223: 56 [263]: Identifier 'Pass'
-Line  223: 60 [ 40]: (
-Line  223: 61 [ 41]: )
-Line  223: 63 [294]: ELSE
-Line  223: 68 [263]: Identifier 'Fail'
-Line  223: 72 [ 40]: (
-Line  223: 73 [ 41]: )
-Line  223: 74 [257]: Newline
-Line  224:  6 [317]: PRINT
-Line  224: 12 [271]: String '<< (Shift left)    = '
-Line  224: 35 [ 59]: ;
-Line  224: 36 [ 58]: :
-Line  224: 37 [310]: IF
-Line  224: 40 [269]: Integer 60
-Line  224: 43 [277]: <<
-Line  224: 46 [269]: Integer 2
-Line  224: 48 [ 61]: =
-Line  224: 50 [269]: Integer 240
-Line  224: 54 [263]: Identifier 'Pass'
-Line  224: 58 [ 40]: (
-Line  224: 59 [ 41]: )
-Line  224: 61 [294]: ELSE
-Line  224: 66 [263]: Identifier 'Fail'
-Line  224: 70 [ 40]: (
-Line  224: 71 [ 41]: )
-Line  224: 72 [257]: Newline
-Line  225:  6 [317]: PRINT
-Line  225: 12 [271]: String '>> (Shift right)   = '
-Line  225: 35 [ 59]: ;
-Line  225: 36 [ 58]: :
-Line  225: 37 [310]: IF
-Line  225: 40 [269]: Integer 200
-Line  225: 44 [278]: >>
-Line  225: 47 [269]: Integer 2
-Line  225: 49 [ 61]: =
-Line  225: 51 [269]: Integer 50
-Line  225: 54 [263]: Identifier 'Pass'
-Line  225: 58 [ 40]: (
-Line  225: 59 [ 41]: )
-Line  225: 61 [294]: ELSE
-Line  225: 66 [263]: Identifier 'Fail'
-Line  225: 70 [ 40]: (
-Line  225: 71 [ 41]: )
-Line  225: 72 [257]: Newline
-Line  226:  6 [317]: PRINT
-Line  226: 12 [271]: String 'Mod (Float)        = '
-Line  226: 35 [ 59]: ;
-Line  226: 36 [ 58]: :
-Line  226: 37 [310]: IF
-Line  226: 40 [270]: Float 11.000000
-Line  226: 45 [398]: MOD
-Line  226: 49 [270]: Float 5.000000
-Line  226: 53 [ 61]: =
-Line  226: 55 [269]: Integer 1
-Line  226: 57 [263]: Identifier 'Pass'
-Line  226: 61 [ 40]: (
-Line  226: 62 [ 41]: )
-Line  226: 64 [294]: ELSE
-Line  226: 69 [263]: Identifier 'Fail'
-Line  226: 73 [ 40]: (
-Line  226: 74 [ 41]: )
-Line  226: 75 [257]: Newline
-Line  227:  6 [317]: PRINT
-Line  227: 12 [271]: String 'Div (Float)        = '
-Line  227: 35 [ 59]: ;
-Line  227: 36 [ 58]: :
-Line  227: 37 [310]: IF
-Line  227: 40 [270]: Float 11.000000
-Line  227: 45 [397]: DIV
-Line  227: 49 [270]: Float 5.000000
-Line  227: 53 [ 61]: =
-Line  227: 55 [269]: Integer 2
-Line  227: 57 [263]: Identifier 'Pass'
-Line  227: 61 [ 40]: (
-Line  227: 62 [ 41]: )
-Line  227: 64 [294]: ELSE
-Line  227: 69 [263]: Identifier 'Fail'
-Line  227: 73 [ 40]: (
-Line  227: 74 [ 41]: )
-Line  227: 75 [257]: Newline
-Line  228:  6 [317]: PRINT
-Line  228: 12 [271]: String 'Abs (Float)        = '
-Line  228: 35 [ 59]: ;
-Line  228: 36 [ 58]: :
-Line  228: 37 [310]: IF
-Line  228: 40 [408]: ABS
-Line  228: 43 [ 40]: (
-Line  228: 44 [270]: Float -10.500000
-Line  228: 49 [ 41]: )
-Line  228: 51 [ 61]: =
-Line  228: 53 [270]: Float 10.500000
-Line  228: 58 [263]: Identifier 'Pass'
-Line  228: 62 [ 40]: (
-Line  228: 63 [ 41]: )
-Line  228: 65 [294]: ELSE
-Line  228: 70 [263]: Identifier 'Fail'
-Line  228: 74 [ 40]: (
-Line  228: 75 [ 41]: )
-Line  228: 76 [257]: Newline
-Line  229:  6 [317]: PRINT
-Line  229: 12 [271]: String 'Sqr                = '
-Line  229: 35 [ 59]: ;
-Line  229: 36 [ 58]: :
-Line  229: 37 [310]: IF
-Line  229: 40 [399]: SQR
-Line  229: 43 [ 40]: (
-Line  229: 44 [269]: Integer 16
-Line  229: 46 [ 41]: )
-Line  229: 48 [ 61]: =
-Line  229: 50 [269]: Integer 4
-Line  229: 52 [263]: Identifier 'Pass'
-Line  229: 56 [ 40]: (
-Line  229: 57 [ 41]: )
-Line  229: 59 [294]: ELSE
-Line  229: 64 [263]: Identifier 'Fail'
-Line  229: 68 [ 40]: (
-Line  229: 69 [ 41]: )
-Line  229: 70 [257]: Newline
-Line  230:  6 [317]: PRINT
-Line  230: 12 [271]: String 'Ln                 = '
-Line  230: 35 [ 59]: ;
-Line  230: 36 [ 58]: :
-Line  230: 37 [310]: IF
-Line  230: 40 [395]: INT
-Line  230: 43 [ 40]: (
-Line  230: 44 [400]: LN
-Line  230: 46 [ 40]: (
-Line  230: 47 [269]: Integer 16
-Line  230: 49 [ 41]: )
-Line  230: 51 [ 42]: *
-Line  230: 53 [270]: Float 100.000000
-Line  230: 58 [ 41]: )
-Line  230: 60 [ 61]: =
-Line  230: 62 [269]: Integer 277
-Line  230: 66 [263]: Identifier 'Pass'
-Line  230: 70 [ 40]: (
-Line  230: 71 [ 41]: )
-Line  230: 73 [294]: ELSE
-Line  230: 78 [263]: Identifier 'Fail'
-Line  230: 82 [ 40]: (
-Line  230: 83 [ 41]: )
-Line  230: 84 [257]: Newline
-Line  231:  6 [317]: PRINT
-Line  231: 12 [271]: String 'Log                = '
-Line  231: 35 [ 59]: ;
-Line  231: 36 [ 58]: :
-Line  231: 37 [310]: IF
-Line  231: 40 [395]: INT
-Line  231: 43 [ 40]: (
-Line  231: 44 [401]: LOG
-Line  231: 47 [ 40]: (
-Line  231: 48 [269]: Integer 16
-Line  231: 50 [ 41]: )
-Line  231: 52 [ 42]: *
-Line  231: 54 [270]: Float 100.000000
-Line  231: 59 [ 41]: )
-Line  231: 61 [ 61]: =
-Line  231: 63 [269]: Integer 120
-Line  231: 67 [263]: Identifier 'Pass'
-Line  231: 71 [ 40]: (
-Line  231: 72 [ 41]: )
-Line  231: 74 [294]: ELSE
-Line  231: 79 [263]: Identifier 'Fail'
-Line  231: 83 [ 40]: (
-Line  231: 84 [ 41]: )
-Line  231: 85 [257]: Newline
-Line  232:  6 [317]: PRINT
-Line  232: 12 [271]: String 'Exp                = '
-Line  232: 35 [ 59]: ;
-Line  232: 36 [ 58]: :
-Line  232: 37 [310]: IF
-Line  232: 40 [395]: INT
-Line  232: 43 [ 40]: (
-Line  232: 44 [402]: EXP
-Line  232: 47 [ 40]: (
-Line  232: 48 [269]: Integer 1
-Line  232: 49 [ 41]: )
-Line  232: 51 [ 42]: *
-Line  232: 53 [270]: Float 100.000000
-Line  232: 58 [ 41]: )
-Line  232: 60 [ 61]: =
-Line  232: 62 [269]: Integer 271
-Line  232: 66 [263]: Identifier 'Pass'
-Line  232: 70 [ 40]: (
-Line  232: 71 [ 41]: )
-Line  232: 73 [294]: ELSE
-Line  232: 78 [263]: Identifier 'Fail'
-Line  232: 82 [ 40]: (
-Line  232: 83 [ 41]: )
-Line  232: 84 [257]: Newline
-Line  233:  6 [317]: PRINT
-Line  233: 12 [271]: String 'Atn                = '
-Line  233: 35 [ 59]: ;
-Line  233: 36 [ 58]: :
-Line  233: 37 [310]: IF
-Line  233: 40 [395]: INT
-Line  233: 43 [ 40]: (
-Line  233: 44 [403]: ATN
-Line  233: 47 [ 40]: (
-Line  233: 48 [269]: Integer 3
-Line  233: 49 [ 41]: )
-Line  233: 51 [ 42]: *
-Line  233: 53 [270]: Float 100.000000
-Line  233: 58 [ 41]: )
-Line  233: 60 [ 61]: =
-Line  233: 62 [269]: Integer 124
-Line  233: 66 [263]: Identifier 'Pass'
-Line  233: 70 [ 40]: (
-Line  233: 71 [ 41]: )
-Line  233: 73 [294]: ELSE
-Line  233: 78 [263]: Identifier 'Fail'
-Line  233: 82 [ 40]: (
-Line  233: 83 [ 41]: )
-Line  233: 84 [257]: Newline
-Line  234:  6 [317]: PRINT
-Line  234: 12 [271]: String 'Tan                = '
-Line  234: 35 [ 59]: ;
-Line  234: 36 [ 58]: :
-Line  234: 37 [310]: IF
-Line  234: 40 [395]: INT
-Line  234: 43 [ 40]: (
-Line  234: 44 [404]: TAN
-Line  234: 47 [ 40]: (
-Line  234: 48 [269]: Integer 3
-Line  234: 49 [ 41]: )
-Line  234: 51 [ 42]: *
-Line  234: 53 [270]: Float 100.000000
-Line  234: 58 [ 41]: )
-Line  234: 60 [ 61]: =
-Line  234: 62 [269]: Integer -14
-Line  234: 66 [263]: Identifier 'Pass'
-Line  234: 70 [ 40]: (
-Line  234: 71 [ 41]: )
-Line  234: 73 [294]: ELSE
-Line  234: 78 [263]: Identifier 'Fail'
-Line  234: 82 [ 40]: (
-Line  234: 83 [ 41]: )
-Line  234: 84 [257]: Newline
-Line  235:  6 [317]: PRINT
-Line  235: 12 [271]: String 'Sin                = '
-Line  235: 35 [ 59]: ;
-Line  235: 36 [ 58]: :
-Line  235: 37 [310]: IF
-Line  235: 40 [395]: INT
-Line  235: 43 [ 40]: (
-Line  235: 44 [406]: SIN
-Line  235: 47 [ 40]: (
-Line  235: 48 [269]: Integer 3
-Line  235: 49 [ 41]: )
-Line  235: 51 [ 42]: *
-Line  235: 53 [270]: Float 100.000000
-Line  235: 58 [ 41]: )
-Line  235: 60 [ 61]: =
-Line  235: 62 [269]: Integer 14
-Line  235: 65 [263]: Identifier 'Pass'
-Line  235: 69 [ 40]: (
-Line  235: 70 [ 41]: )
-Line  235: 72 [294]: ELSE
-Line  235: 77 [263]: Identifier 'Fail'
-Line  235: 81 [ 40]: (
-Line  235: 82 [ 41]: )
-Line  235: 83 [257]: Newline
-Line  236:  6 [317]: PRINT
-Line  236: 12 [271]: String 'Cos                = '
-Line  236: 35 [ 59]: ;
-Line  236: 36 [ 58]: :
-Line  236: 37 [310]: IF
-Line  236: 40 [395]: INT
-Line  236: 43 [ 40]: (
-Line  236: 44 [405]: COS
-Line  236: 47 [ 40]: (
-Line  236: 48 [269]: Integer 3
-Line  236: 49 [ 41]: )
-Line  236: 51 [ 42]: *
-Line  236: 53 [270]: Float 100.000000
-Line  236: 58 [ 41]: )
-Line  236: 60 [ 61]: =
-Line  236: 62 [269]: Integer -98
-Line  236: 66 [263]: Identifier 'Pass'
-Line  236: 70 [ 40]: (
-Line  236: 71 [ 41]: )
-Line  236: 73 [294]: ELSE
-Line  236: 78 [263]: Identifier 'Fail'
-Line  236: 82 [ 40]: (
-Line  236: 83 [ 41]: )
-Line  236: 84 [257]: Newline
-Line  237:  6 [317]: PRINT
-Line  237: 12 [271]: String 'Acs                = '
-Line  237: 35 [ 59]: ;
-Line  237: 36 [ 58]: :
-Line  237: 37 [310]: IF
-Line  237: 40 [395]: INT
-Line  237: 43 [ 40]: (
-Line  237: 44 [396]: ACS
-Line  237: 47 [ 40]: (
-Line  237: 48 [270]: Float 0.500000
-Line  237: 51 [ 41]: )
-Line  237: 53 [ 42]: *
-Line  237: 55 [270]: Float 100.000000
-Line  237: 60 [ 41]: )
-Line  237: 62 [ 61]: =
-Line  237: 64 [269]: Integer 104
-Line  237: 68 [263]: Identifier 'Pass'
-Line  237: 72 [ 40]: (
-Line  237: 73 [ 41]: )
-Line  237: 75 [294]: ELSE
-Line  237: 80 [263]: Identifier 'Fail'
-Line  237: 84 [ 40]: (
-Line  237: 85 [ 41]: )
-Line  237: 86 [257]: Newline
-Line  238:  6 [317]: PRINT
-Line  238: 12 [271]: String 'Asn                = '
-Line  238: 35 [ 59]: ;
-Line  238: 36 [ 58]: :
-Line  238: 37 [310]: IF
-Line  238: 40 [395]: INT
-Line  238: 43 [ 40]: (
-Line  238: 44 [407]: ASN
-Line  238: 47 [ 40]: (
-Line  238: 48 [270]: Float 0.500000
-Line  238: 51 [ 41]: )
-Line  238: 53 [ 42]: *
-Line  238: 55 [270]: Float 100.000000
-Line  238: 60 [ 41]: )
-Line  238: 62 [ 61]: =
-Line  238: 64 [269]: Integer 52
-Line  238: 67 [263]: Identifier 'Pass'
-Line  238: 71 [ 40]: (
-Line  238: 72 [ 41]: )
-Line  238: 74 [294]: ELSE
-Line  238: 79 [263]: Identifier 'Fail'
-Line  238: 83 [ 40]: (
-Line  238: 84 [ 41]: )
-Line  238: 85 [257]: Newline
-Line  239:  6 [317]: PRINT
-Line  239: 12 [271]: String 'Rad                = '
-Line  239: 35 [ 59]: ;
-Line  239: 36 [ 58]: :
-Line  239: 37 [310]: IF
-Line  239: 40 [395]: INT
-Line  239: 43 [ 40]: (
-Line  239: 44 [410]: RAD
-Line  239: 47 [ 40]: (
-Line  239: 48 [269]: Integer 90
-Line  239: 50 [ 41]: )
-Line  239: 52 [ 42]: *
-Line  239: 54 [270]: Float 100.000000
-Line  239: 59 [ 41]: )
-Line  239: 61 [ 61]: =
-Line  239: 63 [269]: Integer 157
-Line  239: 67 [263]: Identifier 'Pass'
-Line  239: 71 [ 40]: (
-Line  239: 72 [ 41]: )
-Line  239: 74 [294]: ELSE
-Line  239: 79 [263]: Identifier 'Fail'
-Line  239: 83 [ 40]: (
-Line  239: 84 [ 41]: )
-Line  239: 85 [257]: Newline
-Line  240:  6 [317]: PRINT
-Line  240: 12 [271]: String 'Deg                = '
-Line  240: 35 [ 59]: ;
-Line  240: 36 [ 58]: :
-Line  240: 37 [310]: IF
-Line  240: 40 [395]: INT
-Line  240: 43 [ 40]: (
-Line  240: 44 [409]: DEG
-Line  240: 47 [ 40]: (
-Line  240: 48 [270]: Float 1.500000
-Line  240: 51 [ 41]: )
-Line  240: 52 [ 41]: )
-Line  240: 54 [ 61]: =
-Line  240: 56 [269]: Integer 85
-Line  240: 59 [263]: Identifier 'Pass'
-Line  240: 63 [ 40]: (
-Line  240: 64 [ 41]: )
-Line  240: 66 [294]: ELSE
-Line  240: 71 [263]: Identifier 'Fail'
-Line  240: 75 [ 40]: (
-Line  240: 76 [ 41]: )
-Line  240: 77 [257]: Newline
-Line  241:  6 [317]: PRINT
-Line  241: 12 [271]: String 'Pi                 = '
-Line  241: 35 [ 59]: ;
-Line  241: 36 [ 58]: :
-Line  241: 37 [310]: IF
-Line  241: 40 [395]: INT
-Line  241: 43 [ 40]: (
-Line  241: 44 [415]: PI
-Line  241: 46 [ 42]: *
-Line  241: 47 [269]: Integer 100
-Line  241: 50 [ 41]: )
-Line  241: 52 [ 61]: =
-Line  241: 54 [269]: Integer 314
-Line  241: 58 [263]: Identifier 'Pass'
-Line  241: 62 [ 40]: (
-Line  241: 63 [ 41]: )
-Line  241: 65 [294]: ELSE
-Line  241: 70 [263]: Identifier 'Fail'
-Line  241: 74 [ 40]: (
-Line  241: 75 [ 41]: )
-Line  241: 76 [257]: Newline
-Line  242:  6 [317]: PRINT
-Line  242: 12 [271]: String 'Sgn (-)            = '
-Line  242: 35 [ 59]: ;
-Line  242: 36 [ 58]: :
-Line  242: 37 [310]: IF
-Line  242: 40 [413]: SGN
-Line  242: 43 [ 40]: (
-Line  242: 44 [269]: Integer -10
-Line  242: 47 [ 41]: )
-Line  242: 49 [ 61]: =
-Line  242: 51 [269]: Integer -1
-Line  242: 54 [263]: Identifier 'Pass'
-Line  242: 58 [ 40]: (
-Line  242: 59 [ 41]: )
-Line  242: 61 [294]: ELSE
-Line  242: 66 [263]: Identifier 'Fail'
-Line  242: 70 [ 40]: (
-Line  242: 71 [ 41]: )
-Line  242: 72 [257]: Newline
-Line  243:  6 [317]: PRINT
-Line  243: 12 [271]: String 'Sgn                = '
-Line  243: 35 [ 59]: ;
-Line  243: 36 [ 58]: :
-Line  243: 37 [310]: IF
-Line  243: 40 [413]: SGN
-Line  243: 43 [ 40]: (
-Line  243: 44 [269]: Integer 0
-Line  243: 45 [ 41]: )
-Line  243: 47 [ 61]: =
-Line  243: 49 [269]: Integer 0
-Line  243: 51 [263]: Identifier 'Pass'
-Line  243: 55 [ 40]: (
-Line  243: 56 [ 41]: )
-Line  243: 58 [294]: ELSE
-Line  243: 63 [263]: Identifier 'Fail'
-Line  243: 67 [ 40]: (
-Line  243: 68 [ 41]: )
-Line  243: 69 [257]: Newline
-Line  244:  6 [317]: PRINT
-Line  244: 12 [271]: String 'Sgn (+)            = '
-Line  244: 35 [ 59]: ;
-Line  244: 36 [ 58]: :
-Line  244: 37 [310]: IF
-Line  244: 40 [413]: SGN
-Line  244: 43 [ 40]: (
-Line  244: 44 [269]: Integer 10
-Line  244: 46 [ 41]: )
-Line  244: 48 [ 61]: =
-Line  244: 50 [269]: Integer 1
-Line  244: 52 [263]: Identifier 'Pass'
-Line  244: 56 [ 40]: (
-Line  244: 57 [ 41]: )
-Line  244: 59 [294]: ELSE
-Line  244: 64 [263]: Identifier 'Fail'
-Line  244: 68 [ 40]: (
-Line  244: 69 [ 41]: )
-Line  244: 70 [257]: Newline
-Line  245:  6 [317]: PRINT
-Line  245: 12 [271]: String 'Precedence         = '
-Line  245: 35 [ 59]: ;
-Line  245: 36 [ 58]: :
-Line  245: 37 [310]: IF
-Line  245: 40 [269]: Integer 2
-Line  245: 41 [ 43]: +
-Line  245: 42 [269]: Integer 3
-Line  245: 43 [ 42]: *
-Line  245: 44 [269]: Integer 4
-Line  245: 46 [ 61]: =
-Line  245: 48 [269]: Integer 14
-Line  245: 51 [263]: Identifier 'Pass'
-Line  245: 55 [ 40]: (
-Line  245: 56 [ 41]: )
-Line  245: 58 [294]: ELSE
-Line  245: 63 [263]: Identifier 'Fail'
-Line  245: 67 [ 40]: (
-Line  245: 68 [ 41]: )
-Line  245: 69 [257]: Newline
-Line  246:  6 [317]: PRINT
-Line  246: 12 [271]: String 'Parentheses        = '
-Line  246: 35 [ 59]: ;
-Line  246: 36 [ 58]: :
-Line  246: 37 [310]: IF
-Line  246: 40 [ 40]: (
-Line  246: 41 [269]: Integer 2
-Line  246: 42 [ 43]: +
-Line  246: 43 [269]: Integer 3
-Line  246: 44 [ 41]: )
-Line  246: 45 [ 42]: *
-Line  246: 46 [269]: Integer 4
-Line  246: 48 [ 61]: =
-Line  246: 50 [269]: Integer 20
-Line  246: 53 [263]: Identifier 'Pass'
-Line  246: 57 [ 40]: (
-Line  246: 58 [ 41]: )
-Line  246: 60 [294]: ELSE
-Line  246: 65 [263]: Identifier 'Fail'
-Line  246: 69 [ 40]: (
-Line  246: 70 [ 41]: )
-Line  246: 71 [257]: Newline
-Line  247:  6 [317]: PRINT
-Line  247: 11 [257]: Newline
-Line  248:  2 [298]: ENDDEF
-Line  248:  8 [257]: Newline
-Line  249:  2 [257]: Newline
-Line  250:  2 [292]: DEF ''
-Line  250:  6 [263]: Identifier 'NestedCalling'
-Line  250: 19 [ 40]: (
-Line  250: 20 [ 41]: )
-Line  250: 21 [257]: Newline
-Line  251:  6 [263]: Identifier 'Nested1'
-Line  251: 13 [ 40]: (
-Line  251: 14 [ 41]: )
-Line  251: 15 [257]: Newline
-Line  252:  6 [325]: RETURN (No type yet)
-Line  252: 12 [257]: Newline
-Line  253:  2 [298]: ENDDEF
-Line  253:  8 [257]: Newline
-Line  254:  2 [257]: Newline
-Line  255:  2 [292]: DEF ''
-Line  255:  6 [263]: Identifier 'Nested1'
-Line  255: 13 [ 40]: (
-Line  255: 14 [ 41]: )
-Line  255: 15 [257]: Newline
-Line  256:  6 [263]: Identifier 'Nested2'
-Line  256: 13 [ 40]: (
-Line  256: 14 [ 41]: )
-Line  256: 15 [257]: Newline
-Line  257:  6 [325]: RETURN (No type yet)
-Line  257: 12 [257]: Newline
-Line  258:  2 [298]: ENDDEF
-Line  258:  8 [257]: Newline
-Line  259:  2 [257]: Newline
-Line  260:  2 [292]: DEF ''
-Line  260:  6 [263]: Identifier 'Nested2'
-Line  260: 13 [ 40]: (
-Line  260: 14 [ 41]: )
-Line  260: 15 [257]: Newline
-Line  261:  6 [317]: PRINT
-Line  261: 12 [271]: String 'Nested DEFs        = '
-Line  261: 35 [ 59]: ;
-Line  261: 36 [ 58]: :
-Line  261: 37 [263]: Identifier 'Pass'
-Line  261: 41 [ 40]: (
-Line  261: 42 [ 41]: )
-Line  261: 43 [257]: Newline
-Line  262:  3 [317]: PRINT
-Line  262:  8 [257]: Newline
-Line  263:  6 [325]: RETURN (No type yet)
-Line  263: 12 [257]: Newline
-Line  264:  2 [298]: ENDDEF
-Line  264:  8 [257]: Newline
-Line  265:  2 [257]: Newline
-Line  266:  2 [292]: DEF ''
-Line  266:  6 [263]: Identifier 'Numbers'
-Line  266: 13 [ 40]: (
-Line  266: 14 [ 41]: )
-Line  266: 15 [257]: Newline
-Line  267:  6 [317]: PRINT
-Line  267: 12 [271]: String '::Numbers::'
-Line  267: 25 [257]: Newline
-Line  268:  6 [317]: PRINT
-Line  268: 12 [271]: String 'Hex                = '
-Line  268: 35 [ 59]: ;
-Line  268: 36 [ 58]: :
-Line  268: 37 [310]: IF
-Line  268: 40 [269]: Integer 64
-Line  268: 44 [ 61]: =
-Line  268: 46 [269]: Integer 64
-Line  268: 49 [263]: Identifier 'Pass'
-Line  268: 53 [ 40]: (
-Line  268: 54 [ 41]: )
-Line  268: 56 [294]: ELSE
-Line  268: 61 [263]: Identifier 'Fail'
-Line  268: 65 [ 40]: (
-Line  268: 66 [ 41]: )
-Line  268: 67 [257]: Newline
-Line  269:  6 [317]: PRINT
-Line  269: 12 [271]: String 'Binary             = '
-Line  269: 35 [ 59]: ;
-Line  269: 36 [ 58]: :
-Line  269: 37 [310]: IF
-Line  269: 40 [269]: Integer 4
-Line  269: 45 [ 61]: =
-Line  269: 47 [269]: Integer 4
-Line  269: 49 [263]: Identifier 'Pass'
-Line  269: 53 [ 40]: (
-Line  269: 54 [ 41]: )
-Line  269: 56 [294]: ELSE
-Line  269: 61 [263]: Identifier 'Fail'
-Line  269: 65 [ 40]: (
-Line  269: 66 [ 41]: )
-Line  269: 67 [257]: Newline
-Line  270:  6 [317]: PRINT
-Line  270: 11 [257]: Newline
-Line  271:  2 [298]: ENDDEF
-Line  271:  8 [257]: Newline
-Line  272:  2 [257]: Newline
-Line  273:  2 [292]: DEF ''
-Line  273:  6 [263]: Identifier 'PrintInput'
-Line  273: 16 [ 40]: (
-Line  273: 17 [ 41]: )
-Line  273: 18 [257]: Newline
-Line  274:  6 [317]: PRINT
-Line  274: 12 [271]: String '::PRINT & INPUT::'
-Line  274: 31 [257]: Newline
-Line  275:  6 [317]: PRINT
-Line  275: 12 [271]: String 'Multi-PRINT ,      = '
-Line  275: 35 [ 59]: ;
-Line  275: 36 [ 58]: :
-Line  275: 37 [317]: PRINT
-Line  275: 43 [269]: Integer 10
-Line  275: 45 [ 44]: ,
-Line  275: 46 [270]: Float 123.450000
-Line  275: 52 [ 44]: ,
-Line  275: 53 [271]: String 'Test'
-Line  275: 59 [257]: Newline
-Line  276:  6 [317]: PRINT
-Line  276: 12 [271]: String 'Multi-PRINT ;      = '
-Line  276: 35 [ 59]: ;
-Line  276: 36 [ 58]: :
-Line  276: 37 [317]: PRINT
-Line  276: 43 [269]: Integer 10
-Line  276: 45 [ 44]: ,
-Line  276: 46 [270]: Float 123.450000
-Line  276: 52 [ 59]: ;
-Line  276: 53 [271]: String 'Test'
-Line  276: 59 [257]: Newline
-Line  277:  6 [317]: PRINT
-Line  277: 12 [271]: String 'Multi-PRINT end ;  = '
-Line  277: 35 [ 59]: ;
-Line  277: 36 [ 58]: :
-Line  277: 37 [317]: PRINT
-Line  277: 43 [269]: Integer 10
-Line  277: 45 [ 59]: ;
-Line  277: 46 [270]: Float 123.450000
-Line  277: 52 [ 59]: ;
-Line  277: 53 [271]: String 'Test'
-Line  277: 59 [ 59]: ;
-Line  277: 60 [ 58]: :
-Line  277: 61 [317]: PRINT
-Line  277: 66 [257]: Newline
-Line  278:  6 [317]: PRINT
-Line  278: 12 [271]: String 'PRINT SPC          = '
-Line  278: 35 [ 59]: ;
-Line  278: 36 [ 58]: :
-Line  278: 37 [317]: PRINT
-Line  278: 43 [271]: String 'Test'
-Line  278: 49 [326]: SPC
-Line  278: 52 [269]: Integer 4
-Line  278: 53 [ 59]: ;
-Line  278: 54 [271]: String 'End'
-Line  278: 59 [257]: Newline
-Line  279:  6 [317]: PRINT
-Line  279: 12 [271]: String 'PRINT SPC()        = '
-Line  279: 35 [ 59]: ;
-Line  279: 36 [ 58]: :
-Line  279: 37 [317]: PRINT
-Line  279: 43 [271]: String 'Test'
-Line  279: 49 [326]: SPC
-Line  279: 52 [ 40]: (
-Line  279: 53 [269]: Integer 4
-Line  279: 54 [ 41]: )
-Line  279: 55 [ 59]: ;
-Line  279: 56 [271]: String 'End'
-Line  279: 61 [257]: Newline
-Line  280:  6 [317]: PRINT
-Line  280: 12 [271]: String 'PRINT TAB          = '
-Line  280: 35 [ 59]: ;
-Line  280: 36 [ 58]: :
-Line  280: 37 [317]: PRINT
-Line  280: 43 [271]: String 'Test'
-Line  280: 49 [329]: TAB
-Line  280: 52 [269]: Integer 10
-Line  280: 54 [ 59]: ;
-Line  280: 55 [271]: String 'End'
-Line  280: 60 [257]: Newline
-Line  281:  6 [317]: PRINT
-Line  281: 12 [271]: String 'PRINT TAB()        = '
-Line  281: 35 [ 59]: ;
-Line  281: 36 [ 58]: :
-Line  281: 37 [317]: PRINT
-Line  281: 43 [271]: String 'Test'
-Line  281: 49 [329]: TAB
-Line  281: 52 [ 40]: (
-Line  281: 53 [269]: Integer 15
-Line  281: 55 [ 41]: )
-Line  281: 56 [ 59]: ;
-Line  281: 57 [271]: String 'End'
-Line  281: 62 [257]: Newline
-Line  282:  6 [317]: PRINT
-Line  282: 11 [257]: Newline
-Line  283:  2 [298]: ENDDEF
-Line  283:  8 [257]: Newline
-Line  284:  2 [257]: Newline
-Line  285:  2 [292]: DEF ''
-Line  285:  6 [263]: Identifier 'ReturnValues'
-Line  285: 18 [ 40]: (
-Line  285: 19 [ 41]: )
-Line  285: 20 [257]: Newline
-Line  286:  6 [317]: PRINT
-Line  286: 12 [271]: String 'Returning int      = '
-Line  286: 35 [ 59]: ;
-Line  286: 36 [ 58]: :
-Line  286: 37 [310]: IF
-Line  286: 40 [264]: Identifier integer 'ReturnInteger%'
-Line  286: 54 [ 40]: (
-Line  286: 55 [ 41]: )
-Line  286: 56 [ 61]: =
-Line  286: 57 [269]: Integer 100
-Line  286: 61 [263]: Identifier 'Pass'
-Line  286: 65 [ 40]: (
-Line  286: 66 [ 41]: )
-Line  286: 68 [294]: ELSE
-Line  286: 73 [263]: Identifier 'Fail'
-Line  286: 77 [ 40]: (
-Line  286: 78 [ 41]: )
-Line  286: 79 [257]: Newline
-Line  287:  6 [317]: PRINT
-Line  287: 12 [271]: String 'Returning float    = '
-Line  287: 35 [ 59]: ;
-Line  287: 36 [ 58]: :
-Line  287: 37 [310]: IF
-Line  287: 40 [265]: Identifier float 'ReturnFloat#'
-Line  287: 52 [ 40]: (
-Line  287: 53 [ 41]: )
-Line  287: 54 [ 61]: =
-Line  287: 55 [270]: Float 146.450000
-Line  287: 62 [263]: Identifier 'Pass'
-Line  287: 66 [ 40]: (
-Line  287: 67 [ 41]: )
-Line  287: 69 [294]: ELSE
-Line  287: 74 [263]: Identifier 'Fail'
-Line  287: 78 [ 40]: (
-Line  287: 79 [ 41]: )
-Line  287: 80 [257]: Newline
-Line  288:  6 [317]: PRINT
-Line  288: 12 [271]: String 'Returning string   = '
-Line  288: 35 [ 59]: ;
-Line  288: 36 [ 58]: :
-Line  288: 37 [310]: IF
-Line  288: 40 [266]: Identifier string 'ReturnString$'
-Line  288: 53 [ 40]: (
-Line  288: 54 [ 41]: )
-Line  288: 55 [ 61]: =
-Line  288: 56 [271]: String 'ff'
-Line  288: 61 [263]: Identifier 'Pass'
-Line  288: 65 [ 40]: (
-Line  288: 66 [ 41]: )
-Line  288: 68 [294]: ELSE
-Line  288: 73 [263]: Identifier 'Fail'
-Line  288: 77 [ 40]: (
-Line  288: 78 [ 41]: )
-Line  288: 79 [257]: Newline
-Line  289:  2 [298]: ENDDEF
-Line  289:  8 [257]: Newline
-Line  290:  2 [257]: Newline
-Line  291:  2 [292]: DEF ''
-Line  291:  6 [264]: Identifier integer 'ReturnInteger%'
-Line  291: 20 [ 40]: (
-Line  291: 21 [ 41]: )
-Line  291: 22 [257]: Newline
-Line  292:  3 [325]: RETURN (No type yet)
-Line  292: 10 [269]: Integer 100
-Line  292: 13 [257]: Newline
-Line  293:  2 [298]: ENDDEF
-Line  293:  8 [257]: Newline
-Line  294:  2 [257]: Newline
-Line  295:  2 [292]: DEF ''
-Line  295:  6 [265]: Identifier float 'ReturnFloat#'
-Line  295: 18 [ 40]: (
-Line  295: 19 [ 41]: )
-Line  295: 20 [257]: Newline
-Line  296:  3 [325]: RETURN (No type yet)
-Line  296: 10 [270]: Float 146.450000
-Line  296: 16 [257]: Newline
-Line  297:  2 [298]: ENDDEF
-Line  297:  8 [257]: Newline
-Line  298:  2 [257]: Newline
-Line  299:  2 [292]: DEF ''
-Line  299:  6 [266]: Identifier string 'ReturnString$'
-Line  299: 19 [ 40]: (
-Line  299: 20 [ 41]: )
-Line  299: 21 [257]: Newline
-Line  300:  3 [325]: RETURN (No type yet)
-Line  300: 10 [271]: String 'ff'
-Line  300: 14 [257]: Newline
-Line  301:  2 [298]: ENDDEF
-Line  301:  8 [257]: Newline
-Line  302:  2 [257]: Newline
-Line  303:  2 [292]: DEF ''
-Line  303:  6 [263]: Identifier 'Strings'
-Line  303: 13 [ 40]: (
-Line  303: 14 [ 41]: )
-Line  303: 15 [257]: Newline
-Line  304:  6 [317]: PRINT
-Line  304: 12 [271]: String '::Strings::'
-Line  304: 25 [257]: Newline
-Line  305:  6 [317]: PRINT
-Line  305: 12 [271]: String 'Asc                = '
-Line  305: 35 [ 59]: ;
-Line  305: 36 [ 58]: :
-Line  305: 37 [310]: IF
-Line  305: 40 [381]: ASC
-Line  305: 43 [ 40]: (
-Line  305: 44 [271]: String 'Fred'
-Line  305: 50 [ 41]: )
-Line  305: 52 [ 61]: =
-Line  305: 54 [269]: Integer 70
-Line  305: 57 [390]: AND
-Line  305: 61 [381]: ASC
-Line  305: 64 [ 40]: (
-Line  305: 65 [271]: String ''
-Line  305: 67 [ 41]: )
-Line  305: 69 [ 61]: =
-Line  305: 71 [269]: Integer -1
-Line  305: 74 [263]: Identifier 'Pass'
-Line  305: 78 [ 40]: (
-Line  305: 79 [ 41]: )
-Line  305: 81 [294]: ELSE
-Line  305: 86 [263]: Identifier 'Fail'
-Line  305: 90 [ 40]: (
-Line  305: 91 [ 41]: )
-Line  305: 92 [257]: Newline
-Line  306:  6 [317]: PRINT
-Line  306: 12 [271]: String 'Chr$               = '
-Line  306: 35 [ 59]: ;
-Line  306: 36 [ 58]: :
-Line  306: 37 [310]: IF
-Line  306: 40 [382]: CHR$
-Line  306: 44 [ 40]: (
-Line  306: 45 [269]: Integer 65
-Line  306: 47 [ 41]: )
-Line  306: 49 [ 61]: =
-Line  306: 51 [271]: String 'A'
-Line  306: 55 [263]: Identifier 'Pass'
-Line  306: 59 [ 40]: (
-Line  306: 60 [ 41]: )
-Line  306: 62 [294]: ELSE
-Line  306: 67 [263]: Identifier 'Fail'
-Line  306: 71 [ 40]: (
-Line  306: 72 [ 41]: )
-Line  306: 73 [257]: Newline
-Line  307:  6 [317]: PRINT
-Line  307: 12 [271]: String 'Instr              = '
-Line  307: 35 [ 59]: ;
-Line  307: 36 [ 58]: :
-Line  307: 37 [310]: IF
-Line  307: 40 [383]: INSTR
-Line  307: 45 [ 40]: (
-Line  307: 46 [271]: String 'Test this this string'
-Line  307: 69 [ 44]: ,
-Line  307: 71 [271]: String 'this'
-Line  307: 77 [ 44]: ,
-Line  307: 79 [269]: Integer 1
-Line  307: 80 [ 41]: )
-Line  307: 82 [ 61]: =
-Line  307: 84 [269]: Integer 6
-Line  307: 86 [263]: Identifier 'Pass'
-Line  307: 90 [ 40]: (
-Line  307: 91 [ 41]: )
-Line  307: 93 [294]: ELSE
-Line  307: 98 [263]: Identifier 'Fail'
-Line  307:102 [ 40]: (
-Line  307:103 [ 41]: )
-Line  307:104 [257]: Newline
-Line  308:  6 [317]: PRINT
-Line  308: 12 [271]: String 'Instr (with start) = '
-Line  308: 35 [ 59]: ;
-Line  308: 36 [ 58]: :
-Line  308: 37 [310]: IF
-Line  308: 40 [383]: INSTR
-Line  308: 45 [ 40]: (
-Line  308: 46 [271]: String 'Test this this string'
-Line  308: 69 [ 44]: ,
-Line  308: 71 [271]: String 'this'
-Line  308: 77 [ 44]: ,
-Line  308: 79 [269]: Integer 8
-Line  308: 80 [ 41]: )
-Line  308: 82 [ 61]: =
-Line  308: 84 [269]: Integer 11
-Line  308: 87 [263]: Identifier 'Pass'
-Line  308: 91 [ 40]: (
-Line  308: 92 [ 41]: )
-Line  308: 94 [294]: ELSE
-Line  308: 99 [263]: Identifier 'Fail'
-Line  308:103 [ 40]: (
-Line  308:104 [ 41]: )
-Line  308:105 [257]: Newline
-Line  309:  6 [317]: PRINT
-Line  309: 12 [271]: String 'Left$              = '
-Line  309: 35 [ 59]: ;
-Line  309: 36 [ 58]: :
-Line  309: 37 [310]: IF
-Line  309: 40 [384]: LEFT$
-Line  309: 45 [ 40]: (
-Line  309: 46 [271]: String 'A test string'
-Line  309: 61 [ 44]: ,
-Line  309: 63 [269]: Integer 6
-Line  309: 64 [ 41]: )
-Line  309: 66 [ 61]: =
-Line  309: 68 [271]: String 'A test'
-Line  309: 77 [263]: Identifier 'Pass'
-Line  309: 81 [ 40]: (
-Line  309: 82 [ 41]: )
-Line  309: 84 [294]: ELSE
-Line  309: 89 [263]: Identifier 'Fail'
-Line  309: 93 [ 40]: (
-Line  309: 94 [ 41]: )
-Line  309: 95 [257]: Newline
-Line  310:  6 [317]: PRINT
-Line  310: 12 [271]: String 'Mid$               = '
-Line  310: 35 [ 59]: ;
-Line  310: 36 [ 58]: :
-Line  310: 37 [310]: IF
-Line  310: 40 [385]: MID$
-Line  310: 44 [ 40]: (
-Line  310: 45 [271]: String 'A test string'
-Line  310: 60 [ 44]: ,
-Line  310: 62 [269]: Integer 3
-Line  310: 63 [ 44]: ,
-Line  310: 65 [269]: Integer 4
-Line  310: 66 [ 41]: )
-Line  310: 68 [ 61]: =
-Line  310: 70 [271]: String 'test'
-Line  310: 77 [263]: Identifier 'Pass'
-Line  310: 81 [ 40]: (
-Line  310: 82 [ 41]: )
-Line  310: 84 [294]: ELSE
-Line  310: 89 [263]: Identifier 'Fail'
-Line  310: 93 [ 40]: (
-Line  310: 94 [ 41]: )
-Line  310: 95 [257]: Newline
-Line  311:  6 [317]: PRINT
-Line  311: 12 [271]: String 'Right$             = '
-Line  311: 35 [ 59]: ;
-Line  311: 36 [ 58]: :
-Line  311: 37 [310]: IF
-Line  311: 40 [386]: RIGHT$
-Line  311: 46 [ 40]: (
-Line  311: 47 [271]: String 'A test string'
-Line  311: 62 [ 44]: ,
-Line  311: 64 [269]: Integer 6
-Line  311: 65 [ 41]: )
-Line  311: 67 [ 61]: =
-Line  311: 69 [271]: String 'string'
-Line  311: 78 [263]: Identifier 'Pass'
-Line  311: 82 [ 40]: (
-Line  311: 83 [ 41]: )
-Line  311: 85 [294]: ELSE
-Line  311: 90 [263]: Identifier 'Fail'
-Line  311: 94 [ 40]: (
-Line  311: 95 [ 41]: )
-Line  311: 96 [257]: Newline
-Line  312:  6 [317]: PRINT
-Line  312: 12 [271]: String 'Len                = '
-Line  312: 35 [ 59]: ;
-Line  312: 36 [ 58]: :
-Line  312: 37 [310]: IF
-Line  312: 40 [387]: LEN
-Line  312: 43 [ 40]: (
-Line  312: 44 [271]: String 'A test string'
-Line  312: 59 [ 41]: )
-Line  312: 61 [ 61]: =
-Line  312: 63 [269]: Integer 13
-Line  312: 66 [263]: Identifier 'Pass'
-Line  312: 70 [ 40]: (
-Line  312: 71 [ 41]: )
-Line  312: 73 [294]: ELSE
-Line  312: 78 [263]: Identifier 'Fail'
-Line  312: 82 [ 40]: (
-Line  312: 83 [ 41]: )
-Line  312: 84 [257]: Newline
-Line  313:  6 [317]: PRINT
-Line  313: 12 [271]: String 'String to float    = '
-Line  313: 35 [ 59]: ;
-Line  313: 36 [ 58]: :
-Line  313: 37 [310]: IF
-Line  313: 40 [394]: FLOAT
-Line  313: 45 [ 40]: (
-Line  313: 46 [271]: String '10.5'
-Line  313: 52 [ 41]: )
-Line  313: 54 [ 61]: =
-Line  313: 56 [270]: Float 10.500000
-Line  313: 61 [263]: Identifier 'Pass'
-Line  313: 65 [ 40]: (
-Line  313: 66 [ 41]: )
-Line  313: 68 [294]: ELSE
-Line  313: 73 [263]: Identifier 'Fail'
-Line  313: 77 [ 40]: (
-Line  313: 78 [ 41]: )
-Line  313: 79 [257]: Newline
-Line  314:  6 [317]: PRINT
-Line  314: 12 [271]: String 'Float to string    = '
-Line  314: 35 [ 59]: ;
-Line  314: 36 [ 58]: :
-Line  314: 37 [310]: IF
-Line  314: 40 [384]: LEFT$
-Line  314: 45 [ 40]: (
-Line  314: 46 [389]: STR$
-Line  314: 50 [ 40]: (
-Line  314: 51 [270]: Float 10.500000
-Line  314: 55 [ 41]: )
-Line  314: 56 [ 44]: ,
-Line  314: 57 [269]: Integer 4
-Line  314: 58 [ 41]: )
-Line  314: 60 [ 61]: =
-Line  314: 62 [271]: String '10.5'
-Line  314: 69 [263]: Identifier 'Pass'
-Line  314: 73 [ 40]: (
-Line  314: 74 [ 41]: )
-Line  314: 76 [294]: ELSE
-Line  314: 81 [263]: Identifier 'Fail'
-Line  314: 85 [ 40]: (
-Line  314: 86 [ 41]: )
-Line  314: 87 [257]: Newline
-Line  315:  6 [317]: PRINT
-Line  315: 12 [271]: String 'String$            = '
-Line  315: 35 [ 59]: ;
-Line  315: 36 [ 58]: :
-Line  315: 37 [310]: IF
-Line  315: 40 [388]: STRING$
-Line  315: 47 [ 40]: (
-Line  315: 48 [271]: String 'A'
-Line  315: 51 [ 44]: ,
-Line  315: 53 [269]: Integer 4
-Line  315: 54 [ 41]: )
-Line  315: 56 [ 61]: =
-Line  315: 58 [271]: String 'AAAA'
-Line  315: 65 [263]: Identifier 'Pass'
-Line  315: 69 [ 40]: (
-Line  315: 70 [ 41]: )
-Line  315: 72 [294]: ELSE
-Line  315: 77 [263]: Identifier 'Fail'
-Line  315: 81 [ 40]: (
-Line  315: 82 [ 41]: )
-Line  315: 83 [257]: Newline
-Line  316:  6 [317]: PRINT
-Line  316: 11 [257]: Newline
-Line  317:  2 [298]: ENDDEF
-Line  317:  8 [257]: Newline
-Line  318:  2 [257]: Newline
-Line  319:  2 [292]: DEF ''
-Line  319:  6 [263]: Identifier 'Swap'
-Line  319: 10 [ 40]: (
-Line  319: 11 [ 41]: )
-Line  319: 12 [257]: Newline
-Line  320:  3 [317]: PRINT
-Line  320:  9 [271]: String '::Swap::'
-Line  320: 19 [257]: Newline
-Line  321:  3 [264]: Identifier integer 'swpa%'
-Line  321:  8 [ 61]: =
-Line  321:  9 [269]: Integer 1
-Line  321: 10 [ 58]: :
-Line  321: 11 [264]: Identifier integer 'swpb%'
-Line  321: 16 [ 61]: =
-Line  321: 17 [269]: Integer 2
-Line  321: 18 [ 58]: :
-Line  321: 19 [265]: Identifier float 'swpf1#'
-Line  321: 25 [ 61]: =
-Line  321: 26 [269]: Integer 123
-Line  321: 29 [ 58]: :
-Line  321: 30 [265]: Identifier float 'swpf2#'
-Line  321: 36 [ 61]: =
-Line  321: 37 [269]: Integer 456
-Line  321: 40 [ 58]: :
-Line  321: 41 [266]: Identifier string 'swps1$'
-Line  321: 47 [ 61]: =
-Line  321: 48 [271]: String '11'
-Line  321: 52 [ 58]: :
-Line  321: 53 [266]: Identifier string 'swps2$'
-Line  321: 59 [ 61]: =
-Line  321: 60 [271]: String '22'
-Line  321: 64 [257]: Newline
-Line  322:  3 [328]: SWAP
-Line  322:  8 [264]: Identifier integer 'swpa%'
-Line  322: 13 [ 44]: ,
-Line  322: 14 [264]: Identifier integer 'swpb%'
-Line  322: 19 [257]: Newline
-Line  323:  3 [328]: SWAP
-Line  323:  8 [265]: Identifier float 'swpf1#'
-Line  323: 14 [ 44]: ,
-Line  323: 15 [265]: Identifier float 'swpf2#'
-Line  323: 21 [257]: Newline
-Line  324:  3 [328]: SWAP
-Line  324:  8 [266]: Identifier string 'swps1$'
-Line  324: 14 [ 44]: ,
-Line  324: 15 [266]: Identifier string 'swps2$'
-Line  324: 21 [257]: Newline
-Line  325:  3 [317]: PRINT
-Line  325:  9 [271]: String 'Swap integer       = '
-Line  325: 32 [ 59]: ;
-Line  325: 33 [ 58]: :
-Line  325: 34 [310]: IF
-Line  325: 37 [264]: Identifier integer 'swpa%'
-Line  325: 42 [ 61]: =
-Line  325: 43 [269]: Integer 2
-Line  325: 45 [390]: AND
-Line  325: 49 [264]: Identifier integer 'swpb%'
-Line  325: 54 [ 61]: =
-Line  325: 55 [269]: Integer 1
-Line  325: 57 [263]: Identifier 'Pass'
-Line  325: 61 [ 40]: (
-Line  325: 62 [ 41]: )
-Line  325: 64 [294]: ELSE
-Line  325: 69 [263]: Identifier 'Fail'
-Line  325: 73 [ 40]: (
-Line  325: 74 [ 41]: )
-Line  325: 75 [257]: Newline
-Line  326:  3 [317]: PRINT
-Line  326:  9 [271]: String 'Swap float         = '
-Line  326: 32 [ 59]: ;
-Line  326: 33 [ 58]: :
-Line  326: 34 [310]: IF
-Line  326: 37 [265]: Identifier float 'swpf1#'
-Line  326: 43 [ 61]: =
-Line  326: 44 [269]: Integer 456
-Line  326: 48 [390]: AND
-Line  326: 52 [265]: Identifier float 'swpf2#'
-Line  326: 58 [ 61]: =
-Line  326: 59 [269]: Integer 123
-Line  326: 63 [263]: Identifier 'Pass'
-Line  326: 67 [ 40]: (
-Line  326: 68 [ 41]: )
-Line  326: 70 [294]: ELSE
-Line  326: 75 [263]: Identifier 'Fail'
-Line  326: 79 [ 40]: (
-Line  326: 80 [ 41]: )
-Line  326: 81 [257]: Newline
-Line  327:  3 [317]: PRINT
-Line  327:  9 [271]: String 'Swap string        = '
-Line  327: 32 [ 59]: ;
-Line  327: 33 [ 58]: :
-Line  327: 34 [310]: IF
-Line  327: 37 [266]: Identifier string 'swps1$'
-Line  327: 43 [ 61]: =
-Line  327: 44 [271]: String '22'
-Line  327: 49 [390]: AND
-Line  327: 53 [266]: Identifier string 'swps2$'
-Line  327: 59 [ 61]: =
-Line  327: 60 [271]: String '11'
-Line  327: 65 [263]: Identifier 'Pass'
-Line  327: 69 [ 40]: (
-Line  327: 70 [ 41]: )
-Line  327: 72 [294]: ELSE
-Line  327: 77 [263]: Identifier 'Fail'
-Line  327: 81 [ 40]: (
-Line  327: 82 [ 41]: )
-Line  327: 83 [257]: Newline
-Line  328:  3 [317]: PRINT
-Line  328:  8 [257]: Newline
-Line  329:  2 [298]: ENDDEF
-Line  329:  8 [257]: Newline
-Line  330:  2 [257]: Newline
-Line  331:  2 [292]: DEF ''
-Line  331:  6 [263]: Identifier 'TestReturnInOtherwise'
-Line  331: 27 [ 40]: (
-Line  331: 28 [ 41]: )
-Line  331: 29 [257]: Newline
-Line  332:  6 [266]: Identifier string 'B$'
-Line  332:  8 [ 61]: =
-Line  332:  9 [271]: String '5'
-Line  332: 12 [257]: Newline
-Line  333:  3 [317]: PRINT
-Line  333:  9 [271]: String 'Return inside DEF  = '
-Line  333: 32 [ 59]: ;
-Line  333: 33 [ 58]: :
-Line  333: 34 [257]: Newline
-Line  334:  6 [288]: CASE
-Line  334: 11 [266]: Identifier string 'B$'
-Line  334: 14 [315]: OF
-Line  334: 16 [257]: Newline
-Line  335: 10 [337]: WHEN
-Line  335: 15 [271]: String '1'
-Line  335: 18 [ 44]: ,
-Line  335: 19 [271]: String '2'
-Line  335: 22 [ 44]: ,
-Line  335: 23 [271]: String '3'
-Line  335: 26 [ 44]: ,
-Line  335: 27 [271]: String '4'
-Line  335: 30 [ 58]: :
-Line  335: 31 [263]: Identifier 'Fail'
-Line  335: 35 [ 40]: (
-Line  335: 36 [ 41]: )
-Line  335: 37 [257]: Newline
-Line  336: 10 [316]: OTHERWISE
-Line  336: 19 [ 58]: :
-Line  336: 20 [263]: Identifier 'Pass'
-Line  336: 24 [ 40]: (
-Line  336: 25 [ 41]: )
-Line  336: 26 [ 58]: :
-Line  336: 28 [325]: RETURN (No type yet)
-Line  336: 34 [257]: Newline
-Line  337:  6 [296]: ENDCASE
-Line  337: 13 [257]: Newline
-Line  338:  3 [263]: Identifier 'Fail'
-Line  338:  7 [ 40]: (
-Line  338:  8 [ 41]: )
-Line  338:  9 [257]: Newline
-Line  339:  2 [298]: ENDDEF
-Line  339:  8 [257]: Newline
-Line  340:  2 [257]: Newline
-Line  341:  2 [292]: DEF ''
-Line  341:  6 [263]: Identifier 'Types'
-Line  341: 11 [ 40]: (
-Line  341: 12 [ 41]: )
-Line  341: 13 [257]: Newline
-Line  342:  3 [317]: PRINT
-Line  342:  9 [271]: String '::Types::'
-Line  342: 20 [257]: Newline
-Line  343:  3 [267]: Identifier type 'A!'
-Line  343:  6 [ 61]: =
-Line  343:  8 [263]: Identifier 'VertexTest'
-Line  343: 18 [ 40]: (
-Line  343: 19 [ 41]: )
-Line  343: 20 [257]: Newline
-Line  344:  3 [267]: Identifier type 'A!'
-Line  344:  5 [265]: Identifier float 'y#'
-Line  344:  8 [ 61]: =
-Line  344: 10 [270]: Float 100.500000
-Line  344: 15 [257]: Newline
-Line  345:  3 [267]: Identifier type 'A!'
-Line  345:  5 [264]: Identifier integer 'rgb%'
-Line  345: 10 [ 61]: =
-Line  345: 12 [269]: Integer 16720000
-Line  345: 19 [257]: Newline
-Line  346:  3 [267]: Identifier type 'A!'
-Line  346:  5 [266]: Identifier string 's$'
-Line  346:  7 [ 61]: =
-Line  346:  8 [271]: String 'Test'
-Line  346: 14 [257]: Newline
-Line  347:  3 [317]: PRINT
-Line  347:  9 [271]: String 'Load field (float) = '
-Line  347: 32 [ 59]: ;
-Line  347: 33 [ 58]: :
-Line  347: 35 [310]: IF
-Line  347: 38 [267]: Identifier type 'A!'
-Line  347: 40 [265]: Identifier float 'y#'
-Line  347: 43 [ 61]: =
-Line  347: 45 [270]: Float 100.500000
-Line  347: 51 [263]: Identifier 'Pass'
-Line  347: 55 [ 40]: (
-Line  347: 56 [ 41]: )
-Line  347: 58 [294]: ELSE
-Line  347: 63 [263]: Identifier 'Fail'
-Line  347: 67 [ 40]: (
-Line  347: 68 [ 41]: )
-Line  347: 69 [257]: Newline
-Line  348:  3 [317]: PRINT
-Line  348:  9 [271]: String 'Load field (int)   = '
-Line  348: 32 [ 59]: ;
-Line  348: 33 [ 58]: :
-Line  348: 35 [310]: IF
-Line  348: 38 [267]: Identifier type 'A!'
-Line  348: 40 [264]: Identifier integer 'rgb%'
-Line  348: 45 [ 61]: =
-Line  348: 47 [269]: Integer 16720000
-Line  348: 55 [263]: Identifier 'Pass'
-Line  348: 59 [ 40]: (
-Line  348: 60 [ 41]: )
-Line  348: 62 [294]: ELSE
-Line  348: 67 [263]: Identifier 'Fail'
-Line  348: 71 [ 40]: (
-Line  348: 72 [ 41]: )
-Line  348: 73 [257]: Newline
-Line  349:  3 [317]: PRINT
-Line  349:  9 [271]: String 'Load field (string)= '
-Line  349: 32 [ 59]: ;
-Line  349: 33 [ 58]: :
-Line  349: 35 [310]: IF
-Line  349: 38 [267]: Identifier type 'A!'
-Line  349: 40 [266]: Identifier string 's$'
-Line  349: 43 [ 61]: =
-Line  349: 45 [271]: String 'Test'
-Line  349: 52 [263]: Identifier 'Pass'
-Line  349: 56 [ 40]: (
-Line  349: 57 [ 41]: )
-Line  349: 59 [294]: ELSE
-Line  349: 64 [263]: Identifier 'Fail'
-Line  349: 68 [ 40]: (
-Line  349: 69 [ 41]: )
-Line  349: 70 [257]: Newline
-Line  350:  3 [317]: PRINT
-Line  350:  9 [271]: String 'Load field (Glob1) = '
-Line  350: 32 [ 59]: ;
-Line  350: 33 [ 58]: :
-Line  350: 35 [310]: IF
-Line  350: 38 [267]: Identifier type 'GVT!'
-Line  350: 42 [265]: Identifier float 'x#'
-Line  350: 45 [ 61]: =
-Line  350: 47 [270]: Float 10.000000
-Line  350: 52 [390]: AND
-Line  350: 56 [267]: Identifier type 'GVT!'
-Line  350: 60 [265]: Identifier float 'y#'
-Line  350: 63 [ 61]: =
-Line  350: 65 [270]: Float 234.560000
-Line  350: 72 [263]: Identifier 'Pass'
-Line  350: 76 [ 40]: (
-Line  350: 77 [ 41]: )
-Line  350: 79 [294]: ELSE
-Line  350: 84 [263]: Identifier 'Fail'
-Line  350: 88 [ 40]: (
-Line  350: 89 [ 41]: )
-Line  350: 90 [257]: Newline
-Line  351:  3 [317]: PRINT
-Line  351:  9 [271]: String 'Load field (Glob2) = '
-Line  351: 32 [ 59]: ;
-Line  351: 33 [ 58]: :
-Line  351: 35 [310]: IF
-Line  351: 38 [267]: Identifier type 'GVT!'
-Line  351: 42 [264]: Identifier integer 'rgb%'
-Line  351: 47 [ 61]: =
-Line  351: 49 [269]: Integer 16777215
-Line  351: 57 [263]: Identifier 'Pass'
-Line  351: 61 [ 40]: (
-Line  351: 62 [ 41]: )
-Line  351: 64 [294]: ELSE
-Line  351: 69 [263]: Identifier 'Fail'
-Line  351: 73 [ 40]: (
-Line  351: 74 [ 41]: )
-Line  351: 75 [257]: Newline
-Line  352:  3 [317]: PRINT
-Line  352:  8 [257]: Newline
-Line  353:  2 [298]: ENDDEF
-Line  353:  8 [257]: Newline
-Line  354:  2 [257]: Newline
-Line  355:  2 [292]: DEF ''
-Line  355:  6 [263]: Identifier 'Variables'
-Line  355: 15 [ 40]: (
-Line  355: 16 [ 41]: )
-Line  355: 17 [257]: Newline
-Line  356:  3 [264]: Identifier integer 'A%'
-Line  356:  5 [ 61]: =
-Line  356:  6 [269]: Integer 0
-Line  356:  7 [ 58]: :
-Line  356:  8 [265]: Identifier float 'A#'
-Line  356: 10 [ 61]: =
-Line  356: 11 [269]: Integer 0
-Line  356: 12 [ 58]: :
-Line  356: 13 [266]: Identifier string 'A$'
-Line  356: 15 [ 61]: =
-Line  356: 16 [271]: String ''
-Line  356: 18 [ 58]: :
-Line  356: 19 [264]: Identifier integer 'B%'
-Line  356: 21 [ 61]: =
-Line  356: 22 [269]: Integer 5
-Line  356: 23 [ 43]: +
-Line  356: 24 [269]: Integer 5
-Line  356: 25 [ 58]: :
-Line  356: 26 [265]: Identifier float 'B#'
-Line  356: 28 [ 61]: =
-Line  356: 29 [270]: Float 123.450000
-Line  356: 35 [ 58]: :
-Line  356: 36 [266]: Identifier string 'B$'
-Line  356: 38 [ 61]: =
-Line  356: 39 [271]: String 'Test'
-Line  356: 45 [ 58]: :
-Line  356: 46 [264]: Identifier integer 'C%'
-Line  356: 48 [ 61]: =
-Line  356: 49 [269]: Integer 0
-Line  356: 50 [ 58]: :
-Line  356: 51 [265]: Identifier float 'C#'
-Line  356: 53 [ 61]: =
-Line  356: 54 [269]: Integer 0
-Line  356: 55 [257]: Newline
-Line  357:  6 [317]: PRINT
-Line  357: 12 [271]: String '::Variables::'
-Line  357: 27 [257]: Newline
-Line  358:  3 [264]: Identifier integer 'C%'
-Line  358:  5 [ 61]: =
-Line  358:  6 [269]: Integer 100
-Line  358:  9 [257]: Newline
-Line  359:  3 [311]: LET
-Line  359:  7 [265]: Identifier float 'C#'
-Line  359:  9 [ 61]: =
-Line  359: 10 [270]: Float 99.900000
-Line  359: 14 [257]: Newline
-Line  360:  6 [317]: PRINT
-Line  360: 12 [271]: String 'Local integer (0)  = '
-Line  360: 35 [ 59]: ;
-Line  360: 36 [ 58]: :
-Line  360: 37 [310]: IF
-Line  360: 40 [264]: Identifier integer 'A%'
-Line  360: 42 [ 61]: =
-Line  360: 43 [269]: Integer 0
-Line  360: 45 [263]: Identifier 'Pass'
-Line  360: 49 [ 40]: (
-Line  360: 50 [ 41]: )
-Line  360: 52 [294]: ELSE
-Line  360: 57 [263]: Identifier 'Fail'
-Line  360: 61 [ 40]: (
-Line  360: 62 [ 41]: )
-Line  360: 63 [257]: Newline
-Line  361:  6 [317]: PRINT
-Line  361: 12 [271]: String 'Local float (0)    = '
-Line  361: 35 [ 59]: ;
-Line  361: 36 [ 58]: :
-Line  361: 37 [310]: IF
-Line  361: 40 [265]: Identifier float 'A#'
-Line  361: 42 [ 61]: =
-Line  361: 43 [270]: Float 0.000000
-Line  361: 47 [263]: Identifier 'Pass'
-Line  361: 51 [ 40]: (
-Line  361: 52 [ 41]: )
-Line  361: 54 [294]: ELSE
-Line  361: 59 [263]: Identifier 'Fail'
-Line  361: 63 [ 40]: (
-Line  361: 64 [ 41]: )
-Line  361: 65 [257]: Newline
-Line  362:  6 [317]: PRINT
-Line  362: 12 [271]: String 'Local string (0 )  = '
-Line  362: 35 [ 59]: ;
-Line  362: 36 [ 58]: :
-Line  362: 37 [310]: IF
-Line  362: 40 [266]: Identifier string 'A$'
-Line  362: 42 [ 61]: =
-Line  362: 43 [271]: String ''
-Line  362: 46 [263]: Identifier 'Pass'
-Line  362: 50 [ 40]: (
-Line  362: 51 [ 41]: )
-Line  362: 53 [294]: ELSE
-Line  362: 58 [263]: Identifier 'Fail'
-Line  362: 62 [ 40]: (
-Line  362: 63 [ 41]: )
-Line  362: 64 [257]: Newline
-Line  363:  3 [317]: PRINT
-Line  363:  9 [264]: Identifier integer 'B%'
-Line  363: 11 [ 44]: ,
-Line  363: 12 [265]: Identifier float 'B#'
-Line  363: 14 [257]: Newline
-Line  364:  6 [317]: PRINT
-Line  364: 12 [271]: String 'Local integer      = '
-Line  364: 35 [ 59]: ;
-Line  364: 36 [ 58]: :
-Line  364: 37 [310]: IF
-Line  364: 40 [264]: Identifier integer 'B%'
-Line  364: 42 [ 61]: =
-Line  364: 43 [269]: Integer 10
-Line  364: 46 [263]: Identifier 'Pass'
-Line  364: 50 [ 40]: (
-Line  364: 51 [ 41]: )
-Line  364: 53 [294]: ELSE
-Line  364: 58 [263]: Identifier 'Fail'
-Line  364: 62 [ 40]: (
-Line  364: 63 [ 41]: )
-Line  364: 64 [257]: Newline
-Line  365:  6 [317]: PRINT
-Line  365: 12 [271]: String 'Local float        = '
-Line  365: 35 [ 59]: ;
-Line  365: 36 [ 58]: :
-Line  365: 37 [310]: IF
-Line  365: 40 [265]: Identifier float 'B#'
-Line  365: 42 [ 61]: =
-Line  365: 43 [270]: Float 123.450000
-Line  365: 50 [263]: Identifier 'Pass'
-Line  365: 54 [ 40]: (
-Line  365: 55 [ 41]: )
-Line  365: 57 [294]: ELSE
-Line  365: 62 [263]: Identifier 'Fail'
-Line  365: 66 [ 40]: (
-Line  365: 67 [ 41]: )
-Line  365: 68 [257]: Newline
-Line  366:  6 [317]: PRINT
-Line  366: 12 [271]: String 'Local string       = '
-Line  366: 35 [ 59]: ;
-Line  366: 36 [ 58]: :
-Line  366: 37 [310]: IF
-Line  366: 40 [266]: Identifier string 'B$'
-Line  366: 42 [ 61]: =
-Line  366: 43 [271]: String 'Test'
-Line  366: 50 [263]: Identifier 'Pass'
-Line  366: 54 [ 40]: (
-Line  366: 55 [ 41]: )
-Line  366: 57 [294]: ELSE
-Line  366: 62 [263]: Identifier 'Fail'
-Line  366: 66 [ 40]: (
-Line  366: 67 [ 41]: )
-Line  366: 68 [257]: Newline
-Line  367:  6 [317]: PRINT
-Line  367: 12 [271]: String 'Constants       	  = '
-Line  367: 35 [ 59]: ;
-Line  367: 36 [ 58]: :
-Line  367: 37 [310]: IF
-Line  367: 40 [264]: Identifier integer 'const%'
-Line  367: 46 [ 61]: =
-Line  367: 47 [269]: Integer 100
-Line  367: 51 [390]: AND
-Line  367: 55 [265]: Identifier float 'ccf#'
-Line  367: 59 [ 61]: =
-Line  367: 60 [270]: Float 12.500000
-Line  367: 65 [263]: Identifier 'Pass'
-Line  367: 69 [ 40]: (
-Line  367: 70 [ 41]: )
-Line  367: 72 [294]: ELSE
-Line  367: 77 [263]: Identifier 'Fail'
-Line  367: 81 [ 40]: (
-Line  367: 82 [ 41]: )
-Line  367: 83 [257]: Newline
-Line  368:  6 [317]: PRINT
-Line  368: 12 [271]: String 'Implicit LET       = '
-Line  368: 35 [ 59]: ;
-Line  368: 36 [ 58]: :
-Line  368: 37 [310]: IF
-Line  368: 40 [264]: Identifier integer 'C%'
-Line  368: 42 [ 61]: =
-Line  368: 43 [269]: Integer 100
-Line  368: 47 [263]: Identifier 'Pass'
-Line  368: 51 [ 40]: (
-Line  368: 52 [ 41]: )
-Line  368: 54 [294]: ELSE
-Line  368: 59 [263]: Identifier 'Fail'
-Line  368: 63 [ 40]: (
-Line  368: 64 [ 41]: )
-Line  368: 65 [257]: Newline
-Line  369:  6 [317]: PRINT
-Line  369: 12 [271]: String 'Explicit LET       = '
-Line  369: 35 [ 59]: ;
-Line  369: 36 [ 58]: :
-Line  369: 37 [310]: IF
-Line  369: 40 [265]: Identifier float 'C#'
-Line  369: 42 [ 61]: =
-Line  369: 43 [270]: Float 99.900000
-Line  369: 48 [263]: Identifier 'Pass'
-Line  369: 52 [ 40]: (
-Line  369: 53 [ 41]: )
-Line  369: 55 [294]: ELSE
-Line  369: 60 [263]: Identifier 'Fail'
-Line  369: 64 [ 40]: (
-Line  369: 65 [ 41]: )
-Line  369: 66 [257]: Newline
-Line  370:  3 [264]: Identifier integer 'A%'
-Line  370:  5 [ 61]: =
-Line  370:  6 [269]: Integer 10
-Line  370:  8 [ 58]: :
-Line  370:  9 [264]: Identifier integer 'A%'
-Line  370: 11 [282]: +=
-Line  370: 13 [269]: Integer 10
-Line  370: 15 [257]: Newline
-Line  371:  3 [317]: PRINT
-Line  371:  9 [271]: String 'Var integer +=     = '
-Line  371: 32 [ 59]: ;
-Line  371: 33 [ 58]: :
-Line  371: 34 [310]: IF
-Line  371: 37 [264]: Identifier integer 'A%'
-Line  371: 39 [ 61]: =
-Line  371: 40 [269]: Integer 20
-Line  371: 43 [263]: Identifier 'Pass'
-Line  371: 47 [ 40]: (
-Line  371: 48 [ 41]: )
-Line  371: 50 [294]: ELSE
-Line  371: 55 [263]: Identifier 'Fail'
-Line  371: 59 [ 40]: (
-Line  371: 60 [ 41]: )
-Line  371: 61 [257]: Newline
-Line  372:  3 [265]: Identifier float 'A#'
-Line  372:  5 [ 61]: =
-Line  372:  6 [270]: Float 10.500000
-Line  372: 10 [ 58]: :
-Line  372: 11 [265]: Identifier float 'A#'
-Line  372: 13 [282]: +=
-Line  372: 15 [270]: Float 10.500000
-Line  372: 19 [257]: Newline
-Line  373:  3 [317]: PRINT
-Line  373:  9 [271]: String 'Var float +=       = '
-Line  373: 32 [ 59]: ;
-Line  373: 33 [ 58]: :
-Line  373: 34 [310]: IF
-Line  373: 37 [265]: Identifier float 'A#'
-Line  373: 39 [ 61]: =
-Line  373: 40 [270]: Float 21.000000
-Line  373: 45 [263]: Identifier 'Pass'
-Line  373: 49 [ 40]: (
-Line  373: 50 [ 41]: )
-Line  373: 52 [294]: ELSE
-Line  373: 57 [263]: Identifier 'Fail'
-Line  373: 61 [ 40]: (
-Line  373: 62 [ 41]: )
-Line  373: 63 [257]: Newline
-Line  374:  3 [264]: Identifier integer 'A%'
-Line  374:  5 [ 61]: =
-Line  374:  6 [269]: Integer 10
-Line  374:  8 [ 58]: :
-Line  374:  9 [264]: Identifier integer 'A%'
-Line  374: 11 [283]: -=
-Line  374: 13 [269]: Integer 5
-Line  374: 14 [257]: Newline
-Line  375:  3 [317]: PRINT
-Line  375:  9 [271]: String 'Var integer -=     = '
-Line  375: 32 [ 59]: ;
-Line  375: 33 [ 58]: :
-Line  375: 34 [310]: IF
-Line  375: 37 [264]: Identifier integer 'A%'
-Line  375: 39 [ 61]: =
-Line  375: 40 [269]: Integer 5
-Line  375: 42 [263]: Identifier 'Pass'
-Line  375: 46 [ 40]: (
-Line  375: 47 [ 41]: )
-Line  375: 49 [294]: ELSE
-Line  375: 54 [263]: Identifier 'Fail'
-Line  375: 58 [ 40]: (
-Line  375: 59 [ 41]: )
-Line  375: 60 [257]: Newline
-Line  376:  3 [264]: Identifier integer 'A%'
-Line  376:  5 [ 61]: =
-Line  376:  6 [269]: Integer 10
-Line  376:  8 [ 58]: :
-Line  376:  9 [264]: Identifier integer 'A%'
-Line  376: 11 [284]: *=
-Line  376: 13 [269]: Integer 2
-Line  376: 14 [257]: Newline
-Line  377:  3 [317]: PRINT
-Line  377:  9 [271]: String 'Var integer *=     = '
-Line  377: 32 [ 59]: ;
-Line  377: 33 [ 58]: :
-Line  377: 34 [310]: IF
-Line  377: 37 [264]: Identifier integer 'A%'
-Line  377: 39 [ 61]: =
-Line  377: 40 [269]: Integer 20
-Line  377: 43 [263]: Identifier 'Pass'
-Line  377: 47 [ 40]: (
-Line  377: 48 [ 41]: )
-Line  377: 50 [294]: ELSE
-Line  377: 55 [263]: Identifier 'Fail'
-Line  377: 59 [ 40]: (
-Line  377: 60 [ 41]: )
-Line  377: 61 [257]: Newline
-Line  378:  3 [264]: Identifier integer 'A%'
-Line  378:  5 [ 61]: =
-Line  378:  6 [269]: Integer 10
-Line  378:  8 [ 58]: :
-Line  378:  9 [264]: Identifier integer 'A%'
-Line  378: 11 [286]: <<=
-Line  378: 14 [269]: Integer 2
-Line  378: 15 [257]: Newline
-Line  379:  3 [317]: PRINT
-Line  379:  9 [271]: String 'Var integer <<=    = '
-Line  379: 32 [ 59]: ;
-Line  379: 33 [ 58]: :
-Line  379: 34 [310]: IF
-Line  379: 37 [264]: Identifier integer 'A%'
-Line  379: 39 [ 61]: =
-Line  379: 40 [269]: Integer 40
-Line  379: 43 [263]: Identifier 'Pass'
-Line  379: 47 [ 40]: (
-Line  379: 48 [ 41]: )
-Line  379: 50 [294]: ELSE
-Line  379: 55 [263]: Identifier 'Fail'
-Line  379: 59 [ 40]: (
-Line  379: 60 [ 41]: )
-Line  379: 61 [257]: Newline
-Line  380:  3 [264]: Identifier integer 'A%'
-Line  380:  5 [ 61]: =
-Line  380:  6 [269]: Integer 10
-Line  380:  8 [ 58]: :
-Line  380:  9 [264]: Identifier integer 'A%'
-Line  380: 11 [287]: >>=
-Line  380: 14 [269]: Integer 2
-Line  380: 15 [257]: Newline
-Line  381:  3 [317]: PRINT
-Line  381:  9 [271]: String 'Var integer >>=    = '
-Line  381: 32 [ 59]: ;
-Line  381: 33 [ 58]: :
-Line  381: 34 [310]: IF
-Line  381: 37 [264]: Identifier integer 'A%'
-Line  381: 39 [ 61]: =
-Line  381: 40 [269]: Integer 2
-Line  381: 42 [263]: Identifier 'Pass'
-Line  381: 46 [ 40]: (
-Line  381: 47 [ 41]: )
-Line  381: 49 [294]: ELSE
-Line  381: 54 [263]: Identifier 'Fail'
-Line  381: 58 [ 40]: (
-Line  381: 59 [ 41]: )
-Line  381: 60 [257]: Newline
-Line  382:  3 [317]: PRINT
-Line  382:  8 [257]: Newline
-Line  383:  2 [298]: ENDDEF
-Line  383:  8 [257]: Newline
-Line  384:  2 [257]: Newline
-Line  385:  2 [292]: DEF ''
-Line  385:  6 [263]: Identifier 'Pass'
-Line  385: 10 [ 40]: (
-Line  385: 11 [ 41]: )
-Line  385: 12 [257]: Newline
-Line  386:  6 [317]: PRINT
-Line  386: 12 [271]: String 'PASS!'
-Line  386: 19 [257]: Newline
-Line  387:  2 [298]: ENDDEF
-Line  387:  8 [257]: Newline
-Line  388:  2 [257]: Newline
-Line  389:  2 [292]: DEF ''
-Line  389:  6 [263]: Identifier 'Fail'
-Line  389: 10 [ 40]: (
-Line  389: 11 [ 41]: )
-Line  389: 12 [257]: Newline
-Line  390:  6 [317]: PRINT
-Line  390: 12 [271]: String '!! FAILED TEST !!'
-Line  390: 31 [ 58]: :
-Line  391: 32 [295]: END
-Line  391:  2 [298]: ENDDEF
-Line  391:  8 [257]: Newline
-Line  392:  2 [257]: Newline
-Line  393:  2 [292]: DEF ''
-Line  393:  6 [263]: Identifier 'Containers'
-Line  393: 16 [ 40]: (
-Line  393: 17 [ 41]: )
-Line  393: 18 [257]: Newline
-Line  394:  6 [317]: PRINT
-Line  394: 12 [271]: String '::Containers::'
-Line  394: 28 [257]: Newline
-Line  395:  6 [317]: PRINT
-Line  395: 11 [257]: Newline
-Line  396:  2 [298]: ENDDEF
-Line  396:  8 [257]: Newline
-Line  396:  2 [256]: None/End of tokens
+Line    1:  1 [264]: Identifier integer 'TTAL%'
+Line    1:  6 [ 61]: =
+Line    1:  7 [269]: Integer 0
+Line    1:  8 [257]: Newline
+Line    2:  2 [263]: Identifier 'Clock3'
+Line    2:  8 [ 40]: (
+Line    2:  9 [ 41]: )
+Line    2: 10 [257]: Newline
+Line    4:  2 [295]: END
+Line    4:  2 [257]: Newline
+Line    5:  2 [292]: DEF
+Line    5:  5 [263]: Identifier 'Clock3'
+Line    5: 11 [ 40]: (
+Line    5: 12 [ 41]: )
+Line    5: 13 [257]: Newline
+Line    6:  2 [351]: CLS
+Line    6:  5 [ 58]: :
+Line    6:  6 [264]: Identifier integer 'TTAL%'
+Line    6: 11 [ 61]: =
+Line    6: 12 [269]: Integer 0
+Line    6: 13 [257]: Newline
+Line    7:  2 [322]: REM
+Line    8:  2 [322]: REM
+Line    9:  2 [317]: PRINT
+Line    9:  7 [271]: String 'BBC BASIC CPU Timing Program'
+Line    9: 37 [257]: Newline
+Line   10:  2 [264]: Identifier integer 'A%'
+Line   10:  4 [ 61]: =
+Line   10:  5 [269]: Integer 0
+Line   10:  6 [ 58]: :
+Line   10:  7 [264]: Identifier integer 'T%'
+Line   10:  9 [ 61]: =
+Line   10: 10 [332]: TIME
+Line   10: 14 [ 58]: :
+Line   10: 15 [323]: REPEAT
+Line   10: 21 [ 58]: :
+Line   10: 22 [264]: Identifier integer 'A%'
+Line   10: 24 [ 61]: =
+Line   10: 25 [264]: Identifier integer 'A%'
+Line   10: 27 [ 43]: +
+Line   10: 28 [269]: Integer 1
+Line   10: 29 [ 58]: :
+Line   10: 30 [336]: UNTIL
+Line   10: 35 [332]: TIME
+Line   10: 39 [ 62]: >
+Line   10: 40 [264]: Identifier integer 'T%'
+Line   10: 42 [ 43]: +
+Line   10: 43 [269]: Integer 50
+Line   10: 45 [257]: Newline
+Line   11:  2 [265]: Identifier float 'Z#'
+Line   11:  4 [ 61]: =
+Line   11:  5 [269]: Integer 0
+Line   11:  6 [ 58]: :
+Line   11:  7 [264]: Identifier integer 'Z%'
+Line   11:  9 [ 61]: =
+Line   11: 10 [269]: Integer 0
+Line   11: 11 [ 58]: :
+Line   11: 12 [265]: Identifier float 'B#'
+Line   11: 14 [ 61]: =
+Line   11: 15 [270]: Float 1.000000
+Line   11: 18 [ 58]: :
+Line   11: 19 [264]: Identifier integer 'B%'
+Line   11: 21 [ 61]: =
+Line   11: 22 [269]: Integer 1
+Line   11: 23 [ 58]: :
+Line   11: 24 [265]: Identifier float 'F#'
+Line   11: 26 [ 61]: =
+Line   11: 27 [269]: Integer 1
+Line   11: 28 [ 47]: /
+Line   11: 29 [269]: Integer 10
+Line   11: 31 [ 58]: :
+Line   11: 32 [265]: Identifier float 'C#'
+Line   11: 34 [ 61]: =
+Line   11: 35 [269]: Integer 100
+Line   11: 38 [ 58]: :
+Line   11: 39 [264]: Identifier integer 'C%'
+Line   11: 41 [ 61]: =
+Line   11: 42 [269]: Integer 100
+Line   11: 45 [ 58]: :
+Line   11: 46 [265]: Identifier float 'D#'
+Line   11: 48 [ 61]: =
+Line   11: 49 [269]: Integer 510
+Line   11: 52 [ 58]: :
+Line   11: 53 [264]: Identifier integer 'D%'
+Line   11: 55 [ 61]: =
+Line   11: 56 [269]: Integer 510
+Line   11: 59 [ 58]: :
+Line   11: 60 [264]: Identifier integer 'F%'
+Line   11: 62 [ 61]: =
+Line   11: 63 [269]: Integer 3
+Line   11: 64 [257]: Newline
+Line   12:  2 [323]: REPEAT
+Line   12:  8 [ 58]: :
+Line   12:  9 [265]: Identifier float 'C#'
+Line   12: 11 [ 61]: =
+Line   12: 12 [265]: Identifier float 'C#'
+Line   12: 14 [ 42]: *
+Line   12: 15 [269]: Integer 10
+Line   12: 17 [ 58]: :
+Line   12: 18 [264]: Identifier integer 'C%'
+Line   12: 20 [ 61]: =
+Line   12: 21 [264]: Identifier integer 'C%'
+Line   12: 23 [ 42]: *
+Line   12: 24 [269]: Integer 10
+Line   12: 26 [ 58]: :
+Line   12: 27 [265]: Identifier float 'D#'
+Line   12: 29 [ 61]: =
+Line   12: 30 [265]: Identifier float 'D#'
+Line   12: 32 [ 42]: *
+Line   12: 33 [269]: Integer 10
+Line   12: 35 [ 58]: :
+Line   12: 36 [264]: Identifier integer 'D%'
+Line   12: 38 [ 61]: =
+Line   12: 39 [264]: Identifier integer 'D%'
+Line   12: 41 [ 42]: *
+Line   12: 42 [269]: Integer 10
+Line   12: 44 [ 58]: :
+Line   12: 45 [264]: Identifier integer 'F%'
+Line   12: 47 [ 61]: =
+Line   12: 48 [264]: Identifier integer 'F%'
+Line   12: 50 [ 42]: *
+Line   12: 51 [269]: Integer 10
+Line   12: 53 [ 58]: :
+Line   12: 54 [265]: Identifier float 'F#'
+Line   12: 56 [ 61]: =
+Line   12: 57 [265]: Identifier float 'F#'
+Line   12: 59 [ 42]: *
+Line   12: 60 [269]: Integer 10
+Line   12: 62 [ 58]: :
+Line   12: 63 [264]: Identifier integer 'A%'
+Line   12: 65 [ 61]: =
+Line   12: 66 [264]: Identifier integer 'A%'
+Line   12: 68 [397]: DIV
+Line   12: 71 [269]: Integer 10
+Line   12: 73 [ 58]: :
+Line   12: 74 [336]: UNTIL
+Line   12: 79 [264]: Identifier integer 'A%'
+Line   12: 81 [ 60]: <
+Line   12: 82 [269]: Integer 50
+Line   12: 84 [257]: Newline
+Line   13:  2 [265]: Identifier float 'Z#'
+Line   13:  4 [ 61]: =
+Line   13:  5 [265]: Identifier float 'Z#'
+Line   13:  7 [ 43]: +
+Line   13:  8 [270]: Float 0.500000
+Line   13: 11 [ 58]: :
+Line   13: 12 [265]: Identifier float 'C#'
+Line   13: 14 [ 61]: =
+Line   13: 15 [265]: Identifier float 'C#'
+Line   13: 17 [ 43]: +
+Line   13: 18 [270]: Float 0.500000
+Line   13: 21 [ 58]: :
+Line   13: 22 [265]: Identifier float 'D#'
+Line   13: 24 [ 61]: =
+Line   13: 25 [265]: Identifier float 'D#'
+Line   13: 27 [ 43]: +
+Line   13: 28 [270]: Float 0.500000
+Line   13: 31 [257]: Newline
+Line   14:  2 [317]: PRINT
+Line   14:  8 [271]: String 'Really real REPEAT loop '
+Line   14: 34 [ 59]: ;
+Line   14: 35 [ 58]: :
+Line   14: 36 [264]: Identifier integer 'T%'
+Line   14: 38 [ 61]: =
+Line   14: 39 [332]: TIME
+Line   14: 43 [ 58]: :
+Line   14: 44 [265]: Identifier float 'A#'
+Line   14: 46 [ 61]: =
+Line   14: 47 [265]: Identifier float 'Z#'
+Line   14: 49 [ 58]: :
+Line   14: 50 [323]: REPEAT
+Line   14: 56 [ 58]: :
+Line   14: 57 [265]: Identifier float 'A#'
+Line   14: 59 [ 61]: =
+Line   14: 60 [265]: Identifier float 'A#'
+Line   14: 62 [ 43]: +
+Line   14: 63 [265]: Identifier float 'B#'
+Line   14: 65 [ 58]: :
+Line   14: 66 [336]: UNTIL
+Line   14: 71 [265]: Identifier float 'A#'
+Line   14: 73 [ 62]: >
+Line   14: 74 [265]: Identifier float 'C#'
+Line   14: 76 [ 58]: :
+Line   14: 77 [264]: Identifier integer 'T%'
+Line   14: 79 [ 61]: =
+Line   14: 80 [332]: TIME
+Line   14: 84 [ 45]: -
+Line   14: 85 [264]: Identifier integer 'T%'
+Line   14: 87 [ 58]: :
+Line   14: 88 [263]: Identifier 'p'
+Line   14: 89 [ 40]: (
+Line   14: 90 [265]: Identifier float 'F#'
+Line   14: 92 [ 42]: *
+Line   14: 93 [269]: Integer 41000
+Line   14: 98 [ 47]: /
+Line   14: 99 [264]: Identifier integer 'T%'
+Line   14:101 [ 41]: )
+Line   14:102 [257]: Newline
+Line   15:  2 [317]: PRINT
+Line   15:  8 [271]: String 'Integer REPEAT loop     '
+Line   15: 34 [ 59]: ;
+Line   15: 35 [ 58]: :
+Line   15: 36 [264]: Identifier integer 'T%'
+Line   15: 38 [ 61]: =
+Line   15: 39 [332]: TIME
+Line   15: 43 [ 58]: :
+Line   15: 44 [264]: Identifier integer 'A%'
+Line   15: 46 [ 61]: =
+Line   15: 47 [264]: Identifier integer 'Z%'
+Line   15: 49 [ 58]: :
+Line   15: 50 [323]: REPEAT
+Line   15: 56 [ 58]: :
+Line   15: 57 [264]: Identifier integer 'A%'
+Line   15: 59 [ 61]: =
+Line   15: 60 [264]: Identifier integer 'A%'
+Line   15: 62 [ 43]: +
+Line   15: 63 [264]: Identifier integer 'B%'
+Line   15: 65 [ 58]: :
+Line   15: 66 [336]: UNTIL
+Line   15: 71 [264]: Identifier integer 'A%'
+Line   15: 73 [ 62]: >
+Line   15: 74 [264]: Identifier integer 'C%'
+Line   15: 76 [ 58]: :
+Line   15: 77 [264]: Identifier integer 'T%'
+Line   15: 79 [ 61]: =
+Line   15: 80 [332]: TIME
+Line   15: 84 [ 45]: -
+Line   15: 85 [264]: Identifier integer 'T%'
+Line   15: 87 [ 58]: :
+Line   15: 88 [263]: Identifier 'p'
+Line   15: 89 [ 40]: (
+Line   15: 90 [265]: Identifier float 'F#'
+Line   15: 92 [ 42]: *
+Line   15: 93 [269]: Integer 23900
+Line   15: 98 [ 47]: /
+Line   15: 99 [264]: Identifier integer 'T%'
+Line   15:101 [ 41]: )
+Line   15:102 [257]: Newline
+Line   16:  2 [317]: PRINT
+Line   16:  8 [271]: String 'Really real FOR loop    '
+Line   16: 34 [ 59]: ;
+Line   16: 35 [ 58]: :
+Line   16: 36 [264]: Identifier integer 'T%'
+Line   16: 38 [ 61]: =
+Line   16: 39 [332]: TIME
+Line   16: 43 [ 58]: :
+Line   16: 44 [302]: :
+Line   16: 48 [265]: Identifier float 'A#'
+Line   16: 50 [ 61]: =
+Line   16: 51 [265]: Identifier float 'Z#'
+Line   16: 53 [331]: TO
+Line   16: 55 [265]: Identifier float 'D#'
+Line   16: 57 [327]: STEP
+Line   16: 61 [265]: Identifier float 'B#'
+Line   16: 63 [ 58]: :
+Line   16: 64 [314]: NEXT 256
+Line   16: 68 [ 58]: :
+Line   16: 69 [264]: Identifier integer 'T%'
+Line   16: 71 [ 61]: =
+Line   16: 72 [332]: TIME
+Line   16: 76 [ 45]: -
+Line   16: 77 [264]: Identifier integer 'T%'
+Line   16: 79 [ 58]: :
+Line   16: 80 [263]: Identifier 'p'
+Line   16: 81 [ 40]: (
+Line   16: 82 [265]: Identifier float 'F#'
+Line   16: 84 [ 42]: *
+Line   16: 85 [269]: Integer 51200
+Line   16: 90 [ 47]: /
+Line   16: 91 [264]: Identifier integer 'T%'
+Line   16: 93 [ 41]: )
+Line   16: 94 [257]: Newline
+Line   17:  2 [317]: PRINT
+Line   17:  8 [271]: String 'Integer FOR loop        '
+Line   17: 34 [ 59]: ;
+Line   17: 35 [ 58]: :
+Line   17: 36 [264]: Identifier integer 'T%'
+Line   17: 38 [ 61]: =
+Line   17: 39 [332]: TIME
+Line   17: 43 [ 58]: :
+Line   17: 44 [302]: :
+Line   17: 48 [264]: Identifier integer 'A%'
+Line   17: 50 [ 61]: =
+Line   17: 51 [264]: Identifier integer 'Z%'
+Line   17: 53 [331]: TO
+Line   17: 55 [264]: Identifier integer 'D%'
+Line   17: 57 [327]: STEP
+Line   17: 61 [264]: Identifier integer 'B%'
+Line   17: 63 [ 58]: :
+Line   17: 64 [314]: NEXT 256
+Line   17: 68 [ 58]: :
+Line   17: 69 [264]: Identifier integer 'T%'
+Line   17: 71 [ 61]: =
+Line   17: 72 [332]: TIME
+Line   17: 76 [ 45]: -
+Line   17: 77 [264]: Identifier integer 'T%'
+Line   17: 79 [ 58]: :
+Line   17: 80 [263]: Identifier 'p'
+Line   17: 81 [ 40]: (
+Line   17: 82 [265]: Identifier float 'F#'
+Line   17: 84 [ 42]: *
+Line   17: 85 [269]: Integer 17800
+Line   17: 90 [ 47]: /
+Line   17: 91 [264]: Identifier integer 'T%'
+Line   17: 93 [ 41]: )
+Line   17: 94 [257]: Newline
+Line   18:  2 [317]: PRINT
+Line   18:  8 [271]: String 'Trig/Log test           '
+Line   18: 34 [ 59]: ;
+Line   18: 35 [ 58]: :
+Line   18: 36 [310]: IF
+Line   18: 39 [405]: COS
+Line   18: 42 [269]: Integer 0
+Line   18: 43 [ 61]: =
+Line   18: 44 [269]: Integer 0
+Line   18: 45 [ 58]: :
+Line   18: 46 [317]: PRINT
+Line   18: 52 [271]: String '    <none>'
+Line   18: 64 [257]: Newline
+Line   19:  2 [310]: IF
+Line   19:  5 [405]: COS
+Line   19:  8 [269]: Integer 0
+Line   19:  9 [279]: <>
+Line   19: 11 [269]: Integer 0
+Line   19: 12 [ 58]: :
+Line   19: 13 [265]: Identifier float 'A#'
+Line   19: 15 [ 61]: =
+Line   19: 16 [269]: Integer 1
+Line   19: 17 [ 58]: :
+Line   19: 18 [264]: Identifier integer 'T%'
+Line   19: 20 [ 61]: =
+Line   19: 21 [332]: TIME
+Line   19: 25 [ 58]: :
+Line   19: 26 [302]: :
+Line   19: 30 [264]: Identifier integer 'J%'
+Line   19: 32 [ 61]: =
+Line   19: 33 [269]: Integer 1
+Line   19: 35 [331]: TO
+Line   19: 38 [264]: Identifier integer 'F%'
+Line   19: 40 [ 58]: :
+Line   19: 41 [265]: Identifier float 'A#'
+Line   19: 43 [ 61]: =
+Line   19: 44 [404]: TAN
+Line   19: 47 [ 40]: (
+Line   19: 48 [403]: ATN
+Line   19: 51 [ 40]: (
+Line   19: 52 [402]: EXP
+Line   19: 55 [ 40]: (
+Line   19: 56 [400]: LN
+Line   19: 58 [ 40]: (
+Line   19: 59 [399]: SQR
+Line   19: 62 [ 40]: (
+Line   19: 63 [265]: Identifier float 'A#'
+Line   19: 65 [ 42]: *
+Line   19: 66 [265]: Identifier float 'A#'
+Line   19: 68 [ 41]: )
+Line   19: 69 [ 41]: )
+Line   19: 70 [ 41]: )
+Line   19: 71 [ 41]: )
+Line   19: 72 [ 41]: )
+Line   19: 73 [ 43]: +
+Line   19: 74 [269]: Integer 1
+Line   19: 75 [ 58]: :
+Line   19: 76 [314]: NEXT 7
+Line   19: 80 [ 58]: :
+Line   19: 81 [264]: Identifier integer 'T%'
+Line   19: 83 [ 61]: =
+Line   19: 84 [332]: TIME
+Line   19: 88 [ 45]: -
+Line   19: 89 [264]: Identifier integer 'T%'
+Line   19: 91 [ 58]: :
+Line   19: 92 [263]: Identifier 'p'
+Line   19: 93 [ 40]: (
+Line   19: 94 [265]: Identifier float 'F#'
+Line   19: 96 [ 42]: *
+Line   19: 97 [269]: Integer 68800
+Line   19:102 [ 47]: /
+Line   19:103 [264]: Identifier integer 'T%'
+Line   19:105 [ 41]: )
+Line   19:106 [257]: Newline
+Line   20:  2 [317]: PRINT
+Line   20:  7 [271]: String 'String manipulation     '
+Line   20: 33 [ 59]: ;
+Line   20: 34 [257]: Newline
+Line   21:  2 [264]: Identifier integer 'T%'
+Line   21:  4 [ 61]: =
+Line   21:  5 [332]: TIME
+Line   21:  9 [ 58]: :
+Line   21: 10 [266]: Identifier string 'A$'
+Line   21: 12 [ 61]: =
+Line   21: 13 [271]: String 'STRINGMANIPULATIONTEST'
+Line   21: 37 [ 58]: :
+Line   21: 38 [302]: :
+Line   21: 42 [264]: Identifier integer 'A%'
+Line   21: 44 [ 61]: =
+Line   21: 45 [269]: Integer 0
+Line   21: 47 [331]: TO
+Line   21: 50 [264]: Identifier integer 'F%'
+Line   21: 52 [ 42]: *
+Line   21: 53 [269]: Integer 4
+Line   21: 54 [ 47]: /
+Line   21: 55 [269]: Integer 100
+Line   21: 58 [ 58]: :
+Line   21: 59 [266]: Identifier string 'A$'
+Line   21: 61 [ 61]: =
+Line   21: 62 [386]: RIGHT$
+Line   21: 68 [ 40]: (
+Line   21: 69 [385]: MID$
+Line   21: 73 [ 40]: (
+Line   21: 74 [266]: Identifier string 'A$'
+Line   21: 76 [ 44]: ,
+Line   21: 77 [387]: LEN
+Line   21: 80 [266]: Identifier string 'A$'
+Line   21: 82 [ 47]: /
+Line   21: 83 [269]: Integer 2
+Line   21: 84 [ 44]: ,
+Line   21: 85 [387]: LEN
+Line   21: 88 [266]: Identifier string 'A$'
+Line   21: 90 [ 47]: /
+Line   21: 91 [269]: Integer 4
+Line   21: 92 [ 43]: +
+Line   21: 93 [269]: Integer 1
+Line   21: 94 [ 41]: )
+Line   21: 95 [ 43]: +
+Line   21: 96 [386]: RIGHT$
+Line   21:102 [ 40]: (
+Line   21:103 [266]: Identifier string 'A$'
+Line   21:105 [ 44]: ,
+Line   21:106 [387]: LEN
+Line   21:109 [266]: Identifier string 'A$'
+Line   21:111 [ 47]: /
+Line   21:112 [269]: Integer 4
+Line   21:113 [ 41]: )
+Line   21:114 [ 43]: +
+Line   21:115 [385]: MID$
+Line   21:119 [ 40]: (
+Line   21:120 [266]: Identifier string 'A$'
+Line   21:122 [ 44]: ,
+Line   21:123 [387]: LEN
+Line   21:126 [266]: Identifier string 'A$'
+Line   21:128 [ 47]: /
+Line   21:129 [269]: Integer 2
+Line   21:130 [ 44]: ,
+Line   21:131 [269]: Integer 2
+Line   21:132 [ 41]: )
+Line   21:133 [ 43]: +
+Line   21:134 [384]: LEFT$
+Line   21:139 [ 40]: (
+Line   21:140 [266]: Identifier string 'A$'
+Line   21:142 [ 44]: ,
+Line   21:143 [387]: LEN
+Line   21:146 [266]: Identifier string 'A$'
+Line   21:148 [ 47]: /
+Line   21:149 [269]: Integer 4
+Line   21:150 [ 41]: )
+Line   21:151 [ 43]: +
+Line   21:152 [385]: MID$
+Line   21:156 [ 40]: (
+Line   21:157 [266]: Identifier string 'A$'
+Line   21:159 [ 44]: ,
+Line   21:160 [387]: LEN
+Line   21:163 [266]: Identifier string 'A$'
+Line   21:165 [ 47]: /
+Line   21:166 [269]: Integer 4
+Line   21:167 [ 44]: ,
+Line   21:168 [387]: LEN
+Line   21:171 [266]: Identifier string 'A$'
+Line   21:173 [ 47]: /
+Line   21:174 [269]: Integer 4
+Line   21:175 [ 43]: +
+Line   21:176 [269]: Integer 1
+Line   21:177 [ 41]: )
+Line   21:178 [ 44]: ,
+Line   21:179 [387]: LEN
+Line   21:182 [266]: Identifier string 'A$'
+Line   21:184 [ 41]: )
+Line   21:185 [ 58]: :
+Line   21:186 [314]: NEXT 256
+Line   21:190 [ 58]: :
+Line   21:191 [264]: Identifier integer 'T%'
+Line   21:193 [ 61]: =
+Line   21:194 [332]: TIME
+Line   21:198 [ 45]: -
+Line   21:199 [264]: Identifier integer 'T%'
+Line   21:201 [ 58]: :
+Line   21:202 [264]: Identifier integer 'T%'
+Line   21:204 [ 61]: =
+Line   21:205 [264]: Identifier integer 'T%'
+Line   21:207 [ 42]: *
+Line   21:208 [269]: Integer 100
+Line   21:211 [ 58]: :
+Line   21:212 [263]: Identifier 'p'
+Line   21:213 [ 40]: (
+Line   21:214 [265]: Identifier float 'F#'
+Line   21:216 [ 42]: *
+Line   21:217 [269]: Integer 72750
+Line   21:222 [ 47]: /
+Line   21:223 [264]: Identifier integer 'T%'
+Line   21:225 [ 41]: )
+Line   21:226 [257]: Newline
+Line   22:  2 [317]: PRINT
+Line   22:  7 [271]: String 'Procedure call          '
+Line   22: 33 [ 59]: ;
+Line   22: 34 [ 58]: :
+Line   22: 35 [264]: Identifier integer 'T%'
+Line   22: 37 [ 61]: =
+Line   22: 38 [332]: TIME
+Line   22: 42 [ 58]: :
+Line   22: 43 [302]: :
+Line   22: 47 [264]: Identifier integer 'A%'
+Line   22: 49 [ 61]: =
+Line   22: 50 [264]: Identifier integer 'Z%'
+Line   22: 53 [331]: TO
+Line   22: 56 [264]: Identifier integer 'D%'
+Line   22: 58 [ 58]: :
+Line   22: 59 [263]: Identifier 'test'
+Line   22: 63 [ 40]: (
+Line   22: 64 [ 41]: )
+Line   22: 65 [ 58]: :
+Line   22: 66 [314]: NEXT 256
+Line   22: 70 [ 58]: :
+Line   22: 71 [264]: Identifier integer 'T%'
+Line   22: 73 [ 61]: =
+Line   22: 74 [332]: TIME
+Line   22: 78 [ 45]: -
+Line   22: 79 [264]: Identifier integer 'T%'
+Line   22: 81 [ 58]: :
+Line   22: 82 [263]: Identifier 'p'
+Line   22: 83 [ 40]: (
+Line   22: 84 [265]: Identifier float 'F#'
+Line   22: 86 [ 42]: *
+Line   22: 87 [269]: Integer 80500
+Line   22: 92 [ 47]: /
+Line   22: 93 [264]: Identifier integer 'T%'
+Line   22: 95 [ 41]: )
+Line   22: 96 [257]: Newline
+Line   23:  2 [317]: PRINT
+Line   23:  7 [271]: String 'Combined Average        '
+Line   23: 33 [ 59]: ;
+Line   23: 34 [ 58]: :
+Line   23: 35 [263]: Identifier 'p'
+Line   23: 36 [ 40]: (
+Line   23: 37 [264]: Identifier integer 'TTAL%'
+Line   23: 42 [ 47]: /
+Line   23: 43 [269]: Integer 7
+Line   23: 44 [ 41]: )
+Line   23: 45 [257]: Newline
+Line   24:  2 [317]: PRINT
+Line   24:  7 [ 39]: '
+Line   24:  8 [271]: String 'Compared with a 2.00MHz BBC B'
+Line   24: 39 [257]: Newline
+Line   25:  2 [298]: ENDDEF
+Line   25:  8 [257]: Newline
+Line   26:  2 [257]: Newline
+Line   27:  2 [292]: DEF
+Line   27:  6 [263]: Identifier 'test'
+Line   27: 10 [ 40]: (
+Line   27: 11 [ 41]: )
+Line   27: 12 [257]: Newline
+Line   28:  2 [298]: ENDDEF
+Line   28:  8 [257]: Newline
+Line   29:  2 [257]: Newline
+Line   30:  2 [292]: DEF
+Line   30:  5 [263]: Identifier 'p'
+Line   30:  6 [ 40]: (
+Line   30:  7 [264]: Identifier integer 'T%'
+Line   30:  9 [ 41]: )
+Line   30: 10 [257]: Newline
+Line   31:  2 [317]: PRINT
+Line   31:  8 [386]: RIGHT$
+Line   31: 14 [ 40]: (
+Line   31: 15 [271]: String '         '
+Line   31: 26 [ 43]: +
+Line   31: 27 [389]: STR$
+Line   31: 31 [ 40]: (
+Line   31: 32 [264]: Identifier integer 'T%'
+Line   31: 34 [397]: DIV
+Line   31: 37 [269]: Integer 100
+Line   31: 40 [ 41]: )
+Line   31: 41 [ 44]: ,
+Line   31: 42 [269]: Integer 9
+Line   31: 43 [ 41]: )
+Line   31: 44 [ 59]: ;
+Line   31: 45 [271]: String '.'
+Line   31: 48 [ 59]: ;
+Line   31: 49 [386]: RIGHT$
+Line   31: 55 [ 40]: (
+Line   31: 56 [271]: String '0'
+Line   31: 59 [ 43]: +
+Line   31: 60 [389]: STR$
+Line   31: 64 [ 40]: (
+Line   31: 65 [264]: Identifier integer 'T%'
+Line   31: 67 [ 41]: )
+Line   31: 68 [ 44]: ,
+Line   31: 69 [269]: Integer 2
+Line   31: 70 [ 41]: )
+Line   31: 71 [ 59]: ;
+Line   31: 72 [271]: String 'MHz'
+Line   31: 77 [ 58]: :
+Line   31: 78 [264]: Identifier integer 'TTAL%'
+Line   31: 83 [ 61]: =
+Line   31: 84 [264]: Identifier integer 'TTAL%'
+Line   31: 89 [ 43]: +
+Line   31: 90 [264]: Identifier integer 'T%'
+Line   31: 92 [257]: Newline
+Line   32:  2 [298]: ENDDEF
+Line   32:  8 [257]: Newline
+Line   33:  2 [257]: Newline
+Line   33:  2 [256]: None/End of tokens

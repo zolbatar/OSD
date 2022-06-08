@@ -39,8 +39,8 @@ void Tokeniser::HandleNumber(const char& c)
 			try {
 				i = std::stoll(search, 0, 16);
 			}
-			catch (const std::invalid_argument&) {
-				Error("Syntax error");
+			catch (const std::exception&) {
+				Error("Invalid number");
 			}
 
 			Token t = CreateToken();
@@ -50,7 +50,14 @@ void Tokeniser::HandleNumber(const char& c)
 		}
 		else if (search[0]=='%') {
 			search.replace(0, 1, "");
-			uint64_t i = std::stoll(search, 0, 2);
+			uint64_t i;
+			try {
+				i = std::stoll(search, 0, 2);
+			}
+			catch (const std::exception&) {
+				Error("Invalid number");
+			}
+
 			Token t = CreateToken();
 			t.type = TokenType::LITERAL_INTEGER;
 			t.integer = i;
@@ -64,7 +71,13 @@ void Tokeniser::HandleNumber(const char& c)
 			tokens.push_back(std::move(t));
 		}
 		else {
-			uint64_t i = std::stoll(search);
+			uint64_t i;
+			try {
+				i = std::stoll(search);
+			}
+			catch (const std::exception&) {
+				Error("Invalid number");
+			}
 
 			// Could this be a line number?
 			if (tokens.size()==0 || tokens.back().type==TokenType::NEWLINE) {

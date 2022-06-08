@@ -150,7 +150,7 @@ void Parser::ParseSequenceOfStatements(Token* t, std::set<TokenType> block_termi
 	PushTokenBack();
 }
 
-void Parser::ParserStatementGeneric(Token* t, std::list<Token*>* tokens_out, fp* parameters, void* func)
+void Parser::ParserStatementGeneric(Token* t, std::list<Token*>* tokens_out, fp* parameters, void* func, bool expression)
 {
 	// Parentheses are optional
 	auto tt = GetToken();
@@ -166,7 +166,9 @@ void Parser::ParserStatementGeneric(Token* t, std::list<Token*>* tokens_out, fp*
 	for (auto p: *parameters) {
 		if (first) {
 			// Return type
-			t->return_types.push_back(p);
+			if (expression) {
+				t->return_types.push_back(p);
+			}
 			first = false;
 		}
 		else {
@@ -290,7 +292,7 @@ void Parser::ParseStatement(Token* t, std::list<Token*>* tokens_out)
 			// A generic function?
 			auto f = generic_functions.find(t->type);
 			if (f!=generic_functions.end()) {
-				ParserStatementGeneric(t, tokens_out, &f->second, generic_functions_ptr.find(t->type)->second);
+				ParserStatementGeneric(t, tokens_out, &f->second, generic_functions_ptr.find(t->type)->second, false);
 				break;
 			}
 

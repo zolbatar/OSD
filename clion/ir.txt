@@ -1,4190 +1,1302 @@
 ** GLOBAL **
-[Variable] Global create structured type of 40 bytes (-1)
-[Variable] Global zero structured string at -1/32
-[Variable] Global create integer (-2)
-[Stack   ] Literal float 10.000000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 234.560000
-[Variable] Store offset float (-1/8)
-[Stack   ] Pop float to Operand1
-[Variable] Store offset float (-1/0)
-[Stack   ] Literal integer 16777215
-[Variable] Store offset integer (-1/24)
-[Stack   ] Literal string 'Start'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Data    ] DATA label
-[Stack   ] Literal integer 100
-[Data    ] DATA integer
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Data    ] DATA string
-[Stack   ] Literal float 15.500000
-[Data    ] DATA float
-[Stack   ] Literal string 'Duff'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Data    ] DATA label
-[Stack   ] Literal integer 150
-[Data    ] DATA integer
-[Stack   ] Literal string 'Label'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Data    ] DATA label
-[Stack   ] Literal integer 200
-[Data    ] DATA integer
-[Stack   ] Literal integer 5
-[Variable] Store integer (-2)
-[Proc    ] PROC call: (0/Start)
+[Variable] Global create integer (-1)
+[Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (-1)
+[Proc    ] PROC call: (0/Clock3)
+[General ] End
 
 ** PROCs **
-[Proc    ] PROC start: (0/Start)
-[Branch  ] Jump create: (0)
-[Func    ] Call function: (0x10183cf90)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Starting tests!'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] PROC call: (1/Boolean)
-[Proc    ] PROC call: (2/Chrono)
-[Proc    ] PROC call: (3/Comparison)
-[Proc    ] PROC call: (4/Conversion)
-[Proc    ] PROC call: (5/Data)
-[Proc    ] PROC call: (6/Functions)
-[Proc    ] PROC call: (8/GlobalsLocals)
-[Proc    ] PROC call: (10/Looping)
-[Proc    ] PROC call: (11/Maths)
-[Proc    ] PROC call: (15/Numbers)
-[Proc    ] PROC call: (16/PrintInput)
-[Proc    ] PROC call: (21/Strings)
-[Proc    ] PROC call: (22/Swap)
-[Proc    ] PROC call: (24/Types)
-[Proc    ] PROC call: (25/Variables)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Misc tests::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] PROC call: (23/TestReturnInOtherwise)
-[Proc    ] PROC call: (12/NestedCalling)
-[Proc    ] PROC call: (28/Containers)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'All tests passed!'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
+[Proc    ] PROC start: (0/Clock3)
+[Variable] Local create integer (0)
+[Variable] Local create integer (1)
+[Variable] Local create float (2)
+[Variable] Local create integer (3)
+[Variable] Local create float (4)
+[Variable] Local create integer (5)
+[Variable] Local create float (6)
+[Variable] Local create float (7)
+[Variable] Local create integer (8)
+[Variable] Local create float (9)
+[Variable] Local create integer (10)
+[Variable] Local create integer (11)
+[Variable] Local create float (12)
+[Variable] Local create integer (13)
+[Variable] Local create integer (14)
+[Variable] Local create integer (15)
+[Variable] Local create string (16)
+[Func    ] Call function: (0x1091dee40/'CLS')
 [Stack   ] Literal integer 0
-[Branch  ] Jump on false: (0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (0)
-[Proc    ] PROC start: (1/Boolean)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Boolean::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Or                 = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 240
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 240
-[Stack   ] Pop integer to Operand2
-[Boolean ] OR, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 240
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 240
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 15
-[Stack   ] Pop integer to Operand2
-[Boolean ] OR, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 255
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (1)
-[Branch  ] Jump create (forward): (2)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (1)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (2)
-[Branch  ] Jump destination: (1)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (2)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Eor                = '
+[Variable] Store integer (-1)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'BBC BASIC CPU Timing Program'
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Boolean ] EOR, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 0
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 0
-[Stack   ] Pop integer to Operand2
-[Boolean ] EOR, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Func    ] Call function: (0x1091dd280/'NL')
 [Stack   ] Literal integer 0
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 0
-[Stack   ] Pop integer to Operand2
-[Boolean ] EOR, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 0
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (3)
-[Branch  ] Jump create (forward): (4)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (3)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (4)
-[Branch  ] Jump destination: (3)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (4)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'And                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 240
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 240
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 240
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 240
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 15
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 0
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (5)
-[Branch  ] Jump create (forward): (6)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (5)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (6)
-[Branch  ] Jump destination: (5)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (6)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Not                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 1
-[Boolean ] NOT, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer -2
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (7)
-[Branch  ] Jump create (forward): (8)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (7)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (8)
-[Branch  ] Jump destination: (7)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (8)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'True               = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (9)
-[Branch  ] Jump create (forward): (10)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (9)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (10)
-[Branch  ] Jump destination: (9)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (10)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'False              = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 0
-[Boolean ] NOT, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (11)
-[Branch  ] Jump create (forward): (12)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (11)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (12)
-[Branch  ] Jump destination: (11)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (12)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (1)
-[Proc    ] PROC start: (2/Chrono)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Chrono::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Time               = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
+[Variable] Store integer (0)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10183ce00)
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Branch  ] Jump create: (0)
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] +, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (0)
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 50
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] +, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Variable] Compare > integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Branch  ] Jump on false: (0)
 [Stack   ] Literal integer 0
-[Stack   ] Pop integer to Operand2
-[Variable] Compare > integer
 [Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (13)
-[Branch  ] Jump create (forward): (14)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (13)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (14)
-[Branch  ] Jump destination: (13)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (14)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Time$              = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Argument] Return type is string
-[Func    ] Call function: (0x10183ce10)
-[Argument] Parameter is string
-[Strings ] LEN
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 24
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (15)
-[Branch  ] Jump create (forward): (16)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (15)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (16)
-[Branch  ] Jump destination: (15)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (16)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (2)
-[Proc    ] PROC start: (3/Comparison)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Comparison::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Int =              = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 5
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (17)
-[Branch  ] Jump create (forward): (18)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (17)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (18)
-[Branch  ] Jump destination: (17)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (18)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Int <>             = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 5
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 6
-[Stack   ] Pop integer to Operand2
-[Variable] Compare <> integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (19)
-[Branch  ] Jump create (forward): (20)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (19)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (20)
-[Branch  ] Jump destination: (19)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (20)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Int <              = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 5
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare < integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (21)
-[Branch  ] Jump create (forward): (22)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (21)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (22)
-[Branch  ] Jump destination: (21)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (22)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Int <= (<)         = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 4
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare <= integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (23)
-[Branch  ] Jump create (forward): (24)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (23)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (24)
-[Branch  ] Jump destination: (23)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (24)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Int <= (=)         = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 5
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare <= integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (25)
-[Branch  ] Jump create (forward): (26)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (25)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (26)
-[Branch  ] Jump destination: (25)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (26)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Int >              = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare > integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (27)
-[Branch  ] Jump create (forward): (28)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (27)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (28)
-[Branch  ] Jump destination: (27)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (28)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Int >= (>)         = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare >= integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (29)
-[Branch  ] Jump create (forward): (30)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (29)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (30)
-[Branch  ] Jump destination: (29)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (30)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Int >= (>=)        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 5
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare >= integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (31)
-[Branch  ] Jump create (forward): (32)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (31)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (32)
-[Branch  ] Jump destination: (31)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (32)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Float =            = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 5.000000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 5.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (33)
-[Branch  ] Jump create (forward): (34)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (33)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (34)
-[Branch  ] Jump destination: (33)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (34)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Float <>           = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 5.000000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 6.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare <> float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (35)
-[Branch  ] Jump create (forward): (36)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (35)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (36)
-[Branch  ] Jump destination: (35)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (36)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Float <            = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 5.000000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 10.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare < float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (37)
-[Branch  ] Jump create (forward): (38)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (37)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (38)
-[Branch  ] Jump destination: (37)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (38)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Float <= (<)       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 4.000000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 5.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare <= float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (39)
-[Branch  ] Jump create (forward): (40)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (39)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (40)
-[Branch  ] Jump destination: (39)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (40)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Float <= (=)       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 5.000000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 5.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare <= float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (41)
-[Branch  ] Jump create (forward): (42)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (41)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (42)
-[Branch  ] Jump destination: (41)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (42)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Float >            = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 10.000000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 5.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare > float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (43)
-[Branch  ] Jump create (forward): (44)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (43)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (44)
-[Branch  ] Jump destination: (43)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (44)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Float >= (>)       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 10.000000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 5.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare >= float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (45)
-[Branch  ] Jump create (forward): (46)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (45)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (46)
-[Branch  ] Jump destination: (45)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (46)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Float >= (>=)      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 5.000000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 5.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare >= float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (47)
-[Branch  ] Jump create (forward): (48)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (47)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (48)
-[Branch  ] Jump destination: (47)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (48)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String =           = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (49)
-[Branch  ] Jump create (forward): (50)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (49)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (50)
-[Branch  ] Jump destination: (49)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (50)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String <>          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare <> string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (51)
-[Branch  ] Jump create (forward): (52)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (51)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (52)
-[Branch  ] Jump destination: (51)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (52)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String <           = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare < string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (53)
-[Branch  ] Jump create (forward): (54)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (53)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (54)
-[Branch  ] Jump destination: (53)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (54)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String <= (<)      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare <= string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (55)
-[Branch  ] Jump create (forward): (56)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (55)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (56)
-[Branch  ] Jump destination: (55)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (56)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String <= (=)      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare <= string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (57)
-[Branch  ] Jump create (forward): (58)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (57)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (58)
-[Branch  ] Jump destination: (57)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (58)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String >           = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'fred'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare > string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (59)
-[Branch  ] Jump create (forward): (60)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (59)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (60)
-[Branch  ] Jump destination: (59)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (60)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String >= (>)      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'fred'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare >= string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (61)
-[Branch  ] Jump create (forward): (62)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (61)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (62)
-[Branch  ] Jump destination: (61)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (62)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String >= (>=)     = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare >= string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (63)
-[Branch  ] Jump create (forward): (64)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (63)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (64)
-[Branch  ] Jump destination: (63)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (64)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (3)
-[Proc    ] PROC start: (4/Conversion)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Conversion::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '10 + 15.5          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Stack   ] Literal float 15.500000
-[Operand ] Float operand 1 to 2
 [Stack   ] Pop integer to Operand1
 [Convert ] Operand1, integer to float
 [Stack   ] Push float Operand1
-[Operand ] Float operand 2 to 1
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 25.500000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (65)
-[Branch  ] Jump create (forward): (66)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (65)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (66)
-[Branch  ] Jump destination: (65)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (66)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (4)
-[Proc    ] PROC start: (5/Data)
-[Variable] Local create integer (0)
-[Variable] Local create string (1)
-[Variable] Local create float (2)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Data::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Data    ] READ integer
-[Variable] Store integer (0)
-[Data    ] READ string
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (1)
-[Data    ] READ float
+[Stack   ] Pop float to Operand1
 [Variable] Store float (2)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Data (Int)         = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 100
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (67)
-[Branch  ] Jump create (forward): (68)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (67)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (68)
-[Branch  ] Jump destination: (67)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (68)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Data (Float)       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load float (2)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 15.500000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (69)
-[Branch  ] Jump create (forward): (70)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (69)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (70)
-[Branch  ] Jump destination: (69)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (70)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Data (String)      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load string (1)
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (71)
-[Branch  ] Jump create (forward): (72)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (71)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (72)
-[Branch  ] Jump destination: (71)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (72)
-[Stack   ] Literal string 'Label'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] RESTORE
-[Data    ] READ integer
-[Variable] Store integer (0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Data+Restore       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 200
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (73)
-[Branch  ] Jump create (forward): (74)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (73)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (74)
-[Branch  ] Jump destination: (73)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (74)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (5)
-[Proc    ] PROC start: (6/Functions)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Functions::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] PROC call: (17/ReturnValues)
-[Stack   ] Literal integer 15
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal float 123.100000
-[Stack   ] Push float Operand1
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Argument] Parameter is float
-[Argument] Parameter is integer
-[Proc    ] PROC call: (7/SendParameter)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (6)
-[Proc    ] PROC start: (7/SendParameter)
-[Variable] Local create integer (0)
-[Variable] Local create float (1)
-[Variable] Local create string (2)
-[Proc    ] Parameter string, 2
-[Proc    ] Parameter float, 1
-[Proc    ] Parameter integer, 0
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Send parameter%    = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 25
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (75)
-[Branch  ] Jump create (forward): (76)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (75)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (76)
-[Branch  ] Jump destination: (75)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (76)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Send parameter#    = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load float (1)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 123.100000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (77)
-[Branch  ] Jump create (forward): (78)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (77)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (78)
-[Branch  ] Jump destination: (77)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (78)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Send parameter$    = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load string (2)
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (79)
-[Branch  ] Jump create (forward): (80)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (79)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (80)
-[Branch  ] Jump destination: (79)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (80)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (7)
-[Proc    ] PROC start: (8/GlobalsLocals)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Locals & Globals::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] PROC call: (9/LocalVars)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Preserving Global  = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (-2)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (81)
-[Branch  ] Jump create (forward): (82)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (81)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (82)
-[Branch  ] Jump destination: (81)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (82)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (8)
-[Proc    ] PROC start: (9/LocalVars)
-[Variable] Local create integer (0)
-[Stack   ] Literal integer 10
-[Variable] Store integer (0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (9)
-[Proc    ] PROC start: (10/Looping)
-[Variable] Local create integer (0)
-[Variable] Local create integer (1)
-[Variable] Local create integer (2)
-[Variable] Local create integer (3)
-[Variable] Local create float (4)
-[Variable] Local create float (5)
-[Variable] Local create float (6)
-[Variable] Local create integer (7)
-[Variable] Local create integer (8)
-[Variable] Local create integer (9)
-[Variable] Local create string (10)
-[Variable] Local create string (11)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Looping::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'One line IF        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (83)
-[Branch  ] Jump create (forward): (84)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (83)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (84)
-[Branch  ] Jump destination: (83)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (84)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Multiline IF       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (85)
-[Branch  ] Jump create (forward): (86)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (85)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (86)
-[Branch  ] Jump destination: (85)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (86)
 [Stack   ] Literal integer 0
-[Variable] Store integer (0)
-[Branch  ] Jump create: (87)
-[Variable] Load integer (0)
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on false: (87)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Repeat             = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (88)
-[Branch  ] Jump create (forward): (89)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (88)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (89)
-[Branch  ] Jump destination: (88)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (89)
-[Stack   ] Literal integer 0
-[Variable] Store integer (0)
-[Branch  ] Jump create: (90)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare < integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (91)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (91)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (0)
-[Branch  ] Jump: (90)
-[Branch  ] Jump destination: (91)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'While              = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (92)
-[Branch  ] Jump create (forward): (93)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (92)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (93)
-[Branch  ] Jump destination: (92)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (93)
-[Stack   ] Literal integer 0
-[Variable] Store integer (0)
-[Stack   ] Literal integer 0
-[Variable] Store integer (1)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 9
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (2)
-[Stack   ] Literal integer 1
 [Variable] Store integer (3)
-[Branch  ] Jump create: (94)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (0)
-[Variable] Load integer (3)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (1)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] +, integer
-[Variable] Store integer (1)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (2)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (2)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (2)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (94)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'FOR (Int)          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (95)
-[Branch  ] Jump create (forward): (96)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (95)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (96)
-[Branch  ] Jump destination: (95)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (96)
-[Stack   ] Literal integer 0
-[Variable] Store integer (0)
-[Stack   ] Literal integer 0
-[Variable] Store integer (1)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 9
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (2)
-[Stack   ] Literal integer 2
-[Variable] Store integer (3)
-[Variable] Load integer (3)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (2)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] DIV, float
-[Variable] Store integer (2)
-[Branch  ] Jump create: (97)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (0)
-[Variable] Load integer (3)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (1)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] +, integer
-[Variable] Store integer (1)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (2)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (2)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (2)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (97)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'FOR + Step (Int)   = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (98)
-[Branch  ] Jump create (forward): (99)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (98)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (99)
-[Branch  ] Jump destination: (98)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (99)
-[Stack   ] Literal integer 0
-[Variable] Store integer (0)
-[Stack   ] Literal integer 9
-[Variable] Store integer (1)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 0
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (2)
-[Stack   ] Literal integer -1
-[Variable] Store integer (3)
-[Variable] Load integer (3)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (2)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] DIV, float
-[Variable] Store integer (2)
-[Branch  ] Jump create: (100)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (0)
-[Variable] Load integer (3)
-[Stack   ] Push integer Operand1
-[Variable] Load integer (1)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] +, integer
-[Variable] Store integer (1)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (2)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (2)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (2)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (100)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'FOR - (Int)        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (101)
-[Branch  ] Jump create (forward): (102)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (101)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (102)
-[Branch  ] Jump destination: (101)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (102)
-[Stack   ] Literal integer 0
-[Variable] Store integer (0)
-[Stack   ] Literal float 0.000000
-[Variable] Store float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 9.000000
-[Operand ] Float operand 1 to 2
-[Stack   ] Pop float to Operand1
-[Maths   ] -, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (5)
 [Stack   ] Literal float 1.000000
-[Variable] Store float (6)
-[Branch  ] Jump create: (103)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (0)
-[Variable] Load float (6)
 [Stack   ] Push float Operand1
-[Variable] Load float (4)
-[Operand ] Float operand 1 to 2
 [Stack   ] Pop float to Operand1
-[Maths   ] +, float
 [Variable] Store float (4)
 [Stack   ] Literal integer 1
 [Stack   ] Push integer Operand1
-[Variable] Load integer (5)
-[Operand ] Integer operand 1 to 2
 [Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
 [Variable] Store integer (5)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (5)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (103)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'FOR (Float)        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
+[Stack   ] Literal integer 1
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
 [Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (104)
-[Branch  ] Jump create (forward): (105)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (104)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (105)
-[Branch  ] Jump destination: (104)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (105)
-[Stack   ] Literal integer 0
-[Variable] Store integer (0)
-[Stack   ] Literal float 0.000000
-[Variable] Store float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 9.000000
-[Operand ] Float operand 1 to 2
-[Stack   ] Pop float to Operand1
-[Maths   ] -, float
-[Convert ] Operand1, float to integer
-[Variable] Store integer (5)
-[Stack   ] Literal float 2.000000
-[Variable] Store float (6)
-[Variable] Load float (6)
-[Stack   ] Push float Operand1
-[Variable] Load float (5)
-[Operand ] Float operand 1 to 2
-[Stack   ] Pop float to Operand1
-[Maths   ] /, float
-[Variable] Store float (5)
-[Branch  ] Jump create: (106)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (0)
-[Variable] Load float (6)
-[Stack   ] Push float Operand1
-[Variable] Load float (4)
-[Operand ] Float operand 1 to 2
-[Stack   ] Pop float to Operand1
-[Maths   ] +, float
-[Variable] Store float (4)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (5)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Maths   ] -, integer
-[Variable] Store integer (5)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (5)
-[Operand ] Integer operand 1 to 2
-[Stack   ] Pop integer to Operand1
-[Variable] Compare >= integer
-[Branch  ] Jump on true: (106)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'FOR + Step (Float) = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (107)
-[Branch  ] Jump create (forward): (108)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (107)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (108)
-[Branch  ] Jump destination: (107)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (108)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Case               = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 1
-[Variable] Store integer (0)
-[Variable] Load integer (0)
-[Variable] Store integer (7)
-[Branch  ] Jump create (forward): (109)
-[Branch  ] Jump create (forward): (110)
-[Branch  ] Jump create (forward): (111)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (110)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (110)
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (110)
-[Branch  ] Jump (forward): (111)
-[Branch  ] Jump destination: (110)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (109)
-[Branch  ] Jump destination: (111)
-[Branch  ] Jump create (forward): (112)
-[Branch  ] Jump create (forward): (113)
-[Stack   ] Literal integer 3
-[Stack   ] Push integer Operand1
-[Variable] Load integer (7)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (112)
-[Branch  ] Jump (forward): (113)
-[Branch  ] Jump destination: (112)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump (forward): (109)
-[Branch  ] Jump destination: (113)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (109)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Case (not first)   = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 2
-[Variable] Store integer (0)
-[Variable] Load integer (0)
-[Variable] Store integer (8)
-[Branch  ] Jump create (forward): (114)
-[Branch  ] Jump create (forward): (115)
-[Branch  ] Jump create (forward): (116)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (8)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (115)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (8)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (115)
-[Branch  ] Jump (forward): (116)
-[Branch  ] Jump destination: (115)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump (forward): (114)
-[Branch  ] Jump destination: (116)
-[Branch  ] Jump create (forward): (117)
-[Branch  ] Jump create (forward): (118)
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Variable] Load integer (8)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (117)
-[Branch  ] Jump (forward): (118)
-[Branch  ] Jump destination: (117)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (114)
-[Branch  ] Jump destination: (118)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (114)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Case (Otherwise)   = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 4
-[Variable] Store integer (0)
-[Variable] Load integer (0)
-[Variable] Store integer (9)
-[Branch  ] Jump create (forward): (119)
-[Branch  ] Jump create (forward): (120)
-[Branch  ] Jump create (forward): (121)
-[Stack   ] Literal integer 0
-[Stack   ] Push integer Operand1
-[Variable] Load integer (9)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (120)
-[Stack   ] Literal integer 1
-[Stack   ] Push integer Operand1
-[Variable] Load integer (9)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (120)
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Variable] Load integer (9)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (120)
-[Branch  ] Jump (forward): (121)
-[Branch  ] Jump destination: (120)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump (forward): (119)
-[Branch  ] Jump destination: (121)
-[Branch  ] Jump create (forward): (122)
-[Branch  ] Jump create (forward): (123)
-[Stack   ] Literal integer 3
-[Stack   ] Push integer Operand1
-[Variable] Load integer (9)
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Branch  ] Jump on true (forward): (122)
-[Branch  ] Jump (forward): (123)
-[Branch  ] Jump destination: (122)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump (forward): (119)
-[Branch  ] Jump destination: (123)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump destination: (119)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Case (String)      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'B'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (10)
-[Variable] Load string (10)
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (11)
-[Branch  ] Jump create (forward): (124)
-[Branch  ] Jump create (forward): (125)
-[Branch  ] Jump create (forward): (126)
-[Stack   ] Literal string 'A'
-[Stack   ] Push string Operand1
-[Variable] Load string (11)
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Branch  ] Jump on true (forward): (125)
-[Branch  ] Jump (forward): (126)
-[Branch  ] Jump destination: (125)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump (forward): (124)
-[Branch  ] Jump destination: (126)
-[Branch  ] Jump create (forward): (127)
-[Branch  ] Jump create (forward): (128)
-[Stack   ] Literal string 'B'
-[Stack   ] Push string Operand1
-[Variable] Load string (11)
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Branch  ] Jump on true (forward): (127)
-[Branch  ] Jump (forward): (128)
-[Branch  ] Jump destination: (127)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (124)
-[Branch  ] Jump destination: (128)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (124)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (10)
-[Proc    ] PROC start: (11/Maths)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Maths::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '- (Unary)          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer -2
-[Stack   ] Pop integer to Operand2
-[Maths   ] -, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (129)
-[Branch  ] Jump create (forward): (130)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (129)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (130)
-[Branch  ] Jump destination: (129)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (130)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '- (Int)            = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 8
-[Stack   ] Pop integer to Operand2
-[Maths   ] -, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (131)
-[Branch  ] Jump create (forward): (132)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (131)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (132)
-[Branch  ] Jump destination: (131)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (132)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '+ (Int)            = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 8
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 18
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (133)
-[Branch  ] Jump create (forward): (134)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (133)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (134)
-[Branch  ] Jump destination: (133)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (134)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '* (Int)            = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 8
-[Stack   ] Pop integer to Operand2
-[Maths   ] *, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 80
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (135)
-[Branch  ] Jump create (forward): (136)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (135)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (136)
-[Branch  ] Jump destination: (135)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (136)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '^ (Int)            = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 3
 [Stack   ] Pop integer to Operand2
 [Convert ] Operand1, integer to float
 [Convert ] Operand2, integer to float
-[Maths   ] ^, float
+[Stack   ] Push float Operand2
 [Stack   ] Push float Operand1
-[Stack   ] Literal integer 8
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (137)
-[Branch  ] Jump create (forward): (138)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (137)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (138)
-[Branch  ] Jump destination: (137)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (138)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Mod (Int)          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 11
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Maths   ] MOD, float
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (139)
-[Branch  ] Jump create (forward): (140)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (139)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (140)
-[Branch  ] Jump destination: (139)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (140)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Div (Int)          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 11
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Maths   ] DIV, float
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (141)
-[Branch  ] Jump create (forward): (142)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (141)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (142)
-[Branch  ] Jump destination: (141)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (142)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Abs (Int)          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer -10
-[Maths   ] ABS, int
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (143)
-[Branch  ] Jump create (forward): (144)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (143)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (144)
-[Branch  ] Jump destination: (143)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (144)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '- (Float)          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 10.500000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 8.250000
-[Stack   ] Pop float to Operand2
-[Maths   ] -, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 2.250000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (145)
-[Branch  ] Jump create (forward): (146)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (145)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (146)
-[Branch  ] Jump destination: (145)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (146)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '+ (Float)          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 10.400000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 8.100000
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 18.500000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (147)
-[Branch  ] Jump create (forward): (148)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (147)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (148)
-[Branch  ] Jump destination: (147)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (148)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '* (Float)          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 2.500000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 4.500000
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 11.250000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (149)
-[Branch  ] Jump create (forward): (150)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (149)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (150)
-[Branch  ] Jump destination: (149)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (150)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '/ (Float)          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 8.400000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 4.200000
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
 [Maths   ] /, float
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 2.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
+[Stack   ] Pop float to Operand1
+[Variable] Store float (6)
+[Stack   ] Literal integer 100
 [Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (151)
-[Branch  ] Jump create (forward): (152)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (151)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (152)
-[Branch  ] Jump destination: (151)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (152)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '<< (Shift left)    = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 60
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 240
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Pop integer to Operand2
-[Maths   ] <<, float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (153)
-[Branch  ] Jump create (forward): (154)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (153)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (154)
-[Branch  ] Jump destination: (153)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (154)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '>> (Shift right)   = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 200
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 50
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Pop integer to Operand2
-[Maths   ] >>, float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (155)
-[Branch  ] Jump create (forward): (156)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (155)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (156)
-[Branch  ] Jump destination: (155)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (156)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Mod (Float)        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 11.000000
+[Convert ] Operand1, integer to float
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 5.000000
-[Stack   ] Pop float to Operand2
-[Convert ] Operand1, float to integer
-[Convert ] Operand2, float to integer
-[Maths   ] MOD, float
+[Stack   ] Pop float to Operand1
+[Variable] Store float (7)
+[Stack   ] Literal integer 100
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (157)
-[Branch  ] Jump create (forward): (158)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (157)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (158)
-[Branch  ] Jump destination: (157)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (158)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Div (Float)        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 11.000000
+[Variable] Store integer (8)
+[Stack   ] Literal integer 510
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, integer to float
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 5.000000
+[Stack   ] Pop float to Operand1
+[Variable] Store float (9)
+[Stack   ] Literal integer 510
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (10)
+[Stack   ] Literal integer 3
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (11)
+[Branch  ] Jump create: (1)
+[Variable] Load float (7)
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 10
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
-[Convert ] Operand1, float to integer
-[Convert ] Operand2, float to integer
+[Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (7)
+[Variable] Load integer (8)
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 10
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] *, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (8)
+[Variable] Load float (9)
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 10
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (9)
+[Variable] Load integer (10)
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 10
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] *, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (10)
+[Variable] Load integer (11)
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 10
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] *, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (11)
+[Variable] Load float (6)
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 10
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (6)
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 10
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
 [Maths   ] DIV, float
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (0)
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 50
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
 [Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
+[Variable] Compare < integer
 [Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (159)
-[Branch  ] Jump create (forward): (160)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (159)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (160)
-[Branch  ] Jump destination: (159)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (160)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Abs (Float)        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float -10.500000
-[Maths   ] ABS, float
+[Branch  ] Jump on false: (1)
+[Variable] Load float (2)
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 10.500000
+[Stack   ] Literal float 0.500000
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (161)
-[Branch  ] Jump create (forward): (162)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (161)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (162)
-[Branch  ] Jump destination: (161)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (162)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Sqr                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 16
-[Convert ] Operand1, integer to float
-[Maths   ] SQR, float
+[Maths   ] +, float
 [Stack   ] Push float Operand1
-[Stack   ] Literal integer 4
-[Convert ] Operand1, integer to float
+[Stack   ] Pop float to Operand1
+[Variable] Store float (2)
+[Variable] Load float (7)
+[Stack   ] Push float Operand1
+[Stack   ] Literal float 0.500000
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (163)
-[Branch  ] Jump create (forward): (164)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (163)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (164)
-[Branch  ] Jump destination: (163)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (164)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Ln                 = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 16
-[Convert ] Operand1, integer to float
-[Maths   ] LN, float
+[Maths   ] +, float
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
+[Stack   ] Pop float to Operand1
+[Variable] Store float (7)
+[Variable] Load float (9)
+[Stack   ] Push float Operand1
+[Stack   ] Literal float 0.500000
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] +, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (9)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'Really real REPEAT loop '
+[Stack   ] Push string Operand1
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
+[Argument] Parameter is string
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load float (2)
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (12)
+[Branch  ] Jump create: (2)
+[Variable] Load float (12)
+[Stack   ] Push float Operand1
+[Variable] Load float (4)
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] +, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (12)
+[Variable] Load float (12)
+[Stack   ] Push float Operand1
+[Variable] Load float (7)
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Variable] Compare > float
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Branch  ] Jump on false: (2)
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] -, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load float (6)
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 41000
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
 [Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 277
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (165)
-[Branch  ] Jump create (forward): (166)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (165)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (166)
-[Branch  ] Jump destination: (165)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (166)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Log                = '
+[Argument] Parameter is integer
+[Proc    ] PROC call: (2/p)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'Integer REPEAT loop     '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 16
-[Convert ] Operand1, integer to float
-[Maths   ] LOG, float
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load integer (3)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (0)
+[Branch  ] Jump create: (3)
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (5)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] +, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (0)
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (8)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Variable] Compare > integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Branch  ] Jump on false: (3)
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] -, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load float (6)
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
+[Stack   ] Literal integer 23900
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
 [Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 120
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (167)
-[Branch  ] Jump create (forward): (168)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (167)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (168)
-[Branch  ] Jump destination: (167)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (168)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Exp                = '
+[Argument] Parameter is integer
+[Proc    ] PROC call: (2/p)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'Really real FOR loop    '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load float (2)
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (12)
+[Stack   ] Push float Operand1
+[Variable] Load float (9)
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand2
+[Stack   ] Pop float to Operand1
+[Maths   ] -, float
+[Convert ] Operand1, float to integer
+[Variable] Store integer (13)
+[Variable] Load float (4)
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (14)
+[Variable] Load float (14)
+[Stack   ] Push float Operand1
+[Variable] Load float (13)
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand2
+[Stack   ] Pop float to Operand1
+[Maths   ] /, float
+[Variable] Store float (13)
+[Branch  ] Jump create: (4)
+[Variable] Load float (14)
+[Stack   ] Push float Operand1
+[Variable] Load float (12)
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand2
+[Stack   ] Pop float to Operand1
+[Maths   ] +, float
+[Variable] Store float (12)
 [Stack   ] Literal integer 1
-[Convert ] Operand1, integer to float
-[Maths   ] LOG, float
+[Stack   ] Push integer Operand1
+[Variable] Load integer (13)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] -, integer
+[Variable] Store integer (13)
+[Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Variable] Load integer (13)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Variable] Compare >= integer
+[Branch  ] Jump on true: (4)
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] -, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load float (6)
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
+[Stack   ] Literal integer 51200
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
 [Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 271
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (169)
-[Branch  ] Jump create (forward): (170)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (169)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (170)
-[Branch  ] Jump destination: (169)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (170)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Atn                = '
+[Argument] Parameter is integer
+[Proc    ] PROC call: (2/p)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'Integer FOR loop        '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 3
-[Convert ] Operand1, integer to float
-[Maths   ] ATN, float
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load integer (3)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (0)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (10)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] -, integer
+[Variable] Store integer (1)
+[Variable] Load integer (5)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (2)
+[Variable] Load integer (2)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] DIV, float
+[Variable] Store integer (1)
+[Branch  ] Jump create: (5)
+[Variable] Load integer (2)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] +, integer
+[Variable] Store integer (0)
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] -, integer
+[Variable] Store integer (1)
+[Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Variable] Compare >= integer
+[Branch  ] Jump on true: (5)
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] -, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load float (6)
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
+[Stack   ] Literal integer 17800
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
 [Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 124
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (171)
-[Branch  ] Jump create (forward): (172)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (171)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (172)
-[Branch  ] Jump destination: (171)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (172)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Tan                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 3
-[Convert ] Operand1, integer to float
-[Maths   ] TAN, float
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
+[Stack   ] Pop float to Operand1
 [Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer -14
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (173)
-[Branch  ] Jump create (forward): (174)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (173)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (174)
-[Branch  ] Jump destination: (173)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (174)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Sin                = '
+[Argument] Parameter is integer
+[Proc    ] PROC call: (2/p)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'Trig/Log test           '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 3
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
 [Convert ] Operand1, integer to float
-[Maths   ] SIN, float
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 14
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (175)
-[Branch  ] Jump create (forward): (176)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (175)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (176)
-[Branch  ] Jump destination: (175)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (176)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Cos                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 3
-[Convert ] Operand1, integer to float
+[Stack   ] Pop float to Operand1
 [Maths   ] COS, float
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer -98
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (177)
-[Branch  ] Jump create (forward): (178)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (177)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (178)
-[Branch  ] Jump destination: (177)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (178)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Acs                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 0.500000
-[Maths   ] ACS, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 104
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (179)
-[Branch  ] Jump create (forward): (180)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (179)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (180)
-[Branch  ] Jump destination: (179)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (180)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Asn                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 0.500000
-[Maths   ] ASN, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 52
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (181)
-[Branch  ] Jump create (forward): (182)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (181)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (182)
-[Branch  ] Jump destination: (181)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (182)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Rad                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 90
-[Convert ] Operand1, integer to float
-[Maths   ] RAD, float
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 100.000000
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 157
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (183)
-[Branch  ] Jump create (forward): (184)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (183)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (184)
-[Branch  ] Jump destination: (183)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (184)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Deg                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 1.500000
-[Maths   ] DEG, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 85
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (185)
-[Branch  ] Jump create (forward): (186)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (185)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (186)
-[Branch  ] Jump destination: (185)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (186)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Pi                 = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 3.141593
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 100
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Maths   ] *, float
-[Convert ] Operand1, float to integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 314
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (187)
-[Branch  ] Jump create (forward): (188)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (187)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (188)
-[Branch  ] Jump destination: (187)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (188)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Sgn (-)            = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer -10
-[Convert ] Operand1, integer to float
-[Maths   ] SGN, Float, returns int
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer -1
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (189)
-[Branch  ] Jump create (forward): (190)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (189)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (190)
-[Branch  ] Jump destination: (189)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (190)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Sgn                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
 [Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
 [Convert ] Operand1, integer to float
-[Maths   ] SGN, Float, returns int
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 0
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (191)
-[Branch  ] Jump create (forward): (192)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (191)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (192)
-[Branch  ] Jump destination: (191)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (192)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Sgn (+)            = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 10
-[Convert ] Operand1, integer to float
-[Maths   ] SGN, Float, returns int
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (193)
-[Branch  ] Jump create (forward): (194)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (193)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (194)
-[Branch  ] Jump destination: (193)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (194)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Precedence         = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 3
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Maths   ] *, integer
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 14
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (195)
-[Branch  ] Jump create (forward): (196)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (195)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (196)
-[Branch  ] Jump destination: (195)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (196)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Parentheses        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 2
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 3
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Maths   ] *, integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 20
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (197)
-[Branch  ] Jump create (forward): (198)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (197)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (198)
-[Branch  ] Jump destination: (197)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (198)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (11)
-[Proc    ] PROC start: (12/NestedCalling)
-[Proc    ] PROC call: (13/Nested1)
-[Proc    ] Return none, final:0
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (12)
-[Proc    ] PROC start: (13/Nested1)
-[Proc    ] PROC call: (14/Nested2)
-[Proc    ] Return none, final:0
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (13)
-[Proc    ] PROC start: (14/Nested2)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Nested DEFs        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Proc    ] PROC call: (26/Pass)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:0
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (14)
-[Proc    ] PROC start: (15/Numbers)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Numbers::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Hex                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 64
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 64
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (199)
-[Branch  ] Jump create (forward): (200)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (199)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (200)
-[Branch  ] Jump destination: (199)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (200)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Binary             = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 4
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 4
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (201)
-[Branch  ] Jump create (forward): (202)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (201)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (202)
-[Branch  ] Jump destination: (201)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (202)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (15)
-[Proc    ] PROC start: (16/PrintInput)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::PRINT & INPUT::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Multi-PRINT ,      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10183b420)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal float 123.450000
 [Stack   ] Push float Operand1
-[Argument] Parameter is float
-[Func    ] Call function: (0x10183b500)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Multi-PRINT ;      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10183b420)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal float 123.450000
-[Stack   ] Push float Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is float
-[Func    ] Call function: (0x10183b500)
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Multi-PRINT end ;  = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10183b420)
-[Stack   ] Literal float 123.450000
-[Stack   ] Push float Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is float
-[Func    ] Call function: (0x10183b500)
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'PRINT SPC          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 4
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10183b6c0)
-[Func    ] Call function: (0x10183b410)
-[Stack   ] Literal string 'End'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'PRINT SPC()        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 4
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10183b6c0)
-[Func    ] Call function: (0x10183b410)
-[Stack   ] Literal string 'End'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'PRINT TAB          = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 10
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10183b750)
-[Func    ] Call function: (0x10183b410)
-[Stack   ] Literal string 'End'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'PRINT TAB()        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 15
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10183b750)
-[Func    ] Call function: (0x10183b410)
-[Stack   ] Literal string 'End'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (16)
-[Proc    ] PROC start: (17/ReturnValues)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Returning int      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Argument] Return type is integer
-[Proc    ] PROC call: (18/ReturnInteger%)
-[Stack   ] Literal integer 100
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (203)
-[Branch  ] Jump create (forward): (204)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (203)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (204)
-[Branch  ] Jump destination: (203)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (204)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Returning float    = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Argument] Return type is float
-[Proc    ] PROC call: (19/ReturnFloat#)
-[Stack   ] Literal float 146.450000
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
 [Variable] Compare = float
 [Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (205)
-[Branch  ] Jump create (forward): (206)
+[Branch  ] Jump create (forward): (6)
+[Branch  ] Jump create (forward): (7)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (205)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (206)
-[Branch  ] Jump destination: (205)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (206)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Returning string   = '
+[Branch  ] Jump on false (forward): (6)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string '    <none>'
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Argument] Return type is string
-[Proc    ] PROC call: (20/ReturnString$)
-[Stack   ] Literal string 'ff'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (207)
-[Branch  ] Jump create (forward): (208)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (207)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (208)
-[Branch  ] Jump destination: (207)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (208)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (17)
-[Proc    ] PROC start: (18/ReturnInteger%)
-[Stack   ] Literal integer 100
-[Proc    ] Return integer, final:0
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Func    ] Call function: (0x1091dd280/'NL')
+[Branch  ] Jump (forward): (7)
+[Branch  ] Jump destination: (6)
+[Branch  ] Jump destination: (7)
 [Stack   ] Literal integer 0
-[Proc    ] Return integer, final:1
-[Proc    ] PROC end: (18)
-[Proc    ] PROC start: (19/ReturnFloat#)
-[Stack   ] Literal float 146.450000
-[Proc    ] Return float, final:0
-[Stack   ] Literal float 0.000000
-[Proc    ] Return float, final:1
-[Proc    ] PROC end: (19)
-[Proc    ] PROC start: (20/ReturnString$)
-[Stack   ] Literal string 'ff'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Proc    ] Return string, final:0
-[Stack   ] Literal string ''
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Proc    ] Return string, final:1
-[Proc    ] PROC end: (20)
-[Proc    ] PROC start: (21/Strings)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Strings::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Asc                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'Fred'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] ASC
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 70
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal string ''
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Strings ] ASC
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer -1
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (209)
-[Branch  ] Jump create (forward): (210)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (209)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (210)
-[Branch  ] Jump destination: (209)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (210)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Chr$               = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 65
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Maths   ] COS, float
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 0
 [Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Strings ] CHR$
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'A'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (211)
-[Branch  ] Jump create (forward): (212)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (211)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (212)
-[Branch  ] Jump destination: (211)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (212)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Instr              = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'Test this this string'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'this'
-[Stack   ] Push string Operand1
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Variable] Compare <> float
+[Stack   ] Push integer Operand1
+[Branch  ] Jump create (forward): (8)
+[Branch  ] Jump create (forward): (9)
+[Stack   ] Pop integer to Operand1
+[Branch  ] Jump on false (forward): (8)
 [Stack   ] Literal integer 1
 [Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Argument] Parameter is string
-[Argument] Parameter is string
-[Strings ] INSTR
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 6
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (213)
-[Branch  ] Jump create (forward): (214)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (213)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (214)
-[Branch  ] Jump destination: (213)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (214)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Instr (with start) = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'Test this this string'
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'this'
-[Stack   ] Push string Operand1
-[Stack   ] Literal integer 8
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Argument] Parameter is string
-[Argument] Parameter is string
-[Strings ] INSTR
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 11
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (215)
-[Branch  ] Jump create (forward): (216)
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (12)
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (215)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (216)
-[Branch  ] Jump destination: (215)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (216)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Left$              = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'A test string'
-[Stack   ] Push string Operand1
-[Stack   ] Literal integer 6
+[Variable] Store integer (1)
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (13)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (11)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] -, integer
+[Variable] Store integer (14)
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (15)
+[Branch  ] Jump create: (10)
+[Variable] Load float (12)
+[Stack   ] Push float Operand1
+[Variable] Load float (12)
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Maths   ] SQR, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Maths   ] LN, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Maths   ] LOG, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Maths   ] ATN, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Maths   ] TAN, float
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] +, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Variable] Store float (12)
+[Variable] Load integer (15)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (13)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] +, integer
+[Variable] Store integer (13)
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Variable] Load integer (14)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] -, integer
+[Variable] Store integer (14)
+[Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Variable] Load integer (14)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Variable] Compare >= integer
+[Branch  ] Jump on true: (10)
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] -, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load float (6)
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 68800
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Argument] Parameter is string
-[Strings ] LEFT$
+[Proc    ] PROC call: (2/p)
+[Branch  ] Jump (forward): (9)
+[Branch  ] Jump destination: (8)
+[Branch  ] Jump destination: (9)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'String manipulation     '
 [Stack   ] Push string Operand1
-[Stack   ] Literal string 'A test'
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
+[Argument] Parameter is string
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Stack   ] Literal string 'STRINGMANIPULATIONTEST'
 [Stack   ] Push string Operand1
 [Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
+[Variable] Store string (16)
+[Stack   ] Literal integer 0
 [Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (217)
-[Branch  ] Jump create (forward): (218)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (217)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (218)
-[Branch  ] Jump destination: (217)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (218)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Mid$               = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'A test string'
-[Stack   ] Push string Operand1
-[Stack   ] Literal integer 3
+[Variable] Store integer (0)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (11)
 [Stack   ] Push integer Operand1
 [Stack   ] Literal integer 4
 [Stack   ] Push integer Operand1
+[Stack   ] Literal integer 100
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand2
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Push float Operand2
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] -, integer
+[Variable] Store integer (1)
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (2)
+[Branch  ] Jump create: (11)
+[Variable] Load string (16)
+[Stack   ] Push string Operand1
+[Variable] Load string (16)
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Strings ] LEN
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 2
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Variable] Load string (16)
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Strings ] LEN
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 4
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] +, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
+[Stack   ] Push integer Operand1
 [Argument] Parameter is integer
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
+[Stack   ] Push integer Operand1
 [Argument] Parameter is integer
 [Argument] Parameter is string
 [Strings ] MID$
 [Stack   ] Push string Operand1
-[Stack   ] Literal string 'test'
+[Variable] Load string (16)
 [Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (219)
-[Branch  ] Jump create (forward): (220)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (219)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (220)
-[Branch  ] Jump destination: (219)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (220)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Right$             = '
+[Variable] Load string (16)
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'A test string'
-[Stack   ] Push string Operand1
-[Stack   ] Literal integer 6
+[Strings ] LEN
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 4
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
 [Argument] Parameter is string
 [Strings ] RIGHT$
 [Stack   ] Push string Operand1
-[Stack   ] Literal string 'string'
+[Variable] Load string (16)
 [Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (221)
-[Branch  ] Jump create (forward): (222)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (221)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (222)
-[Branch  ] Jump destination: (221)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (222)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Len                = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'A test string'
+[Variable] Load string (16)
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
 [Strings ] LEN
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 13
+[Stack   ] Literal integer 2
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
 [Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (223)
-[Branch  ] Jump create (forward): (224)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (223)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (224)
-[Branch  ] Jump destination: (223)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (224)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String to float    = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string '10.5'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Convert ] Operand1, string to integer
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
 [Stack   ] Push float Operand1
-[Stack   ] Literal float 10.500000
+[Stack   ] Pop float to Operand1
 [Stack   ] Pop float to Operand2
-[Variable] Compare = float
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 2
 [Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (225)
-[Branch  ] Jump create (forward): (226)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (225)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (226)
-[Branch  ] Jump destination: (225)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (226)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Float to string    = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
+[Argument] Parameter is integer
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal float 10.500000
-[Convert ] Operand1, float to string
+[Strings ] MID$
 [Stack   ] Push string Operand1
+[Variable] Load string (16)
+[Stack   ] Push string Operand1
+[Variable] Load string (16)
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Strings ] LEN
+[Stack   ] Push integer Operand1
 [Stack   ] Literal integer 4
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
 [Argument] Parameter is string
 [Strings ] LEFT$
 [Stack   ] Push string Operand1
-[Stack   ] Literal string '10.5'
+[Variable] Load string (16)
 [Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (227)
-[Branch  ] Jump create (forward): (228)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (227)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (228)
-[Branch  ] Jump destination: (227)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (228)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'String$            = '
+[Variable] Load string (16)
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal string 'A'
-[Stack   ] Push string Operand1
+[Strings ] LEN
+[Stack   ] Push integer Operand1
 [Stack   ] Literal integer 4
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Variable] Load string (16)
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Strings ] LEN
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 4
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, integer to float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] +, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
 [Argument] Parameter is string
-[Strings ] STRING$
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'AAAA'
+[Strings ] MID$
 [Stack   ] Push string Operand1
 [Stack   ] Pop string Operand1
 [Stack   ] Pop string Operand2
-[Variable] Compare = string
+[Maths   ] +, string
+[Stack   ] Push string Operand1
+[Stack   ] Pop string Operand1
+[Stack   ] Pop string Operand2
+[Maths   ] +, string
+[Stack   ] Push string Operand1
+[Stack   ] Pop string Operand1
+[Stack   ] Pop string Operand2
+[Maths   ] +, string
+[Stack   ] Push string Operand1
+[Stack   ] Pop string Operand1
+[Stack   ] Pop string Operand2
+[Maths   ] +, string
+[Stack   ] Push string Operand1
+[Variable] Load string (16)
+[Stack   ] Push string Operand1
+[Argument] Parameter is string
+[Strings ] LEN
 [Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (229)
-[Branch  ] Jump create (forward): (230)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (229)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (230)
-[Branch  ] Jump destination: (229)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (230)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (21)
-[Proc    ] PROC start: (22/Swap)
-[Variable] Local create integer (0)
-[Variable] Local create integer (1)
-[Variable] Local create float (2)
-[Variable] Local create float (3)
-[Variable] Local create string (4)
-[Variable] Local create string (5)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Swap::'
-[Stack   ] Push string Operand1
+[Argument] Parameter is integer
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Stack   ] Literal integer 1
-[Variable] Store integer (0)
-[Stack   ] Literal integer 2
-[Variable] Store integer (1)
-[Stack   ] Literal integer 123
-[Convert ] Operand1, integer to float
-[Variable] Store float (2)
-[Stack   ] Literal integer 456
-[Convert ] Operand1, integer to float
-[Variable] Store float (3)
-[Stack   ] Literal string '11'
+[Strings ] RIGHT$
 [Stack   ] Push string Operand1
 [Stack   ] Pop string Operand1
-[Variable] Store string (4)
-[Stack   ] Literal string '22'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (5)
-[Variable] Swap source integer (0)
-[Variable] Swap destination integer (1)
-[Variable] Swap source float (2)
-[Variable] Swap destination float (3)
-[Variable] Swap source string (4)
-[Variable] Swap destination string (5)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Swap integer       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
+[Variable] Store string (16)
+[Variable] Load integer (2)
+[Stack   ] Push integer Operand1
 [Variable] Load integer (0)
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
 [Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
+[Stack   ] Pop integer to Operand1
+[Maths   ] +, integer
+[Variable] Store integer (0)
+[Stack   ] Literal integer 1
 [Stack   ] Push integer Operand1
 [Variable] Load integer (1)
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 1
 [Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (231)
-[Branch  ] Jump create (forward): (232)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (231)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (232)
-[Branch  ] Jump destination: (231)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (232)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Swap float         = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load float (2)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 456
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Variable] Load float (3)
-[Stack   ] Push float Operand1
-[Stack   ] Literal integer 123
-[Convert ] Operand1, integer to float
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (233)
-[Branch  ] Jump create (forward): (234)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (233)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (234)
-[Branch  ] Jump destination: (233)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (234)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Swap string        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load string (4)
-[Stack   ] Push string Operand1
-[Stack   ] Literal string '22'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Variable] Load string (5)
-[Stack   ] Push string Operand1
-[Stack   ] Literal string '11'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (235)
-[Branch  ] Jump create (forward): (236)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (235)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (236)
-[Branch  ] Jump destination: (235)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (236)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (22)
-[Proc    ] PROC start: (23/TestReturnInOtherwise)
-[Variable] Local create string (0)
-[Variable] Local create string (1)
-[Stack   ] Literal string '5'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Return inside DEF  = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load string (0)
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (1)
-[Branch  ] Jump create (forward): (237)
-[Branch  ] Jump create (forward): (238)
-[Branch  ] Jump create (forward): (239)
-[Stack   ] Literal string '1'
-[Stack   ] Push string Operand1
-[Variable] Load string (1)
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Branch  ] Jump on true (forward): (238)
-[Stack   ] Literal string '2'
-[Stack   ] Push string Operand1
-[Variable] Load string (1)
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Branch  ] Jump on true (forward): (238)
-[Stack   ] Literal string '3'
-[Stack   ] Push string Operand1
-[Variable] Load string (1)
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Branch  ] Jump on true (forward): (238)
-[Stack   ] Literal string '4'
-[Stack   ] Push string Operand1
-[Variable] Load string (1)
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Branch  ] Jump on true (forward): (238)
-[Branch  ] Jump (forward): (239)
-[Branch  ] Jump destination: (238)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump (forward): (237)
-[Branch  ] Jump destination: (239)
-[Proc    ] PROC call: (26/Pass)
-[Proc    ] Return none, final:0
-[Branch  ] Jump destination: (237)
-[Proc    ] PROC call: (27/Fail)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (23)
-[Proc    ] PROC start: (24/Types)
-[Variable] Local create structured type of 40 bytes (0)
-[Variable] Zero structured string at 0/32
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Types::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Stack   ] Literal float 100.500000
-[Variable] Store offset float (0/8)
-[Stack   ] Literal integer 16720000
-[Variable] Store offset integer (0/24)
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store offset string (0/32)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Load field (float) = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load offset float (0/8)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 100.500000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (240)
-[Branch  ] Jump create (forward): (241)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (240)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (241)
-[Branch  ] Jump destination: (240)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (241)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Load field (int)   = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load offset integer (0/24)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 16720000
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (242)
-[Branch  ] Jump create (forward): (243)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (242)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (243)
-[Branch  ] Jump destination: (242)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (243)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Load field (string)= '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load offset string (0/32)
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (244)
-[Branch  ] Jump create (forward): (245)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (244)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (245)
-[Branch  ] Jump destination: (244)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (245)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Load field (Glob1) = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load offset float (-1/0)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 10.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Variable] Load offset float (-1/8)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 234.560000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (246)
-[Branch  ] Jump create (forward): (247)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (246)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (247)
-[Branch  ] Jump destination: (246)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (247)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Load field (Glob2) = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load offset integer (-1/24)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 16777215
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (248)
-[Branch  ] Jump create (forward): (249)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (248)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (249)
-[Branch  ] Jump destination: (248)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (249)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (24)
-[Proc    ] PROC start: (25/Variables)
-[Variable] Local create integer (0)
-[Variable] Local create float (1)
-[Variable] Local create string (2)
-[Variable] Local create integer (3)
-[Variable] Local create float (4)
-[Variable] Local create string (5)
-[Variable] Local create integer (6)
-[Variable] Local create float (7)
+[Maths   ] -, integer
+[Variable] Store integer (1)
 [Stack   ] Literal integer 0
-[Variable] Store integer (0)
-[Stack   ] Literal integer 0
-[Convert ] Operand1, integer to float
-[Variable] Store float (1)
-[Stack   ] Literal string ''
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (2)
-[Stack   ] Literal integer 5
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
 [Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (3)
-[Stack   ] Literal float 123.450000
-[Variable] Store float (4)
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Variable] Store string (5)
-[Stack   ] Literal integer 0
-[Variable] Store integer (6)
-[Stack   ] Literal integer 0
-[Convert ] Operand1, integer to float
-[Variable] Store float (7)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Variables::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Stack   ] Literal integer 100
-[Variable] Store integer (6)
-[Stack   ] Literal float 99.900000
-[Variable] Store float (7)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Local integer (0)  = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 0
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (250)
-[Branch  ] Jump create (forward): (251)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (250)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (251)
-[Branch  ] Jump destination: (250)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (251)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Local float (0)    = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load float (1)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 0.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
+[Variable] Compare >= integer
+[Branch  ] Jump on true: (11)
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Variable] Load integer (1)
 [Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (252)
-[Branch  ] Jump create (forward): (253)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (252)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (253)
-[Branch  ] Jump destination: (252)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (253)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Local string (0 )  = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load string (2)
-[Stack   ] Push string Operand1
-[Stack   ] Literal string ''
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (254)
-[Branch  ] Jump create (forward): (255)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (254)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (255)
-[Branch  ] Jump destination: (254)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (255)
-[Func    ] Call function: (0x10183b400)
-[Variable] Load integer (3)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10183b420)
-[Func    ] Call function: (0x10183b400)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Argument] Parameter is float
-[Func    ] Call function: (0x10183b500)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Local integer      = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (3)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (256)
-[Branch  ] Jump create (forward): (257)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (256)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (257)
-[Branch  ] Jump destination: (256)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (257)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Local float        = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load float (4)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 123.450000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (258)
-[Branch  ] Jump create (forward): (259)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (258)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (259)
-[Branch  ] Jump destination: (258)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (259)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Local string       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load string (5)
-[Stack   ] Push string Operand1
-[Stack   ] Literal string 'Test'
-[Stack   ] Push string Operand1
-[Stack   ] Pop string Operand1
-[Stack   ] Pop string Operand2
-[Variable] Compare = string
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (260)
-[Branch  ] Jump create (forward): (261)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (260)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (261)
-[Branch  ] Jump destination: (260)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (261)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Constants       	  = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Stack   ] Literal integer 100
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 100
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Stack   ] Literal float 12.500000
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 12.500000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Pop integer to Operand2
-[Boolean ] AND, integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (262)
-[Branch  ] Jump create (forward): (263)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (262)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (263)
-[Branch  ] Jump destination: (262)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (263)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Implicit LET       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (6)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 100
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (264)
-[Branch  ] Jump create (forward): (265)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (264)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (265)
-[Branch  ] Jump destination: (264)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (265)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Explicit LET       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load float (7)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 99.900000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (266)
-[Branch  ] Jump create (forward): (267)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (266)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (267)
-[Branch  ] Jump destination: (266)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (267)
-[Stack   ] Literal integer 10
-[Variable] Store integer (0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 10
-[Stack   ] Pop integer to Operand2
-[Maths   ] +, integer
-[Variable] Store integer (0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Var integer +=     = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 20
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (268)
-[Branch  ] Jump create (forward): (269)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (268)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (269)
-[Branch  ] Jump destination: (268)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (269)
-[Stack   ] Literal float 10.500000
-[Variable] Store float (1)
-[Variable] Load float (1)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 10.500000
-[Stack   ] Pop float to Operand2
-[Maths   ] +, float
-[Variable] Store float (1)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Var float +=       = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load float (1)
-[Stack   ] Push float Operand1
-[Stack   ] Literal float 21.000000
-[Stack   ] Pop float to Operand2
-[Variable] Compare = float
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (270)
-[Branch  ] Jump create (forward): (271)
-[Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (270)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (271)
-[Branch  ] Jump destination: (270)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (271)
-[Stack   ] Literal integer 10
-[Variable] Store integer (0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
 [Stack   ] Pop integer to Operand2
 [Maths   ] -, integer
-[Variable] Store integer (0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Var integer -=     = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 5
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (272)
-[Branch  ] Jump create (forward): (273)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (272)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (273)
-[Branch  ] Jump destination: (272)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (273)
-[Stack   ] Literal integer 10
-[Variable] Store integer (0)
-[Variable] Load integer (0)
+[Variable] Store integer (1)
+[Variable] Load integer (1)
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
+[Stack   ] Literal integer 100
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
 [Stack   ] Pop integer to Operand2
 [Maths   ] *, integer
-[Variable] Store integer (0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Var integer *=     = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 20
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (274)
-[Branch  ] Jump create (forward): (275)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (274)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (275)
-[Branch  ] Jump destination: (274)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (275)
-[Stack   ] Literal integer 10
-[Variable] Store integer (0)
-[Variable] Load integer (0)
+[Variable] Store integer (1)
+[Variable] Load float (6)
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 72750
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
-[Stack   ] Pop integer to Operand2
-[Maths   ] <<, float
-[Variable] Store integer (0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Var integer <<=    = '
-[Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
+[Variable] Load integer (1)
 [Stack   ] Push integer Operand1
-[Stack   ] Literal integer 40
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (276)
-[Branch  ] Jump create (forward): (277)
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (276)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (277)
-[Branch  ] Jump destination: (276)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (277)
-[Stack   ] Literal integer 10
-[Variable] Store integer (0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
 [Stack   ] Pop integer to Operand2
-[Maths   ] >>, float
-[Variable] Store integer (0)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'Var integer >>=    = '
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Proc    ] PROC call: (2/p)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'Procedure call          '
 [Stack   ] Push string Operand1
-[Func    ] Call function: (0x10183b410)
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Stack   ] Literal integer 2
-[Stack   ] Pop integer to Operand2
-[Variable] Compare = integer
-[Stack   ] Push integer Operand1
-[Branch  ] Jump create (forward): (278)
-[Branch  ] Jump create (forward): (279)
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
 [Stack   ] Pop integer to Operand1
-[Branch  ] Jump on false (forward): (278)
-[Proc    ] PROC call: (26/Pass)
-[Branch  ] Jump (forward): (279)
-[Branch  ] Jump destination: (278)
-[Proc    ] PROC call: (27/Fail)
-[Branch  ] Jump destination: (279)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (25)
-[Proc    ] PROC start: (26/Pass)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string 'PASS!'
+[Variable] Store integer (1)
+[Variable] Load integer (3)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (0)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (10)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] -, integer
+[Variable] Store integer (1)
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (2)
+[Branch  ] Jump create: (12)
+[Proc    ] PROC call: (1/test)
+[Variable] Load integer (2)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] +, integer
+[Variable] Store integer (0)
+[Stack   ] Literal integer 1
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Maths   ] -, integer
+[Variable] Store integer (1)
+[Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand2
+[Stack   ] Pop integer to Operand1
+[Variable] Compare >= integer
+[Branch  ] Jump on true: (12)
+[Argument] Return type is integer
+[Func    ] Call function: (0x1091decb0/'TIME')
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] -, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (1)
+[Variable] Load float (6)
+[Stack   ] Push float Operand1
+[Stack   ] Literal integer 80500
+[Stack   ] Push integer Operand1
+[Variable] Load integer (1)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] *, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Proc    ] PROC call: (2/p)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'Combined Average        '
+[Stack   ] Push string Operand1
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
+[Argument] Parameter is string
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Variable] Load integer (-1)
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 7
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Convert ] Operand1, integer to float
+[Convert ] Operand2, integer to float
+[Stack   ] Push float Operand2
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Stack   ] Pop float to Operand2
+[Maths   ] /, float
+[Stack   ] Push float Operand1
+[Stack   ] Pop float to Operand1
+[Convert ] Operand1, float to integer
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Proc    ] PROC call: (2/p)
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string 'Compared with a 2.00MHz BBC B'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Func    ] Call function: (0x1091dd280/'NL')
 [Proc    ] Return none, final:1
-[Proc    ] PROC end: (26)
-[Proc    ] PROC start: (27/Fail)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '!! FAILED TEST !!'
+[Proc    ] PROC end: (0)
+[Proc    ] PROC start: (1/test)
+[Proc    ] Return none, final:1
+[Proc    ] PROC end: (1)
+[Proc    ] PROC start: (2/p)
+[Variable] Local create integer (0)
+[Proc    ] Parameter integer, 0
+[Func    ] Call function: (0x1091dd2b0/'Tabbed On')
+[Stack   ] Literal string '         '
+[Stack   ] Push string Operand1
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 100
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] DIV, float
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, int to string
+[Stack   ] Push string Operand1
+[Stack   ] Pop string Operand1
+[Stack   ] Pop string Operand2
+[Maths   ] +, string
+[Stack   ] Push string Operand1
+[Stack   ] Literal integer 9
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Argument] Parameter is string
+[Strings ] RIGHT$
+[Stack   ] Push string Operand1
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
+[Argument] Parameter is string
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Stack   ] Literal string '.'
+[Stack   ] Push string Operand1
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
+[Argument] Parameter is string
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Stack   ] Literal string '0'
+[Stack   ] Push string Operand1
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Convert ] Operand1, int to string
+[Stack   ] Push string Operand1
+[Stack   ] Pop string Operand1
+[Stack   ] Pop string Operand2
+[Maths   ] +, string
+[Stack   ] Push string Operand1
+[Stack   ] Literal integer 2
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Argument] Parameter is string
+[Strings ] RIGHT$
+[Stack   ] Push string Operand1
+[Func    ] Call function: (0x1091dd2c0/'Tabbed Off')
+[Argument] Parameter is string
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Stack   ] Literal string 'MHz'
 [Stack   ] Push string Operand1
 [Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[General ] End
+[Func    ] Call function: (0x1091dd490/'PRINT string')
+[Func    ] Call function: (0x1091dd280/'NL')
+[Variable] Load integer (-1)
+[Stack   ] Push integer Operand1
+[Variable] Load integer (0)
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Stack   ] Pop integer to Operand2
+[Maths   ] +, integer
+[Stack   ] Push integer Operand1
+[Stack   ] Pop integer to Operand1
+[Variable] Store integer (-1)
 [Proc    ] Return none, final:1
-[Proc    ] PROC end: (27)
-[Proc    ] PROC start: (28/Containers)
-[Func    ] Call function: (0x10183b400)
-[Stack   ] Literal string '::Containers::'
-[Stack   ] Push string Operand1
-[Argument] Parameter is string
-[Func    ] Call function: (0x10183b5e0)
-[Func    ] Call function: (0x10183b3d0)
-[Func    ] Call function: (0x10183b400)
-[Func    ] Call function: (0x10183b3d0)
-[Proc    ] Return none, final:1
-[Proc    ] PROC end: (28)
+[Proc    ] PROC end: (2)

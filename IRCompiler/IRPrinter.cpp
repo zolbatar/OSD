@@ -478,7 +478,7 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 				break;
 			case IROpcodes::CallFunc:
 				// Can we look it up?
-				sprintf(l, "[Func    ] Call function: (%p)", instruction.func);
+				sprintf(l, "[Func    ] Call function: (%p/'%s')", instruction.func, instruction.sv.c_str());
 				break;
 
 				// DATA

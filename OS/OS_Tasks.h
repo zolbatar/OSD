@@ -106,7 +106,7 @@ public:
 #endif
 
 	std::ifstream LoadSource(std::string filename);
-	void CompileSource(std::string filename, std::ifstream* stream);
+	bool CompileSource(std::string filename, std::ifstream* stream);
 	void RunCode();
 	void AddDataElement(DataElement de);
 	DataElement* GetDataElement();

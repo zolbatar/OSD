@@ -371,126 +371,106 @@ std::ifstream OSDTask::LoadSource(std::string filename)
 	return in;
 }
 
-void OSDTask::CompileSource(std::string filename, std::ifstream* stream)
+bool OSDTask::CompileSource(std::string filename, std::ifstream* stream)
 {
 	const bool debug_output = true;
+	const bool optimise = false;
 	Tokeniser token(filename, stream);
 	Parser parser;
 	double total_time_span = 0;
-	try {
-		// Tokens
+
+	// Tokens
 #ifdef CLION
-		auto t1 = std::chrono::system_clock::now();
-		token.Parse();
-		auto t2 = std::chrono::system_clock::now();
-		double time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
-		time_span /= 1000.0;
-		total_time_span += time_span;
-		printf("Tokeniser: %f millis\n", time_span);
-		if (debug_output) {
-			std::list<std::string> tokens;
-			token.PrintTokens(token.Tokens(), 0, &tokens);
-			std::ofstream tokens_out("../../tokeniser.txt");
-			for (auto& s: tokens) {
-				tokens_out << s << std::endl;
-			}
-			tokens_out.close();
+	auto t1 = std::chrono::system_clock::now();
+	token.Parse();
+	auto t2 = std::chrono::system_clock::now();
+	double time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
+	time_span /= 1000.0;
+	total_time_span += time_span;
+	printf("Tokeniser: %f millis\n", time_span);
+	if (debug_output) {
+		std::list<std::string> tokens;
+		token.PrintTokens(token.Tokens(), 0, &tokens);
+		std::ofstream tokens_out("../../tokeniser.txt");
+		for (auto& s: tokens) {
+			tokens_out << s << std::endl;
 		}
+		tokens_out.close();
+	}
 #endif
-		t1 = std::chrono::system_clock::now();
-		parser.Parse(true, token.Tokens());
+	t1 = std::chrono::system_clock::now();
+	parser.Parse(optimise, token.Tokens());
 #ifdef CLION
-		t2 = std::chrono::system_clock::now();
-		time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
-		time_span /= 1000.0;
-		total_time_span += time_span;
-		printf("Parser: %f millis\n", time_span);
-		if (debug_output) {
-			std::list<std::string> tokens;
-			token.PrintTokensPtr(parser.Tokens(), 0, &tokens);
-			std::ofstream tokens_out("../../tokens.txt");
-			for (auto& s: tokens) {
-				tokens_out << s << std::endl;
-			}
-			tokens_out.close();
+	t2 = std::chrono::system_clock::now();
+	time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
+	time_span /= 1000.0;
+	total_time_span += time_span;
+	printf("Parser: %f millis\n", time_span);
+	if (debug_output) {
+		std::list<std::string> tokens;
+		token.PrintTokensPtr(parser.Tokens(), 0, &tokens);
+		std::ofstream tokens_out("../../tokens.txt");
+		for (auto& s: tokens) {
+			tokens_out << s << std::endl;
 		}
+		tokens_out.close();
+	}
 #endif
 
-		// Compile
+	// Compile
 #ifdef CLION
-		t1 = std::chrono::system_clock::now();
+	t1 = std::chrono::system_clock::now();
 #endif
-		IRCompiler ir_compiler(true);
-		ir_compiler.Compile(parser.Tokens());
+	IRCompiler ir_compiler(optimise);
+	ir_compiler.Compile(parser.Tokens());
 #ifdef CLION
-		t2 = std::chrono::system_clock::now();
-		time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
-		time_span /= 1000.0;
-		total_time_span += time_span;
-		printf("IR Compiler: %f millis\n", time_span);
+	t2 = std::chrono::system_clock::now();
+	time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
+	time_span /= 1000.0;
+	total_time_span += time_span;
+	printf("IR Compiler: %f millis\n", time_span);
 #endif
 #ifdef CLION
-		if (debug_output) {
-			std::list<std::string> ir;
-			ir_compiler.IRPrinter(&ir);
-			std::ofstream ir_out("../../ir.txt");
-			for (auto& s: ir) {
-				ir_out << s << std::endl;
-			}
-			ir_out.close();
+	if (debug_output) {
+		std::list<std::string> ir;
+		ir_compiler.IRPrinter(&ir);
+		std::ofstream ir_out("../../ir.txt");
+		for (auto& s: ir) {
+			ir_out << s << std::endl;
 		}
+		ir_out.close();
+	}
 #endif
 
-		// Native
-		_jit = jit_new_state();
+	// Native
+	_jit = jit_new_state();
 #ifdef CLION
-		t1 = std::chrono::system_clock::now();
+	t1 = std::chrono::system_clock::now();
 #endif
-		NativeCompiler native_compiler(true, _jit, this);
-		native_compiler.IRToNative(ir_compiler.GetGlobalIRInstructions(), ir_compiler.GetIRInstructions());
+	NativeCompiler native_compiler(optimise, _jit, this);
+	native_compiler.IRToNative(ir_compiler.GetGlobalIRInstructions(), ir_compiler.GetIRInstructions());
 #ifdef CLION
-		t2 = std::chrono::system_clock::now();
-		time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
-		time_span /= 1000.0;
-		total_time_span += time_span;
-		printf("Native Compiler: %f millis\n", time_span);
+	t2 = std::chrono::system_clock::now();
+	time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
+	time_span /= 1000.0;
+	total_time_span += time_span;
+	printf("Native Compiler: %f millis\n", time_span);
 #endif
 #ifdef CLION
-		if (debug_output) {
-			std::list<std::string> disassm;
-			native_compiler.Disassemble(&disassm);
-			std::ofstream native_out("../../native.txt");
-			for (auto& s: disassm) {
-				native_out << s << std::endl;
-			}
-			native_out.close();
+	if (debug_output) {
+		std::list<std::string> disassm;
+		native_compiler.Disassemble(&disassm);
+		std::ofstream native_out("../../native.txt");
+		for (auto& s: disassm) {
+			native_out << s << std::endl;
 		}
-#endif
+		native_out.close();
 	}
-	catch (DARICException& ex) {
-		switch (ex.type) {
-			case ExceptionType::COMPILER:
-				printf("[Compiler] ");
-				break;
-			case ExceptionType::TOKENISER:
-				printf("[Tokeniser] ");
-				break;
-			case ExceptionType::PARSER:
-				printf("[Parser] ");
-				break;
-			case ExceptionType::RUNTIME:
-				printf("[Runtime] ");
-				break;
-		}
-#ifdef CLION
-		printf("%s at line %d, column %d\n", ex.error.c_str(), ex.line_number, ex.char_position);
-#else
-		CLogger::Get()->Write("CompileSource", LogPanic, "%s at line %d, column %d", ex.error.c_str(), ex.line_number, ex.char_position);
 #endif
-	}
 #ifdef CLION
 	printf("Total: %f millis\n", total_time_span);
 #endif
+	return true;
 }
 
 void OSDTask::Yield()

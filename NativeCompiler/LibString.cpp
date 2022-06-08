@@ -113,7 +113,8 @@ int64_t call_STRING_mids(int64_t s3, int64_t s2, int64_t s1)
 int64_t call_STRING_rights(int64_t s2, int64_t s1)
 {
 	auto s1s = OS_Strings_Get(s1);
-	auto s2s = s1s.substr(s1s.length()-s2, s2);
+	auto l = s1s.length();
+	auto s2s = s1s.substr(l-s2, s2);
 	auto r = OS_Strings_Create(s2s);
 	return r;
 }

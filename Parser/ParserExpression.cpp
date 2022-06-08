@@ -286,7 +286,7 @@ void Parser::ParseExpression(bool assignment, bool subexpression, std::list<Toke
 				// A generic function?
 				auto f = generic_functions.find(tt->type);
 				if (f!=generic_functions.end()) {
-					ParserStatementGeneric(tt, out_stack, &f->second, generic_functions_ptr.find(tt->type)->second);
+					ParserStatementGeneric(tt, out_stack, &f->second, generic_functions_ptr.find(tt->type)->second, true);
 					break;
 				}
 

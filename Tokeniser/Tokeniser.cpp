@@ -386,6 +386,7 @@ void Tokeniser::CreateTokenAndAdd(TokenType type)
 	t.line_number = line_number;
 	t.char_number = token_char_number;
 	t.type = type;
+	t.name = search;
 	tokens.push_back(std::move(t));
 	EndOfToken();
 	if (type==TokenType::REM) {

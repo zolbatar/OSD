@@ -23,7 +23,7 @@ void IRCompiler::CompileToken(Token* token)
 			AddIR(IROpcodes::Yield);
 			break;
 		case TokenType::STATEMENT_START:
-			AddIRWithIndex(IROpcodes::StackCheck, token->line_number);
+//			AddIRWithIndex(IROpcodes::StackCheck, token->line_number);
 			if (!type_stack.empty())
 				Error(token, "Expected empty type stack");
 			break;
@@ -61,12 +61,12 @@ void IRCompiler::CompileToken(Token* token)
 			// Chrono
 		case TokenType::TIME:
 			AddIR(IROpcodes::StackReturnIntArgument);
-			AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_TIME);
+			AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_TIME, "TIME");
 			type_stack.push(ValueType::Integer);
 			break;
 		case TokenType::TIMES:
 			AddIR(IROpcodes::StackReturnStringArgument);
-			AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_TIMES);
+			AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_TIMES, "TIME$");
 			type_stack.push(ValueType::String);
 			break;
 
@@ -214,7 +214,6 @@ void IRCompiler::CompileToken(Token* token)
 			// Unknown?
 		default: {
 			// Generic function?
-
 			// Save return type
 			for (auto& type: token->return_types) {
 				if (type.IsInteger()) {
@@ -255,7 +254,7 @@ void IRCompiler::CompileToken(Token* token)
 
 				i++;
 			}
-			AddIRWithAddress(IROpcodes::CallFunc, token->func);
+			AddIRWithAddress(IROpcodes::CallFunc, token->func, token->name);
 			break;
 		}
 	}
@@ -405,12 +404,12 @@ void IRCompiler::AddIRWithStringLiteralWithIntegerAndIndex(IROpcodes type, std::
 		current_def.emplace_back(type, index, iv, 0.0, v, nullptr);
 }
 
-void IRCompiler::AddIRWithAddress(IROpcodes type, void* func)
+void IRCompiler::AddIRWithAddress(IROpcodes type, void* func, std::string name)
 {
 	if (is_global)
-		ir_global.emplace_back(type, 0, 0, 0.0, "", func);
+		ir_global.emplace_back(type, 0, 0, 0.0, name, func);
 	else
-		current_def.emplace_back(type, 0, 0, 0.0, "", func);
+		current_def.emplace_back(type, 0, 0, 0.0, name, func);
 }
 
 void IRCompiler::AddIRIntegerLiteral(int64_t v)
