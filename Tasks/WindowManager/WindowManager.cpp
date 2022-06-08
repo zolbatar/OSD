@@ -216,7 +216,7 @@ void WindowManager::Run()
 void WindowManager::DesktopStartup()
 {
 #ifndef CLION
-	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 100*dm, 400*dm, 400*dm);
+/*	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 100*dm, 400*dm, 400*dm);
 	mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
 	mandelbrot->Start();
 
@@ -226,7 +226,7 @@ void WindowManager::DesktopStartup()
 
 	auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
 	clock->LoadSourceCode(":SD.$.Welcome.Clock");
-	clock->Start();
+	clock->Start();*/
 
 	auto tasks = NEW TasksWindow(1200*dm, 600*dm, 600*dm, 400*dm);
 	tasks->Start();
@@ -236,14 +236,14 @@ void WindowManager::DesktopStartup()
 	editor->Start();*/
 
 	auto clock3 = NEW DARICWindow("Clock3", false, 200*dm, 450*dm, 700*dm, 600*dm);
-	clock->LoadSourceCode(":SD.$.Welcome.Clock3");
+	clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
 	clock3->Start();
 #else
-/*	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 350*dm, 400*dm);
+	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 550*dm, 400*dm);
 	std::thread t1(&DARICWindow::Start, tasks);
 	t1.detach();
 
-	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
+/*	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
 	editor->LoadSourceCode(":SD.$.Welcome.Tester");
 	std::thread t2(&Editor::Start, editor);
 	t2.detach();*/

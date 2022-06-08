@@ -11,3 +11,7 @@ clion/CMakeCache.txt
 clion/ir.txt
 clion/native.txt
 *.ttf
+clion/ir.txt
+clion/native.txt
+clion/tokeniser.txt
+clion/tokens.txt

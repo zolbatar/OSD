@@ -35,6 +35,8 @@ void Parser::Parser_TYPE(Token* t, std::list<Token*>* tokens_out)
 				tf.position = position;
 				position+=sizeof(int64_t);
 				break;
+			default:
+				assert(0);
 		}
         typ.field_names.push_back(tf.name);
 		typ.fields.insert(std::make_pair(tf.name, std::move(tf)));

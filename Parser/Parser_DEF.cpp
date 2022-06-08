@@ -50,6 +50,8 @@ void Parser::Parser_DEFFastScan(Token* t)
 				tt->vtype = TypeString();
 				t->stack.push_back(tt);
 				break;
+			default:
+				assert(0);
 		}
 		tt = GetToken();
 		switch (tt->type) {

@@ -13,16 +13,6 @@ extern int ScreenHeight;
 size_t kernel_size = 0;
 size_t pre_boot_memory = 0;
 
-void Benchmark()
-{
-	OSDTask task;
-	task.SetID("Benchmark");
-	task.SetNameAndAddToList();
-	std::string filename = ":SD.$.Welcome.Tester";
-	auto code = task.LoadSource(filename);
-	task.CompileSource(filename, &code);
-}
-
 int main()
 {
 	OS_Init();
@@ -30,10 +20,10 @@ int main()
 	Tokeniser::Init();
 
 	// What to run?
-    auto fm = NEW FontManager();
-    fm->InitFonts();
-    auto gui = NEW WindowManager();
-    gui->Start();
-    gui->WaitForTermination();
+	auto fm = NEW FontManager();
+	fm->InitFonts();
+	auto gui = NEW WindowManager();
+	gui->Start();
+	gui->WaitForTermination();
 	return 0;
 }

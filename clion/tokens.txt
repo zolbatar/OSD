@@ -1,671 +1,584 @@
-Line    1:  1 [274]: Statement start
 Line    1:  1 [304]: GLOBAL-NOINIT 'TTAL%' Integer, index -1
 Line    1:  1 [262]: Integer assignment 'TTAL%', index -1
   Expression 0:
-    Line    1:  7 [269]: Integer 0
-Line    2:  2 [274]: Statement start
+    Line    1:  7 [269]: Integer +0
 Line    2:  2 [260]: PROC call [Clock3], no return
   Expression 0:
     Line    2:  8 [258]: Sub-expression
-Line    4:  2 [274]: Statement start
 Line    4:  2 [295]: END
 Line    5:  2 [292]: DEF 'Clock3'
   Branch 0:
-    Line    6:  2 [274]: Statement start
     Line    6:  2 [351]: CLS
-    Line    6:  6 [274]: Statement start
-    Line    6:  6 [262]: Integer assignment 'TTAL%', index -1
-      Expression 0:
-        Line    6: 12 [269]: Integer 0
-    Line    7:  2 [274]: Statement start
-    Line    8:  2 [274]: Statement start
-    Line    9:  2 [274]: Statement start
     Line    9:  2 [317]: PRINT
       Expression 0:
         Line    9:  2 [319]: PRINT tabbed mode on
       Expression 1:
         Line    9:  7 [271]: String 'BBC BASIC CPU Timing Program'
     Line    9:  2 [318]: PRINT newline
-    Line   10:  2 [274]: Statement start
-    Line   10:  2 [313]: LOCAL-NOINIT 'A%' Integer, index 0
-    Line   10:  2 [262]: Integer assignment 'A%', index 0
+    Line   10:  2 [313]: LOCAL-NOINIT 'A%' Integer, index +0
+    Line   10:  2 [262]: Integer assignment 'A%', index +0
       Expression 0:
-        Line   10:  5 [269]: Integer 0
-    Line   10:  7 [274]: Statement start
-    Line   10:  7 [313]: LOCAL-NOINIT 'T%' Integer, index 1
-    Line   10:  7 [262]: Integer assignment 'T%', index 1
+        Line   10:  5 [269]: Integer +0
+    Line   10:  7 [313]: LOCAL-NOINIT 'T%' Integer, index +1
+    Line   10:  7 [262]: Integer assignment 'T%', index +1
       Expression 0:
         Line   10: 10 [332]: TIME
-    Line   10: 15 [274]: Statement start
     Line   10: 15 [323]: REPEAT
       Expression 0:
         Line   10: 35 [332]: TIME
-        Line   10: 40 [272]: Identifier 'T%'/1
-        Line   10: 43 [269]: Integer 50
+        Line   10: 40 [272]: Identifier 'T%'/+1
+        Line   10: 43 [269]: Integer +50
         Line   10: 42 [ 43]: +
         Line   10: 39 [ 62]: >
       Branch 0:
-        Line   10: 22 [274]: Statement start
-        Line   10: 22 [262]: Integer assignment 'A%', index 0
+        Line   10: 22 [262]: Integer assignment 'A%', index +0
           Expression 0:
-            Line   10: 25 [272]: Identifier 'A%'/0
-            Line   10: 28 [269]: Integer 1
+            Line   10: 25 [272]: Identifier 'A%'/+0
+            Line   10: 28 [269]: Integer +1
             Line   10: 27 [ 43]: +
-    Line   11:  2 [274]: Statement start
-    Line   11:  2 [313]: LOCAL-NOINIT 'Z#' Float, index 2
-    Line   11:  2 [262]: Float assignment 'Z#', index 2
+    Line   11:  2 [313]: LOCAL-NOINIT 'Z#' Float, index +2
+    Line   11:  2 [262]: Float assignment 'Z#', index +2
       Expression 0:
-        Line   11:  5 [269]: Integer 0
-    Line   11:  7 [274]: Statement start
-    Line   11:  7 [313]: LOCAL-NOINIT 'Z%' Integer, index 3
-    Line   11:  7 [262]: Integer assignment 'Z%', index 3
+        Line   11:  5 [269]: Integer +0
+    Line   11:  7 [313]: LOCAL-NOINIT 'Z%' Integer, index +3
+    Line   11:  7 [262]: Integer assignment 'Z%', index +3
       Expression 0:
-        Line   11: 10 [269]: Integer 0
-    Line   11: 12 [274]: Statement start
-    Line   11: 12 [313]: LOCAL-NOINIT 'B#' Float, index 4
-    Line   11: 12 [262]: Float assignment 'B#', index 4
+        Line   11: 10 [269]: Integer +0
+    Line   11: 12 [313]: LOCAL-NOINIT 'B#' Float, index +4
+    Line   11: 12 [262]: Float assignment 'B#', index +4
       Expression 0:
         Line   11: 15 [270]: Float 1.000000
-    Line   11: 19 [274]: Statement start
-    Line   11: 19 [313]: LOCAL-NOINIT 'B%' Integer, index 5
-    Line   11: 19 [262]: Integer assignment 'B%', index 5
+    Line   11: 19 [313]: LOCAL-NOINIT 'B%' Integer, index +5
+    Line   11: 19 [262]: Integer assignment 'B%', index +5
       Expression 0:
-        Line   11: 22 [269]: Integer 1
-    Line   11: 24 [274]: Statement start
-    Line   11: 24 [313]: LOCAL-NOINIT 'F#' Float, index 6
-    Line   11: 24 [262]: Float assignment 'F#', index 6
+        Line   11: 22 [269]: Integer +1
+    Line   11: 24 [313]: LOCAL-NOINIT 'F#' Float, index +6
+    Line   11: 24 [262]: Float assignment 'F#', index +6
       Expression 0:
-        Line   11: 27 [269]: Integer 1
-        Line   11: 29 [269]: Integer 10
+        Line   11: 27 [269]: Integer +1
+        Line   11: 29 [269]: Integer +10
         Line   11: 28 [ 47]: /
-    Line   11: 32 [274]: Statement start
-    Line   11: 32 [313]: LOCAL-NOINIT 'C#' Float, index 7
-    Line   11: 32 [262]: Float assignment 'C#', index 7
+    Line   11: 32 [313]: LOCAL-NOINIT 'C#' Float, index +7
+    Line   11: 32 [262]: Float assignment 'C#', index +7
       Expression 0:
-        Line   11: 35 [269]: Integer 100
-    Line   11: 39 [274]: Statement start
-    Line   11: 39 [313]: LOCAL-NOINIT 'C%' Integer, index 8
-    Line   11: 39 [262]: Integer assignment 'C%', index 8
+        Line   11: 35 [269]: Integer +100
+    Line   11: 39 [313]: LOCAL-NOINIT 'C%' Integer, index +8
+    Line   11: 39 [262]: Integer assignment 'C%', index +8
       Expression 0:
-        Line   11: 42 [269]: Integer 100
-    Line   11: 46 [274]: Statement start
-    Line   11: 46 [313]: LOCAL-NOINIT 'D#' Float, index 9
-    Line   11: 46 [262]: Float assignment 'D#', index 9
+        Line   11: 42 [269]: Integer +100
+    Line   11: 46 [313]: LOCAL-NOINIT 'D#' Float, index +9
+    Line   11: 46 [262]: Float assignment 'D#', index +9
       Expression 0:
-        Line   11: 49 [269]: Integer 510
-    Line   11: 53 [274]: Statement start
-    Line   11: 53 [313]: LOCAL-NOINIT 'D%' Integer, index 10
-    Line   11: 53 [262]: Integer assignment 'D%', index 10
+        Line   11: 49 [269]: Integer +510
+    Line   11: 53 [313]: LOCAL-NOINIT 'D%' Integer, index +10
+    Line   11: 53 [262]: Integer assignment 'D%', index +10
       Expression 0:
-        Line   11: 56 [269]: Integer 510
-    Line   11: 60 [274]: Statement start
-    Line   11: 60 [313]: LOCAL-NOINIT 'F%' Integer, index 11
-    Line   11: 60 [262]: Integer assignment 'F%', index 11
+        Line   11: 56 [269]: Integer +510
+    Line   11: 60 [313]: LOCAL-NOINIT 'F%' Integer, index +11
+    Line   11: 60 [262]: Integer assignment 'F%', index +11
       Expression 0:
-        Line   11: 63 [269]: Integer 3
-    Line   12:  2 [274]: Statement start
+        Line   11: 63 [269]: Integer +3
     Line   12:  2 [323]: REPEAT
       Expression 0:
-        Line   12: 79 [272]: Identifier 'A%'/0
-        Line   12: 82 [269]: Integer 50
+        Line   12: 79 [272]: Identifier 'A%'/+0
+        Line   12: 82 [269]: Integer +50
         Line   12: 81 [ 60]: <
       Branch 0:
-        Line   12:  9 [274]: Statement start
-        Line   12:  9 [262]: Float assignment 'C#', index 7
+        Line   12:  9 [262]: Float assignment 'C#', index +7
           Expression 0:
-            Line   12: 12 [272]: Identifier 'C#'/7
-            Line   12: 15 [269]: Integer 10
+            Line   12: 12 [272]: Identifier 'C#'/+7
+            Line   12: 15 [269]: Integer +10
             Line   12: 14 [ 42]: *
-        Line   12: 18 [274]: Statement start
-        Line   12: 18 [262]: Integer assignment 'C%', index 8
+        Line   12: 18 [262]: Integer assignment 'C%', index +8
           Expression 0:
-            Line   12: 21 [272]: Identifier 'C%'/8
-            Line   12: 24 [269]: Integer 10
+            Line   12: 21 [272]: Identifier 'C%'/+8
+            Line   12: 24 [269]: Integer +10
             Line   12: 23 [ 42]: *
-        Line   12: 27 [274]: Statement start
-        Line   12: 27 [262]: Float assignment 'D#', index 9
+        Line   12: 27 [262]: Float assignment 'D#', index +9
           Expression 0:
-            Line   12: 30 [272]: Identifier 'D#'/9
-            Line   12: 33 [269]: Integer 10
+            Line   12: 30 [272]: Identifier 'D#'/+9
+            Line   12: 33 [269]: Integer +10
             Line   12: 32 [ 42]: *
-        Line   12: 36 [274]: Statement start
-        Line   12: 36 [262]: Integer assignment 'D%', index 10
+        Line   12: 36 [262]: Integer assignment 'D%', index +10
           Expression 0:
-            Line   12: 39 [272]: Identifier 'D%'/10
-            Line   12: 42 [269]: Integer 10
+            Line   12: 39 [272]: Identifier 'D%'/+10
+            Line   12: 42 [269]: Integer +10
             Line   12: 41 [ 42]: *
-        Line   12: 45 [274]: Statement start
-        Line   12: 45 [262]: Integer assignment 'F%', index 11
+        Line   12: 45 [262]: Integer assignment 'F%', index +11
           Expression 0:
-            Line   12: 48 [272]: Identifier 'F%'/11
-            Line   12: 51 [269]: Integer 10
+            Line   12: 48 [272]: Identifier 'F%'/+11
+            Line   12: 51 [269]: Integer +10
             Line   12: 50 [ 42]: *
-        Line   12: 54 [274]: Statement start
-        Line   12: 54 [262]: Float assignment 'F#', index 6
+        Line   12: 54 [262]: Float assignment 'F#', index +6
           Expression 0:
-            Line   12: 57 [272]: Identifier 'F#'/6
-            Line   12: 60 [269]: Integer 10
+            Line   12: 57 [272]: Identifier 'F#'/+6
+            Line   12: 60 [269]: Integer +10
             Line   12: 59 [ 42]: *
-        Line   12: 63 [274]: Statement start
-        Line   12: 63 [262]: Integer assignment 'A%', index 0
+        Line   12: 63 [262]: Integer assignment 'A%', index +0
           Expression 0:
-            Line   12: 66 [272]: Identifier 'A%'/0
-            Line   12: 71 [269]: Integer 10
+            Line   12: 66 [272]: Identifier 'A%'/+0
+            Line   12: 71 [269]: Integer +10
             Line   12: 68 [397]: DIV
-    Line   13:  2 [274]: Statement start
-    Line   13:  2 [262]: Float assignment 'Z#', index 2
+    Line   13:  2 [262]: Float assignment 'Z#', index +2
       Expression 0:
-        Line   13:  5 [272]: Identifier 'Z#'/2
+        Line   13:  5 [272]: Identifier 'Z#'/+2
         Line   13:  8 [270]: Float 0.500000
         Line   13:  7 [ 43]: +
-    Line   13: 12 [274]: Statement start
-    Line   13: 12 [262]: Float assignment 'C#', index 7
+    Line   13: 12 [262]: Float assignment 'C#', index +7
       Expression 0:
-        Line   13: 15 [272]: Identifier 'C#'/7
+        Line   13: 15 [272]: Identifier 'C#'/+7
         Line   13: 18 [270]: Float 0.500000
         Line   13: 17 [ 43]: +
-    Line   13: 22 [274]: Statement start
-    Line   13: 22 [262]: Float assignment 'D#', index 9
+    Line   13: 22 [262]: Float assignment 'D#', index +9
       Expression 0:
-        Line   13: 25 [272]: Identifier 'D#'/9
+        Line   13: 25 [272]: Identifier 'D#'/+9
         Line   13: 28 [270]: Float 0.500000
         Line   13: 27 [ 43]: +
-    Line   14:  2 [274]: Statement start
-    Line   14:  2 [317]: PRINT
-      Expression 0:
-        Line   14:  2 [319]: PRINT tabbed mode on
-      Expression 1:
-        Line   14:  8 [271]: String 'Really real REPEAT loop '
-        Line   14:  2 [320]: PRINT tabbed mode off
-      Expression 2:
-    Line   14: 36 [274]: Statement start
-    Line   14: 36 [262]: Integer assignment 'T%', index 1
-      Expression 0:
-        Line   14: 39 [332]: TIME
-    Line   14: 44 [274]: Statement start
-    Line   14: 44 [313]: LOCAL-NOINIT 'A#' Float, index 12
-    Line   14: 44 [262]: Float assignment 'A#', index 12
-      Expression 0:
-        Line   14: 47 [272]: Identifier 'Z#'/2
-    Line   14: 50 [274]: Statement start
-    Line   14: 50 [323]: REPEAT
-      Expression 0:
-        Line   14: 71 [272]: Identifier 'A#'/12
-        Line   14: 74 [272]: Identifier 'C#'/7
-        Line   14: 73 [ 62]: >
-      Branch 0:
-        Line   14: 57 [274]: Statement start
-        Line   14: 57 [262]: Float assignment 'A#', index 12
-          Expression 0:
-            Line   14: 60 [272]: Identifier 'A#'/12
-            Line   14: 63 [272]: Identifier 'B#'/4
-            Line   14: 62 [ 43]: +
-    Line   14: 77 [274]: Statement start
-    Line   14: 77 [262]: Integer assignment 'T%', index 1
-      Expression 0:
-        Line   14: 80 [332]: TIME
-        Line   14: 85 [272]: Identifier 'T%'/1
-        Line   14: 84 [ 45]: -
-    Line   14: 88 [274]: Statement start
-    Line   14: 88 [260]: PROC call [p], no return
-      Required type: integer
-      Expression 0:
-        Line   14: 89 [258]: Sub-expression
-          Stack:
-            Line   14: 90 [272]: Identifier 'F#'/6
-            Line   14: 93 [269]: Integer 41000
-            Line   14: 99 [272]: Identifier 'T%'/1
-            Line   14: 98 [ 47]: /
-            Line   14: 92 [ 42]: *
-    Line   15:  2 [274]: Statement start
+    Line   14:  2 [339]: YIELD
     Line   15:  2 [317]: PRINT
       Expression 0:
         Line   15:  2 [319]: PRINT tabbed mode on
       Expression 1:
-        Line   15:  8 [271]: String 'Integer REPEAT loop     '
+        Line   15:  8 [271]: String 'Really real REPEAT loop '
         Line   15:  2 [320]: PRINT tabbed mode off
       Expression 2:
-    Line   15: 36 [274]: Statement start
-    Line   15: 36 [262]: Integer assignment 'T%', index 1
+    Line   15: 36 [262]: Integer assignment 'T%', index +1
       Expression 0:
         Line   15: 39 [332]: TIME
-    Line   15: 44 [274]: Statement start
-    Line   15: 44 [262]: Integer assignment 'A%', index 0
+    Line   15: 44 [313]: LOCAL-NOINIT 'A#' Float, index +12
+    Line   15: 44 [262]: Float assignment 'A#', index +12
       Expression 0:
-        Line   15: 47 [272]: Identifier 'Z%'/3
-    Line   15: 50 [274]: Statement start
+        Line   15: 47 [272]: Identifier 'Z#'/+2
     Line   15: 50 [323]: REPEAT
       Expression 0:
-        Line   15: 71 [272]: Identifier 'A%'/0
-        Line   15: 74 [272]: Identifier 'C%'/8
+        Line   15: 71 [272]: Identifier 'A#'/+12
+        Line   15: 74 [272]: Identifier 'C#'/+7
         Line   15: 73 [ 62]: >
       Branch 0:
-        Line   15: 57 [274]: Statement start
-        Line   15: 57 [262]: Integer assignment 'A%', index 0
+        Line   15: 57 [262]: Float assignment 'A#', index +12
           Expression 0:
-            Line   15: 60 [272]: Identifier 'A%'/0
-            Line   15: 63 [272]: Identifier 'B%'/5
+            Line   15: 60 [272]: Identifier 'A#'/+12
+            Line   15: 63 [272]: Identifier 'B#'/+4
             Line   15: 62 [ 43]: +
-    Line   15: 77 [274]: Statement start
-    Line   15: 77 [262]: Integer assignment 'T%', index 1
+    Line   15: 77 [262]: Integer assignment 'T%', index +1
       Expression 0:
         Line   15: 80 [332]: TIME
-        Line   15: 85 [272]: Identifier 'T%'/1
+        Line   15: 85 [272]: Identifier 'T%'/+1
         Line   15: 84 [ 45]: -
-    Line   15: 88 [274]: Statement start
     Line   15: 88 [260]: PROC call [p], no return
       Required type: integer
       Expression 0:
         Line   15: 89 [258]: Sub-expression
           Stack:
-            Line   15: 90 [272]: Identifier 'F#'/6
-            Line   15: 93 [269]: Integer 23900
-            Line   15: 99 [272]: Identifier 'T%'/1
+            Line   15: 90 [272]: Identifier 'F#'/+6
+            Line   15: 93 [269]: Integer +41000
+            Line   15: 99 [272]: Identifier 'T%'/+1
             Line   15: 98 [ 47]: /
             Line   15: 92 [ 42]: *
-    Line   16:  2 [274]: Statement start
+    Line   15:103 [339]: YIELD
     Line   16:  2 [317]: PRINT
       Expression 0:
         Line   16:  2 [319]: PRINT tabbed mode on
       Expression 1:
-        Line   16:  8 [271]: String 'Really real FOR loop    '
+        Line   16:  8 [271]: String 'Integer REPEAT loop     '
         Line   16:  2 [320]: PRINT tabbed mode off
       Expression 2:
-    Line   16: 36 [274]: Statement start
-    Line   16: 36 [262]: Integer assignment 'T%', index 1
+    Line   16: 36 [262]: Integer assignment 'T%', index +1
       Expression 0:
         Line   16: 39 [332]: TIME
-    Line   16: 44 [274]: Statement start
-    Line   16: 44 [302]: FOR, float 'A#'/12
+    Line   16: 44 [262]: Integer assignment 'A%', index +0
       Expression 0:
-        Line   16: 51 [272]: Identifier 'Z#'/2
-      Expression 1:
-        Line   16: 55 [272]: Identifier 'D#'/9
-      Expression 2:
-        Line   16: 61 [272]: Identifier 'B#'/4
-    Line   16: 64 [274]: Statement start
-    Line   16: 64 [314]: NEXT 12
-    Line   16: 69 [274]: Statement start
-    Line   16: 69 [262]: Integer assignment 'T%', index 1
+        Line   16: 47 [272]: Identifier 'Z%'/+3
+    Line   16: 50 [323]: REPEAT
       Expression 0:
-        Line   16: 72 [332]: TIME
-        Line   16: 77 [272]: Identifier 'T%'/1
-        Line   16: 76 [ 45]: -
-    Line   16: 80 [274]: Statement start
-    Line   16: 80 [260]: PROC call [p], no return
+        Line   16: 71 [272]: Identifier 'A%'/+0
+        Line   16: 74 [272]: Identifier 'C%'/+8
+        Line   16: 73 [ 62]: >
+      Branch 0:
+        Line   16: 57 [262]: Integer assignment 'A%', index +0
+          Expression 0:
+            Line   16: 60 [272]: Identifier 'A%'/+0
+            Line   16: 63 [272]: Identifier 'B%'/+5
+            Line   16: 62 [ 43]: +
+    Line   16: 77 [262]: Integer assignment 'T%', index +1
+      Expression 0:
+        Line   16: 80 [332]: TIME
+        Line   16: 85 [272]: Identifier 'T%'/+1
+        Line   16: 84 [ 45]: -
+    Line   16: 88 [260]: PROC call [p], no return
       Required type: integer
       Expression 0:
-        Line   16: 81 [258]: Sub-expression
+        Line   16: 89 [258]: Sub-expression
           Stack:
-            Line   16: 82 [272]: Identifier 'F#'/6
-            Line   16: 85 [269]: Integer 51200
-            Line   16: 91 [272]: Identifier 'T%'/1
-            Line   16: 90 [ 47]: /
-            Line   16: 84 [ 42]: *
-    Line   17:  2 [274]: Statement start
+            Line   16: 90 [272]: Identifier 'F#'/+6
+            Line   16: 93 [269]: Integer +23900
+            Line   16: 99 [272]: Identifier 'T%'/+1
+            Line   16: 98 [ 47]: /
+            Line   16: 92 [ 42]: *
+    Line   16:103 [339]: YIELD
     Line   17:  2 [317]: PRINT
       Expression 0:
         Line   17:  2 [319]: PRINT tabbed mode on
       Expression 1:
-        Line   17:  8 [271]: String 'Integer FOR loop        '
+        Line   17:  8 [271]: String 'Really real FOR loop    '
         Line   17:  2 [320]: PRINT tabbed mode off
       Expression 2:
-    Line   17: 36 [274]: Statement start
-    Line   17: 36 [262]: Integer assignment 'T%', index 1
+    Line   17: 36 [262]: Integer assignment 'T%', index +1
       Expression 0:
         Line   17: 39 [332]: TIME
-    Line   17: 44 [274]: Statement start
-    Line   17: 44 [302]: FOR, integer 'A%'/0
+    Line   17: 44 [302]: FOR, float 'A#'/+12
       Expression 0:
-        Line   17: 51 [272]: Identifier 'Z%'/3
+        Line   17: 51 [272]: Identifier 'Z#'/+2
       Expression 1:
-        Line   17: 55 [272]: Identifier 'D%'/10
+        Line   17: 55 [272]: Identifier 'D#'/+9
       Expression 2:
-        Line   17: 61 [272]: Identifier 'B%'/5
-    Line   17: 64 [274]: Statement start
-    Line   17: 64 [314]: NEXT 0
-    Line   17: 69 [274]: Statement start
-    Line   17: 69 [262]: Integer assignment 'T%', index 1
+        Line   17: 61 [272]: Identifier 'B#'/+4
+    Line   17: 64 [314]: NEXT +12
+    Line   17: 69 [262]: Integer assignment 'T%', index +1
       Expression 0:
         Line   17: 72 [332]: TIME
-        Line   17: 77 [272]: Identifier 'T%'/1
+        Line   17: 77 [272]: Identifier 'T%'/+1
         Line   17: 76 [ 45]: -
-    Line   17: 80 [274]: Statement start
     Line   17: 80 [260]: PROC call [p], no return
       Required type: integer
       Expression 0:
         Line   17: 81 [258]: Sub-expression
           Stack:
-            Line   17: 82 [272]: Identifier 'F#'/6
-            Line   17: 85 [269]: Integer 17800
-            Line   17: 91 [272]: Identifier 'T%'/1
+            Line   17: 82 [272]: Identifier 'F#'/+6
+            Line   17: 85 [269]: Integer +51200
+            Line   17: 91 [272]: Identifier 'T%'/+1
             Line   17: 90 [ 47]: /
             Line   17: 84 [ 42]: *
-    Line   18:  2 [274]: Statement start
+    Line   17: 95 [339]: YIELD
     Line   18:  2 [317]: PRINT
       Expression 0:
         Line   18:  2 [319]: PRINT tabbed mode on
       Expression 1:
-        Line   18:  8 [271]: String 'Trig/Log test           '
+        Line   18:  8 [271]: String 'Integer FOR loop        '
         Line   18:  2 [320]: PRINT tabbed mode off
       Expression 2:
-    Line   18: 36 [274]: Statement start
-    Line   18: 36 [310]: IF
+    Line   18: 36 [262]: Integer assignment 'T%', index +1
       Expression 0:
-        Line   18: 42 [269]: Integer 0
-        Line   18: 39 [405]: COS
-        Line   18: 44 [269]: Integer 0
-        Line   18: 43 [ 61]: =
-      Branch 0:
-        Line   18: 46 [274]: Statement start
-        Line   18: 46 [317]: PRINT
-          Expression 0:
-            Line   18: 46 [319]: PRINT tabbed mode on
-          Expression 1:
-            Line   18: 52 [271]: String '    <none>'
-        Line   18: 46 [318]: PRINT newline
-    Line   19:  2 [274]: Statement start
-    Line   19:  2 [310]: IF
+        Line   18: 39 [332]: TIME
+    Line   18: 44 [302]: FOR, integer 'A%'/+0
       Expression 0:
-        Line   19:  8 [269]: Integer 0
-        Line   19:  5 [405]: COS
-        Line   19: 11 [269]: Integer 0
-        Line   19:  9 [279]: <>
+        Line   18: 51 [272]: Identifier 'Z%'/+3
+      Expression 1:
+        Line   18: 55 [272]: Identifier 'D%'/+10
+      Expression 2:
+        Line   18: 61 [272]: Identifier 'B%'/+5
+    Line   18: 64 [314]: NEXT +0
+    Line   18: 69 [262]: Integer assignment 'T%', index +1
+      Expression 0:
+        Line   18: 72 [332]: TIME
+        Line   18: 77 [272]: Identifier 'T%'/+1
+        Line   18: 76 [ 45]: -
+    Line   18: 80 [260]: PROC call [p], no return
+      Required type: integer
+      Expression 0:
+        Line   18: 81 [258]: Sub-expression
+          Stack:
+            Line   18: 82 [272]: Identifier 'F#'/+6
+            Line   18: 85 [269]: Integer +17800
+            Line   18: 91 [272]: Identifier 'T%'/+1
+            Line   18: 90 [ 47]: /
+            Line   18: 84 [ 42]: *
+    Line   18: 95 [339]: YIELD
+    Line   19:  2 [317]: PRINT
+      Expression 0:
+        Line   19:  2 [319]: PRINT tabbed mode on
+      Expression 1:
+        Line   19:  8 [271]: String 'Trig/Log test           '
+        Line   19:  2 [320]: PRINT tabbed mode off
+      Expression 2:
+    Line   19: 36 [310]: IF
+      Expression 0:
+        Line   19: 42 [269]: Integer +0
+        Line   19: 39 [405]: COS
+        Line   19: 44 [269]: Integer +0
+        Line   19: 43 [ 61]: =
       Branch 0:
-        Line   19: 13 [274]: Statement start
-        Line   19: 13 [262]: Float assignment 'A#', index 12
+        Line   19: 46 [317]: PRINT
           Expression 0:
-            Line   19: 16 [269]: Integer 1
-        Line   19: 18 [274]: Statement start
-        Line   19: 18 [262]: Integer assignment 'T%', index 1
-          Expression 0:
-            Line   19: 21 [332]: TIME
-        Line   19: 26 [274]: Statement start
-        Line   19: 30 [313]: LOCAL-NOINIT 'J%' Integer, index 13
-        Line   19: 26 [313]: LOCAL-NOINIT 'J% #iterations' Integer, index 14
-        Line   19: 26 [313]: LOCAL-NOINIT 'J% #step' Integer, index 15
-        Line   19: 26 [302]: FOR, integer 'J%'/13
-          Expression 0:
-            Line   19: 33 [269]: Integer 1
+            Line   19: 46 [319]: PRINT tabbed mode on
           Expression 1:
-            Line   19: 38 [272]: Identifier 'F%'/11
-        Line   19: 41 [274]: Statement start
-        Line   19: 41 [262]: Float assignment 'A#', index 12
+            Line   19: 52 [271]: String '    <none>'
+        Line   19: 46 [318]: PRINT newline
+    Line   20:  2 [310]: IF
+      Expression 0:
+        Line   20:  8 [269]: Integer +0
+        Line   20:  5 [405]: COS
+        Line   20: 11 [269]: Integer +0
+        Line   20:  9 [279]: <>
+      Branch 0:
+        Line   20: 13 [262]: Float assignment 'A#', index +12
           Expression 0:
-            Line   19: 47 [258]: Sub-expression
+            Line   20: 16 [269]: Integer +1
+        Line   20: 18 [262]: Integer assignment 'T%', index +1
+          Expression 0:
+            Line   20: 21 [332]: TIME
+        Line   20: 30 [313]: LOCAL-NOINIT 'J%' Integer, index +13
+        Line   20: 26 [313]: LOCAL-NOINIT 'J% #iterations' Integer, index +14
+        Line   20: 26 [313]: LOCAL-NOINIT 'J% #step' Integer, index +15
+        Line   20: 26 [302]: FOR, integer 'J%'/+13
+          Expression 0:
+            Line   20: 33 [269]: Integer +1
+          Expression 1:
+            Line   20: 38 [272]: Identifier 'F%'/+11
+        Line   20: 41 [262]: Float assignment 'A#', index +12
+          Expression 0:
+            Line   20: 47 [258]: Sub-expression
               Stack:
-                Line   19: 51 [258]: Sub-expression
+                Line   20: 51 [258]: Sub-expression
                   Stack:
-                    Line   19: 55 [258]: Sub-expression
+                    Line   20: 55 [258]: Sub-expression
                       Stack:
-                        Line   19: 58 [258]: Sub-expression
+                        Line   20: 58 [258]: Sub-expression
                           Stack:
-                            Line   19: 62 [258]: Sub-expression
+                            Line   20: 62 [258]: Sub-expression
                               Stack:
-                                Line   19: 63 [272]: Identifier 'A#'/12
-                                Line   19: 66 [272]: Identifier 'A#'/12
-                                Line   19: 65 [ 42]: *
-                            Line   19: 59 [399]: SQR
-                        Line   19: 56 [400]: LN
-                    Line   19: 52 [402]: EXP
-                Line   19: 48 [403]: ATN
-            Line   19: 44 [404]: TAN
-            Line   19: 74 [269]: Integer 1
-            Line   19: 73 [ 43]: +
-        Line   19: 76 [274]: Statement start
-        Line   19: 76 [314]: NEXT 13
-        Line   19: 81 [274]: Statement start
-        Line   19: 81 [262]: Integer assignment 'T%', index 1
+                                Line   20: 63 [272]: Identifier 'A#'/+12
+                                Line   20: 66 [272]: Identifier 'A#'/+12
+                                Line   20: 65 [ 42]: *
+                            Line   20: 59 [399]: SQR
+                        Line   20: 56 [400]: LN
+                    Line   20: 52 [402]: EXP
+                Line   20: 48 [403]: ATN
+            Line   20: 44 [404]: TAN
+            Line   20: 74 [269]: Integer +1
+            Line   20: 73 [ 43]: +
+        Line   20: 76 [314]: NEXT +13
+        Line   20: 81 [262]: Integer assignment 'T%', index +1
           Expression 0:
-            Line   19: 84 [332]: TIME
-            Line   19: 89 [272]: Identifier 'T%'/1
-            Line   19: 88 [ 45]: -
-        Line   19: 92 [274]: Statement start
-        Line   19: 92 [260]: PROC call [p], no return
+            Line   20: 84 [332]: TIME
+            Line   20: 89 [272]: Identifier 'T%'/+1
+            Line   20: 88 [ 45]: -
+        Line   20: 92 [260]: PROC call [p], no return
           Required type: integer
           Expression 0:
-            Line   19: 93 [258]: Sub-expression
+            Line   20: 93 [258]: Sub-expression
               Stack:
-                Line   19: 94 [272]: Identifier 'F#'/6
-                Line   19: 97 [269]: Integer 68800
-                Line   19:103 [272]: Identifier 'T%'/1
-                Line   19:102 [ 47]: /
-                Line   19: 96 [ 42]: *
-    Line   20:  2 [274]: Statement start
-    Line   20:  2 [317]: PRINT
+                Line   20: 94 [272]: Identifier 'F#'/+6
+                Line   20: 97 [269]: Integer +68800
+                Line   20:103 [272]: Identifier 'T%'/+1
+                Line   20:102 [ 47]: /
+                Line   20: 96 [ 42]: *
+        Line   20:107 [339]: YIELD
+    Line   21:  2 [317]: PRINT
       Expression 0:
-        Line   20:  2 [319]: PRINT tabbed mode on
+        Line   21:  2 [319]: PRINT tabbed mode on
       Expression 1:
-        Line   20:  7 [271]: String 'String manipulation     '
-        Line   20:  2 [320]: PRINT tabbed mode off
+        Line   21:  7 [271]: String 'String manipulation     '
+        Line   21:  2 [320]: PRINT tabbed mode off
       Expression 2:
-    Line   21:  2 [274]: Statement start
-    Line   21:  2 [262]: Integer assignment 'T%', index 1
+    Line   22:  2 [262]: Integer assignment 'T%', index +1
       Expression 0:
-        Line   21:  5 [332]: TIME
-    Line   21: 10 [274]: Statement start
-    Line   21: 10 [313]: LOCAL-NOINIT 'A$' String, index 16
-    Line   21: 10 [262]: String assignment 'A$', index 16
+        Line   22:  5 [332]: TIME
+    Line   22: 10 [313]: LOCAL-NOINIT 'A$' String, index +16
+    Line   22: 10 [262]: String assignment 'A$', index +16
       Expression 0:
-        Line   21: 13 [271]: String 'STRINGMANIPULATIONTEST'
-    Line   21: 38 [274]: Statement start
-    Line   21: 38 [302]: FOR, integer 'A%'/0
+        Line   22: 13 [271]: String 'STRINGMANIPULATIONTEST'
+    Line   23:  2 [302]: FOR, integer 'A%'/+0
       Expression 0:
-        Line   21: 45 [269]: Integer 0
+        Line   23:  9 [269]: Integer +0
       Expression 1:
-        Line   21: 50 [272]: Identifier 'F%'/11
-        Line   21: 53 [269]: Integer 4
-        Line   21: 55 [269]: Integer 100
-        Line   21: 54 [ 47]: /
-        Line   21: 52 [ 42]: *
-    Line   21: 59 [274]: Statement start
-    Line   21: 59 [262]: String assignment 'A$', index 16
+        Line   23: 14 [272]: Identifier 'F%'/+11
+        Line   23: 17 [269]: Integer +4
+        Line   23: 19 [269]: Integer +100
+        Line   23: 18 [ 47]: /
+        Line   23: 16 [ 42]: *
+    Line   23: 23 [262]: String assignment 'A$', index +16
       Expression 0:
-        Line   21: 68 [258]: Sub-expression
+        Line   23: 32 [258]: Sub-expression
           Stack:
-            Line   21: 73 [258]: Sub-expression
+            Line   23: 37 [258]: Sub-expression
               Stack:
-                Line   21: 74 [272]: Identifier 'A$'/16
-                Line   21: 80 [272]: Identifier 'A$'/16
-                Line   21: 77 [387]: LEN
-                Line   21: 83 [269]: Integer 2
-                Line   21: 82 [ 47]: /
-                Line   21: 88 [272]: Identifier 'A$'/16
-                Line   21: 85 [387]: LEN
-                Line   21: 91 [269]: Integer 4
-                Line   21: 90 [ 47]: /
-                Line   21: 93 [269]: Integer 1
-                Line   21: 92 [ 43]: +
-            Line   21: 69 [385]: MID$
-            Line   21:102 [258]: Sub-expression
+                Line   23: 38 [272]: Identifier 'A$'/+16
+                Line   23: 44 [272]: Identifier 'A$'/+16
+                Line   23: 41 [387]: LEN
+                Line   23: 47 [269]: Integer +2
+                Line   23: 46 [ 47]: /
+                Line   23: 52 [272]: Identifier 'A$'/+16
+                Line   23: 49 [387]: LEN
+                Line   23: 55 [269]: Integer +4
+                Line   23: 54 [ 47]: /
+                Line   23: 57 [269]: Integer +1
+                Line   23: 56 [ 43]: +
+            Line   23: 33 [385]: MID$
+            Line   23: 66 [258]: Sub-expression
               Stack:
-                Line   21:103 [272]: Identifier 'A$'/16
-                Line   21:109 [272]: Identifier 'A$'/16
-                Line   21:106 [387]: LEN
-                Line   21:112 [269]: Integer 4
-                Line   21:111 [ 47]: /
-            Line   21: 96 [386]: RIGHT$
-            Line   21:119 [258]: Sub-expression
+                Line   23: 67 [272]: Identifier 'A$'/+16
+                Line   23: 73 [272]: Identifier 'A$'/+16
+                Line   23: 70 [387]: LEN
+                Line   23: 76 [269]: Integer +4
+                Line   23: 75 [ 47]: /
+            Line   23: 60 [386]: RIGHT$
+            Line   23: 83 [258]: Sub-expression
               Stack:
-                Line   21:120 [272]: Identifier 'A$'/16
-                Line   21:126 [272]: Identifier 'A$'/16
-                Line   21:123 [387]: LEN
-                Line   21:129 [269]: Integer 2
-                Line   21:128 [ 47]: /
-                Line   21:131 [269]: Integer 2
-            Line   21:115 [385]: MID$
-            Line   21:139 [258]: Sub-expression
+                Line   23: 84 [272]: Identifier 'A$'/+16
+                Line   23: 90 [272]: Identifier 'A$'/+16
+                Line   23: 87 [387]: LEN
+                Line   23: 93 [269]: Integer +2
+                Line   23: 92 [ 47]: /
+                Line   23: 95 [269]: Integer +2
+            Line   23: 79 [385]: MID$
+            Line   23:103 [258]: Sub-expression
               Stack:
-                Line   21:140 [272]: Identifier 'A$'/16
-                Line   21:146 [272]: Identifier 'A$'/16
-                Line   21:143 [387]: LEN
-                Line   21:149 [269]: Integer 4
-                Line   21:148 [ 47]: /
-            Line   21:134 [384]: LEFT$
-            Line   21:156 [258]: Sub-expression
+                Line   23:104 [272]: Identifier 'A$'/+16
+                Line   23:110 [272]: Identifier 'A$'/+16
+                Line   23:107 [387]: LEN
+                Line   23:113 [269]: Integer +4
+                Line   23:112 [ 47]: /
+            Line   23: 98 [384]: LEFT$
+            Line   23:120 [258]: Sub-expression
               Stack:
-                Line   21:157 [272]: Identifier 'A$'/16
-                Line   21:163 [272]: Identifier 'A$'/16
-                Line   21:160 [387]: LEN
-                Line   21:166 [269]: Integer 4
-                Line   21:165 [ 47]: /
-                Line   21:171 [272]: Identifier 'A$'/16
-                Line   21:168 [387]: LEN
-                Line   21:174 [269]: Integer 4
-                Line   21:173 [ 47]: /
-                Line   21:176 [269]: Integer 1
-                Line   21:175 [ 43]: +
-            Line   21:152 [385]: MID$
-            Line   21:151 [ 43]: +
-            Line   21:133 [ 43]: +
-            Line   21:114 [ 43]: +
-            Line   21: 95 [ 43]: +
-            Line   21:182 [272]: Identifier 'A$'/16
-            Line   21:179 [387]: LEN
-        Line   21: 62 [386]: RIGHT$
-    Line   21:186 [274]: Statement start
-    Line   21:186 [314]: NEXT 0
-    Line   21:191 [274]: Statement start
-    Line   21:191 [262]: Integer assignment 'T%', index 1
+                Line   23:121 [272]: Identifier 'A$'/+16
+                Line   23:127 [272]: Identifier 'A$'/+16
+                Line   23:124 [387]: LEN
+                Line   23:130 [269]: Integer +4
+                Line   23:129 [ 47]: /
+                Line   23:135 [272]: Identifier 'A$'/+16
+                Line   23:132 [387]: LEN
+                Line   23:138 [269]: Integer +4
+                Line   23:137 [ 47]: /
+                Line   23:140 [269]: Integer +1
+                Line   23:139 [ 43]: +
+            Line   23:116 [385]: MID$
+            Line   23:115 [ 43]: +
+            Line   23: 97 [ 43]: +
+            Line   23: 78 [ 43]: +
+            Line   23: 59 [ 43]: +
+            Line   23:146 [272]: Identifier 'A$'/+16
+            Line   23:143 [387]: LEN
+        Line   23: 26 [386]: RIGHT$
+    Line   23:150 [314]: NEXT +0
+    Line   24:  2 [262]: Integer assignment 'T%', index +1
       Expression 0:
-        Line   21:194 [332]: TIME
-        Line   21:199 [272]: Identifier 'T%'/1
-        Line   21:198 [ 45]: -
-    Line   21:202 [274]: Statement start
-    Line   21:202 [262]: Integer assignment 'T%', index 1
+        Line   24:  5 [332]: TIME
+        Line   24: 10 [272]: Identifier 'T%'/+1
+        Line   24:  9 [ 45]: -
+    Line   24: 13 [262]: Integer assignment 'T%', index +1
       Expression 0:
-        Line   21:205 [272]: Identifier 'T%'/1
-        Line   21:208 [269]: Integer 100
-        Line   21:207 [ 42]: *
-    Line   21:212 [274]: Statement start
-    Line   21:212 [260]: PROC call [p], no return
+        Line   24: 16 [272]: Identifier 'T%'/+1
+        Line   24: 19 [269]: Integer +100
+        Line   24: 18 [ 42]: *
+    Line   24: 23 [260]: PROC call [p], no return
       Required type: integer
       Expression 0:
-        Line   21:213 [258]: Sub-expression
+        Line   24: 24 [258]: Sub-expression
           Stack:
-            Line   21:214 [272]: Identifier 'F#'/6
-            Line   21:217 [269]: Integer 72750
-            Line   21:223 [272]: Identifier 'T%'/1
-            Line   21:222 [ 47]: /
-            Line   21:216 [ 42]: *
-    Line   22:  2 [274]: Statement start
-    Line   22:  2 [317]: PRINT
+            Line   24: 25 [272]: Identifier 'F#'/+6
+            Line   24: 28 [269]: Integer +72750
+            Line   24: 34 [272]: Identifier 'T%'/+1
+            Line   24: 33 [ 47]: /
+            Line   24: 27 [ 42]: *
+    Line   24: 38 [339]: YIELD
+    Line   25:  2 [317]: PRINT
       Expression 0:
-        Line   22:  2 [319]: PRINT tabbed mode on
+        Line   25:  2 [319]: PRINT tabbed mode on
       Expression 1:
-        Line   22:  7 [271]: String 'Procedure call          '
-        Line   22:  2 [320]: PRINT tabbed mode off
+        Line   25:  7 [271]: String 'Procedure call          '
+        Line   25:  2 [320]: PRINT tabbed mode off
       Expression 2:
-    Line   22: 35 [274]: Statement start
-    Line   22: 35 [262]: Integer assignment 'T%', index 1
+    Line   25: 35 [262]: Integer assignment 'T%', index +1
       Expression 0:
-        Line   22: 38 [332]: TIME
-    Line   22: 43 [274]: Statement start
-    Line   22: 43 [302]: FOR, integer 'A%'/0
+        Line   25: 38 [332]: TIME
+    Line   25: 43 [302]: FOR, integer 'A%'/+0
       Expression 0:
-        Line   22: 50 [272]: Identifier 'Z%'/3
+        Line   25: 50 [272]: Identifier 'Z%'/+3
       Expression 1:
-        Line   22: 56 [272]: Identifier 'D%'/10
-    Line   22: 59 [274]: Statement start
-    Line   22: 59 [260]: PROC call [test], no return
+        Line   25: 56 [272]: Identifier 'D%'/+10
+    Line   25: 59 [260]: PROC call [test], no return
       Expression 0:
-        Line   22: 63 [258]: Sub-expression
-    Line   22: 66 [274]: Statement start
-    Line   22: 66 [314]: NEXT 0
-    Line   22: 71 [274]: Statement start
-    Line   22: 71 [262]: Integer assignment 'T%', index 1
+        Line   25: 63 [258]: Sub-expression
+    Line   25: 66 [314]: NEXT +0
+    Line   25: 71 [262]: Integer assignment 'T%', index +1
       Expression 0:
-        Line   22: 74 [332]: TIME
-        Line   22: 79 [272]: Identifier 'T%'/1
-        Line   22: 78 [ 45]: -
-    Line   22: 82 [274]: Statement start
-    Line   22: 82 [260]: PROC call [p], no return
+        Line   25: 74 [332]: TIME
+        Line   25: 79 [272]: Identifier 'T%'/+1
+        Line   25: 78 [ 45]: -
+    Line   25: 82 [260]: PROC call [p], no return
       Required type: integer
       Expression 0:
-        Line   22: 83 [258]: Sub-expression
+        Line   25: 83 [258]: Sub-expression
           Stack:
-            Line   22: 84 [272]: Identifier 'F#'/6
-            Line   22: 87 [269]: Integer 80500
-            Line   22: 93 [272]: Identifier 'T%'/1
-            Line   22: 92 [ 47]: /
-            Line   22: 86 [ 42]: *
-    Line   23:  2 [274]: Statement start
-    Line   23:  2 [317]: PRINT
+            Line   25: 84 [272]: Identifier 'F#'/+6
+            Line   25: 87 [269]: Integer +80500
+            Line   25: 93 [272]: Identifier 'T%'/+1
+            Line   25: 92 [ 47]: /
+            Line   25: 86 [ 42]: *
+    Line   25: 97 [339]: YIELD
+    Line   26:  2 [317]: PRINT
       Expression 0:
-        Line   23:  2 [319]: PRINT tabbed mode on
+        Line   26:  2 [319]: PRINT tabbed mode on
       Expression 1:
-        Line   23:  7 [271]: String 'Combined Average        '
-        Line   23:  2 [320]: PRINT tabbed mode off
+        Line   26:  7 [271]: String 'Combined Average        '
+        Line   26:  2 [320]: PRINT tabbed mode off
       Expression 2:
-    Line   23: 35 [274]: Statement start
-    Line   23: 35 [260]: PROC call [p], no return
+    Line   26: 35 [260]: PROC call [p], no return
       Required type: integer
       Expression 0:
-        Line   23: 36 [258]: Sub-expression
+        Line   26: 36 [258]: Sub-expression
           Stack:
-            Line   23: 37 [272]: Identifier 'TTAL%'/-1
-            Line   23: 43 [269]: Integer 7
-            Line   23: 42 [ 47]: /
-    Line   24:  2 [274]: Statement start
-    Line   24:  2 [317]: PRINT
+            Line   26: 37 [272]: Identifier 'TTAL%'/-1
+            Line   26: 43 [269]: Integer +7
+            Line   26: 42 [ 47]: /
+    Line   27:  2 [317]: PRINT
       Expression 0:
-        Line   24:  2 [319]: PRINT tabbed mode on
+        Line   27:  2 [319]: PRINT tabbed mode on
       Expression 1:
       Expression 2:
-        Line   24:  2 [319]: PRINT tabbed mode on
+        Line   27:  2 [319]: PRINT tabbed mode on
       Expression 3:
-        Line   24:  8 [271]: String 'Compared with a 2.00MHz BBC B'
-    Line   24:  2 [318]: PRINT newline
+        Line   27:  8 [271]: String 'Compared with a 2.00MHz BBC B'
+    Line   27:  2 [318]: PRINT newline
     Line    5:  2 [325]: RETURN (no value)
-Line   27:  2 [292]: DEF 'test'
+Line   30:  2 [292]: DEF 'test'
   Branch 0:
-    Line   28:  2 [274]: Statement start
-    Line   27:  2 [325]: RETURN (no value)
-Line   30:  2 [292]: DEF 'p'
+    Line   30:  2 [325]: RETURN (no value)
+Line   33:  2 [292]: DEF 'p'
   Required type: integer
   Branch 0:
-    Line   31:  2 [274]: Statement start
-    Line   31:  2 [317]: PRINT
+    Line   34:  2 [317]: PRINT
       Expression 0:
-        Line   31:  2 [319]: PRINT tabbed mode on
+        Line   34:  2 [319]: PRINT tabbed mode on
       Expression 1:
-        Line   31: 14 [258]: Sub-expression
+        Line   34: 14 [258]: Sub-expression
           Stack:
-            Line   31: 15 [271]: String '         '
-            Line   31: 31 [258]: Sub-expression
+            Line   34: 15 [271]: String '         '
+            Line   34: 31 [258]: Sub-expression
               Stack:
-                Line   31: 32 [272]: Identifier 'T%'/0
-                Line   31: 37 [269]: Integer 100
-                Line   31: 34 [397]: DIV
-            Line   31: 27 [389]: STR$
-            Line   31: 26 [ 43]: +
-            Line   31: 42 [269]: Integer 9
-        Line   31:  8 [386]: RIGHT$
-        Line   31:  2 [320]: PRINT tabbed mode off
+                Line   34: 32 [272]: Identifier 'T%'/+0
+                Line   34: 37 [269]: Integer +100
+                Line   34: 34 [397]: DIV
+            Line   34: 27 [389]: STR$
+            Line   34: 26 [ 43]: +
+            Line   34: 42 [269]: Integer +9
+        Line   34:  8 [386]: RIGHT$
+        Line   34:  2 [320]: PRINT tabbed mode off
       Expression 2:
-        Line   31: 45 [271]: String '.'
-        Line   31:  2 [320]: PRINT tabbed mode off
+        Line   34: 45 [271]: String '.'
+        Line   34:  2 [320]: PRINT tabbed mode off
       Expression 3:
-        Line   31: 55 [258]: Sub-expression
+        Line   34: 55 [258]: Sub-expression
           Stack:
-            Line   31: 56 [271]: String '0'
-            Line   31: 64 [258]: Sub-expression
+            Line   34: 56 [271]: String '0'
+            Line   34: 64 [258]: Sub-expression
               Stack:
-                Line   31: 65 [272]: Identifier 'T%'/0
-            Line   31: 60 [389]: STR$
-            Line   31: 59 [ 43]: +
-            Line   31: 69 [269]: Integer 2
-        Line   31: 49 [386]: RIGHT$
-        Line   31:  2 [320]: PRINT tabbed mode off
+                Line   34: 65 [272]: Identifier 'T%'/+0
+            Line   34: 60 [389]: STR$
+            Line   34: 59 [ 43]: +
+            Line   34: 69 [269]: Integer +2
+        Line   34: 49 [386]: RIGHT$
+        Line   34:  2 [320]: PRINT tabbed mode off
       Expression 4:
-        Line   31: 72 [271]: String 'MHz'
-    Line   31:  2 [318]: PRINT newline
-    Line   31: 78 [274]: Statement start
-    Line   31: 78 [262]: Integer assignment 'TTAL%', index -1
+        Line   34: 72 [271]: String 'MHz'
+    Line   34:  2 [318]: PRINT newline
+    Line   34: 78 [262]: Integer assignment 'TTAL%', index -1
       Expression 0:
-        Line   31: 84 [272]: Identifier 'TTAL%'/-1
-        Line   31: 90 [272]: Identifier 'T%'/0
-        Line   31: 89 [ 43]: +
-    Line   30:  2 [325]: RETURN (no value)
+        Line   34: 84 [272]: Identifier 'TTAL%'/-1
+        Line   34: 90 [272]: Identifier 'T%'/+0
+        Line   34: 89 [ 43]: +
+    Line   33:  2 [325]: RETURN (no value)
   Stack:
-    Line   30:  7 [313]: LOCAL-NOINIT 'T%' Integer, index 0
+    Line   33:  7 [313]: LOCAL-NOINIT 'T%' Integer, index +0

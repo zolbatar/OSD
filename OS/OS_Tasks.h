@@ -105,8 +105,8 @@ public:
 
 #endif
 
-	std::ifstream LoadSource(std::string filename);
-	bool CompileSource(std::string filename, std::ifstream* stream);
+	std::string LoadSource(std::string filename);
+	bool CompileSource(std::string filename, std::string code);
 	void RunCode();
 	void AddDataElement(DataElement de);
 	DataElement* GetDataElement();
@@ -244,4 +244,9 @@ private:
 #ifndef CLION
 	unsigned int last_yield = CTimer::Get()->GetClockTicks();
 #endif
+};
+
+struct DARICString {
+	bool constant;
+	std::string value;
 };

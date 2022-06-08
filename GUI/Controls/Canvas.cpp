@@ -23,18 +23,23 @@ Canvas::~Canvas()
 
 void Canvas::Clear()
 {
+	OSDTask::LockVLGL("Canvas::Clear");
 	lv_canvas_fill_bg(object, bg, LV_OPA_COVER);
 	cursor_x = 0;
 	cursor_y = 0;
+	OSDTask::UnlockVLGL();
 }
 
 void Canvas::PlotPixel(int64_t x, int64_t y)
 {
+	OSDTask::LockVLGL("Canvas::PlotPixel");
 	lv_canvas_set_px_color(object, x, y, fg);
+	OSDTask::UnlockVLGL();
 }
 
 void Canvas::DrawLine(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 {
+	OSDTask::LockVLGL("Canvas::DrawLine");
 	static lv_point_t points[2];
 	points[0].x = x1;
 	points[0].y = y1;
@@ -44,6 +49,7 @@ void Canvas::DrawLine(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 	lv_draw_line_dsc_init(&line_dsc);
 	line_dsc.color = fg;
 	lv_canvas_draw_line(object, points, 2, &line_dsc);
+	OSDTask::UnlockVLGL();
 }
 
 void Canvas::SetFG(uint32_t fg)
@@ -58,6 +64,7 @@ void Canvas::SetBG(uint32_t bg)
 
 void Canvas::PrintString(const char* s)
 {
+	OSDTask::LockVLGL("Canvas::PrintString");
 	lv_draw_label_dsc_t label_dsc;
 	lv_draw_label_dsc_init(&label_dsc);
 	label_dsc.font = mono;
@@ -80,6 +87,7 @@ void Canvas::PrintString(const char* s)
 			}
 		}
 	}
+	OSDTask::UnlockVLGL();
 }
 
 void Canvas::PrintNewLine()
@@ -96,6 +104,8 @@ void Canvas::PrintNewLine()
 
 void Canvas::ScrollUp()
 {
+	OSDTask::LockVLGL("Canvas::ScrollUp");
+
 	// Move memory buffer up
 	const int ss = (lv_img_cf_get_px_size(cf)*w)*h/8;
 	const int bs = (lv_img_cf_get_px_size(cf)*w)*body_font_height/8;
@@ -109,6 +119,7 @@ void Canvas::ScrollUp()
 	rect_dsc.bg_opa = LV_OPA_COVER;
 	rect_dsc.bg_color = bg;
 	lv_canvas_draw_rect(object, 0, h-body_font_height, w, body_font_height, &rect_dsc);
+	OSDTask::UnlockVLGL();
 }
 
 void Canvas::PrintTab(int64_t v)
@@ -116,7 +127,7 @@ void Canvas::PrintTab(int64_t v)
 	auto dest = v*size_h;
 
 	// Invalid?
-	if (dest > w)
+	if (dest>w)
 		return;
 
 	while (cursor_x<dest) {

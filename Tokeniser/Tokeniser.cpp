@@ -241,8 +241,7 @@ void Tokeniser::Parse()
 	keyword_tree = &root;
 
 	// So, we simply keep reading characters and let the tokeniser convert these into tokens
-	char c;
-	while (stream->get(c)) {
+	for (char c: code) {
 		HandleCharacter(c);
 		char_number++;
 	}

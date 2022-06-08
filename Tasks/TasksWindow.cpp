@@ -148,8 +148,10 @@ void TasksWindow::UpdateTasks()
 			}
 		}
 		auto w = (Window*)task->GetWindow();
-		if (w->GetActive()) {
-			lv_obj_add_style(title, &style_boldbodyfont, LV_STATE_DEFAULT);
+		if (w!=NULL) {
+			if (w->GetActive()) {
+				lv_obj_add_style(title, &style_boldbodyfont, LV_STATE_DEFAULT);
+			}
 		}
 
 		// Memory

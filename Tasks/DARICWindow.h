@@ -13,5 +13,5 @@ public:
 	void LoadSourceCode(std::string filename);
 private:
 	std::string filename;
-	std::ifstream code;
+	std::string code;
 };

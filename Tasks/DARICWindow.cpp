@@ -56,7 +56,7 @@ void DARICWindow::Run()
 
 	// Compile (and run)
 	try {
-		if (CompileSource(filename, &code)) {
+		if (CompileSource(filename, code)) {
 			RunCode();
 		}
 	}

@@ -81,6 +81,10 @@ void OSDTask::SetNameAndAddToList()
 
 void OSDTask::TerminateTask()
 {
+	while (1) {
+		Yield();
+	}
+
 	// Close window
 	auto mess = SendGUIMessage();
 	mess->type = Messages::WM_CloseWindow;
@@ -208,11 +212,6 @@ int64_t OSDTask::AddStringPermanent(std::string s)
 
 void OSDTask::MakeStringPermanent(int64_t idx)
 {
-/*	if (permanent_strings.count(idx)>0) {
-		printf("Already there\n");
-		// Already there, maybe it's a constant or DATA
-		return;
-	}*/
 	auto f = strings.extract(idx);
 	permanent_strings.insert(std::move(f));
 }
@@ -239,7 +238,6 @@ void OSDTask::FreeStringPermanent(int64_t idx)
 
 void OSDTask::ClearTemporaryStrings()
 {
-	std::list<int64_t> del;
 #ifdef CLION
 //	printf("Deleting %zu strings\n", strings.size());
 #endif
@@ -318,7 +316,6 @@ Message* OSDTask::SendGUIMessage()
 {
 	// How long since last message?
 #ifndef CLION
-	auto t = std::chrono::system_clock::now();
 	auto diff = CTimer::Get()->GetClockTicks()-last_yield;
 	if (diff>=10000) {
 		Yield();
@@ -346,7 +343,7 @@ OSDTask* OSDTask::GetTask(const char* s)
 #endif
 }
 
-std::ifstream OSDTask::LoadSource(std::string filename)
+std::string OSDTask::LoadSource(std::string filename)
 {
 	std::vector<std::string> lines;
 
@@ -368,16 +365,28 @@ std::ifstream OSDTask::LoadSource(std::string filename)
 		assert(0);
 	}
 
-	return in;
+	// Read all lines
+	std::string line;
+	while (std::getline(in, line)) {
+		lines.push_back(line);
+	}
+
+	//  Concatenate
+	std::string s;
+	for (const auto& line : lines) s += line+'\n';
+
+	return s;
 }
 
-bool OSDTask::CompileSource(std::string filename, std::ifstream* stream)
+bool OSDTask::CompileSource(std::string filename, std::string code)
 {
 	const bool debug_output = true;
-	const bool optimise = false;
-	Tokeniser token(filename, stream);
+	const bool optimise = true;
+	Tokeniser token(filename, code);
 	Parser parser;
+#ifdef CLION
 	double total_time_span = 0;
+#endif
 
 	// Tokens
 #ifdef CLION
@@ -397,8 +406,12 @@ bool OSDTask::CompileSource(std::string filename, std::ifstream* stream)
 		}
 		tokens_out.close();
 	}
+#else
+	token.Parse();
 #endif
+#ifdef CLION
 	t1 = std::chrono::system_clock::now();
+#endif
 	parser.Parse(optimise, token.Tokens());
 #ifdef CLION
 	t2 = std::chrono::system_clock::now();

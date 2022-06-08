@@ -26,7 +26,7 @@ struct TokenDef {
 
 class Leaf {
 public:
-	TokenDef token { "", TokenType::NONE};
+	TokenDef token{ "", TokenType::NONE };
 	std::map<char, Leaf> leaves;
 };
 
@@ -64,8 +64,8 @@ struct Token {
 
 class Tokeniser {
 public:
-	Tokeniser(std::string filename, std::istream* stream)
-			:filename(filename), stream(stream) { }
+	Tokeniser(std::string filename, std::string code)
+			:filename(filename), code(code) { }
 	static void Init();
 	void Parse();
 
@@ -104,7 +104,7 @@ private:
 	void HandleString(const char& c);
 
 	std::string filename;
-	std::istream* stream;
+	std::string code;
 	int file_number = 0;
 	int char_number = 1;
 	int token_char_number;
