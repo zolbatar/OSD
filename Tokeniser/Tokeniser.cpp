@@ -75,8 +75,8 @@ void Tokeniser::Init()
 	AddKeyword(TokenDef{ "ENDWHILE", TokenType::ENDWHILE });
 	AddKeyword(TokenDef{ "FOR", TokenType::FOR });
 	AddKeyword(TokenDef{ "GLOBAL", TokenType::GLOBAL });
-	AddKeyword(TokenDef{ "GOSUB", TokenType::GOSUB });
-	AddKeyword(TokenDef{ "GOTO", TokenType::GOTO });
+//	AddKeyword(TokenDef{ "GOSUB", TokenType::GOSUB });
+//	AddKeyword(TokenDef{ "GOTO", TokenType::GOTO });
 	AddKeyword(TokenDef{ "INKEY", TokenType::INKEY });
 	AddKeyword(TokenDef{ "INKEY$", TokenType::INKEYS });
 	AddKeyword(TokenDef{ "INPUT", TokenType::INPUT });
@@ -107,14 +107,14 @@ void Tokeniser::Init()
 	AddKeyword(TokenDef{ "YIELD", TokenType::YIELD });
 
 	// File
-	AddKeyword(TokenDef{ "BGET#", TokenType::BGET });
+/*	AddKeyword(TokenDef{ "BGET#", TokenType::BGET });
 	AddKeyword(TokenDef{ "BPUT#", TokenType::BPUT });
 	AddKeyword(TokenDef{ "CLOSE#", TokenType::CLOSE });
 	AddKeyword(TokenDef{ "EOF#", TokenType::EOFH });
 	AddKeyword(TokenDef{ "OPENIN", TokenType::OPENIN });
 	AddKeyword(TokenDef{ "OPENOUT", TokenType::OPENOUT });
 	AddKeyword(TokenDef{ "OPENUP", TokenType::OPENUP });
-	AddKeyword(TokenDef{ "GET$#", TokenType::GETSH });
+	AddKeyword(TokenDef{ "GET$#", TokenType::GETSH });*/
 
 	// String
 	AddKeyword(TokenDef{ "ASC", TokenType::ASC });
@@ -157,32 +157,30 @@ void Tokeniser::Init()
 
 	// 2d Graphics
 	AddKeyword(TokenDef{ "CIRCLE", TokenType::CIRCLE });
-	AddKeyword(TokenDef{ "CLIPON", TokenType::CLIPON });
-	AddKeyword(TokenDef{ "CLIPOFF", TokenType::CLIPOFF });
+//	AddKeyword(TokenDef{ "CLIPON", TokenType::CLIPON });
+//	AddKeyword(TokenDef{ "CLIPOFF", TokenType::CLIPOFF });
 	AddKeyword(TokenDef{ "CLS", TokenType::CLS });
 	AddKeyword(TokenDef{ "COLOUR", TokenType::COLOUR });
 	AddKeyword(TokenDef{ "COLOURBG", TokenType::COLOURBG });
-	AddKeyword(TokenDef{ "CREATEFONT", TokenType::CREATEFONT });
-	AddKeyword(TokenDef{ "ELLIPSE", TokenType::ELLIPSE });
-	AddKeyword(TokenDef{ "FILL", TokenType::FILL });
-	AddKeyword(TokenDef{ "FLIP", TokenType::FLIP });
-	AddKeyword(TokenDef{ "GRAPHICS", TokenType::GRAPHICS });
+//	AddKeyword(TokenDef{ "CREATEFONT", TokenType::CREATEFONT });
+//	AddKeyword(TokenDef{ "ELLIPSE", TokenType::ELLIPSE });
+//	AddKeyword(TokenDef{ "FLIP", TokenType::FLIP });
+//	AddKeyword(TokenDef{ "GRAPHICS", TokenType::GRAPHICS });
 	AddKeyword(TokenDef{ "LINE", TokenType::LINE });
-	AddKeyword(TokenDef{ "LOADTYPEFACE", TokenType::LOADTYPEFACE });
+//	AddKeyword(TokenDef{ "LOADTYPEFACE", TokenType::LOADTYPEFACE });
 	AddKeyword(TokenDef{ "PLOT", TokenType::PLOT });
-	AddKeyword(TokenDef{ "RECTANGLE", TokenType::RECTANGLE });
+//	AddKeyword(TokenDef{ "RECTANGLE", TokenType::RECTANGLE });
 	AddKeyword(TokenDef{ "SCREENWIDTH", TokenType::SCREENWIDTH });
 	AddKeyword(TokenDef{ "SCREENHEIGHT", TokenType::SCREENHEIGHT });
-	AddKeyword(TokenDef{ "SHADED", TokenType::SHADED });
-	AddKeyword(TokenDef{ "TEXT", TokenType::TEXT });
-	AddKeyword(TokenDef{ "TEXTCENTRE", TokenType::TEXTCENTRE });
-	AddKeyword(TokenDef{ "TEXTCENTER", TokenType::TEXTCENTRE });
-	AddKeyword(TokenDef{ "TEXTRIGHT", TokenType::TEXTRIGHT });
-	AddKeyword(TokenDef{ "SHADED", TokenType::SHADED });
+//	AddKeyword(TokenDef{ "TEXT", TokenType::TEXT });
+//	AddKeyword(TokenDef{ "TEXTCENTRE", TokenType::TEXTCENTRE });
+//	AddKeyword(TokenDef{ "TEXTCENTER", TokenType::TEXTCENTRE });
+//	AddKeyword(TokenDef{ "TEXTRIGHT", TokenType::TEXTRIGHT });
 	AddKeyword(TokenDef{ "TRIANGLE", TokenType::TRIANGLE });
+	AddKeyword(TokenDef{ "TRIANGLEFILLED", TokenType::TRIANGLEFILLED });
 
 	// 3d Graphics
-	AddKeyword(TokenDef{ "VERTEX", TokenType::VERTEX3D });
+/*	AddKeyword(TokenDef{ "VERTEX", TokenType::VERTEX3D });
 	AddKeyword(TokenDef{ "FACE", TokenType::TRIANGLE3D });
 	AddKeyword(TokenDef{ "SHAPE", TokenType::SHAPE3D });
 	AddKeyword(TokenDef{ "OBJECT", TokenType::OBJECT3D });
@@ -192,7 +190,7 @@ void Tokeniser::Init()
 	AddKeyword(TokenDef{ "TRANSLATE", TokenType::TRANSLATE3D });
 	AddKeyword(TokenDef{ "ROTATE", TokenType::ROTATE3D });
 	AddKeyword(TokenDef{ "SCALE", TokenType::SCALE3D });
-	AddKeyword(TokenDef{ "RENDER", TokenType::RENDER3D });
+	AddKeyword(TokenDef{ "RENDER", TokenType::RENDER3D });*/
 
 	// Boolean
 	AddKeyword(TokenDef{ "AND", TokenType::AND });

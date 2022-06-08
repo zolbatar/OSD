@@ -147,9 +147,9 @@ void call_STACKCHECK(int64_t sp, int64_t line_number, uint64_t fp)
 		for (auto i = 0; i<8; i++) {
 			uint64_t* p = (uint64_t*)(fp-2064-(i*sizeof(int64_t)));
 			int64_t v = *p;
-			printf("[%p] %lld\n", p, v);
+			printf("[%p] %" PRId64 "\n", p, v);
 		}
-		printf("SP: %lld=%lld\n", line_number, sp);
+		printf("SP: %" PRId64 "=%" PRId64 "\n", line_number, sp);
 	}
 }
 

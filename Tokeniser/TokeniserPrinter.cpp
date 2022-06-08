@@ -100,43 +100,43 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 			sprintf(m, "Identifier type '%s'", token->text.c_str());
 			break;
 		case TokenType::VARIABLE:
-			sprintf(m, "Identifier '%s'/%lld", token->name.c_str(), token->index);
+			sprintf(m, "Identifier '%s'/%" PRId64 "", token->name.c_str(), token->index);
 			break;
 		case TokenType::ASSIGNMENT:
 			if (token->vtype.IsInteger())
-				sprintf(m, "Integer assignment '%s', index %lld", token->name.c_str(), token->index);
+				sprintf(m, "Integer assignment '%s', index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
-				sprintf(m, "Float assignment '%s', index %lld", token->name.c_str(), token->index);
+				sprintf(m, "Float assignment '%s', index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsString())
-				sprintf(m, "String assignment '%s', index %lld", token->name.c_str(), token->index);
+				sprintf(m, "String assignment '%s', index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsType()) {
-				sprintf(m, "Type assignment '%s' (type %s), index %lld", token->name.c_str(),
+				sprintf(m, "Type assignment '%s' (type %s), index %" PRId64 "", token->name.c_str(),
 						token->vtype.GetType()->name.c_str(),
 						token->index);
 			}
 			break;
 		case TokenType::FIELD:
 			if (token->vtype.IsInteger())
-				sprintf(m, "Integer field '%s', offset %lld", token->name.c_str(), token->index);
+				sprintf(m, "Integer field '%s', offset %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
-				sprintf(m, "Float field '%s', offset %lld", token->name.c_str(), token->index);
+				sprintf(m, "Float field '%s', offset %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsString())
-				sprintf(m, "String field '%s', offset %lld", token->name.c_str(), token->index);
+				sprintf(m, "String field '%s', offset %" PRId64 "", token->name.c_str(), token->index);
 			break;
 		case TokenType::FOR:
 			if (token->vtype.IsInteger())
-				sprintf(m, "FOR, integer '%s'/%lld", token->name.c_str(), token->index);
+				sprintf(m, "FOR, integer '%s'/%" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
-				sprintf(m, "FOR, float '%s'/%lld", token->name.c_str(), token->index);
+				sprintf(m, "FOR, float '%s'/%" PRId64 "", token->name.c_str(), token->index);
 			break;
 		case TokenType::NEXT:
-			sprintf(m, "NEXT %lld", token->index);
+			sprintf(m, "NEXT %" PRId64 "", token->index);
 			break;
 		case TokenType::CONST:
 			if (token->vtype.IsNone())
 				sprintf(m, "Constant");
 			else if (token->vtype.IsInteger())
-				sprintf(m, "Integer constant '%s'=%lld", token->name.c_str(), token->integer);
+				sprintf(m, "Integer constant '%s'=%" PRId64 "", token->name.c_str(), token->integer);
 			else if (token->vtype.IsFloat())
 				sprintf(m, "Float constant '%s'=%f", token->name.c_str(), token->real);
 			if (token->vtype.IsString())
@@ -153,7 +153,7 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 			sprintf(m, "Constant '%s'", token->name.c_str());
 			break;
 		case TokenType::LITERAL_INTEGER:
-			sprintf(m, "Integer %lld", token->integer);
+			sprintf(m, "Integer %" PRId64 "", token->integer);
 			break;
 		case TokenType::LITERAL_FLOAT:
 			sprintf(m, "Float %f", token->real);
@@ -195,45 +195,45 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 		}
 		case TokenType::LOCAL:
 			if (token->vtype.IsInteger())
-				sprintf(m, "LOCAL '%s' Integer, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "LOCAL '%s' Integer, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
-				sprintf(m, "LOCAL '%s' Float, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "LOCAL '%s' Float, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsString())
-				sprintf(m, "LOCAL '%s' String, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "LOCAL '%s' String, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsType()) {
-				sprintf(m, "LOCAL '%s' Type (%s), index %lld", token->name.c_str(),
+				sprintf(m, "LOCAL '%s' Type (%s), index %" PRId64 "", token->name.c_str(),
 						token->vtype.GetType()->name.c_str(),
 						token->index);
 			}
 			break;
 		case TokenType::GLOBAL:
 			if (token->vtype.IsInteger())
-				sprintf(m, "GLOBAL '%s' Integer, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "GLOBAL '%s' Integer, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
-				sprintf(m, "GLOBAL '%s' Float, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "GLOBAL '%s' Float, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsString())
-				sprintf(m, "GLOBAL '%s' String, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "GLOBAL '%s' String, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsType()) {
-				sprintf(m, "GLOBAL '%s' Type (%s), index %lld", token->name.c_str(),
+				sprintf(m, "GLOBAL '%s' Type (%s), index %" PRId64 "", token->name.c_str(),
 						token->vtype.GetType()->name.c_str(),
 						token->index);
 			}
 			break;
 		case TokenType::LOCAL_NOINIT:
 			if (token->vtype.IsInteger())
-				sprintf(m, "LOCAL-NOINIT '%s' Integer, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "LOCAL-NOINIT '%s' Integer, index %" PRId64 "", token->name.c_str(), token->index);
 			if (token->vtype.IsFloat())
-				sprintf(m, "LOCAL-NOINIT '%s' Float, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "LOCAL-NOINIT '%s' Float, index %" PRId64 "", token->name.c_str(), token->index);
 			if (token->vtype.IsString())
-				sprintf(m, "LOCAL-NOINIT '%s' String, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "LOCAL-NOINIT '%s' String, index %" PRId64 "", token->name.c_str(), token->index);
 			break;
 		case TokenType::GLOBAL_NOINIT:
 			if (token->vtype.IsInteger())
-				sprintf(m, "GLOBAL-NOINIT '%s' Integer, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "GLOBAL-NOINIT '%s' Integer, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
-				sprintf(m, "GLOBAL-NOINIT '%s' Float, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "GLOBAL-NOINIT '%s' Float, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsString())
-				sprintf(m, "GLOBAL-NOINIT '%s' String, index %lld", token->name.c_str(), token->index);
+				sprintf(m, "GLOBAL-NOINIT '%s' String, index %" PRId64 "", token->name.c_str(), token->index);
 			break;
 		case TokenType::PRINTNL:
 			sprintf(m, "PRINT newline");

@@ -7,6 +7,8 @@ enum class Messages {
 	Canvas_Clear,
 	Canvas_DrawLine,
 	Canvas_PlotPixel,
+	Canvas_Triangle,
+	Canvas_TriangleFilled,
 	Canvas_SetForegroundColour,
 	Canvas_SetBackgroundColour,
 	Canvas_PrintString,
@@ -28,19 +30,28 @@ struct WM_OpenWindow {
 	bool fixed;
 };
 
-struct Canvas_PlotPixel {
+struct Coord1 {
 	int64_t x;
 	int64_t y;
 };
 
-struct Canvas_DrawLine {
+struct Coord2 {
 	int64_t x1;
 	int64_t y1;
 	int64_t x2;
 	int64_t y2;
 };
 
-struct Canvas_Colour {
+struct Coord3 {
+	int64_t x1;
+	int64_t y1;
+	int64_t x2;
+	int64_t y2;
+	int64_t x3;
+	int64_t y3;
+};
+
+struct Colour {
 	uint32_t colour;
 };
 

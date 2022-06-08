@@ -172,7 +172,7 @@ int64_t call_STRING_realtostring(double v)
 int64_t call_STRING_inttostring(int64_t v)
 {
 	char d[64];
-	sprintf(d, "%lld", v);
+	sprintf(d, "%" PRId64 "", v);
 	std::string ss(d);
 	auto r = OS_Strings_Create(ss);
 	return r;

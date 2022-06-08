@@ -46,7 +46,7 @@ add_executable(
         ../../NativeCompiler/NativeCompiler.cpp ../../NativeCompiler/NativeStack.cpp ../../NativeCompiler/LibPrint.cpp
         ../../NativeCompiler/Disassemble.cpp ../../NativeCompiler/LibMaths.cpp ../../NativeCompiler/LibGeneral.cpp
         ../../NativeCompiler/LibString.cpp ../../NativeCompiler/LibChrono.cpp ../../NativeCompiler/LibGraphics2D.cpp
-        ../../NativeCompiler/LibData.cpp ../../NativeCompiler/LibKeyboardMouse.cpp
+        ../../NativeCompiler/LibData.cpp ../../NativeCompiler/LibKeyboardMouse.cpp ../../NativeCompiler/LibRandom.cpp
         ../../Lightning/lightning_orig.c ../../Lightning/jit_memory.c ../../Lightning/jit_print.c
         ../../Lightning/jit_disasm.c ../../Lightning/jit_size.c ../../Lightning/jit_note.c
         ../../capstone/arch/AArch64/AArch64BaseInfo.c ../../capstone/arch/AArch64/AArch64Disassembler.c ../../capstone/arch/AArch64/AArch64InstPrinter.c

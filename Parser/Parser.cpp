@@ -39,10 +39,23 @@ Parser::Parser()
 	generic_functions_ptr.insert(std::make_pair(TokenType::PLOT, (void*)&call_2D_plot));
 	generic_functions.insert(std::make_pair(TokenType::LINE, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::LINE, (void*)&call_2D_line));
+	generic_functions.insert(std::make_pair(TokenType::TRIANGLE,
+			fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::TRIANGLE, (void*)&call_2D_triangle));
+	generic_functions.insert(std::make_pair(TokenType::TRIANGLEFILLED,
+			fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::TRIANGLEFILLED, (void*)&call_2D_trianglefilled));
+
 
 	// Keyboard
 	generic_functions.insert(std::make_pair(TokenType::INKEY, fp{ TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::INKEY, (void*)&call_INKEY));
+
+	// Random
+	generic_functions.insert(std::make_pair(TokenType::RND, fp{ TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::RND, (void*)&call_RNDI));
+	generic_functions.insert(std::make_pair(TokenType::RNDF, fp{ TypeFloat(), TypeFloat() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::RNDF, (void*)&call_RNDF));
 }
 
 bool Parser::Parse(bool optimise, std::list<Token>* tokens)

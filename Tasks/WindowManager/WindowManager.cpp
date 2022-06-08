@@ -137,28 +137,42 @@ void WindowManager::Run()
 					break;
 				}
 				case Messages::Canvas_DrawLine: {
-					auto m = (Canvas_DrawLine*)&message->data;
+					auto m = (Coord2*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawLine(m->x1, m->y1, m->x2, m->y2);
 					break;
 				}
+				case Messages::Canvas_Triangle: {
+					auto m = (Coord3*)&message->data;
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->DrawTriangle(m->x1, m->y1, m->x2, m->y2, m->x3, m->y3);
+					break;
+				}
+				case Messages::Canvas_TriangleFilled: {
+					auto m = (Coord3*)&message->data;
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->DrawTriangleFilled(m->x1, m->y1, m->x2, m->y2, m->x3, m->y3);
+					break;
+				}
 				case Messages::Canvas_PlotPixel: {
-					auto m = (Canvas_PlotPixel*)&message->data;
+					auto m = (Coord1*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->PlotPixel(m->x, m->y);
 					break;
 				}
 				case Messages::Canvas_SetForegroundColour: {
-					auto m = (Canvas_Colour*)&message->data;
+					auto m = (Colour*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->SetFG(m->colour);
 					break;
 				}
 				case Messages::Canvas_SetBackgroundColour: {
-					auto m = (Canvas_Colour*)&message->data;
+					auto m = (Colour*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->SetBG(m->colour);
@@ -216,28 +230,32 @@ void WindowManager::Run()
 void WindowManager::DesktopStartup()
 {
 #ifndef CLION
-/*	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 100*dm, 400*dm, 400*dm);
-	mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-	mandelbrot->Start();
+	/*	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 100*dm, 400*dm, 400*dm);
+		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
+		mandelbrot->Start();
 
-	auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
-	tester->LoadSourceCode(":SD.$.Welcome.Tester");
-	tester->Start();
+		auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
+		tester->LoadSourceCode(":SD.$.Welcome.Tester");
+		tester->Start();
 
-	auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
-	clock->LoadSourceCode(":SD.$.Welcome.Clock");
-	clock->Start();*/
+		auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
+		clock->LoadSourceCode(":SD.$.Welcome.Clock");
+		clock->Start();*/
 
-	auto tasks = NEW TasksWindow(1200*dm, 600*dm, 600*dm, 400*dm);
-	tasks->Start();
+		auto tasks = NEW TasksWindow(1200*dm, 600*dm, 600*dm, 400*dm);
+		tasks->Start();
 
-/*	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
-	editor->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-	editor->Start();*/
+	/*	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
+		editor->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
+		editor->Start();*/
 
-	auto clock3 = NEW DARICWindow("Clock3", false, 200*dm, 450*dm, 700*dm, 600*dm);
-	clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
-	clock3->Start();
+/*		auto clock3 = NEW DARICWindow("Clock3", false, 200*dm, 450*dm, 700*dm, 600*dm);
+		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
+		clock3->Start();*/
+
+		auto graphics2d = NEW DARICWindow("Graphics 2D", false, 1000*dm, 100*dm, 600*dm, 600*dm);
+		graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2d");
+		graphics2d->Start();
 #else
 	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 550*dm, 400*dm);
 	std::thread t1(&DARICWindow::Start, tasks);
@@ -263,10 +281,15 @@ void WindowManager::DesktopStartup()
 		std::thread t4(&DARICWindow::Start, tester);
 		t4.detach();*/
 
-		auto clock3 = NEW DARICWindow("Clock3", false, 100*dm, 600*dm, 400*dm, 400*dm);
+/*		auto clock3 = NEW DARICWindow("Clock3", false, 100*dm, 600*dm, 400*dm, 400*dm);
 		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
 		std::thread t4(&DARICWindow::Start, clock3);
-		t4.detach();
+		t4.detach();*/
+
+	auto graphics2d = NEW DARICWindow("Graphics 2D", false, 100*dm, 600*dm, 400*dm, 400*dm);
+	graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2D");
+	std::thread t4(&DARICWindow::Start, graphics2d);
+	t4.detach();
 
 #endif
 }
@@ -308,6 +331,8 @@ void WindowManager::CreateMenu(int x, int y, OSDTask* task, std::string title, M
 				lv_obj_add_style(label, &style_menu_item, LV_STATE_DEFAULT);
 				break;
 			}
+			default:
+				break;
 		}
 	}
 }

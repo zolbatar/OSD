@@ -84,14 +84,14 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 				IRPrintValueBased(l, instruction.type, IROpcodes::VariableLocalCreateInteger,
 						IROpcodes::VariableLocalCreateFloat,
 						IROpcodes::VariableLocalCreateString,
-						"[Variable] Local create @ (%lld)", instruction.index);
+						"[Variable] Local create @ (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::VariableLocalCreateType:
-				sprintf(l, "[Variable] Local create structured type of %lld bytes (%lld)", instruction.iv,
+				sprintf(l, "[Variable] Local create structured type of %" PRId64 " bytes (%" PRId64 ")", instruction.iv,
 						instruction.index);
 				break;
 			case IROpcodes::VariableLocalCreateTypeString:
-				sprintf(l, "[Variable] Zero structured string at %lld/%lld", instruction.index, instruction.iv);
+				sprintf(l, "[Variable] Zero structured string at %" PRId64 "/%" PRId64 "", instruction.index, instruction.iv);
 				break;
 			case IROpcodes::VariableGlobalCreateInteger:
 			case IROpcodes::VariableGlobalCreateFloat:
@@ -99,42 +99,42 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 				IRPrintValueBased(l, instruction.type, IROpcodes::VariableGlobalCreateInteger,
 						IROpcodes::VariableGlobalCreateFloat,
 						IROpcodes::VariableGlobalCreateString,
-						"[Variable] Global create @ (%lld)", instruction.index);
+						"[Variable] Global create @ (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::VariableGlobalCreateType:
-				sprintf(l, "[Variable] Global create structured type of %lld bytes (%lld)", instruction.iv,
+				sprintf(l, "[Variable] Global create structured type of %" PRId64 " bytes (%" PRId64 ")", instruction.iv,
 						instruction.index);
 				break;
 			case IROpcodes::VariableGlobalCreateTypeString:
-				sprintf(l, "[Variable] Global zero structured string at %lld/%lld", instruction.index, instruction.iv);
+				sprintf(l, "[Variable] Global zero structured string at %" PRId64 "/%" PRId64 "", instruction.index, instruction.iv);
 				break;
 			case IROpcodes::VariableLoadInteger:
 			case IROpcodes::VariableLoadFloat:
 			case IROpcodes::VariableLoadString:
 				IRPrintValueBased(l, instruction.type, IROpcodes::VariableLoadInteger, IROpcodes::VariableLoadFloat,
 						IROpcodes::VariableLoadString,
-						"[Variable] Load @ (%lld)", instruction.index);
+						"[Variable] Load @ (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::VariableStoreInteger:
 			case IROpcodes::VariableStoreFloat:
 			case IROpcodes::VariableStoreString:
 				IRPrintValueBased(l, instruction.type, IROpcodes::VariableStoreInteger, IROpcodes::VariableStoreFloat,
 						IROpcodes::VariableStoreString,
-						"[Variable] Store @ (%lld)", instruction.index);
+						"[Variable] Store @ (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::VariableLoadIntegerWithOffset:
 			case IROpcodes::VariableLoadFloatWithOffset:
 			case IROpcodes::VariableLoadStringWithOffset:
 				IRPrintValueBased(l, instruction.type, IROpcodes::VariableLoadIntegerWithOffset, IROpcodes::VariableLoadFloatWithOffset,
 						IROpcodes::VariableLoadStringWithOffset,
-						"[Variable] Load offset @ (%lld/%lld)", instruction.index, instruction.iv);
+						"[Variable] Load offset @ (%" PRId64 "/%" PRId64 ")", instruction.index, instruction.iv);
 				break;
 			case IROpcodes::VariableStoreIntegerWithOffset:
 			case IROpcodes::VariableStoreFloatWithOffset:
 			case IROpcodes::VariableStoreStringWithOffset:
 				IRPrintValueBased(l, instruction.type, IROpcodes::VariableStoreIntegerWithOffset, IROpcodes::VariableStoreFloatWithOffset,
 						IROpcodes::VariableStoreStringWithOffset,
-						"[Variable] Store offset @ (%lld/%lld)", instruction.index, instruction.iv);
+						"[Variable] Store offset @ (%" PRId64 "/%" PRId64 ")", instruction.index, instruction.iv);
 				break;
 
 				// Swap
@@ -144,7 +144,7 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 				IRPrintValueBased(l, instruction.type, IROpcodes::VariableSwapSourceInteger,
 						IROpcodes::VariableSwapSourceFloat,
 						IROpcodes::VariableSwapSourceString,
-						"[Variable] Swap source @ (%lld)", instruction.index);
+						"[Variable] Swap source @ (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::VariableSwapDestinationInteger:
 			case IROpcodes::VariableSwapDestinationFloat:
@@ -152,7 +152,7 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 				IRPrintValueBased(l, instruction.type, IROpcodes::VariableSwapDestinationInteger,
 						IROpcodes::VariableSwapDestinationFloat,
 						IROpcodes::VariableSwapDestinationString,
-						"[Variable] Swap destination @ (%lld)", instruction.index);
+						"[Variable] Swap destination @ (%" PRId64 ")", instruction.index);
 				break;
 
 				// Arguments
@@ -220,7 +220,7 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 
 				// Literal
 			case IROpcodes::LiteralInteger:
-				sprintf(l, "[Stack   ] Literal integer %lld", instruction.iv);
+				sprintf(l, "[Stack   ] Literal integer %" PRId64 "", instruction.iv);
 				break;
 			case IROpcodes::LiteralFloat:
 				sprintf(l, "[Stack   ] Literal float %f", instruction.rv);
@@ -418,63 +418,63 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 
 				// Jumps
 			case IROpcodes::Jump:
-				sprintf(l, "[Branch  ] Jump: (%lld)", instruction.index);
+				sprintf(l, "[Branch  ] Jump: (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::JumpForward:
-				sprintf(l, "[Branch  ] Jump (forward): (%lld)", instruction.index);
+				sprintf(l, "[Branch  ] Jump (forward): (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::JumpCreate:
-				sprintf(l, "[Branch  ] Jump create: (%lld)", instruction.index);
+				sprintf(l, "[Branch  ] Jump create: (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::JumpCreateForward:
-				sprintf(l, "[Branch  ] Jump create (forward): (%lld)", instruction.index);
+				sprintf(l, "[Branch  ] Jump create (forward): (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::JumpDestination:
-				sprintf(l, "[Branch  ] Jump destination: (%lld)", instruction.index);
+				sprintf(l, "[Branch  ] Jump destination: (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::JumpOnConditionTrue:
-				sprintf(l, "[Branch  ] Jump on true: (%lld)", instruction.index);
+				sprintf(l, "[Branch  ] Jump on true: (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::JumpOnConditionFalse:
-				sprintf(l, "[Branch  ] Jump on false: (%lld)", instruction.index);
+				sprintf(l, "[Branch  ] Jump on false: (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::JumpOnConditionTrueForward:
-				sprintf(l, "[Branch  ] Jump on true (forward): (%lld)", instruction.index);
+				sprintf(l, "[Branch  ] Jump on true (forward): (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::JumpOnConditionFalseForward:
-				sprintf(l, "[Branch  ] Jump on false (forward): (%lld)", instruction.index);
+				sprintf(l, "[Branch  ] Jump on false (forward): (%" PRId64 ")", instruction.index);
 				break;
 
 				// PROCs
 			case IROpcodes::PROCCall:
-				sprintf(l, "[Proc    ] PROC call: (%lld/%s)", instruction.index, instruction.sv.c_str());
+				sprintf(l, "[Proc    ] PROC call: (%" PRId64 "/%s)", instruction.index, instruction.sv.c_str());
 				break;
 			case IROpcodes::PROCStart:
-				sprintf(l, "[Proc    ] PROC start: (%lld/%s)", instruction.index, instruction.sv.c_str());
+				sprintf(l, "[Proc    ] PROC start: (%" PRId64 "/%s)", instruction.index, instruction.sv.c_str());
 				break;
 			case IROpcodes::PROCEnd:
-				sprintf(l, "[Proc    ] PROC end: (%lld)", instruction.index);
+				sprintf(l, "[Proc    ] PROC end: (%" PRId64 ")", instruction.index);
 				break;
 			case IROpcodes::ReturnNone:
-				sprintf(l, "[Proc    ] Return none, final:%lld", instruction.index);
+				sprintf(l, "[Proc    ] Return none, final:%" PRId64 "", instruction.index);
 				break;
 			case IROpcodes::ReturnInteger:
-				sprintf(l, "[Proc    ] Return integer, final:%lld", instruction.index);
+				sprintf(l, "[Proc    ] Return integer, final:%" PRId64 "", instruction.index);
 				break;
 			case IROpcodes::ReturnFloat:
-				sprintf(l, "[Proc    ] Return float, final:%lld", instruction.index);
+				sprintf(l, "[Proc    ] Return float, final:%" PRId64 "", instruction.index);
 				break;
 			case IROpcodes::ReturnString:
-				sprintf(l, "[Proc    ] Return string, final:%lld", instruction.index);
+				sprintf(l, "[Proc    ] Return string, final:%" PRId64 "", instruction.index);
 				break;
 			case IROpcodes::ParameterInt:
-				sprintf(l, "[Proc    ] Parameter integer, %lld", instruction.index);
+				sprintf(l, "[Proc    ] Parameter integer, %" PRId64 "", instruction.index);
 				break;
 			case IROpcodes::ParameterFloat:
-				sprintf(l, "[Proc    ] Parameter float, %lld", instruction.index);
+				sprintf(l, "[Proc    ] Parameter float, %" PRId64 "", instruction.index);
 				break;
 			case IROpcodes::ParameterString:
-				sprintf(l, "[Proc    ] Parameter string, %lld", instruction.index);
+				sprintf(l, "[Proc    ] Parameter string, %" PRId64 "", instruction.index);
 				break;
 			case IROpcodes::CallFunc:
 				// Can we look it up?

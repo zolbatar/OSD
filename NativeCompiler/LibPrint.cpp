@@ -31,13 +31,13 @@ void call_PRINT_integer(int64_t v)
 {
 	char d[64];
 	if (tabbed) {
-		sprintf(d, "%lld", v);
+		sprintf(d, "%" PRId64 "", v);
 		auto pos = 20-strlen(d);
 		memset(d, ' ', 64);
-		sprintf(&d[pos], "%lld", v);
+		sprintf(&d[pos], "%" PRId64 "", v);
 	}
 	else {
-		sprintf(d, "%lld", v);
+		sprintf(d, "%" PRId64 "", v);
 	}
 
 	// Send

@@ -57,6 +57,8 @@ void IRCompiler::CompileTokenConversion(Token* token)
 			type_stack.push(ValueType::String);
 			break;
 		}
+		default:
+			break;
 	}
 }
 

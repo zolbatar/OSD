@@ -11,6 +11,8 @@ public:
 	~Canvas();
 	void Clear();
 	void DrawLine(int64_t x1, int64_t y1, int64_t x2, int64_t y2);
+	void DrawTriangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3);
+	void DrawTriangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3);
 	void PlotPixel(int64_t x, int64_t y);
 	void SetFG(uint32_t fg);
 	void SetBG(uint32_t bg);

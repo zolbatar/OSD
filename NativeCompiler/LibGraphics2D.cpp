@@ -30,7 +30,7 @@ void call_2D_colour(int64_t r, int64_t g, int64_t b)
 	auto c = 0xFF000000+(r << 16)+(g << 8)+b;
 	auto task = GetCurrentTask();
 	auto mess = task->SendGUIMessage();
-	auto m = (Canvas_Colour*)&mess->data;
+	auto m = (Colour*)&mess->data;
 	mess->source = task;
 	mess->type = Messages::Canvas_SetForegroundColour;
 	m->colour = c;
@@ -41,7 +41,7 @@ void call_2D_colourbg(int64_t r, int64_t g, int64_t b)
 	auto c = 0xFF000000+(r << 16)+(g << 8)+b;
 	auto task = GetCurrentTask();
 	auto mess = task->SendGUIMessage();
-	auto m = (Canvas_Colour*)&mess->data;
+	auto m = (Colour*)&mess->data;
 	mess->source = task;
 	mess->type = Messages::Canvas_SetBackgroundColour;
 	m->colour = c;
@@ -51,7 +51,7 @@ void call_2D_plot(int64_t x, int64_t y)
 {
 	auto task = GetCurrentTask();
 	auto mess = task->SendGUIMessage();
-	auto m = (Canvas_PlotPixel*)&mess->data;
+	auto m = (Coord1*)&mess->data;
 	mess->source = task;
 	mess->type = Messages::Canvas_PlotPixel;
 	m->x = x;
@@ -62,7 +62,7 @@ void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 {
 	auto task = GetCurrentTask();
 	auto mess = task->SendGUIMessage();
-	auto m = (Canvas_DrawLine*)&mess->data;
+	auto m = (Coord2*)&mess->data;
 	mess->source = task;
 	mess->type = Messages::Canvas_DrawLine;
 	m->x1 = x1;
@@ -71,3 +71,32 @@ void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 	m->y2 = y2;
 }
 
+void call_2D_triangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3)
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	auto m = (Coord3*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_Triangle;
+	m->x1 = x1;
+	m->y1 = y1;
+	m->x2 = x2;
+	m->y2 = y2;
+	m->x3 = x3;
+	m->y3 = y3;
+}
+
+void call_2D_trianglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3)
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	auto m = (Coord3*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_TriangleFilled;
+	m->x1 = x1;
+	m->y1 = y1;
+	m->x2 = x2;
+	m->y2 = y2;
+	m->x3 = x3;
+	m->y3 = y3;
+}
