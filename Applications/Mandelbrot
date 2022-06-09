@@ -1,9 +1,8 @@
-Mandelbrot_Single()
+Mandelbrot()
 
 DEF Mandelbrot()
     ITERS% = 256:XRANGE# = -1.5:YRANGE# = -1.5:COLS% = 16
     REPEAT
-    ww%=SCREENWIDTH():hh%=SCREENHEIGHT()
         CLS
         FOR Y%=0 TO hh%
             FOR X%=0 TO ww%

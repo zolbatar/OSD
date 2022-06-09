@@ -317,7 +317,7 @@ Message* OSDTask::SendGUIMessage()
 	// How long since last message?
 #ifndef CLION
 	auto diff = CTimer::Get()->GetClockTicks()-last_yield;
-	if (diff>=10000) {
+	if (diff>=1000) {
 		Yield();
 	}
 #endif

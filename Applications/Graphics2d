@@ -1,7 +1,7 @@
-FOR ITER% = 1 TO 100
+REPEAT
     GraphicsSingle()
     YIELD
-NEXT
+UNTIL FALSE
 
 DEF GraphicsSingle()
     COLOURBG 0,0,0

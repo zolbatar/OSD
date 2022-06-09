@@ -20,34 +20,67 @@ void Parser::Parser_FOR(Token* t, std::list<Token*>* tokens_out)
 	}
 
 	// Find variable
-	auto f = local_variables.find(t->name);
-	if (f==local_variables.end()) {
+	if (inside_function) {
+		auto f = local_variables.find(t->name);
+		if (f==local_variables.end()) {
 
-		// Create variable: loop
-		tt->vtype = t->vtype;
-		CreateLocalVariableNoInit(tt);
-		t->index = tt->index;
-		tokens_out->push_back(tt);
+			// Create variable: loop
+			tt->vtype = t->vtype;
+			CreateLocalVariableNoInit(tt);
+			t->index = tt->index;
+			tokens_out->push_back(tt);
 
-		// Create variable: iterations
-		Token tt2 = CreateToken(t, TokenType::LOCAL);
-		tt2.text = t->name+" #iterations";
-		tt2.vtype = t->vtype;
-		CreateLocalVariableNoInit(&tt2);
-		new_tokens.push_back(std::move(tt2));
-		tokens_out->push_back(&new_tokens.back());
+			// Create variable: iterations
+			Token tt2 = CreateToken(t, TokenType::LOCAL);
+			tt2.text = t->name+" #iterations";
+			tt2.vtype = t->vtype;
+			CreateLocalVariableNoInit(&tt2);
+			new_tokens.push_back(std::move(tt2));
+			tokens_out->push_back(&new_tokens.back());
 
-		// Create variable: step
-		tt2 = CreateToken(t, TokenType::LOCAL);
-		tt2.text = t->name+" #step";
-		tt2.vtype = t->vtype;
-		CreateLocalVariableNoInit(&tt2);
-		new_tokens.push_back(std::move(tt2));
-		tokens_out->push_back(&new_tokens.back());
+			// Create variable: step
+			tt2 = CreateToken(t, TokenType::LOCAL);
+			tt2.text = t->name+" #step";
+			tt2.vtype = t->vtype;
+			CreateLocalVariableNoInit(&tt2);
+			new_tokens.push_back(std::move(tt2));
+			tokens_out->push_back(&new_tokens.back());
+		}
+		else {
+			t->vtype = f->second->vtype;
+			t->index = f->second->index;
+		}
 	}
 	else {
-		t->vtype = f->second->vtype;
-		t->index = f->second->index;
+		auto f = global_variables.find(t->name);
+		if (f==global_variables.end()) {
+
+			// Create variable: loop
+			tt->vtype = t->vtype;
+			CreateGlobalVariableNoInit(tt);
+			t->index = tt->index;
+			tokens_out->push_back(tt);
+
+			// Create variable: iterations
+			Token tt2 = CreateToken(t, TokenType::GLOBAL);
+			tt2.text = t->name+" #iterations";
+			tt2.vtype = t->vtype;
+			CreateGlobalVariableNoInit(&tt2);
+			new_tokens.push_back(std::move(tt2));
+			tokens_out->push_back(&new_tokens.back());
+
+			// Create variable: step
+			tt2 = CreateToken(t, TokenType::GLOBAL);
+			tt2.text = t->name+" #step";
+			tt2.vtype = t->vtype;
+			CreateGlobalVariableNoInit(&tt2);
+			new_tokens.push_back(std::move(tt2));
+			tokens_out->push_back(&new_tokens.back());
+		}
+		else {
+			t->vtype = f->second->vtype;
+			t->index = f->second->index;
+		}
 	}
 
 	// Next token should be an equal
@@ -90,7 +123,8 @@ void Parser::Parser_NEXT(Token* t, std::list<Token*>* tokens_out)
 
 	if (tt->type==TokenType::COLON || tt->type==TokenType::NEWLINE) {
 		// This is fine, we don't support named variables here
-	} else {
+	}
+	else {
 		Error("NEXT doesn't support named variables", tt);
 	}
 

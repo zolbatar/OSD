@@ -1,7 +1,7 @@
-Line    1:  5 [311]: LOCAL-NOINIT 'ITER%' Integer, index 0
-Line    1:  1 [311]: LOCAL-NOINIT 'ITER% #iterations' Integer, index 1
-Line    1:  1 [311]: LOCAL-NOINIT 'ITER% #step' Integer, index 2
-Line    1:  1 [302]: FOR, integer 'ITER%'/0
+Line    1:  5 [304]: GLOBAL-NOINIT 'ITER%' Integer, index -1
+Line    1:  1 [304]: GLOBAL-NOINIT 'ITER% #iterations' Integer, index -2
+Line    1:  1 [304]: GLOBAL-NOINIT 'ITER% #step' Integer, index -3
+Line    1:  1 [302]: FOR, integer 'ITER%'/-1
   Expression 0:
     Line    1: 13 [269]: Integer 1
   Expression 1:
@@ -10,7 +10,7 @@ Line    2:  6 [260]: PROC call [GraphicsSingle], no return
   Expression 0:
     Line    2: 20 [258]: Sub-expression
 Line    3:  6 [337]: YIELD
-Line    4:  2 [312]: NEXT 0
+Line    4:  2 [312]: NEXT
 Line    6:  2 [292]: DEF 'GraphicsSingle'
   Branch 0:
     Line    7:  6 [342]: COLOURBG
@@ -27,11 +27,11 @@ Line    6:  2 [292]: DEF 'GraphicsSingle'
     Line    9:  6 [311]: LOCAL-NOINIT 'w%' Integer, index 0
     Line    9:  6 [262]: Integer assignment 'w%', index 0
       Expression 0:
-        Line    9:  9 [345]: SCREENWIDTH
+        Line    9:  9 [347]: SCREENWIDTH
     Line    9: 21 [311]: LOCAL-NOINIT 'h%' Integer, index 1
     Line    9: 21 [262]: Integer assignment 'h%', index 1
       Expression 0:
-        Line    9: 24 [346]: SCREENHEIGHT
+        Line    9: 24 [348]: SCREENHEIGHT
     Line   10: 10 [311]: LOCAL-NOINIT 'I%' Integer, index 2
     Line   10:  6 [311]: LOCAL-NOINIT 'I% #iterations' Integer, index 3
     Line   10:  6 [311]: LOCAL-NOINIT 'I% #step' Integer, index 4
@@ -39,23 +39,23 @@ Line    6:  2 [292]: DEF 'GraphicsSingle'
       Expression 0:
         Line   10: 15 [269]: Integer 1
       Expression 1:
-        Line   10: 20 [269]: Integer 20
+        Line   10: 20 [269]: Integer 5
     Line   11: 10 [341]: COLOUR
       Required type: integer
       Required type: integer
       Required type: integer
       Expression 0:
-        Line   11: 37 [379]: RND
+        Line   11: 37 [381]: RND
           Required type: integer
           Expression 0:
             Line   11: 41 [269]: Integer 255
       Expression 1:
-        Line   11: 27 [379]: RND
+        Line   11: 27 [381]: RND
           Required type: integer
           Expression 0:
             Line   11: 31 [269]: Integer 255
       Expression 2:
-        Line   11: 17 [379]: RND
+        Line   11: 17 [381]: RND
           Required type: integer
           Expression 0:
             Line   11: 21 [269]: Integer 255
@@ -64,99 +64,83 @@ Line    6:  2 [292]: DEF 'GraphicsSingle'
       Required type: integer
       Required type: integer
       Expression 0:
-        Line   12: 39 [379]: RND
+        Line   12: 39 [381]: RND
           Required type: integer
           Expression 0:
             Line   12: 43 [269]: Integer 255
       Expression 1:
-        Line   12: 29 [379]: RND
+        Line   12: 29 [381]: RND
           Required type: integer
           Expression 0:
             Line   12: 33 [269]: Integer 255
       Expression 2:
-        Line   12: 19 [379]: RND
+        Line   12: 19 [381]: RND
           Required type: integer
           Expression 0:
             Line   12: 23 [269]: Integer 255
-    Line   14: 10 [343]: LINE
+    Line   14: 10 [346]: RECTANGLEFILLED
       Required type: integer
       Required type: integer
       Required type: integer
       Required type: integer
       Required type: integer
       Expression 0:
-        Line   14: 51 [379]: RND
+        Line   14: 62 [381]: RND
           Required type: integer
           Expression 0:
-            Line   14: 55 [269]: Integer 10
-        Line   14: 59 [269]: Integer 1
-        Line   14: 58 [ 43]: +
+            Line   14: 66 [269]: Integer 10
+        Line   14: 70 [269]: Integer 1
+        Line   14: 69 [ 43]: +
       Expression 1:
-        Line   14: 42 [379]: RND
+        Line   14: 53 [381]: RND
           Required type: integer
           Expression 0:
-            Line   14: 46 [272]: Identifier 'h%'/1
+            Line   14: 57 [272]: Identifier 'h%'/1
       Expression 2:
-        Line   14: 33 [379]: RND
+        Line   14: 44 [381]: RND
           Required type: integer
           Expression 0:
-            Line   14: 37 [272]: Identifier 'w%'/0
+            Line   14: 48 [272]: Identifier 'w%'/0
       Expression 3:
-        Line   14: 24 [379]: RND
+        Line   14: 35 [381]: RND
           Required type: integer
           Expression 0:
-            Line   14: 28 [272]: Identifier 'h%'/1
+            Line   14: 39 [272]: Identifier 'h%'/1
       Expression 4:
-        Line   14: 15 [379]: RND
+        Line   14: 26 [381]: RND
           Required type: integer
           Expression 0:
-            Line   14: 19 [272]: Identifier 'w%'/0
-    Line   15: 10 [347]: TRIANGLE
-      Required type: integer
-      Required type: integer
-      Required type: integer
+            Line   14: 30 [272]: Identifier 'w%'/0
+    Line   15: 10 [339]: CIRCLEFILLED
       Required type: integer
       Required type: integer
       Required type: integer
       Required type: integer
       Expression 0:
-        Line   15: 73 [379]: RND
+        Line   15: 54 [381]: RND
           Required type: integer
           Expression 0:
-            Line   15: 77 [269]: Integer 10
-        Line   15: 81 [269]: Integer 1
-        Line   15: 80 [ 43]: +
+            Line   15: 58 [269]: Integer 10
+        Line   15: 62 [269]: Integer 1
+        Line   15: 61 [ 43]: +
       Expression 1:
-        Line   15: 64 [379]: RND
+        Line   15: 41 [381]: RND
           Required type: integer
           Expression 0:
-            Line   15: 68 [272]: Identifier 'h%'/1
+            Line   15: 45 [269]: Integer 150
+        Line   15: 50 [269]: Integer 20
+        Line   15: 49 [ 43]: +
       Expression 2:
-        Line   15: 55 [379]: RND
+        Line   15: 32 [381]: RND
           Required type: integer
           Expression 0:
-            Line   15: 59 [272]: Identifier 'w%'/0
+            Line   15: 36 [272]: Identifier 'h%'/1
       Expression 3:
-        Line   15: 46 [379]: RND
+        Line   15: 23 [381]: RND
           Required type: integer
           Expression 0:
-            Line   15: 50 [272]: Identifier 'h%'/1
-      Expression 4:
-        Line   15: 37 [379]: RND
-          Required type: integer
-          Expression 0:
-            Line   15: 41 [272]: Identifier 'w%'/0
-      Expression 5:
-        Line   15: 28 [379]: RND
-          Required type: integer
-          Expression 0:
-            Line   15: 32 [272]: Identifier 'h%'/1
-      Expression 6:
-        Line   15: 19 [379]: RND
-          Required type: integer
-          Expression 0:
-            Line   15: 23 [272]: Identifier 'w%'/0
-    Line   16: 10 [348]: TRIANGLEFILLED
+            Line   15: 27 [272]: Identifier 'w%'/0
+    Line   16: 10 [350]: TRIANGLEFILLED
       Required type: integer
       Required type: integer
       Required type: integer
@@ -165,99 +149,181 @@ Line    6:  2 [292]: DEF 'GraphicsSingle'
       Required type: integer
       Required type: integer
       Expression 0:
-        Line   16: 79 [379]: RND
+        Line   16: 79 [381]: RND
           Required type: integer
           Expression 0:
             Line   16: 83 [269]: Integer 10
         Line   16: 87 [269]: Integer 1
         Line   16: 86 [ 43]: +
       Expression 1:
-        Line   16: 70 [379]: RND
+        Line   16: 70 [381]: RND
           Required type: integer
           Expression 0:
             Line   16: 74 [272]: Identifier 'h%'/1
       Expression 2:
-        Line   16: 61 [379]: RND
+        Line   16: 61 [381]: RND
           Required type: integer
           Expression 0:
             Line   16: 65 [272]: Identifier 'w%'/0
       Expression 3:
-        Line   16: 52 [379]: RND
+        Line   16: 52 [381]: RND
           Required type: integer
           Expression 0:
             Line   16: 56 [272]: Identifier 'h%'/1
       Expression 4:
-        Line   16: 43 [379]: RND
+        Line   16: 43 [381]: RND
           Required type: integer
           Expression 0:
             Line   16: 47 [272]: Identifier 'w%'/0
       Expression 5:
-        Line   16: 34 [379]: RND
+        Line   16: 34 [381]: RND
           Required type: integer
           Expression 0:
             Line   16: 38 [272]: Identifier 'h%'/1
       Expression 6:
-        Line   16: 25 [379]: RND
+        Line   16: 25 [381]: RND
           Required type: integer
           Expression 0:
             Line   16: 29 [272]: Identifier 'w%'/0
-    Line   17: 10 [338]: CIRCLE
+    Line   17: 10 [343]: LINE
       Required type: integer
-      Required type: integer
-      Required type: integer
-      Required type: integer
-      Expression 0:
-        Line   17: 48 [379]: RND
-          Required type: integer
-          Expression 0:
-            Line   17: 52 [269]: Integer 10
-        Line   17: 56 [269]: Integer 1
-        Line   17: 55 [ 43]: +
-      Expression 1:
-        Line   17: 35 [379]: RND
-          Required type: integer
-          Expression 0:
-            Line   17: 39 [269]: Integer 150
-        Line   17: 44 [269]: Integer 20
-        Line   17: 43 [ 43]: +
-      Expression 2:
-        Line   17: 26 [379]: RND
-          Required type: integer
-          Expression 0:
-            Line   17: 30 [272]: Identifier 'h%'/1
-      Expression 3:
-        Line   17: 17 [379]: RND
-          Required type: integer
-          Expression 0:
-            Line   17: 21 [272]: Identifier 'w%'/0
-    Line   18: 10 [339]: CIRCLEFILLED
       Required type: integer
       Required type: integer
       Required type: integer
       Required type: integer
       Expression 0:
-        Line   18: 54 [379]: RND
+        Line   17: 51 [381]: RND
           Required type: integer
           Expression 0:
-            Line   18: 58 [269]: Integer 10
-        Line   18: 62 [269]: Integer 1
-        Line   18: 61 [ 43]: +
+            Line   17: 55 [269]: Integer 10
+        Line   17: 59 [269]: Integer 1
+        Line   17: 58 [ 43]: +
       Expression 1:
-        Line   18: 41 [379]: RND
+        Line   17: 42 [381]: RND
           Required type: integer
           Expression 0:
-            Line   18: 45 [269]: Integer 150
-        Line   18: 50 [269]: Integer 20
-        Line   18: 49 [ 43]: +
+            Line   17: 46 [272]: Identifier 'h%'/1
       Expression 2:
-        Line   18: 32 [379]: RND
+        Line   17: 33 [381]: RND
           Required type: integer
           Expression 0:
-            Line   18: 36 [272]: Identifier 'h%'/1
+            Line   17: 37 [272]: Identifier 'w%'/0
       Expression 3:
-        Line   18: 23 [379]: RND
+        Line   17: 24 [381]: RND
           Required type: integer
           Expression 0:
-            Line   18: 27 [272]: Identifier 'w%'/0
-    Line   24:  6 [312]: NEXT 2
+            Line   17: 28 [272]: Identifier 'h%'/1
+      Expression 4:
+        Line   17: 15 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   17: 19 [272]: Identifier 'w%'/0
+    Line   18: 10 [345]: RECTANGLE
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Expression 0:
+        Line   18: 56 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   18: 60 [269]: Integer 10
+        Line   18: 64 [269]: Integer 1
+        Line   18: 63 [ 43]: +
+      Expression 1:
+        Line   18: 47 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   18: 51 [272]: Identifier 'h%'/1
+      Expression 2:
+        Line   18: 38 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   18: 42 [272]: Identifier 'w%'/0
+      Expression 3:
+        Line   18: 29 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   18: 33 [272]: Identifier 'h%'/1
+      Expression 4:
+        Line   18: 20 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   18: 24 [272]: Identifier 'w%'/0
+    Line   19: 10 [349]: TRIANGLE
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Expression 0:
+        Line   19: 73 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   19: 77 [269]: Integer 10
+        Line   19: 81 [269]: Integer 1
+        Line   19: 80 [ 43]: +
+      Expression 1:
+        Line   19: 64 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   19: 68 [272]: Identifier 'h%'/1
+      Expression 2:
+        Line   19: 55 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   19: 59 [272]: Identifier 'w%'/0
+      Expression 3:
+        Line   19: 46 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   19: 50 [272]: Identifier 'h%'/1
+      Expression 4:
+        Line   19: 37 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   19: 41 [272]: Identifier 'w%'/0
+      Expression 5:
+        Line   19: 28 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   19: 32 [272]: Identifier 'h%'/1
+      Expression 6:
+        Line   19: 19 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   19: 23 [272]: Identifier 'w%'/0
+    Line   20: 10 [338]: CIRCLE
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Required type: integer
+      Expression 0:
+        Line   20: 48 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   20: 52 [269]: Integer 10
+        Line   20: 56 [269]: Integer 1
+        Line   20: 55 [ 43]: +
+      Expression 1:
+        Line   20: 35 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   20: 39 [269]: Integer 150
+        Line   20: 44 [269]: Integer 20
+        Line   20: 43 [ 43]: +
+      Expression 2:
+        Line   20: 26 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   20: 30 [272]: Identifier 'h%'/1
+      Expression 3:
+        Line   20: 17 [381]: RND
+          Required type: integer
+          Expression 0:
+            Line   20: 21 [272]: Identifier 'w%'/0
+    Line   21:  6 [312]: NEXT 2
     Line    6:  2 [323]: RETURN (no value)

@@ -285,9 +285,9 @@ void WindowManager::DesktopStartup()
 	graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2d");
 	graphics2d->Start();
 #else
-	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 550*dm, 400*dm);
+/*	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 550*dm, 400*dm);
 	std::thread t1(&DARICWindow::Start, tasks);
-	t1.detach();
+	t1.detach();*/
 
 /*	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
 	editor->LoadSourceCode(":SD.$.Welcome.Tester");
