@@ -7,24 +7,16 @@ DEF GraphicsSingle()
     COLOURBG 0,0,0
     CLS
     w%=SCREENWIDTH:h%=SCREENHEIGHT
-    FOR I% = 1 TO 20
-        COLOUR RND(255), RND(255), RND(255)
-        REM LINE RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
-
-        COLOUR RND(255), RND(255), RND(255)
-        TRIANGLE RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
-
+    FOR I% = 1 TO 5
         COLOUR RND(255), RND(255), RND(255)
         COLOURBG RND(255), RND(255), RND(255)
+
+        RECTANGLEFILLED RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
+        CIRCLEFILLED RND(w%), RND(h%), RND(150)+20, RND(10)+1
         TRIANGLEFILLED RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
-
-        COLOUR RND(255), RND(255), RND(255)
-        REM CIRCLE RND(w%), RND(h%), RND(150)+20, RND(10)+1
-        REM CIRCLEFILL RND(w%), RND(h%), RND(150)+20
-
-        REM COL1% = COL(RND(255), RND(255), RND(255))
-        REM COL2% = COL(RND(255), RND(255), RND(255))
-        REM COL3% = COL(RND(255), RND(255), RND(255))
-        REM TRIANGLESHADED RND(w%), RND(h%), COL1%, RND(w%), RND(h%), COL2%, RND(w%), RND(h%), COL3%
+        LINE RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
+        RECTANGLE RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
+        TRIANGLE RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
+        CIRCLE RND(w%), RND(h%), RND(150)+20, RND(10)+1
     NEXT
 ENDDEF

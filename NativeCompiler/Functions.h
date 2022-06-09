@@ -57,6 +57,10 @@ void call_2D_plot(int64_t x, int64_t y);
 void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
 void call_2D_triangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w);
 void call_2D_trianglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w);
+void call_2D_circle(int64_t x, int64_t y, int64_t r, int64_t w);
+void call_2D_circlefilled(int64_t x, int64_t y, int64_t r, int64_t w);
+void call_2D_rectangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
+void call_2D_rectanglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
 
 void call_DATA_integer(int64_t v);
 void call_DATA_float(double v);

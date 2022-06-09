@@ -13,6 +13,10 @@ public:
 	void DrawLine(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
 	void DrawTriangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w);
 	void DrawTriangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w);
+	void DrawCircle(int64_t x, int64_t y, int64_t r, int64_t w);
+	void DrawCircleFilled(int64_t x, int64_t y, int64_t r, int64_t w);
+	void DrawRectangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
+	void DrawRectangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
 	void PlotPixel(int64_t x, int64_t y);
 	void SetFG(uint32_t fg);
 	void SetBG(uint32_t bg);

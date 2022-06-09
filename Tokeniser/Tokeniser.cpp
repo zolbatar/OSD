@@ -157,19 +157,20 @@ void Tokeniser::Init()
 
 	// 2d Graphics
 	AddKeyword(TokenDef{ "CIRCLE", TokenType::CIRCLE });
+	AddKeyword(TokenDef{ "CIRCLEFILLED", TokenType::CIRCLEFILLED });
 //	AddKeyword(TokenDef{ "CLIPON", TokenType::CLIPON });
 //	AddKeyword(TokenDef{ "CLIPOFF", TokenType::CLIPOFF });
 	AddKeyword(TokenDef{ "CLS", TokenType::CLS });
 	AddKeyword(TokenDef{ "COLOUR", TokenType::COLOUR });
 	AddKeyword(TokenDef{ "COLOURBG", TokenType::COLOURBG });
 //	AddKeyword(TokenDef{ "CREATEFONT", TokenType::CREATEFONT });
-//	AddKeyword(TokenDef{ "ELLIPSE", TokenType::ELLIPSE });
 //	AddKeyword(TokenDef{ "FLIP", TokenType::FLIP });
 //	AddKeyword(TokenDef{ "GRAPHICS", TokenType::GRAPHICS });
 	AddKeyword(TokenDef{ "LINE", TokenType::LINE });
 //	AddKeyword(TokenDef{ "LOADTYPEFACE", TokenType::LOADTYPEFACE });
 	AddKeyword(TokenDef{ "PLOT", TokenType::PLOT });
-//	AddKeyword(TokenDef{ "RECTANGLE", TokenType::RECTANGLE });
+	AddKeyword(TokenDef{ "RECTANGLE", TokenType::RECTANGLE });
+	AddKeyword(TokenDef{ "RECTANGLEFILLED", TokenType::RECTANGLEFILLED });
 	AddKeyword(TokenDef{ "SCREENWIDTH", TokenType::SCREENWIDTH });
 	AddKeyword(TokenDef{ "SCREENHEIGHT", TokenType::SCREENHEIGHT });
 //	AddKeyword(TokenDef{ "TEXT", TokenType::TEXT });

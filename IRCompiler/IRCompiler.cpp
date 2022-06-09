@@ -235,22 +235,31 @@ void IRCompiler::CompileToken(Token* token)
 			for (auto& type: token->required_types) {
 				for (auto& ctoken: token->expressions[i])
 					CompileToken(ctoken);
-				i++;
-			}
-			for (auto& type: token->required_types) {
-				// Check type
+
 				auto t = PopType(token);
 				if (type.IsInteger()) {
 					EnsureStackIsInteger(token, t);
-					AddIR(IROpcodes::ArgumentInteger);
 				}
 				else if (type.IsFloat()) {
 					EnsureStackIsFloat(token, t);
-					AddIR(IROpcodes::ArgumentFloat);
 				}
 				else if (type.IsString()) {
 					if (t!=ValueType::String)
 						TypeError(token);
+				}
+				type_stack.push(t);
+				i++;
+			}
+
+			// Set arguments
+			for (auto& type: token->required_types) {
+				if (type.IsInteger()) {
+					AddIR(IROpcodes::ArgumentInteger);
+				}
+				else if (type.IsFloat()) {
+					AddIR(IROpcodes::ArgumentFloat);
+				}
+				else if (type.IsString()) {
 					AddIR(IROpcodes::ArgumentString);
 				}
 			}

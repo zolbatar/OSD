@@ -45,7 +45,15 @@ Parser::Parser()
 	generic_functions.insert(std::make_pair(TokenType::TRIANGLEFILLED,
 			fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::TRIANGLEFILLED, (void*)&call_2D_trianglefilled));
-
+	generic_functions.insert(std::make_pair(TokenType::CIRCLE, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::CIRCLE, (void*)&call_2D_circle));
+	generic_functions.insert(std::make_pair(TokenType::CIRCLEFILLED, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::CIRCLEFILLED, (void*)&call_2D_circlefilled));
+	generic_functions.insert(std::make_pair(TokenType::RECTANGLE, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::RECTANGLE, (void*)&call_2D_rectangle));
+	generic_functions
+			.insert(std::make_pair(TokenType::RECTANGLEFILLED, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::RECTANGLEFILLED, (void*)&call_2D_rectanglefilled));
 
 	// Keyboard
 	generic_functions.insert(std::make_pair(TokenType::INKEY, fp{ TypeInteger(), TypeInteger() }));

@@ -7,6 +7,10 @@ enum class Messages {
 	Canvas_Clear,
 	Canvas_DrawLine,
 	Canvas_PlotPixel,
+	Canvas_Circle,
+	Canvas_CircleFilled,
+	Canvas_Rectangle,
+	Canvas_RectangleFilled,
 	Canvas_Triangle,
 	Canvas_TriangleFilled,
 	Canvas_SetForegroundColour,
@@ -33,6 +37,13 @@ struct WM_OpenWindow {
 struct Coord1 {
 	int64_t x;
 	int64_t y;
+};
+
+struct Coord1RW {
+	int64_t x;
+	int64_t y;
+	int64_t r;
+	int64_t w;
 };
 
 struct Coord2 {

@@ -88,9 +88,96 @@ void Canvas::DrawTriangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, 
 	lv_draw_rect_dsc_t line_dsc;
 	lv_draw_rect_dsc_init(&line_dsc);
 	line_dsc.outline_color = fg;
-	line_dsc.bg_color = fg;
+	line_dsc.bg_color = bg;
 	line_dsc.outline_width = w;
 	lv_canvas_draw_polygon(object, points, 4, &line_dsc);
+	OSDTask::UnlockVLGL();
+}
+
+void Canvas::DrawCircle(int64_t x, int64_t y, int64_t r, int64_t w)
+{
+	OSDTask::LockVLGL("Canvas::DrawCircle");
+	lv_draw_arc_dsc_t line_dsc;
+	lv_draw_arc_dsc_init(&line_dsc);
+	line_dsc.width = w;
+	line_dsc.color = fg;
+	lv_canvas_draw_arc(object, x, y, r, 0, 359, &line_dsc);
+	OSDTask::UnlockVLGL();
+}
+
+void Canvas::DrawCircleFilled(int64_t x, int64_t y, int64_t r, int64_t w)
+{
+	OSDTask::LockVLGL("Canvas::DrawCircleFilled");
+
+	// Fill
+	lv_draw_rect_dsc_t rect_dsc;
+	lv_draw_rect_dsc_init(&rect_dsc);
+	rect_dsc.radius = r;
+	rect_dsc.bg_opa = LV_OPA_COVER;
+	rect_dsc.bg_color = bg;
+	lv_canvas_draw_rect(object, x-r, y-r, r*2, r*2, &rect_dsc);
+
+	// Outline
+	lv_draw_arc_dsc_t line_dsc;
+	lv_draw_arc_dsc_init(&line_dsc);
+	line_dsc.width = w;
+	line_dsc.color = fg;
+	lv_canvas_draw_arc(object, x, y, r, 0, 359, &line_dsc);
+
+	OSDTask::UnlockVLGL();
+}
+
+void Canvas::DrawRectangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
+{
+	OSDTask::LockVLGL("Canvas::Rectangle");
+	static lv_point_t points[5];
+	points[0].x = x1;
+	points[0].y = y1;
+	points[1].x = x2;
+	points[1].y = y1;
+	points[2].x = x2;
+	points[2].y = y2;
+	points[3].x = x1;
+	points[3].y = y2;
+	points[4].x = x1;
+	points[4].y = y1;
+	lv_draw_line_dsc_t line_dsc;
+	lv_draw_line_dsc_init(&line_dsc);
+	line_dsc.color = fg;
+	line_dsc.width = w;
+	lv_canvas_draw_line(object, points, 5, &line_dsc);
+	OSDTask::UnlockVLGL();
+}
+
+void Canvas::DrawRectangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
+{
+	OSDTask::LockVLGL("Canvas::RectangleFilled");
+
+	// Fill
+	lv_draw_rect_dsc_t rect_dsc;
+	lv_draw_rect_dsc_init(&rect_dsc);
+	rect_dsc.bg_opa = LV_OPA_COVER;
+	rect_dsc.bg_color = bg;
+	lv_canvas_draw_rect(object, x1, y1, x2, y2, &rect_dsc);
+
+	// Outline
+	static lv_point_t points[5];
+	points[0].x = x1;
+	points[0].y = y1;
+	points[1].x = x2;
+	points[1].y = y1;
+	points[2].x = x2;
+	points[2].y = y2;
+	points[3].x = x1;
+	points[3].y = y2;
+	points[4].x = x1;
+	points[4].y = y1;
+	lv_draw_line_dsc_t line_dsc;
+	lv_draw_line_dsc_init(&line_dsc);
+	line_dsc.color = fg;
+	line_dsc.width = w;
+	lv_canvas_draw_line(object, points, 5, &line_dsc);
+
 	OSDTask::UnlockVLGL();
 }
 
