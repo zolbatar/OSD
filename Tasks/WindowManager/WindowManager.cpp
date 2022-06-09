@@ -137,24 +137,24 @@ void WindowManager::Run()
 					break;
 				}
 				case Messages::Canvas_DrawLine: {
-					auto m = (Coord2*)&message->data;
+					auto m = (Coord2W*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->DrawLine(m->x1, m->y1, m->x2, m->y2);
+					w->GetCanvas()->DrawLine(m->x1, m->y1, m->x2, m->y2, m->w);
 					break;
 				}
 				case Messages::Canvas_Triangle: {
-					auto m = (Coord3*)&message->data;
+					auto m = (Coord3W*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->DrawTriangle(m->x1, m->y1, m->x2, m->y2, m->x3, m->y3);
+					w->GetCanvas()->DrawTriangle(m->x1, m->y1, m->x2, m->y2, m->x3, m->y3, m->w);
 					break;
 				}
 				case Messages::Canvas_TriangleFilled: {
-					auto m = (Coord3*)&message->data;
+					auto m = (Coord3W*)&message->data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->DrawTriangleFilled(m->x1, m->y1, m->x2, m->y2, m->x3, m->y3);
+					w->GetCanvas()->DrawTriangleFilled(m->x1, m->y1, m->x2, m->y2, m->x3, m->y3, m->w);
 					break;
 				}
 				case Messages::Canvas_PlotPixel: {

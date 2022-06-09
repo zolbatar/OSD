@@ -13,63 +13,7 @@
 [Stack   ] Literal integer 1
 [Variable] Store integer (2)
 [Branch  ] Jump create: (0)
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f1550/'COLOUR')
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f15e0/'COLOURBG')
-[Stack   ] Literal integer 200
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Stack   ] Literal integer 75
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Stack   ] Literal integer 100
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Stack   ] Literal integer 150
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Stack   ] Literal integer 50
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Stack   ] Literal integer 50
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f1820/'TRIANGLEFILLED')
+[Proc    ] PROC call: (0/GraphicsSingle)
 [General ] Yield
 [Variable] Load integer (2)
 [Stack   ] Push integer Operand1
@@ -100,12 +44,23 @@
 [Variable] Local create integer (2)
 [Variable] Local create integer (3)
 [Variable] Local create integer (4)
+[Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 0
+[Stack   ] Push integer Operand1
+[Argument] Parameter is integer
+[Argument] Parameter is integer
+[Argument] Parameter is integer
+[Func    ] Call function: (0x103eb15c0/'COLOURBG')
+[Func    ] Call function: (0x103eb14f0/'CLS')
 [Argument] Return type is integer
-[Func    ] Call function: (0x10a1f13f0/'SCREENWIDTH')
+[Func    ] Call function: (0x103eb13d0/'SCREENWIDTH')
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (0)
 [Argument] Return type is integer
-[Func    ] Call function: (0x10a1f1480/'SCREENHEIGHT')
+[Func    ] Call function: (0x103eb1460/'SCREENHEIGHT')
 [Stack   ] Pop integer to Operand1
 [Variable] Store integer (1)
 [Stack   ] Literal integer 1
@@ -123,196 +78,78 @@
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
+[Func    ] Call function: (0x103eb22d0/'RND')
 [Argument] Return type is integer
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
+[Func    ] Call function: (0x103eb22d0/'RND')
 [Argument] Return type is integer
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
+[Func    ] Call function: (0x103eb22d0/'RND')
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f1550/'COLOUR')
-[Argument] Return type is integer
-[Variable] Load integer (1)
-[Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
 [Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (1)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f16e0/'LINE')
+[Func    ] Call function: (0x103eb1530/'COLOUR')
 [Argument] Return type is integer
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
+[Func    ] Call function: (0x103eb22d0/'RND')
 [Argument] Return type is integer
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
+[Func    ] Call function: (0x103eb22d0/'RND')
 [Argument] Return type is integer
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
+[Func    ] Call function: (0x103eb22d0/'RND')
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f1550/'COLOUR')
-[Argument] Return type is integer
-[Variable] Load integer (1)
+[Argument] Parameter is integer
+[Argument] Parameter is integer
+[Func    ] Call function: (0x103eb1530/'COLOUR')
+[Stack   ] Literal integer 35
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 30
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 20
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 20
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 10
+[Stack   ] Push integer Operand1
+[Stack   ] Literal integer 10
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
 [Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
 [Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (1)
-[Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
 [Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (1)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f1770/'TRIANGLE')
+[Func    ] Call function: (0x103eb1750/'TRIANGLE')
 [Argument] Return type is integer
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
+[Func    ] Call function: (0x103eb22d0/'RND')
 [Argument] Return type is integer
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
+[Func    ] Call function: (0x103eb22d0/'RND')
 [Argument] Return type is integer
 [Stack   ] Literal integer 255
 [Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
+[Func    ] Call function: (0x103eb22d0/'RND')
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f1550/'COLOUR')
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
 [Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
 [Argument] Parameter is integer
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f15e0/'COLOURBG')
-[Argument] Return type is integer
-[Variable] Load integer (1)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (1)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (1)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Variable] Load integer (0)
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f1820/'TRIANGLEFILLED')
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Argument] Return type is integer
-[Stack   ] Literal integer 255
-[Stack   ] Push integer Operand1
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f22f0/'RND')
-[Argument] Parameter is integer
-[Func    ] Call function: (0x10a1f1550/'COLOUR')
+[Func    ] Call function: (0x103eb1530/'COLOUR')
 [Variable] Load integer (4)
 [Stack   ] Push integer Operand1
 [Variable] Load integer (2)

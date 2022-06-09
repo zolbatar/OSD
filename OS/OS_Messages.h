@@ -42,6 +42,14 @@ struct Coord2 {
 	int64_t y2;
 };
 
+struct Coord2W {
+	int64_t x1;
+	int64_t y1;
+	int64_t x2;
+	int64_t y2;
+	int64_t w;
+};
+
 struct Coord3 {
 	int64_t x1;
 	int64_t y1;
@@ -49,6 +57,16 @@ struct Coord3 {
 	int64_t y2;
 	int64_t x3;
 	int64_t y3;
+};
+
+struct Coord3W {
+	int64_t x1;
+	int64_t y1;
+	int64_t x2;
+	int64_t y2;
+	int64_t x3;
+	int64_t y3;
+	int64_t w;
 };
 
 struct Colour {

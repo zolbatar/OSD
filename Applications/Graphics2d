@@ -4,17 +4,19 @@ FOR ITER% = 1 TO 100
 NEXT
 
 DEF GraphicsSingle()
+    COLOURBG 0,0,0
+    CLS
     w%=SCREENWIDTH:h%=SCREENHEIGHT
-    FOR I% = 1 TO 50
+    FOR I% = 1 TO 20
         COLOUR RND(255), RND(255), RND(255)
-        LINE RND(w%), RND(h%), RND(w%), RND(h%)
+        REM LINE RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
 
         COLOUR RND(255), RND(255), RND(255)
-        TRIANGLE RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%)
+        TRIANGLE RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
 
-        REM COLOUR RND(255), RND(255), RND(255)
-        REM COLOURBG RND(255), RND(255), RND(255)
-        REM TRIANGLEFILLED RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%)
+        COLOUR RND(255), RND(255), RND(255)
+        COLOURBG RND(255), RND(255), RND(255)
+        TRIANGLEFILLED RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
 
         COLOUR RND(255), RND(255), RND(255)
         REM CIRCLE RND(w%), RND(h%), RND(150)+20, RND(10)+1

@@ -37,13 +37,13 @@ Parser::Parser()
 	generic_functions_ptr.insert(std::make_pair(TokenType::CLS, (void*)&call_2D_cls));
 	generic_functions.insert(std::make_pair(TokenType::PLOT, fp{ TypeNone(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::PLOT, (void*)&call_2D_plot));
-	generic_functions.insert(std::make_pair(TokenType::LINE, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+	generic_functions.insert(std::make_pair(TokenType::LINE, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::LINE, (void*)&call_2D_line));
 	generic_functions.insert(std::make_pair(TokenType::TRIANGLE,
-			fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+			fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::TRIANGLE, (void*)&call_2D_triangle));
 	generic_functions.insert(std::make_pair(TokenType::TRIANGLEFILLED,
-			fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+			fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::TRIANGLEFILLED, (void*)&call_2D_trianglefilled));
 
 

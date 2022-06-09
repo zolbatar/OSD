@@ -116,7 +116,9 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 			}
 			break;
 		case TokenType::FIELD:
-			if (token->vtype.IsInteger())
+			if (token->vtype.IsNone())
+				sprintf(m, "Field");
+			else if (token->vtype.IsInteger())
 				sprintf(m, "Integer field '%s', offset %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
 				sprintf(m, "Float field '%s', offset %" PRId64 "", token->name.c_str(), token->index);
@@ -124,13 +126,18 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 				sprintf(m, "String field '%s', offset %" PRId64 "", token->name.c_str(), token->index);
 			break;
 		case TokenType::FOR:
-			if (token->vtype.IsInteger())
+			if (token->vtype.IsNone())
+				sprintf(m, "FOR");
+			else if (token->vtype.IsInteger())
 				sprintf(m, "FOR, integer '%s'/%" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
 				sprintf(m, "FOR, float '%s'/%" PRId64 "", token->name.c_str(), token->index);
 			break;
 		case TokenType::NEXT:
-			sprintf(m, "NEXT %" PRId64 "", token->index);
+			if (token->index==-1)
+				sprintf(m, "NEXT");
+			else
+				sprintf(m, "NEXT %" PRId64 "", token->index);
 			break;
 		case TokenType::CONST:
 			if (token->vtype.IsNone())
@@ -143,9 +150,10 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 				sprintf(m, "String constant '%s'='%s'", token->name.c_str(), token->text.c_str());
 			break;
 		case TokenType::DEF:
-			if (token->text.length() > 0) {
+			if (token->text.length()>0) {
 				sprintf(m, "DEF '%s'", token->text.c_str());
-			} else {
+			}
+			else {
 				sprintf(m, "DEF");
 			}
 			break;
@@ -194,7 +202,9 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 			break;
 		}
 		case TokenType::LOCAL:
-			if (token->vtype.IsInteger())
+			if (token->vtype.IsNone())
+				sprintf(m, "LOCAL");
+			else if (token->vtype.IsInteger())
 				sprintf(m, "LOCAL '%s' Integer, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
 				sprintf(m, "LOCAL '%s' Float, index %" PRId64 "", token->name.c_str(), token->index);
@@ -207,7 +217,9 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 			}
 			break;
 		case TokenType::GLOBAL:
-			if (token->vtype.IsInteger())
+			if (token->vtype.IsNone())
+				sprintf(m, "GLOBAL");
+			else if (token->vtype.IsInteger())
 				sprintf(m, "GLOBAL '%s' Integer, index %" PRId64 "", token->name.c_str(), token->index);
 			else if (token->vtype.IsFloat())
 				sprintf(m, "GLOBAL '%s' Float, index %" PRId64 "", token->name.c_str(), token->index);
@@ -257,7 +269,8 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 			}
 			else if (top.IsString()) {
 				sprintf(m, "RETURN string");
-			} else {
+			}
+			else {
 				sprintf(m, "RETURN (No type yet)");
 			}
 			break;

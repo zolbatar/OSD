@@ -37,7 +37,7 @@ void Canvas::PlotPixel(int64_t x, int64_t y)
 	OSDTask::UnlockVLGL();
 }
 
-void Canvas::DrawLine(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
+void Canvas::DrawLine(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
 {
 	OSDTask::LockVLGL("Canvas::DrawLine");
 	static lv_point_t points[2];
@@ -48,11 +48,12 @@ void Canvas::DrawLine(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 	lv_draw_line_dsc_t line_dsc;
 	lv_draw_line_dsc_init(&line_dsc);
 	line_dsc.color = fg;
+	line_dsc.width = w;
 	lv_canvas_draw_line(object, points, 2, &line_dsc);
 	OSDTask::UnlockVLGL();
 }
 
-void Canvas::DrawTriangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3)
+void Canvas::DrawTriangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w)
 {
 	OSDTask::LockVLGL("Canvas::DrawTriangle");
 	static lv_point_t points[4];
@@ -67,13 +68,14 @@ void Canvas::DrawTriangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_
 	lv_draw_line_dsc_t line_dsc;
 	lv_draw_line_dsc_init(&line_dsc);
 	line_dsc.color = fg;
+	line_dsc.width = w;
 	lv_canvas_draw_line(object, points, 4, &line_dsc);
 	OSDTask::UnlockVLGL();
 }
 
-void Canvas::DrawTriangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3)
+void Canvas::DrawTriangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w)
 {
-	OSDTask::LockVLGL("Canvas::DrawTriangle");
+	OSDTask::LockVLGL("Canvas::DrawTriangleFilled");
 	static lv_point_t points[4];
 	points[0].x = x1;
 	points[0].y = y1;
@@ -85,8 +87,9 @@ void Canvas::DrawTriangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, 
 	points[3].y = y1;
 	lv_draw_rect_dsc_t line_dsc;
 	lv_draw_rect_dsc_init(&line_dsc);
-	line_dsc.border_color = fg;
+	line_dsc.outline_color = fg;
 	line_dsc.bg_color = fg;
+	line_dsc.outline_width = w;
 	lv_canvas_draw_polygon(object, points, 4, &line_dsc);
 	OSDTask::UnlockVLGL();
 }

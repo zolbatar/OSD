@@ -23,7 +23,7 @@ void IRCompiler::CompileToken(Token* token)
 			AddIR(IROpcodes::Yield);
 			break;
 		case TokenType::STATEMENT_START:
-//			AddIRWithIndex(IROpcodes::StackCheck, token->line_number);
+			AddIRWithIndex(IROpcodes::StackCheck, token->line_number);
 			if (!type_stack.empty())
 				Error(token, "Expected empty type stack");
 			break;
@@ -235,7 +235,9 @@ void IRCompiler::CompileToken(Token* token)
 			for (auto& type: token->required_types) {
 				for (auto& ctoken: token->expressions[i])
 					CompileToken(ctoken);
-
+				i++;
+			}
+			for (auto& type: token->required_types) {
 				// Check type
 				auto t = PopType(token);
 				if (type.IsInteger()) {
@@ -251,8 +253,6 @@ void IRCompiler::CompileToken(Token* token)
 						TypeError(token);
 					AddIR(IROpcodes::ArgumentString);
 				}
-
-				i++;
 			}
 			AddIRWithAddress(IROpcodes::CallFunc, token->func, token->name);
 			break;

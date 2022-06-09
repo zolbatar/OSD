@@ -54,9 +54,9 @@ void call_2D_colour(int64_t r, int64_t g, int64_t b);
 void call_2D_colourbg(int64_t r, int64_t g, int64_t b);
 void call_2D_cls();
 void call_2D_plot(int64_t x, int64_t y);
-void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2);
-void call_2D_triangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3);
-void call_2D_trianglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3);
+void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
+void call_2D_triangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w);
+void call_2D_trianglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w);
 
 void call_DATA_integer(int64_t v);
 void call_DATA_float(double v);

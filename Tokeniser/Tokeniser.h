@@ -34,7 +34,7 @@ struct Token {
 	// Type
 	TokenType type = TokenType::NONE;
 	ComplexType vtype = TypeNone();
-	int64_t index;
+	int64_t index = -1;
 	int64_t index2;
 
 	// Name (for variables etc)
