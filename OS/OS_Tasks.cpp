@@ -412,7 +412,7 @@ bool OSDTask::CompileSource(std::string filename, std::string code)
 #ifdef CLION
 	t1 = std::chrono::system_clock::now();
 #endif
-	parser.Parse(optimise, token.Tokens());
+	parser.Parse(optimise, token.Tokens(), token.GetFilenames());
 #ifdef CLION
 	t2 = std::chrono::system_clock::now();
 	time_span = std::chrono::duration_cast<std::chrono::microseconds>(t2-t1).count();
@@ -434,7 +434,7 @@ bool OSDTask::CompileSource(std::string filename, std::string code)
 #ifdef CLION
 	t1 = std::chrono::system_clock::now();
 #endif
-	IRCompiler ir_compiler(optimise);
+	IRCompiler ir_compiler(optimise, token.GetFilenames());
 	ir_compiler.Compile(parser.Tokens());
 #ifdef CLION
 	t2 = std::chrono::system_clock::now();

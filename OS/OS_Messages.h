@@ -4,6 +4,10 @@ const int MESSAGE_BLOCK = 512;
 
 // These should really be dynamic, for later modules
 enum class Messages {
+	Canvas_Enable_Shadow,
+	Canvas_Flip,
+	Canvas_ClipOn,
+	Canvas_ClipOff,
 	Canvas_Clear,
 	Canvas_DrawLine,
 	Canvas_PlotPixel,

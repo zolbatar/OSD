@@ -158,13 +158,13 @@ void Tokeniser::Init()
 	// 2d Graphics
 	AddKeyword(TokenDef{ "CIRCLE", TokenType::CIRCLE });
 	AddKeyword(TokenDef{ "CIRCLEFILLED", TokenType::CIRCLEFILLED });
-//	AddKeyword(TokenDef{ "CLIPON", TokenType::CLIPON });
-//	AddKeyword(TokenDef{ "CLIPOFF", TokenType::CLIPOFF });
+	AddKeyword(TokenDef{ "CLIPON", TokenType::CLIPON });
+	AddKeyword(TokenDef{ "CLIPOFF", TokenType::CLIPOFF });
 	AddKeyword(TokenDef{ "CLS", TokenType::CLS });
 	AddKeyword(TokenDef{ "COLOUR", TokenType::COLOUR });
 	AddKeyword(TokenDef{ "COLOURBG", TokenType::COLOURBG });
 //	AddKeyword(TokenDef{ "CREATEFONT", TokenType::CREATEFONT });
-//	AddKeyword(TokenDef{ "FLIP", TokenType::FLIP });
+	AddKeyword(TokenDef{ "FLIP", TokenType::FLIP });
 //	AddKeyword(TokenDef{ "GRAPHICS", TokenType::GRAPHICS });
 	AddKeyword(TokenDef{ "LINE", TokenType::LINE });
 //	AddKeyword(TokenDef{ "LOADTYPEFACE", TokenType::LOADTYPEFACE });
@@ -173,6 +173,7 @@ void Tokeniser::Init()
 	AddKeyword(TokenDef{ "RECTANGLEFILLED", TokenType::RECTANGLEFILLED });
 	AddKeyword(TokenDef{ "SCREENWIDTH", TokenType::SCREENWIDTH });
 	AddKeyword(TokenDef{ "SCREENHEIGHT", TokenType::SCREENHEIGHT });
+	AddKeyword(TokenDef{ "SHADOW", TokenType::SHADOW });
 //	AddKeyword(TokenDef{ "TEXT", TokenType::TEXT });
 //	AddKeyword(TokenDef{ "TEXTCENTRE", TokenType::TEXTCENTRE });
 //	AddKeyword(TokenDef{ "TEXTCENTER", TokenType::TEXTCENTRE });
@@ -400,5 +401,5 @@ void Tokeniser::NewLine()
 
 void Tokeniser::Error(std::string error)
 {
-	throw DARICException(ExceptionType::TOKENISER, line_number, char_number, error);
+	throw DARICException(ExceptionType::TOKENISER, filenames[file_number], line_number, char_number, error);
 }

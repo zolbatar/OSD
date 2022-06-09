@@ -130,10 +130,35 @@ void WindowManager::Run()
 				}
 
 					// Canvas
+				case Messages::Canvas_Enable_Shadow: {
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->EnableDoubleBuffering();
+					break;
+				}
+				case Messages::Canvas_Flip: {
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->Flip();
+					break;
+				}
 				case Messages::Canvas_Clear: {
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->Clear();
+					break;
+				}
+				case Messages::Canvas_ClipOff: {
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->ClipOff();
+					break;
+				}
+				case Messages::Canvas_ClipOn: {
+					auto m = (Coord2*)&message->data;
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->ClipOn(m->x1, m->y1, m->x2, m->y2);
 					break;
 				}
 				case Messages::Canvas_DrawLine: {
@@ -299,7 +324,7 @@ void WindowManager::DesktopStartup()
 	std::thread t2(&DARICWindow::Start, clock);
 	t2.detach();*/
 
-	/*    auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 600*dm, 400*dm, 400*dm);
+/*	    auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 600*dm, 400*dm, 400*dm);
 		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
 		std::thread t3(&DARICWindow::Start, mandelbrot);
 		t3.detach();*/

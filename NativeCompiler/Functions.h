@@ -50,6 +50,10 @@ int64_t call_TIMES();
 
 int64_t call_2D_screenwidth();
 int64_t call_2D_screenheight();
+void call_2D_shadow();
+void call_2D_flip();
+void call_2D_clipon(int64_t x1, int64_t y1, int64_t x2, int64_t y2);
+void call_2D_clipoff();
 void call_2D_colour(int64_t r, int64_t g, int64_t b);
 void call_2D_colourbg(int64_t r, int64_t g, int64_t b);
 void call_2D_cls();

@@ -14,8 +14,8 @@ typedef std::list<ComplexType> fp;
 
 class Parser {
 public:
-	Parser();
-	bool Parse(bool optimise, std::list<Token>* tokens);
+	static void Init();
+	bool Parse(bool optimise, std::list<Token>* tokens, std::vector<std::string>* filenames);
 
 	std::list<Token*>* Tokens()
 	{
@@ -24,6 +24,7 @@ public:
 
 private:
 	bool optimise;
+	std::vector<std::string>* filenames;
 	void Error(std::string message, Token* token);
 	void SyntaxError(Token* token);
 	void TypeError(Token* type);
@@ -97,6 +98,6 @@ private:
 	std::list<Token> new_tokens;
 	std::set<std::string> constants;
 	std::stack<Token*> for_loop_variables;
-	std::map<TokenType, std::list<ComplexType>> generic_functions;
-	std::map<TokenType, void*> generic_functions_ptr;
+	static std::map<TokenType, std::list<ComplexType>> generic_functions;
+	static std::map<TokenType, void*> generic_functions_ptr;
 };

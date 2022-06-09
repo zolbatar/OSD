@@ -61,24 +61,25 @@ void DARICWindow::Run()
 		}
 	}
 	catch (DARICException& ex) {
+		std::string cat;
 		switch (ex.type) {
 			case ExceptionType::COMPILER:
-				printf("[Compiler] ");
+				cat = "[Compiler] ";
 				break;
 			case ExceptionType::TOKENISER:
-				printf("[Tokeniser] ");
+				cat = "[Tokeniser] ";
 				break;
 			case ExceptionType::PARSER:
-				printf("[Parser] ");
+				cat = "[Parser] ";
 				break;
 			case ExceptionType::RUNTIME:
-				printf("[Runtime] ");
+				cat = "[Runtime] ";
 				break;
 		}
 #ifdef CLION
-		printf("%s at line %d, column %d\n", ex.error.c_str(), ex.line_number, ex.char_position);
+		printf("%s%s in file '%s' at line %d, column %d\n", cat.c_str(), ex.error.c_str(), ex.filename.c_str(), ex.line_number, ex.char_position);
 #else
-		CLogger::Get()->Write("CompileSource", LogPanic, "%s at line %d, column %d", ex.error.c_str(), ex.line_number, ex.char_position);
+		CLogger::Get()->Write("CompileSource", LogPanic, "%s%s in file '%s' at line %d, column %d", cat.c_str() ,ex.error.c_str(), ex.filename.c_str(), ex.line_number, ex.char_position);
 #endif
 	}
 

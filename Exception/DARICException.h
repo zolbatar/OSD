@@ -12,8 +12,8 @@ enum class ExceptionType {
 
 class DARICException : public std::runtime_error {
 public:
-	DARICException(ExceptionType type, uint32_t line_number, short char_position, std::string error)
-			:std::runtime_error(error), type(type), error(error), line_number(line_number), char_position(char_position)
+	DARICException(ExceptionType type, std::string filename, uint32_t line_number, short char_position, std::string error)
+			:std::runtime_error(error), type(type), error(error), filename(filename), line_number(line_number), char_position(char_position)
 	{
 	};
 
@@ -24,6 +24,7 @@ public:
 
 	ExceptionType type;
 	std::string error;
+	std::string filename;
 	uint32_t line_number;
 	short char_position;
 };

@@ -65,13 +65,21 @@ struct Token {
 class Tokeniser {
 public:
 	Tokeniser(std::string filename, std::string code)
-			:filename(filename), code(code) { }
+			:filename(filename), code(code)
+	{
+		filenames.push_back(filename);
+	}
 	static void Init();
 	void Parse();
 
 	std::list<Token>* Tokens()
 	{
 		return &tokens;
+	}
+
+	std::vector<std::string>* GetFilenames()
+	{
+		return &filenames;
 	}
 
 	void PrintTokens(std::list<Token>* tokens, int depth, std::list<std::string>* output);
@@ -112,6 +120,7 @@ private:
 	std::string search;
 	TokeniserState state = TokeniserState::NONE;
 	std::list<Token> tokens;
+	std::vector<std::string> filenames;
 	Leaf* keyword_tree = &root;
 
 	static Leaf root;

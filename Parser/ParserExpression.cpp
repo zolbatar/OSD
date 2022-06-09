@@ -226,7 +226,7 @@ void Parser::ParseExpression(bool assignment, bool subexpression, std::list<Toke
 							auto cf = constants.find(tt->name);
 							if (cf==constants.end()) {
 
-								Error("Unknown variable", tt);
+								Error("Unknown variable '"+tt->name+"'", tt);
 							}
 							tt->type = TokenType::CONSTANT;
 						}

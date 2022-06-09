@@ -7,22 +7,25 @@
 extern CTimer *timer;
 #endif
 
+std::map<TokenType, std::list<ComplexType>> Parser::generic_functions;
+std::map<TokenType, void*> Parser::generic_functions_ptr;
+
 void Parser::Error(std::string message, Token* token)
 {
-	throw DARICException(ExceptionType::PARSER, token->line_number, token->char_number, message);
+	throw DARICException(ExceptionType::PARSER, filenames->at(token->file_number), token->line_number, token->char_number, message);
 }
 
 void Parser::SyntaxError(Token* token)
 {
-	throw DARICException(ExceptionType::PARSER, token->line_number, token->char_number, "Syntax error");
+	throw DARICException(ExceptionType::PARSER, filenames->at(token->file_number), token->line_number, token->char_number, "Syntax error");
 }
 
 void Parser::TypeError(Token* token)
 {
-	throw DARICException(ExceptionType::PARSER, token->line_number, token->char_number, "Unexpected type");
+	throw DARICException(ExceptionType::PARSER, filenames->at(token->file_number), token->line_number, token->char_number, "Unexpected type");
 }
 
-Parser::Parser()
+void Parser::Init()
 {
 	// 2D
 	generic_functions.insert(std::make_pair(TokenType::SCREENWIDTH, fp{ TypeInteger() }));
@@ -33,6 +36,10 @@ Parser::Parser()
 	generic_functions_ptr.insert(std::make_pair(TokenType::COLOUR, (void*)&call_2D_colour));
 	generic_functions.insert(std::make_pair(TokenType::COLOURBG, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::COLOURBG, (void*)&call_2D_colourbg));
+	generic_functions.insert(std::make_pair(TokenType::SHADOW, fp{ TypeNone() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::SHADOW, (void*)&call_2D_shadow));
+	generic_functions.insert(std::make_pair(TokenType::FLIP, fp{ TypeNone() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::FLIP, (void*)&call_2D_flip));
 	generic_functions.insert(std::make_pair(TokenType::CLS, fp{ TypeNone() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::CLS, (void*)&call_2D_cls));
 	generic_functions.insert(std::make_pair(TokenType::PLOT, fp{ TypeNone(), TypeInteger(), TypeInteger() }));
@@ -54,6 +61,10 @@ Parser::Parser()
 	generic_functions
 			.insert(std::make_pair(TokenType::RECTANGLEFILLED, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::RECTANGLEFILLED, (void*)&call_2D_rectanglefilled));
+	generic_functions.insert(std::make_pair(TokenType::CLIPOFF, fp{ TypeNone() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::CLIPOFF, (void*)&call_2D_clipoff));
+	generic_functions.insert(std::make_pair(TokenType::CLIPON, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::CLIPON, (void*)&call_2D_clipon));
 
 	// Keyboard
 	generic_functions.insert(std::make_pair(TokenType::INKEY, fp{ TypeInteger(), TypeInteger() }));
@@ -66,16 +77,11 @@ Parser::Parser()
 	generic_functions_ptr.insert(std::make_pair(TokenType::RNDF, (void*)&call_RNDF));
 }
 
-bool Parser::Parse(bool optimise, std::list<Token>* tokens)
+bool Parser::Parse(bool optimise, std::list<Token>* tokens, std::vector<std::string>* filenames)
 {
-	// Reset
-	final_tokens.clear();
-	new_tokens.clear();
-	constants.clear();
-	while (!for_loop_variables.empty())
-		for_loop_variables.pop();
 	this->optimise = optimise;
 	it = tokens->begin();
+	this->filenames = filenames;
 
 	// Fast scan of all DEFs for forward lookup
 	// Top level
@@ -97,7 +103,7 @@ bool Parser::Parse(bool optimise, std::list<Token>* tokens)
 	while (1) {
 		Token* t = GetToken();
 		switch (t->type) {
-			case TokenType::COMMA:
+			case TokenType::COLON:
 			case TokenType::NEWLINE:
 				// Ignore
 				break;

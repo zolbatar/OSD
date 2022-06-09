@@ -1,294 +1,125 @@
-Line    1:  1 [302]: FOR
-Line    1:  5 [264]: Identifier integer 'ITER%'
-Line    1: 11 [ 61]: =
-Line    1: 13 [269]: Integer 1
-Line    1: 15 [329]: TO
-Line    1: 18 [269]: Integer 100
-Line    1: 21 [257]: Newline
-Line    2:  6 [263]: Identifier 'GraphicsSingle'
-Line    2: 20 [ 40]: (
-Line    2: 21 [ 41]: )
+Line    1:  1 [352]: SHADOW
+Line    1:  7 [257]: Newline
+Line    2:  2 [340]: CLIPON
+Line    2:  9 [269]: Integer 50
+Line    2: 11 [ 44]: ,
+Line    2: 12 [269]: Integer 50
+Line    2: 14 [ 44]: ,
+Line    2: 15 [269]: Integer 100
+Line    2: 18 [ 44]: ,
+Line    2: 19 [269]: Integer 100
 Line    2: 22 [257]: Newline
-Line    3:  6 [337]: YIELD
-Line    3: 11 [257]: Newline
-Line    4:  2 [312]: NEXT
-Line    4:  6 [257]: Newline
-Line    5:  2 [257]: Newline
-Line    6:  2 [292]: DEF
-Line    6:  6 [263]: Identifier 'GraphicsSingle'
-Line    6: 20 [ 40]: (
-Line    6: 21 [ 41]: )
-Line    6: 22 [257]: Newline
-Line    7:  6 [342]: COLOURBG
-Line    7: 15 [269]: Integer 0
-Line    7: 16 [ 44]: ,
-Line    7: 17 [269]: Integer 0
-Line    7: 18 [ 44]: ,
-Line    7: 19 [269]: Integer 0
-Line    7: 20 [257]: Newline
-Line    8:  6 [340]: CLS
-Line    8:  9 [257]: Newline
-Line    9:  6 [264]: Identifier integer 'w%'
-Line    9:  8 [ 61]: =
-Line    9:  9 [347]: SCREENWIDTH
-Line    9: 20 [ 58]: :
-Line    9: 21 [264]: Identifier integer 'h%'
-Line    9: 23 [ 61]: =
-Line    9: 24 [348]: SCREENHEIGHT
-Line    9: 36 [257]: Newline
-Line   10:  6 [302]: FOR
-Line   10: 10 [264]: Identifier integer 'I%'
-Line   10: 13 [ 61]: =
-Line   10: 15 [269]: Integer 1
-Line   10: 17 [329]: TO
-Line   10: 20 [269]: Integer 5
-Line   10: 21 [257]: Newline
-Line   11: 10 [341]: COLOUR
-Line   11: 17 [381]: RND
-Line   11: 20 [ 40]: (
-Line   11: 21 [269]: Integer 255
-Line   11: 24 [ 41]: )
-Line   11: 25 [ 44]: ,
-Line   11: 27 [381]: RND
-Line   11: 30 [ 40]: (
-Line   11: 31 [269]: Integer 255
-Line   11: 34 [ 41]: )
-Line   11: 35 [ 44]: ,
-Line   11: 37 [381]: RND
-Line   11: 40 [ 40]: (
-Line   11: 41 [269]: Integer 255
-Line   11: 44 [ 41]: )
-Line   11: 45 [257]: Newline
-Line   12: 10 [342]: COLOURBG
-Line   12: 19 [381]: RND
-Line   12: 22 [ 40]: (
-Line   12: 23 [269]: Integer 255
-Line   12: 26 [ 41]: )
-Line   12: 27 [ 44]: ,
-Line   12: 29 [381]: RND
-Line   12: 32 [ 40]: (
-Line   12: 33 [269]: Integer 255
-Line   12: 36 [ 41]: )
-Line   12: 37 [ 44]: ,
-Line   12: 39 [381]: RND
-Line   12: 42 [ 40]: (
-Line   12: 43 [269]: Integer 255
-Line   12: 46 [ 41]: )
-Line   12: 47 [257]: Newline
-Line   13:  2 [257]: Newline
-Line   14: 10 [346]: RECTANGLEFILLED
-Line   14: 26 [381]: RND
-Line   14: 29 [ 40]: (
-Line   14: 30 [264]: Identifier integer 'w%'
-Line   14: 32 [ 41]: )
-Line   14: 33 [ 44]: ,
-Line   14: 35 [381]: RND
-Line   14: 38 [ 40]: (
-Line   14: 39 [264]: Identifier integer 'h%'
-Line   14: 41 [ 41]: )
-Line   14: 42 [ 44]: ,
-Line   14: 44 [381]: RND
-Line   14: 47 [ 40]: (
-Line   14: 48 [264]: Identifier integer 'w%'
-Line   14: 50 [ 41]: )
-Line   14: 51 [ 44]: ,
-Line   14: 53 [381]: RND
-Line   14: 56 [ 40]: (
-Line   14: 57 [264]: Identifier integer 'h%'
-Line   14: 59 [ 41]: )
-Line   14: 60 [ 44]: ,
-Line   14: 62 [381]: RND
-Line   14: 65 [ 40]: (
-Line   14: 66 [269]: Integer 10
-Line   14: 68 [ 41]: )
-Line   14: 69 [ 43]: +
-Line   14: 70 [269]: Integer 1
-Line   14: 71 [257]: Newline
-Line   15: 10 [339]: CIRCLEFILLED
-Line   15: 23 [381]: RND
-Line   15: 26 [ 40]: (
-Line   15: 27 [264]: Identifier integer 'w%'
-Line   15: 29 [ 41]: )
-Line   15: 30 [ 44]: ,
-Line   15: 32 [381]: RND
-Line   15: 35 [ 40]: (
-Line   15: 36 [264]: Identifier integer 'h%'
-Line   15: 38 [ 41]: )
-Line   15: 39 [ 44]: ,
-Line   15: 41 [381]: RND
-Line   15: 44 [ 40]: (
-Line   15: 45 [269]: Integer 150
-Line   15: 48 [ 41]: )
-Line   15: 49 [ 43]: +
-Line   15: 50 [269]: Integer 20
-Line   15: 52 [ 44]: ,
-Line   15: 54 [381]: RND
-Line   15: 57 [ 40]: (
-Line   15: 58 [269]: Integer 10
-Line   15: 60 [ 41]: )
-Line   15: 61 [ 43]: +
-Line   15: 62 [269]: Integer 1
-Line   15: 63 [257]: Newline
-Line   16: 10 [350]: TRIANGLEFILLED
-Line   16: 25 [381]: RND
-Line   16: 28 [ 40]: (
-Line   16: 29 [264]: Identifier integer 'w%'
-Line   16: 31 [ 41]: )
-Line   16: 32 [ 44]: ,
-Line   16: 34 [381]: RND
-Line   16: 37 [ 40]: (
-Line   16: 38 [264]: Identifier integer 'h%'
-Line   16: 40 [ 41]: )
-Line   16: 41 [ 44]: ,
-Line   16: 43 [381]: RND
-Line   16: 46 [ 40]: (
-Line   16: 47 [264]: Identifier integer 'w%'
-Line   16: 49 [ 41]: )
-Line   16: 50 [ 44]: ,
-Line   16: 52 [381]: RND
-Line   16: 55 [ 40]: (
-Line   16: 56 [264]: Identifier integer 'h%'
-Line   16: 58 [ 41]: )
-Line   16: 59 [ 44]: ,
-Line   16: 61 [381]: RND
-Line   16: 64 [ 40]: (
-Line   16: 65 [264]: Identifier integer 'w%'
-Line   16: 67 [ 41]: )
-Line   16: 68 [ 44]: ,
-Line   16: 70 [381]: RND
-Line   16: 73 [ 40]: (
-Line   16: 74 [264]: Identifier integer 'h%'
-Line   16: 76 [ 41]: )
-Line   16: 77 [ 44]: ,
-Line   16: 79 [381]: RND
-Line   16: 82 [ 40]: (
-Line   16: 83 [269]: Integer 10
-Line   16: 85 [ 41]: )
-Line   16: 86 [ 43]: +
-Line   16: 87 [269]: Integer 1
-Line   16: 88 [257]: Newline
-Line   17: 10 [343]: LINE
-Line   17: 15 [381]: RND
-Line   17: 18 [ 40]: (
-Line   17: 19 [264]: Identifier integer 'w%'
-Line   17: 21 [ 41]: )
-Line   17: 22 [ 44]: ,
-Line   17: 24 [381]: RND
-Line   17: 27 [ 40]: (
-Line   17: 28 [264]: Identifier integer 'h%'
-Line   17: 30 [ 41]: )
-Line   17: 31 [ 44]: ,
-Line   17: 33 [381]: RND
-Line   17: 36 [ 40]: (
-Line   17: 37 [264]: Identifier integer 'w%'
-Line   17: 39 [ 41]: )
-Line   17: 40 [ 44]: ,
-Line   17: 42 [381]: RND
-Line   17: 45 [ 40]: (
-Line   17: 46 [264]: Identifier integer 'h%'
-Line   17: 48 [ 41]: )
-Line   17: 49 [ 44]: ,
-Line   17: 51 [381]: RND
-Line   17: 54 [ 40]: (
-Line   17: 55 [269]: Integer 10
-Line   17: 57 [ 41]: )
-Line   17: 58 [ 43]: +
-Line   17: 59 [269]: Integer 1
-Line   17: 60 [257]: Newline
-Line   18: 10 [345]: RECTANGLE
-Line   18: 20 [381]: RND
-Line   18: 23 [ 40]: (
-Line   18: 24 [264]: Identifier integer 'w%'
-Line   18: 26 [ 41]: )
-Line   18: 27 [ 44]: ,
-Line   18: 29 [381]: RND
-Line   18: 32 [ 40]: (
-Line   18: 33 [264]: Identifier integer 'h%'
-Line   18: 35 [ 41]: )
-Line   18: 36 [ 44]: ,
-Line   18: 38 [381]: RND
-Line   18: 41 [ 40]: (
-Line   18: 42 [264]: Identifier integer 'w%'
-Line   18: 44 [ 41]: )
-Line   18: 45 [ 44]: ,
-Line   18: 47 [381]: RND
-Line   18: 50 [ 40]: (
-Line   18: 51 [264]: Identifier integer 'h%'
-Line   18: 53 [ 41]: )
-Line   18: 54 [ 44]: ,
-Line   18: 56 [381]: RND
-Line   18: 59 [ 40]: (
-Line   18: 60 [269]: Integer 10
-Line   18: 62 [ 41]: )
-Line   18: 63 [ 43]: +
-Line   18: 64 [269]: Integer 1
-Line   18: 65 [257]: Newline
-Line   19: 10 [349]: TRIANGLE
-Line   19: 19 [381]: RND
-Line   19: 22 [ 40]: (
-Line   19: 23 [264]: Identifier integer 'w%'
-Line   19: 25 [ 41]: )
-Line   19: 26 [ 44]: ,
-Line   19: 28 [381]: RND
-Line   19: 31 [ 40]: (
-Line   19: 32 [264]: Identifier integer 'h%'
-Line   19: 34 [ 41]: )
-Line   19: 35 [ 44]: ,
-Line   19: 37 [381]: RND
-Line   19: 40 [ 40]: (
-Line   19: 41 [264]: Identifier integer 'w%'
-Line   19: 43 [ 41]: )
-Line   19: 44 [ 44]: ,
-Line   19: 46 [381]: RND
-Line   19: 49 [ 40]: (
-Line   19: 50 [264]: Identifier integer 'h%'
-Line   19: 52 [ 41]: )
-Line   19: 53 [ 44]: ,
-Line   19: 55 [381]: RND
-Line   19: 58 [ 40]: (
-Line   19: 59 [264]: Identifier integer 'w%'
-Line   19: 61 [ 41]: )
-Line   19: 62 [ 44]: ,
-Line   19: 64 [381]: RND
-Line   19: 67 [ 40]: (
-Line   19: 68 [264]: Identifier integer 'h%'
-Line   19: 70 [ 41]: )
-Line   19: 71 [ 44]: ,
-Line   19: 73 [381]: RND
-Line   19: 76 [ 40]: (
-Line   19: 77 [269]: Integer 10
-Line   19: 79 [ 41]: )
-Line   19: 80 [ 43]: +
-Line   19: 81 [269]: Integer 1
-Line   19: 82 [257]: Newline
-Line   20: 10 [338]: CIRCLE
-Line   20: 17 [381]: RND
-Line   20: 20 [ 40]: (
-Line   20: 21 [264]: Identifier integer 'w%'
-Line   20: 23 [ 41]: )
-Line   20: 24 [ 44]: ,
-Line   20: 26 [381]: RND
-Line   20: 29 [ 40]: (
-Line   20: 30 [264]: Identifier integer 'h%'
-Line   20: 32 [ 41]: )
-Line   20: 33 [ 44]: ,
-Line   20: 35 [381]: RND
-Line   20: 38 [ 40]: (
-Line   20: 39 [269]: Integer 150
-Line   20: 42 [ 41]: )
-Line   20: 43 [ 43]: +
-Line   20: 44 [269]: Integer 20
-Line   20: 46 [ 44]: ,
-Line   20: 48 [381]: RND
-Line   20: 51 [ 40]: (
-Line   20: 52 [269]: Integer 10
-Line   20: 54 [ 41]: )
-Line   20: 55 [ 43]: +
-Line   20: 56 [269]: Integer 1
-Line   20: 57 [257]: Newline
-Line   21:  6 [312]: NEXT
-Line   21: 10 [257]: Newline
-Line   22:  2 [298]: ENDDEF
-Line   22:  8 [257]: Newline
-Line   23:  2 [257]: Newline
-Line   23:  2 [256]: None/End of tokens
+Line    3:  2 [321]: REPEAT
+Line    3:  8 [257]: Newline
+Line    4:  6 [263]: Identifier 'GraphicsSingle'
+Line    4: 20 [ 40]: (
+Line    4: 21 [ 41]: )
+Line    4: 22 [257]: Newline
+Line    5:  6 [345]: FLIP
+Line    5: 10 [257]: Newline
+Line    6:  2 [334]: UNTIL
+Line    6:  8 [301]: FALSE
+Line    6: 13 [257]: Newline
+Line    7:  2 [257]: Newline
+Line    8:  2 [292]: DEF
+Line    8:  6 [263]: Identifier 'GraphicsSingle'
+Line    8: 20 [ 40]: (
+Line    8: 21 [ 41]: )
+Line    8: 22 [257]: Newline
+Line    9:  6 [344]: COLOURBG
+Line    9: 15 [269]: Integer 0
+Line    9: 16 [ 44]: ,
+Line    9: 17 [269]: Integer 0
+Line    9: 18 [ 44]: ,
+Line    9: 19 [269]: Integer 0
+Line    9: 20 [257]: Newline
+Line   10:  6 [342]: CLS
+Line   10:  9 [257]: Newline
+Line   11:  6 [264]: Identifier integer 'w%'
+Line   11:  8 [ 61]: =
+Line   11:  9 [350]: SCREENWIDTH
+Line   11: 20 [ 58]: :
+Line   11: 21 [264]: Identifier integer 'h%'
+Line   11: 23 [ 61]: =
+Line   11: 24 [351]: SCREENHEIGHT
+Line   11: 36 [257]: Newline
+Line   12:  6 [302]: FOR
+Line   12: 10 [264]: Identifier integer 'I%'
+Line   12: 13 [ 61]: =
+Line   12: 15 [269]: Integer 1
+Line   12: 17 [329]: TO
+Line   12: 20 [269]: Integer 5
+Line   12: 21 [257]: Newline
+Line   13: 10 [343]: COLOUR
+Line   13: 17 [385]: RND
+Line   13: 20 [ 40]: (
+Line   13: 21 [269]: Integer 255
+Line   13: 24 [ 41]: )
+Line   13: 25 [ 44]: ,
+Line   13: 27 [385]: RND
+Line   13: 30 [ 40]: (
+Line   13: 31 [269]: Integer 255
+Line   13: 34 [ 41]: )
+Line   13: 35 [ 44]: ,
+Line   13: 37 [385]: RND
+Line   13: 40 [ 40]: (
+Line   13: 41 [269]: Integer 255
+Line   13: 44 [ 41]: )
+Line   13: 45 [257]: Newline
+Line   14: 10 [344]: COLOURBG
+Line   14: 19 [385]: RND
+Line   14: 22 [ 40]: (
+Line   14: 23 [269]: Integer 255
+Line   14: 26 [ 41]: )
+Line   14: 27 [ 44]: ,
+Line   14: 29 [385]: RND
+Line   14: 32 [ 40]: (
+Line   14: 33 [269]: Integer 255
+Line   14: 36 [ 41]: )
+Line   14: 37 [ 44]: ,
+Line   14: 39 [385]: RND
+Line   14: 42 [ 40]: (
+Line   14: 43 [269]: Integer 255
+Line   14: 46 [ 41]: )
+Line   14: 47 [257]: Newline
+Line   15:  2 [257]: Newline
+Line   16: 10 [320]: REM
+Line   17: 10 [320]: REM
+Line   18: 10 [320]: REM
+Line   19: 10 [346]: LINE
+Line   19: 15 [385]: RND
+Line   19: 18 [ 40]: (
+Line   19: 19 [264]: Identifier integer 'w%'
+Line   19: 21 [ 41]: )
+Line   19: 22 [ 44]: ,
+Line   19: 24 [385]: RND
+Line   19: 27 [ 40]: (
+Line   19: 28 [264]: Identifier integer 'h%'
+Line   19: 30 [ 41]: )
+Line   19: 31 [ 44]: ,
+Line   19: 33 [385]: RND
+Line   19: 36 [ 40]: (
+Line   19: 37 [264]: Identifier integer 'w%'
+Line   19: 39 [ 41]: )
+Line   19: 40 [ 44]: ,
+Line   19: 42 [385]: RND
+Line   19: 45 [ 40]: (
+Line   19: 46 [264]: Identifier integer 'h%'
+Line   19: 48 [ 41]: )
+Line   19: 49 [ 44]: ,
+Line   19: 51 [385]: RND
+Line   19: 54 [ 40]: (
+Line   19: 55 [269]: Integer 10
+Line   19: 57 [ 41]: )
+Line   19: 58 [ 43]: +
+Line   19: 59 [269]: Integer 1
+Line   19: 60 [257]: Newline
+Line   20: 10 [320]: REM
+Line   21: 10 [320]: REM
+Line   22: 10 [320]: REM
+Line   23:  6 [312]: NEXT
+Line   23: 10 [257]: Newline
+Line   24:  2 [298]: ENDDEF
+Line   24:  8 [257]: Newline
+Line   25:  2 [257]: Newline
+Line   25:  2 [256]: None/End of tokens

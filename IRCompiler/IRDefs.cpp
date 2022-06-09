@@ -84,7 +84,7 @@ void IRCompiler::CompileTokenProcCall(Token* token, bool expression)
 {
 	auto f = proc_lookup.find(token->text);
 	if (f==proc_lookup.end()) {
-		throw DARICException(ExceptionType::COMPILER, token->line_number, token->char_number,
+		throw DARICException(ExceptionType::COMPILER, filenames->at(token->file_number), token->line_number, token->char_number,
 				"Procedure '"+token->text+"' not found");
 	}
 

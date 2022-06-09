@@ -7,6 +7,7 @@
 #include "../Chrono/Chrono.h"
 #include "../Tasks/FontManager/FontManager.h"
 #include "../Tokeniser/Tokeniser.h"
+#include "../Parser/Parser.h"
 
 extern int ScreenWidth;
 extern int ScreenHeight;
@@ -18,6 +19,7 @@ int main()
 	OS_Init();
 	ClockInit();
 	Tokeniser::Init();
+	Parser::Init();
 
 	// What to run?
 	auto fm = NEW FontManager();

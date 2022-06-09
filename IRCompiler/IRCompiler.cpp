@@ -309,12 +309,12 @@ void IRCompiler::ForwardLookups(Token* token)
 
 void IRCompiler::Error(Token* token, std::string error)
 {
-	throw DARICException(ExceptionType::COMPILER, token->line_number, token->char_number, error);
+	throw DARICException(ExceptionType::COMPILER, filenames->at(token->file_number), token->line_number, token->char_number, error);
 }
 
 void IRCompiler::TypeError(Token* token)
 {
-	throw DARICException(ExceptionType::COMPILER, token->line_number, token->char_number, "Unexpected type");
+	throw DARICException(ExceptionType::COMPILER, filenames->at(token->file_number), token->line_number, token->char_number, "Unexpected type");
 }
 
 void IRCompiler::Init_AddIR(IROpcodes type)

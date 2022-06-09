@@ -14,6 +14,7 @@
 #include "Tasks/WindowManager/WindowManager.h"
 #include "Tasks/DARICWindow.h"
 #include "Tokeniser/Tokeniser.h"
+#include "Parser/Parser.h"
 
 size_t kernel_size = 0;
 size_t initial_mem_free = 0;
@@ -80,6 +81,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	OS_Init();
 	ClockInit();
 	Tokeniser::Init();
+	Parser::Init();
 
 	/*	CString IPString;
 	mNet.GetConfig()->GetIPAddress()->Format(&IPString);

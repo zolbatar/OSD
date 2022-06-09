@@ -17,6 +17,44 @@ int64_t call_2D_screenheight()
 	return w->GetContentHeight();
 }
 
+void call_2D_shadow()
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	mess->type = Messages::Canvas_Enable_Shadow;
+}
+
+void call_2D_clipon(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	auto m = (Coord2*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_ClipOn;
+	m->x1 = x1;
+	m->y1 = y1;
+	m->x2 = x2;
+	m->y2 = y2;
+}
+
+void call_2D_clipoff()
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	mess->type = Messages::Canvas_ClipOff;
+}
+
+void call_2D_flip()
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	mess->source = task;
+	mess->type = Messages::Canvas_Flip;
+	GetCurrentTask()->Yield();
+}
+
 void call_2D_cls()
 {
 	auto task = GetCurrentTask();
