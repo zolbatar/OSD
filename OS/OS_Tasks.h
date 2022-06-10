@@ -209,6 +209,16 @@ public:
 	{
 		this->id = id;
 	}
+
+	void AddFrameBufferMemory(size_t t)
+	{
+		framebuffer_memory += t;
+	}
+
+	size_t GetFrameBufferMemory()
+	{
+		return framebuffer_memory;
+	}
 protected:
 #ifdef CLION
 	static std::mutex vlgl_mutex;
@@ -230,6 +240,7 @@ protected:
 private:
 	void* w = NULL;
 	int64_t idx;
+	size_t framebuffer_memory = 0;
 	int64_t string_index = 1;
 	size_t data_element_index = 0;
 	std::array<TaskAllocRef, ALLOCATION_SIZE> allocations;

@@ -72,12 +72,12 @@ void TasksWindow::UpdateTasks()
 	lv_obj_add_style(cont_col, &style_grid, LV_STATE_DEFAULT);
 
 	// Container
-	const int sz = tasks_list.size()+3;
+	const int sz = tasks_list.size()+4;
 	static lv_coord_t row_dsc[256];
 	for (int i = 0; i<sz; i++)
 		row_dsc[i] = body_font_height*dm;
 	row_dsc[sz] = LV_GRID_TEMPLATE_LAST;
-	static lv_coord_t col_dsc[] = { lv_pct(30), lv_pct(30), lv_pct(40), LV_GRID_TEMPLATE_LAST };
+	static lv_coord_t col_dsc[] = { lv_pct(41), lv_pct(15), lv_pct(7), lv_pct(7), lv_pct(30), LV_GRID_TEMPLATE_LAST };
 	auto cont = lv_obj_create(cont_col);
 	lv_obj_set_flex_grow(cont, 2);
 	lv_obj_set_width(cont, lv_pct(100));
@@ -88,15 +88,37 @@ void TasksWindow::UpdateTasks()
 	lv_obj_set_layout(cont, LV_LAYOUT_GRID);
 	lv_obj_add_style(cont, &style_grid, LV_STATE_DEFAULT);
 
+	// Title
+	auto title1 = lv_label_create(cont);
+	lv_obj_set_grid_cell(title1, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
+	lv_label_set_text(title1, "Task");
+	lv_obj_add_style(title1, &style_grid_title, LV_STATE_DEFAULT);
+	auto title2 = lv_label_create(cont);
+	lv_obj_set_grid_cell(title2, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
+	lv_label_set_text(title2, "Used Memory");
+	lv_obj_add_style(title2, &style_grid_title, LV_STATE_DEFAULT);
+	auto title3 = lv_label_create(cont);
+	lv_obj_set_grid_cell(title3, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
+	lv_label_set_text(title3, "Framebuffer");
+	lv_obj_add_style(title3, &style_grid_title, LV_STATE_DEFAULT);
+	auto title4 = lv_label_create(cont);
+	lv_obj_set_grid_cell(title4, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
+	lv_label_set_text(title4, "Allocations");
+	lv_obj_add_style(title4, &style_grid_title, LV_STATE_DEFAULT);
+	auto title5 = lv_label_create(cont);
+	lv_obj_set_grid_cell(title5, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
+	lv_label_set_text(title5, "");
+	lv_obj_add_style(title5, &style_grid_title, LV_STATE_DEFAULT);
+
 	// Total memory
 	auto total_memory_title = lv_label_create(cont);
-	lv_obj_set_grid_cell(total_memory_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
+	lv_obj_set_grid_cell(total_memory_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
 	lv_label_set_text(total_memory_title, "Free Memory");
 	auto total_memory = lv_label_create(cont);
-	lv_obj_set_grid_cell(total_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
+	lv_obj_set_grid_cell(total_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
 	lv_label_set_text_fmt(total_memory, "%zu KB", m.free_memory/1024);
 	auto bar_free = lv_bar_create(cont);
-	lv_obj_set_grid_cell(bar_free, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
+	lv_obj_set_grid_cell(bar_free, LV_GRID_ALIGN_STRETCH, 4, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
 	lv_obj_center(bar_free);
 	size_t pc = (m.free_memory*100)/m.total_memory;
 	lv_bar_set_value(bar_free, pc, LV_ANIM_OFF);
@@ -105,28 +127,28 @@ void TasksWindow::UpdateTasks()
 
 	// Kernel size
 	auto kernel_size_title = lv_label_create(cont);
-	lv_obj_set_grid_cell(kernel_size_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
+	lv_obj_set_grid_cell(kernel_size_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
 	lv_label_set_text(kernel_size_title, "Boot Size");
 	auto kernel = lv_label_create(cont);
-	lv_obj_set_grid_cell(kernel, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
+	lv_obj_set_grid_cell(kernel, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
 	lv_label_set_text_fmt(kernel, "%zu KB", (kernel_size+pre_boot_memory)/1024);
 
 	// Kernel? (Or a leak)
 	auto kernel_used_title = lv_label_create(cont);
-	lv_obj_set_grid_cell(kernel_used_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
+	lv_obj_set_grid_cell(kernel_used_title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
 	lv_label_set_text(kernel_used_title, "OS/D Kernel & Pool");
 	auto kernel_used_memory = lv_label_create(cont);
-	lv_obj_set_grid_cell(kernel_used_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
+	lv_obj_set_grid_cell(kernel_used_memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
 	lv_label_set_text_fmt(kernel_used_memory, "%zu KB", m.lost/1024);
 	auto bar_used = lv_bar_create(cont);
-	lv_obj_set_grid_cell(bar_used, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, 2, 1);
+	lv_obj_set_grid_cell(bar_used, LV_GRID_ALIGN_STRETCH, 4, 1, LV_GRID_ALIGN_STRETCH, 3, 1);
 	lv_obj_center(bar_used);
 	pc = (m.lost*100)/m.used;
 	lv_bar_set_value(bar_used, pc, LV_ANIM_OFF);
 	lv_obj_add_style(bar_used, &style_bar, LV_STATE_DEFAULT);
 	lv_obj_add_style(bar_used, &style_bar_indicator_red, LV_PART_INDICATOR);
 
-	size_t i = 3;
+	size_t i = 4;
 
 	// Show tasks
 	for (auto& task: tasks_list) {
@@ -157,12 +179,23 @@ void TasksWindow::UpdateTasks()
 		// Memory
 		auto memory = lv_label_create(cont);
 		lv_obj_set_grid_cell(memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-		lv_label_set_text_fmt(memory, "%zu KB [%zu/%zu+%zu/%zu]", task->CalculateMemoryUsed()/1024, task->GetAllocCount(), task->GetStringCount(),
-				task->GetStringCountTemporary(),
+		auto total = task->CalculateMemoryUsed();
+		auto fb = task->GetFrameBufferMemory();
+		lv_label_set_text_fmt(memory, "%zu KB", (total-fb)/1024);
+
+		// Framebuffer
+		auto memory2 = lv_label_create(cont);
+		lv_obj_set_grid_cell(memory2, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, i, 1);
+		lv_label_set_text_fmt(memory2, "%zu KB", fb/1024);
+
+		// Allocations
+		auto memory3 = lv_label_create(cont);
+		lv_obj_set_grid_cell(memory3, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_STRETCH, i, 1);
+		lv_label_set_text_fmt(memory3, "%zu/%zu+%zu/%zu", task->GetAllocCount(), task->GetStringCount(), task->GetStringCountTemporary(),
 				task->GetMessageQueueCount());
 
 		auto bar = lv_bar_create(cont);
-		lv_obj_set_grid_cell(bar, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, i, 1);
+		lv_obj_set_grid_cell(bar, LV_GRID_ALIGN_STRETCH, 4, 1, LV_GRID_ALIGN_STRETCH, i, 1);
 		lv_obj_center(bar);
 		size_t pc = (task->CalculateMemoryUsed()*100)/m.used;
 		lv_bar_set_value(bar, pc, LV_ANIM_OFF);

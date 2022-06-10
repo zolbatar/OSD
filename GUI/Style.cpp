@@ -11,6 +11,7 @@ lv_style_t style_menu_item;
 lv_style_t style_window;
 lv_style_t style_window_content;
 lv_style_t style_grid;
+lv_style_t style_grid_title;
 lv_style_t style_window_header;
 lv_style_t style_window_header_active;
 lv_style_t style_window_header_inactive;
@@ -152,6 +153,9 @@ void SetupLVGLStyles()
 	lv_style_set_border_width(&style_grid, 0);
 	lv_style_set_pad_all(&style_grid, 8*dm);
 	lv_style_set_radius(&style_grid, corner_radius_inner);
+	lv_style_init(&style_grid_title);
+	lv_style_set_text_font(&style_grid_title, font_body_bold);
+	lv_style_set_text_decor(&style_grid_title, LV_TEXT_DECOR_UNDERLINE);
 
 	// Style - chart
 	lv_style_init(&style_chart);

@@ -493,6 +493,7 @@ bool OSDTask::CompileSource(std::string filename, std::string code)
 
 void OSDTask::Yield()
 {
+	GetCurrentTask()->ClearTemporaryStrings();
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->Yield();

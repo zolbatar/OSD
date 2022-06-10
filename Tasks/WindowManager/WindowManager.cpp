@@ -321,27 +321,27 @@ void WindowManager::DesktopStartup()
 		graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2d");
 		graphics2d->Start();*/
 
-		auto sierpinski = NEW DARICWindow("Sierpinski", false, 50*dm, 50*dm, 500*dm, 500*dm);
+/*		auto sierpinski = NEW DARICWindow("Sierpinski", false, 50*dm, 50*dm, 500*dm, 500*dm);
 		sierpinski->LoadSourceCode(":SD.$.Welcome.Sierpinski");
 		sierpinski->Start();
 
 		auto fonts = NEW DARICWindow("Fonts", false, 600*dm, 300*dm, 1200*dm, 700*dm);
 		fonts->LoadSourceCode(":SD.$.Welcome.Fonts");
-		fonts->Start();
+		fonts->Start();*/
 
 		auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 300*dm, 100*dm, 400*dm, 400*dm);
 		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
 		mandelbrot->Start();
 
-		auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
+/*		auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
 		tester->LoadSourceCode(":SD.$.Welcome.Tester");
 		tester->Start();
 
 		auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
 		clock->LoadSourceCode(":SD.$.Welcome.Clock");
-		clock->Start();
+		clock->Start();*/
 
-		auto graphics = NEW DARICWindow("Graphics", false, 20*dm, 600*dm, 600*dm, 500*dm);
+		auto graphics = NEW DARICWindow("Graphics", false, 20*dm, 400*dm, 600*dm, 500*dm);
 		graphics->LoadSourceCode(":SD.$.Welcome.Graphics2D");
 		graphics->Start();
 

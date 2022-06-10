@@ -18,7 +18,6 @@ int64_t OS_Strings_CreatePermanent(std::string& s)
 void OS_Strings_MakePermanent(int64_t s)
 {
 	GetCurrentTask()->MakeStringPermanent(s);
-	GetCurrentTask()->ClearTemporaryStrings();
 }
 
 void OS_Strings_FreePermanent(int64_t s)

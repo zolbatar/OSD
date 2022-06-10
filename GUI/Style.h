@@ -29,6 +29,7 @@ extern lv_style_t style_menu_item;
 extern lv_style_t style_window;
 extern lv_style_t style_window_content;
 extern lv_style_t style_grid;
+extern lv_style_t style_grid_title;
 extern lv_style_t style_window_header;
 extern lv_style_t style_window_header_inactive;
 extern lv_style_t style_window_header_active;

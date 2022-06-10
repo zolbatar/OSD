@@ -21,8 +21,24 @@ DEF Mandelbrot()
                     IT% += 1
                 UNTIL IT% = ITERS% OR ZM# >= 4
                 c%=IT% MOD 16
-
-                COLOUR c%*16,c%*16,c%*16
+                CASE c% OF
+                    WHEN 0: COLOUR 66, 30, 15
+                    WHEN 1: COLOUR 25, 7, 26
+                    WHEN 2: COLOUR 9, 1, 47
+                    WHEN 3: COLOUR 4, 4, 73
+                    WHEN 4: COLOUR 0, 7, 100
+                    WHEN 5: COLOUR 12, 44, 138
+                    WHEN 6: COLOUR 24, 82, 177
+                    WHEN 7: COLOUR 57, 125, 209
+                    WHEN 8: COLOUR 134, 181, 229
+                    WHEN 9: COLOUR 211, 236, 248
+                    WHEN 10: COLOUR 241, 233, 191
+                    WHEN 11: COLOUR 248, 201, 95
+                    WHEN 12: COLOUR 255, 170, 0
+                    WHEN 13: COLOUR 204, 128, 0
+                    WHEN 14: COLOUR 153, 87, 0
+                    WHEN 15: COLOUR 106, 52, 3
+                ENDCASE
                 PLOT X%,Y%
             NEXT
         NEXT

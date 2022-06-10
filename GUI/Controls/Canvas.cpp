@@ -10,6 +10,7 @@ Canvas::Canvas(lv_obj_t* parent, int w, int h)
 	this->parent = parent;
 	sz = (lv_img_cf_get_px_size(cf)*w)*h/8;
 	buffer = NEW uint8_t[sz];
+	GetCurrentTask()->AddFrameBufferMemory(sz);
 
 	// First buffer
 	firstbuffer = lv_canvas_create(parent);
@@ -41,6 +42,7 @@ void Canvas::EnableDoubleBuffering()
 {
 	double_buffered = true;
 	buffer_back = NEW uint8_t[sz];
+	GetCurrentTask()->AddFrameBufferMemory(sz);
 
 	// Second buffer
 	secondbuffer = lv_canvas_create(parent);
