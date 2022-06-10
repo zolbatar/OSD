@@ -241,7 +241,8 @@ void OSDTask::ClearTemporaryStrings()
 #ifdef CLION
 //	printf("Deleting %zu strings\n", strings.size());
 #endif
-	strings.clear();
+	if (strings.size()>STRING_GC_LEVEL)
+		strings.clear();
 }
 
 std::string& OSDTask::GetString(int64_t idx)

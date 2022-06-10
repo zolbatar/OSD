@@ -4,6 +4,7 @@
 
 extern size_t body_font_height;
 extern int dm;
+extern lv_font_t* font_body;
 
 class Canvas : public Control {
 public:
@@ -24,6 +25,10 @@ public:
 	void DrawRectangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
 	void DrawRectangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
 	void PlotPixel(int64_t x, int64_t y);
+	void DrawText(int64_t x, int64_t y, std::string s);
+	void DrawTextCentre(int64_t x, int64_t y, std::string s);
+	void DrawTextRight(int64_t x, int64_t y, std::string s);
+	void SetFont(std::string ff, std::string fs, int64_t size);
 	void SetFG(uint32_t fg);
 	void SetBG(uint32_t bg);
 	void PrintString(const char* s);
@@ -38,8 +43,8 @@ private:
 	int64_t clip_y2;
 	int16_t left_id = 0;
 	int16_t right_id = 0;
-	int16_t top_id= 0;
-	int16_t bottom_id= 0;
+	int16_t top_id = 0;
+	int16_t bottom_id = 0;
 	lv_draw_mask_line_param_t line_mask_param_l;
 	lv_draw_mask_line_param_t line_mask_param_r;
 	lv_draw_mask_line_param_t line_mask_param_t;
@@ -51,7 +56,6 @@ private:
 	int cursor_y = 0;
 	int sz;
 	lv_img_cf_t cf = LV_IMG_CF_TRUE_COLOR;
-
 	lv_obj_t* firstbuffer;
 	lv_obj_t* secondbuffer;
 	bool which_buffer = false;
@@ -60,7 +64,8 @@ private:
 	lv_color_t bg = lv_color_black();
 	uint8_t* buffer = nullptr;
 	uint8_t* buffer_back = nullptr;
-	lv_font_t* mono;
+	lv_font_t* mono = font_mono;
+	lv_font_t* font = font_body;
 	int size_h = body_font_height/2*dm;
 	int size_v = body_font_height*dm;
 

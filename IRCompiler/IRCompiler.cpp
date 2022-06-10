@@ -232,18 +232,18 @@ void IRCompiler::CompileToken(Token* token)
 
 			// Check each expression in turn for type
 			int i = 0;
-			for (auto& type: token->required_types) {
+			for (auto type = token->required_types.rbegin(); type!=token->required_types.rend(); ++type) {
 				for (auto& ctoken: token->expressions[i])
 					CompileToken(ctoken);
 
 				auto t = PopType(token);
-				if (type.IsInteger()) {
+				if (type->IsInteger()) {
 					EnsureStackIsInteger(token, t);
 				}
-				else if (type.IsFloat()) {
+				else if (type->IsFloat()) {
 					EnsureStackIsFloat(token, t);
 				}
-				else if (type.IsString()) {
+				else if (type->IsString()) {
 					if (t!=ValueType::String)
 						TypeError(token);
 				}
@@ -314,7 +314,7 @@ void IRCompiler::Error(Token* token, std::string error)
 
 void IRCompiler::TypeError(Token* token)
 {
-	throw DARICException(ExceptionType::COMPILER, filenames->at(token->file_number), token->line_number, token->char_number, "Unexpected type");
+	throw DARICException(ExceptionType::COMPILER, filenames->at(token->file_number), token->line_number, token->char_number, "Unexpected type or syntax error");
 }
 
 void IRCompiler::Init_AddIR(IROpcodes type)

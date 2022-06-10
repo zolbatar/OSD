@@ -1,0 +1,85 @@
+w%=SCREENWIDTH:h%=SCREENHEIGHT
+REM LOADFONT dotmatrixfont%="FXMatrix105MonoPicaRegular.otf"
+dotmatrixfont%=0
+
+CLS
+CLIPON 100, 100, w%-100, h%-100
+FOR I% = 1 TO 50
+    RandomColour()
+    LINE RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
+NEXT
+FOR I% = 1 TO 50
+    RandomColour()
+    CIRCLE RND(w%), RND(h%), RND(50)+20, RND(10)+1
+    CIRCLEFILLED RND(w%), RND(h%), RND(50)+20, RND(10)+1
+NEXT
+CLIPOFF
+
+COLOUR &FF,&FF,&00
+FONT "IBM Plex Sans", "Regular", 40
+TEXTCENTRE w%/2,5, "Standard inbuilt fonts"
+COLOUR &FF,&FF,&FF
+FONT "IBM Plex Mono", "Regular", 30
+TEXTCENTRE w%/2, 55, "The quick brown fox jumps over the lazy dog (IBM Plex Mono)"
+FONT "IBM Plex Sans", "Regular", 30
+TEXTCENTRE w%/2, 90, "The quick brown fox jumps over the lazy dog (IBM Plex Sans)"
+FONT "IBM Plex Sans Condensed", "Regular", 30
+TEXTCENTRE w%/2, 125, "The quick brown fox jumps over the lazy dog (IBM Plex Sans Condensed)"
+FONT "IBM Plex Serif", "Regular", 30
+TEXTCENTRE w%/2, 160, "The quick brown fox jumps over the lazy dog (IBM Plex Serif)"
+
+FONT "Source Code Pro", "Regular", 30
+TEXTCENTRE w%/2, 205, "The quick brown fox jumps over the lazy dog (Source Code Pro)"
+FONT "Source Sans Pro", "Regular", 30
+TEXTCENTRE w%/2, 240, "The quick brown fox jumps over the lazy dog (Source Sans Pro)"
+FONT "Source Serif Pro", "Regular", 30
+TEXTCENTRE w%/2, 275, "The quick brown fox jumps over the lazy dog (Source Serif Pro)"
+
+COLOUR &FF,&FF,&00
+FONT "IBM Plex Sans", "Regular", 40
+TEXTCENTRE w%/2, 320, "Special Fonts"
+COLOUR &FF,&FF,&FF
+FONT "FXMatrix105MonoPica", "Regular", 25
+TEXTCENTRE w%/2, 370, "The quick brown fox jumps over the lazy dog (FXMatrix105MonoPica)"
+FONT "Edit Undo Line BRK", "Regular", 35
+TEXTCENTRE w%/2, 405, "The quick brown fox jumps over the lazy dog (EditUndoLineBRK)"
+
+COLOUR &FF,&FF,&00
+FONT "IBM Plex Sans", "Regular", 40
+TEXTCENTRE w%/2, 455, "Varying Font Size, Style and Weight"
+
+COLOUR &FF,&FF,&FF
+I%=510
+FOR s%=20 TO 100 STEP 15
+    FONT "IBM Plex Sans", "Regular", s%
+    TEXT 40,I%, "Sans " + STR$(s%)
+    I%+=s%-10
+NEXT
+
+FONT "IBM Plex Sans Thin", "Regular", 40
+TEXTCENTRE w%/2, 510, "Thin"
+FONT "IBM Plex Sans ExtraLight", "Regular", 40
+TEXTCENTRE w%/2, 550, "Extra Light"
+FONT "IBM Plex Sans Light", "Regular", 40
+TEXTCENTRE w%/2, 590, "Light"
+FONT "IBM Plex Sans", "Regular", 40
+TEXTCENTRE w%/2, 630, "Regular"
+FONT "IBM Plex Sans Medium", "Regular", 40
+TEXTCENTRE w%/2, 670, "Medium"
+FONT "IBM Plex Sans SemiBold", "Regular", 40
+TEXTCENTRE w%/2, 710, "Semi Bold"
+
+FONT "IBM Plex Sans", "Regular", 40
+TEXTRIGHT w%-41, 510, "Regular"
+FONT "IBM Plex Sans", "Italic", 40
+TEXTRIGHT w%-41, 550, "Italic"
+FONT "IBM Plex Sans", "Bold", 40
+TEXTRIGHT w%-41, 590, "Bold"
+FONT "IBM Plex Sans", "Bold Italic", 40
+TEXTRIGHT w%-41, 630, "Bold Italic"
+
+DEF RandomColour()
+    COLOUR RND(30),RND(30),RND(30)
+    COLOURBG RND(30),RND(30),RND(30)
+ENDDEF
+

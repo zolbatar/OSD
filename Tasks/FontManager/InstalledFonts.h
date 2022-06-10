@@ -96,4 +96,6 @@ Source/SourceSerifPro-LightItalic.ttf
 Source/SourceSerifPro-Regular.ttf
 Source/SourceSerifPro-SemiBold.ttf
 Source/SourceSerifPro-SemiBoldItalic.ttf
-fa-light-300.ttf)";
+fa-light-300.ttf
+edunline.ttf
+FXMatrix105MonoPicaRegular.otf)";

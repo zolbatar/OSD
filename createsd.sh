@@ -10,5 +10,7 @@ mmd -i sdcard.sdimg osd/Welcome
 mcopy -i sdcard.sdimg /Users/daryl/Dev/osd/fonts/IBMPlex/IBM*.ttf ::osd/System/Fonts/IBMPlex
 mcopy -i sdcard.sdimg /Users/daryl/Dev/osd/fonts/Source/Source*.ttf ::osd/System/Fonts/Source
 mcopy -i sdcard.sdimg /Users/daryl/Dev/osd/fonts/fa-light-300.ttf ::osd/System/Fonts
+mcopy -i sdcard.sdimg /Users/daryl/Dev/osd/fonts/FXMatrix105MonoPicaRegular.otf ::osd/System/Fonts
+mcopy -i sdcard.sdimg /Users/daryl/Dev/osd/fonts/edunline.ttf ::osd/System/Fonts
 mcopy -i sdcard.sdimg Applications/* ::osd/Welcome
 

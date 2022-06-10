@@ -65,6 +65,14 @@ void Parser::Init()
 	generic_functions_ptr.insert(std::make_pair(TokenType::CLIPOFF, (void*)&call_2D_clipoff));
 	generic_functions.insert(std::make_pair(TokenType::CLIPON, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::CLIPON, (void*)&call_2D_clipon));
+	generic_functions.insert(std::make_pair(TokenType::TEXT, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeString() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::TEXT, (void*)&call_2D_text));
+	generic_functions.insert(std::make_pair(TokenType::TEXTCENTRE, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeString() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::TEXTCENTRE, (void*)&call_2D_textcentre));
+	generic_functions.insert(std::make_pair(TokenType::TEXTRIGHT, fp{ TypeNone(), TypeInteger(), TypeInteger(), TypeString() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::TEXTRIGHT, (void*)&call_2D_textright));
+	generic_functions.insert(std::make_pair(TokenType::SETFONT, fp{ TypeNone(), TypeString(), TypeString(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::SETFONT, (void*)&call_2D_font));
 
 	// Keyboard
 	generic_functions.insert(std::make_pair(TokenType::INKEY, fp{ TypeInteger(), TypeInteger() }));

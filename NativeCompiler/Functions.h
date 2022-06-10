@@ -65,6 +65,10 @@ void call_2D_circle(int64_t x, int64_t y, int64_t r, int64_t w);
 void call_2D_circlefilled(int64_t x, int64_t y, int64_t r, int64_t w);
 void call_2D_rectangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
 void call_2D_rectanglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w);
+void call_2D_text(int64_t x, int64_t y, int64_t s);
+void call_2D_textcentre(int64_t x, int64_t y, int64_t s);
+void call_2D_textright(int64_t x, int64_t y, int64_t s);
+void call_2D_font(int64_t ff, int64_t fs, int64_t size);
 
 void call_DATA_integer(int64_t v);
 void call_DATA_float(double v);

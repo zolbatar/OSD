@@ -17,8 +17,6 @@ Canvas::Canvas(lv_obj_t* parent, int w, int h)
 	lv_canvas_fill_bg(firstbuffer, bg, LV_OPA_COVER);
 
 	object = firstbuffer;
-
-	mono = font_mono;
 }
 
 Canvas::~Canvas()
@@ -376,6 +374,55 @@ void Canvas::PrintTab(int64_t v)
 	}
 }
 
+void Canvas::DrawText(int64_t x, int64_t y, std::string s)
+{
+	auto task = GetCurrentTask();
+	auto w = (Window*)task->GetWindow();
+	assert(w!=NULL);
+
+	lv_draw_label_dsc_t label_dsc;
+	lv_draw_label_dsc_init(&label_dsc);
+	label_dsc.font = font;
+	label_dsc.color = fg;
+	lv_canvas_draw_text(object, x, y, w->GetContentWidth()-x, &label_dsc, s.c_str());
+}
+
+void Canvas::DrawTextCentre(int64_t x, int64_t y, std::string s)
+{
+	auto task = GetCurrentTask();
+	auto w = (Window*)task->GetWindow();
+	assert(w!=NULL);
+
+	auto width = FontManager::GetWidth(font, s.c_str());
+	auto pos = x-width/2;
+
+	lv_draw_label_dsc_t label_dsc;
+	lv_draw_label_dsc_init(&label_dsc);
+	label_dsc.font = font;
+	label_dsc.color = fg;
+	lv_canvas_draw_text(object, pos, y, w->GetContentWidth()-pos, &label_dsc, s.c_str());
+}
+
+void Canvas::DrawTextRight(int64_t x, int64_t y, std::string s)
+{
+	auto task = GetCurrentTask();
+	auto w = (Window*)task->GetWindow();
+	assert(w!=NULL);
+
+	auto width = FontManager::GetWidth(font, s.c_str());
+	auto pos = x-width;
+
+	lv_draw_label_dsc_t label_dsc;
+	lv_draw_label_dsc_init(&label_dsc);
+	label_dsc.font = font;
+	label_dsc.color = fg;
+	lv_canvas_draw_text(object, pos, y, w->GetContentWidth()-pos, &label_dsc, s.c_str());
+}
+
+void Canvas::SetFont(std::string ff, std::string fs, int64_t size)
+{
+	font = FontManager::GetFontByNameStyleAndSize(ff, fs, size);
+}
 
 
 

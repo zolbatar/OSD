@@ -30,6 +30,7 @@ void FontManager::InitFonts()
 		LoadFile("/Users/daryl/Dev/osd/fonts/"+val);
 #endif
 	}
+//	while(1);
 	task_override = NULL;
 }
 
@@ -120,10 +121,14 @@ void FontManager::LoadFile(std::string filename)
 
 	// Add
 	fff = loaded_fonts.find(name);
-    fff->second->styles.insert(std::make_pair(style, ff));
+	fff->second->styles.insert(std::make_pair(style, ff));
+
+#ifndef CLION
+	//CLogger::Get()->Write("FontManager", LogNotice, "Loaded '%s', '%s', '%s'", filename.c_str(), name.c_str(), style.c_str()	);
+#endif
 }
 
-lv_font_t* FontManager::GetFontByNameStyleAndSize(std::string name, std::string style_name, int size)
+FontSize* FontManager::InternalLookup(std::string name, std::string style_name, int size)
 {
 	auto f = loaded_fonts.find(name);
 	if (f==loaded_fonts.end()) {
@@ -149,7 +154,7 @@ lv_font_t* FontManager::GetFontByNameStyleAndSize(std::string name, std::string 
 	// Have we cached it?
 	auto f2 = style->second->sizes.find(size);
 	if (f2!=style->second->sizes.end()) {
-		return f2->second->lv;
+		return f2->second;
 	}
 
 	auto ff = new FontSize();
@@ -160,8 +165,8 @@ lv_font_t* FontManager::GetFontByNameStyleAndSize(std::string name, std::string 
 	int descent;
 	int linegap;
 	stbtt_GetFontVMetrics(style->second->font, &ascent, &descent, &linegap);
-//	CLogger::Get()->Write("FontManager", LogDebug, "%d %d %d", ascent, descent, linegap);
-//	while (1);
+	//	CLogger::Get()->Write("FontManager", LogDebug, "%d %d %d", ascent, descent, linegap);
+	//	while (1);
 
 	// Create lv_font_t structure
 	auto line_height = ascent+abs(descent)+linegap;
@@ -176,7 +181,13 @@ lv_font_t* FontManager::GetFontByNameStyleAndSize(std::string name, std::string 
 
 	// Save for later
 	style->second->sizes.insert(std::make_pair(size, ff));
-	return ff->lv;
+	return ff;
+}
+
+lv_font_t* FontManager::GetFontByNameStyleAndSize(std::string name, std::string style_name, int size)
+{
+	auto f = InternalLookup(name, style_name, size);
+	return f->lv;
 }
 
 bool FontManager::GlyphDSCHandler(const lv_font_t* font, lv_font_glyph_dsc_t* dsc_out, uint32_t unicode_letter,
@@ -240,3 +251,11 @@ const uint8_t* FontManager::GlyphBitmapHandler(const lv_font_t* font, uint32_t u
 	ctx->cache.insert(std::make_pair(unicode_letter, alloc));
 	return alloc;
 }
+
+int FontManager::GetWidth(const lv_font_t* font, const char* string)
+{
+	lv_point_t label_size;
+	lv_txt_get_size(&label_size, string, font, 0, 0, LV_COORD_MAX, LV_TEXT_FLAG_NONE);
+	return label_size.x;
+}
+

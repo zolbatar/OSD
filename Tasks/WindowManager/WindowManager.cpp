@@ -257,6 +257,35 @@ void WindowManager::Run()
 					w->GetCanvas()->PrintTab(m->v);
 					break;
 				}
+				case Messages::Canvas_Text: {
+					auto m = (Coord1S*)&message->data;
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->DrawText(m->x, m->y, OS_Strings_Get(m->s));
+					break;
+				}
+				case Messages::Canvas_TextCentre: {
+					auto m = (Coord1S*)&message->data;
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->DrawTextCentre(m->x, m->y, OS_Strings_Get(m->s));
+					break;
+				}
+				case Messages::Canvas_TextRight: {
+					auto m = (Coord1S*)&message->data;
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->DrawTextRight(m->x, m->y, OS_Strings_Get(m->s));
+					break;
+				}
+				case Messages::Canvas_SetFont: {
+					auto m = (SetFont*)&message->data;
+					auto w = (Window*)source->GetWindow();
+					assert(w!=NULL);
+					w->GetCanvas()->SetFont(OS_Strings_Get(m->ff), OS_Strings_Get(m->fs), m->size);
+					break;
+				}
+
 				default:
 #ifndef CLION
 					CLogger::Get()->Write("GUI", LogDebug, "Unknown message received %d %p", message->type, message->source);
@@ -283,32 +312,36 @@ void WindowManager::Run()
 void WindowManager::DesktopStartup()
 {
 #ifndef CLION
-	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 100*dm, 400*dm, 400*dm);
-	mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-	mandelbrot->Start();
+	/*	auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 100*dm, 400*dm, 400*dm);
+		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
+		mandelbrot->Start();
 
-	auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
-	tester->LoadSourceCode(":SD.$.Welcome.Tester");
-	tester->Start();
+		auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
+		tester->LoadSourceCode(":SD.$.Welcome.Tester");
+		tester->Start();
 
-	auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
-	clock->LoadSourceCode(":SD.$.Welcome.Clock");
-	clock->Start();
+		auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
+		clock->LoadSourceCode(":SD.$.Welcome.Clock");
+		clock->Start();*/
 
-	auto tasks = NEW TasksWindow(1200*dm, 600*dm, 600*dm, 400*dm);
-	tasks->Start();
+		auto tasks = NEW TasksWindow(1200*dm, 500*dm, 650*dm, 400*dm);
+		tasks->Start();
 
-/*	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
-	editor->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-	editor->Start();*/
+	/*	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
+		editor->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
+		editor->Start();*/
 
-/*		auto clock3 = NEW DARICWindow("Clock3", false, 200*dm, 450*dm, 700*dm, 600*dm);
-	clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
-	clock3->Start();*/
+	/*		auto clock3 = NEW DARICWindow("Clock3", false, 200*dm, 450*dm, 700*dm, 600*dm);
+		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
+		clock3->Start();*/
 
-	auto graphics2d = NEW DARICWindow("Graphics 2D", false, 200*dm, 450*dm, 600*dm, 600*dm);
-	graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2d");
-	graphics2d->Start();
+	/*	auto graphics2d = NEW DARICWindow("Graphics 2D", false, 200*dm, 450*dm, 600*dm, 600*dm);
+		graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2d");
+		graphics2d->Start();*/
+
+		auto fonts = NEW DARICWindow("Fonts", false, 150*dm, 150*dm, 1200*dm, 850*dm);
+		fonts->LoadSourceCode(":SD.$.Welcome.Fonts");
+		fonts->Start();
 #else
 /*	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 550*dm, 400*dm);
 	std::thread t1(&DARICWindow::Start, tasks);
@@ -339,9 +372,10 @@ void WindowManager::DesktopStartup()
 		std::thread t4(&DARICWindow::Start, clock3);
 		t4.detach();*/
 
-	auto graphics2d = NEW DARICWindow("Graphics 2D", false, 100*dm, 600*dm, 400*dm, 400*dm);
-	graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2D");
-	std::thread t4(&DARICWindow::Start, graphics2d);
+	auto fonts = NEW
+			DARICWindow("Fonts", false, 100*dm, 600*dm, 400*dm, 400*dm);
+	fonts->LoadSourceCode(":SD.$.Welcome.Fonts");
+	std::thread t4(&DARICWindow::Start, fonts);
 	t4.detach();
 
 #endif

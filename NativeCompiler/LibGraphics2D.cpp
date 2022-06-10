@@ -196,3 +196,50 @@ void call_2D_circlefilled(int64_t x, int64_t y, int64_t r, int64_t w)
 	m->w = w;
 }
 
+void call_2D_text(int64_t x, int64_t y, int64_t s)
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	auto m = (Coord1S*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_Text;
+	m->x = x;
+	m->y = y;
+	m->s = s;
+}
+
+void call_2D_textcentre(int64_t x, int64_t y, int64_t s)
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	auto m = (Coord1S*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_TextCentre;
+	m->x = x;
+	m->y = y;
+	m->s = s;
+}
+
+void call_2D_textright(int64_t x, int64_t y, int64_t s)
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	auto m = (Coord1S*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_TextRight;
+	m->x = x;
+	m->y = y;
+	m->s = s;
+}
+
+void call_2D_font(int64_t ff, int64_t fs, int64_t size)
+{
+	auto task = GetCurrentTask();
+	auto mess = task->SendGUIMessage();
+	auto m = (SetFont*)&mess->data;
+	mess->source = task;
+	mess->type = Messages::Canvas_SetFont;
+	m->ff = ff;
+	m->fs = fs;
+	m->size = size;
+}

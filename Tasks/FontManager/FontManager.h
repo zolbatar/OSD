@@ -36,9 +36,11 @@ public:
 	void LoadFile(std::string filename);
 	std::string GetName(stbtt_fontinfo*, int id);
 	static lv_font_t* GetFontByNameStyleAndSize(std::string name, std::string style_name, int size);
+	static int GetWidth(const lv_font_t* font, const char* string);
 private:
 	static std::map<std::string, Font*> loaded_fonts;
 
+	static FontSize* InternalLookup(std::string name, std::string style_name, int size);
 	static bool GlyphDSCHandler(const lv_font_t* font, lv_font_glyph_dsc_t* dsc_out, uint32_t unicode_letter, uint32_t unicode_letter_next);
 	static const uint8_t* GlyphBitmapHandler(const lv_font_t* font, uint32_t unicode_letter);
 };

@@ -155,7 +155,7 @@ void Tokeniser::Init()
 	AddKeyword(TokenDef{ "RND", TokenType::RND });
 	AddKeyword(TokenDef{ "RNDF", TokenType::RNDF });
 
-	// 2d Graphics
+	// 2D Graphics
 	AddKeyword(TokenDef{ "CIRCLE", TokenType::CIRCLE });
 	AddKeyword(TokenDef{ "CIRCLEFILLED", TokenType::CIRCLEFILLED });
 	AddKeyword(TokenDef{ "CLIPON", TokenType::CLIPON });
@@ -163,21 +163,20 @@ void Tokeniser::Init()
 	AddKeyword(TokenDef{ "CLS", TokenType::CLS });
 	AddKeyword(TokenDef{ "COLOUR", TokenType::COLOUR });
 	AddKeyword(TokenDef{ "COLOURBG", TokenType::COLOURBG });
-//	AddKeyword(TokenDef{ "CREATEFONT", TokenType::CREATEFONT });
 	AddKeyword(TokenDef{ "FLIP", TokenType::FLIP });
+	AddKeyword(TokenDef{ "FONT", TokenType::SETFONT });
 //	AddKeyword(TokenDef{ "GRAPHICS", TokenType::GRAPHICS });
 	AddKeyword(TokenDef{ "LINE", TokenType::LINE });
-//	AddKeyword(TokenDef{ "LOADTYPEFACE", TokenType::LOADTYPEFACE });
 	AddKeyword(TokenDef{ "PLOT", TokenType::PLOT });
 	AddKeyword(TokenDef{ "RECTANGLE", TokenType::RECTANGLE });
 	AddKeyword(TokenDef{ "RECTANGLEFILLED", TokenType::RECTANGLEFILLED });
 	AddKeyword(TokenDef{ "SCREENWIDTH", TokenType::SCREENWIDTH });
 	AddKeyword(TokenDef{ "SCREENHEIGHT", TokenType::SCREENHEIGHT });
 	AddKeyword(TokenDef{ "SHADOW", TokenType::SHADOW });
-//	AddKeyword(TokenDef{ "TEXT", TokenType::TEXT });
-//	AddKeyword(TokenDef{ "TEXTCENTRE", TokenType::TEXTCENTRE });
-//	AddKeyword(TokenDef{ "TEXTCENTER", TokenType::TEXTCENTRE });
-//	AddKeyword(TokenDef{ "TEXTRIGHT", TokenType::TEXTRIGHT });
+	AddKeyword(TokenDef{ "TEXT", TokenType::TEXT });
+	AddKeyword(TokenDef{ "TEXTCENTRE", TokenType::TEXTCENTRE });
+	AddKeyword(TokenDef{ "TEXTCENTER", TokenType::TEXTCENTRE });
+	AddKeyword(TokenDef{ "TEXTRIGHT", TokenType::TEXTRIGHT });
 	AddKeyword(TokenDef{ "TRIANGLE", TokenType::TRIANGLE });
 	AddKeyword(TokenDef{ "TRIANGLEFILLED", TokenType::TRIANGLEFILLED });
 
