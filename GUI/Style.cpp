@@ -31,11 +31,11 @@ int dm = 1;
 
 void SetupLVGLStyles()
 {
-	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height*dm);
-	auto font_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", body_font_height*dm);
-	auto font_body_bold = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", body_font_height*dm);
-	auto menu_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height*dm);
-	font_mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", body_font_height*dm);
+	auto font_window = FontManager::GetFontByNameStyleAndSize("Source Sans Pro", "Regular", menu_font_height*dm);
+	auto font_body = FontManager::GetFontByNameStyleAndSize("Source Sans Pro", "Regular", body_font_height*dm);
+	auto font_body_bold = FontManager::GetFontByNameStyleAndSize("Source Sans Pro", "Bold", body_font_height*dm);
+	auto menu_body = FontManager::GetFontByNameStyleAndSize("Source Sans Pro", "Regular", menu_font_height*dm);
+	font_mono = FontManager::GetFontByNameStyleAndSize("Source Code Pro", "Regular", body_font_height*dm);
 	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 16*dm);
 
 	lv_style_init(&style_boldbodyfont);

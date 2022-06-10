@@ -28,13 +28,13 @@ Canvas::~Canvas()
 		DELETE buffer_back;
 	lv_obj_del(firstbuffer);
 	lv_obj_del(secondbuffer);
-	if (left_id!=NULL)
+	if (left_id!=0)
 		lv_draw_mask_free_param(&left_id);
-	if (right_id!=NULL)
+	if (right_id!=0)
 		lv_draw_mask_free_param(&right_id);
-	if (top_id!=NULL)
+	if (top_id!=0)
 		lv_draw_mask_free_param(&top_id);
-	if (bottom_id!=NULL)
+	if (bottom_id!=0)
 		lv_draw_mask_free_param(&bottom_id);
 }
 
@@ -87,10 +87,19 @@ void Canvas::PlotPixel(int64_t x, int64_t y)
 void Canvas::ClipOn(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 {
 	clip = true;
-	lv_draw_mask_line_points_init(&line_mask_param_l, clip_x1, clip_y1, clip_x1, clip_y2, LV_DRAW_MASK_LINE_SIDE_RIGHT);
-	lv_draw_mask_line_points_init(&line_mask_param_r, clip_x2, clip_y1, clip_x2, clip_y2, LV_DRAW_MASK_LINE_SIDE_LEFT);
-	lv_draw_mask_line_points_init(&line_mask_param_t, clip_x1, clip_y1, clip_x2, clip_y1, LV_DRAW_MASK_LINE_SIDE_BOTTOM);
-	lv_draw_mask_line_points_init(&line_mask_param_b, clip_x1, clip_y2, clip_x2, clip_y2, LV_DRAW_MASK_LINE_SIDE_TOP);
+	clip_x1 = x1;
+	clip_y1 = y1;
+	clip_x2 = x2;
+	clip_y2 = y2;
+
+	auto task = GetCurrentTask();
+	auto w = (Window*)task->GetWindow();
+	assert(w!=NULL);
+
+	lv_draw_mask_line_points_init(&line_mask_param_l, clip_x1, 0, clip_x1, w->GetContentHeight(), LV_DRAW_MASK_LINE_SIDE_RIGHT);
+	lv_draw_mask_line_points_init(&line_mask_param_r, clip_x2, 0, clip_x2, w->GetContentHeight(), LV_DRAW_MASK_LINE_SIDE_LEFT);
+	lv_draw_mask_line_points_init(&line_mask_param_t, 0, clip_y1, w->GetContentWidth(), clip_y1, LV_DRAW_MASK_LINE_SIDE_BOTTOM);
+	lv_draw_mask_line_points_init(&line_mask_param_b, 0, clip_y2, w->GetContentWidth(), clip_y2, LV_DRAW_MASK_LINE_SIDE_TOP);
 }
 
 void Canvas::ClipOff()
@@ -100,19 +109,19 @@ void Canvas::ClipOff()
 	lv_draw_mask_free_param(&right_id);
 	lv_draw_mask_free_param(&top_id);
 	lv_draw_mask_free_param(&bottom_id);
-	left_id = NULL;
-	right_id = NULL;
-	top_id = NULL;
-	bottom_id = NULL;
+	left_id = 0;
+	right_id = 0;
+	top_id = 0;
+	bottom_id = 0;
 }
 
 void Canvas::SetupClip()
 {
 	if (clip) {
 		left_id = lv_draw_mask_add(&line_mask_param_l, NULL);
-//		right_id = lv_draw_mask_add(&line_mask_param_r, NULL);
-//		top_id = lv_draw_mask_add(&line_mask_param_t, NULL);
-//		bottom_id = lv_draw_mask_add(&line_mask_param_b, NULL);
+		right_id = lv_draw_mask_add(&line_mask_param_r, NULL);
+		top_id = lv_draw_mask_add(&line_mask_param_t, NULL);
+		bottom_id = lv_draw_mask_add(&line_mask_param_b, NULL);
 	}
 }
 
@@ -120,9 +129,9 @@ void Canvas::ClearClip()
 {
 	if (clip) {
 		lv_draw_mask_remove_id(left_id);
-//		lv_draw_mask_remove_id(right_id);
-//		lv_draw_mask_remove_id(top_id);
-//		lv_draw_mask_remove_id(bottom_id);
+		lv_draw_mask_remove_id(right_id);
+		lv_draw_mask_remove_id(top_id);
+		lv_draw_mask_remove_id(bottom_id);
 	}
 }
 

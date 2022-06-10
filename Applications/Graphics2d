@@ -1,5 +1,5 @@
 SHADOW
-CLIPON 50,50,100,100
+CLIPON 50,50,400,500
 REPEAT
     GraphicsSingle()
     FLIP
@@ -13,12 +13,12 @@ DEF GraphicsSingle()
         COLOUR RND(255), RND(255), RND(255)
         COLOURBG RND(255), RND(255), RND(255)
 
-        REM RECTANGLEFILLED RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
-        REM CIRCLEFILLED RND(w%), RND(h%), RND(150)+20, RND(10)+1
-        REM TRIANGLEFILLED RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
+        RECTANGLEFILLED RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
+        CIRCLEFILLED RND(w%), RND(h%), RND(150)+20, RND(10)+1
+        TRIANGLEFILLED RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
         LINE RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
-        REM RECTANGLE RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
-        REM TRIANGLE RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
-        REM CIRCLE RND(w%), RND(h%), RND(150)+20, RND(10)+1
+        RECTANGLE RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
+        TRIANGLE RND(w%), RND(h%), RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
+        CIRCLE RND(w%), RND(h%), RND(150)+20, RND(10)+1
     NEXT
 ENDDEF

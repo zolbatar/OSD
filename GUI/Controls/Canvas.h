@@ -36,10 +36,10 @@ private:
 	int64_t clip_y1;
 	int64_t clip_x2;
 	int64_t clip_y2;
-	int16_t left_id = NULL;
-	int16_t right_id = NULL;
-	int16_t top_id= NULL;
-	int16_t bottom_id= NULL;
+	int16_t left_id = 0;
+	int16_t right_id = 0;
+	int16_t top_id= 0;
+	int16_t bottom_id= 0;
 	lv_draw_mask_line_param_t line_mask_param_l;
 	lv_draw_mask_line_param_t line_mask_param_r;
 	lv_draw_mask_line_param_t line_mask_param_t;
