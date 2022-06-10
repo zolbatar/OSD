@@ -50,7 +50,7 @@ struct Token {
 
 	// Position
 	int line_number;
-	int file_number;
+	int file_number = 0;
 	int char_number;
 
 	// Children

@@ -108,22 +108,33 @@ void IRCompiler::CompileTokenProcCall(Token* token, bool expression)
 	// Parameters?
 	if (token->required_types.size()>0) {
 
-		// Compile all parameters
-		auto param_expr = token->expressions[token->expressions.size()-1];
-		for (auto& t: param_expr)
-			CompileToken(t);
-
-		// Do we match?
+		// Check each expression in turn for type
 		int i = 0;
-		for (auto type = token->required_types.rbegin(); type!=token->required_types.rend(); ++type) {
+		for (auto type = token->required_types.begin(); type!=token->required_types.end(); ++type) {
+			for (auto& ctoken: token->expressions[i])
+				CompileToken(ctoken);
+
 			if (type->IsInteger()) {
-				CheckParamType(token, ValueType::Integer);
+				CheckParamTypeOnly(token, ValueType::Integer);
 			}
 			else if (type->IsFloat()) {
-				CheckParamType(token, ValueType::Float);
+				CheckParamTypeOnly(token, ValueType::Float);
 			}
 			else if (type->IsString()) {
-				CheckParamType(token, ValueType::String);
+				CheckParamTypeOnly(token, ValueType::String);
+			}
+			i++;
+		}
+
+		for (auto type = token->required_types.begin(); type!=token->required_types.end(); ++type) {
+			if (type->IsInteger()) {
+				AddIR(IROpcodes::ArgumentInteger);
+			}
+			else if (type->IsFloat()) {
+				AddIR(IROpcodes::ArgumentFloat);
+			}
+			else if (type->IsString()) {
+				AddIR(IROpcodes::ArgumentString);
 			}
 		}
 	}

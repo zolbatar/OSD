@@ -41,7 +41,7 @@ TEXTCENTRE w%/2, 320, "Special Fonts"
 COLOUR &FF,&FF,&FF
 FONT "FXMatrix105MonoPica", "Regular", 25
 TEXTCENTRE w%/2, 370, "The quick brown fox jumps over the lazy dog (FXMatrix105MonoPica)"
-FONT "Edit Undo Line BRK", "Regular", 35
+FONT "Edit Undo Line BRK", "Regular", 30
 TEXTCENTRE w%/2, 405, "The quick brown fox jumps over the lazy dog (EditUndoLineBRK)"
 
 COLOUR &FF,&FF,&00
@@ -82,4 +82,6 @@ DEF RandomColour()
     COLOUR RND(30),RND(30),RND(30)
     COLOURBG RND(30),RND(30),RND(30)
 ENDDEF
+
+REPEAT:YIELD:UNTIL FALSE
 

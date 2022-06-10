@@ -81,10 +81,6 @@ void OSDTask::SetNameAndAddToList()
 
 void OSDTask::TerminateTask()
 {
-	while (1) {
-		Yield();
-	}
-
 	// Close window
 	auto mess = SendGUIMessage();
 	mess->type = Messages::WM_CloseWindow;
@@ -95,6 +91,11 @@ void OSDTask::TerminateTask()
 		w = (Window*)GetWindow();
 	}
 	while (w!=NULL);
+
+/*	CLogger::Get()->Write("OSDTask", LogDebug, "Quit");
+	while(1) {
+		Yield();
+	}*/
 
 	// Remove
 	tasks_list.remove(this);
@@ -241,8 +242,7 @@ void OSDTask::ClearTemporaryStrings()
 #ifdef CLION
 //	printf("Deleting %zu strings\n", strings.size());
 #endif
-	if (strings.size()>STRING_GC_LEVEL)
-		strings.clear();
+	strings.clear();
 }
 
 std::string& OSDTask::GetString(int64_t idx)
@@ -382,7 +382,11 @@ std::string OSDTask::LoadSource(std::string filename)
 bool OSDTask::CompileSource(std::string filename, std::string code)
 {
 	const bool debug_output = true;
+#ifdef CLION
+	const bool optimise = false;
+#else
 	const bool optimise = true;
+#endif
 	Tokeniser token(filename, code);
 	Parser parser;
 #ifdef CLION

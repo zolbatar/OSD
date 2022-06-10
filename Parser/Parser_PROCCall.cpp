@@ -9,18 +9,43 @@ void Parser::Parser_PROCCall(Token* t, std::list<Token*>* tokens_out)
 		Error("DEF not found", t);
 	}
 
+	// Parens next
+	auto tt = GetToken();
+	if (tt->type!=TokenType::LPARENS)
+		Error("Opening parentheses expected", tt);
+
 	// Types to send? Grab an expression for each of these
 	auto top = f->second->return_types.front();
 	t->return_types.push_back(top);
 
-	// Parse parameters as expressions, this might well be empty
-	t->expressions.push_back(std::list<Token*>());
-	ParseExpression(false, false, &t->expressions[t->expressions.size()-1]);
-
-	// Impossible to know whether number of params match at this time, so copy for later
-	for (auto& pt: f->second->required_types)
+	// Create space for expressions
+	for (auto& pt: f->second->required_types) {
 		t->required_types.push_back(pt);
+		t->expressions.push_back(std::list<Token*>());
+	}
 
-	tokens_out->push_back(t);
+	// Grab parameters
+	size_t done = 0;
+	int i = 0;
+	for (auto& pt: f->second->required_types) {
+
+		// Get expression
+		ParseExpression(false, true, &t->expressions[i++]);
+
+		// Do we have a comma (and need one)?
+		done++;
+		if (done!=t->required_types.size()) {
+			tt = GetToken();
+			if (tt->type!=TokenType::COMMA)
+				Error("Comma expected", tt);
+		}
+	}
+
+	tt = GetToken();
+	if (tt->type!=TokenType::RPARENS)
+		Error("Closing parentheses expected", tt);
+
+	if (tokens_out!=NULL)
+		tokens_out->push_back(t);
 }
 

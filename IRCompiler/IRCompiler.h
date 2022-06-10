@@ -53,6 +53,7 @@ private:
 	void Error(Token* token, std::string error);
 	void TypeError(Token* token);
 	void CheckParamType(Token* token, ValueType type);
+	void CheckParamTypeOnly(Token* token, ValueType type);
 	void SetReturnType(Token* token, ValueType type);
 	void CompileToken(Token* token);
 	void CompileTokenAssignment(Token* token);

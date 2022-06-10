@@ -40,7 +40,6 @@ enum class TaskType {
 const size_t ALLOCATION_SIZE = 32768;
 const size_t MIN_MESSAGE_QUEUE = 64;
 const size_t MAX_MESSAGE_QUEUE = 16384;
-const size_t STRING_GC_LEVEL = 64;
 
 extern std::string string_error;
 typedef void (* start)(void);

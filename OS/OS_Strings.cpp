@@ -7,7 +7,6 @@ void OS_Strings_Free(int64_t index)
 
 int64_t OS_Strings_Create(std::string& s)
 {
-	GetCurrentTask()->ClearTemporaryStrings();
 	return GetCurrentTask()->AddString(s);
 }
 
@@ -19,6 +18,7 @@ int64_t OS_Strings_CreatePermanent(std::string& s)
 void OS_Strings_MakePermanent(int64_t s)
 {
 	GetCurrentTask()->MakeStringPermanent(s);
+	GetCurrentTask()->ClearTemporaryStrings();
 }
 
 void OS_Strings_FreePermanent(int64_t s)

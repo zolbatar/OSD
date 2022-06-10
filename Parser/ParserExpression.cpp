@@ -195,15 +195,8 @@ void Parser::ParseExpression(bool assignment, bool subexpression, std::list<Toke
 						Error("DEF not found", tt);
 					}
 
-					// Types to send? Grab an expression for each of these
 					PushTokenBack();
-					auto types = &f->second->required_types;
-					if (!types->empty()) {
-						// Parse parameters as expressions, this might well be empty
-						tt->expressions.push_back(std::list<Token*>());
-						ParseExpression(false, true, &tt->expressions[tt->expressions.size()-1]);
-						//Error("DEF parameters not supported yet", tt);
-					}
+					Parser_PROCCall(tt, NULL);
 
 					// Convert to PROC call
 					tt->type = TokenType::PROC_CALL_EXPR;

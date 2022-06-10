@@ -21,11 +21,11 @@ Canvas::Canvas(lv_obj_t* parent, int w, int h)
 
 Canvas::~Canvas()
 {
+	OSDTask::LockVLGL("Canvas::~Canvas");
 	DELETE buffer;
-	if (buffer_back!=nullptr)
+	if (buffer_back!=nullptr) {
 		DELETE buffer_back;
-	lv_obj_del(firstbuffer);
-	lv_obj_del(secondbuffer);
+	}
 	if (left_id!=0)
 		lv_draw_mask_free_param(&left_id);
 	if (right_id!=0)
@@ -34,6 +34,7 @@ Canvas::~Canvas()
 		lv_draw_mask_free_param(&top_id);
 	if (bottom_id!=0)
 		lv_draw_mask_free_param(&bottom_id);
+	OSDTask::UnlockVLGL();
 }
 
 void Canvas::EnableDoubleBuffering()

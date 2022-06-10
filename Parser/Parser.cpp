@@ -497,7 +497,7 @@ Token Parser::CreateToken(Token* parent, TokenType t)
 	nc.type = t;
 	nc.line_number = parent->line_number;
 	nc.char_number = parent->char_number;
-	nc.file_number = parent->line_number;
+	nc.file_number = parent->file_number;
 	return nc;
 }
 

@@ -17,7 +17,11 @@ void IRCompiler::CompileTokenIf(Token* token)
 	AddIRWithIndex(IROpcodes::JumpCreateForward, b_false);
 	AddIRWithIndex(IROpcodes::JumpCreateForward, b_end);
 	AddIR(IROpcodes::StackPopIntOperand1);
-	AddIRWithIndex(IROpcodes::JumpOnConditionFalseForward, b_false);
+	if (token->branches.size()==2) {
+		AddIRWithIndex(IROpcodes::JumpOnConditionFalseForward, b_false);
+	} else {
+		AddIRWithIndex(IROpcodes::JumpOnConditionFalseForward, b_end);
+	}
 
 	// True bit
 	for (auto& t : token->branches[0])
@@ -25,8 +29,8 @@ void IRCompiler::CompileTokenIf(Token* token)
 	AddIRWithIndex(IROpcodes::JumpForward, b_end);
 
 	// Any else?
-	AddIRWithIndex(IROpcodes::JumpDestination, b_false);
 	if (token->branches.size()==2) {
+		AddIRWithIndex(IROpcodes::JumpDestination, b_false);
 		for (auto& t : token->branches[1])
 			CompileToken(t);
 	}

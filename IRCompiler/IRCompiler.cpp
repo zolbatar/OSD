@@ -23,7 +23,7 @@ void IRCompiler::CompileToken(Token* token)
 			AddIR(IROpcodes::Yield);
 			break;
 		case TokenType::STATEMENT_START:
-			AddIRWithIndex(IROpcodes::StackCheck, token->line_number);
+			//AddIRWithIndex(IROpcodes::StackCheck, token->line_number);
 			if (!type_stack.empty())
 				Error(token, "Expected empty type stack");
 			break;
@@ -247,7 +247,7 @@ void IRCompiler::CompileToken(Token* token)
 					if (t!=ValueType::String)
 						TypeError(token);
 				}
-				type_stack.push(t);
+				//type_stack.push(t);
 				i++;
 			}
 
@@ -469,6 +469,11 @@ void IRCompiler::CheckParamType(Token* token, ValueType wanted_type)
 			AddIR(IROpcodes::ConvertOperand1FloatToInt1);
 			AddIR(IROpcodes::StackPushIntOperand1);
 		}
+		else if (wanted_type==ValueType::Float && type==ValueType::Integer) {
+			AddIR(IROpcodes::StackPopIntOperand1);
+			AddIR(IROpcodes::ConvertOperand1IntToFloat1);
+			AddIR(IROpcodes::StackPushFloatOperand1);
+		}
 		else {
 			TypeError(token);
 		}
@@ -483,6 +488,29 @@ void IRCompiler::CheckParamType(Token* token, ValueType wanted_type)
 		case ValueType::String:
 			AddIR(IROpcodes::ArgumentString);
 			break;
+	}
+}
+
+void IRCompiler::CheckParamTypeOnly(Token* token, ValueType wanted_type)
+{
+	if (type_stack.empty())
+		Error(token, "Stack empty, expected value.");
+	auto type = PopType(token);
+	if (type!=wanted_type) {
+		// Conversion?
+		if (wanted_type==ValueType::Integer && type==ValueType::Float) {
+			AddIR(IROpcodes::StackPopFloatOperand1);
+			AddIR(IROpcodes::ConvertOperand1FloatToInt1);
+			AddIR(IROpcodes::StackPushIntOperand1);
+		}
+		else if (wanted_type==ValueType::Float && type==ValueType::Integer) {
+			AddIR(IROpcodes::StackPopIntOperand1);
+			AddIR(IROpcodes::ConvertOperand1IntToFloat1);
+			AddIR(IROpcodes::StackPushFloatOperand1);
+		}
+		else {
+			TypeError(token);
+		}
 	}
 }
 

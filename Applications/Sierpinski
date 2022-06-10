@@ -1,0 +1,15 @@
+DEF Triangle(l%,x#,y#,s#)
+	IF l% > 0 THEN
+		COLOUR RND(255),RND(255),RND(255)
+		TRIANGLE x#,y#,x#+s#,y#,x#,y#+s#,1
+		s2#=s#/2
+		Triangle(l%-1,x#,y#,s2#)
+ 	    Triangle(l%-1,x#+s2#,y#,s2#)
+		Triangle(l%-1,x#,y#+s2#,s2#)
+	ENDIF
+ENDDEF
+
+REPEAT
+    CLS
+    Triangle(8,0,0,800)
+UNTIL FALSE
