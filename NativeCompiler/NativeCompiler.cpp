@@ -459,6 +459,12 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				break;
 
 				// Maths
+			case IROpcodes::MathsUnaryMinusInt:
+				jit_negr(JIT_R0, JIT_R0);
+				break;
+			case IROpcodes::MathsUnaryMinusFloat:
+				jit_negr_d(JIT_F0, JIT_F0);
+				break;
 			case IROpcodes::MathsAddString:
 				jit_prepare();
 				jit_pushargr(JIT_R1);

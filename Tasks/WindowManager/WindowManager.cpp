@@ -329,9 +329,9 @@ void WindowManager::DesktopStartup()
 		fonts->LoadSourceCode(":SD.$.Welcome.Fonts");
 		fonts->Start();*/
 
-		auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 300*dm, 100*dm, 400*dm, 400*dm);
+/*		auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 700*dm, 500*dm, 400*dm, 400*dm);
 		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-		mandelbrot->Start();
+		mandelbrot->Start();*/
 
 /*		auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
 		tester->LoadSourceCode(":SD.$.Welcome.Tester");
@@ -341,11 +341,15 @@ void WindowManager::DesktopStartup()
 		clock->LoadSourceCode(":SD.$.Welcome.Clock");
 		clock->Start();*/
 
-		auto graphics = NEW DARICWindow("Graphics", false, 20*dm, 400*dm, 600*dm, 500*dm);
+/*		auto graphics = NEW DARICWindow("Graphics", false, 20*dm, 400*dm, 600*dm, 500*dm);
 		graphics->LoadSourceCode(":SD.$.Welcome.Graphics2D");
-		graphics->Start();
+		graphics->Start();*/
 
-		auto tasks = NEW TasksWindow(1200*dm, 500*dm, 650*dm, 400*dm);
+		auto raytracer = NEW DARICWindow("Ray Tracer", false, 450*dm, 400*dm, 600*dm, 500*dm);
+		raytracer->LoadSourceCode(":SD.$.Welcome.Raytracer");
+		raytracer->Start();
+
+		auto tasks = NEW TasksWindow(1100*dm, 500*dm, 750*dm, 400*dm);
 		tasks->Start();
 
 #else
@@ -368,13 +372,13 @@ void WindowManager::DesktopStartup()
 		std::thread t3(&DARICWindow::Start, mandelbrot);
 		t3.detach();*/
 
-		auto tester = NEW DARICWindow("Tester", false, 100*dm, 600*dm, 400*dm, 400*dm);
-		tester->LoadSourceCode(":SD.$.Welcome.Tester");
+		auto tester = NEW DARICWindow("RayTracer", false, 100*dm, 600*dm, 400*dm, 400*dm);
+		tester->LoadSourceCode(":SD.$.Welcome.Raytracer");
 		std::thread t4(&DARICWindow::Start, tester);
 		t4.detach();
 
-/*		auto clock3 = NEW DARICWindow("Clock3", false, 100*dm, 600*dm, 400*dm, 400*dm);
-		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
+/*		auto clock3 = NEW DARICWindow("Tester", false, 100*dm, 600*dm, 400*dm, 400*dm);
+		clock3->LoadSourceCode(":SD.$.Welcome.Tester");
 		std::thread t4(&DARICWindow::Start, clock3);
 		t4.detach();*/
 

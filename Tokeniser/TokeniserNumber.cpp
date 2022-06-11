@@ -20,15 +20,13 @@ void Tokeniser::HandleNumber(const char& c)
 	else {
 		if (search.length()==1 && search[0]=='-') {
 			// This is unary minus
-			auto found = symbols.find("UNARY-");
-			CreateTokenAndAdd((*found).second);
+			CreateTokenAndAdd(TokenType::UNARYMINUS);
 			HandleCharacter(c);
 			return;
 		}
 		else if (search.length()==1 && search[0]=='+') {
 			// This is unary plus
-			auto found = symbols.find("UNARY+");
-			CreateTokenAndAdd((*found).second);
+			CreateTokenAndAdd(TokenType::UNARYPLUS);
 			HandleCharacter(c);
 			return;
 		}

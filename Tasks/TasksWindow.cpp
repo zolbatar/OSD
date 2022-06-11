@@ -74,7 +74,8 @@ void TasksWindow::UpdateTasks()
 	// Container
 	const int sz = tasks_list.size()+4;
 	static lv_coord_t row_dsc[256];
-	for (int i = 0; i<sz; i++)
+	row_dsc[0] = (body_font_height+4)*dm;
+	for (int i = 1; i<sz; i++)
 		row_dsc[i] = body_font_height*dm;
 	row_dsc[sz] = LV_GRID_TEMPLATE_LAST;
 	static lv_coord_t col_dsc[] = { lv_pct(41), lv_pct(15), lv_pct(7), lv_pct(7), lv_pct(30), LV_GRID_TEMPLATE_LAST };
@@ -95,7 +96,7 @@ void TasksWindow::UpdateTasks()
 	lv_obj_add_style(title1, &style_grid_title, LV_STATE_DEFAULT);
 	auto title2 = lv_label_create(cont);
 	lv_obj_set_grid_cell(title2, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
-	lv_label_set_text(title2, "Used Memory");
+	lv_label_set_text(title2, "Memory");
 	lv_obj_add_style(title2, &style_grid_title, LV_STATE_DEFAULT);
 	auto title3 = lv_label_create(cont);
 	lv_obj_set_grid_cell(title3, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, 0, 1);

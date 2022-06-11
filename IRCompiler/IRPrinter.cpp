@@ -317,6 +317,12 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 				break;
 
 				// Maths
+			case IROpcodes::MathsUnaryMinusInt:
+				sprintf(l, "[Maths   ] Unary -, integer");
+				break;
+			case IROpcodes::MathsUnaryMinusFloat:
+				sprintf(l, "[Maths   ] Unary -, float");
+				break;
 			case IROpcodes::MathsAddString:
 				sprintf(l, "[Maths   ] +, string");
 				break;

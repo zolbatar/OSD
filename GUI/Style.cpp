@@ -42,6 +42,7 @@ void SetupLVGLStyles()
 	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height*dm);
 	font_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", body_font_height*dm);
 	auto font_body_bold = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", body_font_height*dm);
+	auto font_large = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", (body_font_height+4)*dm);
 	auto menu_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height*dm);
 	font_mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", body_font_height*dm);
 
@@ -154,8 +155,7 @@ void SetupLVGLStyles()
 	lv_style_set_pad_all(&style_grid, 8*dm);
 	lv_style_set_radius(&style_grid, corner_radius_inner);
 	lv_style_init(&style_grid_title);
-	lv_style_set_text_font(&style_grid_title, font_body_bold);
-	lv_style_set_text_decor(&style_grid_title, LV_TEXT_DECOR_UNDERLINE);
+	lv_style_set_text_font(&style_grid_title, font_large);
 
 	// Style - chart
 	lv_style_init(&style_chart);

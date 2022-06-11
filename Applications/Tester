@@ -210,6 +210,8 @@ ENDDEF
 DEF Maths()
     PRINT "::Maths::"
     PRINT "- (Unary)          = ";:IF 2 - -2 = 4 Pass() ELSE Fail()
+    A%=2
+    PRINT "- (Unary Var)      = ";:IF -A% = -2 Pass() ELSE Fail()
     PRINT "- (Int)            = ";:IF 10 - 8 = 2 Pass() ELSE Fail()
     PRINT "+ (Int)            = ";:IF 10 + 8 = 18 Pass() ELSE Fail()
     PRINT "* (Int)            = ";:IF 10 * 8 = 80 Pass() ELSE Fail()

@@ -137,6 +137,8 @@ enum class IROpcodes {
 	StringsStrings,
 
 	// Maths
+	MathsUnaryMinusInt,
+	MathsUnaryMinusFloat,
 	MathsAddInt,
 	MathsAddString,
 	MathsAddFloat,

@@ -71,6 +71,7 @@ void IRCompiler::CompileToken(Token* token)
 			break;
 
 			// Maths
+		case TokenType::UNARYMINUS:
 		case TokenType::ADD:
 		case TokenType::SUBTRACT:
 		case TokenType::MULTIPLY:
