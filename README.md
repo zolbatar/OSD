@@ -26,43 +26,6 @@ MIT
 
 # TODO
 
-Structured types
-
 Collections
-
-String allocations (keep string of STORE and LOAD strings (and DATA/CONST), and garbage collect on LOAD?)
-
 INSTALL
-
 Deal with messages from dead applications
-
-Nested REPEAT and WHILEs, IFs
-
-
-
-
-
-.	Separates directory specifications, eg $.fred
-:	Introduces a drive or disc specification, eg :0, :welcome. It also marks the end of a filing system name, eg adfs:
-*	Acts as a 'wildcard' to match zero or more characters, eg prog*
-#	Acts as a 'wildcard' to match any single character, eg $.ch##
-$	is the name of the root directory of the disc
-&	is the user root directory (URD)
-@	is the currently selected directory (CSD)
-^	is the 'parent' directory
-%	is the currently selected library directory (CSL)
-\	is the previously selected directory (PSD - available on FileCore-based filing systems, and any others that choose to do so)
-
-
-
-$.Documents.Memos	File Memos in dir Documents in $
-BASIC.Games.Adventures	File Adventures in dir Games in dir @.BASIC
-%.BCPL	File BCPL in the current library
-
-net#MJHardy::disc1.$.mike
-
-# Freetype
-./configure --with-zlib=no --with-bzip2=no --with-png=no --with-harfbuzz=no --with-brotli=no --with-librsvg==no CC=aarch64-none-elf-gcc CFLAGS=-specs=nosys.specs --host=aarch64-none-elf
-
-# Harfbuzz
-./configure CC=aarch64-none-elf-gcc CFLAGS=-specs=nosys.specs --host=aarch64-none-elf
