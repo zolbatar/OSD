@@ -1,6 +1,7 @@
 #include "Canvas.h"
 #ifndef CLION
 #include <circle/logger.h>
+#include <circle/multicore.h>
 #endif
 #include "../../Tasks/FontManager/FontManager.h"
 
@@ -22,7 +23,6 @@ Canvas::Canvas(lv_obj_t* parent, int w, int h)
 
 Canvas::~Canvas()
 {
-	OSDTask::LockVLGL("Canvas::~Canvas");
 	DELETE buffer;
 	if (buffer_back!=nullptr) {
 		DELETE buffer_back;
@@ -35,7 +35,6 @@ Canvas::~Canvas()
 		lv_draw_mask_free_param(&top_id);
 	if (bottom_id!=0)
 		lv_draw_mask_free_param(&bottom_id);
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::EnableDoubleBuffering()
@@ -71,18 +70,14 @@ void Canvas::Flip()
 
 void Canvas::Clear()
 {
-	OSDTask::LockVLGL("Canvas::Clear");
 	lv_canvas_fill_bg(object, bg, LV_OPA_COVER);
 	cursor_x = 0;
 	cursor_y = 0;
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::PlotPixel(int64_t x, int64_t y)
 {
-	OSDTask::LockVLGL("Canvas::PlotPixel");
 	lv_canvas_set_px_color(object, x, y, fg);
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::ClipOn(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
@@ -93,14 +88,10 @@ void Canvas::ClipOn(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 	clip_x2 = x2;
 	clip_y2 = y2;
 
-	auto task = GetCurrentTask();
-	auto w = (Window*)task->GetWindow();
-	assert(w!=NULL);
-
-	lv_draw_mask_line_points_init(&line_mask_param_l, clip_x1, 0, clip_x1, w->GetContentHeight(), LV_DRAW_MASK_LINE_SIDE_RIGHT);
-	lv_draw_mask_line_points_init(&line_mask_param_r, clip_x2, 0, clip_x2, w->GetContentHeight(), LV_DRAW_MASK_LINE_SIDE_LEFT);
-	lv_draw_mask_line_points_init(&line_mask_param_t, 0, clip_y1, w->GetContentWidth(), clip_y1, LV_DRAW_MASK_LINE_SIDE_BOTTOM);
-	lv_draw_mask_line_points_init(&line_mask_param_b, 0, clip_y2, w->GetContentWidth(), clip_y2, LV_DRAW_MASK_LINE_SIDE_TOP);
+	lv_draw_mask_line_points_init(&line_mask_param_l, clip_x1, 0, clip_x1, h, LV_DRAW_MASK_LINE_SIDE_RIGHT);
+	lv_draw_mask_line_points_init(&line_mask_param_r, clip_x2, 0, clip_x2, h, LV_DRAW_MASK_LINE_SIDE_LEFT);
+	lv_draw_mask_line_points_init(&line_mask_param_t, 0, clip_y1, w, clip_y1, LV_DRAW_MASK_LINE_SIDE_BOTTOM);
+	lv_draw_mask_line_points_init(&line_mask_param_b, 0, clip_y2, w, clip_y2, LV_DRAW_MASK_LINE_SIDE_TOP);
 }
 
 void Canvas::ClipOff()
@@ -138,7 +129,6 @@ void Canvas::ClearClip()
 
 void Canvas::DrawLine(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
 {
-	OSDTask::LockVLGL("Canvas::DrawLine");
 	SetupClip();
 	static lv_point_t points[2];
 	points[0].x = x1;
@@ -151,12 +141,10 @@ void Canvas::DrawLine(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
 	line_dsc.width = w;
 	lv_canvas_draw_line(object, points, 2, &line_dsc);
 	ClearClip();
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::DrawTriangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w)
 {
-	OSDTask::LockVLGL("Canvas::DrawTriangle");
 	SetupClip();
 	static lv_point_t points[4];
 	points[0].x = x1;
@@ -173,12 +161,10 @@ void Canvas::DrawTriangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_
 	line_dsc.width = w;
 	lv_canvas_draw_line(object, points, 4, &line_dsc);
 	ClearClip();
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::DrawTriangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w)
 {
-	OSDTask::LockVLGL("Canvas::DrawTriangleFilled");
 	SetupClip();
 	static lv_point_t points[4];
 	points[0].x = x1;
@@ -196,12 +182,10 @@ void Canvas::DrawTriangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, 
 	line_dsc.outline_width = w;
 	lv_canvas_draw_polygon(object, points, 4, &line_dsc);
 	ClearClip();
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::DrawCircle(int64_t x, int64_t y, int64_t r, int64_t w)
 {
-	OSDTask::LockVLGL("Canvas::DrawCircle");
 	SetupClip();
 	lv_draw_arc_dsc_t line_dsc;
 	lv_draw_arc_dsc_init(&line_dsc);
@@ -209,12 +193,10 @@ void Canvas::DrawCircle(int64_t x, int64_t y, int64_t r, int64_t w)
 	line_dsc.color = fg;
 	lv_canvas_draw_arc(object, x, y, r, 0, 359, &line_dsc);
 	ClearClip();
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::DrawCircleFilled(int64_t x, int64_t y, int64_t r, int64_t w)
 {
-	OSDTask::LockVLGL("Canvas::DrawCircleFilled");
 	SetupClip();
 
 	// Fill
@@ -233,12 +215,10 @@ void Canvas::DrawCircleFilled(int64_t x, int64_t y, int64_t r, int64_t w)
 	lv_canvas_draw_arc(object, x, y, r, 0, 359, &line_dsc);
 
 	ClearClip();
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::DrawRectangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
 {
-	OSDTask::LockVLGL("Canvas::Rectangle");
 	SetupClip();
 	static lv_point_t points[5];
 	points[0].x = x1;
@@ -257,12 +237,10 @@ void Canvas::DrawRectangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64
 	line_dsc.width = w;
 	lv_canvas_draw_line(object, points, 5, &line_dsc);
 	ClearClip();
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::DrawRectangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
 {
-	OSDTask::LockVLGL("Canvas::RectangleFilled");
 	SetupClip();
 
 	// Fill
@@ -291,7 +269,6 @@ void Canvas::DrawRectangleFilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2,
 	lv_canvas_draw_line(object, points, 5, &line_dsc);
 
 	ClearClip();
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::SetFG(uint32_t fg)
@@ -306,7 +283,6 @@ void Canvas::SetBG(uint32_t bg)
 
 void Canvas::PrintString(const char* s)
 {
-	OSDTask::LockVLGL("Canvas::PrintString");
 	lv_draw_label_dsc_t label_dsc;
 	lv_draw_label_dsc_init(&label_dsc);
 	label_dsc.font = mono;
@@ -329,7 +305,6 @@ void Canvas::PrintString(const char* s)
 			}
 		}
 	}
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::PrintNewLine()
@@ -346,8 +321,6 @@ void Canvas::PrintNewLine()
 
 void Canvas::ScrollUp()
 {
-	OSDTask::LockVLGL("Canvas::ScrollUp");
-
 	// Move memory buffer up
 	const int ss = (lv_img_cf_get_px_size(cf)*w)*h/8;
 	const int bs = (lv_img_cf_get_px_size(cf)*w)*body_font_height/8;
@@ -361,7 +334,6 @@ void Canvas::ScrollUp()
 	rect_dsc.bg_opa = LV_OPA_COVER;
 	rect_dsc.bg_color = bg;
 	lv_canvas_draw_rect(object, 0, h-body_font_height, w, body_font_height, &rect_dsc);
-	OSDTask::UnlockVLGL();
 }
 
 void Canvas::PrintTab(int64_t v)

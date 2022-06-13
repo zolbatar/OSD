@@ -9,8 +9,6 @@ extern int dm;
 Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
 		:task(task), title(title), x1(x), y1(y), width(w), height(h)
 {
-	//CLogger::Get()->Write("GUI", LogDebug, "Window");
-	OSDTask::LockVLGL("Window::Window");
 	x2 = x1+width;
 	y2 = y1+height;
 
@@ -49,17 +47,14 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 		canvas = new Canvas(content, w-(WINDOW_BORDER_WIDTH*2*dm), h-(WINDOW_BORDER_WIDTH*2*dm)-WINDOW_HEADER_HEIGHT*dm);
 	}
 
-	OSDTask::UnlockVLGL();
 	SetActive();
 }
 
 Window::~Window()
 {
-	OSDTask::LockVLGL("Window::~Window");
 	if (canvas!=NULL)
 		delete canvas;
 	lv_obj_del(win);
-	OSDTask::UnlockVLGL();
 }
 
 void Window::SetActive()

@@ -23,34 +23,29 @@
 #include <circle/sched/task.h>
 #include <circle/sysconfig.h>
 #include <circle/logger.h>
-extern CSpinLock* message_lock;
-extern CSpinLock* vlgl_mutex;
 #endif
 
 extern WindowManager* gui;
 extern Input* input;
 std::string string_error = "NOT A VALID STRING";
 
-OSDTask* OSDTask::task_override = NULL;
 #ifdef CLION
 std::map<std::string, OSDTask*> OSDTask::tasks;
 std::map<std::thread::id, OSDTask*> OSDTask::task_threads;
 std::mutex OSDTask::vlgl_mutex;
 #else
 CTask *OSDTask::boot_task;
+OSDTask *OSDTask::current_task;
 #endif
 std::list<OSDTask*> OSDTask::tasks_list;
 size_t OSDTask::task_id = 0;
 
 OSDTask* GetCurrentTask()
 {
-	// Do we have an override?
-	auto tover = OSDTask::GetTaskOverride();
-	if (tover!=NULL)
-		return tover;
 #ifndef CLION
-	auto mScheduler = CScheduler::Get();
-	return (OSDTask *)mScheduler->GetCurrentTask();
+	return OSDTask::current_task;
+//	auto mScheduler = CScheduler::Get();
+//		return (OSDTask *)mScheduler->GetCurrentTask();
 #else
 	auto id = std::this_thread::get_id();
 	auto f = OSDTask::task_threads.find(id);
@@ -59,8 +54,21 @@ OSDTask* GetCurrentTask()
 #endif
 }
 
+OSDTask::OSDTask()
+#ifndef CLION
+: CTask()
+#endif
+{
+	message_queue = NEW moodycamel::ConcurrentQueue<Message>(64);
+	// To be safe, zero these out
+	for (auto it = allocations.begin(); it!=allocations.end(); ++it) {
+		it->m = 0;
+	}
+}
+
 OSDTask::~OSDTask()
 {
+	DELETE message_queue;
 	if (_jit!=NULL)
 		jit_destroy_state();
 	if (code!=NULL)
@@ -86,7 +94,7 @@ void OSDTask::TerminateTask()
 	Message mess;
 	mess.type = Messages::WM_CloseWindow;
 	mess.source = this;
-	SendGUIMessage(mess);
+	SendGUIMessage(std::move(mess));
 	Window* w;
 	do {
 		Yield();
@@ -123,6 +131,13 @@ void OSDTask::TaskTerminationHandler(CTask* ctask)
 			CLogger::Get()->Write("OS_Tasks", LogDebug, "Unknown terminator handler type: %p/%d", tt, *tt);
 			break;
 	}
+}
+#endif
+
+#ifndef CLION
+void OSDTask::TaskSwitchHandler(CTask* ctask)
+{
+	OSDTask::current_task = (OSDTask *)ctask;
 }
 #endif
 
@@ -217,6 +232,7 @@ void OSDTask::MakeStringPermanent(int64_t idx)
 {
 	auto f = strings.extract(idx);
 	permanent_strings.insert(std::move(f));
+	//GetCurrentTask()->ClearTemporaryStrings();
 }
 
 void OSDTask::SetConstantString(int64_t idx)
@@ -297,24 +313,16 @@ size_t OSDTask::GetAllocCount()
 	return 0;
 }
 
-void OSDTask::SendMessage(Message m)
+void OSDTask::SendMessage(Message&& m)
 {
-	AcquireMessageLock();
-	message_queue.push(std::move(m));
-	ReleaseMessageLock();
-}
-
-void OSDTask::SendGUIMessage(Message m)
-{
-	// How long since last message?
-#ifndef CLION
-	auto diff = CTimer::Get()->GetClockTicks()-last_yield;
-	if (diff>=1000) {
+	while (!message_queue->try_enqueue(std::move(m))) {
 		Yield();
 	}
-#endif
-//	auto gui = GetTask("@");
-	return gui->SendMessage(std::move(m));
+}
+
+void OSDTask::SendGUIMessage(Message&& m)
+{
+	gui->SendMessage(std::move(m));
 }
 
 OSDTask* OSDTask::GetTask(const char* s)
@@ -484,7 +492,8 @@ bool OSDTask::CompileSource(std::string filename, std::string code)
 
 void OSDTask::Yield()
 {
-	GetCurrentTask()->ClearTemporaryStrings();
+//	GetCurrentTask()->ClearTemporaryStrings();
+//	CLogger::Get()->Write("OSDTask", LogDebug, "Yield");
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->Yield();
@@ -522,40 +531,16 @@ size_t OSDTask::CalculateMemoryUsed()
 	return r;
 }
 
-void OSDTask::LockVLGL(const char* desc)
+void OSDTask::UpdateGUI()
 {
-#ifdef CLION
-	printf("Locking VLGL: %s\n", desc);
-	OSDTask::vlgl_mutex.lock();
-#else
-//	CLogger::Get()->Write("OSDTask", LogDebug, "Locking VLGL: %s", desc);
-//	vlgl_mutex.Acquire();
-#endif
+	assert(0);
 }
 
-void OSDTask::UnlockVLGL()
-{
-#ifdef CLION
-	printf("Unlocking VLGL\n");
-	OSDTask::vlgl_mutex.unlock();
-#else
-//	CLogger::Get()->Write("OSDTask", LogDebug, "Unlocking VLGL");
-//	vlgl_mutex.Release();
-#endif
-}
-
-void OSDTask::AcquireMessageLock()
-{
 #ifndef CLION
-//	CLogger::Get()->Write("OSDTask", LogDebug, "Locking message thread");
-//	message_lock.Acquire();
-#endif
-}
-
-void OSDTask::ReleaseMessageLock()
+bool OSDTask::TimeToYield()
 {
-#ifndef CLION
-//	CLogger::Get()->Write("OSDTask", LogDebug, "Unlocking message thread");
-//	message_lock.Release();
-#endif
+//	return (CTimer::Get()->GetClockTicks()-last_yield)>10000;
+	return (CTimer::Get()->GetClockTicks()-last_yield)>10;
 }
+#endif
+

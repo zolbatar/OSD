@@ -11,6 +11,7 @@ public:
 	DARICWindow(std::string name, bool exclusive, int x, int y, int w, int h);
 	void Run();
 	void LoadSourceCode(std::string filename);
+	void UpdateGUI();
 private:
 	std::string filename;
 	std::string code;

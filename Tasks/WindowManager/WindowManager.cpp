@@ -25,8 +25,6 @@ extern "C"
 
 WindowManager::WindowManager()
 {
-	return;
-	CLogger::Get()->Write("OS/D", LogNotice, "aaa");
 	this->id = "@";
 	this->name = "@";
 
@@ -45,7 +43,6 @@ WindowManager::WindowManager()
 	if (err!=CS_ERR_OK) {
 		printf("Error (cs_option): %d\n", err);
 	}
-	CLogger::Get()->Write("OS/D", LogNotice, "bbb");
 
 	// Setup clvgl
 #ifdef CLION
@@ -53,12 +50,10 @@ WindowManager::WindowManager()
 #else
 	clvgl = NEW GuiCLVGL(screen, interrupt);
 #endif
-	CLogger::Get()->Write("OS/D", LogNotice, "ccc");
 	clvgl->Initialize();
 #ifndef CLION
 	CLogger::Get()->Write("FontManager", LogDebug, "Setting up styles");
 #endif
-	CLogger::Get()->Write("OS/D", LogNotice, "ddd");
 	SetupLVGLStyles();
 
 #ifndef CLION
@@ -92,35 +87,62 @@ void WindowManager::Run()
 	// Add right click menu to desktop
 	lv_obj_add_event_cb(lv_scr_act(), ClickEventHandler, LV_EVENT_LONG_PRESSED, this);
 
-	init_complete = true;
+#ifdef CLION
+	DesktopStartup();
+#endif
+
 	while (!clvgl->QuitRequested()) {
+
+		// Update all windows
+		for (auto& task: OSDTask::tasks_list) {
+			if (task->IsDirty()) {
+//				CLogger::Get()->Write("GUI", LogDebug, "Update %s", task->GetWindowName().c_str());
+				task->UpdateGUI();
+			}
+			else {
+//				CLogger::Get()->Write("GUI", LogDebug, "NOT Update %s", task->GetWindowName().c_str());
+			}
+		}
+
 #ifndef CLION
 		clvgl->Update(USBHCI->UpdatePlugAndPlay());
 #else
-		LockVLGL("Refresh");
 		clvgl->Update();
-		UnlockVLGL();
 #endif
 
 		// Process messages
-		AcquireMessageLock();
-		if (!message_queue.empty()) {
-			auto message = message_queue.front();
-			message_queue.pop();
-			ReleaseMessageLock();
-			OSDTask* source = (OSDTask*)message.source;
+		ProcessMessageQueue();
+	}
 
-			// Use task override, so allocations are allocated to the right task
-			task_override = source;
+	// Must shut all other tasks down
+#ifdef CLION
+	for (auto& t: tasks) {
+		if (t.first!="@") {
+			t.second->TerminateTask();
+		}
+	}
+#endif
+}
+
+void WindowManager::ProcessMessageQueue()
+{
+	int count = 0;
+	Message message;
+	while (count < 32 && message_queue->try_dequeue(message)) {
+		count++;
+		OSDTask* source = (OSDTask*)message.source;
+//		CLogger::Get()->Write("Window Manager", LogDebug, "Msg: %s %d", source->GetWindowName().c_str(), (int)message.type);
+
+		try {
 			switch (message.type) {
 
 				// Window manager
 				case Messages::WM_OpenWindow: {
 					auto m = (WM_OpenWindow*)&message.data;
-					//CLogger::Get()->Write("GUI", LogDebug, "Fetched message %d %d %d", message.type, m->x, m->y);
 					Window* w = new Window(source, m->canvas, m->fixed, m->title, m->x, m->y, m->width, m->height);
 					Window::windows.insert(std::make_pair(m->id, w));
-					source->SetWindow(m->id, w);
+					//CLogger::Get()->Write("Window Manager", LogDebug, "Set: %s", source->GetWindowName().c_str());
+					source->SetWindow(w);
 					break;
 				}
 				case Messages::WM_CloseWindow: {
@@ -128,7 +150,7 @@ void WindowManager::Run()
 					if (w!=Window::windows.end()) {
 						DELETE w->second;
 						Window::windows.erase(w);
-						source->SetWindow(source->GetWindowID(), NULL);
+						source->SetWindow(NULL);
 					}
 					break;
 				}
@@ -265,28 +287,28 @@ void WindowManager::Run()
 					auto m = (Coord1S*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->DrawText(m->x, m->y, OS_Strings_Get(m->s));
+					w->GetCanvas()->DrawText(m->x, m->y, GetCurrentTask()->GetString(m->s));
 					break;
 				}
 				case Messages::Canvas_TextCentre: {
 					auto m = (Coord1S*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->DrawTextCentre(m->x, m->y, OS_Strings_Get(m->s));
+					w->GetCanvas()->DrawTextCentre(m->x, m->y, GetCurrentTask()->GetString(m->s));
 					break;
 				}
 				case Messages::Canvas_TextRight: {
 					auto m = (Coord1S*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->DrawTextRight(m->x, m->y, OS_Strings_Get(m->s));
+					w->GetCanvas()->DrawTextRight(m->x, m->y, GetCurrentTask()->GetString(m->s));
 					break;
 				}
 				case Messages::Canvas_SetFont: {
 					auto m = (SetFont*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->SetFont(OS_Strings_Get(m->ff), OS_Strings_Get(m->fs), m->size);
+					w->GetCanvas()->SetFont(GetCurrentTask()->GetString(m->ff), GetCurrentTask()->GetString(m->fs), m->size);
 					break;
 				}
 
@@ -298,21 +320,15 @@ void WindowManager::Run()
 #endif
 					assert(0);
 			}
-			task_override = NULL;
 		}
-		else {
-			ReleaseMessageLock();
-		}
-	}
-
-	// Must shut all other tasks down
-#ifdef CLION
-	for (auto& t: tasks) {
-		if (t.first!="@") {
-			t.second->TerminateTask();
-		}
-	}
+		catch (std::exception& e) {
+#ifndef CLION
+			CLogger::Get()->Write("GUI", LogDebug, "Exception %s, message %d %p", e.what(), message.type, message.source);
+#else
+			printf("Exception %s, message %d %p", e.what(), message.type, message.source);
 #endif
+		}
+	}
 }
 
 void WindowManager::DesktopStartup()
@@ -323,40 +339,36 @@ void WindowManager::DesktopStartup()
 		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
 		clock3->Start();*/
 
-	/*	auto graphics2d = NEW DARICWindow("Graphics 2D", false, 200*dm, 450*dm, 600*dm, 600*dm);
+		auto graphics2d = NEW DARICWindow("Graphics 2D", false, 20*dm, 450*dm, 600*dm, 600*dm);
 		graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2d");
-		graphics2d->Start();*/
+		graphics2d->Start();
 
-/*		auto sierpinski = NEW DARICWindow("Sierpinski", false, 50*dm, 50*dm, 500*dm, 500*dm);
+		auto sierpinski = NEW DARICWindow("Sierpinski", false, 50*dm, 50*dm, 500*dm, 500*dm);
 		sierpinski->LoadSourceCode(":SD.$.Welcome.Sierpinski");
 		sierpinski->Start();
 
-		auto fonts = NEW DARICWindow("Fonts", false, 600*dm, 300*dm, 1200*dm, 700*dm);
+		auto fonts = NEW DARICWindow("Fonts", false, 600*dm, 20*dm, 1200*dm, 700*dm);
 		fonts->LoadSourceCode(":SD.$.Welcome.Fonts");
-		fonts->Start();*/
+		fonts->Start();
 
-/*		auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 700*dm, 500*dm, 400*dm, 400*dm);
+		auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 700*dm, 500*dm, 400*dm, 400*dm);
 		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-		mandelbrot->Start();*/
+		mandelbrot->Start();
 
-/*		auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
+		auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
 		tester->LoadSourceCode(":SD.$.Welcome.Tester");
 		tester->Start();
 
-		auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
+/*		auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
 		clock->LoadSourceCode(":SD.$.Welcome.Clock");
 		clock->Start();*/
 
-/*		auto graphics = NEW DARICWindow("Graphics", false, 20*dm, 400*dm, 600*dm, 500*dm);
-		graphics->LoadSourceCode(":SD.$.Welcome.Graphics2D");
-		graphics->Start();*/
-
-/*		auto raytracer = NEW DARICWindow("Ray Tracer", false, 450*dm, 400*dm, 600*dm, 500*dm);
+		auto raytracer = NEW DARICWindow("Ray Tracer", false, 650*dm, 700*dm, 640*dm, 350*dm);
 		raytracer->LoadSourceCode(":SD.$.Welcome.Raytracer");
-		raytracer->Start();*/
+		raytracer->Start();
 
-//		auto tasks = NEW TasksWindow(1100*dm, 500*dm, 750*dm, 400*dm);
-//		tasks->Start();
+		auto tasks = NEW TasksWindow(1100*dm, 500*dm, 750*dm, 400*dm);
+		tasks->Start();
 
 #else
 /*	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 550*dm, 400*dm);
@@ -468,5 +480,4 @@ void WindowManager::ClickEventHandler(lv_event_t* e)
 		t->CreateMenu(p.x, p.y, NULL, "OS/D", menu);
 	}
 }
-
 

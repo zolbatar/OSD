@@ -48,19 +48,20 @@ void TasksWindow::Run()
 
 	// Do stuff
 	while (1) {
-//		UpdateTasks();
+		is_dirty = true;
 		Sleep(1000);
 	}
 
 	TerminateTask();
 }
 
-void TasksWindow::UpdateTasks()
+void TasksWindow::UpdateGUI()
 {
-	MemorySummary m;
-//	CalculateMem(&m);
+	is_dirty = false;
 
-	LockVLGL("TasksWindow::UpdateTasks");
+	MemorySummary m;
+	CalculateMem(&m);
+
 	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
 	lv_obj_clean(lv_win_get_content(w));
 
@@ -71,8 +72,6 @@ void TasksWindow::UpdateTasks()
 	lv_obj_align(cont_col, LV_ALIGN_TOP_MID, 0, 0);
 	lv_obj_set_flex_flow(cont_col, LV_FLEX_FLOW_COLUMN);
 	lv_obj_add_style(cont_col, &style_grid, LV_STATE_DEFAULT);
-	UnlockVLGL();
-	return;
 
 	// Container
 	const int sz = tasks_list.size()+4;
@@ -208,5 +207,4 @@ void TasksWindow::UpdateTasks()
 
 		i++;
 	}
-	UnlockVLGL();
 }

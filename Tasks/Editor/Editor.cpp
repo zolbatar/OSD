@@ -44,7 +44,6 @@ void Editor::Run()
 	while (w==NULL);
 
 	// Build
-	LockVLGL("TasksWindow::UpdateTasks");
 	auto ww = w->GetLVGLWindow();
 	lv_obj_t* ta = lv_textarea_create(lv_win_get_content(ww));
 	lv_textarea_set_one_line(ta, true);
@@ -55,7 +54,6 @@ void Editor::Run()
 	lv_textarea_add_text(ta, code.c_str());
 	lv_obj_add_state(ta, LV_STATE_FOCUSED);
 	lv_obj_add_style(ta, &style_textarea, LV_STATE_DEFAULT);
-	UnlockVLGL();
 
 	// Do stuff
 	while (1) {
@@ -73,7 +71,6 @@ void Editor::TextareaEventHandler(lv_event_t* e)
 
 void Editor::LoadSourceCode(std::string filename)
 {
-	task_override = this;
 	std::vector<std::string> lines;
 
 	// Quick and dirty file stuff until we have a proper file manager
@@ -104,5 +101,11 @@ void Editor::LoadSourceCode(std::string filename)
 	std::string s;
 	for (const auto& line : lines) s += line+'\n';
 	this->code = s;
-	task_override = NULL;
 }
+
+void Editor::UpdateGUI()
+{
+	is_dirty = false;
+}
+
+

@@ -3,12 +3,12 @@
 
 class TasksWindow : public OSDTask {
 public:
-    TasksWindow(int x, int y, int w, int h);
+	TasksWindow(int x, int y, int w, int h);
 
-    void Run();
+	void Run();
+	void UpdateGUI();
 private:
-    const int HISTORY_SIZE = 64;
-    std::list<size_t> used_history;
+	const int HISTORY_SIZE = 64;
+	std::list<size_t> used_history;
 
-    void UpdateTasks();
 };

@@ -24,6 +24,10 @@ https://lvgl.io/
 stb-truetype
 MIT
 
+concurrentqueue
+Simplified BSD
+https://github.com/cameron314/concurrentqueue
+
 # TODO
 
 Collections

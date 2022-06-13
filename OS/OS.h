@@ -32,11 +32,11 @@ void OS_Strings_FreePermanent(int64_t s);
 OSDTask* GetCurrentTask();
 
 struct MemorySummary {
-	size_t total_memory;
-	size_t free_memory;
+	size_t total_memory = 0;
+	size_t free_memory = 0;
 	size_t total_task = 0;
-	size_t used;
-	size_t lost;
+	size_t used = 0;
+	size_t lost = 0;
 };
 
 void CalculateMem(MemorySummary* m);

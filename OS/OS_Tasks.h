@@ -25,6 +25,7 @@
 #include <chrono>
 #include <set>
 #include <queue>
+#include "../Library/concurrentqueue.h"
 
 extern "C"
 {
@@ -69,17 +70,7 @@ class OSDTask : public CTask {
 class OSDTask {
 #endif
 public:
-	OSDTask()
-#ifndef CLION
-	: CTask()
-#endif
-	{
-		// To be safe, zero these out
-		for (auto it = allocations.begin(); it!=allocations.end(); ++it) {
-			it->m = 0;
-		}
-	}
-
+	OSDTask();
 	~OSDTask();
 
 	size_t CalculateMemoryUsed();
@@ -97,10 +88,6 @@ public:
 	void Start()
 	{
 		Run();
-	}
-
-	void WaitForTermination()
-	{
 	}
 
 #endif
@@ -145,19 +132,19 @@ public:
 		return exec;
 	}
 
-	void SendMessage(Message m);
-	void SendGUIMessage(Message m);
+	void SendMessage(Message&& m);
+	void SendGUIMessage(Message&& m);
 	void Yield();
 	void Sleep(int ms);
 
-	void SetWindow(std::string id, void* w)
+	void SetWindow(void* w)
 	{
-		this->id = id;
 		this->w = w;
 	}
 
 #ifndef CLION
 	static void TaskTerminationHandler(CTask* ctask);
+	static void TaskSwitchHandler(CTask* ctask);
 #endif
 
 	std::string GetWindowID() { return id; }
@@ -170,8 +157,6 @@ public:
 
 	void TerminateTask();
 
-	static OSDTask* GetTaskOverride() { return task_override; }
-
 	size_t GetStringCount() { return permanent_strings.size(); }
 	size_t GetStringCountTemporary() { return strings.size(); }
 
@@ -179,13 +164,8 @@ public:
 
 	size_t GetMessageQueueCount()
 	{
-		AcquireMessageLock();
-		return message_queue.size();
-		ReleaseMessageLock();
+		return message_queue->size_approx();
 	}
-
-	static void LockVLGL(const char* desc);
-	static void UnlockVLGL();
 
 #ifdef CLION
 	static std::map<std::string, OSDTask*> tasks;
@@ -194,6 +174,7 @@ public:
 	static std::list<OSDTask*> tasks_list;
 #ifndef CLION
 	static CTask *boot_task;
+	static OSDTask *current_task;
 #endif
 	TaskType type = TaskType::Unknown;
 
@@ -212,15 +193,17 @@ public:
 		return framebuffer_memory;
 	}
 
-	void AcquireMessageLock();
-	void ReleaseMessageLock();
+	bool IsDirty() { return is_dirty; }
+	virtual void UpdateGUI();
+#ifndef CLION
+	bool TimeToYield();
+#endif
 protected:
 #ifdef CLION
 	static std::mutex vlgl_mutex;
 #endif
-	static OSDTask* task_override;
 	OSDTask* GetTask(const char* s);
-	std::queue<Message> message_queue;
+	moodycamel::ConcurrentQueue<Message>* message_queue;
 	start exec;
 	bool exclusive = false;
 	int d_x;
@@ -230,6 +213,7 @@ protected:
 	static size_t task_id;
 	std::string id;
 	std::string name;
+	bool is_dirty = false;
 private:
 	void* w = NULL;
 	int64_t idx;
