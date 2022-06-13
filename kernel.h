@@ -5,6 +5,14 @@
 #include <circle/usb/usbmouse.h>
 #include <circle/usb/usbkeyboard.h>
 #include <circle/usb/usbhcidevice.h>
+#include <circle/multicore.h>
+
+class CMultiCore : public CMultiCoreSupport {
+public:
+	CMultiCore(CMemorySystem* pMemorySystem);
+	void Run(unsigned nCore);
+private:
+};
 
 class CKernel : public CStdlibAppStdio /*CStdlibAppNetwork*/
 {
@@ -17,4 +25,5 @@ private:
 	CMemorySystem mMemory;
 	CCPUThrottle mThrottle;
 	CScheduler mScheduler;
+	CMultiCore mMulticore;
 };

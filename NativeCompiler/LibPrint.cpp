@@ -9,12 +9,13 @@ const int tab_size = 20;
 void call_PRINT_NL()
 {
 	auto task = GetCurrentTask();
-	auto mess = task->SendGUIMessage();
-	mess->source = task;
-	mess->type = Messages::Canvas_PrintNewLine;
+	Message mess;
+	mess.source = task;
+	mess.type = Messages::Canvas_PrintNewLine;
 #ifdef CLION
 	printf("\n");
 #endif
+	task->SendGUIMessage(std::move(mess));
 }
 
 void call_PRINT_Tabbed()
@@ -42,13 +43,14 @@ void call_PRINT_integer(int64_t v)
 
 	// Send
 	auto task = GetCurrentTask();
-	auto mess = task->SendGUIMessage();
-	mess->source = task;
-	mess->type = Messages::Canvas_PrintString;
-	strcpy((char*)&mess->data, d);
+	Message mess;
+	mess.source = task;
+	mess.type = Messages::Canvas_PrintString;
+	strcpy((char*)&mess.data, d);
 #ifdef CLION
 	printf("%s", d);
 #endif
+	task->SendGUIMessage(std::move(mess));
 
 	tabbed = false;
 }
@@ -68,13 +70,14 @@ void call_PRINT_real(double v)
 
 	// Send
 	auto task = GetCurrentTask();
-	auto mess = task->SendGUIMessage();
-	mess->source = task;
-	mess->type = Messages::Canvas_PrintString;
-	strcpy((char*)&mess->data, d);
+	Message mess;
+	mess.source = task;
+	mess.type = Messages::Canvas_PrintString;
+	strcpy((char*)&mess.data, d);
 #ifdef CLION
 	printf("%s", d);
 #endif
+	task->SendGUIMessage(std::move(mess));
 
 	tabbed = false;
 }
@@ -84,18 +87,19 @@ void call_PRINT_string(int64_t idx)
 	auto v = OS_Strings_Get(idx);
 
 	auto task = GetCurrentTask();
-	auto mess = task->SendGUIMessage();
-	mess->source = task;
+	Message mess;
+	mess.source = task;
 	if (v.length()<=MESSAGE_BLOCK) {
-		mess->type = Messages::Canvas_PrintString;
-		strcpy((char*)&mess->data, v.c_str());
+		mess.type = Messages::Canvas_PrintString;
+		strcpy((char*)&mess.data, v.c_str());
 	}
 	else {
-		mess->type = Messages::Canvas_PrintStringLong;
-		auto m = (Address*)&mess->data;
+		mess.type = Messages::Canvas_PrintStringLong;
+		auto m = (Address*)&mess.data;
 		m->address = (void*)v.c_str();
 		task->Yield();
 	}
+	task->SendGUIMessage(std::move(mess));
 #ifdef CLION
 	printf("%s", v.c_str());
 #endif
@@ -110,19 +114,21 @@ void call_PRINT_SPC(int64_t v)
 
 	// Send
 	auto task = GetCurrentTask();
-	auto mess = task->SendGUIMessage();
-	mess->source = task;
-	mess->type = Messages::Canvas_PrintString;
-	strcpy((char*)&mess->data, s);
+	Message mess;
+	mess.source = task;
+	mess.type = Messages::Canvas_PrintString;
+	strcpy((char*)&mess.data, s);
+	task->SendGUIMessage(std::move(mess));
 }
 
 void call_PRINT_TAB(int64_t v)
 {
 	// Send
 	auto task = GetCurrentTask();
-	auto mess = task->SendGUIMessage();
-	mess->source = task;
-	mess->type = Messages::Canvas_PrintTab;
-	auto m = (Integer*)&mess->data;
+	Message mess;
+	mess.source = task;
+	mess.type = Messages::Canvas_PrintTab;
+	auto m = (Integer*)&mess.data;
 	m->v = v;
+	task->SendGUIMessage(std::move(mess));
 }

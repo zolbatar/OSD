@@ -24,10 +24,10 @@ void TasksWindow::Run()
 	SetNameAndAddToList();
 
 	// Create Window
-	auto mess = SendGUIMessage();
-	mess->type = Messages::WM_OpenWindow;
-	mess->source = this;
-	auto m = (WM_OpenWindow*)&mess->data;
+	Message mess;
+	mess.type = Messages::WM_OpenWindow;
+	mess.source = this;
+	auto m = (WM_OpenWindow*)&mess.data;
 	strcpy(m->id, this->id.c_str());
 	strcpy(m->title, this->name.c_str());
 	m->x = d_x;
@@ -36,6 +36,7 @@ void TasksWindow::Run()
 	m->height = d_h;
 	m->canvas = false;
 	m->fixed = false;
+	SendGUIMessage(std::move(mess));
 
 	// Wait for window to be created
 	Window* w;
@@ -47,7 +48,7 @@ void TasksWindow::Run()
 
 	// Do stuff
 	while (1) {
-		UpdateTasks();
+//		UpdateTasks();
 		Sleep(1000);
 	}
 
@@ -57,7 +58,7 @@ void TasksWindow::Run()
 void TasksWindow::UpdateTasks()
 {
 	MemorySummary m;
-	CalculateMem(&m);
+//	CalculateMem(&m);
 
 	LockVLGL("TasksWindow::UpdateTasks");
 	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
@@ -70,6 +71,8 @@ void TasksWindow::UpdateTasks()
 	lv_obj_align(cont_col, LV_ALIGN_TOP_MID, 0, 0);
 	lv_obj_set_flex_flow(cont_col, LV_FLEX_FLOW_COLUMN);
 	lv_obj_add_style(cont_col, &style_grid, LV_STATE_DEFAULT);
+	UnlockVLGL();
+	return;
 
 	// Container
 	const int sz = tasks_list.size()+4;

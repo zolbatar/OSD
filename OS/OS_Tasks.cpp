@@ -23,8 +23,11 @@
 #include <circle/sched/task.h>
 #include <circle/sysconfig.h>
 #include <circle/logger.h>
+extern CSpinLock* message_lock;
+extern CSpinLock* vlgl_mutex;
 #endif
 
+extern WindowManager* gui;
 extern Input* input;
 std::string string_error = "NOT A VALID STRING";
 
@@ -62,8 +65,6 @@ OSDTask::~OSDTask()
 		jit_destroy_state();
 	if (code!=NULL)
 		DELETE code;
-	if (message_queue!=NULL)
-		DELETE message_queue;
 }
 
 void OSDTask::SetNameAndAddToList()
@@ -82,9 +83,10 @@ void OSDTask::SetNameAndAddToList()
 void OSDTask::TerminateTask()
 {
 	// Close window
-	auto mess = SendGUIMessage();
-	mess->type = Messages::WM_CloseWindow;
-	mess->source = this;
+	Message mess;
+	mess.type = Messages::WM_CloseWindow;
+	mess.source = this;
+	SendGUIMessage(mess);
 	Window* w;
 	do {
 		Yield();
@@ -295,25 +297,14 @@ size_t OSDTask::GetAllocCount()
 	return 0;
 }
 
-Message* OSDTask::SendMessage()
+void OSDTask::SendMessage(Message m)
 {
-	if (message_queue==NULL) {
-		message_queue_size = MIN_MESSAGE_QUEUE;
-		message_queue = NEW Message[message_queue_size];
-	}
-	while (message_queue_position==message_queue_size) {
-#ifndef CLION
-		CLogger::Get()->Write("GUI", LogDebug, "Full thread");
-#else
-		printf("Full thread");
-#endif
-		Yield();
-	}
-	Message* m = &message_queue[message_queue_position++];
-	return m;
+	AcquireMessageLock();
+	message_queue.push(std::move(m));
+	ReleaseMessageLock();
 }
 
-Message* OSDTask::SendGUIMessage()
+void OSDTask::SendGUIMessage(Message m)
 {
 	// How long since last message?
 #ifndef CLION
@@ -322,8 +313,8 @@ Message* OSDTask::SendGUIMessage()
 		Yield();
 	}
 #endif
-	auto gui = GetTask("@");
-	return gui->SendMessage();
+//	auto gui = GetTask("@");
+	return gui->SendMessage(std::move(m));
 }
 
 OSDTask* OSDTask::GetTask(const char* s)
@@ -529,4 +520,42 @@ size_t OSDTask::CalculateMemoryUsed()
 	}*/
 
 	return r;
+}
+
+void OSDTask::LockVLGL(const char* desc)
+{
+#ifdef CLION
+	printf("Locking VLGL: %s\n", desc);
+	OSDTask::vlgl_mutex.lock();
+#else
+//	CLogger::Get()->Write("OSDTask", LogDebug, "Locking VLGL: %s", desc);
+//	vlgl_mutex.Acquire();
+#endif
+}
+
+void OSDTask::UnlockVLGL()
+{
+#ifdef CLION
+	printf("Unlocking VLGL\n");
+	OSDTask::vlgl_mutex.unlock();
+#else
+//	CLogger::Get()->Write("OSDTask", LogDebug, "Unlocking VLGL");
+//	vlgl_mutex.Release();
+#endif
+}
+
+void OSDTask::AcquireMessageLock()
+{
+#ifndef CLION
+//	CLogger::Get()->Write("OSDTask", LogDebug, "Locking message thread");
+//	message_lock.Acquire();
+#endif
+}
+
+void OSDTask::ReleaseMessageLock()
+{
+#ifndef CLION
+//	CLogger::Get()->Write("OSDTask", LogDebug, "Unlocking message thread");
+//	message_lock.Release();
+#endif
 }

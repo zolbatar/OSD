@@ -28,13 +28,16 @@ CScreenDevice* screen;
 CMemorySystem* memory;
 CInterruptSystem* interrupt;
 CUSBHCIDevice* USBHCI;
+WindowManager* gui = nullptr;
+CSpinLock* message_lock;
+CSpinLock* vlgl_mutex;
 
 #define NET_DEVICE_TYPE        NetDeviceTypeEthernet
 //#define NET_DEVICE_TYPE        NetDeviceTypeWLAN
 
 CKernel::CKernel(void)
 //		:CStdlibAppNetwork("OS/D", CSTDLIBAPP_DEFAULT_PARTITION, 0, 0, 0, 0, NET_DEVICE_TYPE)
-		:CStdlibAppStdio("OS/D")
+		:CStdlibAppStdio("OS/D"), mMulticore(&mMemory)
 {
 	timer = &mTimer;
 	memory = &mMemory;
@@ -99,13 +102,60 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	kernel_size = 1;
 #endif
 
+	// Set up spinlocks
+//	message_lock = new CSpinLock();
+//	vlgl_mutex = new CSpinLock();
+
+	// Now fire cores up
+	mMulticore.Initialize();
+
+	// Font manager if always first
 	auto fm = new FontManager();
 	fm->InitFonts();
+	mLogger.Write("OS/D", LogNotice, "0");
 	fm->Start();
-	auto gui = new WindowManager();
-	gui->Start();
-	gui->WaitForTermination();
-	mLogger.Write("OS/D", LogNotice, "Termination.");
+	mLogger.Write("OS/D", LogNotice, "1");
+
+	// Wait for GUI startup
+	mLogger.Write("OS/D", LogNotice, "111");
+/*	while (gui==nullptr) {
+		mLogger.Write("OS/D", LogNotice, "111a");
+		auto mScheduler = CScheduler::Get();
+		mScheduler->MsSleep(50);
+	}
+	while (!gui->IsInitComplete()) {
+		mLogger.Write("OS/D", LogNotice, "111b");
+		auto mScheduler = CScheduler::Get();
+		mScheduler->MsSleep(50);
+	}
+	mLogger.Write("OS/D", LogNotice, "Window Manager loaded");
+
+	// Desktop startup of apps
+	gui->DesktopStartup();
+
+	while (1) { // Wait forever for now, no shutdown procedure
+		auto mScheduler = CScheduler::Get();
+		mScheduler->Yield();
+	}*/
+	mLogger.Write("OS/D", LogNotice, "Termination");
+	while (1);
 
 	return ShutdownHalt;
+}
+
+CMultiCore::CMultiCore(CMemorySystem* pMemorySystem)
+		:CMultiCoreSupport(pMemorySystem)
+{
+}
+
+void CMultiCore::Run(unsigned nCore)
+{
+	CLogger::Get()->Write("OS/D", LogNotice, "Initialising core %d.", nCore);
+	switch (nCore) {
+		case 1:
+//			gui = new WindowManager();
+//			gui->Run();
+			//CLogger::Get()->Write("OS/D", LogNotice, "GUI thread terminated");
+			break;
+	}
 }

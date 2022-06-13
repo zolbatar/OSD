@@ -1,4 +1,7 @@
 #include "Window.h"
+#ifndef CLION
+#include <circle/logger.h>
+#endif
 
 std::map<std::string, Window*> Window::windows;
 extern int dm;
@@ -6,6 +9,7 @@ extern int dm;
 Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
 		:task(task), title(title), x1(x), y1(y), width(w), height(h)
 {
+	//CLogger::Get()->Write("GUI", LogDebug, "Window");
 	OSDTask::LockVLGL("Window::Window");
 	x2 = x1+width;
 	y2 = y1+height;

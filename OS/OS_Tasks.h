@@ -7,12 +7,13 @@
 #include <circle/alloc.h>
 #include <circle/timer.h>
 #include <circle/timer.h>
+#include <circle/spinlock.h>
+#include <circle/sched/mutex.h>
 #define NEW new(HEAP_ANY)
 #else
 
 #include <mutex>
 #include <thread>
-
 #define NEW new
 #endif
 #define DELETE delete
@@ -23,6 +24,7 @@
 #include "OS_Messages.h"
 #include <chrono>
 #include <set>
+#include <queue>
 
 extern "C"
 {
@@ -38,8 +40,6 @@ enum class TaskType {
 };
 
 const size_t ALLOCATION_SIZE = 32768;
-const size_t MIN_MESSAGE_QUEUE = 64;
-const size_t MAX_MESSAGE_QUEUE = 16384;
 
 extern std::string string_error;
 typedef void (* start)(void);
@@ -145,8 +145,8 @@ public:
 		return exec;
 	}
 
-	Message* SendMessage();
-	Message* SendGUIMessage();
+	void SendMessage(Message m);
+	void SendGUIMessage(Message m);
 	void Yield();
 	void Sleep(int ms);
 
@@ -177,23 +177,15 @@ public:
 
 	size_t GetAllocCount();
 
-	size_t GetMessageQueueCount() { return message_queue_size; }
-
-	static void LockVLGL(const char* desc)
+	size_t GetMessageQueueCount()
 	{
-#ifdef CLION
-		OSDTask::vlgl_mutex.lock();
-//		printf("Locking VLGL: %s\n", desc);
-#endif
+		AcquireMessageLock();
+		return message_queue.size();
+		ReleaseMessageLock();
 	}
 
-	static void UnlockVLGL()
-	{
-#ifdef CLION
-//		printf("Unlocking VLGL\n");
-		OSDTask::vlgl_mutex.unlock();
-#endif
-	}
+	static void LockVLGL(const char* desc);
+	static void UnlockVLGL();
 
 #ifdef CLION
 	static std::map<std::string, OSDTask*> tasks;
@@ -219,15 +211,16 @@ public:
 	{
 		return framebuffer_memory;
 	}
+
+	void AcquireMessageLock();
+	void ReleaseMessageLock();
 protected:
 #ifdef CLION
 	static std::mutex vlgl_mutex;
 #endif
 	static OSDTask* task_override;
 	OSDTask* GetTask(const char* s);
-	Message* message_queue = NULL;
-	size_t message_queue_position = 0;
-	size_t message_queue_size = 0;
+	std::queue<Message> message_queue;
 	start exec;
 	bool exclusive = false;
 	int d_x;

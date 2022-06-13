@@ -21,6 +21,7 @@ void FontManager::InitFonts()
 {
 	task_override = this;
 
+	CLogger::Get()->Write("Font Manager", LogNotice, "Loading fonts");
 	std::stringstream ss(installed_fonts);
 	std::string val;
 	while (std::getline(ss, val, '\n')) {
@@ -30,7 +31,7 @@ void FontManager::InitFonts()
 		LoadFile("/Users/daryl/Dev/osd/fonts/"+val);
 #endif
 	}
-//	while(1);
+	CLogger::Get()->Write("Font Manager", LogNotice, "Loaded fonts");
 	task_override = NULL;
 }
 

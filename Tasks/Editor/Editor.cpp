@@ -21,10 +21,10 @@ void Editor::Run()
 	SetNameAndAddToList();
 
 	// Create Window
-	auto mess = SendGUIMessage();
-	mess->type = Messages::WM_OpenWindow;
-	mess->source = this;
-	auto m = (WM_OpenWindow*)&mess->data;
+	Message mess;
+	mess.type = Messages::WM_OpenWindow;
+	mess.source = this;
+	auto m = (WM_OpenWindow*)&mess.data;
 	strcpy(m->id, this->id.c_str());
 	strcpy(m->title, this->name.c_str());
 	m->x = d_x;
@@ -33,6 +33,7 @@ void Editor::Run()
 	m->height = d_h;
 	m->canvas = false;
 	m->fixed = false;
+	SendGUIMessage(std::move(mess));
 
 	// Wait for window to be created
 	Window* w;

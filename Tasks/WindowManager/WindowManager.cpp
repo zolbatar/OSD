@@ -25,10 +25,10 @@ extern "C"
 
 WindowManager::WindowManager()
 {
+	return;
+	CLogger::Get()->Write("OS/D", LogNotice, "aaa");
 	this->id = "@";
 	this->name = "@";
-	message_queue_size = MAX_MESSAGE_QUEUE;
-	message_queue = NEW Message[message_queue_size];
 
 	// Init JIT
 	init_jit("OS/D");
@@ -45,6 +45,7 @@ WindowManager::WindowManager()
 	if (err!=CS_ERR_OK) {
 		printf("Error (cs_option): %d\n", err);
 	}
+	CLogger::Get()->Write("OS/D", LogNotice, "bbb");
 
 	// Setup clvgl
 #ifdef CLION
@@ -52,10 +53,12 @@ WindowManager::WindowManager()
 #else
 	clvgl = NEW GuiCLVGL(screen, interrupt);
 #endif
+	CLogger::Get()->Write("OS/D", LogNotice, "ccc");
 	clvgl->Initialize();
 #ifndef CLION
 	CLogger::Get()->Write("FontManager", LogDebug, "Setting up styles");
 #endif
+	CLogger::Get()->Write("OS/D", LogNotice, "ddd");
 	SetupLVGLStyles();
 
 #ifndef CLION
@@ -89,13 +92,10 @@ void WindowManager::Run()
 	// Add right click menu to desktop
 	lv_obj_add_event_cb(lv_scr_act(), ClickEventHandler, LV_EVENT_LONG_PRESSED, this);
 
-	// Startup applications
-	DesktopStartup();
-
+	init_complete = true;
 	while (!clvgl->QuitRequested()) {
 #ifndef CLION
 		clvgl->Update(USBHCI->UpdatePlugAndPlay());
-		Yield();
 #else
 		LockVLGL("Refresh");
 		clvgl->Update();
@@ -103,17 +103,21 @@ void WindowManager::Run()
 #endif
 
 		// Process messages
-		for (size_t i = 0; i<message_queue_position; i++) {
-			Message* message = &message_queue[i];
-			OSDTask* source = (OSDTask*)message->source;
+		AcquireMessageLock();
+		if (!message_queue.empty()) {
+			auto message = message_queue.front();
+			message_queue.pop();
+			ReleaseMessageLock();
+			OSDTask* source = (OSDTask*)message.source;
 
 			// Use task override, so allocations are allocated to the right task
 			task_override = source;
-			switch (message->type) {
+			switch (message.type) {
 
 				// Window manager
 				case Messages::WM_OpenWindow: {
-					auto m = (WM_OpenWindow*)&message->data;
+					auto m = (WM_OpenWindow*)&message.data;
+					//CLogger::Get()->Write("GUI", LogDebug, "Fetched message %d %d %d", message.type, m->x, m->y);
 					Window* w = new Window(source, m->canvas, m->fixed, m->title, m->x, m->y, m->width, m->height);
 					Window::windows.insert(std::make_pair(m->id, w));
 					source->SetWindow(m->id, w);
@@ -155,77 +159,77 @@ void WindowManager::Run()
 					break;
 				}
 				case Messages::Canvas_ClipOn: {
-					auto m = (Coord2*)&message->data;
+					auto m = (Coord2*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->ClipOn(m->x1, m->y1, m->x2, m->y2);
 					break;
 				}
 				case Messages::Canvas_DrawLine: {
-					auto m = (Coord2W*)&message->data;
+					auto m = (Coord2W*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawLine(m->x1, m->y1, m->x2, m->y2, m->w);
 					break;
 				}
 				case Messages::Canvas_Rectangle: {
-					auto m = (Coord2W*)&message->data;
+					auto m = (Coord2W*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawRectangle(m->x1, m->y1, m->x2, m->y2, m->w);
 					break;
 				}
 				case Messages::Canvas_RectangleFilled: {
-					auto m = (Coord2W*)&message->data;
+					auto m = (Coord2W*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawRectangleFilled(m->x1, m->y1, m->x2, m->y2, m->w);
 					break;
 				}
 				case Messages::Canvas_Triangle: {
-					auto m = (Coord3W*)&message->data;
+					auto m = (Coord3W*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawTriangle(m->x1, m->y1, m->x2, m->y2, m->x3, m->y3, m->w);
 					break;
 				}
 				case Messages::Canvas_TriangleFilled: {
-					auto m = (Coord3W*)&message->data;
+					auto m = (Coord3W*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawTriangleFilled(m->x1, m->y1, m->x2, m->y2, m->x3, m->y3, m->w);
 					break;
 				}
 				case Messages::Canvas_Circle: {
-					auto m = (Coord1RW*)&message->data;
+					auto m = (Coord1RW*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawCircle(m->x, m->y, m->r, m->w);
 					break;
 				}
 				case Messages::Canvas_CircleFilled: {
-					auto m = (Coord1RW*)&message->data;
+					auto m = (Coord1RW*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawCircleFilled(m->x, m->y, m->r, m->w);
 					break;
 				}
 				case Messages::Canvas_PlotPixel: {
-					auto m = (Coord1*)&message->data;
+					auto m = (Coord1*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->PlotPixel(m->x, m->y);
 					break;
 				}
 				case Messages::Canvas_SetForegroundColour: {
-					auto m = (Colour*)&message->data;
+					auto m = (Colour*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->SetFG(m->colour);
 					break;
 				}
 				case Messages::Canvas_SetBackgroundColour: {
-					auto m = (Colour*)&message->data;
+					auto m = (Colour*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->SetBG(m->colour);
@@ -234,7 +238,7 @@ void WindowManager::Run()
 				case Messages::Canvas_PrintString: {
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->PrintString((const char*)&message->data);
+					w->GetCanvas()->PrintString((const char*)&message.data);
 					break;
 				}
 				case Messages::Canvas_PrintNewLine: {
@@ -244,42 +248,42 @@ void WindowManager::Run()
 					break;
 				}
 				case Messages::Canvas_PrintStringLong: {
-					auto m = (Address*)&message->data;
+					auto m = (Address*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->PrintString((const char*)m->address);
 					break;
 				}
 				case Messages::Canvas_PrintTab: {
-					auto m = (Integer*)&message->data;
+					auto m = (Integer*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->PrintTab(m->v);
 					break;
 				}
 				case Messages::Canvas_Text: {
-					auto m = (Coord1S*)&message->data;
+					auto m = (Coord1S*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawText(m->x, m->y, OS_Strings_Get(m->s));
 					break;
 				}
 				case Messages::Canvas_TextCentre: {
-					auto m = (Coord1S*)&message->data;
+					auto m = (Coord1S*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawTextCentre(m->x, m->y, OS_Strings_Get(m->s));
 					break;
 				}
 				case Messages::Canvas_TextRight: {
-					auto m = (Coord1S*)&message->data;
+					auto m = (Coord1S*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->DrawTextRight(m->x, m->y, OS_Strings_Get(m->s));
 					break;
 				}
 				case Messages::Canvas_SetFont: {
-					auto m = (SetFont*)&message->data;
+					auto m = (SetFont*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
 					w->GetCanvas()->SetFont(OS_Strings_Get(m->ff), OS_Strings_Get(m->fs), m->size);
@@ -288,15 +292,17 @@ void WindowManager::Run()
 
 				default:
 #ifndef CLION
-					CLogger::Get()->Write("GUI", LogDebug, "Unknown message received %d %p", message->type, message->source);
+					CLogger::Get()->Write("GUI", LogDebug, "Unknown message received %d %p", message.type, message.source);
 #else
-					printf("Unknown message received %d %p", message->type, message->source);
+					printf("Unknown message received %d %p", message.type, message.source);
 #endif
 					assert(0);
 			}
 			task_override = NULL;
 		}
-		message_queue_position = 0;
+		else {
+			ReleaseMessageLock();
+		}
 	}
 
 	// Must shut all other tasks down
@@ -345,12 +351,12 @@ void WindowManager::DesktopStartup()
 		graphics->LoadSourceCode(":SD.$.Welcome.Graphics2D");
 		graphics->Start();*/
 
-		auto raytracer = NEW DARICWindow("Ray Tracer", false, 450*dm, 400*dm, 600*dm, 500*dm);
+/*		auto raytracer = NEW DARICWindow("Ray Tracer", false, 450*dm, 400*dm, 600*dm, 500*dm);
 		raytracer->LoadSourceCode(":SD.$.Welcome.Raytracer");
-		raytracer->Start();
+		raytracer->Start();*/
 
-		auto tasks = NEW TasksWindow(1100*dm, 500*dm, 750*dm, 400*dm);
-		tasks->Start();
+//		auto tasks = NEW TasksWindow(1100*dm, 500*dm, 750*dm, 400*dm);
+//		tasks->Start();
 
 #else
 /*	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 550*dm, 400*dm);
@@ -372,10 +378,10 @@ void WindowManager::DesktopStartup()
 		std::thread t3(&DARICWindow::Start, mandelbrot);
 		t3.detach();*/
 
-		auto tester = NEW DARICWindow("RayTracer", false, 100*dm, 600*dm, 400*dm, 400*dm);
-		tester->LoadSourceCode(":SD.$.Welcome.Raytracer");
-		std::thread t4(&DARICWindow::Start, tester);
-		t4.detach();
+	auto tester = NEW DARICWindow("RayTracer", false, 100*dm, 600*dm, 400*dm, 400*dm);
+	tester->LoadSourceCode(":SD.$.Welcome.Raytracer");
+	std::thread t4(&DARICWindow::Start, tester);
+	t4.detach();
 
 /*		auto clock3 = NEW DARICWindow("Tester", false, 100*dm, 600*dm, 400*dm, 400*dm);
 		clock3->LoadSourceCode(":SD.$.Welcome.Tester");

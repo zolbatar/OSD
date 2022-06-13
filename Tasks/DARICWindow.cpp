@@ -33,10 +33,10 @@ void DARICWindow::Run()
 	SetNameAndAddToList();
 
 	// Create Window
-	auto mess = SendGUIMessage();
-	mess->type = Messages::WM_OpenWindow;
-	mess->source = this;
-	auto m = (WM_OpenWindow*)&mess->data;
+	Message mess;
+	mess.type = Messages::WM_OpenWindow;
+	mess.source = this;
+	auto m = (WM_OpenWindow*)&mess.data;
 	strcpy(m->id, id.c_str());
 	strcpy(m->title, name.c_str());
 	m->x = d_x;
@@ -45,6 +45,7 @@ void DARICWindow::Run()
 	m->height = d_h;
 	m->canvas = true;
 	m->fixed = true;
+	SendGUIMessage(std::move(mess));
 
 	// Wait for window to be created
 	Window* w;
