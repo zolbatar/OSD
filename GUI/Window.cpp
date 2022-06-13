@@ -44,7 +44,7 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	lv_obj_add_style(btn_close, &style_window_furniture, LV_STATE_DEFAULT);
 
 	if (pure_canvas) {
-		canvas = new Canvas(content, w-(WINDOW_BORDER_WIDTH*2*dm), h-(WINDOW_BORDER_WIDTH*2*dm)-WINDOW_HEADER_HEIGHT*dm);
+		canvas = new Canvas(task, content, w-(WINDOW_BORDER_WIDTH*2*dm), h-(WINDOW_BORDER_WIDTH*2*dm)-WINDOW_HEADER_HEIGHT*dm);
 	}
 
 	SetActive();

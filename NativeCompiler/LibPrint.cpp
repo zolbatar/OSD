@@ -8,8 +8,9 @@ const int tab_size = 20;
 
 void call_PRINT_NL()
 {
+	auto task = GetCurrentTask();
 	Message mess;
-	mess.source = GetCurrentTask();
+	mess.source = task;
 	mess.type = Messages::Canvas_PrintNewLine;
 #ifdef CLION
 	printf("\n");
@@ -41,8 +42,9 @@ void call_PRINT_integer(int64_t v)
 	}
 
 	// Send
+	auto task = GetCurrentTask();
 	Message mess;
-	mess.source = GetCurrentTask();
+	mess.source = task;
 	mess.type = Messages::Canvas_PrintString;
 	strcpy((char*)&mess.data, d);
 #ifdef CLION
@@ -67,8 +69,9 @@ void call_PRINT_real(double v)
 	}
 
 	// Send
+	auto task = GetCurrentTask();
 	Message mess;
-	mess.source = GetCurrentTask();
+	mess.source = task;
 	mess.type = Messages::Canvas_PrintString;
 	strcpy((char*)&mess.data, d);
 #ifdef CLION
@@ -83,8 +86,9 @@ void call_PRINT_string(int64_t idx)
 {
 	auto v = OS_Strings_Get(idx);
 
+	auto task = GetCurrentTask();
 	Message mess;
-	mess.source = GetCurrentTask();
+	mess.source = task;
 	if (v.length()<=MESSAGE_BLOCK) {
 		mess.type = Messages::Canvas_PrintString;
 		strcpy((char*)&mess.data, v.c_str());
@@ -108,8 +112,9 @@ void call_PRINT_SPC(int64_t v)
 	s[v+1] = 0;
 
 	// Send
+	auto task = GetCurrentTask();
 	Message mess;
-	mess.source = GetCurrentTask();
+	mess.source = task;
 	mess.type = Messages::Canvas_PrintString;
 	strcpy((char*)&mess.data, s);
 	task->SendGUIMessage(std::move(mess));
@@ -118,8 +123,9 @@ void call_PRINT_SPC(int64_t v)
 void call_PRINT_TAB(int64_t v)
 {
 	// Send
+	auto task = GetCurrentTask();
 	Message mess;
-	mess.source = GetCurrentTask();
+	mess.source = task;
 	mess.type = Messages::Canvas_PrintTab;
 	auto m = (Integer*)&mess.data;
 	m->v = v;

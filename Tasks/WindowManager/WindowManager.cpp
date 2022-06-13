@@ -128,7 +128,7 @@ void WindowManager::ProcessMessageQueue()
 {
 	int count = 0;
 	Message message;
-	while (count < 32 && message_queue->try_dequeue(message)) {
+	while (count < 256 && message_queue->try_dequeue(message)) {
 		count++;
 		OSDTask* source = (OSDTask*)message.source;
 //		CLogger::Get()->Write("Window Manager", LogDebug, "Msg: %s %d", source->GetWindowName().c_str(), (int)message.type);
@@ -287,28 +287,28 @@ void WindowManager::ProcessMessageQueue()
 					auto m = (Coord1S*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->DrawText(m->x, m->y, GetCurrentTask()->GetString(m->s));
+					w->GetCanvas()->DrawText(m->x, m->y, source->GetString(m->s));
 					break;
 				}
 				case Messages::Canvas_TextCentre: {
 					auto m = (Coord1S*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->DrawTextCentre(m->x, m->y, GetCurrentTask()->GetString(m->s));
+					w->GetCanvas()->DrawTextCentre(m->x, m->y, source->GetString(m->s));
 					break;
 				}
 				case Messages::Canvas_TextRight: {
 					auto m = (Coord1S*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->DrawTextRight(m->x, m->y, GetCurrentTask()->GetString(m->s));
+					w->GetCanvas()->DrawTextRight(m->x, m->y, source->GetString(m->s));
 					break;
 				}
 				case Messages::Canvas_SetFont: {
 					auto m = (SetFont*)&message.data;
 					auto w = (Window*)source->GetWindow();
 					assert(w!=NULL);
-					w->GetCanvas()->SetFont(GetCurrentTask()->GetString(m->ff), GetCurrentTask()->GetString(m->fs), m->size);
+					w->GetCanvas()->SetFont(source->GetString(m->ff), source->GetString(m->fs), m->size);
 					break;
 				}
 
@@ -367,7 +367,7 @@ void WindowManager::DesktopStartup()
 		raytracer->LoadSourceCode(":SD.$.Welcome.Raytracer");
 		raytracer->Start();
 
-		auto tasks = NEW TasksWindow(1100*dm, 500*dm, 750*dm, 400*dm);
+		auto tasks = NEW TasksWindow(1100*dm, 600*dm, 750*dm, 400*dm);
 		tasks->Start();
 
 #else

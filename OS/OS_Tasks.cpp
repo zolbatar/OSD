@@ -59,7 +59,7 @@ OSDTask::OSDTask()
 : CTask()
 #endif
 {
-	message_queue = NEW moodycamel::ConcurrentQueue<Message>(64);
+	message_queue = NEW moodycamel::ConcurrentQueue<Message>(512);
 	// To be safe, zero these out
 	for (auto it = allocations.begin(); it!=allocations.end(); ++it) {
 		it->m = 0;
@@ -316,7 +316,7 @@ size_t OSDTask::GetAllocCount()
 void OSDTask::SendMessage(Message&& m)
 {
 	while (!message_queue->try_enqueue(std::move(m))) {
-		Yield();
+		Sleep(50);
 	}
 }
 

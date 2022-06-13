@@ -5,13 +5,13 @@
 #endif
 #include "../../Tasks/FontManager/FontManager.h"
 
-Canvas::Canvas(lv_obj_t* parent, int w, int h)
-		:w(w), h(h)
+Canvas::Canvas(OSDTask* task, lv_obj_t* parent, int w, int h)
+		:task(task), w(w), h(h)
 {
 	this->parent = parent;
 	sz = (lv_img_cf_get_px_size(cf)*w)*h/8;
 	buffer = NEW uint8_t[sz];
-	GetCurrentTask()->AddFrameBufferMemory(sz);
+	task->AddFrameBufferMemory(sz);
 
 	// First buffer
 	firstbuffer = lv_canvas_create(parent);
@@ -41,7 +41,7 @@ void Canvas::EnableDoubleBuffering()
 {
 	double_buffered = true;
 	buffer_back = NEW uint8_t[sz];
-	GetCurrentTask()->AddFrameBufferMemory(sz);
+	task->AddFrameBufferMemory(sz);
 
 	// Second buffer
 	secondbuffer = lv_canvas_create(parent);
@@ -351,7 +351,6 @@ void Canvas::PrintTab(int64_t v)
 
 void Canvas::DrawText(int64_t x, int64_t y, std::string s)
 {
-	auto task = GetCurrentTask();
 	auto w = (Window*)task->GetWindow();
 	assert(w!=NULL);
 
@@ -364,7 +363,6 @@ void Canvas::DrawText(int64_t x, int64_t y, std::string s)
 
 void Canvas::DrawTextCentre(int64_t x, int64_t y, std::string s)
 {
-	auto task = GetCurrentTask();
 	auto w = (Window*)task->GetWindow();
 	assert(w!=NULL);
 
@@ -380,7 +378,6 @@ void Canvas::DrawTextCentre(int64_t x, int64_t y, std::string s)
 
 void Canvas::DrawTextRight(int64_t x, int64_t y, std::string s)
 {
-	auto task = GetCurrentTask();
 	auto w = (Window*)task->GetWindow();
 	assert(w!=NULL);
 
