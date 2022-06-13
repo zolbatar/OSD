@@ -214,6 +214,9 @@ protected:
 	std::string id;
 	std::string name;
 	bool is_dirty = false;
+#ifndef CLION
+	CSpinLock message_lock;
+#endif
 private:
 	void* w = NULL;
 	int64_t idx;

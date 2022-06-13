@@ -315,7 +315,7 @@ size_t OSDTask::GetAllocCount()
 
 void OSDTask::SendMessage(Message&& m)
 {
-	while (!message_queue->try_enqueue(std::move(m))) {
+	while (!message_queue->try_enqueue(m)) {
 		Sleep(50);
 	}
 }
@@ -539,8 +539,7 @@ void OSDTask::UpdateGUI()
 #ifndef CLION
 bool OSDTask::TimeToYield()
 {
-//	return (CTimer::Get()->GetClockTicks()-last_yield)>10000;
-	return (CTimer::Get()->GetClockTicks()-last_yield)>10;
+	return (CTimer::Get()->GetClockTicks()-last_yield)>10000;
 }
 #endif
 
