@@ -29,6 +29,7 @@ public:
 	~WindowManager();
 	void Run();
 	void DesktopStartup();
+	void ReceiveDirect(Message m);
 private:
 	GuiCLVGL* clvgl;
 	lv_obj_t* menu_win = NULL;

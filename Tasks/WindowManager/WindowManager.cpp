@@ -87,20 +87,14 @@ void WindowManager::Run()
 	// Add right click menu to desktop
 	lv_obj_add_event_cb(lv_scr_act(), ClickEventHandler, LV_EVENT_LONG_PRESSED, this);
 
-#ifdef CLION
 	DesktopStartup();
-#endif
 
 	while (!clvgl->QuitRequested()) {
 
 		// Update all windows
 		for (auto& task: OSDTask::tasks_list) {
 			if (task->IsDirty()) {
-//				CLogger::Get()->Write("GUI", LogDebug, "Update %s", task->GetWindowName().c_str());
 				task->UpdateGUI();
-			}
-			else {
-//				CLogger::Get()->Write("GUI", LogDebug, "NOT Update %s", task->GetWindowName().c_str());
 			}
 		}
 
@@ -112,6 +106,7 @@ void WindowManager::Run()
 
 		// Process messages
 		ProcessMessageQueue();
+		Yield();
 	}
 
 	// Must shut all other tasks down
@@ -124,12 +119,31 @@ void WindowManager::Run()
 #endif
 }
 
+void WindowManager::ReceiveDirect(Message message)
+{
+	OSDTask* source = (OSDTask*)message.source;
+	switch (message.type) {
+		case Messages::Canvas_PlotPixel: {
+			auto m = (Coord1*)&message.data;
+			auto w = (Window*)source->GetWindow();
+			assert(w!=NULL);
+			w->GetCanvas()->PlotPixel(m->x, m->y);
+			break;
+		}
+	}
+}
+
 void WindowManager::ProcessMessageQueue()
 {
 	int count = 0;
-	Message message;
-	while (count < 256 && message_queue->try_dequeue(message)) {
+	while (count<64 && !message_queue.empty()) {
 		count++;
+
+		message_lock.Acquire();
+		auto message = message_queue.front();
+		message_queue.pop();
+		message_lock.Release();
+
 		OSDTask* source = (OSDTask*)message.source;
 //		CLogger::Get()->Write("Window Manager", LogDebug, "Msg: %s %d", source->GetWindowName().c_str(), (int)message.type);
 

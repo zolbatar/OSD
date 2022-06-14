@@ -59,7 +59,6 @@ OSDTask::OSDTask()
 : CTask()
 #endif
 {
-	message_queue = NEW moodycamel::ConcurrentQueue<Message>(512);
 	// To be safe, zero these out
 	for (auto it = allocations.begin(); it!=allocations.end(); ++it) {
 		it->m = 0;
@@ -68,7 +67,6 @@ OSDTask::OSDTask()
 
 OSDTask::~OSDTask()
 {
-	DELETE message_queue;
 	if (_jit!=NULL)
 		jit_destroy_state();
 	if (code!=NULL)
@@ -313,16 +311,34 @@ size_t OSDTask::GetAllocCount()
 	return 0;
 }
 
-void OSDTask::SendMessage(Message&& m)
+void OSDTask::ReceiveDirect(Message m)
 {
-	while (!message_queue->try_enqueue(m)) {
-		Sleep(50);
-	}
+	assert(0);
 }
 
-void OSDTask::SendGUIMessage(Message&& m)
+void OSDTask::CallGUIDirect(Message m)
 {
-	gui->SendMessage(std::move(m));
+	GetTask("@")->ReceiveDirect(m);
+}
+
+void OSDTask::SendMessage(Message m)
+{
+	if (message_queue.size()>256) {
+		Sleep(5);
+	}
+	message_lock.Acquire();
+	message_queue.push(std::move(m));
+	message_lock.Release();
+}
+
+void OSDTask::SendGUIMessage(Message m)
+{
+	GetTask("@")->SendMessage(std::move(m));
+}
+
+size_t OSDTask::GetMessageQueueCount()
+{
+	return message_queue.size();
 }
 
 OSDTask* OSDTask::GetTask(const char* s)
@@ -522,12 +538,6 @@ size_t OSDTask::CalculateMemoryUsed()
 		if (m.m!=0)
 			r += m.sz;
 	}
-
-	// Strings
-/*	for (auto& m: strings) {
-		r += m.second.size();
-	}*/
-
 	return r;
 }
 

@@ -28,7 +28,6 @@ CScreenDevice* screen;
 CMemorySystem* memory;
 CInterruptSystem* interrupt;
 CUSBHCIDevice* USBHCI;
-WindowManager* gui = nullptr;
 static void PeriodicHandler();
 
 #define NET_DEVICE_TYPE        NetDeviceTypeEthernet
@@ -96,7 +95,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 #ifndef CLION
 	auto memory = CMemorySystem::Get();
 	initial_mem_free = memory->GetHeapFreeSpace(HEAP_ANY);
-	kernel_size = memory->GetMemSize()-initial_mem_free;
+	//kernel_size = memory->GetMemSize()-initial_mem_free;
 #else
 	initial_mem_free = 1;
 	kernel_size = 1;
@@ -107,17 +106,12 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	fm->InitFonts();
 	fm->Start();
 
+	// Wait for GUI startup
+	auto gui = new WindowManager();
+	gui->Start();
+
 	// Now fire cores up
 	mMulticore.Initialize();
-
-	// Wait for GUI startup
-	while (gui==nullptr) {
-		auto mScheduler = CScheduler::Get();
-		mScheduler->MsSleep(50);
-	}
-
-	// Desktop startup of apps
-	gui->DesktopStartup();
 
 	// Start the pre-emptive
 	CTimer::Get()->RegisterPeriodicHandler(PeriodicHandler);
@@ -142,8 +136,6 @@ void CMultiCore::Run(unsigned nCore)
 {
 	switch (nCore) {
 		case 1:
-			gui = new WindowManager();
-			gui->Run();
 			break;
 	}
 }

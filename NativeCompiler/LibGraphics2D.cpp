@@ -100,7 +100,8 @@ void call_2D_plot(int64_t x, int64_t y)
 	mess.type = Messages::Canvas_PlotPixel;
 	m->x = x;
 	m->y = y;
-	task->SendGUIMessage(std::move(mess));
+
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)

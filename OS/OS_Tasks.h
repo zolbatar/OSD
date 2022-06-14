@@ -25,7 +25,6 @@
 #include <chrono>
 #include <set>
 #include <queue>
-#include "../Library/concurrentqueue.h"
 
 extern "C"
 {
@@ -47,7 +46,7 @@ typedef void (* start)(void);
 
 struct TaskAllocRef {
 	void* m = 0;
-	size_t sz;
+	size_t sz = 0;
 };
 
 struct DataElement {
@@ -132,8 +131,10 @@ public:
 		return exec;
 	}
 
-	void SendMessage(Message&& m);
-	void SendGUIMessage(Message&& m);
+	virtual void ReceiveDirect(Message m);
+	void SendMessage(Message m);
+	void CallGUIDirect(Message m);
+	void SendGUIMessage(Message m);
 	void Yield();
 	void Sleep(int ms);
 
@@ -148,24 +149,14 @@ public:
 #endif
 
 	std::string GetWindowID() { return id; }
-
 	std::string GetWindowName() { return name; }
-
 	void* GetWindow() { return w; }
-
 	bool IsExclusive() { return exclusive; }
-
 	void TerminateTask();
-
 	size_t GetStringCount() { return permanent_strings.size(); }
 	size_t GetStringCountTemporary() { return strings.size(); }
-
 	size_t GetAllocCount();
-
-	size_t GetMessageQueueCount()
-	{
-		return message_queue->size_approx();
-	}
+	size_t GetMessageQueueCount();
 
 #ifdef CLION
 	static std::map<std::string, OSDTask*> tasks;
@@ -203,7 +194,7 @@ protected:
 	static std::mutex vlgl_mutex;
 #endif
 	OSDTask* GetTask(const char* s);
-	moodycamel::ConcurrentQueue<Message>* message_queue;
+	std::queue<Message> message_queue;
 	start exec;
 	bool exclusive = false;
 	int d_x;
@@ -215,7 +206,7 @@ protected:
 	std::string name;
 	bool is_dirty = false;
 #ifndef CLION
-	CSpinLock message_lock;
+	CMutex message_lock;
 #endif
 private:
 	void* w = NULL;

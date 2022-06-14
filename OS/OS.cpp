@@ -21,7 +21,6 @@ struct AllocRef {
 
 void TaskAddAllocation(size_t size, void* m)
 {
-	return;
 	if (kernel_size==0)return;
 	auto task = GetCurrentTask();
 #ifndef CLION
@@ -30,12 +29,11 @@ void TaskAddAllocation(size_t size, void* m)
 		return;
 	}
 #endif
-	GetCurrentTask()->AddAllocation(size, m);
+	task->AddAllocation(size, m);
 }
 
 void TaskFreeAllocation(void* m)
 {
-	return;
 	if (kernel_size==0)return;
 
 	// Try current task first

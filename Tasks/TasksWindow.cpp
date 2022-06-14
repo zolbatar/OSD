@@ -184,6 +184,7 @@ void TasksWindow::UpdateGUI()
 		lv_obj_set_grid_cell(memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, i, 1);
 		auto total = task->CalculateMemoryUsed();
 		auto fb = task->GetFrameBufferMemory();
+		if (total<fb) total = fb;
 		lv_label_set_text_fmt(memory, "%zu KB", (total-fb)/1024);
 
 		// Framebuffer
