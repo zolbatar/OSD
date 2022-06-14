@@ -108,10 +108,6 @@ void TasksWindow::UpdateGUI()
 	lv_obj_set_grid_cell(title4, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
 	lv_label_set_text(title4, "Allocations");
 	lv_obj_add_style(title4, &style_grid_title, LV_STATE_DEFAULT);
-	auto title5 = lv_label_create(cont);
-	lv_obj_set_grid_cell(title5, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
-	lv_label_set_text(title5, "");
-	lv_obj_add_style(title5, &style_grid_title, LV_STATE_DEFAULT);
 
 	// Total memory
 	auto total_memory_title = lv_label_create(cont);

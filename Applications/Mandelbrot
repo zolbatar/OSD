@@ -41,6 +41,7 @@ DEF Mandelbrot()
                 ENDCASE
                 PLOT X%,Y%
             NEXT
+            YIELD
         NEXT
     UNTIL FALSE
 ENDDEF

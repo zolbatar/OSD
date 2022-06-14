@@ -1,5 +1,4 @@
 #include "NativeCompiler.h"
-#include "../OS/OS.h"
 #include "../Tasks/WindowManager/WindowManager.h"
 
 int64_t call_2D_screenwidth()
@@ -23,6 +22,7 @@ void call_2D_shadow()
 	mess.source = task;
 	mess.type = Messages::Canvas_Enable_Shadow;
 	task->SendGUIMessage(std::move(mess));
+	GetCurrentTask()->Yield();
 }
 
 void call_2D_clipon(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
@@ -36,7 +36,7 @@ void call_2D_clipon(int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 	m->y1 = y1;
 	m->x2 = x2;
 	m->y2 = y2;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_clipoff()
@@ -45,7 +45,7 @@ void call_2D_clipoff()
 	Message mess;
 	mess.source = task;
 	mess.type = Messages::Canvas_ClipOff;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_flip()
@@ -65,6 +65,7 @@ void call_2D_cls()
 	mess.source = task;
 	mess.type = Messages::Canvas_Clear;
 	task->SendGUIMessage(std::move(mess));
+	GetCurrentTask()->Yield();
 }
 
 void call_2D_colour(int64_t r, int64_t g, int64_t b)
@@ -76,7 +77,7 @@ void call_2D_colour(int64_t r, int64_t g, int64_t b)
 	auto m = (Colour*)&mess.data;
 	mess.type = Messages::Canvas_SetForegroundColour;
 	m->colour = c;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_colourbg(int64_t r, int64_t g, int64_t b)
@@ -88,7 +89,7 @@ void call_2D_colourbg(int64_t r, int64_t g, int64_t b)
 	auto m = (Colour*)&mess.data;
 	mess.type = Messages::Canvas_SetBackgroundColour;
 	m->colour = c;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_plot(int64_t x, int64_t y)
@@ -100,7 +101,6 @@ void call_2D_plot(int64_t x, int64_t y)
 	mess.type = Messages::Canvas_PlotPixel;
 	m->x = x;
 	m->y = y;
-
 	task->CallGUIDirect(std::move(mess));
 }
 
@@ -116,7 +116,7 @@ void call_2D_line(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
 	m->x2 = x2;
 	m->y2 = y2;
 	m->w = w;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_rectangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
@@ -131,7 +131,7 @@ void call_2D_rectangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w
 	m->x2 = x2;
 	m->y2 = y2;
 	m->w = w;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_rectanglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t w)
@@ -146,7 +146,7 @@ void call_2D_rectanglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int
 	m->x2 = x2;
 	m->y2 = y2;
 	m->w = w;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_triangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w)
@@ -163,7 +163,7 @@ void call_2D_triangle(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3
 	m->x3 = x3;
 	m->y3 = y3;
 	m->w = w;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_trianglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int64_t x3, int64_t y3, int64_t w)
@@ -180,7 +180,7 @@ void call_2D_trianglefilled(int64_t x1, int64_t y1, int64_t x2, int64_t y2, int6
 	m->x3 = x3;
 	m->y3 = y3;
 	m->w = w;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_circle(int64_t x, int64_t y, int64_t r, int64_t w)
@@ -194,7 +194,7 @@ void call_2D_circle(int64_t x, int64_t y, int64_t r, int64_t w)
 	m->y = y;
 	m->r = r;
 	m->w = w;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_circlefilled(int64_t x, int64_t y, int64_t r, int64_t w)
@@ -208,7 +208,7 @@ void call_2D_circlefilled(int64_t x, int64_t y, int64_t r, int64_t w)
 	m->y = y;
 	m->r = r;
 	m->w = w;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_text(int64_t x, int64_t y, int64_t s)
@@ -221,7 +221,7 @@ void call_2D_text(int64_t x, int64_t y, int64_t s)
 	m->x = x;
 	m->y = y;
 	m->s = s;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_textcentre(int64_t x, int64_t y, int64_t s)
@@ -234,7 +234,7 @@ void call_2D_textcentre(int64_t x, int64_t y, int64_t s)
 	m->x = x;
 	m->y = y;
 	m->s = s;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_textright(int64_t x, int64_t y, int64_t s)
@@ -247,7 +247,7 @@ void call_2D_textright(int64_t x, int64_t y, int64_t s)
 	m->x = x;
 	m->y = y;
 	m->s = s;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_2D_font(int64_t ff, int64_t fs, int64_t size)
@@ -260,5 +260,5 @@ void call_2D_font(int64_t ff, int64_t fs, int64_t size)
 	m->ff = ff;
 	m->fs = fs;
 	m->size = size;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }

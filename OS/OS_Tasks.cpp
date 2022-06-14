@@ -23,6 +23,7 @@
 #include <circle/sched/task.h>
 #include <circle/sysconfig.h>
 #include <circle/logger.h>
+#include <circle/usertimer.h>
 #endif
 
 extern WindowManager* gui;
@@ -34,11 +35,15 @@ std::map<std::string, OSDTask*> OSDTask::tasks;
 std::map<std::thread::id, OSDTask*> OSDTask::task_threads;
 std::mutex OSDTask::vlgl_mutex;
 #else
+extern const unsigned rate = USER_CLOCKHZ;
 CTask *OSDTask::boot_task;
 OSDTask *OSDTask::current_task;
+extern CUserTimer* UserTimer;
 #endif
 std::list<OSDTask*> OSDTask::tasks_list;
 size_t OSDTask::task_id = 0;
+bool OSDTask::inside_api = false;
+bool OSDTask::delayed_yield = false;
 
 OSDTask* GetCurrentTask()
 {
@@ -136,6 +141,10 @@ void OSDTask::TaskTerminationHandler(CTask* ctask)
 void OSDTask::TaskSwitchHandler(CTask* ctask)
 {
 	OSDTask::current_task = (OSDTask *)ctask;
+	if (strcmp(ctask->GetName(), "@")!=0) {
+		UserTimer->Start(rate);
+	}
+//	CLogger::Get()->Write("OS/D", LogNotice, "Task focus: %s", ctask->GetName());
 }
 #endif
 
@@ -230,7 +239,7 @@ void OSDTask::MakeStringPermanent(int64_t idx)
 {
 	auto f = strings.extract(idx);
 	permanent_strings.insert(std::move(f));
-	//GetCurrentTask()->ClearTemporaryStrings();
+	GetCurrentTask()->ClearTemporaryStrings();
 }
 
 void OSDTask::SetConstantString(int64_t idx)
@@ -318,17 +327,26 @@ void OSDTask::ReceiveDirect(Message m)
 
 void OSDTask::CallGUIDirect(Message m)
 {
-	GetTask("@")->ReceiveDirect(m);
+	delayed_yield = false;
+	inside_api = true;
+	GetTask("@")->ReceiveDirect(std::move(m));
+	inside_api = false;
+	if (delayed_yield)
+		Yield();
 }
 
 void OSDTask::SendMessage(Message m)
 {
-	if (message_queue.size()>256) {
-		Sleep(5);
+	while (message_queue_position==MESSAGE_QUEUE_SIZE) {
+		Yield();
 	}
-	message_lock.Acquire();
-	message_queue.push(std::move(m));
-	message_lock.Release();
+	delayed_yield = false;
+	inside_api = true;
+	memcpy(&message_queue[message_queue_position], &m, sizeof(Message));
+	message_queue_position++;
+	inside_api = false;
+	if (delayed_yield)
+		Yield();
 }
 
 void OSDTask::SendGUIMessage(Message m)
@@ -509,11 +527,10 @@ bool OSDTask::CompileSource(std::string filename, std::string code)
 void OSDTask::Yield()
 {
 //	GetCurrentTask()->ClearTemporaryStrings();
-//	CLogger::Get()->Write("OSDTask", LogDebug, "Yield");
+	//CLogger::Get()->Write("OSDTask", LogDebug, "Yield");
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->Yield();
-	last_yield = CTimer::Get()->GetClockTicks();
 #else
 //	std::this_thread::sleep_for(std::chrono::milliseconds(50));
 #endif
@@ -545,11 +562,4 @@ void OSDTask::UpdateGUI()
 {
 	assert(0);
 }
-
-#ifndef CLION
-bool OSDTask::TimeToYield()
-{
-	return (CTimer::Get()->GetClockTicks()-last_yield)>10000;
-}
-#endif
 

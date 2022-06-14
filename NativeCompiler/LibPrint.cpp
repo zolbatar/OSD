@@ -15,7 +15,7 @@ void call_PRINT_NL()
 #ifdef CLION
 	printf("\n");
 #endif
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_PRINT_Tabbed()
@@ -50,7 +50,7 @@ void call_PRINT_integer(int64_t v)
 #ifdef CLION
 	printf("%s", d);
 #endif
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 
 	tabbed = false;
 }
@@ -77,7 +77,7 @@ void call_PRINT_real(double v)
 #ifdef CLION
 	printf("%s", d);
 #endif
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 
 	tabbed = false;
 }
@@ -98,7 +98,7 @@ void call_PRINT_string(int64_t idx)
 		auto m = (Address*)&mess.data;
 		m->address = (void*)v.c_str();
 	}
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 #ifdef CLION
 	printf("%s", v.c_str());
 #endif
@@ -117,7 +117,7 @@ void call_PRINT_SPC(int64_t v)
 	mess.source = task;
 	mess.type = Messages::Canvas_PrintString;
 	strcpy((char*)&mess.data, s);
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }
 
 void call_PRINT_TAB(int64_t v)
@@ -129,5 +129,5 @@ void call_PRINT_TAB(int64_t v)
 	mess.type = Messages::Canvas_PrintTab;
 	auto m = (Integer*)&mess.data;
 	m->v = v;
-	task->SendGUIMessage(std::move(mess));
+	task->CallGUIDirect(std::move(mess));
 }

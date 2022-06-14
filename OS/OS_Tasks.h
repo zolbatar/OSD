@@ -40,6 +40,7 @@ enum class TaskType {
 };
 
 const size_t ALLOCATION_SIZE = 32768;
+const size_t MESSAGE_QUEUE_SIZE = 64;
 
 extern std::string string_error;
 typedef void (* start)(void);
@@ -183,18 +184,22 @@ public:
 	{
 		return framebuffer_memory;
 	}
-
+	void SetDirty() { is_dirty = true; }
 	bool IsDirty() { return is_dirty; }
 	virtual void UpdateGUI();
-#ifndef CLION
-	bool TimeToYield();
-#endif
+	static bool inside_api;
+	static bool delayed_yield;
+	static void SetDelayedYield()
+	{
+		delayed_yield = true;
+	}
 protected:
 #ifdef CLION
 	static std::mutex vlgl_mutex;
 #endif
 	OSDTask* GetTask(const char* s);
-	std::queue<Message> message_queue;
+	std::array<Message, MESSAGE_QUEUE_SIZE> message_queue;
+	size_t message_queue_position = 0;
 	start exec;
 	bool exclusive = false;
 	int d_x;
@@ -205,9 +210,6 @@ protected:
 	std::string id;
 	std::string name;
 	bool is_dirty = false;
-#ifndef CLION
-	CMutex message_lock;
-#endif
 private:
 	void* w = NULL;
 	int64_t idx;
@@ -223,9 +225,6 @@ private:
 	size_t code_size;
 	uint8_t* code = NULL;
 	jit_state_t* _jit = NULL;
-#ifndef CLION
-	unsigned int last_yield = CTimer::Get()->GetClockTicks();
-#endif
 };
 
 struct DARICString {

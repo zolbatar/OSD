@@ -3,6 +3,7 @@
 #include <circle/2dgraphics.h>
 #include <circle/memory.h>
 #include <circle/usb/usbmouse.h>
+#include <circle/usertimer.h>
 #include <circle/usb/usbkeyboard.h>
 #include <circle/usb/usbhcidevice.h>
 #include <circle/multicore.h>
@@ -26,4 +27,7 @@ private:
 	CCPUThrottle mThrottle;
 	CScheduler mScheduler;
 	CMultiCore mMulticore;
+	CUserTimer mUserTimer;
+
+	static void PeriodicHandler(CUserTimer* pTimer, void* pParam);
 };

@@ -43,21 +43,19 @@ void DARICWindow::Run()
 	m->height = d_h;
 	m->canvas = true;
 	m->fixed = true;
-//	CLogger::Get()->Write("DARICWindow", LogDebug, "Request: %s", GetWindowName().c_str());
 	SendGUIMessage(std::move(mess));
 
 	// Wait for window to be created
 	do {
 		Yield();
-//		CLogger::Get()->Write("DARICWindow", LogDebug, "Wait: %s %p", GetWindowName().c_str(), w);
 	}
 	while (GetWindow()==NULL);
-//	CLogger::Get()->Write("DARICWindow", LogDebug, "Live: %s", GetWindowName().c_str());
 
 	// Compile (and run)
 	try {
-//		CLogger::Get()->Write("DARICWindow", LogDebug, "Compile: %s", GetWindowName().c_str());
 		if (CompileSource(filename, code)) {
+			is_dirty = true;
+			//CLogger::Get()->Write("DARICWindow", LogDebug, "Run: %s", GetWindowName().c_str());
 			RunCode();
 		}
 	}
@@ -89,5 +87,9 @@ void DARICWindow::Run()
 
 void DARICWindow::UpdateGUI()
 {
-	is_dirty = false;
+//	CLogger::Get()->Write("DARICWindow", LogDebug, "Render");
+//	auto w = (Window*)GetWindow();
+//	auto c = w->GetCanvas();
+//	c->Render();
+//	lv_obj_invalidate(lv_scr_act());
 }

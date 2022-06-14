@@ -28,14 +28,15 @@ CScreenDevice* screen;
 CMemorySystem* memory;
 CInterruptSystem* interrupt;
 CUSBHCIDevice* USBHCI;
-static void PeriodicHandler();
+CUserTimer* UserTimer;
+const unsigned rate = USER_CLOCKHZ / 100;
 
 #define NET_DEVICE_TYPE        NetDeviceTypeEthernet
 //#define NET_DEVICE_TYPE        NetDeviceTypeWLAN
 
 CKernel::CKernel(void)
 //		:CStdlibAppNetwork("OS/D", CSTDLIBAPP_DEFAULT_PARTITION, 0, 0, 0, 0, NET_DEVICE_TYPE)
-		:CStdlibAppStdio("OS/D"), mMulticore(&mMemory)
+		:CStdlibAppStdio("OS/D"), mMulticore(&mMemory), mUserTimer(&mInterrupt, PeriodicHandler, this, false)
 {
 	timer = &mTimer;
 	memory = &mMemory;
@@ -43,6 +44,7 @@ CKernel::CKernel(void)
 	USBHCI = &mUSBHCI;
 	interrupt = &mInterrupt;
 	mThrottle.SetSpeed(TCPUSpeed::CPUSpeedMaximum);
+	UserTimer = &mUserTimer;
 }
 
 CStdlibApp::TShutdownMode CKernel::Run(void)
@@ -101,6 +103,13 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	kernel_size = 1;
 #endif
 
+	// Now fire cores up
+	mMulticore.Initialize();
+
+	// Start the pre-emptive
+	mUserTimer.Initialize();
+	mUserTimer.Start(rate);
+
 	// Font manager if always first
 	auto fm = new FontManager();
 	fm->InitFonts();
@@ -110,19 +119,11 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	auto gui = new WindowManager();
 	gui->Start();
 
-	// Now fire cores up
-	mMulticore.Initialize();
-
-	// Start the pre-emptive
-	CTimer::Get()->RegisterPeriodicHandler(PeriodicHandler);
-
 	while (1) { // Wait forever for now, no shutdown procedure
-		auto mScheduler = CScheduler::Get();
-		mScheduler->Yield();
+		CScheduler::Get()->Yield();
 	}
 
 	mLogger.Write("OS/D", LogNotice, "Termination");
-	while (1);
 
 	return ShutdownHalt;
 }
@@ -140,11 +141,13 @@ void CMultiCore::Run(unsigned nCore)
 	}
 }
 
-static void PeriodicHandler()
+void CKernel::PeriodicHandler(CUserTimer* pTimer, void* pParam)
 {
+//	CLogger::Get()->Write("OS/D", LogNotice, "Tick");
 	auto task = GetCurrentTask();
-	if (task->TimeToYield()) {
-//		CLogger::Get()->Write("OS/D", LogNotice, "Pre-empt");
-		task->Yield();
+	if (OSDTask::inside_api) {
+		OSDTask::SetDelayedYield();
+		return;
 	}
+	task->Yield();
 }

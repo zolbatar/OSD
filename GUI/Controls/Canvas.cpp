@@ -9,6 +9,10 @@ Canvas::Canvas(OSDTask* task, lv_obj_t* parent, int w, int h)
 		:task(task), w(w), h(h)
 {
 	this->parent = parent;
+	w = w - 50;
+	h = h - 50;
+	this->w = w;
+	this->h = h;
 	sz = (lv_img_cf_get_px_size(cf)*w)*h/8;
 	buffer = NEW uint8_t[sz];
 	task->AddFrameBufferMemory(sz);
@@ -16,7 +20,8 @@ Canvas::Canvas(OSDTask* task, lv_obj_t* parent, int w, int h)
 	// First buffer
 	firstbuffer = lv_canvas_create(parent);
 	lv_canvas_set_buffer(firstbuffer, buffer, w, h, cf);
-	lv_canvas_fill_bg(firstbuffer, bg, LV_OPA_COVER);
+	lv_canvas_fill_bg(firstbuffer, lv_color_white(), LV_OPA_COVER);
+	for (auto i = 0; i<1000; i++) buffer[i] = rand();
 
 	object = firstbuffer;
 }
@@ -35,6 +40,10 @@ Canvas::~Canvas()
 		lv_draw_mask_free_param(&top_id);
 	if (bottom_id!=0)
 		lv_draw_mask_free_param(&bottom_id);
+}
+
+void Canvas::Render()
+{
 }
 
 void Canvas::EnableDoubleBuffering()
@@ -77,7 +86,10 @@ void Canvas::Clear()
 
 void Canvas::PlotPixel(int64_t x, int64_t y)
 {
+	SetupClip();
 	lv_canvas_set_px_color(object, x, y, fg);
+	//lv_canvas_set_px_opa(object, x, y, LV_OPA_COVER);
+	ClearClip();
 }
 
 void Canvas::ClipOn(int64_t x1, int64_t y1, int64_t x2, int64_t y2)

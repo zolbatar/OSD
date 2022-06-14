@@ -10,6 +10,7 @@ class Canvas : public Control {
 public:
 	Canvas(OSDTask* task, lv_obj_t* parent, int w, int h);
 	~Canvas();
+	void Render();
 	void SetupClip();
 	void ClearClip();
 	void EnableDoubleBuffering();
