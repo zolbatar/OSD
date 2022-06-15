@@ -8,8 +8,9 @@ extern lv_font_t* font_body;
 
 class Canvas : public Control {
 public:
-	Canvas(lv_obj_t* parent, int w, int h);
+	Canvas(OSDTask* task, lv_obj_t* parent, int w, int h);
 	~Canvas();
+	void Render();
 	void SetupClip();
 	void ClearClip();
 	void EnableDoubleBuffering();
@@ -50,6 +51,7 @@ private:
 	lv_draw_mask_line_param_t line_mask_param_t;
 	lv_draw_mask_line_param_t line_mask_param_b;
 
+	OSDTask* task;
 	int w;
 	int h;
 	int cursor_x = 0;

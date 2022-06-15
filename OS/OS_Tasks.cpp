@@ -23,31 +23,35 @@
 #include <circle/sched/task.h>
 #include <circle/sysconfig.h>
 #include <circle/logger.h>
+#include <circle/usertimer.h>
 #endif
 
+extern WindowManager* gui;
 extern Input* input;
-std::string string_error = "NOT A VALID STRING";
 
-OSDTask* OSDTask::task_override = NULL;
 #ifdef CLION
 std::map<std::string, OSDTask*> OSDTask::tasks;
 std::map<std::thread::id, OSDTask*> OSDTask::task_threads;
 std::mutex OSDTask::vlgl_mutex;
 #else
+extern unsigned rate;
 CTask *OSDTask::boot_task;
+OSDTask *OSDTask::current_task;
+extern CUserTimer* UserTimer;
 #endif
 std::list<OSDTask*> OSDTask::tasks_list;
 size_t OSDTask::task_id = 0;
+bool OSDTask::yield_due = false;
+OSDTask* OSDTask::task_override = nullptr;
 
 OSDTask* GetCurrentTask()
 {
-	// Do we have an override?
-	auto tover = OSDTask::GetTaskOverride();
-	if (tover!=NULL)
-		return tover;
+	if (OSDTask::GetOverride()!=nullptr)
+		return OSDTask::GetOverride();
 #ifndef CLION
-	auto mScheduler = CScheduler::Get();
-	return (OSDTask *)mScheduler->GetCurrentTask();
+	return OSDTask::current_task;
+//	auto mScheduler = CScheduler::Get();
+//		return (OSDTask *)mScheduler->GetCurrentTask();
 #else
 	auto id = std::this_thread::get_id();
 	auto f = OSDTask::task_threads.find(id);
@@ -56,14 +60,23 @@ OSDTask* GetCurrentTask()
 #endif
 }
 
+OSDTask::OSDTask()
+#ifndef CLION
+: CTask()
+#endif
+{
+	// To be safe, zero these out
+	for (auto it = allocations.begin(); it!=allocations.end(); ++it) {
+		it->m = 0;
+	}
+}
+
 OSDTask::~OSDTask()
 {
 	if (_jit!=NULL)
 		jit_destroy_state();
 	if (code!=NULL)
 		DELETE code;
-	if (message_queue!=NULL)
-		DELETE message_queue;
 }
 
 void OSDTask::SetNameAndAddToList()
@@ -82,20 +95,10 @@ void OSDTask::SetNameAndAddToList()
 void OSDTask::TerminateTask()
 {
 	// Close window
-	auto mess = SendGUIMessage();
-	mess->type = Messages::WM_CloseWindow;
-	mess->source = this;
-	Window* w;
-	do {
-		Yield();
-		w = (Window*)GetWindow();
-	}
-	while (w!=NULL);
-
-/*	CLogger::Get()->Write("OSDTask", LogDebug, "Quit");
-	while(1) {
-		Yield();
-	}*/
+	DirectMessage mess;
+	mess.type = Messages::WM_CloseWindow;
+	mess.source = this;
+	CallGUIDirectEx(&mess);
 
 	// Remove
 	tasks_list.remove(this);
@@ -103,7 +106,6 @@ void OSDTask::TerminateTask()
 	OSDTask::tasks.erase(this->name);
 #else
 	Terminate();
-	exit(1);
 #endif
 }
 
@@ -113,8 +115,8 @@ void OSDTask::TaskTerminationHandler(CTask* ctask)
 	auto tt = (TaskType*)ctask->GetUserData(TASK_USER_DATA_USER);
 	switch (*tt) {
 		case TaskType::DARIC: {
-			auto dw = (DARICWindow*)ctask;
-			delete dw;
+//			auto dw = (DARICWindow*)ctask;
+//			delete dw;
 			break;
 		}
 		default:
@@ -123,6 +125,41 @@ void OSDTask::TaskTerminationHandler(CTask* ctask)
 	}
 }
 #endif
+
+#ifndef CLION
+void OSDTask::TaskSwitchHandler(CTask* ctask)
+{
+	OSDTask::current_task = (OSDTask *)ctask;
+	switch (current_task->priority) {
+		case TaskPriority::NoPreempt:
+			UserTimer->Start(rate*4096);
+			break;
+		case TaskPriority::High:
+			UserTimer->Start(rate*5);
+			break;
+		default:
+			UserTimer->Start(rate);
+			break;
+	}
+//	CLogger::Get()->Write("OS/D", LogNotice, "Task focus: %s", ctask->GetName());
+}
+#endif
+
+void OSDTask::ReceiveDirectEx(DirectMessage* m)
+{
+	assert(0);
+}
+
+void OSDTask::CallGUIDirectEx(DirectMessage* m)
+{
+	if (terminate_requested)
+		TerminateTask();
+	if (yield_due) {
+		yield_due = false;
+		Yield();
+	}
+	GetTask("@")->ReceiveDirectEx(m);
+}
 
 #ifdef CLION
 
@@ -215,6 +252,7 @@ void OSDTask::MakeStringPermanent(int64_t idx)
 {
 	auto f = strings.extract(idx);
 	permanent_strings.insert(std::move(f));
+	GetCurrentTask()->ClearTemporaryStrings();
 }
 
 void OSDTask::SetConstantString(int64_t idx)
@@ -251,7 +289,13 @@ std::string& OSDTask::GetString(int64_t idx)
 	if (f==strings.end()) {
 		auto f = permanent_strings.find(idx);
 		if (f==permanent_strings.end()) {
-			return string_error;
+#ifdef CLION
+			printf("Invalid string");
+			exit(1);
+#else
+			CLogger::Get()->Write("OSDTask", LogNotice, "Invalid string");
+			while(1);
+#endif
 		}
 		return f->second;
 	}
@@ -293,37 +337,6 @@ size_t OSDTask::GetAllocCount()
 		i--;
 	}
 	return 0;
-}
-
-Message* OSDTask::SendMessage()
-{
-	if (message_queue==NULL) {
-		message_queue_size = MIN_MESSAGE_QUEUE;
-		message_queue = NEW Message[message_queue_size];
-	}
-	while (message_queue_position==message_queue_size) {
-#ifndef CLION
-		CLogger::Get()->Write("GUI", LogDebug, "Full thread");
-#else
-		printf("Full thread");
-#endif
-		Yield();
-	}
-	Message* m = &message_queue[message_queue_position++];
-	return m;
-}
-
-Message* OSDTask::SendGUIMessage()
-{
-	// How long since last message?
-#ifndef CLION
-	auto diff = CTimer::Get()->GetClockTicks()-last_yield;
-	if (diff>=1000) {
-		Yield();
-	}
-#endif
-	auto gui = GetTask("@");
-	return gui->SendMessage();
 }
 
 OSDTask* OSDTask::GetTask(const char* s)
@@ -493,11 +506,11 @@ bool OSDTask::CompileSource(std::string filename, std::string code)
 
 void OSDTask::Yield()
 {
-	GetCurrentTask()->ClearTemporaryStrings();
+//	GetCurrentTask()->ClearTemporaryStrings();
+	//CLogger::Get()->Write("OSDTask", LogDebug, "Yield");
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->Yield();
-	last_yield = CTimer::Get()->GetClockTicks();
 #else
 //	std::this_thread::sleep_for(std::chrono::milliseconds(50));
 #endif
@@ -522,11 +535,50 @@ size_t OSDTask::CalculateMemoryUsed()
 		if (m.m!=0)
 			r += m.sz;
 	}
-
-	// Strings
-/*	for (auto& m: strings) {
-		r += m.second.size();
-	}*/
-
 	return r;
 }
+
+void OSDTask::UpdateGUI()
+{
+	assert(0);
+}
+
+void OSDTask::SetStart(start s)
+{
+	exec = s;
+}
+
+void OSDTask::CreateCode(size_t code_size)
+{
+	this->code_size = code_size;
+	code = NEW uint8_t[code_size];
+}
+
+uint8_t* OSDTask::GetCode() { return code; }
+
+start OSDTask::GetExec()
+{
+	return exec;
+}
+
+void OSDTask::SetOverride(OSDTask* task)
+{
+	task_override = task;
+}
+
+void OSDTask::ClearOverride()
+{
+	task_override = nullptr;
+}
+
+OSDTask* OSDTask::GetOverride()
+{
+	return task_override;
+}
+
+void OSDTask::RequestTerminate()
+{
+	terminate_requested = true;
+}
+
+

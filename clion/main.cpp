@@ -13,6 +13,7 @@ extern int ScreenWidth;
 extern int ScreenHeight;
 size_t kernel_size = 0;
 size_t pre_boot_memory = 0;
+WindowManager* gui = nullptr;
 
 int main()
 {
@@ -24,8 +25,12 @@ int main()
 	// What to run?
 	auto fm = NEW FontManager();
 	fm->InitFonts();
-	auto gui = NEW WindowManager();
+	gui = NEW WindowManager();
 	gui->Start();
-	gui->WaitForTermination();
+
+	auto tester = NEW DARICWindow("RayTracer", false, 100*dm, 600*dm, 400*dm, 400*dm);
+	tester->LoadSourceCode(":SD.$.Welcome.Raytracer");
+	tester->Run();
+
 	return 0;
 }

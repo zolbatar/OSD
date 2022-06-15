@@ -228,7 +228,8 @@ void GuiCLVGL::Update(bool bPlugAndPlayUpdated) {
         }
     }
 
-    lv_task_handler();
+//    CLogger::Get()->Write("lvgl", LogDebug, "Update");
+   	lv_task_handler();
 
     unsigned nTicks = CTimer::Get()->GetClockTicks();
     if (nTicks - m_nLastUpdate >= CLOCKHZ / 1000) {

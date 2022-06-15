@@ -15,12 +15,16 @@ FontManager::FontManager()
 {
 	this->id = "Font Manager";
 	this->name = "Font Manager";
+	this->priority = TaskPriority::Low;
 }
 
 void FontManager::InitFonts()
 {
-	task_override = this;
-
+	SetOverride(this);
+	this->fs.SetCurrentDirectory(":SD.$.System.Fonts");
+#ifndef CLION
+	CLogger::Get()->Write("Font Manager", LogNotice, "Loading fonts");
+#endif
 	std::stringstream ss(installed_fonts);
 	std::string val;
 	while (std::getline(ss, val, '\n')) {
@@ -30,19 +34,18 @@ void FontManager::InitFonts()
 		LoadFile("/Users/daryl/Dev/osd/fonts/"+val);
 #endif
 	}
-//	while(1);
-	task_override = NULL;
+#ifndef CLION
+	CLogger::Get()->Write("Font Manager", LogNotice, "Loaded fonts");
+#endif
+	ClearOverride();
 }
 
 void FontManager::Run()
 {
 	SetNameAndAddToList();
-
-	// Do stuff
 	while (1) {
-		Sleep(100);
+		Yield();
 	}
-
 	TerminateTask();
 }
 

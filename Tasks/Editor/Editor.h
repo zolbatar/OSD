@@ -7,6 +7,7 @@ public:
 
 	void Run();
 	void LoadSourceCode(std::string filename);
+	void UpdateGUI();
 private:
 	static void TextareaEventHandler(lv_event_t* e);\
 	std::string code;

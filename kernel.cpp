@@ -11,6 +11,7 @@
 #include "../Chrono/Chrono.h"
 #include "OS/OS.h"
 #include "Tasks/FontManager/FontManager.h"
+#include "Tasks/FileManager/FileManager.h"
 #include "Tasks/WindowManager/WindowManager.h"
 #include "Tasks/DARICWindow.h"
 #include "Tokeniser/Tokeniser.h"
@@ -28,13 +29,15 @@ CScreenDevice* screen;
 CMemorySystem* memory;
 CInterruptSystem* interrupt;
 CUSBHCIDevice* USBHCI;
+CUserTimer* UserTimer;
+unsigned rate = USER_CLOCKHZ/1000;
 
 #define NET_DEVICE_TYPE        NetDeviceTypeEthernet
 //#define NET_DEVICE_TYPE        NetDeviceTypeWLAN
 
 CKernel::CKernel(void)
 //		:CStdlibAppNetwork("OS/D", CSTDLIBAPP_DEFAULT_PARTITION, 0, 0, 0, 0, NET_DEVICE_TYPE)
-		:CStdlibAppStdio("OS/D")
+		:CStdlibAppStdio("OS/D"), mMulticore(&mMemory), mUserTimer(&mInterrupt, PeriodicHandler, this, true)
 {
 	timer = &mTimer;
 	memory = &mMemory;
@@ -42,6 +45,7 @@ CKernel::CKernel(void)
 	USBHCI = &mUSBHCI;
 	interrupt = &mInterrupt;
 	mThrottle.SetSpeed(TCPUSpeed::CPUSpeedMaximum);
+	UserTimer = &mUserTimer;
 }
 
 CStdlibApp::TShutdownMode CKernel::Run(void)
@@ -54,6 +58,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	}
 	mScheduler.SuspendNewTasks();
 	OSDTask::boot_task = mScheduler.GetCurrentTask();
+	mScheduler.RegisterTaskSwitchHandler(OSDTask::TaskSwitchHandler);
 	mScheduler.RegisterTaskTerminationHandler(OSDTask::TaskTerminationHandler);
 
 #ifdef __arm__
@@ -99,13 +104,51 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	kernel_size = 1;
 #endif
 
+	// Now fire cores up
+//	mMulticore.Initialize();
+
+// Start the pre-emptive
+	mUserTimer.Initialize();
+	mUserTimer.Start(rate);
+
+	// File manager is always first, then other system services
+	auto fim = new FileManager();
+	fim->Start();
+	CScheduler::Get()->Yield();
 	auto fm = new FontManager();
 	fm->InitFonts();
 	fm->Start();
+	CScheduler::Get()->Yield();
+
+	// Wait for GUI startup
 	auto gui = new WindowManager();
 	gui->Start();
-	gui->WaitForTermination();
-	mLogger.Write("OS/D", LogNotice, "Termination.");
+
+	while (1) { // Wait forever for now, no shutdown procedure
+		CScheduler::Get()->Yield();
+	}
+
+	mLogger.Write("OS/D", LogNotice, "Termination");
 
 	return ShutdownHalt;
 }
+
+CMultiCore::CMultiCore(CMemorySystem* pMemorySystem)
+		:CMultiCoreSupport(pMemorySystem)
+{
+}
+
+void CMultiCore::Run(unsigned nCore)
+{
+	switch (nCore) {
+		case 1:
+			break;
+	}
+}
+
+void CKernel::PeriodicHandler(CUserTimer* pTimer, void* pParam)
+{
+	pTimer->Start(rate*32);
+	OSDTask::yield_due = true;
+}
+

@@ -22,10 +22,8 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 
 void DARICWindow::LoadSourceCode(std::string filename)
 {
-	task_override = this;
 	this->filename = filename;
 	this->code = this->LoadSource(filename);
-	task_override = NULL;
 }
 
 void DARICWindow::Run()
@@ -33,30 +31,26 @@ void DARICWindow::Run()
 	SetNameAndAddToList();
 
 	// Create Window
-	auto mess = SendGUIMessage();
-	mess->type = Messages::WM_OpenWindow;
-	mess->source = this;
-	auto m = (WM_OpenWindow*)&mess->data;
-	strcpy(m->id, id.c_str());
-	strcpy(m->title, name.c_str());
-	m->x = d_x;
-	m->y = d_y;
-	m->width = d_w;
-	m->height = d_h;
-	m->canvas = true;
-	m->fixed = true;
-
-	// Wait for window to be created
-	Window* w;
-	do {
-		Yield();
-		w = (Window*)GetWindow();
-	}
-	while (w==NULL);
+	DirectMessage mess;
+	mess.type = Messages::WM_OpenWindow;
+	mess.source = this;
+	WM_OpenWindow m;
+	mess.data = &m;
+	strcpy(m.id, id.c_str());
+	strcpy(m.title, name.c_str());
+	m.x = d_x;
+	m.y = d_y;
+	m.width = d_w;
+	m.height = d_h;
+	m.canvas = true;
+	m.fixed = true;
+	CallGUIDirectEx(&mess);
+	Yield();
 
 	// Compile (and run)
 	try {
 		if (CompileSource(filename, code)) {
+			//CLogger::Get()->Write("DARICWindow", LogDebug, "Run: %s", GetWindowName().c_str());
 			RunCode();
 		}
 	}
@@ -80,8 +74,13 @@ void DARICWindow::Run()
 		printf("%s%s in file '%s' at line %d, column %d\n", cat.c_str(), ex.error.c_str(), ex.filename.c_str(), ex.line_number, ex.char_position);
 #else
 		CLogger::Get()->Write("CompileSource", LogPanic, "%s%s in file '%s' at line %d, column %d", cat.c_str() ,ex.error.c_str(), ex.filename.c_str(), ex.line_number, ex.char_position);
+		exit();
 #endif
 	}
 
 	TerminateTask();
+}
+
+void DARICWindow::UpdateGUI()
+{
 }

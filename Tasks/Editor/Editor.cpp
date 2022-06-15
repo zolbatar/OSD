@@ -21,30 +21,23 @@ void Editor::Run()
 	SetNameAndAddToList();
 
 	// Create Window
-	auto mess = SendGUIMessage();
-	mess->type = Messages::WM_OpenWindow;
-	mess->source = this;
-	auto m = (WM_OpenWindow*)&mess->data;
-	strcpy(m->id, this->id.c_str());
-	strcpy(m->title, this->name.c_str());
-	m->x = d_x;
-	m->y = d_y;
-	m->width = d_w;
-	m->height = d_h;
-	m->canvas = false;
-	m->fixed = false;
-
-	// Wait for window to be created
-	Window* w;
-	do {
-		Yield();
-		w = (Window*)GetWindow();
-	}
-	while (w==NULL);
+	DirectMessage mess;
+	mess.type = Messages::WM_OpenWindow;
+	mess.source = this;
+	WM_OpenWindow m;
+	mess.data = &m;
+	strcpy(m.id, id.c_str());
+	strcpy(m.title, name.c_str());
+	m.x = d_x;
+	m.y = d_y;
+	m.width = d_w;
+	m.height = d_h;
+	m.canvas = true;
+	m.fixed = true;
+	CallGUIDirectEx(&mess);
 
 	// Build
-	LockVLGL("TasksWindow::UpdateTasks");
-	auto ww = w->GetLVGLWindow();
+	auto ww = ((Window*)this->GetWindow())->GetLVGLWindow();
 	lv_obj_t* ta = lv_textarea_create(lv_win_get_content(ww));
 	lv_textarea_set_one_line(ta, true);
 	lv_obj_align(ta, LV_ALIGN_TOP_MID, 0, 0);
@@ -54,7 +47,6 @@ void Editor::Run()
 	lv_textarea_add_text(ta, code.c_str());
 	lv_obj_add_state(ta, LV_STATE_FOCUSED);
 	lv_obj_add_style(ta, &style_textarea, LV_STATE_DEFAULT);
-	UnlockVLGL();
 
 	// Do stuff
 	while (1) {
@@ -72,7 +64,6 @@ void Editor::TextareaEventHandler(lv_event_t* e)
 
 void Editor::LoadSourceCode(std::string filename)
 {
-	task_override = this;
 	std::vector<std::string> lines;
 
 	// Quick and dirty file stuff until we have a proper file manager
@@ -103,5 +94,10 @@ void Editor::LoadSourceCode(std::string filename)
 	std::string s;
 	for (const auto& line : lines) s += line+'\n';
 	this->code = s;
-	task_override = NULL;
 }
+
+void Editor::UpdateGUI()
+{
+}
+
+

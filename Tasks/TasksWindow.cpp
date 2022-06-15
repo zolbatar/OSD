@@ -24,42 +24,35 @@ void TasksWindow::Run()
 	SetNameAndAddToList();
 
 	// Create Window
-	auto mess = SendGUIMessage();
-	mess->type = Messages::WM_OpenWindow;
-	mess->source = this;
-	auto m = (WM_OpenWindow*)&mess->data;
-	strcpy(m->id, this->id.c_str());
-	strcpy(m->title, this->name.c_str());
-	m->x = d_x;
-	m->y = d_y;
-	m->width = d_w;
-	m->height = d_h;
-	m->canvas = false;
-	m->fixed = false;
-
-	// Wait for window to be created
-	Window* w;
-	do {
-		Yield();
-		w = (Window*)GetWindow();
-	}
-	while (w==NULL);
+	DirectMessage mess;
+	mess.type = Messages::WM_OpenWindow;
+	mess.source = this;
+	WM_OpenWindow m;
+	mess.data = &m;
+	strcpy(m.id, id.c_str());
+	strcpy(m.title, name.c_str());
+	m.x = d_x;
+	m.y = d_y;
+	m.width = d_w;
+	m.height = d_h;
+	m.canvas = true;
+	m.fixed = true;
+	CallGUIDirectEx(&mess);
 
 	// Do stuff
 	while (1) {
-		UpdateTasks();
+		UpdateGUI();
 		Sleep(1000);
 	}
 
 	TerminateTask();
 }
 
-void TasksWindow::UpdateTasks()
+void TasksWindow::UpdateGUI()
 {
 	MemorySummary m;
 	CalculateMem(&m);
 
-	LockVLGL("TasksWindow::UpdateTasks");
 	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
 	lv_obj_clean(lv_win_get_content(w));
 
@@ -106,10 +99,6 @@ void TasksWindow::UpdateTasks()
 	lv_obj_set_grid_cell(title4, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
 	lv_label_set_text(title4, "Allocations");
 	lv_obj_add_style(title4, &style_grid_title, LV_STATE_DEFAULT);
-	auto title5 = lv_label_create(cont);
-	lv_obj_set_grid_cell(title5, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_STRETCH, 0, 1);
-	lv_label_set_text(title5, "");
-	lv_obj_add_style(title5, &style_grid_title, LV_STATE_DEFAULT);
 
 	// Total memory
 	auto total_memory_title = lv_label_create(cont);
@@ -182,6 +171,7 @@ void TasksWindow::UpdateTasks()
 		lv_obj_set_grid_cell(memory, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, i, 1);
 		auto total = task->CalculateMemoryUsed();
 		auto fb = task->GetFrameBufferMemory();
+		if (total<fb) total = fb;
 		lv_label_set_text_fmt(memory, "%zu KB", (total-fb)/1024);
 
 		// Framebuffer
@@ -192,8 +182,7 @@ void TasksWindow::UpdateTasks()
 		// Allocations
 		auto memory3 = lv_label_create(cont);
 		lv_obj_set_grid_cell(memory3, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-		lv_label_set_text_fmt(memory3, "%zu/%zu+%zu/%zu", task->GetAllocCount(), task->GetStringCount(), task->GetStringCountTemporary(),
-				task->GetMessageQueueCount());
+		lv_label_set_text_fmt(memory3, "%zu [%zu+%zu]", task->GetAllocCount(), task->GetStringCount(), task->GetStringCountTemporary());
 
 		auto bar = lv_bar_create(cont);
 		lv_obj_set_grid_cell(bar, LV_GRID_ALIGN_STRETCH, 4, 1, LV_GRID_ALIGN_STRETCH, i, 1);
@@ -205,5 +194,4 @@ void TasksWindow::UpdateTasks()
 
 		i++;
 	}
-	UnlockVLGL();
 }

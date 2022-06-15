@@ -1,4 +1,6 @@
 w%=SCREENWIDTH:h%=SCREENHEIGHT
+CLS
+REPEAT
 REM LOADFONT dotmatrixfont%="FXMatrix105MonoPicaRegular.otf"
 dotmatrixfont%=0
 
@@ -77,11 +79,11 @@ FONT "IBM Plex Sans", "Bold", 40
 TEXTRIGHT w%-41, 590, "Bold"
 FONT "IBM Plex Sans", "Bold Italic", 40
 TEXTRIGHT w%-41, 630, "Bold Italic"
+UNTIL FALSE
 
 DEF RandomColour()
     COLOUR RND(30),RND(30),RND(30)
     COLOURBG RND(30),RND(30),RND(30)
 ENDDEF
 
-REPEAT:YIELD:UNTIL FALSE
 

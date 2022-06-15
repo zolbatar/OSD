@@ -1,8 +1,11 @@
 #!/bin/sh
+mcopy -i sdcard.sdimg ::osd/System/Config/FontManager.json .
+
 truncate -s 1G sdcard.sdimg
 /usr/local/Cellar/dosfstools/4.2/sbin/mkfs.vfat sdcard.sdimg
 mmd -i sdcard.sdimg osd  
 mmd -i sdcard.sdimg osd/System
+mmd -i sdcard.sdimg osd/System/Config
 mmd -i sdcard.sdimg osd/System/Fonts
 mmd -i sdcard.sdimg osd/System/Fonts/IBMPlex
 mmd -i sdcard.sdimg osd/System/Fonts/Source

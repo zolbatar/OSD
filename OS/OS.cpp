@@ -29,7 +29,7 @@ void TaskAddAllocation(size_t size, void* m)
 		return;
 	}
 #endif
-	GetCurrentTask()->AddAllocation(size, m);
+	task->AddAllocation(size, m);
 }
 
 void TaskFreeAllocation(void* m)

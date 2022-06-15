@@ -1,4 +1,7 @@
 #include "Window.h"
+#ifndef CLION
+#include <circle/logger.h>
+#endif
 
 std::map<std::string, Window*> Window::windows;
 extern int dm;
@@ -6,7 +9,6 @@ extern int dm;
 Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
 		:task(task), title(title), x1(x), y1(y), width(w), height(h)
 {
-	OSDTask::LockVLGL("Window::Window");
 	x2 = x1+width;
 	y2 = y1+height;
 
@@ -42,20 +44,17 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	lv_obj_add_style(btn_close, &style_window_furniture, LV_STATE_DEFAULT);
 
 	if (pure_canvas) {
-		canvas = new Canvas(content, w-(WINDOW_BORDER_WIDTH*2*dm), h-(WINDOW_BORDER_WIDTH*2*dm)-WINDOW_HEADER_HEIGHT*dm);
+		canvas = new Canvas(task, content, w-(WINDOW_BORDER_WIDTH*2*dm), h-(WINDOW_BORDER_WIDTH*2*dm)-WINDOW_HEADER_HEIGHT*dm);
 	}
 
-	OSDTask::UnlockVLGL();
 	SetActive();
 }
 
 Window::~Window()
 {
-	OSDTask::LockVLGL("Window::~Window");
 	if (canvas!=NULL)
 		delete canvas;
 	lv_obj_del(win);
-	OSDTask::UnlockVLGL();
 }
 
 void Window::SetActive()
@@ -78,7 +77,7 @@ void Window::SetInactive()
 void Window::CloseClicked(_lv_event_t* e)
 {
 	auto w = (Window*)e->user_data;
-	w->task->TerminateTask();
+	w->task->RequestTerminate();
 }
 
 void Window::ClickEventHandler(lv_event_t* e)

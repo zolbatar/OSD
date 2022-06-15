@@ -1,43 +1,42 @@
-
 W%=SCREENWIDTH:H%=SCREENHEIGHT
-FOR N%=0 TO H%-1
-    FOR M%=0 TO W%-1
-        X#=0:Y#=-0.1:Z#=3
+REPEAT
+    CLS
+    FOR N%=0 TO H%-1
+        FOR M%=0 TO W%-1
+            X#=0:Y#=-0.1:Z#=3
 
-        U#=(M%-(W%/2)+0.5)/(W%/2)
-        V#=(N%-(H%/2)+0.5)/(W%/2)
-        W#=1/SQR(U#*U#+V#*V#+1)
+            U#=(M%-(W%/2)+0.5)/(W%/2)
+            V#=(N%-(H%/2)+0.5)/(W%/2)
+            W#=1/SQR(U#*U#+V#*V#+1)
 
-        U#=U#*W#
-        V#=V#*W#
-        I#=SGN(U#)
-        T%=0
-        REPEAT
-            E#=X#-I#:F#=Y#-I#
-            P#=U#*E#+V#*F#-W#*Z#
-            D#=P#*P#-E#*E#-F#*F#-Z#*Z#+1
-            IF D#>0.0 THEN
-                T#=-P#-SQR(D#)
-                IF T#>0 THEN
-                    X#=X#+T#*U#:Y#=Y#+T#*V#:Z#=Z#-T#*W#:E#=X#-I#:F#=Y#-I#:G#=Z#
-                    P#=2*(U#*E#+V#*F#-W#*G#):U#=U#-P#*E#:V#=V#-P#*F#:W#=W#+P#*G#:I#=-I#
-                    T%=1
+            U#=U#*W#
+            V#=V#*W#
+            I#=SGN(U#)
+            T%=0
+            REPEAT
+                E#=X#-I#:F#=Y#-I#
+                P#=U#*E#+V#*F#-W#*Z#
+                D#=P#*P#-E#*E#-F#*F#-Z#*Z#+1
+                IF D#>0.0 THEN
+                    T#=-P#-SQR(D#)
+                    IF T#>0 THEN
+                        X#=X#+T#*U#:Y#=Y#+T#*V#:Z#=Z#-T#*W#:E#=X#-I#:F#=Y#-I#:G#=Z#
+                        P#=2*(U#*E#+V#*F#-W#*G#):U#=U#-P#*E#:V#=V#-P#*F#:W#=W#+P#*G#:I#=-I#
+                        T%=1
+                    ELSE
+                        T%=0
+                    ENDIF
                 ELSE
-                    T%=0
+                    T%=1
                 ENDIF
-            ELSE
-                T%=1
+            UNTIL T%=1
+            IF V#<0 THEN
+                P#=(Y#+2)/V#
+                V#=-V#*((INT(X#-U#*P#)+INT(Z#-W#*P#) AND 1)/2+0.3)+0.2
             ENDIF
-        UNTIL T%=1
-        IF V#<0 THEN
-            P#=(Y#+2)/V#
-            V#=-V#*((INT(X#-U#*P#)+INT(Z#-W#*P#) AND 1)/2+0.3)+0.2
-        ENDIF
-        S%=V#*255
-        COLOUR S%,S%,S%
-        PLOT M%,(H%-1)-N%
+            S%=V#*255
+            COLOUR S%,S%,S%
+            PLOT M%,(H%-1)-N%
+        NEXT
     NEXT
-NEXT
-
-
-REPEAT:YIELD:UNTIL FALSE
+UNTIL FALSE
