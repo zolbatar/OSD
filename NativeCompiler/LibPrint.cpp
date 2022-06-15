@@ -91,6 +91,7 @@ void call_PRINT_string(int64_t idx)
 	printf("%s", v.c_str());
 #endif
 	tabbed = false;
+	task->ClearTemporaryStrings();
 }
 
 void call_PRINT_SPC(int64_t v)
@@ -116,6 +117,5 @@ void call_PRINT_TAB(int64_t v)
 	mess.source = task;
 	mess.type = Messages::Canvas_PrintTab;
 	mess.data = &v;
-	auto m = (Integer*)&mess.data;
 	task->CallGUIDirectEx(&mess);
 }

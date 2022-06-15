@@ -24,9 +24,9 @@ https://lvgl.io/
 stb-truetype
 MIT
 
-concurrentqueue
-Simplified BSD
-https://github.com/cameron314/concurrentqueue
+JSON for Modern C++
+MIT
+https://github.com/nlohmann/json
 
 # TODO
 

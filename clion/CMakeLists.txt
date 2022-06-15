@@ -27,7 +27,7 @@ add_executable(
         ../../Library/StringLib.cpp
         ../../Tasks/DARICWindow.cpp ../../Tasks/Editor/Editor.cpp
         ../../Tasks/WindowManager/WindowManager.cpp
-        ../../Tasks/TasksWindow.cpp ../../Tasks/FontManager/FontManager.cpp
+        ../../Tasks/TasksWindow.cpp ../../Tasks/FontManager/FontManager.cpp ../../Tasks/FileManager/FileManager.cpp
         ../../GUI/Window.cpp ../../GUI/lvgl.cpp ../../GUI/Style.cpp
         ../../GUI/Controls/Control.cpp ../../GUI/Controls/Canvas.cpp
         ../../Parser/Parser.cpp ../../Parser/ParserExpression.cpp

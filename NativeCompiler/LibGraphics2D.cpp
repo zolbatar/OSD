@@ -233,6 +233,7 @@ void call_2D_text(int64_t x, int64_t y, int64_t s)
 	m.y = y;
 	m.s = s;
 	task->CallGUIDirectEx(&mess);
+	task->ClearTemporaryStrings();
 }
 
 void call_2D_textcentre(int64_t x, int64_t y, int64_t s)
@@ -247,6 +248,7 @@ void call_2D_textcentre(int64_t x, int64_t y, int64_t s)
 	m.y = y;
 	m.s = s;
 	task->CallGUIDirectEx(&mess);
+	task->ClearTemporaryStrings();
 }
 
 void call_2D_textright(int64_t x, int64_t y, int64_t s)
@@ -261,6 +263,7 @@ void call_2D_textright(int64_t x, int64_t y, int64_t s)
 	m.y = y;
 	m.s = s;
 	task->CallGUIDirectEx(&mess);
+	task->ClearTemporaryStrings();
 }
 
 void call_2D_font(int64_t ff, int64_t fs, int64_t size)
@@ -275,4 +278,5 @@ void call_2D_font(int64_t ff, int64_t fs, int64_t size)
 	m.fs = fs;
 	m.size = size;
 	task->CallGUIDirectEx(&mess);
+	task->ClearTemporaryStrings();
 }

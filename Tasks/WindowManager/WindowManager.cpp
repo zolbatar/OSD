@@ -261,7 +261,7 @@ void WindowManager::DesktopStartup()
 		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
 		clock3->Start();*/
 
-		auto graphics2d = NEW DARICWindow("Graphics 2D", false, 20*dm, 450*dm, 600*dm, 600*dm);
+/*		auto graphics2d = NEW DARICWindow("Graphics 2D", false, 20*dm, 450*dm, 600*dm, 600*dm);
 		graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2d");
 		graphics2d->Start();
 
@@ -283,14 +283,14 @@ void WindowManager::DesktopStartup()
 
 		auto raytracer = NEW DARICWindow("Ray Tracer", false, 650*dm, 700*dm, 640*dm, 350*dm);
 		raytracer->LoadSourceCode(":SD.$.Welcome.Raytracer");
-		raytracer->Start();
+		raytracer->Start();*/
 
 		auto tasks = NEW TasksWindow(1100*dm, 600*dm, 750*dm, 400*dm);
 		tasks->Start();
 
-		auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
+/*		auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
 		clock->LoadSourceCode(":SD.$.Welcome.Clock");
-		clock->Start();
+		clock->Start();*/
 
 #else
 /*	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 550*dm, 400*dm);

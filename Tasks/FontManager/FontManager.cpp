@@ -20,6 +20,8 @@ FontManager::FontManager()
 
 void FontManager::InitFonts()
 {
+	SetOverride(this);
+	this->fs.SetCurrentDirectory(":SD.$.System.Fonts");
 #ifndef CLION
 	CLogger::Get()->Write("Font Manager", LogNotice, "Loading fonts");
 #endif
@@ -35,17 +37,15 @@ void FontManager::InitFonts()
 #ifndef CLION
 	CLogger::Get()->Write("Font Manager", LogNotice, "Loaded fonts");
 #endif
+	ClearOverride();
 }
 
 void FontManager::Run()
 {
 	SetNameAndAddToList();
-
-	// Do stuff
 	while (1) {
 		Yield();
 	}
-
 	TerminateTask();
 }
 

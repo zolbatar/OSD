@@ -28,7 +28,6 @@
 
 extern WindowManager* gui;
 extern Input* input;
-std::string string_error = "NOT A VALID STRING";
 
 #ifdef CLION
 std::map<std::string, OSDTask*> OSDTask::tasks;
@@ -43,9 +42,12 @@ extern CUserTimer* UserTimer;
 std::list<OSDTask*> OSDTask::tasks_list;
 size_t OSDTask::task_id = 0;
 bool OSDTask::yield_due = false;
+OSDTask* OSDTask::task_override = nullptr;
 
 OSDTask* GetCurrentTask()
 {
+	if (OSDTask::GetOverride()!=nullptr)
+		return OSDTask::GetOverride();
 #ifndef CLION
 	return OSDTask::current_task;
 //	auto mScheduler = CScheduler::Get();
@@ -104,7 +106,6 @@ void OSDTask::TerminateTask()
 	OSDTask::tasks.erase(this->name);
 #else
 	Terminate();
-	exit(1);
 #endif
 }
 
@@ -114,8 +115,8 @@ void OSDTask::TaskTerminationHandler(CTask* ctask)
 	auto tt = (TaskType*)ctask->GetUserData(TASK_USER_DATA_USER);
 	switch (*tt) {
 		case TaskType::DARIC: {
-			auto dw = (DARICWindow*)ctask;
-			delete dw;
+//			auto dw = (DARICWindow*)ctask;
+//			delete dw;
 			break;
 		}
 		default:
@@ -144,27 +145,15 @@ void OSDTask::TaskSwitchHandler(CTask* ctask)
 }
 #endif
 
-void OSDTask::ReceiveDirect(Message m)
-{
-	assert(0);
-}
-
 void OSDTask::ReceiveDirectEx(DirectMessage* m)
 {
 	assert(0);
 }
 
-void OSDTask::CallGUIDirect(Message m)
-{
-	if (yield_due) {
-		yield_due = false;
-		Yield();
-	}
-	GetTask("@")->ReceiveDirect(std::move(m));
-}
-
 void OSDTask::CallGUIDirectEx(DirectMessage* m)
 {
+	if (terminate_requested)
+		TerminateTask();
 	if (yield_due) {
 		yield_due = false;
 		Yield();
@@ -300,7 +289,8 @@ std::string& OSDTask::GetString(int64_t idx)
 	if (f==strings.end()) {
 		auto f = permanent_strings.find(idx);
 		if (f==permanent_strings.end()) {
-			return string_error;
+			CLogger::Get()->Write("OSDTask", LogNotice, "Invalid string");
+			while(1);
 		}
 		return f->second;
 	}
@@ -547,4 +537,38 @@ void OSDTask::UpdateGUI()
 {
 	assert(0);
 }
+
+void OSDTask::SetStart(start s)
+{
+	exec = s;
+}
+
+void OSDTask::CreateCode(size_t code_size)
+{
+	this->code_size = code_size;
+	code = NEW uint8_t[code_size];
+}
+
+uint8_t* OSDTask::GetCode() { return code; }
+
+start OSDTask::GetExec()
+{
+	return exec;
+}
+
+void OSDTask::SetOverride(OSDTask* task)
+{
+	task_override = task;
+}
+
+void OSDTask::ClearOverride()
+{
+	task_override = nullptr;
+}
+
+OSDTask* OSDTask::GetOverride()
+{
+	return task_override;
+}
+
 

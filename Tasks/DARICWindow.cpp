@@ -82,9 +82,4 @@ void DARICWindow::Run()
 
 void DARICWindow::UpdateGUI()
 {
-//	CLogger::Get()->Write("DARICWindow", LogDebug, "Render");
-//	auto w = (Window*)GetWindow();
-//	auto c = w->GetCanvas();
-//	c->Render();
-//	lv_obj_invalidate(lv_scr_act());
 }

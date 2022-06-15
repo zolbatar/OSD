@@ -11,6 +11,7 @@
 #include "../Chrono/Chrono.h"
 #include "OS/OS.h"
 #include "Tasks/FontManager/FontManager.h"
+#include "Tasks/FileManager/FileManager.h"
 #include "Tasks/WindowManager/WindowManager.h"
 #include "Tasks/DARICWindow.h"
 #include "Tokeniser/Tokeniser.h"
@@ -97,27 +98,31 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 #ifndef CLION
 	auto memory = CMemorySystem::Get();
 	initial_mem_free = memory->GetHeapFreeSpace(HEAP_ANY);
-	//kernel_size = memory->GetMemSize()-initial_mem_free;
+	kernel_size = memory->GetMemSize()-initial_mem_free;
 #else
 	initial_mem_free = 1;
 	kernel_size = 1;
 #endif
 
 	// Now fire cores up
-	mMulticore.Initialize();
+//	mMulticore.Initialize();
 
-	// Font manager if always first
+// Start the pre-emptive
+	mUserTimer.Initialize();
+	mUserTimer.Start(rate);
+
+	// File manager is always first, then other system services
+	auto fim = new FileManager();
+	fim->Start();
+	CScheduler::Get()->Yield();
 	auto fm = new FontManager();
 	fm->InitFonts();
 	fm->Start();
+	CScheduler::Get()->Yield();
 
 	// Wait for GUI startup
 	auto gui = new WindowManager();
 	gui->Start();
-
-	// Start the pre-emptive
-	mUserTimer.Initialize();
-	mUserTimer.Start(rate);
 
 	while (1) { // Wait forever for now, no shutdown procedure
 		CScheduler::Get()->Yield();
@@ -145,4 +150,9 @@ void CKernel::PeriodicHandler(CUserTimer* pTimer, void* pParam)
 {
 	pTimer->Start(rate*32);
 	OSDTask::yield_due = true;
+}
+
+void OSDTask::RequestTerminate()
+{
+	terminate_requested = true;
 }

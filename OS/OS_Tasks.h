@@ -25,6 +25,7 @@
 #include <chrono>
 #include <set>
 #include <queue>
+#include "../Tasks/FileManager/FileSystemObject.h"
 
 extern "C"
 {
@@ -48,7 +49,6 @@ enum TaskPriority {
 const size_t ALLOCATION_SIZE = 32768;
 const size_t MESSAGE_QUEUE_SIZE = 64;
 
-extern std::string string_error;
 typedef void (* start)(void);
 
 struct TaskAllocRef {
@@ -67,12 +67,6 @@ struct DirectMessage {
 	Messages type;
 	void* source; // This is an OSDTask
 	void* data;
-};
-
-struct Message {
-	Messages type;
-	void* source; // This is an OSDTask
-	uint8_t data[MESSAGE_BLOCK];
 };
 
 #ifndef CLION
@@ -126,27 +120,13 @@ public:
 	void AddAllocation(size_t size, void* m);
 	bool FreeAllocation(void* m);
 
-	void SetStart(start s)
-	{
-		exec = s;
-	}
+	// Code
+	void SetStart(start s);
+	void CreateCode(size_t code_size);
+	uint8_t* GetCode();
+	start GetExec();
 
-	void CreateCode(size_t code_size)
-	{
-		this->code_size = code_size;
-		code = NEW uint8_t[code_size];
-	}
-
-	uint8_t* GetCode() { return code; }
-
-	start GetExec()
-	{
-		return exec;
-	}
-
-	virtual void ReceiveDirect(Message m);
 	virtual void ReceiveDirectEx(DirectMessage* m);
-	void CallGUIDirect(Message m);
 	void CallGUIDirectEx(DirectMessage* m);
 	void Yield();
 	void Sleep(int ms);
@@ -161,11 +141,13 @@ public:
 	static void TaskSwitchHandler(CTask* ctask);
 #endif
 
+	FileSystem fs;
 	std::string GetWindowID() { return id; }
 	std::string GetWindowName() { return name; }
 	void* GetWindow() { return w; }
 	bool IsExclusive() { return exclusive; }
 	void TerminateTask();
+	void RequestTerminate();
 	size_t GetStringCount() { return permanent_strings.size(); }
 	size_t GetStringCountTemporary() { return strings.size(); }
 	size_t GetAllocCount();
@@ -197,6 +179,9 @@ public:
 	}
 	virtual void UpdateGUI();
 	static bool yield_due;
+	static OSDTask* GetOverride();
+	static void SetOverride(OSDTask *task);
+	static void ClearOverride();
 protected:
 #ifdef CLION
 	static std::mutex vlgl_mutex;
@@ -212,6 +197,8 @@ protected:
 	std::string id;
 	std::string name;
 	TaskPriority priority = TaskPriority::High;
+	bool terminate_requested = false;
+	static OSDTask* task_override;
 private:
 	void* w = NULL;
 	int64_t idx;

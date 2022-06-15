@@ -77,7 +77,7 @@ void Window::SetInactive()
 void Window::CloseClicked(_lv_event_t* e)
 {
 	auto w = (Window*)e->user_data;
-	w->task->TerminateTask();
+	w->task->RequestTerminate();
 }
 
 void Window::ClickEventHandler(lv_event_t* e)

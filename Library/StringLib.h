@@ -16,3 +16,4 @@ void rtrim(std::string& s);
 void trim(std::string& s);
 bool replace(std::string& str, const std::string& from, const std::string& to);
 void replaceAll(std::string& str, const std::string& from, const std::string& to);
+std::vector<std::string> splitString(std::string str, char splitter);
