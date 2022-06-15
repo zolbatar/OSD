@@ -289,8 +289,13 @@ std::string& OSDTask::GetString(int64_t idx)
 	if (f==strings.end()) {
 		auto f = permanent_strings.find(idx);
 		if (f==permanent_strings.end()) {
+#ifdef CLION
+			printf("Invalid string");
+			exit(1);
+#else
 			CLogger::Get()->Write("OSDTask", LogNotice, "Invalid string");
 			while(1);
+#endif
 		}
 		return f->second;
 	}
@@ -569,6 +574,11 @@ void OSDTask::ClearOverride()
 OSDTask* OSDTask::GetOverride()
 {
 	return task_override;
+}
+
+void OSDTask::RequestTerminate()
+{
+	terminate_requested = true;
 }
 
 

@@ -27,5 +27,10 @@ int main()
 	fm->InitFonts();
 	gui = NEW WindowManager();
 	gui->Start();
+
+	auto tester = NEW DARICWindow("RayTracer", false, 100*dm, 600*dm, 400*dm, 400*dm);
+	tester->LoadSourceCode(":SD.$.Welcome.Raytracer");
+	tester->Run();
+
 	return 0;
 }

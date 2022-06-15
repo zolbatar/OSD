@@ -152,7 +152,3 @@ void CKernel::PeriodicHandler(CUserTimer* pTimer, void* pParam)
 	OSDTask::yield_due = true;
 }
 
-void OSDTask::RequestTerminate()
-{
-	terminate_requested = true;
-}

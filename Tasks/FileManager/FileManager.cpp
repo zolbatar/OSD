@@ -1,7 +1,7 @@
 #include "FileManager.h"
 #include "../Library/StringLib.h"
-#include <fatfs/ff.h>
 #ifndef CLION
+#include <fatfs/ff.h>
 #include <circle/logger.h>
 #endif
 
@@ -21,6 +21,21 @@ void FileManager::Run()
 	TerminateTask();
 }
 
+FileSystemHandler* FileManager::GetFSHandler(std::string fs)
+{
+	if (fs==":sd") {
+		return &sd_fs;
+	}
+	else {
+#ifdef CLION
+		printf("File system '%s' not found", fs.c_str());
+		exit(1);
+#else
+		CLogger::Get()->Write("File Manager", LogPanic, "File system '%s' not found", fs.c_str());
+#endif
+	}
+}
+
 void FileSystem::SetCurrentDirectory(std::string directory)
 {
 	switch (format) {
@@ -29,13 +44,15 @@ void FileSystem::SetCurrentDirectory(std::string directory)
 			// Split everything by .
 			auto split = splitString(directory, '.');
 			for (auto& a : split) {
-				CLogger::Get()->Write("FileSystem", LogDebug, "%s", a.c_str());
+//				CLogger::Get()->Write("File Manager", LogDebug, "%s", a.c_str());
 			}
-			while (1);
 
 			// Do we have a drive specified?
-			if (directory[0]==':') {
+			if (split[0][0]==':') {
+//				CLogger::Get()->Write("File Manager", LogDebug, "Filesystem: %s", split[0].c_str());
 			}
+
+			while (1);
 
 		}
 		default:

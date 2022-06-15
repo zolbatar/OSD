@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <string>
 #include "StringLib.h"
+#include <vector>
 
 bool endsWith(const std::string& mainStr, const std::string& toMatch)
 {

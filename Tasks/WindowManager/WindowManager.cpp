@@ -291,42 +291,6 @@ void WindowManager::DesktopStartup()
 /*		auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
 		clock->LoadSourceCode(":SD.$.Welcome.Clock");
 		clock->Start();*/
-
-#else
-/*	auto tasks = NEW TasksWindow(1200*dm, 200*dm, 550*dm, 400*dm);
-	std::thread t1(&DARICWindow::Start, tasks);
-	t1.detach();*/
-
-/*	auto editor = NEW Editor(200*dm, 450*dm, 700*dm, 600*dm);
-	editor->LoadSourceCode(":SD.$.Welcome.Tester");
-	std::thread t2(&Editor::Start, editor);
-	t2.detach();*/
-
-/*	auto clock = NEW DARICWindow("Clock", false, 1000*dm, 100*dm, 400*dm, 300*dm);
-	clock->LoadSourceCode(":SD.$.Welcome.Clock");
-	std::thread t2(&DARICWindow::Start, clock);
-	t2.detach();*/
-
-/*	    auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 100*dm, 600*dm, 400*dm, 400*dm);
-		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-		std::thread t3(&DARICWindow::Start, mandelbrot);
-		t3.detach();*/
-
-	auto tester = NEW DARICWindow("RayTracer", false, 100*dm, 600*dm, 400*dm, 400*dm);
-	tester->LoadSourceCode(":SD.$.Welcome.Raytracer");
-	std::thread t4(&DARICWindow::Start, tester);
-	t4.detach();
-
-/*		auto clock3 = NEW DARICWindow("Tester", false, 100*dm, 600*dm, 400*dm, 400*dm);
-		clock3->LoadSourceCode(":SD.$.Welcome.Tester");
-		std::thread t4(&DARICWindow::Start, clock3);
-		t4.detach();*/
-
-/*	auto fonts = NEW DARICWindow("Test", false, 100*dm, 600*dm, 400*dm, 400*dm);
-	fonts->LoadSourceCode(":SD.$.Welcome.Sierpinski");
-	std::thread t4(&DARICWindow::Start, fonts);
-	t4.detach();*/
-
 #endif
 }
 
