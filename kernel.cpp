@@ -29,14 +29,14 @@ CMemorySystem* memory;
 CInterruptSystem* interrupt;
 CUSBHCIDevice* USBHCI;
 CUserTimer* UserTimer;
-const unsigned rate = USER_CLOCKHZ / 100;
+unsigned rate = USER_CLOCKHZ/1000;
 
 #define NET_DEVICE_TYPE        NetDeviceTypeEthernet
 //#define NET_DEVICE_TYPE        NetDeviceTypeWLAN
 
 CKernel::CKernel(void)
 //		:CStdlibAppNetwork("OS/D", CSTDLIBAPP_DEFAULT_PARTITION, 0, 0, 0, 0, NET_DEVICE_TYPE)
-		:CStdlibAppStdio("OS/D"), mMulticore(&mMemory), mUserTimer(&mInterrupt, PeriodicHandler, this, false)
+		:CStdlibAppStdio("OS/D"), mMulticore(&mMemory), mUserTimer(&mInterrupt, PeriodicHandler, this, true)
 {
 	timer = &mTimer;
 	memory = &mMemory;
@@ -106,10 +106,6 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	// Now fire cores up
 	mMulticore.Initialize();
 
-	// Start the pre-emptive
-	mUserTimer.Initialize();
-	mUserTimer.Start(rate);
-
 	// Font manager if always first
 	auto fm = new FontManager();
 	fm->InitFonts();
@@ -118,6 +114,10 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	// Wait for GUI startup
 	auto gui = new WindowManager();
 	gui->Start();
+
+	// Start the pre-emptive
+	mUserTimer.Initialize();
+	mUserTimer.Start(rate);
 
 	while (1) { // Wait forever for now, no shutdown procedure
 		CScheduler::Get()->Yield();
@@ -143,11 +143,6 @@ void CMultiCore::Run(unsigned nCore)
 
 void CKernel::PeriodicHandler(CUserTimer* pTimer, void* pParam)
 {
-//	CLogger::Get()->Write("OS/D", LogNotice, "Tick");
-	auto task = GetCurrentTask();
-	if (OSDTask::inside_api) {
-		OSDTask::SetDelayedYield();
-		return;
-	}
-	task->Yield();
+	pTimer->Start(rate*32);
+	OSDTask::yield_due = true;
 }

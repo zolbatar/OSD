@@ -35,15 +35,14 @@ std::map<std::string, OSDTask*> OSDTask::tasks;
 std::map<std::thread::id, OSDTask*> OSDTask::task_threads;
 std::mutex OSDTask::vlgl_mutex;
 #else
-extern const unsigned rate = USER_CLOCKHZ;
+extern unsigned rate;
 CTask *OSDTask::boot_task;
 OSDTask *OSDTask::current_task;
 extern CUserTimer* UserTimer;
 #endif
 std::list<OSDTask*> OSDTask::tasks_list;
 size_t OSDTask::task_id = 0;
-bool OSDTask::inside_api = false;
-bool OSDTask::delayed_yield = false;
+bool OSDTask::yield_due = false;
 
 OSDTask* GetCurrentTask()
 {
@@ -94,21 +93,10 @@ void OSDTask::SetNameAndAddToList()
 void OSDTask::TerminateTask()
 {
 	// Close window
-	Message mess;
+	DirectMessage mess;
 	mess.type = Messages::WM_CloseWindow;
 	mess.source = this;
-	SendGUIMessage(std::move(mess));
-	Window* w;
-	do {
-		Yield();
-		w = (Window*)GetWindow();
-	}
-	while (w!=NULL);
-
-/*	CLogger::Get()->Write("OSDTask", LogDebug, "Quit");
-	while(1) {
-		Yield();
-	}*/
+	CallGUIDirectEx(&mess);
 
 	// Remove
 	tasks_list.remove(this);
@@ -141,12 +129,48 @@ void OSDTask::TaskTerminationHandler(CTask* ctask)
 void OSDTask::TaskSwitchHandler(CTask* ctask)
 {
 	OSDTask::current_task = (OSDTask *)ctask;
-	if (strcmp(ctask->GetName(), "@")!=0) {
-		UserTimer->Start(rate);
+	switch (current_task->priority) {
+		case TaskPriority::NoPreempt:
+			UserTimer->Start(rate*4096);
+			break;
+		case TaskPriority::High:
+			UserTimer->Start(rate*5);
+			break;
+		default:
+			UserTimer->Start(rate);
+			break;
 	}
 //	CLogger::Get()->Write("OS/D", LogNotice, "Task focus: %s", ctask->GetName());
 }
 #endif
+
+void OSDTask::ReceiveDirect(Message m)
+{
+	assert(0);
+}
+
+void OSDTask::ReceiveDirectEx(DirectMessage* m)
+{
+	assert(0);
+}
+
+void OSDTask::CallGUIDirect(Message m)
+{
+	if (yield_due) {
+		yield_due = false;
+		Yield();
+	}
+	GetTask("@")->ReceiveDirect(std::move(m));
+}
+
+void OSDTask::CallGUIDirectEx(DirectMessage* m)
+{
+	if (yield_due) {
+		yield_due = false;
+		Yield();
+	}
+	GetTask("@")->ReceiveDirectEx(m);
+}
 
 #ifdef CLION
 
@@ -318,45 +342,6 @@ size_t OSDTask::GetAllocCount()
 		i--;
 	}
 	return 0;
-}
-
-void OSDTask::ReceiveDirect(Message m)
-{
-	assert(0);
-}
-
-void OSDTask::CallGUIDirect(Message m)
-{
-	delayed_yield = false;
-	inside_api = true;
-	GetTask("@")->ReceiveDirect(std::move(m));
-	inside_api = false;
-	if (delayed_yield)
-		Yield();
-}
-
-void OSDTask::SendMessage(Message m)
-{
-	while (message_queue_position==MESSAGE_QUEUE_SIZE) {
-		Yield();
-	}
-	delayed_yield = false;
-	inside_api = true;
-	memcpy(&message_queue[message_queue_position], &m, sizeof(Message));
-	message_queue_position++;
-	inside_api = false;
-	if (delayed_yield)
-		Yield();
-}
-
-void OSDTask::SendGUIMessage(Message m)
-{
-	GetTask("@")->SendMessage(std::move(m));
-}
-
-size_t OSDTask::GetMessageQueueCount()
-{
-	return message_queue.size();
 }
 
 OSDTask* OSDTask::GetTask(const char* s)

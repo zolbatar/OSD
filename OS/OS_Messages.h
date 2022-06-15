@@ -15,7 +15,6 @@ enum class Messages {
 	Canvas_SetFont,
 	Canvas_PlotPixel,
 	Canvas_PrintString,
-	Canvas_PrintStringLong,
 	Canvas_PrintNewLine,
 	Canvas_PrintTab,
 	Canvas_Rectangle,

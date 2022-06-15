@@ -9,13 +9,13 @@ const int tab_size = 20;
 void call_PRINT_NL()
 {
 	auto task = GetCurrentTask();
-	Message mess;
+	DirectMessage mess;
 	mess.source = task;
 	mess.type = Messages::Canvas_PrintNewLine;
 #ifdef CLION
 	printf("\n");
 #endif
-	task->CallGUIDirect(std::move(mess));
+	task->CallGUIDirectEx(&mess);
 }
 
 void call_PRINT_Tabbed()
@@ -43,15 +43,11 @@ void call_PRINT_integer(int64_t v)
 
 	// Send
 	auto task = GetCurrentTask();
-	Message mess;
+	DirectMessage mess;
 	mess.source = task;
 	mess.type = Messages::Canvas_PrintString;
-	strcpy((char*)&mess.data, d);
-#ifdef CLION
-	printf("%s", d);
-#endif
-	task->CallGUIDirect(std::move(mess));
-
+	mess.data = &d;
+	task->CallGUIDirectEx(&mess);
 	tabbed = false;
 }
 
@@ -70,15 +66,14 @@ void call_PRINT_real(double v)
 
 	// Send
 	auto task = GetCurrentTask();
-	Message mess;
+	DirectMessage mess;
 	mess.source = task;
 	mess.type = Messages::Canvas_PrintString;
-	strcpy((char*)&mess.data, d);
+	mess.data = &d;
 #ifdef CLION
 	printf("%s", d);
 #endif
-	task->CallGUIDirect(std::move(mess));
-
+	task->CallGUIDirectEx(&mess);
 	tabbed = false;
 }
 
@@ -87,18 +82,11 @@ void call_PRINT_string(int64_t idx)
 	auto v = OS_Strings_Get(idx);
 
 	auto task = GetCurrentTask();
-	Message mess;
+	DirectMessage mess;
 	mess.source = task;
-	if (v.length()<=MESSAGE_BLOCK) {
-		mess.type = Messages::Canvas_PrintString;
-		strcpy((char*)&mess.data, v.c_str());
-	}
-	else {
-		mess.type = Messages::Canvas_PrintStringLong;
-		auto m = (Address*)&mess.data;
-		m->address = (void*)v.c_str();
-	}
-	task->CallGUIDirect(std::move(mess));
+	mess.type = Messages::Canvas_PrintString;
+	mess.data = (void*)v.c_str();
+	task->CallGUIDirectEx(&mess);
 #ifdef CLION
 	printf("%s", v.c_str());
 #endif
@@ -113,21 +101,21 @@ void call_PRINT_SPC(int64_t v)
 
 	// Send
 	auto task = GetCurrentTask();
-	Message mess;
+	DirectMessage mess;
 	mess.source = task;
 	mess.type = Messages::Canvas_PrintString;
-	strcpy((char*)&mess.data, s);
-	task->CallGUIDirect(std::move(mess));
+	mess.data = &s;
+	task->CallGUIDirectEx(&mess);
 }
 
 void call_PRINT_TAB(int64_t v)
 {
 	// Send
 	auto task = GetCurrentTask();
-	Message mess;
+	DirectMessage mess;
 	mess.source = task;
 	mess.type = Messages::Canvas_PrintTab;
+	mess.data = &v;
 	auto m = (Integer*)&mess.data;
-	m->v = v;
-	task->CallGUIDirect(std::move(mess));
+	task->CallGUIDirectEx(&mess);
 }

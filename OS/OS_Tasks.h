@@ -39,6 +39,12 @@ enum class TaskType {
 	Editor
 };
 
+enum TaskPriority {
+	NoPreempt,
+	Low,
+	High
+};
+
 const size_t ALLOCATION_SIZE = 32768;
 const size_t MESSAGE_QUEUE_SIZE = 64;
 
@@ -55,6 +61,12 @@ struct DataElement {
 	int64_t iv = 0;
 	double rv = 0.0;
 	int64_t sv = 0;
+};
+
+struct DirectMessage {
+	Messages type;
+	void* source; // This is an OSDTask
+	void* data;
 };
 
 struct Message {
@@ -133,9 +145,9 @@ public:
 	}
 
 	virtual void ReceiveDirect(Message m);
-	void SendMessage(Message m);
+	virtual void ReceiveDirectEx(DirectMessage* m);
 	void CallGUIDirect(Message m);
-	void SendGUIMessage(Message m);
+	void CallGUIDirectEx(DirectMessage* m);
 	void Yield();
 	void Sleep(int ms);
 
@@ -157,7 +169,6 @@ public:
 	size_t GetStringCount() { return permanent_strings.size(); }
 	size_t GetStringCountTemporary() { return strings.size(); }
 	size_t GetAllocCount();
-	size_t GetMessageQueueCount();
 
 #ifdef CLION
 	static std::map<std::string, OSDTask*> tasks;
@@ -184,22 +195,13 @@ public:
 	{
 		return framebuffer_memory;
 	}
-	void SetDirty() { is_dirty = true; }
-	bool IsDirty() { return is_dirty; }
 	virtual void UpdateGUI();
-	static bool inside_api;
-	static bool delayed_yield;
-	static void SetDelayedYield()
-	{
-		delayed_yield = true;
-	}
+	static bool yield_due;
 protected:
 #ifdef CLION
 	static std::mutex vlgl_mutex;
 #endif
 	OSDTask* GetTask(const char* s);
-	std::array<Message, MESSAGE_QUEUE_SIZE> message_queue;
-	size_t message_queue_position = 0;
 	start exec;
 	bool exclusive = false;
 	int d_x;
@@ -209,7 +211,7 @@ protected:
 	static size_t task_id;
 	std::string id;
 	std::string name;
-	bool is_dirty = false;
+	TaskPriority priority = TaskPriority::High;
 private:
 	void* w = NULL;
 	int64_t idx;

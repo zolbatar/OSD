@@ -24,31 +24,24 @@ void TasksWindow::Run()
 	SetNameAndAddToList();
 
 	// Create Window
-	Message mess;
+	DirectMessage mess;
 	mess.type = Messages::WM_OpenWindow;
 	mess.source = this;
-	auto m = (WM_OpenWindow*)&mess.data;
-	strcpy(m->id, this->id.c_str());
-	strcpy(m->title, this->name.c_str());
-	m->x = d_x;
-	m->y = d_y;
-	m->width = d_w;
-	m->height = d_h;
-	m->canvas = false;
-	m->fixed = false;
-	SendGUIMessage(std::move(mess));
-
-	// Wait for window to be created
-	Window* w;
-	do {
-		Yield();
-		w = (Window*)GetWindow();
-	}
-	while (w==NULL);
+	WM_OpenWindow m;
+	mess.data = &m;
+	strcpy(m.id, id.c_str());
+	strcpy(m.title, name.c_str());
+	m.x = d_x;
+	m.y = d_y;
+	m.width = d_w;
+	m.height = d_h;
+	m.canvas = true;
+	m.fixed = true;
+	CallGUIDirectEx(&mess);
 
 	// Do stuff
 	while (1) {
-		is_dirty = true;
+		UpdateGUI();
 		Sleep(1000);
 	}
 
@@ -57,8 +50,6 @@ void TasksWindow::Run()
 
 void TasksWindow::UpdateGUI()
 {
-	is_dirty = false;
-
 	MemorySummary m;
 	CalculateMem(&m);
 
@@ -191,8 +182,7 @@ void TasksWindow::UpdateGUI()
 		// Allocations
 		auto memory3 = lv_label_create(cont);
 		lv_obj_set_grid_cell(memory3, LV_GRID_ALIGN_STRETCH, 3, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-		lv_label_set_text_fmt(memory3, "%zu/%zu+%zu/%zu", task->GetAllocCount(), task->GetStringCount(), task->GetStringCountTemporary(),
-				task->GetMessageQueueCount());
+		lv_label_set_text_fmt(memory3, "%zu [%zu+%zu]", task->GetAllocCount(), task->GetStringCount(), task->GetStringCountTemporary());
 
 		auto bar = lv_bar_create(cont);
 		lv_obj_set_grid_cell(bar, LV_GRID_ALIGN_STRETCH, 4, 1, LV_GRID_ALIGN_STRETCH, i, 1);

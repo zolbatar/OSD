@@ -21,30 +21,23 @@ void Editor::Run()
 	SetNameAndAddToList();
 
 	// Create Window
-	Message mess;
+	DirectMessage mess;
 	mess.type = Messages::WM_OpenWindow;
 	mess.source = this;
-	auto m = (WM_OpenWindow*)&mess.data;
-	strcpy(m->id, this->id.c_str());
-	strcpy(m->title, this->name.c_str());
-	m->x = d_x;
-	m->y = d_y;
-	m->width = d_w;
-	m->height = d_h;
-	m->canvas = false;
-	m->fixed = false;
-	SendGUIMessage(std::move(mess));
-
-	// Wait for window to be created
-	Window* w;
-	do {
-		Yield();
-		w = (Window*)GetWindow();
-	}
-	while (w==NULL);
+	WM_OpenWindow m;
+	mess.data = &m;
+	strcpy(m.id, id.c_str());
+	strcpy(m.title, name.c_str());
+	m.x = d_x;
+	m.y = d_y;
+	m.width = d_w;
+	m.height = d_h;
+	m.canvas = true;
+	m.fixed = true;
+	CallGUIDirectEx(&mess);
 
 	// Build
-	auto ww = w->GetLVGLWindow();
+	auto ww = ((Window*)this->GetWindow())->GetLVGLWindow();
 	lv_obj_t* ta = lv_textarea_create(lv_win_get_content(ww));
 	lv_textarea_set_one_line(ta, true);
 	lv_obj_align(ta, LV_ALIGN_TOP_MID, 0, 0);
@@ -105,7 +98,6 @@ void Editor::LoadSourceCode(std::string filename)
 
 void Editor::UpdateGUI()
 {
-	is_dirty = false;
 }
 
 

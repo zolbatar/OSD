@@ -15,6 +15,7 @@ FontManager::FontManager()
 {
 	this->id = "Font Manager";
 	this->name = "Font Manager";
+	this->priority = TaskPriority::Low;
 }
 
 void FontManager::InitFonts()
@@ -42,7 +43,7 @@ void FontManager::Run()
 
 	// Do stuff
 	while (1) {
-		Sleep(100);
+		Yield();
 	}
 
 	TerminateTask();
