@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 
 enum class ValueType {
     Integer,

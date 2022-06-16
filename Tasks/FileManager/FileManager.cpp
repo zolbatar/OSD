@@ -1,9 +1,10 @@
 #include "FileManager.h"
 #include "../Library/StringLib.h"
 #ifndef CLION
-#include <fatfs/ff.h>
 #include <circle/logger.h>
 #endif
+
+std::map<std::string, FSVolume> FileManager::volumes;
 
 FileManager::FileManager()
 {
@@ -14,6 +15,18 @@ FileManager::FileManager()
 
 void FileManager::Run()
 {
+	FSVolume boot;
+	boot.prefix = "/osd/";
+	volumes.insert(std::make_pair(":BOOT", std::move(boot)));
+	CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":BOOT");
+
+	FSVolume sd;
+	sd.prefix = "/";
+	volumes.insert(std::make_pair(":SD", std::move(sd)));
+	CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":SD");
+
+	fs.SetVolume(":BOOT");
+
 	SetNameAndAddToList();
 	while (1) {
 		Yield();
@@ -21,19 +34,46 @@ void FileManager::Run()
 	TerminateTask();
 }
 
-FileSystemHandler* FileManager::GetFSHandler(std::string fs)
+FileSystemHandler* FileManager::GetFSHandler(FileSystemType type)
 {
-	if (fs==":sd") {
-		return &sd_fs;
+	switch (type) {
+		case FileSystemType::FAT:
+			return &fsFAT;
+	}
+	CLogger::Get()->Write("File Manager", LogPanic, "Unknown filesystem");
+	return NULL;
+}
+
+FSVolume* FileManager::FindVolume(std::string volume)
+{
+	auto f = volumes.find(volume);
+	if (f==volumes.end()) {
+		CLogger::Get()->Write("File Manager", LogPanic, "Volume '%s' not found", volume.c_str());
 	}
 	else {
-#ifdef CLION
-		printf("File system '%s' not found", fs.c_str());
-		exit(1);
-#else
-		CLogger::Get()->Write("File Manager", LogPanic, "File system '%s' not found", fs.c_str());
-#endif
+		return &f->second;
 	}
+	CLogger::Get()->Write("File Manager", LogPanic, "Can't find volume");
+	return NULL;
+}
+
+FileSystem::FileSystem()
+{
+}
+
+void FileSystem::Init()
+{
+	this->handler = std::make_unique<FileSytemHandlerFAT>();
+}
+
+FileSystem::FileSystem(FSVolume* volume)
+{
+	this->volume = volume;
+}
+
+void FileSystem::SetVolume(std::string volume)
+{
+	this->volume = FileManager::FindVolume(volume);
 }
 
 void FileSystem::SetCurrentDirectory(std::string directory)
@@ -43,19 +83,114 @@ void FileSystem::SetCurrentDirectory(std::string directory)
 
 			// Split everything by .
 			auto split = splitString(directory, '.');
-			for (auto& a : split) {
-//				CLogger::Get()->Write("File Manager", LogDebug, "%s", a.c_str());
-			}
 
 			// Do we have a drive specified?
-			if (split[0][0]==':') {
-//				CLogger::Get()->Write("File Manager", LogDebug, "Filesystem: %s", split[0].c_str());
+			if (split.front()[0]==':') {
+				SetVolume(split.front());
+				split.pop_front();
 			}
 
-			while (1);
+			// Do we have a root specifier?
+			std::string directory;
+			if (split.front()=="$") {
+				directory = volume->prefix;
+				split.pop_front();
+			}
 
+			// Now loop through all directories
+			for (auto& dir : split) {
+				directory += dir+"/";
+			}
+
+			// Check it's valid
+			DIR dp;
+			auto result = handler->OpenDirectory(directory, &dp);
+			if (!result) {
+				CLogger::Get()->Write("File Manager", LogPanic, "Directory '%s', not found, error code %d", directory.c_str(), result);
+			}
+			f_closedir(&dp);
+			current_directory = directory;
+			CLogger::Get()->Write("File Manager", LogNotice, "Directory '%s' set", directory.c_str());
+			break;
 		}
 		default:
 			assert(0);
 	}
 }
+
+std::vector<std::string> FileSystem::ListAllFilesInCurrentDirectory(bool subdirectories)
+{
+	std::vector<std::string> files;
+	ListAllFilesInCurrentDirectoryWorker(subdirectories, current_directory, &files);
+	for (auto& f: files)
+		CLogger::Get()->Write("File Manager", LogNotice, "%s", f.c_str());
+	while(1);
+	return files;
+}
+
+void FileSystem::ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out)
+{
+	DIR dir;
+	auto res = f_opendir(&dir, directory.c_str());
+	if (res==FR_OK) {
+		while (1) {
+			FILINFO fno;
+			res = f_readdir(&dir, &fno);
+			if (res!=FR_OK || fno.fname[0]==0) break;
+			if (fno.fattrib & AM_DIR) {
+				ListAllFilesInCurrentDirectoryWorker(subdirectories, directory+fno.fname, out);
+			}
+			else {
+				std::string d;
+				d += current_directory;
+				d += "/";
+				d += fno.fname;
+				out->push_back(d);
+			}
+		}
+		f_closedir(&dir);
+	}
+}
+
+std::vector<std::string> FileSystem::ListAllDirectoriesInCurrentDirectory()
+{
+	DIR dir;
+	auto res = f_opendir(&dir, current_directory.c_str());
+	if (res==FR_OK) {
+		while (1) {
+			static FILINFO fno;
+			res = f_readdir(&dir, &fno);
+			if (res!=FR_OK || fno.fname[0]==0) break;
+			if (fno.fattrib & AM_DIR) {
+				printf("%s\n", fno.fname);
+			}
+		}
+		f_closedir(&dir);
+	}
+}
+
+bool FileSystemHandler::OpenDirectory(std::string directory, void* data)
+{
+	assert(0);
+}
+
+FileSytemHandlerFAT::FileSytemHandlerFAT()
+{
+	// Mount file system
+	auto result = f_mount(&ff, "SD:", 1);
+	if (result!=FR_OK) {
+		CLogger::Get()->Write("File Manager", LogPanic, "Can't mount SD card FAT filesystem, error code %d", result);
+	}
+	else {
+//		CLogger::Get()->Write("File Manager", LogNotice, "Initialised SD card FAT filesystem");
+	}
+}
+
+bool FileSytemHandlerFAT::OpenDirectory(std::string directory, void* data)
+{
+	auto d = (DIR*)data;
+	auto result = f_opendir(d, directory.c_str());
+	return result==FR_OK;
+}
+
+

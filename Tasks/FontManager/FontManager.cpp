@@ -21,7 +21,9 @@ FontManager::FontManager()
 void FontManager::InitFonts()
 {
 	SetOverride(this);
-	this->fs.SetCurrentDirectory(":SD.$.System.Fonts");
+	fs.SetCurrentDirectory(":BOOT.$.System.Fonts");
+	auto files = fs.ListAllFilesInCurrentDirectory(true);
+	while (1);
 #ifndef CLION
 	CLogger::Get()->Write("Font Manager", LogNotice, "Loading fonts");
 #endif
@@ -51,7 +53,7 @@ void FontManager::Run()
 
 std::string FontManager::GetName(stbtt_fontinfo* f, int id)
 {
-	int length;
+	int length = 0;
 	auto name = stbtt_GetFontNameString(f, &length, STBTT_PLATFORM_ID_MICROSOFT, STBTT_MS_EID_UNICODE_BMP, STBTT_MS_LANG_ENGLISH, id);
 
 	std::string sname;

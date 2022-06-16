@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <string>
 #include "StringLib.h"
-#include <vector>
 
 bool endsWith(const std::string& mainStr, const std::string& toMatch)
 {
@@ -83,9 +82,9 @@ void replaceAll(std::string& str, const std::string& from, const std::string& to
 	}
 }
 
-std::vector<std::string> splitString(std::string str, char splitter)
+std::list<std::string> splitString(std::string str, char splitter)
 {
-	std::vector<std::string> result;
+	std::list<std::string> result;
 	std::string current = "";
 	for (int i = 0; i<str.size(); i++) {
 		if (str[i]==splitter) {

@@ -1,20 +1,17 @@
 #pragma once
 #include "../../OS/OS.h"
-#include "FileSystemObject.h"
-
 #ifndef CLION
 #include <circle/logger.h>
 #endif
-
-class FileSystemHandler {
-public:
-};
 
 class FileManager : public OSDTask {
 public:
 	FileManager();
 	void Run();
-	FileSystemHandler* GetFSHandler(std::string fs);
+	static FSVolume* FindVolume(std::string volume);
 private:
-	FileSystemHandler sd_fs;
+	FileSystemHandler fsFAT;
+	FileSystemHandler* GetFSHandler(FileSystemType type);
+
+	static std::map<std::string, FSVolume> volumes;
 };

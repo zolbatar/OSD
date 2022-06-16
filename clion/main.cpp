@@ -20,6 +20,7 @@ int main()
 	OS_Init();
 	ClockInit();
 	Tokeniser::Init();
+	FileManager::Init();
 	Parser::Init();
 
 	// What to run?

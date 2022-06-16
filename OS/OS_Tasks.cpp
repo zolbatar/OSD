@@ -1,14 +1,7 @@
-#include "OS.h"
 #include <iostream>
+#include "OS.h"
 #include "../Tasks/WindowManager/WindowManager.h"
 #include "../Library/StringLib.h"
-
-#ifdef CLION
-
-#include <fstream>
-
-#endif
-
 #include <sstream>
 #include "../Parser/Parser.h"
 #include "../Tokeniser/Tokeniser.h"
@@ -32,7 +25,6 @@ extern Input* input;
 #ifdef CLION
 std::map<std::string, OSDTask*> OSDTask::tasks;
 std::map<std::thread::id, OSDTask*> OSDTask::task_threads;
-std::mutex OSDTask::vlgl_mutex;
 #else
 extern unsigned rate;
 CTask *OSDTask::boot_task;
@@ -69,6 +61,7 @@ OSDTask::OSDTask()
 	for (auto it = allocations.begin(); it!=allocations.end(); ++it) {
 		it->m = 0;
 	}
+	fs.Init();
 }
 
 OSDTask::~OSDTask()

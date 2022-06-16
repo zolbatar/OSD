@@ -11,13 +11,13 @@
 #include <circle/sched/mutex.h>
 #define NEW new(HEAP_ANY)
 #else
-
 #include <mutex>
 #include <thread>
 #define NEW new
 #endif
 #define DELETE delete
 
+#include <string>
 #include <array>
 #include <vector>
 #include <list>
@@ -25,6 +25,8 @@
 #include <chrono>
 #include <set>
 #include <queue>
+#include <map>
+#include "../Tokeniser/Types.h"
 #include "../Tasks/FileManager/FileSystemObject.h"
 
 extern "C"
@@ -47,7 +49,6 @@ enum TaskPriority {
 };
 
 const size_t ALLOCATION_SIZE = 32768;
-const size_t MESSAGE_QUEUE_SIZE = 64;
 
 typedef void (* start)(void);
 
@@ -141,7 +142,6 @@ public:
 	static void TaskSwitchHandler(CTask* ctask);
 #endif
 
-	FileSystem fs;
 	std::string GetWindowID() { return id; }
 	std::string GetWindowName() { return name; }
 	void* GetWindow() { return w; }
@@ -180,12 +180,10 @@ public:
 	virtual void UpdateGUI();
 	static bool yield_due;
 	static OSDTask* GetOverride();
-	static void SetOverride(OSDTask *task);
+	static void SetOverride(OSDTask* task);
 	static void ClearOverride();
 protected:
-#ifdef CLION
-	static std::mutex vlgl_mutex;
-#endif
+	FileSystem fs;
 	OSDTask* GetTask(const char* s);
 	start exec;
 	bool exclusive = false;
