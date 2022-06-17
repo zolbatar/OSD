@@ -35,6 +35,7 @@ private:
 	lv_obj_t* menu_win = NULL;
 	Menu* menu = NULL;
 
+	void SetupLVGLStyles();
 	static void ClickEventHandler(lv_event_t* e);
 	void CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu);
 };

@@ -4,6 +4,7 @@
 #include "../Library/json.hpp"
 
 std::map<std::string, Font*> FontManager::loaded_fonts;
+extern FontManager *fm;
 
 FontManager::FontManager()
 {
@@ -158,76 +159,9 @@ std::string FontManager::GetName(stbtt_fontinfo* f, int id)
 	return sname;
 }
 
-/*
-void FontManager::LoadFile(std::string filename)
-{
-	// Load and build the actual font
-	auto f = (stbtt_fontinfo*)malloc(sizeof(stbtt_fontinfo));
-	assert(f);
-
-	// Open file and calculate size
-	FILE* fp = fopen(filename.c_str(), "rb");
-	if (!fp) {
-#ifdef CLION
-		printf("Error opening font file: %s\n", filename.c_str());
-#else
-		CLogger::Get()->Write("FontManager", LogDebug, "Error opening font file: %s", filename.c_str());
-#endif
-		assert(0);
-	}
-	fseek(fp, 0L, SEEK_END);
-	size_t sz = ftell(fp);
-	fseek(fp, 0L, SEEK_SET);
-
-	// Allocate memory (we don't deallocate, so will leave a memory leak)
-	char* ttf_buffer = (char*)malloc(sz);
-	if (!ttf_buffer) {
-#ifdef CLION
-		printf("Error allocating memory for TTF font\n");
-#else
-		CLogger::Get()->Write("FontManager", LogDebug, "Error allocating memory for TTF font");
-#endif
-		assert(0);
-	}
-
-	// Read into buffer and close file
-	auto r = fread(ttf_buffer, 1, sz, fp);
-	assert(r==sz);
-	fclose(fp);
-
-	// Now create font
-	auto f_o = stbtt_GetFontOffsetForIndex((const unsigned char*)ttf_buffer, 0);
-	if (stbtt_InitFont(f, (const unsigned char*)ttf_buffer, f_o)==0) {
-#ifdef CLION
-		printf("Failure creating TTF font\n");
-#else
-		CLogger::Get()->Write("FontManager", LogDebug, "Failure creating TTF font");
-#endif
-		assert(0);
-	}
-
-	// Get name
-	auto name = GetName(f, 1);
-	auto style = GetName(f, 2);
-
-	// Do we have a font called this already?
-	auto fff = loaded_fonts.find(name);
-	if (fff==loaded_fonts.end()) {
-		auto f2 = new Font();
-		loaded_fonts.insert(std::make_pair(name, f2));
-	}
-
-	// Create font and style
-	auto ff = new FontStyle();
-	ff->font = f;
-
-	// Add
-	fff = loaded_fonts.find(name);
-	fff->second->styles.insert(std::make_pair(style, ff));
-}*/
-
 FontSize* FontManager::InternalLookup(std::string name, std::string style_name, int size)
 {
+	SetOverride(fm);
 	auto f = loaded_fonts.find(name);
 	if (f==loaded_fonts.end()) {
 		CLogger::Get()->Write("FontManager", LogPanic, "Can't find TTF font: %s", name.c_str());
@@ -298,6 +232,7 @@ FontSize* FontManager::InternalLookup(std::string name, std::string style_name, 
 
 	// Save for later
 	style->second->sizes.insert(std::make_pair(size, ff));
+	ClearOverride();
 	return ff;
 }
 

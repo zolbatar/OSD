@@ -56,15 +56,8 @@ void WindowManager::Run()
 	SetNameAndAddToList();
 
 	// Setup clvgl
-#ifdef CLION
-	clvgl = NEW GuiCLVGL();
-#else
 	clvgl = NEW GuiCLVGL(screen, interrupt);
-#endif
 	clvgl->Initialize();
-#ifndef CLION
-	CLogger::Get()->Write("FontManager", LogDebug, "Setting up styles");
-#endif
 	SetupLVGLStyles();
 
 #ifndef CLION

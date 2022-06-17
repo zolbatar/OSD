@@ -31,6 +31,7 @@ CInterruptSystem* interrupt;
 CUSBHCIDevice* USBHCI;
 CUserTimer* UserTimer;
 unsigned rate = USER_CLOCKHZ/1000;
+FontManager *fm;
 
 #define NET_DEVICE_TYPE        NetDeviceTypeEthernet
 //#define NET_DEVICE_TYPE        NetDeviceTypeWLAN
@@ -115,7 +116,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	auto fim = new FileManager();
 	fim->Start();
 	CScheduler::Get()->Yield();
-	auto fm = new FontManager();
+	fm = new FontManager();
 	fm->InitFonts();
 	fm->Start();
 	CScheduler::Get()->Yield();

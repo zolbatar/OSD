@@ -3,7 +3,10 @@
 #include <circle/logger.h>
 #endif
 #include "../Tasks/FontManager/FontManager.h"
+#include "../Tasks/WindowManager/WindowManager.h"
 
+extern int ScreenResX;
+extern int ScreenResY;
 lv_style_t style_background;
 lv_style_t style_menu;
 lv_style_t style_menu_container;
@@ -31,8 +34,9 @@ lv_font_t* font_mono;
 lv_font_t* font_body;
 int dm = 1;
 
-void SetupLVGLStyles()
+void WindowManager::SetupLVGLStyles()
 {
+	CLogger::Get()->Write("Window Manager", LogDebug, "Setting up styles");
 /*	auto font_window = FontManager::GetFontByNameStyleAndSize("Source Sans Pro", "Regular", menu_font_height*dm);
 	font_body = FontManager::GetFontByNameStyleAndSize("Source Sans Pro", "Regular", body_font_height*dm);
 	auto font_body_bold = FontManager::GetFontByNameStyleAndSize("Source Sans Pro", "Bold", body_font_height*dm);
@@ -55,8 +59,30 @@ void SetupLVGLStyles()
 	lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);
 
 	// Style - background
+	fs.SetCurrentDirectory(":BOOT.$.System.Wallpaper");
+	FIL fil;
+	if (f_open(&fil, (fs.GetCurrentDirectory()+"Wallpaper.bin").c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error opening wallpaper file");
+	}
+	size_t sz = f_size(&fil);
+	char* buffer = (char*)malloc(sz);
+	if (!buffer) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error allocating memory for wallpaper file");
+	}
+	uint32_t l;
+	if (f_read(&fil, buffer, sz, &l)!=FR_OK) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error loading wallpaper file");
+	}
+	static lv_img_dsc_t img;
+	img.data = (const uint8_t*)buffer;
+	img.header.w = ScreenResX;
+	img.header.h = ScreenResY;
+	img.header.cf = LV_IMG_CF_TRUE_COLOR;
+	img.data_size = l;
+
 	lv_style_init(&style_background);
-	lv_style_set_bg_color(&style_background, DESKTOP_COLOUR);
+	lv_style_set_bg_img_src(&style_background, &img);
+//	lv_style_set_bg_color(&style_background, DESKTOP_COLOUR);
 	lv_style_set_text_color(&style_background, lv_color_white());
 	lv_obj_add_style(lv_scr_act(), &style_background, LV_STATE_DEFAULT);
 

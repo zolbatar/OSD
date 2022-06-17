@@ -50,8 +50,6 @@ extern lv_font_t *font_mono;
 #define LV_SYMBOL_MINIMISE        "\xEF\x8B\x91" // 0xF2D1 window minimise
 //#define LV_SYMBOL_RESIZE          "\xEF\x81\xA6" // 0xf066
 
-void SetupLVGLStyles();
-
 const int corner_radius = 4;
 const int corner_radius_inner = 2;
 const int scrollbar_width = 8;
