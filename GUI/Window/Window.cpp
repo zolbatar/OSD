@@ -26,12 +26,11 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	lv_obj_add_style(header, &style_window_header_inactive, LV_STATE_DEFAULT);
 	lv_obj_add_event_cb(header, ClickEventHandler, LV_EVENT_CLICKED, this);
 	lv_obj_add_event_cb(header, DragEventHandler, LV_EVENT_PRESSING, this);
-	lv_obj_set_scrollbar_mode(header, LV_SCROLLBAR_MODE_OFF);
 
 	// Content
 	auto content = lv_mywin_get_content(win);
-//	lv_obj_set_scrollbar_mode(content, LV_SCROLLBAR_MODE_ON);
-//	lv_obj_add_style(content, &style_scrollbar, LV_PART_SCROLLBAR);
+	lv_obj_set_scrollbar_mode(content, LV_SCROLLBAR_MODE_AUTO);
+	lv_obj_add_style(content, &style_scrollbar, LV_PART_SCROLLBAR);
 	lv_obj_add_style(content, &style_window_content, LV_STATE_DEFAULT);
 
 	// Title
@@ -46,7 +45,7 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	lv_obj_add_style(btn_close, &style_window_furniture, LV_STATE_DEFAULT);
 
 	if (pure_canvas) {
-		canvas = new Canvas(task, content, w-(WINDOW_BORDER_WIDTH*2*dm), h-(WINDOW_BORDER_WIDTH*2*dm)-WINDOW_HEADER_HEIGHT*dm);
+		canvas = new Canvas(task, content);
 	}
 
 	SetActive();

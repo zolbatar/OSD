@@ -3,7 +3,6 @@ Clock()
 
 DEF Clock()
 	H%=4:M%=20
-	COLOURBG &FF,&FF,&FF
 	REPEAT
 		CLS
 		w%=SCREENWIDTH:h%=SCREENHEIGHT

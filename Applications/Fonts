@@ -1,26 +1,11 @@
 w%=SCREENWIDTH:h%=SCREENHEIGHT
 CLS
-REPEAT
+COLOUR &00,&00,&00
 REM LOADFONT dotmatrixfont%="FXMatrix105MonoPicaRegular.otf"
 dotmatrixfont%=0
 
-CLS
-CLIPON 100, 100, w%-100, h%-100
-FOR I% = 1 TO 50
-    RandomColour()
-    LINE RND(w%), RND(h%), RND(w%), RND(h%), RND(10)+1
-NEXT
-FOR I% = 1 TO 50
-    RandomColour()
-    CIRCLE RND(w%), RND(h%), RND(50)+20, RND(10)+1
-    CIRCLEFILLED RND(w%), RND(h%), RND(50)+20, RND(10)+1
-NEXT
-CLIPOFF
-
-COLOUR &FF,&FF,&00
-FONT "IBM Plex Sans", "Regular", 40
+FONT "IBM Plex Sans", "Bold", 40
 TEXTCENTRE w%/2,5, "Standard inbuilt fonts"
-COLOUR &FF,&FF,&FF
 FONT "IBM Plex Mono", "Regular", 30
 TEXTCENTRE w%/2, 55, "The quick brown fox jumps over the lazy dog (IBM Plex Mono)"
 FONT "IBM Plex Sans", "Regular", 30
@@ -37,20 +22,16 @@ TEXTCENTRE w%/2, 240, "The quick brown fox jumps over the lazy dog (Source Sans 
 FONT "Source Serif Pro", "Regular", 30
 TEXTCENTRE w%/2, 275, "The quick brown fox jumps over the lazy dog (Source Serif Pro)"
 
-COLOUR &FF,&FF,&00
-FONT "IBM Plex Sans", "Regular", 40
+FONT "IBM Plex Sans", "Bold", 40
 TEXTCENTRE w%/2, 320, "Special Fonts"
-COLOUR &FF,&FF,&FF
 FONT "FXMatrix105MonoPica", "Regular", 25
 TEXTCENTRE w%/2, 370, "The quick brown fox jumps over the lazy dog (FXMatrix105MonoPica)"
 FONT "Edit Undo Line BRK", "Regular", 30
 TEXTCENTRE w%/2, 405, "The quick brown fox jumps over the lazy dog (EditUndoLineBRK)"
 
-COLOUR &FF,&FF,&00
-FONT "IBM Plex Sans", "Regular", 40
+FONT "IBM Plex Sans", "Bold", 40
 TEXTCENTRE w%/2, 455, "Varying Font Size, Style and Weight"
 
-COLOUR &FF,&FF,&FF
 I%=510
 FOR s%=20 TO 100 STEP 15
     FONT "IBM Plex Sans", "Regular", s%
@@ -79,11 +60,8 @@ FONT "IBM Plex Sans", "Bold", 40
 TEXTRIGHT w%-41, 590, "Bold"
 FONT "IBM Plex Sans", "Bold Italic", 40
 TEXTRIGHT w%-41, 630, "Bold Italic"
+REPEAT
+YIELD
 UNTIL FALSE
-
-DEF RandomColour()
-    COLOUR RND(30),RND(30),RND(30)
-    COLOURBG RND(30),RND(30),RND(30)
-ENDDEF
 
 

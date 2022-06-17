@@ -91,13 +91,13 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_border_color(&style_menu, WINDOW_BORDER_COLOUR);
 	lv_style_set_text_color(&style_menu, lv_color_white());
 	lv_style_set_border_width(&style_menu, WINDOW_BORDER_WIDTH*dm);
-	lv_style_set_radius(&style_menu, corner_radius_inner*dm);
+	lv_style_set_radius(&style_menu, CORNER_RADIUS_INNER*dm);
 	lv_style_set_text_font(&style_menu, menu_body);
 	lv_style_init(&style_menu_container);
 	lv_style_set_bg_color(&style_menu_container, CONTAINER_BACKGROUND_COLOUR);
 	lv_style_set_border_width(&style_menu_container, 0);
 	lv_style_set_pad_all(&style_menu_container, 2*dm);
-	lv_style_set_radius(&style_menu_container, corner_radius_inner*dm);
+	lv_style_set_radius(&style_menu_container, CORNER_RADIUS_INNER*dm);
 	lv_style_set_text_font(&style_menu_container, menu_body);
 	lv_style_init(&style_menu_item);
 	lv_style_set_pad_all(&style_menu_item, 0);
@@ -108,7 +108,7 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_border_color(&style_window, WINDOW_BORDER_COLOUR);
 	lv_style_set_text_color(&style_window, lv_color_white());
 	lv_style_set_border_width(&style_window, WINDOW_BORDER_WIDTH*dm);
-	lv_style_set_radius(&style_window, corner_radius*dm);
+	lv_style_set_radius(&style_window, CORNER_RADIUS*dm);
 	lv_style_set_text_font(&style_window, font_window);
 	lv_style_set_clip_corner(&style_window, true);
 	lv_style_set_border_post(&style_window, true);
@@ -117,7 +117,7 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_init(&style_window_content);
 	lv_style_set_radius(&style_window_content, 0);
 	lv_style_set_bg_color(&style_window_content, WINDOW_BACKGROUND_COLOUR);
-	lv_style_set_pad_all(&style_window_content, 0);
+	lv_style_set_pad_all(&style_window_content, WINDOW_CONTENT_PADDING);
 	lv_style_set_text_font(&style_window_content, font_body);
 	lv_style_set_text_color(&style_window_content, lv_color_black());
 
@@ -138,7 +138,7 @@ void WindowManager::SetupLVGLStyles()
 
 	// Style - window buttons
 	lv_style_init(&style_window_furniture);
-	lv_style_set_radius(&style_window_furniture, corner_radius_inner*dm);
+	lv_style_set_radius(&style_window_furniture, CORNER_RADIUS_INNER*dm);
 	lv_style_set_border_color(&style_window_furniture, WINDOW_FURNITURE_BORDER_COLOUR);
 	lv_style_set_border_width(&style_window_furniture, 1*dm);
 	lv_style_set_bg_color(&style_window_furniture, WINDOW_FURNITURE_BACKGROUND_COLOUR);
@@ -149,13 +149,12 @@ void WindowManager::SetupLVGLStyles()
 
 	// Style - scrollbar
 	lv_style_init(&style_scrollbar);
-//	lv_style_set_radius(&style_scrollbar, corner_radius);
-	lv_style_set_border_color(&style_scrollbar, WINDOW_FURNITURE_BORDER_COLOUR);
-	lv_style_set_border_opa(&style_scrollbar, LV_OPA_30);
+//	lv_style_set_radius(&style_scrollbar, CORNER_RADIUS);
+	lv_style_set_border_color(&style_scrollbar, CONTROL_BORDER_COLOUR);
+	lv_style_set_border_opa(&style_scrollbar, LV_OPA_60);
 	lv_style_set_border_width(&style_scrollbar, 1*dm);
-//	lv_style_set_pad_all(&style_scrollbar, scrollbar_padding);
-	lv_style_set_width(&style_scrollbar, scrollbar_width*dm);
-	lv_style_set_bg_opa(&style_scrollbar, LV_OPA_30);
+	lv_style_set_width(&style_scrollbar, SCROLLBAR_WIDTH*dm);
+	lv_style_set_bg_opa(&style_scrollbar, LV_OPA_60);
 	lv_style_set_bg_color(&style_scrollbar, SCROLLBAR_BACKGROUND);
 
 	// Style - bar
@@ -163,7 +162,7 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_radius(&style_bar, 0);
 	lv_style_set_border_color(&style_bar, CONTROL_BORDER_COLOUR);
 	lv_style_set_border_width(&style_bar, 1*dm);
-	lv_style_set_pad_all(&style_bar, control_padding*dm);
+	lv_style_set_pad_all(&style_bar, CONTROL_PADDING*dm);
 	lv_style_set_bg_color(&style_bar, CONTROL_BACKGROUND_COLOUR);
 	lv_style_init(&style_bar_indicator);
 	lv_style_set_radius(&style_bar_indicator, 0);
@@ -181,9 +180,10 @@ void WindowManager::SetupLVGLStyles()
 	// Style - grid
 	lv_style_init(&style_grid);
 	lv_style_set_bg_color(&style_grid, CONTAINER_BACKGROUND_COLOUR);
-	lv_style_set_border_width(&style_grid, 0);
-	lv_style_set_pad_all(&style_grid, 8*dm);
-	lv_style_set_radius(&style_grid, corner_radius_inner);
+	lv_style_set_border_color(&style_grid, CONTROL_BORDER_COLOUR);
+	lv_style_set_border_width(&style_grid, 1);
+	lv_style_set_pad_all(&style_grid, CONTAINER_PADDING*dm);
+	lv_style_set_radius(&style_grid, CORNER_RADIUS_INNER);
 	lv_style_init(&style_grid_title);
 	lv_style_set_text_font(&style_grid_title, font_large);
 
@@ -195,17 +195,17 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_line_color(&style_chart, CONTROL_BORDER_COLOUR);
 	lv_style_set_pad_all(&style_chart, 4*dm);
 	lv_style_set_pad_column(&style_chart, 1*dm);
-	lv_style_set_radius(&style_chart, corner_radius_inner*dm);
+	lv_style_set_radius(&style_chart, CORNER_RADIUS_INNER*dm);
 	lv_style_init(&style_chart_bar);
 	lv_style_set_border_width(&style_chart_bar, 0);
 	lv_style_set_pad_all(&style_chart_bar, 0);
-	lv_style_set_radius(&style_chart_bar, corner_radius_inner);
+	lv_style_set_radius(&style_chart_bar, CORNER_RADIUS_INNER);
 
 	// Style - textarea
 	lv_style_init(&style_textarea);
 	lv_style_set_bg_color(&style_textarea, lv_color_white());
 	lv_style_set_border_width(&style_textarea, 1*dm);
 	lv_style_set_pad_all(&style_textarea, 8*dm);
-	lv_style_set_radius(&style_textarea, corner_radius_inner);
+	lv_style_set_radius(&style_textarea, CORNER_RADIUS_INNER);
 	lv_style_set_text_font(&style_textarea, font_mono);
 }

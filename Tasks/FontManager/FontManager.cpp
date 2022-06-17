@@ -205,6 +205,7 @@ FontSize* FontManager::InternalLookup(std::string name, std::string style_name, 
 	// Have we cached it?
 	auto f2 = style->second->sizes.find(size);
 	if (f2!=style->second->sizes.end()) {
+		ClearOverride();
 		return f2->second;
 	}
 

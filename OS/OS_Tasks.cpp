@@ -270,6 +270,7 @@ void OSDTask::FreeStringPermanent(int64_t idx)
 
 void OSDTask::ClearTemporaryStrings()
 {
+	return;
 #ifdef CLION
 //	printf("Deleting %zu strings\n", strings.size());
 #endif
@@ -286,8 +287,15 @@ std::string& OSDTask::GetString(int64_t idx)
 			printf("Invalid string");
 			exit(1);
 #else
-			CLogger::Get()->Write("OSDTask", LogNotice, "Invalid string");
-			while(1);
+			CLogger::Get()->Write("OSDTask", LogDebug, "Temporary strings:");
+			for (auto &s : strings) {
+				CLogger::Get()->Write("OSDTask", LogDebug, "%d = '%s'", s.first, s.second.c_str());
+			}
+			CLogger::Get()->Write("OSDTask", LogDebug, "Permanent strings:");
+			for (auto &s : permanent_strings) {
+				CLogger::Get()->Write("OSDTask", LogDebug, "%d = '%s'", s.first, s.second.c_str());
+			}
+			CLogger::Get()->Write("OSDTask", LogPanic, "Invalid string: %d", idx);
 #endif
 		}
 		return f->second;
@@ -499,7 +507,7 @@ bool OSDTask::CompileSource(std::string filename, std::string code)
 
 void OSDTask::Yield()
 {
-//	GetCurrentTask()->ClearTemporaryStrings();
+	GetCurrentTask()->ClearTemporaryStrings();
 	//CLogger::Get()->Write("OSDTask", LogDebug, "Yield");
 #ifndef CLION
 	auto mScheduler = CScheduler::Get();

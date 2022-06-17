@@ -9,8 +9,8 @@ public:
 	~Window();
 	lv_obj_t* GetLVGLWindow() { return win; }
 	Canvas* GetCanvas() { return canvas; }
-	int64_t GetContentWidth() { return width-(WINDOW_BORDER_WIDTH*2); }
-	int64_t GetContentHeight() { return height-(WINDOW_BORDER_WIDTH*2)-WINDOW_HEADER_HEIGHT; }
+	int64_t GetContentWidth() { return canvas->GetContentWidth(); }
+	int64_t GetContentHeight() { return canvas->GetContentHeight(); }
 	void SetActive();
 	void SetInactive();
 	bool GetActive() { return active; }

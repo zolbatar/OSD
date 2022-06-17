@@ -36,7 +36,7 @@ void TasksWindow::Run()
 	m.y = d_y;
 	m.width = d_w;
 	m.height = d_h;
-	m.canvas = true;
+	m.canvas = false;
 	m.fixed = true;
 	CallGUIDirectEx(&mess);
 
@@ -57,14 +57,6 @@ void TasksWindow::UpdateGUI()
 	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
 	lv_obj_clean(lv_mywin_get_content(w));
 
-	// Vertical container
-	auto cont_col = lv_obj_create(lv_mywin_get_content(w));
-	lv_obj_set_width(cont_col, lv_pct(100));
-	lv_obj_set_height(cont_col, lv_pct(100));
-	lv_obj_align(cont_col, LV_ALIGN_TOP_MID, 0, 0);
-	lv_obj_set_flex_flow(cont_col, LV_FLEX_FLOW_COLUMN);
-	lv_obj_add_style(cont_col, &style_grid, LV_STATE_DEFAULT);
-
 	// Container
 	const int sz = tasks_list.size()+4;
 	static lv_coord_t row_dsc[256];
@@ -73,14 +65,21 @@ void TasksWindow::UpdateGUI()
 		row_dsc[i] = body_font_height*dm;
 	row_dsc[sz] = LV_GRID_TEMPLATE_LAST;
 	static lv_coord_t col_dsc[] = { lv_pct(41), lv_pct(15), lv_pct(7), lv_pct(7), lv_pct(30), LV_GRID_TEMPLATE_LAST };
-	auto cont = lv_obj_create(cont_col);
-	lv_obj_set_flex_grow(cont, 2);
+
+	// Vertical container
+	auto cont = lv_obj_create(lv_mywin_get_content(w));
+	lv_obj_clear_flag(cont, LV_OBJ_FLAG_SCROLLABLE);
+//	lv_obj_set_width(cont, LV_SIZE_CONTENT);
+	lv_obj_set_height(cont, LV_SIZE_CONTENT);
 	lv_obj_set_width(cont, lv_pct(100));
-	lv_obj_set_height(cont, lv_pct(100));
+//	lv_obj_set_height(cont, lv_pct(100));
+	//	lv_obj_align(cont_col, LV_ALIGN_TOP_MID, 0, 0);
+	lv_obj_set_flex_flow(cont, LV_FLEX_FLOW_COLUMN);
+	lv_obj_add_style(cont, &style_grid, LV_STATE_DEFAULT);
 	lv_obj_set_style_grid_column_dsc_array(cont, col_dsc, 0);
 	lv_obj_set_style_grid_row_dsc_array(cont, row_dsc, 0);
-	lv_obj_center(cont);
 	lv_obj_set_layout(cont, LV_LAYOUT_GRID);
+	lv_obj_add_style(cont, &style_scrollbar, LV_PART_SCROLLBAR);
 	lv_obj_add_style(cont, &style_grid, LV_STATE_DEFAULT);
 
 	// Title

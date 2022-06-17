@@ -8,8 +8,10 @@ extern lv_font_t* font_body;
 
 class Canvas : public Control {
 public:
-	Canvas(OSDTask* task, lv_obj_t* parent, int w, int h);
+	Canvas(OSDTask* task, lv_obj_t* parent);
 	~Canvas();
+	int64_t GetContentWidth();
+	int64_t GetContentHeight();
 	void Render();
 	void SetupClip();
 	void ClearClip();
@@ -63,7 +65,7 @@ private:
 	bool which_buffer = false;
 	bool double_buffered = false;
 	lv_color_t fg = lv_color_white();
-	lv_color_t bg = lv_color_black();
+	lv_color_t bg = lv_color_make(0xd0, 0xd0, 0xd0);
 	uint8_t* buffer = nullptr;
 	uint8_t* buffer_back = nullptr;
 	lv_font_t* mono = font_mono;

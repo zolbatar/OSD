@@ -5,16 +5,26 @@
 #endif
 #include "../../Tasks/FontManager/FontManager.h"
 
-Canvas::Canvas(OSDTask* task, lv_obj_t* parent, int w, int h)
-		:task(task), w(w), h(h)
+Canvas::Canvas(OSDTask* task, lv_obj_t* parent)
+		:task(task)
 {
 	this->parent = parent;
+
+	// First buffer
+	firstbuffer = lv_canvas_create(parent);
+	lv_obj_set_width(firstbuffer, LV_PCT(100));
+	lv_obj_set_height(firstbuffer, LV_PCT(100));
+	lv_obj_update_layout(firstbuffer);
+	w = lv_obj_get_width(firstbuffer);
+	h = lv_obj_get_height(firstbuffer);
+
+	// Allocate memory
 	sz = (lv_img_cf_get_px_size(cf)*w)*h/8;
 	buffer = NEW uint8_t[sz];
 	task->AddFrameBufferMemory(sz);
 
-	// First buffer
-	firstbuffer = lv_canvas_create(parent);
+//	CLogger::Get()->Write("Window Manager", LogPanic, "%d %d", w, h);
+	// Set buffer
 	lv_canvas_set_buffer(firstbuffer, buffer, w, h, cf);
 	lv_canvas_fill_bg(firstbuffer, bg, LV_OPA_COVER);
 
@@ -37,6 +47,16 @@ Canvas::~Canvas()
 		lv_draw_mask_free_param(&bottom_id);
 }
 
+int64_t Canvas::GetContentWidth()
+{
+	return w;
+}
+
+int64_t Canvas::GetContentHeight()
+{
+	return h;
+}
+
 void Canvas::Render()
 {
 }
@@ -49,6 +69,8 @@ void Canvas::EnableDoubleBuffering()
 
 	// Second buffer
 	secondbuffer = lv_canvas_create(parent);
+	lv_obj_set_width(secondbuffer, LV_PCT(100));
+	lv_obj_set_height(secondbuffer, LV_PCT(100));
 	lv_canvas_set_buffer(secondbuffer, buffer_back, w, h, cf);
 	lv_canvas_fill_bg(secondbuffer, bg, LV_OPA_COVER);
 	lv_obj_add_flag(secondbuffer, LV_OBJ_FLAG_HIDDEN);
