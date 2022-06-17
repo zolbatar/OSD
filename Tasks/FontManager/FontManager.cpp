@@ -1,13 +1,7 @@
 #include "FontManager.h"
-
-#ifndef CLION
-#include <circle/logger.h>
-#endif
-
 #include <stdio.h>
-#include <sstream>
-#include <codecvt>
-#include "InstalledFonts.h"
+#include <circle/logger.h>
+#include "../Library/json.hpp"
 
 std::map<std::string, Font*> FontManager::loaded_fonts;
 
@@ -21,24 +15,15 @@ FontManager::FontManager()
 void FontManager::InitFonts()
 {
 	SetOverride(this);
-	fs.SetCurrentDirectory(":BOOT.$.System.Fonts");
-	auto files = fs.ListAllFilesInCurrentDirectory(true);
-	while (1);
-#ifndef CLION
-	CLogger::Get()->Write("Font Manager", LogNotice, "Loading fonts");
-#endif
-	std::stringstream ss(installed_fonts);
-	std::string val;
-	while (std::getline(ss, val, '\n')) {
-#ifndef CLION
-		LoadFile("/osd/System/Fonts/"+val);
-#else
-		LoadFile("/Users/daryl/Dev/osd/fonts/"+val);
-#endif
+
+	// Does font cache exist?
+	fs.SetCurrentDirectory(":BOOT.$.System.Config");
+	FILINFO fno;
+	auto fr = f_stat((fs.GetCurrentDirectory()+"FontManager").c_str(), &fno);
+	if (fr==FR_NO_FILE) {
+		CreateConfigFile();
 	}
-#ifndef CLION
-	CLogger::Get()->Write("Font Manager", LogNotice, "Loaded fonts");
-#endif
+	LoadConfigFile();
 	ClearOverride();
 }
 
@@ -49,6 +34,117 @@ void FontManager::Run()
 		Yield();
 	}
 	TerminateTask();
+}
+
+void FontManager::LoadConfigFile()
+{
+	CLogger::Get()->Write("FontManager", LogNotice, "Loading font cache");
+
+	// Open file
+	FIL fil;
+	if (f_open(&fil, (fs.GetCurrentDirectory()+"FontManager").c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
+		CLogger::Get()->Write("FontManager", LogPanic, "Error opening font cache file");
+	}
+	size_t sz = f_size(&fil);
+
+	// Allocate space
+	char* buffer = (char*)malloc(sz);
+	if (!buffer) {
+		CLogger::Get()->Write("FontManager", LogPanic, "Error allocating memory for font cache file");
+	}
+
+	// Read
+	uint32_t l;
+	if (f_read(&fil, buffer, sz, &l)!=FR_OK) {
+		CLogger::Get()->Write("FontManager", LogPanic, "Error loading font cache file");
+	}
+
+	// Parse JSON
+	nlohmann::json j = nlohmann::json::parse(buffer);
+
+	// Loop through and create all font objects
+	for (auto& font : j["Fonts"]) {
+
+		// Do we have a font called this already?
+		auto fff = loaded_fonts.find(font["name"]);
+		if (fff==loaded_fonts.end()) {
+			auto f2 = new Font();
+			loaded_fonts.insert(std::make_pair(font["name"], f2));
+		}
+
+		// Create font and style
+		auto ff = new FontStyle();
+		ff->filename = font["filename"];
+		ff->font = NULL;
+
+		// Add
+		fff = loaded_fonts.find(font["name"]);
+		fff->second->styles.insert(std::make_pair(font["style"], ff));
+	}
+
+	free(buffer);
+}
+
+void FontManager::CreateConfigFile()
+{
+	CLogger::Get()->Write("FontManager", LogNotice, "Rebuilding font cache");
+	nlohmann::json j;
+	j["Fonts"] = {};
+	fs.SetCurrentDirectory(":BOOT.$.System.Fonts");
+	auto files = fs.ListAllFilesInCurrentDirectory(true);
+	for (auto& file : files) {
+
+		// Load and build the actual font
+		auto f = (stbtt_fontinfo*)malloc(sizeof(stbtt_fontinfo));
+		assert(f);
+
+		// Open file
+		FIL fil;
+		if (f_open(&fil, file.c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
+			CLogger::Get()->Write("FontManager", LogPanic, "Error opening font file: %s", file.c_str());
+		}
+		size_t sz = f_size(&fil);
+
+		// Allocate space
+		char* ttf_buffer = (char*)malloc(sz);
+		if (!ttf_buffer) {
+			CLogger::Get()->Write("FontManager", LogPanic, "Error allocating memory for TTF font");
+		}
+
+		// Read
+		uint32_t l;
+		if (f_read(&fil, ttf_buffer, sz, &l)!=FR_OK) {
+			CLogger::Get()->Write("FontManager", LogPanic, "Error loading font file: %s", file.c_str());
+		}
+		auto f_o = stbtt_GetFontOffsetForIndex((const unsigned char*)ttf_buffer, 0);
+		if (stbtt_InitFont(f, (const unsigned char*)ttf_buffer, f_o)==0) {
+			CLogger::Get()->Write("FontManager", LogPanic, "Failure creating TTF font");
+		}
+
+		// Get name
+		auto name = GetName(f, 1);
+		auto style = GetName(f, 2);
+		j["Fonts"].push_back({{ "name", name, }, { "style", style }, { "filename", file.c_str() }});
+
+		// Close and free up memory
+		f_close(&fil);
+		free(f);
+		free(ttf_buffer);
+	}
+
+	// Write config
+	fs.SetCurrentDirectory(":BOOT.$.System.Config");
+	FIL fil;
+	if (f_open(&fil, (fs.GetCurrentDirectory()+"FontManager").c_str(), FA_CREATE_ALWAYS | FA_WRITE)!=FR_OK) {
+		CLogger::Get()->Write("FontManager", LogPanic, "Error opening font config file for write");
+	}
+	auto json_out = j.dump(4);
+	uint32_t l;
+	if (f_write(&fil, json_out.c_str(), json_out.length(), &l)!=FR_OK) {
+		CLogger::Get()->Write("FontManager", LogPanic, "Error writing font config file");
+	}
+	f_close(&fil);
+	while (1);
 }
 
 std::string FontManager::GetName(stbtt_fontinfo* f, int id)
@@ -62,6 +158,7 @@ std::string FontManager::GetName(stbtt_fontinfo* f, int id)
 	return sname;
 }
 
+/*
 void FontManager::LoadFile(std::string filename)
 {
 	// Load and build the actual font
@@ -127,33 +224,48 @@ void FontManager::LoadFile(std::string filename)
 	// Add
 	fff = loaded_fonts.find(name);
 	fff->second->styles.insert(std::make_pair(style, ff));
-
-#ifndef CLION
-	//CLogger::Get()->Write("FontManager", LogNotice, "Loaded '%s', '%s', '%s'", filename.c_str(), name.c_str(), style.c_str()	);
-#endif
-}
+}*/
 
 FontSize* FontManager::InternalLookup(std::string name, std::string style_name, int size)
 {
 	auto f = loaded_fonts.find(name);
 	if (f==loaded_fonts.end()) {
-#ifdef CLION
-		printf("Can't find TTF font: %s\n", name.c_str());
-#else
-		CLogger::Get()->Write("FontManager", LogDebug, "Can't find TTF font: %s", name.c_str());
-#endif
-		assert(0);
+		CLogger::Get()->Write("FontManager", LogPanic, "Can't find TTF font: %s", name.c_str());
 	}
 
 	// Find style
 	auto style = f->second->styles.find(style_name);
 	if (style==f->second->styles.end()) {
-#ifdef CLION
-		printf("Can't find style for TTF font\n");
-#else
-		CLogger::Get()->Write("FontManager", LogDebug, "Can't find TTF font");
-#endif
-		assert(0);
+		CLogger::Get()->Write("FontManager", LogPanic, "Can't find TTF font style: %s", style_name.c_str());
+	}
+
+	// Is it loaded?
+	if (style->second->font==NULL) {
+
+		style->second->font = (stbtt_fontinfo*)malloc(sizeof(stbtt_fontinfo));
+
+		// Open file
+		FIL fil;
+		if (f_open(&fil, style->second->filename.c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
+			CLogger::Get()->Write("FontManager", LogPanic, "Error opening font file: %s", style->second->filename.c_str());
+		}
+		size_t sz = f_size(&fil);
+
+		// Allocate space
+		char* ttf_buffer = (char*)malloc(sz);
+		if (!ttf_buffer) {
+			CLogger::Get()->Write("FontManager", LogPanic, "Error allocating memory for TTF font");
+		}
+
+		// Read
+		uint32_t l;
+		if (f_read(&fil, ttf_buffer, sz, &l)!=FR_OK) {
+			CLogger::Get()->Write("FontManager", LogPanic, "Error loading font file: %s", style->second->filename.c_str());
+		}
+		auto f_o = stbtt_GetFontOffsetForIndex((const unsigned char*)ttf_buffer, 0);
+		if (stbtt_InitFont(style->second->font, (const unsigned char*)ttf_buffer, f_o)==0) {
+			CLogger::Get()->Write("FontManager", LogPanic, "Failure creating TTF font");
+		}
 	}
 
 	// Have we cached it?

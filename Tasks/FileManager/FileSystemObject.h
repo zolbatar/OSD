@@ -36,11 +36,13 @@ public:
 	void Init();
 	FileSystem(FSVolume* volume);
 	void SetVolume(std::string volume);
+	std::string GetCurrentDirectory() { return current_directory; }
 	void SetCurrentDirectory(std::string directory);
 	std::vector<std::string> ListAllFilesInCurrentDirectory(bool subdirectories);
-	std::vector<std::string> ListAllDirectoriesInCurrentDirectory();
+	std::vector<std::string> ListAllDirectoriesInCurrentDirectory(bool subdirectories, bool include_current);
 private:
 	void ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out);
+	void ListAllDirectoriesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out);
 
 	FileNamingFormat format = FileNamingFormat::Acorn;
 	std::unique_ptr<FileSystemHandler> handler;

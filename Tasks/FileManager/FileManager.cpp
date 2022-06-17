@@ -122,9 +122,6 @@ std::vector<std::string> FileSystem::ListAllFilesInCurrentDirectory(bool subdire
 {
 	std::vector<std::string> files;
 	ListAllFilesInCurrentDirectoryWorker(subdirectories, current_directory, &files);
-	for (auto& f: files)
-		CLogger::Get()->Write("File Manager", LogNotice, "%s", f.c_str());
-	while(1);
 	return files;
 }
 
@@ -142,7 +139,7 @@ void FileSystem::ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::
 			}
 			else {
 				std::string d;
-				d += current_directory;
+				d += directory;
 				d += "/";
 				d += fno.fname;
 				out->push_back(d);
@@ -152,17 +149,31 @@ void FileSystem::ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::
 	}
 }
 
-std::vector<std::string> FileSystem::ListAllDirectoriesInCurrentDirectory()
+std::vector<std::string> FileSystem::ListAllDirectoriesInCurrentDirectory(bool subdirectories, bool include_current)
+{
+	std::vector<std::string> files;
+	ListAllDirectoriesInCurrentDirectoryWorker(subdirectories, current_directory, &files);
+	if (include_current)
+		files.push_back(current_directory);
+	return files;
+}
+
+void FileSystem::ListAllDirectoriesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out)
 {
 	DIR dir;
-	auto res = f_opendir(&dir, current_directory.c_str());
+	auto res = f_opendir(&dir, directory.c_str());
 	if (res==FR_OK) {
 		while (1) {
 			static FILINFO fno;
 			res = f_readdir(&dir, &fno);
 			if (res!=FR_OK || fno.fname[0]==0) break;
 			if (fno.fattrib & AM_DIR) {
-				printf("%s\n", fno.fname);
+				std::string d;
+				d += directory;
+				d += fno.fname;
+				out->push_back(d);
+				if (subdirectories)
+					ListAllDirectoriesInCurrentDirectoryWorker(subdirectories, directory+fno.fname, out);
 			}
 		}
 		f_closedir(&dir);

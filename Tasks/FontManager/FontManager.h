@@ -20,7 +20,8 @@ struct FontSize {
 };
 
 struct FontStyle {
-	stbtt_fontinfo* font;
+	std::string filename;
+	stbtt_fontinfo* font = NULL;
 	std::map<int, FontSize*> sizes;
 };
 
@@ -33,10 +34,11 @@ public:
 	FontManager();
 	void InitFonts();
 	void Run();
-	void LoadFile(std::string filename);
 	std::string GetName(stbtt_fontinfo*, int id);
 	static lv_font_t* GetFontByNameStyleAndSize(std::string name, std::string style_name, int size);
 	static int GetWidth(const lv_font_t* font, const char* string);
+	void LoadConfigFile();
+	void CreateConfigFile();
 private:
 	static std::map<std::string, Font*> loaded_fonts;
 
