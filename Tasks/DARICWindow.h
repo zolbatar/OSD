@@ -1,6 +1,6 @@
 #pragma once
 #include "../OS/OS.h"
-#include "../GUI/Window.h"
+#include "../GUI/Window/Window.h"
 #ifndef CLION
 #include <circle/logger.h>
 #endif

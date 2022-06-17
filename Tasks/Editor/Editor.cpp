@@ -1,6 +1,7 @@
 #include "Editor.h"
 #include "../../Library/StringLib.h"
 #include <fstream>
+#include "../../GUI/Window/LVGLWindow.h"
 
 Editor::Editor(int x, int y, int w, int h)
 {
@@ -38,7 +39,7 @@ void Editor::Run()
 
 	// Build
 	auto ww = ((Window*)this->GetWindow())->GetLVGLWindow();
-	lv_obj_t* ta = lv_textarea_create(lv_win_get_content(ww));
+	lv_obj_t* ta = lv_textarea_create(lv_mywin_get_content(ww));
 	lv_textarea_set_one_line(ta, true);
 	lv_obj_align(ta, LV_ALIGN_TOP_MID, 0, 0);
 	lv_obj_add_event_cb(ta, TextareaEventHandler, LV_EVENT_READY, ta);

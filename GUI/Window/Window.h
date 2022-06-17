@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include "Controls/Control.h"
-#include "Controls/Canvas.h"
+#include "../Controls/Control.h"
+#include "../Controls/Canvas.h"
 
 class Window {
 public:

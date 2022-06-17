@@ -1,4 +1,5 @@
 #include "TasksWindow.h"
+#include "../GUI/Window/LVGLWindow.h"
 
 extern size_t pre_boot_memory;
 extern size_t kernel_size;
@@ -54,10 +55,10 @@ void TasksWindow::UpdateGUI()
 	CalculateMem(&m);
 
 	auto w = ((Window*)this->GetWindow())->GetLVGLWindow();
-	lv_obj_clean(lv_win_get_content(w));
+	lv_obj_clean(lv_mywin_get_content(w));
 
 	// Vertical container
-	auto cont_col = lv_obj_create(lv_win_get_content(w));
+	auto cont_col = lv_obj_create(lv_mywin_get_content(w));
 	lv_obj_set_width(cont_col, lv_pct(100));
 	lv_obj_set_height(cont_col, lv_pct(100));
 	lv_obj_align(cont_col, LV_ALIGN_TOP_MID, 0, 0);

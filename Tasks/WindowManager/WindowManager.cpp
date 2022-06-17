@@ -14,6 +14,7 @@ extern CUSBHCIDevice *USBHCI;
 #include "../../OS/OS.h"
 #include "../TasksWindow.h"
 #include "../Editor/Editor.h"
+#include "../../GUI/Window/LVGLWindow.h"
 
 extern int dm;
 
@@ -291,24 +292,24 @@ void WindowManager::CreateMenu(int x, int y, OSDTask* task, std::string title, M
 {
 	this->menu = menu;
 
-	menu_win = lv_win_create(lv_scr_act(), MENU_HEADER_HEIGHT);
+	menu_win = lv_mywin_create(lv_scr_act(), MENU_HEADER_HEIGHT);
 	lv_obj_set_x(menu_win, x);
 	lv_obj_set_y(menu_win, y);
 	lv_obj_set_width(menu_win, 160);
 	lv_obj_set_height(menu_win, 500);
 	lv_obj_add_style(menu_win, &style_menu, LV_STATE_DEFAULT);
 
-	auto content = lv_win_get_content(menu_win);
+	auto content = lv_mywin_get_content(menu_win);
 	lv_obj_add_style(content, &style_window_content, LV_STATE_DEFAULT);
 
 	// Header
-	lv_win_add_title(menu_win, title.c_str());
-	auto header = lv_win_get_header(menu_win);
+	lv_mywin_add_title(menu_win, title.c_str());
+	auto header = lv_mywin_get_header(menu_win);
 	lv_obj_add_style(header, &style_window_header, LV_STATE_DEFAULT);
 	lv_obj_add_style(header, &style_window_header_inactive, LV_STATE_DEFAULT);
 
 	// Vertical container
-	auto cont_col = lv_obj_create(lv_win_get_content(menu_win));
+	auto cont_col = lv_obj_create(lv_mywin_get_content(menu_win));
 	lv_obj_set_width(cont_col, lv_pct(100));
 	lv_obj_set_height(cont_col, lv_pct(100));
 	lv_obj_align(cont_col, LV_ALIGN_TOP_MID, 0, 0);

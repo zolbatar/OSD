@@ -110,9 +110,12 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_border_width(&style_window, WINDOW_BORDER_WIDTH*dm);
 	lv_style_set_radius(&style_window, corner_radius*dm);
 	lv_style_set_text_font(&style_window, font_window);
+	lv_style_set_clip_corner(&style_window, true);
+	lv_style_set_border_post(&style_window, true);
 
 	// Style - window content
 	lv_style_init(&style_window_content);
+	lv_style_set_radius(&style_window_content, 0);
 	lv_style_set_bg_color(&style_window_content, WINDOW_BACKGROUND_COLOUR);
 	lv_style_set_pad_all(&style_window_content, 0);
 	lv_style_set_text_font(&style_window_content, font_body);
@@ -120,9 +123,10 @@ void WindowManager::SetupLVGLStyles()
 
 	// Style - window header
 	lv_style_init(&style_window_header);
+	lv_style_set_radius(&style_window_header, 0);
 	lv_style_set_text_color(&style_window_header, HEADER_TEXT_COLOUR);
 	lv_style_set_border_width(&style_window_header, 1*dm);
-	lv_style_set_border_color(&style_window, WINDOW_BORDER_COLOUR);
+	lv_style_set_border_color(&style_window_header, WINDOW_BORDER_COLOUR);
 	lv_style_set_border_side(&style_window_header, LV_BORDER_SIDE_BOTTOM);
 	lv_style_set_pad_all(&style_window_header, 4*dm);
 

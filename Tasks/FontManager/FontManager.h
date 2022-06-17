@@ -2,7 +2,7 @@
 #include "../../OS/OS.h"
 #include "../../GUI/Controls/Control.h"
 #include "../../GUI/Controls/Canvas.h"
-#include "../../GUI/Window.h"
+#include "../../GUI/Window/Window.h"
 #include "../../GUI/lvgl.h"
 #include "../../GUI/Style.h"
 #include <map>

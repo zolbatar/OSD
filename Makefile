@@ -9,7 +9,7 @@ OBJS    = 	main.o kernel.o \
 			Chrono/Chrono.o \
 			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o \
 			Input/Input.o \
-			GUI/Window.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
+			GUI/Window/Window.o GUI/Window/LVGLWindow.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
 			Tasks/WindowManager/WindowManager.o \
 			Tasks/DARICWindow.o Tasks/TasksWindow.o \
 			Tasks/FontManager/FontManager.o \
