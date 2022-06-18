@@ -16,8 +16,6 @@ extern CUSBHCIDevice *USBHCI;
 #include "../Editor/Editor.h"
 #include "../../GUI/Window/LVGLWindow.h"
 
-extern int dm;
-
 extern "C"
 {
 #include "../../Lightning/lightning.h"
@@ -114,7 +112,7 @@ void WindowManager::ReceiveDirectEx(DirectMessage* message)
 	switch (message->type) {
 		case Messages::WM_OpenWindow: {
 			auto m = (WM_OpenWindow*)message->data;
-			Window* w = new Window(source, m->canvas, m->fixed, m->title, m->x, m->y, m->width, m->height);
+			Window* w = new Window(source, m->canvas, m->fixed, m->title, m->x, m->y, m->width, m->height, m->canvas_w, m->canvas_h);
 			Window::windows.insert(std::make_pair(m->id, w));
 			source->SetWindow(w);
 			break;
@@ -251,38 +249,38 @@ void WindowManager::DesktopStartup()
 {
 #ifndef CLION
 
-	/*	auto clock3 = NEW DARICWindow("Clock3", false, 200*dm, 450*dm, 700*dm, 600*dm);
+	/*	auto clock3 = NEW DARICWindow("Clock3", false, 200, 450, 700, 600);
 		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
 		clock3->Start();*/
 
-	/*		auto graphics2d = NEW DARICWindow("Graphics 2D", false, 20*dm, 450*dm, 600*dm, 600*dm);
+	/*		auto graphics2d = NEW DARICWindow("Graphics 2D", false, 20, 450, 600, 600);
 		graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2d");
 		graphics2d->Start();
 
-		auto sierpinski = NEW DARICWindow("Sierpinski", false, 50*dm, 50*dm, 500*dm, 500*dm);
+		auto sierpinski = NEW DARICWindow("Sierpinski", false, 50, 50, 500, 500);
 		sierpinski->LoadSourceCode(":SD.$.Welcome.Sierpinski");
 		sierpinski->Start();
 */
-		auto fonts = NEW DARICWindow("Fonts", false, 100*dm, 20*dm, 1200*dm, 900*dm);
+		auto fonts = NEW DARICWindow("Fonts", false, 100, 20, 400, 400, 1600, 900);
 		fonts->LoadSourceCode(":SD.$.Welcome.Fonts");
 		fonts->Start();
 
-//		auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 700*dm, 500*dm, 400*dm, 400*dm);
+//		auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 700, 500, 400, 400);
 //		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
 //		mandelbrot->Start();
 /*
-		auto tester = NEW DARICWindow("Tester", false, 1250*dm, 100*dm, 500*dm, 700*dm);
+		auto tester = NEW DARICWindow("Tester", false, 1250, 100, 500, 700);
 		tester->LoadSourceCode(":SD.$.Welcome.Tester");
 		tester->Start();
 
-		auto raytracer = NEW DARICWindow("Ray Tracer", false, 650*dm, 700*dm, 640*dm, 350*dm);
+		auto raytracer = NEW DARICWindow("Ray Tracer", false, 650, 700, 640, 350);
 		raytracer->LoadSourceCode(":SD.$.Welcome.Raytracer");
 		raytracer->Start();*/
 
-		auto tasks = NEW TasksWindow(1100*dm, 600*dm, 750*dm, 450*dm);
+		auto tasks = NEW TasksWindow(1100, 600, 750, 250);
 		tasks->Start();
 
-//		auto clock = NEW DARICWindow("Clock", false, 800*dm, 100*dm, 400*dm, 300*dm);
+//		auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
 //		clock->LoadSourceCode(":SD.$.Welcome.Clock");
 //		clock->Start();
 #endif

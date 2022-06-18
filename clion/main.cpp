@@ -29,7 +29,7 @@ int main()
 	gui = NEW WindowManager();
 	gui->Start();
 
-	auto tester = NEW DARICWindow("RayTracer", false, 100*dm, 600*dm, 400*dm, 400*dm);
+	auto tester = NEW DARICWindow("RayTracer", false, 100, 600, 400, 400);
 	tester->LoadSourceCode(":SD.$.Welcome.Raytracer");
 	tester->Run();
 

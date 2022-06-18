@@ -5,10 +5,11 @@ const int WINDOW_HEADER_HEIGHT = 32;
 const int MENU_HEADER_HEIGHT = 32;
 const int WINDOW_FURNITURE_WIDTH = 24;
 const int WINDOW_BORDER_WIDTH = 1;
-const int WINDOW_CONTENT_PADDING = 12;
-const int CORNER_RADIUS = 4;
+const int WINDOW_CONTENT_PADDING = 16;
+const int CORNER_RADIUS = 0;
+const int SCROLL_CORNER_RADIUS = 4;
 const int CORNER_RADIUS_INNER = 2;
-const int SCROLLBAR_WIDTH = 4;
+const int SCROLLBAR_WIDTH = 8;
 const int CONTROL_PADDING = 1;
 const int CONTAINER_PADDING = 8;
 

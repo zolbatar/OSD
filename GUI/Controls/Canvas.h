@@ -3,12 +3,11 @@
 #include "Control.h"
 
 extern size_t body_font_height;
-extern int dm;
 extern lv_font_t* font_body;
 
 class Canvas : public Control {
 public:
-	Canvas(OSDTask* task, lv_obj_t* parent);
+	Canvas(OSDTask* task, lv_obj_t* parent, int w, int h);
 	~Canvas();
 	int64_t GetContentWidth();
 	int64_t GetContentHeight();
@@ -70,8 +69,8 @@ private:
 	uint8_t* buffer_back = nullptr;
 	lv_font_t* mono = font_mono;
 	lv_font_t* font = font_body;
-	int size_h = body_font_height/2*dm;
-	int size_v = body_font_height*dm;
+	int size_h = body_font_height/2;
+	int size_v = body_font_height;
 
 	void ScrollUp();
 };

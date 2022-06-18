@@ -5,47 +5,41 @@
 #include "LVGLWindow.h"
 
 std::map<std::string, Window*> Window::windows;
-extern int dm;
 
-Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h)
+Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, int x, int y, int w, int h, int canvas_w, int canvas_h)
 		:task(task), title(title), x1(x), y1(y), width(w), height(h)
 {
 	x2 = x1+width;
 	y2 = y1+height;
 
 	// Create
-	win = lv_mywin_create(lv_scr_act(), WINDOW_HEADER_HEIGHT*dm);
+	win = lv_mywin_create(lv_scr_act(), WINDOW_HEADER_HEIGHT);
 	lv_obj_set_pos(win, x1, y1);
 	lv_obj_set_width(win, width);
 	lv_obj_set_height(win, height);
-	lv_obj_add_style(win, &style_window, LV_STATE_DEFAULT);
 
 	// Header
 	header = lv_mywin_get_header(win);
-	lv_obj_add_style(header, &style_window_header, LV_STATE_DEFAULT);
 	lv_obj_add_style(header, &style_window_header_inactive, LV_STATE_DEFAULT);
 	lv_obj_add_event_cb(header, ClickEventHandler, LV_EVENT_CLICKED, this);
 	lv_obj_add_event_cb(header, DragEventHandler, LV_EVENT_PRESSING, this);
 
 	// Content
 	auto content = lv_mywin_get_content(win);
-	lv_obj_set_scrollbar_mode(content, LV_SCROLLBAR_MODE_AUTO);
-	lv_obj_add_style(content, &style_scrollbar, LV_PART_SCROLLBAR);
-	lv_obj_add_style(content, &style_window_content, LV_STATE_DEFAULT);
 
 	// Title
 	lv_mywin_add_title(win, title.c_str());
 
-	auto btn_min = lv_mywin_add_btn(win, LV_SYMBOL_MINIMISE, WINDOW_FURNITURE_WIDTH*dm);
+	auto btn_min = lv_mywin_add_btn(win, LV_SYMBOL_MINIMISE, WINDOW_FURNITURE_WIDTH);
 	lv_obj_add_style(btn_min, &style_window_furniture, LV_STATE_DEFAULT);
-	auto btn_max = lv_mywin_add_btn(win, LV_SYMBOL_MAXIMISE, WINDOW_FURNITURE_WIDTH*dm);
+	auto btn_max = lv_mywin_add_btn(win, LV_SYMBOL_MAXIMISE, WINDOW_FURNITURE_WIDTH);
 	lv_obj_add_style(btn_max, &style_window_furniture, LV_STATE_DEFAULT);
-	auto btn_close = lv_mywin_add_btn(win, LV_SYMBOL_MY_CLOSE, WINDOW_FURNITURE_WIDTH*dm);
+	auto btn_close = lv_mywin_add_btn(win, LV_SYMBOL_MY_CLOSE, WINDOW_FURNITURE_WIDTH);
 	lv_obj_add_event_cb(btn_close, CloseClicked, LV_EVENT_CLICKED, this);
 	lv_obj_add_style(btn_close, &style_window_furniture, LV_STATE_DEFAULT);
 
 	if (pure_canvas) {
-		canvas = new Canvas(task, content);
+		canvas = new Canvas(task, content, canvas_w, canvas_h);
 	}
 
 	SetActive();

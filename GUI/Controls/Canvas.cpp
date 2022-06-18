@@ -5,18 +5,26 @@
 #endif
 #include "../../Tasks/FontManager/FontManager.h"
 
-Canvas::Canvas(OSDTask* task, lv_obj_t* parent)
+Canvas::Canvas(OSDTask* task, lv_obj_t* parent, int w, int h)
 		:task(task)
 {
 	this->parent = parent;
 
 	// First buffer
 	firstbuffer = lv_canvas_create(parent);
-	lv_obj_set_width(firstbuffer, LV_PCT(100));
-	lv_obj_set_height(firstbuffer, LV_PCT(100));
-	lv_obj_update_layout(firstbuffer);
-	w = lv_obj_get_width(firstbuffer);
-	h = lv_obj_get_height(firstbuffer);
+	if (w==0 || h==0) {
+		lv_obj_set_width(firstbuffer, LV_PCT(100));
+		lv_obj_set_height(firstbuffer, LV_PCT(100));
+		lv_obj_update_layout(firstbuffer);
+		w = lv_obj_get_width(firstbuffer);
+		h = lv_obj_get_height(firstbuffer);
+	}
+	else {
+		lv_obj_set_width(firstbuffer, w);
+		lv_obj_set_height(firstbuffer, h);
+		this->w = w;
+		this->h = h;
+	}
 
 	// Allocate memory
 	sz = (lv_img_cf_get_px_size(cf)*w)*h/8;

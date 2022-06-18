@@ -579,6 +579,7 @@ OSDTask* OSDTask::GetOverride()
 
 void OSDTask::RequestTerminate()
 {
+	TerminateTask();
 	terminate_requested = true;
 }
 

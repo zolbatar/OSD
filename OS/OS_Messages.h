@@ -39,6 +39,8 @@ struct WM_OpenWindow {
 	int64_t height;
 	bool canvas;
 	bool fixed;
+	int64_t canvas_w;
+	int64_t canvas_h;
 };
 
 struct SetFont {

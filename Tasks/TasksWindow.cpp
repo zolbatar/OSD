@@ -4,7 +4,6 @@
 extern size_t pre_boot_memory;
 extern size_t kernel_size;
 extern size_t body_font_height;
-extern int dm;
 
 TasksWindow::TasksWindow(int x, int y, int w, int h)
 {
@@ -60,9 +59,9 @@ void TasksWindow::UpdateGUI()
 	// Container
 	const int sz = tasks_list.size()+4;
 	static lv_coord_t row_dsc[256];
-	row_dsc[0] = (body_font_height+4)*dm;
+	row_dsc[0] = (body_font_height+4);
 	for (int i = 1; i<sz; i++)
-		row_dsc[i] = body_font_height*dm;
+		row_dsc[i] = body_font_height;
 	row_dsc[sz] = LV_GRID_TEMPLATE_LAST;
 	static lv_coord_t col_dsc[] = { lv_pct(41), lv_pct(15), lv_pct(7), lv_pct(7), lv_pct(30), LV_GRID_TEMPLATE_LAST };
 

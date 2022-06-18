@@ -1,4 +1,5 @@
 #include "LVGLWindow.h"
+#include "../Style.h"
 
 static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj);
 
@@ -71,16 +72,22 @@ static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 	lv_obj_t* parent = lv_obj_get_parent(obj);
 	lv_obj_set_size(obj, lv_obj_get_width(parent), lv_obj_get_height(parent));
 	lv_obj_set_flex_flow(obj, LV_FLEX_FLOW_COLUMN);
+	lv_obj_add_style(obj, &style_window, LV_STATE_DEFAULT);
+	lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
 
 	lv_obj_t* header = lv_obj_create(obj);
 	lv_obj_set_size(header, LV_PCT(100), create_header_height);
 	lv_obj_set_flex_flow(header, LV_FLEX_FLOW_ROW);
 	lv_obj_set_flex_align(header, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 	lv_obj_clear_flag(header, LV_OBJ_FLAG_SCROLLABLE);
+	lv_obj_add_style(header, &style_window_header, LV_STATE_DEFAULT);
 
-	lv_obj_t* cont = lv_obj_create(obj);
-	lv_obj_set_flex_grow(cont, 1);
-	lv_obj_set_width(cont, LV_PCT(100));
-	lv_obj_set_height(cont, LV_PCT(100));
+	lv_obj_t* body = lv_obj_create(obj);
+	lv_obj_set_flex_grow(body, 1);
+	lv_obj_set_width(body, LV_PCT(100));
+	lv_obj_set_height(body, LV_PCT(100));
+	lv_obj_add_style(body, &style_window_content, LV_STATE_DEFAULT);
+	lv_obj_set_scrollbar_mode(body, LV_SCROLLBAR_MODE_AUTO);
+	lv_obj_add_style(body, &style_scrollbar, LV_PART_SCROLLBAR);
 }
 
