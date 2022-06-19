@@ -66,6 +66,44 @@ lv_obj_t* lv_mywin_get_content(lv_obj_t* win)
  *   STATIC FUNCTIONS
  **********************/
 
+static void ResizePressed(_lv_event_t* e)
+{
+	lv_obj_t* obj = lv_event_get_target(e);
+
+	lv_indev_t* indev = lv_indev_get_act();
+	if (indev==NULL) {
+		return;
+	}
+
+	lv_point_t vect;
+	lv_indev_get_vect(indev, &vect);
+
+	lv_obj_t* win = obj->parent;
+
+	// Set pos
+	lv_coord_t x = lv_obj_get_width(win)+vect.x;
+	lv_coord_t y = lv_obj_get_height(win)+vect.y;
+
+	// Get size of window, will it fit?
+/*	auto w = lv_obj_get_width(win);
+	auto h = lv_obj_get_height(win);
+	auto sw = lv_obj_get_width(lv_scr_act());
+	auto sh = lv_obj_get_height(lv_scr_act());
+	if (x<0)
+		x = 0;
+	if (x+w>sw)
+		x = sw-w;
+	if (y<0)
+		y = 0;
+	if (y+h>sh)
+		y = sh-h;*/
+
+	lv_obj_set_size(win, x, y);
+//	lv_obj_set_pos(win, x, y);
+	//	auto w = (Window*)e->user_data;
+//	w->task->RequestTerminate();
+}
+
 static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 {
 	LV_UNUSED(class_p);
@@ -89,5 +127,16 @@ static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 	lv_obj_add_style(body, &style_window_content, LV_STATE_DEFAULT);
 	lv_obj_set_scrollbar_mode(body, LV_SCROLLBAR_MODE_AUTO);
 	lv_obj_add_style(body, &style_scrollbar, LV_PART_SCROLLBAR);
+
+	auto btn_resize = lv_btn_create(obj);
+	lv_obj_set_size(btn_resize, WINDOW_FURNITURE_WIDTH_SMALL, WINDOW_FURNITURE_WIDTH_SMALL);
+	lv_obj_add_flag(btn_resize, LV_OBJ_FLAG_FLOATING);
+	lv_obj_add_event_cb(btn_resize, ResizePressed, LV_EVENT_PRESSING, NULL);
+	lv_obj_align(btn_resize, LV_ALIGN_BOTTOM_RIGHT, -4, -4);
+	lv_obj_t* img = lv_img_create(btn_resize);
+	lv_img_set_src(img, LV_SYMBOL_RESIZE);
+	lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
+	lv_obj_add_style(btn_resize, &style_window_furniture_small, LV_STATE_DEFAULT);
 }
+
 

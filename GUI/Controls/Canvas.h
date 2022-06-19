@@ -1,6 +1,7 @@
 #pragma once
 #include "../OS/OS.h"
 #include "Control.h"
+#include "../Style.h"
 
 extern size_t body_font_height;
 extern lv_font_t* font_body;
@@ -64,7 +65,7 @@ private:
 	bool which_buffer = false;
 	bool double_buffered = false;
 	lv_color_t fg = lv_color_white();
-	lv_color_t bg = lv_color_make(0xd0, 0xd0, 0xd0);
+	lv_color_t bg = WINDOW_BACKGROUND_COLOUR;
 	uint8_t* buffer = nullptr;
 	uint8_t* buffer_back = nullptr;
 	lv_font_t* mono = font_mono;

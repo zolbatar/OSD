@@ -19,6 +19,7 @@ lv_style_t style_window_header;
 lv_style_t style_window_header_active;
 lv_style_t style_window_header_inactive;
 lv_style_t style_window_furniture;
+lv_style_t style_window_furniture_small;
 lv_style_t style_scrollbar;
 lv_style_t style_bar;
 lv_style_t style_bar_indicator;
@@ -50,6 +51,7 @@ void WindowManager::SetupLVGLStyles()
 	font_mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", body_font_height);
 
 	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 16);
+	auto font_symbol_small = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 12);
 
 	lv_style_init(&style_boldbodyfont);
 	lv_style_set_text_font(&style_boldbodyfont, font_body_bold);
@@ -117,6 +119,7 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_border_width(&style_window_content, 0);
 	lv_style_set_radius(&style_window_content, 0);
 	lv_style_set_bg_color(&style_window_content, WINDOW_BACKGROUND_COLOUR);
+	lv_style_set_bg_opa(&style_window_content, LV_OPA_COVER);
 	lv_style_set_pad_all(&style_window_content, WINDOW_CONTENT_PADDING);
 	lv_style_set_text_font(&style_window_content, font_body);
 	lv_style_set_text_color(&style_window_content, lv_color_black());
@@ -146,6 +149,17 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_text_color(&style_window_furniture, WINDOW_FURNITURE_FOREGROUND_COLOUR);
 	lv_style_set_pad_all(&style_window_furniture, 0);
 	lv_style_set_text_font(&style_window_furniture, font_symbol);
+
+	// Style - window buttons small
+	lv_style_init(&style_window_furniture_small);
+	lv_style_set_radius(&style_window_furniture_small, CORNER_RADIUS_INNER);
+	lv_style_set_border_color(&style_window_furniture_small, WINDOW_FURNITURE_BORDER_COLOUR);
+	lv_style_set_border_width(&style_window_furniture_small, 1);
+	lv_style_set_bg_color(&style_window_furniture_small, WINDOW_FURNITURE_BACKGROUND_COLOUR);
+	lv_style_set_bg_opa(&style_window_furniture_small, LV_OPA_COVER);
+	lv_style_set_text_color(&style_window_furniture_small, WINDOW_FURNITURE_FOREGROUND_COLOUR);
+	lv_style_set_pad_all(&style_window_furniture_small, 0);
+	lv_style_set_text_font(&style_window_furniture_small, font_symbol_small);
 
 	// Style - scrollbar
 	lv_style_init(&style_scrollbar);
@@ -181,8 +195,8 @@ void WindowManager::SetupLVGLStyles()
 	// Style - grid
 	lv_style_init(&style_grid);
 	lv_style_set_bg_color(&style_grid, CONTAINER_BACKGROUND_COLOUR);
-	lv_style_set_border_color(&style_grid, CONTROL_BORDER_COLOUR);
-	lv_style_set_border_width(&style_grid, 1);
+//	lv_style_set_border_color(&style_grid, CONTROL_BORDER_COLOUR);
+	lv_style_set_border_width(&style_grid, 0);
 	lv_style_set_pad_all(&style_grid, CONTAINER_PADDING);
 	lv_style_set_radius(&style_grid, CORNER_RADIUS_INNER);
 	lv_style_init(&style_grid_title);

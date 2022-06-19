@@ -78,7 +78,7 @@ void WindowManager::Run()
 #endif
 
 // Add right click menu to desktop
-	lv_obj_add_event_cb(lv_scr_act(), ClickEventHandler, LV_EVENT_LONG_PRESSED, this);
+//	lv_obj_add_event_cb(lv_scr_act(), ClickEventHandler, LV_EVENT_LONG_PRESSED, this);
 
 	DesktopStartup();
 
