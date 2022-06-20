@@ -15,7 +15,7 @@ extern CUSBHCIDevice *USBHCI;
 #include "../TasksWindow/TasksWindow.h"
 #include "../Editor/Editor.h"
 #include "../../GUI/Window/LVGLWindow.h"
-std::map<std::string, lv_img_dsc_t> WindowManager::icons;
+std::map<std::string, lv_img_dsc_t*> WindowManager::icons;
 
 extern "C"
 {
@@ -42,7 +42,7 @@ WindowManager::WindowManager()
 	setup.vsnprintf = vsnprintf;
 	cs_err err = cs_option(0, CS_OPT_MEM, (size_t)&setup);
 	if (err!=CS_ERR_OK) {
-		printf("Error (cs_option): %d\n", err);
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error (cs_option): %d\n", err);
 	}
 }
 
@@ -362,5 +362,14 @@ void WindowManager::ClickEventHandler(lv_event_t* e)
 
 		t->CreateMenu(p.x, p.y, NULL, "OS/D", menu);
 	}
+}
+
+lv_img_dsc_t* WindowManager::GetIcon(std::string name)
+{
+	auto f = icons.find(name);
+	if (f==icons.end()) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Icon '%s' not found\n", name.c_str());
+	}
+	return f->second;
 }
 

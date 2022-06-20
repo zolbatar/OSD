@@ -30,12 +30,12 @@ public:
 	void Run();
 	void DesktopStartup();
 	void ReceiveDirectEx(DirectMessage* message);
-	static lv_img_dsc_t* GetIcon(std::string name) { return &icons.find(name)->second; }
+	static lv_img_dsc_t* GetIcon(std::string name);
 private:
 	GuiCLVGL* clvgl;
 	lv_obj_t* menu_win = NULL;
 	Menu* menu = NULL;
-	static std::map<std::string, lv_img_dsc_t> icons;
+	static std::map<std::string, lv_img_dsc_t*> icons;
 
 	void SetupLVGLStyles();
 	void LoadIcon(std::string filename, std::string name);

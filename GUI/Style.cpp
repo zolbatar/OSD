@@ -49,15 +49,13 @@ void WindowManager::SetupLVGLStyles()
 	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height);
 	font_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", body_font_height);
 	auto font_body_bold = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", body_font_height);
+	auto font_small = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", (body_font_height-2));
 	auto font_large = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", (body_font_height+4));
 	auto menu_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height);
 	font_mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", body_font_height);
 
 	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 16);
 	auto font_symbol_small = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 12);
-
-	// PNG support
-	lv_png_init();
 
 	lv_style_init(&style_boldbodyfont);
 	lv_style_set_text_font(&style_boldbodyfont, font_body_bold);
@@ -91,14 +89,16 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_border_color(&style_iconbar, WINDOW_BORDER_COLOUR);
 	lv_style_set_border_side(&style_iconbar, LV_BORDER_SIDE_TOP);
 	lv_style_set_border_width(&style_iconbar, WINDOW_BORDER_WIDTH);
+	lv_style_set_bg_color(&style_iconbar, WINDOW_BACKGROUND_COLOUR);
 	lv_style_set_radius(&style_iconbar, 0);
 	lv_style_set_pad_all(&style_iconbar, 0);
 	lv_style_init(&style_iconbar_inner);
 	lv_style_set_text_color(&style_iconbar_inner, lv_color_black());
 	lv_style_set_bg_color(&style_iconbar_inner, WINDOW_BACKGROUND_COLOUR);
 	lv_style_set_border_width(&style_iconbar_inner, 0);
+	lv_style_set_radius(&style_iconbar_inner, 0);
 	lv_style_set_pad_all(&style_iconbar_inner, 0);
-	lv_style_set_text_font(&style_iconbar_inner, font_window);
+	lv_style_set_text_font(&style_iconbar_inner, font_body);
 
 	// Style - window
 	lv_style_init(&style_window);
@@ -219,14 +219,14 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_radius(&style_textarea, CORNER_RADIUS_INNER);
 	lv_style_set_text_font(&style_textarea, font_mono);
 
-	// Style - window buttons
+	// Style - icon bar buttons
 	lv_style_init(&style_iconbar_button);
 	lv_style_set_radius(&style_iconbar_button, 0);
 	lv_style_set_shadow_width(&style_iconbar_button, 0);
 	lv_style_set_border_width(&style_iconbar_button, 0);
 	lv_style_set_bg_opa(&style_iconbar_button, LV_OPA_TRANSP);
 	lv_style_set_pad_all(&style_iconbar_button, 0);
-	lv_style_set_text_font(&style_iconbar_button, font_symbol);
+	lv_style_set_text_font(&style_iconbar_button, font_large);
 }
 
 void WindowManager::SetupStyleBackground()
@@ -264,15 +264,15 @@ void WindowManager::SetupIcons()
 {
 	fs.SetCurrentDirectory(":BOOT.$.System.Icons");
 	LoadIcon("Flash.png", "SD Card");
-	LoadIcon("CPU.png", "CPU");
-	LoadIcon("Computer.png", "Computer");
+	LoadIcon("RAM.png", "RAM");
+	LoadIcon("Boot.png", "Boot");
 	LoadIcon("Home.png", "Home");
 }
 
 void WindowManager::LoadIcon(std::string filename, std::string name)
 {
-	int w = 96;
-	int h = 96;
+	int w = 64;
+	int h = 64;
 	FIL fil;
 	if (f_open(&fil, (fs.GetCurrentDirectory()+filename).c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
 		CLogger::Get()->Write("Window Manager", LogPanic, "Error opening image file '%s'", filename.c_str());
@@ -289,12 +289,12 @@ void WindowManager::LoadIcon(std::string filename, std::string name)
 	f_close(&fil);
 
 	// Convert to PNG
-	lv_img_dsc_t img;
-	img.data = (const uint8_t*)buffer;
-	img.header.w = w;
-	img.header.h = h;
-	img.header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA;
-	img.data_size = l;
-	icons.insert(std::make_pair(name, std::move(img)));
+	auto img = (lv_img_dsc_t*)calloc(1, sizeof(lv_img_dsc_t));
+	img->data = (const uint8_t*)buffer;
+	img->header.w = w;
+	img->header.h = h;
+	img->header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA;
+	img->data_size = l;
+	icons.insert(std::make_pair(name, img));
 }
 
