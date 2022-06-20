@@ -12,9 +12,10 @@ extern CUSBHCIDevice *USBHCI;
 #include "mouse.h"
 #endif
 #include "../../OS/OS.h"
-#include "../TasksWindow.h"
+#include "../TasksWindow/TasksWindow.h"
 #include "../Editor/Editor.h"
 #include "../../GUI/Window/LVGLWindow.h"
+std::map<std::string, lv_img_dsc_t> WindowManager::icons;
 
 extern "C"
 {
@@ -290,7 +291,7 @@ void WindowManager::CreateMenu(int x, int y, OSDTask* task, std::string title, M
 {
 	this->menu = menu;
 
-	WindowAttributes *wa = new WindowAttributes();
+	WindowAttributes* wa = new WindowAttributes();
 	wa->resizable = false;
 	wa->fixed_size_content = true;
 

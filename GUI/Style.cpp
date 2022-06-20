@@ -13,6 +13,9 @@ lv_style_t style_menu_container;
 lv_style_t style_menu_item;
 lv_style_t style_window;
 lv_style_t style_window_content;
+lv_style_t style_iconbar;
+lv_style_t style_iconbar_inner;
+lv_style_t style_iconbar_button;
 lv_style_t style_grid;
 lv_style_t style_grid_title;
 lv_style_t style_window_header;
@@ -53,39 +56,18 @@ void WindowManager::SetupLVGLStyles()
 	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 16);
 	auto font_symbol_small = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 12);
 
+	// PNG support
+	lv_png_init();
+
 	lv_style_init(&style_boldbodyfont);
 	lv_style_set_text_font(&style_boldbodyfont, font_body_bold);
 
 	// Disable scrolling
 	lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);
 
-	// Style - background
-	fs.SetCurrentDirectory(":BOOT.$.System.Wallpaper");
-	FIL fil;
-	if (f_open(&fil, (fs.GetCurrentDirectory()+"Wallpaper.bin").c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
-		CLogger::Get()->Write("Window Manager", LogPanic, "Error opening wallpaper file");
-	}
-	size_t sz = f_size(&fil);
-	char* buffer = (char*)malloc(sz);
-	if (!buffer) {
-		CLogger::Get()->Write("Window Manager", LogPanic, "Error allocating memory for wallpaper file");
-	}
-	uint32_t l;
-	if (f_read(&fil, buffer, sz, &l)!=FR_OK) {
-		CLogger::Get()->Write("Window Manager", LogPanic, "Error loading wallpaper file");
-	}
-	static lv_img_dsc_t img;
-	img.data = (const uint8_t*)buffer;
-	img.header.w = ScreenResX;
-	img.header.h = ScreenResY;
-	img.header.cf = LV_IMG_CF_TRUE_COLOR;
-	img.data_size = l;
-
-	lv_style_init(&style_background);
-	lv_style_set_bg_img_src(&style_background, &img);
-//	lv_style_set_bg_color(&style_background, DESKTOP_COLOUR);
-	lv_style_set_text_color(&style_background, lv_color_white());
-	lv_obj_add_style(lv_scr_act(), &style_background, LV_STATE_DEFAULT);
+	// Style - background & icons
+	SetupStyleBackground();
+	SetupIcons();
 
 	// Style - menu
 	lv_style_init(&style_menu);
@@ -104,17 +86,28 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_pad_all(&style_menu_item, 0);
 	lv_style_set_text_font(&style_menu_item, menu_body);
 
+	// Style - icon bar
+	lv_style_init(&style_iconbar);
+	lv_style_set_border_color(&style_iconbar, WINDOW_BORDER_COLOUR);
+	lv_style_set_border_side(&style_iconbar, LV_BORDER_SIDE_TOP);
+	lv_style_set_border_width(&style_iconbar, WINDOW_BORDER_WIDTH);
+	lv_style_set_radius(&style_iconbar, 0);
+	lv_style_set_pad_all(&style_iconbar, 0);
+	lv_style_init(&style_iconbar_inner);
+	lv_style_set_text_color(&style_iconbar_inner, lv_color_black());
+	lv_style_set_bg_color(&style_iconbar_inner, WINDOW_BACKGROUND_COLOUR);
+	lv_style_set_border_width(&style_iconbar_inner, 0);
+	lv_style_set_pad_all(&style_iconbar_inner, 0);
+	lv_style_set_text_font(&style_iconbar_inner, font_window);
+
 	// Style - window
 	lv_style_init(&style_window);
 	lv_style_set_border_color(&style_window, WINDOW_BORDER_COLOUR);
-	lv_style_set_text_color(&style_window, lv_color_white());
 	lv_style_set_border_width(&style_window, WINDOW_BORDER_WIDTH);
 	lv_style_set_radius(&style_window, CORNER_RADIUS);
 	lv_style_set_text_font(&style_window, font_window);
 	lv_style_set_clip_corner(&style_window, true);
 	lv_style_set_border_post(&style_window, true);
-	lv_style_set_bg_color(&style_window, WINDOW_UNUSED_COLOUR);
-	lv_style_set_bg_opa(&style_window, LV_OPA_COVER);
 
 	// Style - window content
 	lv_style_init(&style_window_content);
@@ -225,4 +218,83 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_pad_all(&style_textarea, 8);
 	lv_style_set_radius(&style_textarea, CORNER_RADIUS_INNER);
 	lv_style_set_text_font(&style_textarea, font_mono);
+
+	// Style - window buttons
+	lv_style_init(&style_iconbar_button);
+	lv_style_set_radius(&style_iconbar_button, 0);
+	lv_style_set_shadow_width(&style_iconbar_button, 0);
+	lv_style_set_border_width(&style_iconbar_button, 0);
+	lv_style_set_bg_opa(&style_iconbar_button, LV_OPA_TRANSP);
+	lv_style_set_pad_all(&style_iconbar_button, 0);
+	lv_style_set_text_font(&style_iconbar_button, font_symbol);
 }
+
+void WindowManager::SetupStyleBackground()
+{
+	fs.SetCurrentDirectory(":BOOT.$.System.Wallpaper");
+	FIL fil;
+	if (f_open(&fil, (fs.GetCurrentDirectory()+"Wallpaper.png").c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error opening wallpaper file");
+	}
+	size_t sz = f_size(&fil);
+	char* buffer = (char*)malloc(sz);
+	if (!buffer) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error allocating memory for wallpaper file");
+	}
+	uint32_t l;
+	if (f_read(&fil, buffer, sz, &l)!=FR_OK) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error loading wallpaper file");
+	}
+	f_close(&fil);
+	static lv_img_dsc_t img;
+	img.data = (const uint8_t*)buffer;
+	img.header.w = ScreenResX;
+	img.header.h = ScreenResY;
+	img.header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA;
+	img.data_size = l;
+
+	lv_style_init(&style_background);
+	lv_style_set_bg_img_src(&style_background, &img);
+	//	lv_style_set_bg_color(&style_background, DESKTOP_COLOUR);
+	lv_style_set_text_color(&style_background, lv_color_white());
+	lv_obj_add_style(lv_scr_act(), &style_background, LV_STATE_DEFAULT);
+}
+
+void WindowManager::SetupIcons()
+{
+	fs.SetCurrentDirectory(":BOOT.$.System.Icons");
+	LoadIcon("Flash.png", "SD Card");
+	LoadIcon("CPU.png", "CPU");
+	LoadIcon("Computer.png", "Computer");
+	LoadIcon("Home.png", "Home");
+}
+
+void WindowManager::LoadIcon(std::string filename, std::string name)
+{
+	int w = 96;
+	int h = 96;
+	FIL fil;
+	if (f_open(&fil, (fs.GetCurrentDirectory()+filename).c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error opening image file '%s'", filename.c_str());
+	}
+	size_t sz = f_size(&fil);
+	char* buffer = (char*)malloc(sz);
+	if (!buffer) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error allocating memory for image file '%s'", filename.c_str());
+	}
+	uint32_t l;
+	if (f_read(&fil, buffer, sz, &l)!=FR_OK) {
+		CLogger::Get()->Write("Window Manager", LogPanic, "Error loading image file '%s'", filename.c_str());
+	}
+	f_close(&fil);
+
+	// Convert to PNG
+	lv_img_dsc_t img;
+	img.data = (const uint8_t*)buffer;
+	img.header.w = w;
+	img.header.h = h;
+	img.header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA;
+	img.data_size = l;
+	icons.insert(std::make_pair(name, std::move(img)));
+}
+

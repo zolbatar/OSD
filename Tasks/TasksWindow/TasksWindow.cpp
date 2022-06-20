@@ -1,5 +1,5 @@
 #include "TasksWindow.h"
-#include "../GUI/Window/LVGLWindow.h"
+#include "../../GUI/Window/LVGLWindow.h"
 
 extern size_t pre_boot_memory;
 extern size_t kernel_size;
@@ -74,9 +74,9 @@ void TasksWindow::UpdateGUI()
 	auto cont = lv_obj_create(content);
 	lv_obj_clear_flag(cont, LV_OBJ_FLAG_SCROLLABLE);
 //	lv_obj_set_width(cont, LV_SIZE_CONTENT);
-//	lv_obj_set_height(cont, LV_SIZE_CONTENT);
+	lv_obj_set_height(cont, LV_SIZE_CONTENT);
 	lv_obj_set_width(cont, lv_pct(100));
-	lv_obj_set_height(cont, lv_pct(100));
+//	lv_obj_set_height(cont, lv_pct(100));
 	lv_obj_center(cont);
 	lv_obj_set_flex_flow(cont, LV_FLEX_FLOW_COLUMN);
 	lv_obj_add_style(cont, &style_grid, LV_STATE_DEFAULT);

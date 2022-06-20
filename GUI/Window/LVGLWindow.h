@@ -1,13 +1,14 @@
 #pragma once
+#include "../lvgl.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct WindowAttributes {
+typedef struct {
 	bool resizable = true;
 	bool fixed_size_content = true;
-};
+} WindowAttributes;
 
 /*********************
  *      INCLUDES
@@ -31,7 +32,7 @@ extern const lv_obj_class_t lv_mywin_class;
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t* lv_mywin_create(lv_obj_t* parent, lv_coord_t header_height, WindowAttributes *wa);
+lv_obj_t* lv_mywin_create(lv_obj_t* parent, lv_coord_t header_height, WindowAttributes* wa);
 
 lv_obj_t* lv_mywin_add_title(lv_obj_t* win, const char* txt);
 lv_obj_t* lv_mywin_add_btn(lv_obj_t* win, const void* icon, lv_coord_t btn_w);

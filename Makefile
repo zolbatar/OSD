@@ -10,8 +10,8 @@ OBJS    = 	main.o kernel.o \
 			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o \
 			Input/Input.o \
 			GUI/Window/Window.o GUI/Window/LVGLWindow.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
-			Tasks/WindowManager/WindowManager.o \
-			Tasks/DARICWindow.o Tasks/TasksWindow.o \
+			Tasks/WindowManager/WindowManager.o Tasks/IconBar/IconBar.o \
+			Tasks/DARICWindow.o Tasks/TasksWindow/TasksWindow.o \
 			Tasks/FontManager/FontManager.o \
 			Tasks/FileManager/FileManager.o \
 			Tasks/Editor/Editor.o \

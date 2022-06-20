@@ -145,7 +145,6 @@ void FontManager::CreateConfigFile()
 		CLogger::Get()->Write("FontManager", LogPanic, "Error writing font config file");
 	}
 	f_close(&fil);
-	while (1);
 }
 
 std::string FontManager::GetName(stbtt_fontinfo* f, int id)

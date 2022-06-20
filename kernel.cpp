@@ -12,6 +12,7 @@
 #include "OS/OS.h"
 #include "Tasks/FontManager/FontManager.h"
 #include "Tasks/FileManager/FileManager.h"
+#include "Tasks/IconBar/IconBar.h"
 #include "Tasks/WindowManager/WindowManager.h"
 #include "Tasks/DARICWindow.h"
 #include "Tokeniser/Tokeniser.h"
@@ -124,6 +125,11 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	// Wait for GUI startup
 	auto gui = new WindowManager();
 	gui->Start();
+	CScheduler::Get()->Yield();
+
+	// Icon Bar
+	auto ib = new IconBar();
+	ib->Run();
 
 	while (1) { // Wait forever for now, no shutdown procedure
 		CScheduler::Get()->Yield();

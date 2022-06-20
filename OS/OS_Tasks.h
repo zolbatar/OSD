@@ -39,7 +39,8 @@ enum class TaskType {
 	Unknown,
 	DARIC,
 	TaskManager,
-	Editor
+	Editor,
+	IconBar,
 };
 
 enum TaskPriority {
