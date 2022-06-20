@@ -11,8 +11,14 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 	this->d_y = y;
 	this->d_w = w;
 	this->d_h = h;
-	this->canvas_w = canvas_w;
-	this->canvas_h = canvas_h;
+	if (canvas_w!=0)
+		this->canvas_w = canvas_w;
+	else
+		this->canvas_w = w-WINDOW_BORDER_WIDTH*2-WINDOW_CONTENT_PADDING*2;
+	if (canvas_h!=0)
+		this->canvas_h = canvas_h;
+	else
+		this->canvas_h = h-WINDOW_BORDER_WIDTH*2-WINDOW_HEADER_HEIGHT-WINDOW_CONTENT_PADDING*2;
 	this->name = name;
 	this->id = "@"+std::to_string(task_id++);
 	type = TaskType::DARIC;

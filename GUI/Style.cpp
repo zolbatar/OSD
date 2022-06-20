@@ -113,6 +113,8 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_text_font(&style_window, font_window);
 	lv_style_set_clip_corner(&style_window, true);
 	lv_style_set_border_post(&style_window, true);
+	lv_style_set_bg_color(&style_window, WINDOW_UNUSED_COLOUR);
+	lv_style_set_bg_opa(&style_window, LV_OPA_COVER);
 
 	// Style - window content
 	lv_style_init(&style_window_content);

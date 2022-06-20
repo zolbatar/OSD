@@ -270,7 +270,6 @@ void OSDTask::FreeStringPermanent(int64_t idx)
 
 void OSDTask::ClearTemporaryStrings()
 {
-	return;
 #ifdef CLION
 //	printf("Deleting %zu strings\n", strings.size());
 #endif

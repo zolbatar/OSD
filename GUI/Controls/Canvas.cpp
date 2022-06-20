@@ -13,8 +13,7 @@ Canvas::Canvas(OSDTask* task, lv_obj_t* parent, int w, int h)
 	// First buffer
 	firstbuffer = lv_canvas_create(parent);
 	if (w==0 || h==0) {
-		lv_obj_set_width(firstbuffer, LV_PCT(100));
-		lv_obj_set_height(firstbuffer, LV_PCT(100));
+		lv_obj_set_size(firstbuffer, w, h);
 		lv_obj_update_layout(firstbuffer);
 		w = lv_obj_get_width(firstbuffer);
 		h = lv_obj_get_height(firstbuffer);
@@ -77,8 +76,7 @@ void Canvas::EnableDoubleBuffering()
 
 	// Second buffer
 	secondbuffer = lv_canvas_create(parent);
-	lv_obj_set_width(secondbuffer, LV_PCT(100));
-	lv_obj_set_height(secondbuffer, LV_PCT(100));
+	lv_obj_set_size(secondbuffer, w, h);
 	lv_canvas_set_buffer(secondbuffer, buffer_back, w, h, cf);
 	lv_canvas_fill_bg(secondbuffer, bg, LV_OPA_COVER);
 	lv_obj_add_flag(secondbuffer, LV_OBJ_FLAG_HIDDEN);
@@ -113,7 +111,6 @@ void Canvas::PlotPixel(int64_t x, int64_t y)
 {
 	SetupClip();
 	lv_canvas_set_px_color(object, x, y, fg);
-	//lv_canvas_set_px_opa(object, x, y, LV_OPA_COVER);
 	ClearClip();
 }
 

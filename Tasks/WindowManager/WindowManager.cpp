@@ -280,9 +280,9 @@ void WindowManager::DesktopStartup()
 		auto tasks = NEW TasksWindow(1100, 600, 750, 250);
 		tasks->Start();
 
-//		auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300);
-//		clock->LoadSourceCode(":SD.$.Welcome.Clock");
-//		clock->Start();
+		auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300, 0, 0);
+		clock->LoadSourceCode(":SD.$.Welcome.Clock");
+		clock->Start();
 #endif
 }
 
@@ -290,7 +290,11 @@ void WindowManager::CreateMenu(int x, int y, OSDTask* task, std::string title, M
 {
 	this->menu = menu;
 
-	menu_win = lv_mywin_create(lv_scr_act(), MENU_HEADER_HEIGHT);
+	WindowAttributes *wa = new WindowAttributes();
+	wa->resizable = false;
+	wa->fixed_size_content = true;
+
+	menu_win = lv_mywin_create(lv_scr_act(), MENU_HEADER_HEIGHT, wa);
 	lv_obj_set_x(menu_win, x);
 	lv_obj_set_y(menu_win, y);
 	lv_obj_set_width(menu_win, 160);

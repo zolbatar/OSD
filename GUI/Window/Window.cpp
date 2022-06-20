@@ -12,8 +12,13 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	x2 = x1+width;
 	y2 = y1+height;
 
+	// Set attributes
+	WindowAttributes *wa = new WindowAttributes();
+	wa->resizable = true;
+	wa->fixed_size_content = pure_canvas;
+
 	// Create
-	win = lv_mywin_create(lv_scr_act(), WINDOW_HEADER_HEIGHT);
+	win = lv_mywin_create(lv_scr_act(), WINDOW_HEADER_HEIGHT, wa);
 	lv_obj_set_pos(win, x1, y1);
 	lv_obj_set_width(win, width);
 	lv_obj_set_height(win, height);
@@ -49,6 +54,7 @@ Window::~Window()
 {
 	if (canvas!=NULL)
 		delete canvas;
+	delete win->user_data;
 	lv_obj_del(win);
 }
 
