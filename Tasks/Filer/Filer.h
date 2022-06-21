@@ -4,11 +4,12 @@
 #include <circle/logger.h>
 #include "../WindowManager/WindowManager.h"
 
-struct Icon {
+struct FileIcon {
 	std::string name;
 	bool is_directory;
 	std::string volume;
 	std::string current_directory;
+	FileType* type;
 };
 
 class Filer : public OSDTask {
@@ -23,8 +24,8 @@ private:
 	static int cx;
 	static int cy;
 	lv_obj_t* filer_cont;
-	std::list<Icon> icons;
-	static Icon* icon_clicked;
+	std::list<FileIcon> icons;
+	static FileIcon* icon_clicked;
 	static unsigned last_click;
 
 	void AddIcon(std::string name, bool is_directory);

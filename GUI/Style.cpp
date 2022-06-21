@@ -242,17 +242,20 @@ void WindowManager::SetupLVGLStyles()
 	LoadIcon(fs.GetCurrentDirectory()+"Folder.png", "Folder");
 	LoadIcon(fs.GetCurrentDirectory()+"Home.png", "Home");
 	LoadIcon(fs.GetCurrentDirectory()+"Sloth.png", "Sloth");
+	LoadIcon(fs.GetCurrentDirectory()+"Text.png", "Text");
+	LoadIcon(fs.GetCurrentDirectory()+"Image.png", "Image");
 
 	// Cursors
 	fs.SetCurrentDirectory(":BOOT.$.System.Cursors");
 	mouse_cursor = LoadPNG(fs.GetCurrentDirectory()+"Arrow.png", 32, 32);
 }
 
-lv_img_dsc_t* WindowManager::LoadIcon(std::string filename, std::string name)
+void WindowManager::LoadIcon(std::string filename, std::string name)
 {
-	auto img = LoadPNG(filename, 64, 64);
-	icons.insert(std::make_pair(name, img));
-	return img;
+	Icon i;
+	i.filename = filename;
+	i.image = NULL;
+	icons.insert(std::make_pair(name, std::move(i)));
 }
 
 lv_img_dsc_t* WindowManager::LoadPNG(std::string filename, int w, int h)

@@ -28,10 +28,10 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 
 }
 
-void DARICWindow::LoadSourceCode(std::string filename)
+void DARICWindow::LoadSourceCode(std::string directory, std::string filename)
 {
-	this->filename = filename;
-	this->code = this->LoadSource(filename);
+	this->filename = directory+"."+filename;
+	this->code = this->LoadSource(directory, filename);
 }
 
 void DARICWindow::Run()

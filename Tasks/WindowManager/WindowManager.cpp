@@ -1,21 +1,19 @@
 #include "WindowManager.h"
 #include <capstone/capstone.h>
 #include <capstone/platform.h>
-
-#ifndef CLION
 #include <circle/interrupt.h>
 #include <circle/logger.h>
 #include <circle/usb/usbhcidevice.h>
 extern CScreenDevice* screen;
-extern CInterruptSystem *interrupt;
-extern CUSBHCIDevice *USBHCI;
+extern CInterruptSystem* interrupt;
+extern CUSBHCIDevice* USBHCI;
 #include "mouse.h"
-#endif
 #include "../../OS/OS.h"
 #include "../TasksWindow/TasksWindow.h"
 #include "../Editor/Editor.h"
 #include "../../GUI/Window/LVGLWindow.h"
-std::map<std::string, lv_img_dsc_t*> WindowManager::icons;
+std::map<std::string, Icon> WindowManager::icons;
+std::map<std::string, FileType> WindowManager::types;
 
 extern "C"
 {
@@ -60,14 +58,9 @@ void WindowManager::Run()
 	clvgl->Initialize();
 	SetupLVGLStyles();
 
-	// Mouse cursor
-	/*	static lv_img_dsc_t mouse_cursor_icon;
-		mouse_cursor_icon.header.always_zero = 0;
-		mouse_cursor_icon.header.w = 14;
-		mouse_cursor_icon.header.h = 20;
-		mouse_cursor_icon.data_size = 280 * LV_IMG_PX_SIZE_ALPHA_BYTE;
-		mouse_cursor_icon.header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA;
-		mouse_cursor_icon.data = mouse_cursor_icon_map;*/
+	// Setup filetypes
+	types.insert(std::make_pair("PNG", FileType("Image", "")));
+	types.insert(std::make_pair("TXT", FileType("Text", "")));
 
 	//	LV_IMG_DECLARE(mouse_cursor_icon);
 	lv_obj_t* cursor = lv_img_create(lv_scr_act());
@@ -315,8 +308,18 @@ lv_img_dsc_t* WindowManager::GetIcon(std::string name)
 	auto f = icons.find(name);
 	if (f==icons.end()) {
 		return NULL;
-//		CLogger::Get()->Write("Window Manager", LogPanic, "Icon '%s' not found\n", name.c_str());
 	}
-	return f->second;
+	if (f->second.image==NULL) {
+		f->second.image = LoadPNG(f->second.filename, 64, 64);
+	}
+	return f->second.image;
 }
 
+FileType* WindowManager::GetFileType(std::string type)
+{
+	auto f = types.find(type);
+	if (f==types.end()) {
+		return NULL;
+	}
+	return &f->second;
+}

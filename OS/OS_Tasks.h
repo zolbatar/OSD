@@ -100,7 +100,7 @@ public:
 
 #endif
 
-	std::string LoadSource(std::string filename);
+	std::string LoadSource(std::string directory, std::string filename);
 	bool CompileSource(std::string filename, std::string code);
 	void RunCode();
 	void AddDataElement(DataElement de);

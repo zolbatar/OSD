@@ -61,7 +61,7 @@ void Editor::TextareaEventHandler(lv_event_t* e)
 	LV_LOG_USER("Enter was pressed. The current text is: %s", lv_textarea_get_text(ta));
 }
 
-void Editor::LoadSourceCode(std::string filename)
+void Editor::LoadSourceCode(std::string directory, std::string filename)
 {
 	std::vector<std::string> lines;
 

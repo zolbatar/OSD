@@ -1,10 +1,11 @@
 #include "Filer.h"
 #include "../FileManager/FileManager.h"
 #include "../../GUI/Window/LVGLWindow.h"
+#include "../Library/StringLib.h"
 
-int Filer::cx = 628;
-int Filer::cy = 512;
-Icon* Filer::icon_clicked;
+int Filer::cx = 128;
+int Filer::cy = 128;
+FileIcon* Filer::icon_clicked;
 unsigned Filer::last_click;
 
 Filer::Filer(std::string volume, std::string directory)
@@ -76,39 +77,53 @@ void Filer::Run()
 
 void Filer::AddIcon(std::string name, bool is_directory)
 {
-	Icon i;
+	FileIcon i;
 	i.name = name;
 	i.is_directory = is_directory;
 	i.current_directory = directory;
 	i.volume = volume;
+	lv_img_dsc_t* icon = NULL;
+
+	// Do we have an extension? And therefore a type?
+	auto fd = name.find_first_of(".");
+	if (fd!=std::string::npos) {
+		auto extension = name.substr(fd+1);
+		toupper(extension);
+		i.type = WindowManager::GetFileType(extension);
+		if (i.type!=NULL) {
+			icon = WindowManager::GetIcon(i.type->icon);
+		}
+//		CLogger::Get()->Write("File Manager", LogNotice, "%s", extension.c_str());
+	}
+
 	icons.push_back(std::move(i));
 	auto ip = &icons.back();
 
 	// Icon
-	lv_img_dsc_t* icon = NULL;
-	if (is_directory) {
-		// We can override the default icon here
-
-		FILINFO fno;
-		auto name_to_check = (fs.GetCurrentDirectory()+name+"/"+name+".png");
-//		CLogger::Get()->Write("Filer", LogDebug, "%s", name_to_check.c_str());
-		auto fr = f_stat(name_to_check.c_str(), &fno);
-		if (fr==FR_OK) {
-			// Do we have it?
-			icon = WindowManager::GetIcon(name_to_check);
-			if (icon==NULL) {
-				fs.SetCurrentDirectory(directory+"."+name);
-				icon = WindowManager::LoadIcon(name_to_check, name_to_check);
-				fs.SetCurrentDirectory(directory);
+	if (icon==NULL) {
+		if (is_directory) {
+			// We can override the default icon here
+			FILINFO fno;
+			auto name_to_check = (fs.GetCurrentDirectory()+name+"/Icon.png");
+			auto fr = f_stat(name_to_check.c_str(), &fno);
+			if (fr==FR_OK) {
+				// Do we have it?
+				icon = WindowManager::GetIcon(name_to_check);
+				if (icon==NULL) {
+					fs.SetCurrentDirectory(directory+"."+name);
+					WindowManager::LoadIcon(name_to_check, name_to_check);
+					icon = WindowManager::GetIcon(name_to_check);
+					fs.SetCurrentDirectory(directory);
+				}
+			}
+			else {
+				icon = WindowManager::GetIcon("Folder");
 			}
 		}
 		else {
-			icon = WindowManager::GetIcon("Folder");
+			// Later we need to look up the app types
+			icon = WindowManager::GetIcon("Sloth");
 		}
-	}
-	else {
-		// Later we need to look up the app types
-		icon = WindowManager::GetIcon("Sloth");
 	}
 
 	lv_obj_t* device_cont = lv_obj_create(filer_cont);
@@ -135,13 +150,22 @@ void Filer::AddIcon(std::string name, bool is_directory)
 
 void Filer::IconClickEventHandler(lv_event_t* e)
 {
-	auto this_icon_clicked = (Icon*)e->user_data;
+	auto this_icon_clicked = (FileIcon*)e->user_data;
 	if (icon_clicked!=NULL && icon_clicked->name==this_icon_clicked->name) {
 		auto ticks = CTimer::Get()->GetClockTicks();
 		auto diff = ticks-last_click;
 		if (diff<DOUBLE_CLICK_SPEED) {
-			auto task = new Filer(icon_clicked->volume, icon_clicked->current_directory+"."+icon_clicked->name);
-			task->Start();
+			if (icon_clicked->is_directory) {
+				auto task = new Filer(icon_clicked->volume, icon_clicked->current_directory+"."+icon_clicked->name);
+				task->Start();
+			}
+			else {
+				auto app = NEW DARICWindow(icon_clicked->name, false, cx, cy, 256, 256, 640, 512);
+				app->LoadSourceCode(icon_clicked->volume+"."+icon_clicked->current_directory, icon_clicked->name);
+				app->Start();
+				cx += 100;
+				cy += 100;
+			}
 			icon_clicked = NULL;
 			return;
 		}

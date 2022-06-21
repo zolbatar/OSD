@@ -37,7 +37,7 @@ lv_obj_t* lv_mywin_create(lv_obj_t* parent, lv_coord_t header_height, WindowAttr
 		lv_obj_t* img = lv_img_create(btn_resize);
 		lv_img_set_src(img, LV_SYMBOL_RESIZE);
 		lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
-		lv_obj_add_style(btn_resize, &style_window_furniture_small, LV_STATE_DEFAULT);
+		lv_obj_add_style(btn_resize, &style_window_furniture, LV_STATE_DEFAULT);
 	}
 
 	return obj;
@@ -49,6 +49,8 @@ lv_obj_t* lv_mywin_add_title(lv_obj_t* win, const char* txt)
 	lv_obj_t* title = lv_label_create(header);
 	lv_label_set_long_mode(title, LV_LABEL_LONG_DOT);
 	lv_label_set_text(title, txt);
+	lv_obj_set_width(title, LV_PCT(100));
+	lv_obj_center(title);
 	lv_obj_set_flex_grow(title, 1);
 	return title;
 }

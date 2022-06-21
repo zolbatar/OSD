@@ -11,6 +11,19 @@
 
 const int DOUBLE_CLICK_SPEED = 250000;
 
+class FileType {
+public:
+	FileType(std::string icon, std::string application)
+			:icon(icon), application(application) { }
+	std::string icon;
+	std::string application;
+};
+
+struct Icon {
+	std::string filename;
+	lv_img_dsc_t* image = NULL;
+};
+
 enum class MenuItemType {
 	Item,
 	Separator
@@ -32,12 +45,14 @@ public:
 	void Run();
 	void ReceiveDirectEx(DirectMessage* message);
 	static lv_img_dsc_t* GetIcon(std::string name);
-	static lv_img_dsc_t* LoadIcon(std::string filename, std::string name);
+	static void LoadIcon(std::string filename, std::string name);
+	static FileType* GetFileType(std::string type);
 private:
 	GuiCLVGL* clvgl;
 	lv_obj_t* menu_win = NULL;
 	Menu* menu = NULL;
-	static std::map<std::string, lv_img_dsc_t*> icons;
+	static std::map<std::string, Icon> icons;
+	static std::map<std::string, FileType> types;
 	lv_img_dsc_t* mouse_cursor;
 
 	void SetupLVGLStyles();
