@@ -4,7 +4,7 @@
 #include "../Library/json.hpp"
 
 std::map<std::string, Font*> FontManager::loaded_fonts;
-extern FontManager *fm;
+extern FontManager* fm;
 
 FontManager::FontManager()
 {
@@ -49,7 +49,7 @@ void FontManager::LoadConfigFile()
 	size_t sz = f_size(&fil);
 
 	// Allocate space
-	char* buffer = (char*)malloc(sz);
+	char* buffer = (char*)malloc(sz+1);
 	if (!buffer) {
 		CLogger::Get()->Write("FontManager", LogPanic, "Error allocating memory for font cache file");
 	}
@@ -59,6 +59,7 @@ void FontManager::LoadConfigFile()
 	if (f_read(&fil, buffer, sz, &l)!=FR_OK) {
 		CLogger::Get()->Write("FontManager", LogPanic, "Error loading font cache file");
 	}
+	buffer[sz] = 0;
 
 	// Parse JSON
 	nlohmann::json j = nlohmann::json::parse(buffer);

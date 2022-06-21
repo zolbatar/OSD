@@ -60,7 +60,6 @@ void WindowManager::Run()
 	clvgl->Initialize();
 	SetupLVGLStyles();
 
-#ifndef CLION
 	// Mouse cursor
 	/*	static lv_img_dsc_t mouse_cursor_icon;
 		mouse_cursor_icon.header.always_zero = 0;
@@ -68,15 +67,14 @@ void WindowManager::Run()
 		mouse_cursor_icon.header.h = 20;
 		mouse_cursor_icon.data_size = 280 * LV_IMG_PX_SIZE_ALPHA_BYTE;
 		mouse_cursor_icon.header.cf = LV_IMG_CF_TRUE_COLOR_ALPHA;
-		mouse_cursor_icon.data = mouse_cursor_icon_map;
+		mouse_cursor_icon.data = mouse_cursor_icon_map;*/
 
-		//	LV_IMG_DECLARE(mouse_cursor_icon);
-		lv_obj_t *cursor = lv_img_create(lv_scr_act());
-		lv_img_set_src(cursor, &mouse_cursor_icon);
-		lv_indev_set_cursor(clvgl->GetMouse(), cursor);*/
+	//	LV_IMG_DECLARE(mouse_cursor_icon);
+	lv_obj_t* cursor = lv_img_create(lv_scr_act());
+	lv_img_set_src(cursor, mouse_cursor);
+	lv_indev_set_cursor(clvgl->GetMouse(), cursor);
 
 	USBHCI->UpdatePlugAndPlay();
-#endif
 
 // Add right click menu to desktop
 //	lv_obj_add_event_cb(lv_scr_act(), ClickEventHandler, LV_EVENT_LONG_PRESSED, this);
@@ -232,24 +230,13 @@ void WindowManager::ReceiveDirectEx(DirectMessage* message)
 			break;
 		}
 		default:
-#ifndef CLION
-			CLogger::Get()->Write("GUI", LogDebug, "Unknown directex message received %d %p", message->type, message->source);
-#else
-			printf("Unknown directex message received %d %p", message->type, message->source);
-#endif
-			assert(0);
+			CLogger::Get()->Write("Window Manager", LogPanic, "Unknown directex message received %d %p", (int)message->type, message->source);
 	}
-#ifndef CLION
-	//	clvgl->Update(USBHCI->UpdatePlugAndPlay());
-#else
-	clvgl->Update();
-#endif
+//	clvgl->Update(USBHCI->UpdatePlugAndPlay());
 }
 
 void WindowManager::DesktopStartup()
 {
-#ifndef CLION
-
 	/*	auto clock3 = NEW DARICWindow("Clock3", false, 200, 450, 700, 600);
 		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
 		clock3->Start();*/
@@ -262,29 +249,28 @@ void WindowManager::DesktopStartup()
 		sierpinski->LoadSourceCode(":SD.$.Welcome.Sierpinski");
 		sierpinski->Start();
 */
-		auto fonts = NEW DARICWindow("Fonts", false, 100, 20, 400, 400, 1600, 900);
-		fonts->LoadSourceCode(":SD.$.Welcome.Fonts");
-		fonts->Start();
+	auto fonts = NEW DARICWindow("Fonts", false, 100, 20, 800, 400, 1600, 900);
+	fonts->LoadSourceCode(":SD.$.Welcome.Fonts");
+	fonts->Start();
 
 //		auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 700, 500, 400, 400);
 //		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
 //		mandelbrot->Start();
-/*
-		auto tester = NEW DARICWindow("Tester", false, 1250, 100, 500, 700);
-		tester->LoadSourceCode(":SD.$.Welcome.Tester");
-		tester->Start();
 
-		auto raytracer = NEW DARICWindow("Ray Tracer", false, 650, 700, 640, 350);
-		raytracer->LoadSourceCode(":SD.$.Welcome.Raytracer");
-		raytracer->Start();*/
+	auto tester = NEW DARICWindow("Tester", false, 1250, 100, 640, 512, 640, 512);
+	tester->LoadSourceCode(":SD.$.Welcome.Tester");
+	tester->Start();
 
-		auto tasks = NEW TasksWindow(1100, 600, 750, 250);
-		tasks->Start();
+//		auto raytracer = NEW DARICWindow("Ray Tracer", false, 650, 700, 640, 350);
+//		raytracer->LoadSourceCode(":SD.$.Welcome.Raytracer");
+//		raytracer->Start();
 
-		auto clock = NEW DARICWindow("Clock", false, 800, 100, 400, 300, 0, 0);
-		clock->LoadSourceCode(":SD.$.Welcome.Clock");
-		clock->Start();
-#endif
+	auto tasks = NEW TasksWindow(1100, 600, 750, 250);
+	tasks->Start();
+
+/*	auto clock = NEW DARICWindow("Clock", false, 1300, 100, 400, 300, 0, 0);
+	clock->LoadSourceCode(":SD.$.Welcome.Clock");
+	clock->Start();*/
 }
 
 void WindowManager::CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu)

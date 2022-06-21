@@ -31,7 +31,6 @@ void FileManager::Run()
 	while (1) {
 		Yield();
 	}
-	TerminateTask();
 }
 
 FileSystemHandler* FileManager::GetFSHandler(FileSystemType type)
@@ -110,7 +109,7 @@ void FileSystem::SetCurrentDirectory(std::string directory)
 			}
 			f_closedir(&dp);
 			current_directory = directory;
-			CLogger::Get()->Write("File Manager", LogNotice, "Directory '%s' set", directory.c_str());
+//			CLogger::Get()->Write("File Manager", LogNotice, "Directory '%s' set", directory.c_str());
 			break;
 		}
 		default:
@@ -135,12 +134,14 @@ void FileSystem::ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::
 			res = f_readdir(&dir, &fno);
 			if (res!=FR_OK || fno.fname[0]==0) break;
 			if (fno.fattrib & AM_DIR) {
-				ListAllFilesInCurrentDirectoryWorker(subdirectories, directory+fno.fname, out);
+				if (subdirectories) {
+					ListAllFilesInCurrentDirectoryWorker(subdirectories, directory+fno.fname, out);
+				}
 			}
 			else {
 				std::string d;
 				d += directory;
-				d += "/";
+//				d += "/";
 				d += fno.fname;
 				out->push_back(d);
 			}

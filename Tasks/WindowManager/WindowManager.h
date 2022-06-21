@@ -9,6 +9,8 @@
 #include <map>
 #include <memory>
 
+const int DOUBLE_CLICK_SPEED = 250000;
+
 enum class MenuItemType {
 	Item,
 	Separator
@@ -36,11 +38,11 @@ private:
 	lv_obj_t* menu_win = NULL;
 	Menu* menu = NULL;
 	static std::map<std::string, lv_img_dsc_t*> icons;
+	lv_img_dsc_t* mouse_cursor;
 
 	void SetupLVGLStyles();
 	void LoadIcon(std::string filename, std::string name);
-	void SetupStyleBackground();
-	void SetupIcons();
+	lv_img_dsc_t* LoadPNG(std::string filename, int w, int h);
 	static void ClickEventHandler(lv_event_t* e);
 	void CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu);
 };

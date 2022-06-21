@@ -64,7 +64,7 @@ private:
 	lv_obj_t* secondbuffer;
 	bool which_buffer = false;
 	bool double_buffered = false;
-	lv_color_t fg = lv_color_white();
+	lv_color_t fg = lv_color_black();
 	lv_color_t bg = WINDOW_BACKGROUND_COLOUR;
 	uint8_t* buffer = nullptr;
 	uint8_t* buffer_back = nullptr;

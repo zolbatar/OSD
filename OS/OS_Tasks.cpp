@@ -550,8 +550,10 @@ void OSDTask::SetStart(start s)
 
 void OSDTask::CreateCode(size_t code_size)
 {
+//	CLogger::Get()->Write("OSDTask", LogDebug, "Create code: %d", code_size);
 	this->code_size = code_size;
 	code = NEW uint8_t[code_size];
+//	CLogger::Get()->Write("OSDTask", LogDebug, "Create code done");
 }
 
 uint8_t* OSDTask::GetCode() { return code; }
