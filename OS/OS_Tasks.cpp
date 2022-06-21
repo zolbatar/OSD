@@ -95,11 +95,7 @@ void OSDTask::TerminateTask()
 
 	// Remove
 	tasks_list.remove(this);
-#ifdef CLION
-	OSDTask::tasks.erase(this->name);
-#else
 	Terminate();
-#endif
 }
 
 #ifndef CLION
@@ -506,6 +502,8 @@ bool OSDTask::CompileSource(std::string filename, std::string code)
 
 void OSDTask::Yield()
 {
+	if (terminate_requested)
+		TerminateTask();
 //	GetCurrentTask()->ClearTemporaryStrings();
 	//CLogger::Get()->Write("OSDTask", LogDebug, "Yield");
 #ifndef CLION

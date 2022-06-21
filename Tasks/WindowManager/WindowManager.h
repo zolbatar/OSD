@@ -30,9 +30,9 @@ public:
 	WindowManager();
 	~WindowManager();
 	void Run();
-	void DesktopStartup();
 	void ReceiveDirectEx(DirectMessage* message);
 	static lv_img_dsc_t* GetIcon(std::string name);
+	static lv_img_dsc_t* LoadIcon(std::string filename, std::string name);
 private:
 	GuiCLVGL* clvgl;
 	lv_obj_t* menu_win = NULL;
@@ -41,8 +41,7 @@ private:
 	lv_img_dsc_t* mouse_cursor;
 
 	void SetupLVGLStyles();
-	void LoadIcon(std::string filename, std::string name);
-	lv_img_dsc_t* LoadPNG(std::string filename, int w, int h);
+	static lv_img_dsc_t* LoadPNG(std::string filename, int w, int h);
 	static void ClickEventHandler(lv_event_t* e);
 	void CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu);
 };

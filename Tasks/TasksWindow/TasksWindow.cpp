@@ -44,8 +44,6 @@ void TasksWindow::Run()
 		UpdateGUI();
 		Sleep(1000);
 	}
-
-	TerminateTask();
 }
 
 void TasksWindow::UpdateGUI()
@@ -73,11 +71,10 @@ void TasksWindow::UpdateGUI()
 	// Vertical container
 	auto cont = lv_obj_create(content);
 	lv_obj_clear_flag(cont, LV_OBJ_FLAG_SCROLLABLE);
-//	lv_obj_set_width(cont, LV_SIZE_CONTENT);
 	lv_obj_set_height(cont, LV_SIZE_CONTENT);
 	lv_obj_set_width(cont, lv_pct(100));
-//	lv_obj_set_height(cont, lv_pct(100));
 	lv_obj_center(cont);
+	lv_obj_align(cont, LV_ALIGN_TOP_LEFT, 0, 0);
 	lv_obj_set_flex_flow(cont, LV_FLEX_FLOW_COLUMN);
 	lv_obj_add_style(cont, &style_grid, LV_STATE_DEFAULT);
 	lv_obj_set_style_grid_column_dsc_array(cont, col_dsc, 0);

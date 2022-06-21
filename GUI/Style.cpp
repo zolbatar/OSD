@@ -33,7 +33,7 @@ lv_style_t style_chart;
 lv_style_t style_textarea;
 lv_style_t style_boldbodyfont;
 size_t body_font_height = 20;
-size_t menu_font_height = 24;
+size_t menu_font_height = 20;
 lv_font_t* font_mono;
 lv_font_t* font_body;
 
@@ -124,7 +124,7 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_border_width(&style_window_header, 1);
 	lv_style_set_border_color(&style_window_header, WINDOW_BORDER_COLOUR);
 	lv_style_set_border_side(&style_window_header, LV_BORDER_SIDE_BOTTOM);
-	lv_style_set_pad_all(&style_window_header, 4);
+	lv_style_set_pad_all(&style_window_header, 2);
 
 	// Style - window header inactive/active
 	lv_style_init(&style_window_header_inactive);
@@ -228,7 +228,7 @@ void WindowManager::SetupLVGLStyles()
 
 	// Wallpaper
 	fs.SetCurrentDirectory(":BOOT.$.System.Wallpaper");
-	auto img = LoadPNG("Wallpaper.png", ScreenResX, ScreenResY);
+	auto img = LoadPNG(fs.GetCurrentDirectory()+"Daric Wallpaper.png", ScreenResX, ScreenResY);
 	lv_style_init(&style_background);
 	lv_style_set_bg_img_src(&style_background, img);
 	//	lv_style_set_bg_color(&style_background, DESKTOP_COLOUR);
@@ -237,28 +237,28 @@ void WindowManager::SetupLVGLStyles()
 
 	// Icons
 	fs.SetCurrentDirectory(":BOOT.$.System.Icons");
-	LoadIcon("Flash.png", "SD Card");
-	LoadIcon("RAM2.png", "RAM");
-	LoadIcon("Boot.png", "Boot");
-	LoadIcon("Home.png", "Home");
-	LoadIcon("Sloth.png", "Sloth");
-	LoadIcon("Folder.png", "Folder");
+	LoadIcon(fs.GetCurrentDirectory()+"Applications.png", "Applications");
+	LoadIcon(fs.GetCurrentDirectory()+"Flash.png", "SD Card");
+	LoadIcon(fs.GetCurrentDirectory()+"Folder.png", "Folder");
+	LoadIcon(fs.GetCurrentDirectory()+"Home.png", "Home");
+	LoadIcon(fs.GetCurrentDirectory()+"Sloth.png", "Sloth");
 
 	// Cursors
 	fs.SetCurrentDirectory(":BOOT.$.System.Cursors");
-	mouse_cursor = LoadPNG("Arrow.png", 32, 32);
+	mouse_cursor = LoadPNG(fs.GetCurrentDirectory()+"Arrow.png", 32, 32);
 }
 
-void WindowManager::LoadIcon(std::string filename, std::string name)
+lv_img_dsc_t* WindowManager::LoadIcon(std::string filename, std::string name)
 {
 	auto img = LoadPNG(filename, 64, 64);
 	icons.insert(std::make_pair(name, img));
+	return img;
 }
 
 lv_img_dsc_t* WindowManager::LoadPNG(std::string filename, int w, int h)
 {
 	FIL fil;
-	if (f_open(&fil, (fs.GetCurrentDirectory()+filename).c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
+	if (f_open(&fil, (filename).c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
 		CLogger::Get()->Write("Window Manager", LogPanic, "Error opening image file '%s'", filename.c_str());
 	}
 	size_t sz = f_size(&fil);

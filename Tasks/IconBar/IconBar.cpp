@@ -1,8 +1,11 @@
 #include "IconBar.h"
 #include "../Filer/Filer.h"
+#include "../TasksWindow/TasksWindow.h"
 
+App* IconBar::app_clicked = NULL;
 Drive* IconBar::drive_clicked = NULL;
-unsigned IconBar::last_click = 0;
+unsigned IconBar::last_drive_click = 0;
+unsigned IconBar::last_app_click = 0;
 
 IconBar::IconBar()
 {
@@ -40,9 +43,8 @@ void IconBar::Run()
 
 	// Devices
 	AddDriveIcon("SD Card", "Boot", ":BOOT");
-	AddDriveIcon("RAM", "RAM Drive", ":RAM");
 	AddDriveIcon("Home", "Home", ":HOME");
-	AddAppIcon("Sloth", "OS/D");
+	AddAppIcon("Sloth", "OS/D", "OS/D");
 
 	ClearOverride();
 
@@ -72,7 +74,6 @@ void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive
 	lv_obj_add_event_cb(btn, DriveClickEventHandler, LV_EVENT_SHORT_CLICKED, d);
 	lv_obj_t* img = lv_img_create(btn);
 	lv_obj_center(img);
-	lv_img_set_antialias(img, true);
 	lv_img_set_src(img, WindowManager::GetIcon(name));
 	lv_obj_add_style(btn, &style_iconbar_button, LV_STATE_DEFAULT);
 
@@ -81,8 +82,13 @@ void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive
 	lv_label_set_text(nam, text.c_str());
 }
 
-void IconBar::AddAppIcon(std::string name, std::string text)
+void IconBar::AddAppIcon(std::string name, std::string text, std::string app_name)
 {
+	App app;
+	app.name = app_name;
+	apps.push_back(std::move(app));
+	auto d = &apps.back();
+
 	lv_obj_t* device_cont = lv_obj_create(icon_bar_right);
 	lv_obj_set_size(device_cont, LV_SIZE_CONTENT, LV_PCT(100));
 	lv_obj_center(device_cont);
@@ -93,9 +99,9 @@ void IconBar::AddAppIcon(std::string name, std::string text)
 	lv_obj_t* btn = lv_btn_create(device_cont);
 	lv_obj_center(btn);
 	lv_obj_set_size(btn, 64, 64);
+	lv_obj_add_event_cb(btn, AppClickEventHandler, LV_EVENT_SHORT_CLICKED, d);
 	lv_obj_t* img = lv_img_create(btn);
 	lv_obj_center(img);
-	lv_img_set_antialias(img, true);
 	lv_img_set_src(img, WindowManager::GetIcon(name));
 	lv_obj_add_style(btn, &style_iconbar_button, LV_STATE_DEFAULT);
 
@@ -109,7 +115,7 @@ void IconBar::DriveClickEventHandler(lv_event_t* e)
 	auto this_drive_clicked = (Drive*)e->user_data;
 	if (drive_clicked!=NULL && drive_clicked->name==this_drive_clicked->name) {
 		auto ticks = CTimer::Get()->GetClockTicks();
-		auto diff = ticks-last_click;
+		auto diff = ticks-last_drive_click;
 		if (diff<DOUBLE_CLICK_SPEED) {
 			auto task = new Filer(drive_clicked->volume, "$");
 			task->Start();
@@ -117,6 +123,25 @@ void IconBar::DriveClickEventHandler(lv_event_t* e)
 			return;
 		}
 	}
-	last_click = CTimer::Get()->GetClockTicks();
+	last_drive_click = CTimer::Get()->GetClockTicks();
 	drive_clicked = this_drive_clicked;
+}
+
+void IconBar::AppClickEventHandler(lv_event_t* e)
+{
+	auto this_app_clicked = (App*)e->user_data;
+	if (app_clicked!=NULL && app_clicked->name==this_app_clicked->name) {
+		auto ticks = CTimer::Get()->GetClockTicks();
+		auto diff = ticks-last_app_click;
+		if (diff<DOUBLE_CLICK_SPEED) {
+			if (app_clicked->name == "OS/D") {
+				auto tasks = NEW TasksWindow(1100, 600, 768, 256);
+				tasks->Start();
+			}
+			app_clicked = NULL;
+			return;
+		}
+	}
+	last_app_click = CTimer::Get()->GetClockTicks();
+	app_clicked = this_app_clicked;
 }

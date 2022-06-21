@@ -34,7 +34,6 @@ void FontManager::Run()
 	while (1) {
 		Yield();
 	}
-	TerminateTask();
 }
 
 void FontManager::LoadConfigFile()

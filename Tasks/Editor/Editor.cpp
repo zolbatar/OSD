@@ -53,8 +53,6 @@ void Editor::Run()
 	while (1) {
 		Sleep(1000);
 	}
-
-	TerminateTask();
 }
 
 void Editor::TextareaEventHandler(lv_event_t* e)

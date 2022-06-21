@@ -2,7 +2,7 @@
 #include "../FileManager/FileManager.h"
 #include "../../GUI/Window/LVGLWindow.h"
 
-int Filer::cx = 128;
+int Filer::cx = 628;
 int Filer::cy = 512;
 Icon* Filer::icon_clicked;
 unsigned Filer::last_click;
@@ -10,7 +10,7 @@ unsigned Filer::last_click;
 Filer::Filer(std::string volume, std::string directory)
 		:volume(volume), directory(directory)
 {
-	this->id = "Filer";
+	this->id = "Filer"+std::to_string(task_id++);
 	this->name = volume+"."+directory;
 	this->d_x = cx;
 	this->d_y = cy;
@@ -44,14 +44,16 @@ void Filer::Run()
 
 	// Now build content
 	auto w = ((Window*)
-	this->GetWindow())->GetLVGLWindow();
+			this->GetWindow())->GetLVGLWindow();
 	auto content = lv_mywin_get_content(w);
 	filer_cont = lv_obj_create(content);
-	lv_obj_set_size(filer_cont, LV_PCT(100), LV_PCT(100));
+	lv_obj_set_size(filer_cont, LV_PCT(100), LV_SIZE_CONTENT);
 	lv_obj_center(filer_cont);
-	lv_obj_set_flex_align(filer_cont, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
+	lv_obj_align(filer_cont, LV_ALIGN_TOP_LEFT, 0, 0);
+	lv_obj_set_flex_align(filer_cont, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
 	lv_obj_set_flex_flow(filer_cont, LV_FLEX_FLOW_ROW_WRAP);
 	lv_obj_add_style(filer_cont, &style_grid, LV_STATE_DEFAULT);
+	lv_obj_clear_flag(filer_cont, LV_OBJ_FLAG_SCROLLABLE);
 
 	auto l = volume.length()+directory.length()-1;
 
@@ -82,12 +84,40 @@ void Filer::AddIcon(std::string name, bool is_directory)
 	icons.push_back(std::move(i));
 	auto ip = &icons.back();
 
+	// Icon
+	lv_img_dsc_t* icon = NULL;
+	if (is_directory) {
+		// We can override the default icon here
+
+		FILINFO fno;
+		auto name_to_check = (fs.GetCurrentDirectory()+name+"/"+name+".png");
+//		CLogger::Get()->Write("Filer", LogDebug, "%s", name_to_check.c_str());
+		auto fr = f_stat(name_to_check.c_str(), &fno);
+		if (fr==FR_OK) {
+			// Do we have it?
+			icon = WindowManager::GetIcon(name_to_check);
+			if (icon==NULL) {
+				fs.SetCurrentDirectory(directory+"."+name);
+				icon = WindowManager::LoadIcon(name_to_check, name_to_check);
+				fs.SetCurrentDirectory(directory);
+			}
+		}
+		else {
+			icon = WindowManager::GetIcon("Folder");
+		}
+	}
+	else {
+		// Later we need to look up the app types
+		icon = WindowManager::GetIcon("Sloth");
+	}
+
 	lv_obj_t* device_cont = lv_obj_create(filer_cont);
-	lv_obj_set_size(device_cont, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+	lv_obj_set_size(device_cont, cell_size, cell_size);
 	lv_obj_center(device_cont);
 	lv_obj_set_flex_align(device_cont, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 	lv_obj_set_flex_flow(device_cont, LV_FLEX_FLOW_COLUMN);
 	lv_obj_add_style(device_cont, &style_iconbar_inner, LV_STATE_DEFAULT);
+	lv_obj_clear_flag(device_cont, LV_OBJ_FLAG_SCROLLABLE);
 
 	lv_obj_t* btn = lv_btn_create(device_cont);
 	lv_obj_center(btn);
@@ -95,8 +125,7 @@ void Filer::AddIcon(std::string name, bool is_directory)
 	lv_obj_add_event_cb(btn, IconClickEventHandler, LV_EVENT_SHORT_CLICKED, ip);
 	lv_obj_t* img = lv_img_create(btn);
 	lv_obj_center(img);
-	lv_img_set_antialias(img, true);
-	lv_img_set_src(img, is_directory ? WindowManager::GetIcon("Folder") : WindowManager::GetIcon("Sloth"));
+	lv_img_set_src(img, icon);
 	lv_obj_add_style(btn, &style_iconbar_button, LV_STATE_DEFAULT);
 
 	auto nam = lv_label_create(device_cont);

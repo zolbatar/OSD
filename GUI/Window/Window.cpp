@@ -13,7 +13,7 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	y2 = y1+height;
 
 	// Set attributes
-	WindowAttributes *wa = new WindowAttributes();
+	WindowAttributes* wa = new WindowAttributes();
 	wa->resizable = true;
 	wa->fixed_size_content = pure_canvas;
 
@@ -64,6 +64,7 @@ void Window::SetActive()
 	for (auto& w: windows)
 		w.second->SetInactive();
 
+	lv_obj_remove_style(header, &style_window_header_inactive, 0);
 	lv_obj_add_style(header, &style_window_header_active, 0);
 	lv_obj_move_foreground(this->GetLVGLWindow());
 	this->active = true;
@@ -71,6 +72,7 @@ void Window::SetActive()
 
 void Window::SetInactive()
 {
+	lv_obj_remove_style(header, &style_window_header_active, 0);
 	lv_obj_add_style(header, &style_window_header_inactive, 0);
 	this->active = false;
 }

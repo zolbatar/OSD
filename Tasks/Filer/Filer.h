@@ -17,6 +17,7 @@ public:
 	void Run();
 
 private:
+	const int cell_size = 96;
 	std::string volume;
 	std::string directory;
 	static int cx;

@@ -12,6 +12,10 @@ struct Drive {
 	std::string volume;
 };
 
+struct App {
+	std::string name;
+};
+
 class IconBar : public OSDTask {
 public:
 	IconBar();
@@ -22,11 +26,15 @@ private:
 	lv_obj_t* icon_bar_left;
 	lv_obj_t* icon_bar_right;
 	static Drive* drive_clicked;
-	static unsigned last_click;
+	static unsigned last_drive_click;
+	static App* app_clicked;
+	static unsigned last_app_click;
 
 	void AddDriveIcon(std::string name, std::string text, std::string drive_name);
-	void AddAppIcon(std::string name, std::string text);
+	void AddAppIcon(std::string name, std::string text, std::string app_name);
 	static void DriveClickEventHandler(lv_event_t* e);
+	static void AppClickEventHandler(lv_event_t* e);
+	std::list<App> apps;
 	std::list<Drive> drives;
 };
 

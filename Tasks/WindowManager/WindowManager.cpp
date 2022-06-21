@@ -79,8 +79,6 @@ void WindowManager::Run()
 // Add right click menu to desktop
 //	lv_obj_add_event_cb(lv_scr_act(), ClickEventHandler, LV_EVENT_LONG_PRESSED, this);
 
-	DesktopStartup();
-
 	while (!clvgl->QuitRequested()) {
 #ifndef CLION
 		clvgl->Update(USBHCI->UpdatePlugAndPlay());
@@ -235,44 +233,6 @@ void WindowManager::ReceiveDirectEx(DirectMessage* message)
 //	clvgl->Update(USBHCI->UpdatePlugAndPlay());
 }
 
-void WindowManager::DesktopStartup()
-{
-	/*	auto clock3 = NEW DARICWindow("Clock3", false, 200, 450, 700, 600);
-		clock3->LoadSourceCode(":SD.$.Welcome.Clock3");
-		clock3->Start();*/
-
-	/*		auto graphics2d = NEW DARICWindow("Graphics 2D", false, 20, 450, 600, 600);
-		graphics2d->LoadSourceCode(":SD.$.Welcome.Graphics2d");
-		graphics2d->Start();
-
-		auto sierpinski = NEW DARICWindow("Sierpinski", false, 50, 50, 500, 500);
-		sierpinski->LoadSourceCode(":SD.$.Welcome.Sierpinski");
-		sierpinski->Start();
-*/
-	auto fonts = NEW DARICWindow("Fonts", false, 100, 20, 800, 400, 1600, 900);
-	fonts->LoadSourceCode(":SD.$.Welcome.Fonts");
-	fonts->Start();
-
-//		auto mandelbrot = NEW DARICWindow("Mandelbrot", false, 700, 500, 400, 400);
-//		mandelbrot->LoadSourceCode(":SD.$.Welcome.Mandelbrot");
-//		mandelbrot->Start();
-
-	auto tester = NEW DARICWindow("Tester", false, 1250, 100, 640, 512, 640, 512);
-	tester->LoadSourceCode(":SD.$.Welcome.Tester");
-	tester->Start();
-
-//		auto raytracer = NEW DARICWindow("Ray Tracer", false, 650, 700, 640, 350);
-//		raytracer->LoadSourceCode(":SD.$.Welcome.Raytracer");
-//		raytracer->Start();
-
-	auto tasks = NEW TasksWindow(1100, 600, 750, 250);
-	tasks->Start();
-
-/*	auto clock = NEW DARICWindow("Clock", false, 1300, 100, 400, 300, 0, 0);
-	clock->LoadSourceCode(":SD.$.Welcome.Clock");
-	clock->Start();*/
-}
-
 void WindowManager::CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu)
 {
 	this->menu = menu;
@@ -354,7 +314,8 @@ lv_img_dsc_t* WindowManager::GetIcon(std::string name)
 {
 	auto f = icons.find(name);
 	if (f==icons.end()) {
-		CLogger::Get()->Write("Window Manager", LogPanic, "Icon '%s' not found\n", name.c_str());
+		return NULL;
+//		CLogger::Get()->Write("Window Manager", LogPanic, "Icon '%s' not found\n", name.c_str());
 	}
 	return f->second;
 }

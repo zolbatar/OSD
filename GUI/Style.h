@@ -1,7 +1,7 @@
 #pragma once
 #include "lvgl.h"
 
-const int WINDOW_HEADER_HEIGHT = 32;
+const int WINDOW_HEADER_HEIGHT = 28;
 const int MENU_HEADER_HEIGHT = 32;
 const int WINDOW_FURNITURE_WIDTH = 24;
 const int WINDOW_FURNITURE_WIDTH_SMALL = 16;
