@@ -117,7 +117,7 @@ void IconBar::DriveClickEventHandler(lv_event_t* e)
 		auto ticks = CTimer::Get()->GetClockTicks();
 		auto diff = ticks-last_drive_click;
 		if (diff<DOUBLE_CLICK_SPEED) {
-			auto task = new Filer(drive_clicked->volume, "$");
+			auto task = new Filer(drive_clicked->volume, "");
 			task->Start();
 			drive_clicked = NULL;
 			return;

@@ -30,4 +30,5 @@ private:
 
 	void AddIcon(std::string name, bool is_directory);
 	static void IconClickEventHandler(lv_event_t* e);
+	static void IconPressEventHandler(lv_event_t* e);
 };

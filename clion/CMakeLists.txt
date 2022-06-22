@@ -26,9 +26,9 @@ add_executable(
         ../../OS/OS.cpp ../../OS/OS_Strings.cpp ../../OS/OS_Tasks.cpp
         ../../Library/StringLib.cpp
         ../../Tasks/DARICWindow.cpp ../../Tasks/Editor/Editor.cpp
-        ../../Tasks/WindowManager/WindowManager.cpp
-        ../../Tasks/TasksWindow.cpp ../../Tasks/FontManager/FontManager.cpp ../../Tasks/FileManager/FileManager.cpp
-        ../../GUI/Window.cpp ../../GUI/lvgl.cpp ../../GUI/Style.cpp
+        ../../Tasks/WindowManager/WindowManager.cpp ../../Tasks/Filer/Filer.cpp
+        ../../Tasks/TasksWindow/TasksWindow.cpp ../../Tasks/FontManager/FontManager.cpp ../../Tasks/FileManager/FileManager.cpp
+        ../../GUI/Window/Window.cpp ../../GUI/lvgl.cpp ../../GUI/Style.cpp
         ../../GUI/Controls/Control.cpp ../../GUI/Controls/Canvas.cpp
         ../../Parser/Parser.cpp ../../Parser/ParserExpression.cpp
         ../../Parser/Parser_IF.cpp ../../Parser/Parser_PRINT.cpp ../../Parser/Parser_DEF.cpp ../../Parser/Parser_PROCCall.cpp
@@ -58,5 +58,5 @@ add_executable(
         ../../capstone/SStream.c ../../capstone/utils.c ../../capstone/arch/ARM/ARMDisassembler.c ../../capstone/arch/ARM/ARMInstPrinter.c
         ../../capstone/arch/ARM/ARMMapping.c ../../capstone/arch/ARM/ARMModule.c
         ../Input/Input.cpp ../Input/Input.h ../Chrono/Chrono.cpp ../Chrono/Chrono.h
-        ../NativeCompiler/NativeCompiler.cpp ../NativeCompiler/NativeCompiler.h ../IRCompiler/IRConversion.cpp ../Parser/Parser_WHILE.cpp ../IRCompiler/IRWhile.cpp ../Tasks/FontManager/InstalledFonts.h)
+        ../NativeCompiler/NativeCompiler.cpp ../NativeCompiler/NativeCompiler.h ../IRCompiler/IRConversion.cpp ../Parser/Parser_WHILE.cpp ../IRCompiler/IRWhile.cpp)
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS} liblvgl.a)

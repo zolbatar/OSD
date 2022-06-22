@@ -30,7 +30,7 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 
 void DARICWindow::LoadSourceCode(std::string directory, std::string filename)
 {
-	this->filename = directory+"."+filename;
+	this->filename = directory+"/"+filename;
 	this->code = this->LoadSource(directory, filename);
 }
 

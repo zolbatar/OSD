@@ -30,7 +30,7 @@ lv_obj_t* lv_mywin_create(lv_obj_t* parent, lv_coord_t header_height, WindowAttr
 
 	if (wa->resizable) {
 		auto btn_resize = lv_btn_create(obj);
-		lv_obj_set_size(btn_resize, WINDOW_FURNITURE_WIDTH_SMALL, WINDOW_FURNITURE_WIDTH_SMALL);
+		lv_obj_set_size(btn_resize, WINDOW_FURNITURE_WIDTH, WINDOW_FURNITURE_WIDTH);
 		lv_obj_add_flag(btn_resize, LV_OBJ_FLAG_FLOATING);
 		lv_obj_add_event_cb(btn_resize, ResizePressed, LV_EVENT_PRESSING, NULL);
 		lv_obj_align(btn_resize, LV_ALIGN_BOTTOM_RIGHT, -4, -4);
@@ -49,8 +49,6 @@ lv_obj_t* lv_mywin_add_title(lv_obj_t* win, const char* txt)
 	lv_obj_t* title = lv_label_create(header);
 	lv_label_set_long_mode(title, LV_LABEL_LONG_DOT);
 	lv_label_set_text(title, txt);
-	lv_obj_set_width(title, LV_PCT(100));
-	lv_obj_center(title);
 	lv_obj_set_flex_grow(title, 1);
 	return title;
 }
@@ -136,7 +134,7 @@ static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 	lv_obj_t* header = lv_obj_create(obj);
 	lv_obj_set_size(header, LV_PCT(100), create_header_height);
 	lv_obj_set_flex_flow(header, LV_FLEX_FLOW_ROW);
-	lv_obj_set_flex_align(header, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
+	lv_obj_set_flex_align(header, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 	lv_obj_clear_flag(header, LV_OBJ_FLAG_SCROLLABLE);
 	lv_obj_add_style(header, &style_window_header, LV_STATE_DEFAULT);
 

@@ -4,10 +4,6 @@
 #endif
 #include <memory>
 
-enum class FileNamingFormat {
-	Acorn
-};
-
 enum class FileSystemType {
 	FAT
 };
@@ -44,7 +40,6 @@ private:
 	void ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out);
 	void ListAllDirectoriesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out);
 
-	FileNamingFormat format = FileNamingFormat::Acorn;
 	std::unique_ptr<FileSystemHandler> handler;
 	FSVolume* volume;
 	std::string current_directory = "/";

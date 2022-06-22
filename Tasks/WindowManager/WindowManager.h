@@ -13,8 +13,9 @@ const int DOUBLE_CLICK_SPEED = 250000;
 
 class FileType {
 public:
-	FileType(std::string icon, std::string application)
-			:icon(icon), application(application) { }
+	FileType(std::string extension, std::string icon, std::string application)
+			:extension(extension), icon(icon), application(application) { }
+	std::string extension;
 	std::string icon;
 	std::string application;
 };
@@ -25,6 +26,7 @@ struct Icon {
 };
 
 enum class MenuItemType {
+	SubMenu,
 	Item,
 	Separator
 };
@@ -32,9 +34,12 @@ enum class MenuItemType {
 struct MenuItem {
 	MenuItemType type;
 	std::string v;
+	std::string shortcut;
+	const char* icon = NULL;
 };
 
 struct Menu {
+	lv_obj_t* obj;
 	std::list<MenuItem> items;
 };
 
@@ -44,6 +49,7 @@ public:
 	~WindowManager();
 	void Run();
 	void ReceiveDirectEx(DirectMessage* message);
+	static void CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu);
 	static lv_img_dsc_t* GetIcon(std::string name);
 	static void LoadIcon(std::string filename, std::string name);
 	static FileType* GetFileType(std::string type);
@@ -58,6 +64,5 @@ private:
 	void SetupLVGLStyles();
 	static lv_img_dsc_t* LoadPNG(std::string filename, int w, int h);
 	static void ClickEventHandler(lv_event_t* e);
-	void CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu);
 };
 

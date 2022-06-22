@@ -11,6 +11,7 @@ lv_style_t style_background;
 lv_style_t style_menu;
 lv_style_t style_menu_container;
 lv_style_t style_menu_item;
+lv_style_t style_menu_item_bold;
 lv_style_t style_window;
 lv_style_t style_window_content;
 lv_style_t style_iconbar;
@@ -22,7 +23,6 @@ lv_style_t style_window_header;
 lv_style_t style_window_header_active;
 lv_style_t style_window_header_inactive;
 lv_style_t style_window_furniture;
-lv_style_t style_window_furniture_small;
 lv_style_t style_scrollbar;
 lv_style_t style_bar;
 lv_style_t style_bar_indicator;
@@ -32,6 +32,7 @@ lv_style_t style_chart_bar;
 lv_style_t style_chart;
 lv_style_t style_textarea;
 lv_style_t style_boldbodyfont;
+lv_style_t style_fontsymbol;
 size_t body_font_height = 20;
 size_t menu_font_height = 20;
 lv_font_t* font_mono;
@@ -49,13 +50,12 @@ void WindowManager::SetupLVGLStyles()
 	auto font_window = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height);
 	font_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", body_font_height);
 	auto font_body_bold = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", body_font_height);
-	auto font_small = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", (body_font_height-2));
 	auto font_large = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", (body_font_height+4));
 	auto menu_body = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular", menu_font_height);
+	auto menu_body_bold = FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold", menu_font_height);
 	font_mono = FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", body_font_height);
 
 	auto font_symbol = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 16);
-	auto font_symbol_small = FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", 12);
 
 	lv_style_init(&style_boldbodyfont);
 	lv_style_set_text_font(&style_boldbodyfont, font_body_bold);
@@ -63,22 +63,32 @@ void WindowManager::SetupLVGLStyles()
 	// Disable scrolling
 	lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);
 
+	lv_style_init(&style_fontsymbol);
+	lv_style_set_text_font(&style_fontsymbol, font_symbol);
+
 	// Style - menu
 	lv_style_init(&style_menu);
+	lv_style_set_bg_color(&style_menu, MENU_BACKGROUND_COLOUR);
 	lv_style_set_border_color(&style_menu, WINDOW_BORDER_COLOUR);
-	lv_style_set_text_color(&style_menu, lv_color_white());
 	lv_style_set_border_width(&style_menu, WINDOW_BORDER_WIDTH);
-	lv_style_set_radius(&style_menu, CORNER_RADIUS_INNER);
-	lv_style_set_text_font(&style_menu, menu_body);
+	lv_style_set_radius(&style_menu, CORNER_RADIUS);
+	lv_style_set_pad_all(&style_menu, 0);
+	lv_style_set_clip_corner(&style_menu, true);
+	lv_style_set_border_post(&style_menu, true);
 	lv_style_init(&style_menu_container);
-	lv_style_set_bg_color(&style_menu_container, CONTAINER_BACKGROUND_COLOUR);
+	lv_style_set_bg_color(&style_menu_container, MENU_BACKGROUND_COLOUR);
+	lv_style_set_text_color(&style_menu_container, MENU_FOREGROUND_COLOUR);
 	lv_style_set_border_width(&style_menu_container, 0);
-	lv_style_set_pad_all(&style_menu_container, 2);
-	lv_style_set_radius(&style_menu_container, CORNER_RADIUS_INNER);
-	lv_style_set_text_font(&style_menu_container, menu_body);
+	lv_style_set_pad_all(&style_menu_container, 0);
 	lv_style_init(&style_menu_item);
-	lv_style_set_pad_all(&style_menu_item, 0);
+	lv_style_set_pad_all(&style_menu_item, 2);
+	lv_style_set_pad_left(&style_menu_item, 8);
+	lv_style_set_border_width(&style_menu_item, 0);
 	lv_style_set_text_font(&style_menu_item, menu_body);
+	lv_style_init(&style_menu_item_bold);
+	lv_style_set_pad_all(&style_menu_item_bold, 2);
+	lv_style_set_border_width(&style_menu_item_bold, 0);
+	lv_style_set_text_font(&style_menu_item_bold, menu_body_bold);
 
 	// Style - icon bar
 	lv_style_init(&style_iconbar);
@@ -142,17 +152,6 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_text_color(&style_window_furniture, WINDOW_FURNITURE_FOREGROUND_COLOUR);
 	lv_style_set_pad_all(&style_window_furniture, 0);
 	lv_style_set_text_font(&style_window_furniture, font_symbol);
-
-	// Style - window buttons small
-	lv_style_init(&style_window_furniture_small);
-	lv_style_set_radius(&style_window_furniture_small, CORNER_RADIUS_INNER);
-	lv_style_set_border_color(&style_window_furniture_small, WINDOW_FURNITURE_BORDER_COLOUR);
-	lv_style_set_border_width(&style_window_furniture_small, 1);
-	lv_style_set_bg_color(&style_window_furniture_small, WINDOW_FURNITURE_BACKGROUND_COLOUR);
-	lv_style_set_bg_opa(&style_window_furniture_small, LV_OPA_COVER);
-	lv_style_set_text_color(&style_window_furniture_small, WINDOW_FURNITURE_FOREGROUND_COLOUR);
-	lv_style_set_pad_all(&style_window_furniture_small, 0);
-	lv_style_set_text_font(&style_window_furniture_small, font_symbol_small);
 
 	// Style - scrollbar
 	lv_style_init(&style_scrollbar);
@@ -227,7 +226,7 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_text_font(&style_iconbar_button, font_large);
 
 	// Wallpaper
-	fs.SetCurrentDirectory(":BOOT.$.System.Wallpaper");
+	fs.SetCurrentDirectory(":BOOT/System/Wallpaper");
 	auto img = LoadPNG(fs.GetCurrentDirectory()+"Daric Wallpaper.png", ScreenResX, ScreenResY);
 	lv_style_init(&style_background);
 	lv_style_set_bg_img_src(&style_background, img);
@@ -236,7 +235,7 @@ void WindowManager::SetupLVGLStyles()
 	lv_obj_add_style(lv_scr_act(), &style_background, LV_STATE_DEFAULT);
 
 	// Icons
-	fs.SetCurrentDirectory(":BOOT.$.System.Icons");
+	fs.SetCurrentDirectory(":BOOT/System/Icons");
 	LoadIcon(fs.GetCurrentDirectory()+"Applications.png", "Applications");
 	LoadIcon(fs.GetCurrentDirectory()+"Flash.png", "SD Card");
 	LoadIcon(fs.GetCurrentDirectory()+"Folder.png", "Folder");
@@ -246,7 +245,7 @@ void WindowManager::SetupLVGLStyles()
 	LoadIcon(fs.GetCurrentDirectory()+"Image.png", "Image");
 
 	// Cursors
-	fs.SetCurrentDirectory(":BOOT.$.System.Cursors");
+	fs.SetCurrentDirectory(":BOOT/System/Cursors");
 	mouse_cursor = LoadPNG(fs.GetCurrentDirectory()+"Arrow.png", 32, 32);
 }
 

@@ -77,44 +77,31 @@ void FileSystem::SetVolume(std::string volume)
 
 void FileSystem::SetCurrentDirectory(std::string directory)
 {
-	switch (format) {
-		case FileNamingFormat::Acorn: {
+	// Split everything by /
+	auto split = splitString(directory, '/');
 
-			// Split everything by .
-			auto split = splitString(directory, '.');
-
-			// Do we have a drive specified?
-			if (split.front()[0]==':') {
-				SetVolume(split.front());
-				split.pop_front();
-			}
-
-			// Do we have a root specifier?
-			std::string directory;
-			if (split.front()=="$") {
-				directory = volume->prefix;
-				split.pop_front();
-			}
-
-			// Now loop through all directories
-			for (auto& dir : split) {
-				directory += dir+"/";
-			}
-
-			// Check it's valid
-			DIR dp;
-			auto result = handler->OpenDirectory(directory, &dp);
-			if (!result) {
-				CLogger::Get()->Write("File Manager", LogPanic, "Directory '%s', not found, error code %d", directory.c_str(), result);
-			}
-			f_closedir(&dp);
-			current_directory = directory;
-//			CLogger::Get()->Write("File Manager", LogNotice, "Directory '%s' set", directory.c_str());
-			break;
-		}
-		default:
-			assert(0);
+	// Do we have a drive specified?
+	directory = "";
+	if (split.front()[0]==':') {
+		SetVolume(split.front());
+		split.pop_front();
 	}
+	directory += volume->prefix;
+
+	// Now loop through all directories
+	for (auto& dir : split) {
+		directory += dir+"/";
+	}
+
+	// Check it's valid
+	DIR dp;
+	auto result = handler->OpenDirectory(directory, &dp);
+	if (!result) {
+		CLogger::Get()->Write("File Manager", LogPanic, "Directory '%s', not found, error code %d", directory.c_str(), result);
+	}
+	f_closedir(&dp);
+	current_directory = directory;
+	//CLogger::Get()->Write("File Manager", LogNotice, "Directory '%s' set", directory.c_str());
 }
 
 std::vector<std::string> FileSystem::ListAllFilesInCurrentDirectory(bool subdirectories)
