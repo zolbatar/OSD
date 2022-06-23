@@ -5,6 +5,7 @@
 #endif
 
 std::map<std::string, FSVolume> FileManager::volumes;
+FileSystemHandler *FileManager::fsFAT;
 
 FileManager::FileManager()
 {
@@ -15,6 +16,7 @@ FileManager::FileManager()
 
 void FileManager::Run()
 {
+	fsFAT = new FileSytemHandlerFAT();
 	FSVolume boot;
 	boot.prefix = "/osd/";
 	volumes.insert(std::make_pair(":BOOT", std::move(boot)));
@@ -37,7 +39,7 @@ FileSystemHandler* FileManager::GetFSHandler(FileSystemType type)
 {
 	switch (type) {
 		case FileSystemType::FAT:
-			return &fsFAT;
+			return fsFAT;
 	}
 	CLogger::Get()->Write("File Manager", LogPanic, "Unknown filesystem");
 	return NULL;
@@ -62,7 +64,7 @@ FileSystem::FileSystem()
 
 void FileSystem::Init()
 {
-	this->handler = std::make_unique<FileSytemHandlerFAT>();
+	this->handler = FileManager::GetFSHandler(FileSystemType::FAT);
 }
 
 FileSystem::FileSystem(FSVolume* volume)
@@ -181,7 +183,7 @@ FileSytemHandlerFAT::FileSytemHandlerFAT()
 		CLogger::Get()->Write("File Manager", LogPanic, "Can't mount SD card FAT filesystem, error code %d", result);
 	}
 	else {
-//		CLogger::Get()->Write("File Manager", LogNotice, "Initialised SD card FAT filesystem");
+		CLogger::Get()->Write("File Manager", LogNotice, "Initialised SD card FAT filesystem");
 	}
 }
 

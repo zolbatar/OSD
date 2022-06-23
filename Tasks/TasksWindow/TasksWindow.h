@@ -4,6 +4,7 @@
 class TasksWindow : public OSDTask {
 public:
 	TasksWindow(int x, int y, int w, int h);
+	~TasksWindow();
 
 	void Run();
 	void UpdateGUI();

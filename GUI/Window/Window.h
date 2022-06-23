@@ -20,6 +20,7 @@ private:
 	static void CloseClicked(_lv_event_t* e);
 	static void DragEventHandler(lv_event_t* e);
 	static void ClickEventHandler(lv_event_t* e);
+	OSDTask* task;
 	std::string title;
 	int x1;
 	int y1;
@@ -32,7 +33,6 @@ private:
 	lv_obj_t* win;
 	lv_obj_t* header;
 	Canvas* canvas = NULL;
-	OSDTask* task;
 	std::list<Control> children;
 };
 

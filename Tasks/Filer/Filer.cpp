@@ -5,14 +5,13 @@
 
 int Filer::cx = 128;
 int Filer::cy = 128;
-FileIcon* Filer::icon_clicked;
-unsigned Filer::last_click;
 
 Filer::Filer(std::string volume, std::string directory)
 		:volume(volume), directory(directory)
 {
 	this->id = "Filer"+std::to_string(task_id++);
 	this->name = volume+directory;
+	this->priority = TaskPriority::Low;
 //	CLogger::Get()->Write("File Manager", LogNotice, "%s", name.c_str());
 	this->d_x = cx;
 	this->d_y = cy;
@@ -20,7 +19,13 @@ Filer::Filer(std::string volume, std::string directory)
 	cy += 100;
 	this->d_w = 512;
 	this->d_h = 224;
+	this->type = TaskType::Filer;
 };
+
+Filer::~Filer()
+{
+	lv_obj_del(filer_cont);
+}
 
 void Filer::Run()
 {
@@ -152,28 +157,18 @@ void Filer::AddIcon(std::string name, bool is_directory)
 
 void Filer::IconClickEventHandler(lv_event_t* e)
 {
-	auto this_icon_clicked = (FileIcon*)e->user_data;
-	if (icon_clicked!=NULL && icon_clicked->name==this_icon_clicked->name) {
-		auto ticks = CTimer::Get()->GetClockTicks();
-		auto diff = ticks-last_click;
-		if (diff<DOUBLE_CLICK_SPEED) {
-			if (icon_clicked->is_directory) {
-				auto task = new Filer(icon_clicked->volume, icon_clicked->current_directory+"/"+icon_clicked->name);
-				task->Start();
-			}
-			else {
-				auto app = NEW DARICWindow(icon_clicked->name, false, cx, cy, 256, 256, 640, 512);
-				app->LoadSourceCode(icon_clicked->volume+"/"+icon_clicked->current_directory, icon_clicked->name);
-				app->Start();
-				cx += 100;
-				cy += 100;
-			}
-			icon_clicked = NULL;
-			return;
-		}
+	auto icon_clicked = (FileIcon*)e->user_data;
+	if (icon_clicked->is_directory) {
+		auto task = new Filer(icon_clicked->volume, icon_clicked->current_directory+"/"+icon_clicked->name);
+		task->Start();
 	}
-	last_click = CTimer::Get()->GetClockTicks();
-	icon_clicked = this_icon_clicked;
+	else {
+		auto app = NEW DARICWindow(icon_clicked->name, false, cx, cy, 256, 256, 640, 512);
+		app->LoadSourceCode(icon_clicked->volume+"/"+icon_clicked->current_directory, icon_clicked->name);
+		app->Start();
+		cx += 100;
+		cy += 100;
+	}
 }
 
 void Filer::IconPressEventHandler(lv_event_t* e)
@@ -187,34 +182,34 @@ void Filer::IconPressEventHandler(lv_event_t* e)
 		lv_indev_get_point(indev, &p);
 
 		// Create menu window
-		auto menu = new Menu();
+		MenuDefinition menu;
 
 		MenuItem mi_layout;
 		mi_layout.type = MenuItemType::SubMenu;
 		mi_layout.v = "Layout";
 		mi_layout.icon = LV_SYMBOL_LAYOUT;
-		menu->items.push_back(std::move(mi_layout));
+		menu.items.push_back(std::move(mi_layout));
 
 		MenuItem mi_file;
 		mi_file.type = MenuItemType::SubMenu;
 		mi_file.v = "File";
 		mi_file.icon = LV_SYMBOL_FILE;
-		menu->items.push_back(std::move(mi_file));
+		menu.items.push_back(std::move(mi_file));
 
 		MenuItem mi_selectall;
 		mi_selectall.type = MenuItemType::Item;
 		mi_selectall.v = "Select all";
 		mi_selectall.shortcut = "^A";
-		menu->items.push_back(std::move(mi_selectall));
+		menu.items.push_back(std::move(mi_selectall));
 
 		// Is it a DARIC file?
 		if (t->type->extension=="DARIC") {
 			MenuItem mi_daric;
 			mi_daric.type = MenuItemType::SubMenu;
 			mi_daric.v = "DARIC";
-			menu->items.push_back(std::move(mi_daric));
+			menu.items.push_back(std::move(mi_daric));
 		}
 
-		WindowManager::CreateMenu(p.x, p.y, NULL, "Filer", menu);
+		Menu::OpenMenu(p.x, p.y, NULL, "Filer", std::move(menu));
 	}
 }

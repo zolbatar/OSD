@@ -22,10 +22,6 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
 	this->name = name;
 	this->id = "@"+std::to_string(task_id++);
 	type = TaskType::DARIC;
-#ifndef CLION
-	SetUserData(&type, TASK_USER_DATA_USER);
-#endif
-
 }
 
 void DARICWindow::LoadSourceCode(std::string directory, std::string filename)

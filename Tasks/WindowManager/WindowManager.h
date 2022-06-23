@@ -9,8 +9,6 @@
 #include <map>
 #include <memory>
 
-const int DOUBLE_CLICK_SPEED = 250000;
-
 class FileType {
 public:
 	FileType(std::string extension, std::string icon, std::string application)
@@ -38,25 +36,17 @@ struct MenuItem {
 	const char* icon = NULL;
 };
 
-struct Menu {
-	lv_obj_t* obj;
-	std::list<MenuItem> items;
-};
-
 class WindowManager : public OSDTask {
 public:
 	WindowManager();
 	~WindowManager();
 	void Run();
 	void ReceiveDirectEx(DirectMessage* message);
-	static void CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu);
 	static lv_img_dsc_t* GetIcon(std::string name);
 	static void LoadIcon(std::string filename, std::string name);
 	static FileType* GetFileType(std::string type);
 private:
 	GuiCLVGL* clvgl;
-	lv_obj_t* menu_win = NULL;
-	Menu* menu = NULL;
 	static std::map<std::string, Icon> icons;
 	static std::map<std::string, FileType> types;
 	lv_img_dsc_t* mouse_cursor;

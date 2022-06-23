@@ -14,7 +14,6 @@ extern CUSBHCIDevice* USBHCI;
 #include "../../GUI/Window/LVGLWindow.h"
 std::map<std::string, Icon> WindowManager::icons;
 std::map<std::string, FileType> WindowManager::types;
-lv_obj_t* lv_mylist_add_btn(lv_obj_t* list, const char* icon, const char* txt, bool arrow, std::string shortcut);
 
 extern "C"
 {
@@ -228,64 +227,9 @@ void WindowManager::ReceiveDirectEx(DirectMessage* message)
 //	clvgl->Update(USBHCI->UpdatePlugAndPlay());
 }
 
-void WindowManager::CreateMenu(int x, int y, OSDTask* task, std::string title, Menu* menu)
-{
-	WindowAttributes* wa = new WindowAttributes();
-	wa->resizable = false;
-	wa->fixed_size_content = true;
-
-	menu->obj = lv_mywin_create(lv_scr_act(), MENU_HEADER_HEIGHT, wa);
-	lv_obj_set_x(menu->obj, x);
-	lv_obj_set_y(menu->obj, y);
-	lv_obj_add_style(menu->obj, &style_menu, LV_STATE_DEFAULT);
-	auto h = WINDOW_HEADER_HEIGHT+(WINDOW_BORDER_WIDTH*3)+8;
-
-	auto content = lv_mywin_get_content(menu->obj);
-	lv_obj_add_style(content, &style_menu_container, LV_STATE_DEFAULT);
-	lv_obj_clear_flag(content, LV_OBJ_FLAG_SCROLLABLE);
-
-	// Header
-	lv_mywin_add_title(menu->obj, title.c_str());
-	auto header = lv_mywin_get_header(menu->obj);
-	lv_obj_add_style(header, &style_window_header, LV_STATE_DEFAULT);
-	lv_obj_add_style(header, &style_window_header_active, LV_STATE_DEFAULT);
-
-	// Create a list
-	auto cont_list = lv_list_create(content);
-	lv_obj_clear_flag(cont_list, LV_OBJ_FLAG_SCROLLABLE);
-	lv_obj_set_size(cont_list, 160, LV_SIZE_CONTENT);
-	lv_obj_center(cont_list);
-	lv_obj_add_style(cont_list, &style_menu_container, LV_STATE_DEFAULT);
-
-	// Items
-	for (auto& mi : menu->items) {
-		switch (mi.type) {
-			case MenuItemType::SubMenu: {
-				auto btn = lv_mylist_add_btn(cont_list, mi.icon, mi.v.c_str(), true, mi.shortcut);
-				lv_obj_add_style(btn, &style_menu_item, LV_STATE_DEFAULT);
-				lv_obj_add_event_cb(btn, NULL, LV_EVENT_CLICKED, NULL);
-				break;
-			}
-			case MenuItemType::Item: {
-				auto btn = lv_mylist_add_btn(cont_list, mi.icon, mi.v.c_str(), false, mi.shortcut);
-				lv_obj_add_style(btn, &style_menu_item, LV_STATE_DEFAULT);
-				lv_obj_add_event_cb(btn, NULL, LV_EVENT_CLICKED, NULL);
-				break;
-			}
-			default:
-				break;
-		}
-	}
-
-	// Set menu height
-	lv_obj_update_layout(cont_list);
-	lv_obj_set_width(menu->obj, lv_obj_get_width(cont_list)+8);
-	lv_obj_set_height(menu->obj, lv_obj_get_height(cont_list)+h);
-}
-
 void WindowManager::ClickEventHandler(lv_event_t* e)
 {
-	lv_point_t p;
+/*	lv_point_t p;
 	lv_indev_t* indev = lv_indev_get_act();
 	lv_indev_type_t indev_type = lv_indev_get_type(indev);
 	if (indev_type==LV_INDEV_TYPE_POINTER) {
@@ -310,7 +254,7 @@ void WindowManager::ClickEventHandler(lv_event_t* e)
 		menu->items.push_back(std::move(mi3));
 
 		t->CreateMenu(p.x, p.y, NULL, "OS/D", menu);
-	}
+	}*/
 }
 
 lv_img_dsc_t* WindowManager::GetIcon(std::string name)
@@ -332,40 +276,5 @@ FileType* WindowManager::GetFileType(std::string type)
 		return NULL;
 	}
 	return &f->second;
-}
-
-lv_obj_t* lv_mylist_add_btn(lv_obj_t* list, const char* icon, const char* txt, bool arrow, std::string shortcut)
-{
-	lv_obj_t* obj = lv_obj_class_create_obj(&lv_list_btn_class, list);
-	lv_obj_class_init_obj(obj);
-	lv_obj_set_size(obj, LV_PCT(100), LV_SIZE_CONTENT);
-	lv_obj_set_flex_flow(obj, LV_FLEX_FLOW_ROW);
-/*	lv_obj_t* img = lv_img_create(obj);
-	if (icon) {
-		lv_img_set_src(img, icon);
-	}
-	lv_obj_set_size(img, 16, 16);
-	lv_obj_add_style(img, &style_fontsymbol, LV_STATE_DEFAULT);*/
-	if (txt) {
-		lv_obj_t* label = lv_label_create(obj);
-		lv_label_set_text(label, txt);
-		lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL_CIRCULAR);
-		lv_obj_set_flex_grow(label, 1);
-	}
-	if (icon) {
-		lv_obj_t* img = lv_img_create(obj);
-		lv_img_set_src(img, LV_SYMBOL_MENURIGHT);
-		lv_obj_set_size(img, 16, 16);
-		lv_img_set_offset_y(img, 4);
-		lv_obj_add_style(img, &style_fontsymbol, LV_STATE_DEFAULT);
-	}
-	if (!shortcut.empty()) {
-		lv_obj_t* label = lv_label_create(obj);
-		lv_label_set_text(label, shortcut.c_str());
-		lv_obj_set_flex_grow(label, 0);
-		lv_obj_add_style(label, &style_menu_item_bold, LV_STATE_DEFAULT);
-	}
-
-	return obj;
 }
 

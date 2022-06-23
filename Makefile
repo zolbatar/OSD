@@ -12,7 +12,7 @@ OBJS    = 	main.o kernel.o \
 			GUI/Window/Window.o GUI/Window/LVGLWindow.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
 			Tasks/WindowManager/WindowManager.o Tasks/IconBar/IconBar.o \
 			Tasks/DARICWindow.o Tasks/TasksWindow/TasksWindow.o Tasks/Filer/Filer.o \
-			Tasks/FontManager/FontManager.o \
+			Tasks/FontManager/FontManager.o Tasks/Menu/Menu.o \
 			Tasks/FileManager/FileManager.o \
 			Tasks/Editor/Editor.o \
 			GUI/lvgl.o GUI/Style.o \

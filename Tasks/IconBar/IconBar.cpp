@@ -2,16 +2,10 @@
 #include "../Filer/Filer.h"
 #include "../TasksWindow/TasksWindow.h"
 
-App* IconBar::app_clicked = NULL;
-Drive* IconBar::drive_clicked = NULL;
-unsigned IconBar::last_drive_click = 0;
-unsigned IconBar::last_app_click = 0;
-
 IconBar::IconBar()
 {
 	this->id = "@"+std::to_string(task_id++);
 	this->name = "Icon Bar";
-	type = TaskType::IconBar;
 }
 
 void IconBar::Run()
@@ -112,36 +106,16 @@ void IconBar::AddAppIcon(std::string name, std::string text, std::string app_nam
 
 void IconBar::DriveClickEventHandler(lv_event_t* e)
 {
-	auto this_drive_clicked = (Drive*)e->user_data;
-	if (drive_clicked!=NULL && drive_clicked->name==this_drive_clicked->name) {
-		auto ticks = CTimer::Get()->GetClockTicks();
-		auto diff = ticks-last_drive_click;
-		if (diff<DOUBLE_CLICK_SPEED) {
-			auto task = new Filer(drive_clicked->volume, "");
-			task->Start();
-			drive_clicked = NULL;
-			return;
-		}
-	}
-	last_drive_click = CTimer::Get()->GetClockTicks();
-	drive_clicked = this_drive_clicked;
+	auto drive_clicked = (Drive*)e->user_data;
+	auto task = new Filer(drive_clicked->volume, "");
+	task->Start();
 }
 
 void IconBar::AppClickEventHandler(lv_event_t* e)
 {
-	auto this_app_clicked = (App*)e->user_data;
-	if (app_clicked!=NULL && app_clicked->name==this_app_clicked->name) {
-		auto ticks = CTimer::Get()->GetClockTicks();
-		auto diff = ticks-last_app_click;
-		if (diff<DOUBLE_CLICK_SPEED) {
-			if (app_clicked->name == "OS/D") {
-				auto tasks = NEW TasksWindow(1100, 600, 768, 256);
-				tasks->Start();
-			}
-			app_clicked = NULL;
-			return;
-		}
+	auto app_clicked = (App*)e->user_data;
+	if (app_clicked->name=="OS/D") {
+		auto tasks = NEW TasksWindow(1100, 600, 768, 256);
+		tasks->Start();
 	}
-	last_app_click = CTimer::Get()->GetClockTicks();
-	app_clicked = this_app_clicked;
 }

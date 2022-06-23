@@ -25,10 +25,6 @@ private:
 	lv_obj_t* icon_bar_cont;
 	lv_obj_t* icon_bar_left;
 	lv_obj_t* icon_bar_right;
-	static Drive* drive_clicked;
-	static unsigned last_drive_click;
-	static App* app_clicked;
-	static unsigned last_app_click;
 
 	void AddDriveIcon(std::string name, std::string text, std::string drive_name);
 	void AddAppIcon(std::string name, std::string text, std::string app_name);

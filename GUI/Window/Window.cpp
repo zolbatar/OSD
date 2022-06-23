@@ -54,7 +54,6 @@ Window::~Window()
 {
 	if (canvas!=NULL)
 		delete canvas;
-	delete win->user_data;
 	lv_obj_del(win);
 }
 

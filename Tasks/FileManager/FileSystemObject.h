@@ -40,7 +40,7 @@ private:
 	void ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out);
 	void ListAllDirectoriesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out);
 
-	std::unique_ptr<FileSystemHandler> handler;
+	FileSystemHandler* handler;
 	FSVolume* volume;
 	std::string current_directory = "/";
 };

@@ -10,6 +10,8 @@
 #include "../Exception/DARICException.h"
 #include "../Chrono/Chrono.h"
 #include "../Input/Input.h"
+#include "../Tasks/TasksWindow/TasksWindow.h"
+#include "../Tasks/Filer/Filer.h"
 
 #ifndef CLION
 #include <circle/sched/scheduler.h>
@@ -70,23 +72,23 @@ OSDTask::~OSDTask()
 		jit_destroy_state();
 	if (code!=NULL)
 		DELETE code;
+
+	// Delete any allocations, FIXME
+/*	for (auto& alloc : allocations) {
+		if (alloc.m!=0)
+			free(alloc.m);
+	}*/
 }
 
 void OSDTask::SetNameAndAddToList()
 {
-#ifndef CLION
 	SetName(id.c_str());
-#else
-	SetName(id);
-	tasks.insert(std::make_pair(id, this));
-	auto id = std::this_thread::get_id();
-	task_threads.insert(std::make_pair(id, this));
-#endif
 	tasks_list.push_back(this);
 }
 
 void OSDTask::TerminateTask()
 {
+	terminate_requested = false;
 	// Close window
 	DirectMessage mess;
 	mess.type = Messages::WM_CloseWindow;
@@ -98,27 +100,34 @@ void OSDTask::TerminateTask()
 	Terminate();
 }
 
-#ifndef CLION
 void OSDTask::TaskTerminationHandler(CTask* ctask)
 {
-	auto tt = (TaskType*)ctask->GetUserData(TASK_USER_DATA_USER);
-	switch (*tt) {
+	OSDTask::current_task = (OSDTask*)ctask;
+	switch (current_task->type) {
 		case TaskType::DARIC: {
-//			auto dw = (DARICWindow*)ctask;
-//			delete dw;
+			auto dw = (DARICWindow*)ctask;
+			delete dw;
 			break;
 		}
-		default:
-			CLogger::Get()->Write("OS_Tasks", LogDebug, "Unknown terminator handler type: %p/%d", tt, *tt);
+		case TaskType::Filer: {
+			auto dw = (Filer*)ctask;
+			delete dw;
+			break;
+		}
+		case TaskType::TaskManager: {
+			auto dw = (TasksWindow*)ctask;
+			delete dw;
+			break;
+		}
+		case TaskType::Other:
+			delete current_task;
 			break;
 	}
 }
-#endif
 
-#ifndef CLION
 void OSDTask::TaskSwitchHandler(CTask* ctask)
 {
-	OSDTask::current_task = (OSDTask *)ctask;
+	OSDTask::current_task = (OSDTask*)ctask;
 	switch (current_task->priority) {
 		case TaskPriority::NoPreempt:
 			UserTimer->Start(rate*4096);
@@ -132,7 +141,6 @@ void OSDTask::TaskSwitchHandler(CTask* ctask)
 	}
 //	CLogger::Get()->Write("OS/D", LogNotice, "Task focus: %s", ctask->GetName());
 }
-#endif
 
 void OSDTask::ReceiveDirectEx(DirectMessage* m)
 {
@@ -374,6 +382,7 @@ std::string OSDTask::LoadSource(std::string directory, std::string filename)
 	f_close(&fil);
 	buffer[sz] = 0;
 	std::string s(buffer);
+	free(buffer);
 	return s;
 }
 
@@ -493,24 +502,16 @@ void OSDTask::Yield()
 {
 	if (terminate_requested)
 		TerminateTask();
-//	GetCurrentTask()->ClearTemporaryStrings();
-	//CLogger::Get()->Write("OSDTask", LogDebug, "Yield");
-#ifndef CLION
 	auto mScheduler = CScheduler::Get();
 	mScheduler->Yield();
-#else
-//	std::this_thread::sleep_for(std::chrono::milliseconds(50));
-#endif
 }
 
 void OSDTask::Sleep(int ms)
 {
-#ifndef CLION
+	if (terminate_requested)
+		TerminateTask();
 	auto mScheduler = CScheduler::Get();
 	mScheduler->MsSleep(ms);
-#else
-	std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-#endif
 }
 
 size_t OSDTask::CalculateMemoryUsed()

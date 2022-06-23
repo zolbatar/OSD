@@ -7,9 +7,9 @@ public:
 	FileManager();
 	void Run();
 	static FSVolume* FindVolume(std::string volume);
+	static FileSystemHandler* GetFSHandler(FileSystemType type);
 private:
-	FileSystemHandler fsFAT;
-	FileSystemHandler* GetFSHandler(FileSystemType type);
+	static FileSystemHandler *fsFAT;
 
 	static std::map<std::string, FSVolume> volumes;
 };

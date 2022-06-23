@@ -21,8 +21,10 @@ lv_style_t style_grid;
 lv_style_t style_grid_title;
 lv_style_t style_window_header;
 lv_style_t style_window_header_active;
+lv_style_t style_window_header_menu;
 lv_style_t style_window_header_inactive;
 lv_style_t style_window_furniture;
+lv_style_t style_menu_background;
 lv_style_t style_scrollbar;
 lv_style_t style_bar;
 lv_style_t style_bar_indicator;
@@ -136,11 +138,20 @@ void WindowManager::SetupLVGLStyles()
 	lv_style_set_border_side(&style_window_header, LV_BORDER_SIDE_BOTTOM);
 	lv_style_set_pad_all(&style_window_header, 2);
 
-	// Style - window header inactive/active
+	// Style - window header inactive/active/menu
 	lv_style_init(&style_window_header_inactive);
 	lv_style_set_bg_color(&style_window_header_inactive, HEADER_BACKGROUND_COLOUR);
 	lv_style_init(&style_window_header_active);
 	lv_style_set_bg_color(&style_window_header_active, HEADER_BACKGROUND_COLOUR_ACTIVE);
+	lv_style_init(&style_window_header_menu);
+	lv_style_set_bg_color(&style_window_header_menu, HEADER_BACKGROUND_COLOUR_MENU);
+
+	// Style - menu background
+	lv_style_init(&style_menu_background);
+	lv_style_set_radius(&style_menu_background, 0);
+	lv_style_set_border_width(&style_menu_background, 0);
+	lv_style_set_bg_color(&style_menu_background, lv_color_black());
+	lv_style_set_bg_opa(&style_menu_background, LV_OPA_30);
 
 	// Style - window buttons
 	lv_style_init(&style_window_furniture);

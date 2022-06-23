@@ -36,11 +36,10 @@ extern "C"
 }
 
 enum class TaskType {
-	Unknown,
+	Other,
 	DARIC,
 	TaskManager,
-	Editor,
-	IconBar,
+	Filer,
 };
 
 enum TaskPriority {
@@ -128,6 +127,7 @@ public:
 	uint8_t* GetCode();
 	start GetExec();
 
+	TaskPriority GetPriority() { return priority; }
 	virtual void ReceiveDirectEx(DirectMessage* m);
 	void CallGUIDirectEx(DirectMessage* m);
 	void Yield();
@@ -138,10 +138,8 @@ public:
 		this->w = w;
 	}
 
-#ifndef CLION
 	static void TaskTerminationHandler(CTask* ctask);
 	static void TaskSwitchHandler(CTask* ctask);
-#endif
 
 	std::string GetWindowID() { return id; }
 	std::string GetWindowName() { return name; }
@@ -162,7 +160,7 @@ public:
 	static CTask *boot_task;
 	static OSDTask *current_task;
 #endif
-	TaskType type = TaskType::Unknown;
+	TaskType type = TaskType::Other;
 
 	void SetID(std::string id)
 	{

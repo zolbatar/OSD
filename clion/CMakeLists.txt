@@ -28,6 +28,7 @@ add_executable(
         ../../Tasks/DARICWindow.cpp ../../Tasks/Editor/Editor.cpp
         ../../Tasks/WindowManager/WindowManager.cpp ../../Tasks/Filer/Filer.cpp
         ../../Tasks/TasksWindow/TasksWindow.cpp ../../Tasks/FontManager/FontManager.cpp ../../Tasks/FileManager/FileManager.cpp
+        ../../Tasks/Menu/Menu.cpp
         ../../GUI/Window/Window.cpp ../../GUI/lvgl.cpp ../../GUI/Style.cpp
         ../../GUI/Controls/Control.cpp ../../GUI/Controls/Canvas.cpp
         ../../Parser/Parser.cpp ../../Parser/ParserExpression.cpp

@@ -11,10 +11,6 @@ Editor::Editor(int x, int y, int w, int h)
 	this->d_h = h;
 	this->id = "@"+std::to_string(task_id++);
 	this->name = "Editor";
-	type = TaskType::Editor;
-#ifndef CLION
-	this->SetUserData(&type, TASK_USER_DATA_USER);
-#endif
 }
 
 void Editor::Run()
