@@ -27,7 +27,10 @@
 #include <circle/input/mouse.h>
 #include <circle/dmachannel.h>
 #include <circle/types.h>
+#include <circle/usb/usbkeyboard.h>
+#include <circle/input/keyboardbuffer.h>
 #include <assert.h>
+#include <queue>
 
 class GuiCLVGL {
 public:
@@ -37,27 +40,34 @@ public:
 	bool Initialize(void);
 	bool QuitRequested() { return quit_requested; }
 	void Update(bool bPlugAndPlayUpdated = false);
+	static void SetKeyboardGroup(lv_group_t* g);
 	lv_indev_t* GetMouse() { return mouse; }
 private:
 	static void DisplayFlush(lv_disp_drv_t* pDriver, const lv_area_t* pArea, lv_color_t* pBuffer);
 	static void DisplayFlushComplete(unsigned nChannel, bool bStatus, void* pParam);
 	static void PointerRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData);
+	static void KeyboardRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData);
 	static void LogPrint(const char* pMessage);
 	static void MouseEventHandler(TMouseEvent Event, unsigned nButtons, unsigned nPosX, unsigned nPosY, int nWheelMove);
 	static void MouseRemovedHandler(CDevice* pDevice, void* pContext);
+	static void KeyboardEventHandler(const char* pString);
+	static void KeyboardEventHandlerRaw(unsigned char ucModifiers, const unsigned char RawKeys[6]);
 private:
 	bool quit_requested = false;
-	lv_indev_t* mouse;
-	lv_indev_drv_t indev_drv_mouse;
+	static lv_indev_t* mouse;
+	static lv_indev_t* keyboard;
 	lv_obj_t* mouse_cursor;
 
 	CScreenDevice* m_pScreen;
 	CBcmFrameBuffer* m_pFrameBuffer;
 	CDMAChannel m_DMAChannel;
+	unsigned m_nLastUpdate = 0;
 	CMouseDevice* volatile m_pMouseDevice;
+	CUSBKeyboardDevice* volatile m_pKeyboardDevice;
 	lv_color_t* m_pBuffer1;
 	lv_color_t* m_pBuffer2;
-	unsigned m_nLastUpdate = 0;
 	lv_indev_data_t m_PointerData;
 	static GuiCLVGL* s_pThis;
+	static std::queue<uint32_t> keys;
+	static uint32_t last_key;
 };

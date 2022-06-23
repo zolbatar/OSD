@@ -34,5 +34,6 @@ private:
 	lv_obj_t* header;
 	Canvas* canvas = NULL;
 	std::list<Control> children;
+	lv_group_t* group;
 };
 

@@ -12,12 +12,14 @@ void IconBar::Run()
 {
 	SetOverride(this);
 	SetNameAndAddToList();
+	auto style_iconbar = ThemeManager::GetStyle(StyleAttribute::IconBar);
+	auto style_iconbar_inner = ThemeManager::GetStyle(StyleAttribute::IconBarInner);
 
 	icon_bar_cont = lv_obj_create(lv_scr_act());
 	lv_obj_set_size(icon_bar_cont, LV_PCT(100), 110);
 	lv_obj_align(icon_bar_cont, LV_ALIGN_BOTTOM_MID, 0, 0);
 	lv_obj_set_flex_flow(icon_bar_cont, LV_FLEX_FLOW_ROW);
-	lv_obj_add_style(icon_bar_cont, &style_iconbar, LV_STATE_DEFAULT);
+	lv_obj_add_style(icon_bar_cont, style_iconbar, LV_STATE_DEFAULT);
 
 	// Left side, drives
 	icon_bar_left = lv_obj_create(icon_bar_cont);
@@ -25,7 +27,7 @@ void IconBar::Run()
 	lv_obj_set_size(icon_bar_left, LV_SIZE_CONTENT, LV_PCT(100));
 	lv_obj_set_flex_align(icon_bar_left, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 	lv_obj_set_flex_flow(icon_bar_left, LV_FLEX_FLOW_ROW);
-	lv_obj_add_style(icon_bar_left, &style_iconbar_inner, LV_STATE_DEFAULT);
+	lv_obj_add_style(icon_bar_left, style_iconbar_inner, LV_STATE_DEFAULT);
 
 	// Right side, apps and system
 	icon_bar_right = lv_obj_create(icon_bar_cont);
@@ -33,7 +35,7 @@ void IconBar::Run()
 	lv_obj_set_size(icon_bar_right, LV_SIZE_CONTENT, LV_PCT(100));
 	lv_obj_set_flex_align(icon_bar_right, LV_FLEX_ALIGN_END, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 	lv_obj_set_flex_flow(icon_bar_right, LV_FLEX_FLOW_ROW);
-	lv_obj_add_style(icon_bar_right, &style_iconbar_inner, LV_STATE_DEFAULT);
+	lv_obj_add_style(icon_bar_right, style_iconbar_inner, LV_STATE_DEFAULT);
 
 	// Devices
 	AddDriveIcon("SD Card", "Boot", ":BOOT");
@@ -55,12 +57,15 @@ void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive
 	drives.push_back(std::move(drive));
 	auto d = &drives.back();
 
+	auto style_iconbar_inner = ThemeManager::GetStyle(StyleAttribute::IconBarInner);
+	auto style_iconbar_button = ThemeManager::GetStyle(StyleAttribute::IconBarButton);
+
 	lv_obj_t* device_cont = lv_obj_create(icon_bar_left);
 	lv_obj_set_size(device_cont, LV_SIZE_CONTENT, LV_PCT(100));
 	lv_obj_center(device_cont);
 	lv_obj_set_flex_align(device_cont, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 	lv_obj_set_flex_flow(device_cont, LV_FLEX_FLOW_COLUMN);
-	lv_obj_add_style(device_cont, &style_iconbar_inner, LV_STATE_DEFAULT);
+	lv_obj_add_style(device_cont, style_iconbar_inner, LV_STATE_DEFAULT);
 
 	lv_obj_t* btn = lv_btn_create(device_cont);
 	lv_obj_center(btn);
@@ -69,7 +74,7 @@ void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive
 	lv_obj_t* img = lv_img_create(btn);
 	lv_obj_center(img);
 	lv_img_set_src(img, WindowManager::GetIcon(name));
-	lv_obj_add_style(btn, &style_iconbar_button, LV_STATE_DEFAULT);
+	lv_obj_add_style(btn, style_iconbar_button, LV_STATE_DEFAULT);
 
 	auto nam = lv_label_create(device_cont);
 	lv_obj_center(nam);
@@ -83,12 +88,15 @@ void IconBar::AddAppIcon(std::string name, std::string text, std::string app_nam
 	apps.push_back(std::move(app));
 	auto d = &apps.back();
 
+	auto style_iconbar_inner = ThemeManager::GetStyle(StyleAttribute::IconBarInner);
+	auto style_iconbar_button = ThemeManager::GetStyle(StyleAttribute::IconBarButton);
+
 	lv_obj_t* device_cont = lv_obj_create(icon_bar_right);
 	lv_obj_set_size(device_cont, LV_SIZE_CONTENT, LV_PCT(100));
 	lv_obj_center(device_cont);
 	lv_obj_set_flex_align(device_cont, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 	lv_obj_set_flex_flow(device_cont, LV_FLEX_FLOW_COLUMN);
-	lv_obj_add_style(device_cont, &style_iconbar_inner, LV_STATE_DEFAULT);
+	lv_obj_add_style(device_cont, style_iconbar_inner, LV_STATE_DEFAULT);
 
 	lv_obj_t* btn = lv_btn_create(device_cont);
 	lv_obj_center(btn);
@@ -97,7 +105,7 @@ void IconBar::AddAppIcon(std::string name, std::string text, std::string app_nam
 	lv_obj_t* img = lv_img_create(btn);
 	lv_obj_center(img);
 	lv_img_set_src(img, WindowManager::GetIcon(name));
-	lv_obj_add_style(btn, &style_iconbar_button, LV_STATE_DEFAULT);
+	lv_obj_add_style(btn, style_iconbar_button, LV_STATE_DEFAULT);
 
 	auto nam = lv_label_create(device_cont);
 	lv_obj_center(nam);

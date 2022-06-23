@@ -18,35 +18,39 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	wa->fixed_size_content = pure_canvas;
 
 	// Create
-	win = lv_mywin_create(lv_scr_act(), WINDOW_HEADER_HEIGHT, wa);
+	win = lv_mywin_create(lv_scr_act(), ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight), wa);
 	lv_obj_set_pos(win, x1, y1);
 	lv_obj_set_width(win, width);
 	lv_obj_set_height(win, height);
 
-	// Header
-	header = lv_mywin_get_header(win);
-	lv_obj_add_style(header, &style_window_header_inactive, LV_STATE_DEFAULT);
-	lv_obj_add_event_cb(header, ClickEventHandler, LV_EVENT_CLICKED, this);
-	lv_obj_add_event_cb(header, DragEventHandler, LV_EVENT_PRESSING, this);
-
 	// Content
 	auto content = lv_mywin_get_content(win);
+
+	// Header
+	header = lv_mywin_get_header(win);
+	lv_obj_add_style(header, ThemeManager::GetStyle(StyleAttribute::WindowInactive), LV_STATE_DEFAULT);
+	lv_obj_add_event_cb(header, ClickEventHandler, LV_EVENT_CLICKED, this);
+	lv_obj_add_event_cb(header, DragEventHandler, LV_EVENT_PRESSING, this);
 
 	// Title
 	lv_mywin_add_title(win, title.c_str());
 
-	auto btn_min = lv_mywin_add_btn(win, LV_SYMBOL_MINIMISE, WINDOW_FURNITURE_WIDTH);
-	lv_obj_add_style(btn_min, &style_window_furniture, LV_STATE_DEFAULT);
-	auto btn_max = lv_mywin_add_btn(win, LV_SYMBOL_MAXIMISE, WINDOW_FURNITURE_WIDTH);
-	lv_obj_add_style(btn_max, &style_window_furniture, LV_STATE_DEFAULT);
-	auto btn_close = lv_mywin_add_btn(win, LV_SYMBOL_MY_CLOSE, WINDOW_FURNITURE_WIDTH);
+	auto furniture_width = ThemeManager::GetConst(ConstAttribute::WindowFurnitureWidth);
+	auto style = ThemeManager::GetStyle(StyleAttribute::WindowButton);
+	auto btn_min = lv_mywin_add_btn(win, LV_SYMBOL_MINIMISE, furniture_width);
+	lv_obj_add_style(btn_min, style, LV_STATE_DEFAULT);
+	auto btn_max = lv_mywin_add_btn(win, LV_SYMBOL_MAXIMISE, furniture_width);
+	lv_obj_add_style(btn_max, style, LV_STATE_DEFAULT);
+	auto btn_close = lv_mywin_add_btn(win, LV_SYMBOL_MY_CLOSE, furniture_width);
 	lv_obj_add_event_cb(btn_close, CloseClicked, LV_EVENT_CLICKED, this);
-	lv_obj_add_style(btn_close, &style_window_furniture, LV_STATE_DEFAULT);
+	lv_obj_add_style(btn_close, style, LV_STATE_DEFAULT);
 
 	if (pure_canvas) {
 		canvas = new Canvas(task, content, canvas_w, canvas_h);
 	}
 
+	group = lv_group_create();
+	lv_group_add_obj(group, win);
 	SetActive();
 }
 
@@ -54,6 +58,7 @@ Window::~Window()
 {
 	if (canvas!=NULL)
 		delete canvas;
+	lv_group_del(group);
 	lv_obj_del(win);
 }
 
@@ -63,16 +68,20 @@ void Window::SetActive()
 	for (auto& w: windows)
 		w.second->SetInactive();
 
-	lv_obj_remove_style(header, &style_window_header_inactive, 0);
-	lv_obj_add_style(header, &style_window_header_active, 0);
+	lv_obj_remove_style(header, ThemeManager::GetStyle(StyleAttribute::WindowInactive), 0);
+	lv_obj_add_style(header, ThemeManager::GetStyle(StyleAttribute::WindowActive), 0);
 	lv_obj_move_foreground(this->GetLVGLWindow());
 	this->active = true;
+
+	// Focus
+	GuiCLVGL::SetKeyboardGroup(group);
+	lv_group_focus_obj(win);
 }
 
 void Window::SetInactive()
 {
-	lv_obj_remove_style(header, &style_window_header_active, 0);
-	lv_obj_add_style(header, &style_window_header_inactive, 0);
+	lv_obj_remove_style(header, ThemeManager::GetStyle(StyleAttribute::WindowActive), 0);
+	lv_obj_add_style(header, ThemeManager::GetStyle(StyleAttribute::WindowInactive), 0);
 	this->active = false;
 }
 

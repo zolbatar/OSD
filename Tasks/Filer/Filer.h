@@ -25,10 +25,14 @@ private:
 	std::string directory;
 	static int cx;
 	static int cy;
-	lv_obj_t* filer_cont;
+	lv_obj_t* filer_cont = NULL;
+	lv_obj_t* selected = NULL;
 	std::list<FileIcon> icons;
+	std::vector<lv_obj_t*> items;
 
 	void AddIcon(std::string name, bool is_directory);
+	static void WindowPressEventHandler(lv_event_t* e);
 	static void IconClickEventHandler(lv_event_t* e);
 	static void IconPressEventHandler(lv_event_t* e);
+	static void KeyPressEventHandler(lv_event_t* e);
 };

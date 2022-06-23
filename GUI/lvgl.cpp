@@ -25,8 +25,14 @@
 #include <circle/string.h>
 #include <circle/util.h>
 #include <circle/new.h>
+#include <string>
+#include "KeyboardCodes.h"
 
 GuiCLVGL* GuiCLVGL::s_pThis = 0;
+std::queue<uint32_t> GuiCLVGL::keys;
+uint32_t GuiCLVGL::last_key = 0;
+lv_indev_t* GuiCLVGL::mouse;
+lv_indev_t* GuiCLVGL::keyboard;
 
 GuiCLVGL::GuiCLVGL(CScreenDevice* pScreen, CInterruptSystem* pInterrupt)
 		:m_pBuffer1(0), m_pBuffer2(0), m_pScreen(pScreen), m_pFrameBuffer(0), m_DMAChannel(DMA_CHANNEL_NORMAL, pInterrupt),
@@ -98,9 +104,8 @@ bool GuiCLVGL::Initialize(void)
 	disp_drv.ver_res = nHeight;
 	lv_disp_drv_register(&disp_drv);
 
+	// Mouse
 	m_pMouseDevice = (CMouseDevice*)CDeviceNameService::Get()->GetDevice("mouse1", FALSE);
-	CString Message;
-
 	if (m_pMouseDevice!=0) {
 		if (m_pMouseDevice->Setup(nWidth, nHeight)) {
 			m_pMouseDevice->ShowCursor(FALSE);
@@ -111,14 +116,35 @@ bool GuiCLVGL::Initialize(void)
 			m_pMouseDevice = 0;
 		}
 	}
-
 	static lv_indev_drv_t indev_drv;
 	lv_indev_drv_init(&indev_drv);
 	indev_drv.type = LV_INDEV_TYPE_POINTER;
 	indev_drv.read_cb = PointerRead;
 	mouse = lv_indev_drv_register(&indev_drv);
 
+	// Keyboard
+	m_pKeyboardDevice = (CUSBKeyboardDevice*)CDeviceNameService::Get()->GetDevice("ukbd1", FALSE);
+	if (m_pKeyboardDevice!=0) {
+		m_pKeyboardDevice->RegisterKeyPressedHandler(KeyboardEventHandler);
+		m_pKeyboardDevice->RegisterKeyStatusHandlerRaw(KeyboardEventHandlerRaw, TRUE);
+	}
+	static lv_indev_drv_t indev_drvk;
+	lv_indev_drv_init(&indev_drvk);
+	indev_drvk.type = LV_INDEV_TYPE_KEYPAD;
+	indev_drvk.read_cb = KeyboardRead;
+	keyboard = lv_indev_drv_register(&indev_drvk);
+
+	// Keyboard group
+	static lv_group_t* g = lv_group_create();
+	lv_group_set_default(g);
+	lv_indev_set_group(keyboard, g);
+
 	return true;
+}
+
+void GuiCLVGL::SetKeyboardGroup(lv_group_t* g)
+{
+	lv_indev_set_group(keyboard, g);
 }
 
 void GuiCLVGL::Update(bool bPlugAndPlayUpdated)
@@ -196,6 +222,32 @@ void GuiCLVGL::PointerRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData)
 	pData->state = s_pThis->m_PointerData.state;
 }
 
+void GuiCLVGL::KeyboardRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData)
+{
+	assert(s_pThis!=0);
+	if (keys.empty())
+		return;
+
+	if (last_key!=0) {
+		// Do release
+		pData->key = last_key;
+		pData->state = LV_INDEV_STATE_RELEASED;
+		last_key = 0;
+	}
+	else {
+		// Get key
+		auto t = keys.front();
+		keys.pop();
+
+		pData->key = t;
+		pData->state = LV_INDEV_STATE_PRESSED;
+		last_key = t;
+	}
+
+	if (!keys.empty())
+		pData->continue_reading = true;
+}
+
 void GuiCLVGL::MouseEventHandler(TMouseEvent Event, unsigned nButtons, unsigned nPosX, unsigned nPosY, int nWheelMove)
 {
 	assert(s_pThis!=0);
@@ -218,6 +270,76 @@ void GuiCLVGL::MouseEventHandler(TMouseEvent Event, unsigned nButtons, unsigned 
 
 		default:
 			break;
+	}
+}
+
+void GuiCLVGL::KeyboardEventHandler(const char* pString)
+{
+	auto cc = pString[0];
+	auto icc = int(cc);
+	switch (icc) {
+		case 27: { // Escape
+			std::string s(&pString[1]);
+			if (s=="[2~")
+				keys.push(KEY_Insert);
+			else if (s=="[1~")
+				keys.push(KEY_Home);
+			else if (s=="[5~")
+				keys.push(KEY_PageUp);
+			else if (s=="[3~")
+				keys.push(KEY_Delete);
+			else if (s=="[4~")
+				keys.push(KEY_End);
+			else if (s=="[6~")
+				keys.push(KEY_PageDown);
+			else if (s=="[A")
+				keys.push(KEY_Up);
+			else if (s=="[B")
+				keys.push(KEY_Down);
+			else if (s=="[D")
+				keys.push(KEY_Left);
+			else if (s=="[C")
+				keys.push(KEY_Right);
+			else if (s=="[[A")
+				keys.push(KEY_F1);
+			else if (s=="[[B")
+				keys.push(KEY_F2);
+			else if (s=="[[C")
+				keys.push(KEY_F3);
+			else if (s=="[[D")
+				keys.push(KEY_F4);
+			else if (s=="[[E")
+				keys.push(KEY_F5);
+			else if (s=="[17~")
+				keys.push(KEY_F6);
+			else if (s=="[18~")
+				keys.push(KEY_F7);
+			else if (s=="[19~")
+				keys.push(KEY_F8);
+			else if (s=="[20~")
+				keys.push(KEY_F9);
+			else if (s=="[G")
+				keys.push(KEY_Center);
+			else
+				CLogger::Get()->Write("Keyboard", LogNotice, "Escape: %s", s.c_str());
+			break;
+		}
+		case 127: // backspace
+			keys.push(KEY_Backspace);
+			break;
+		default:
+			// Regular key
+			keys.push(icc);
+//			CLogger::Get()->Write("Keyboard", LogNotice, "%d", icc);
+			break;
+
+	}
+}
+
+void GuiCLVGL::KeyboardEventHandlerRaw(unsigned char ucModifiers, const unsigned char RawKeys[6])
+{
+	if (ucModifiers & KEY_LWIN_MASK || ucModifiers & KEY_RWIN_MASK) {
+		keys.push(KEY_WindowsKey);
 	}
 }
 

@@ -4,7 +4,7 @@
 #include "../../GUI/Controls/Canvas.h"
 #include "../../GUI/Window/Window.h"
 #include "../../GUI/lvgl.h"
-#include "../../GUI/Style.h"
+#include "../WindowManager/Style.h"
 #include <map>
 
 // Lightweight(ish) truetype

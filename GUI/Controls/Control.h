@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include "../lvgl.h"
-#include "../Style.h"
+#include "../../Tasks/WindowManager/Style.h"
 
 class Control {
 public:

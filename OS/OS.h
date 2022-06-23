@@ -7,15 +7,11 @@
 #include <stack>
 #include "../Tokeniser/Types.h"
 #include "OS_Tasks.h"
-
-#define DELETE delete
-#ifdef CLION
-#define NEW new
-#else
 #include <circle/new.h>
 #include <circle/alloc.h>
+#include "../GUI/KeyboardCodes.h"
 #define NEW new(HEAP_ANY)
-#endif
+#define DELETE delete
 
 void OS_Init();
 

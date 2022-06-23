@@ -1,9 +1,8 @@
 #pragma once
 #include "../OS/OS.h"
 #include "Control.h"
-#include "../Style.h"
+#include "../../Tasks/WindowManager/Style.h"
 
-extern size_t body_font_height;
 extern lv_font_t* font_body;
 
 class Canvas : public Control {
@@ -64,14 +63,15 @@ private:
 	lv_obj_t* secondbuffer;
 	bool which_buffer = false;
 	bool double_buffered = false;
-	lv_color_t fg = lv_color_black();
-	lv_color_t bg = WINDOW_BACKGROUND_COLOUR;
+	lv_color_t fg;
+	lv_color_t bg;
 	uint8_t* buffer = nullptr;
 	uint8_t* buffer_back = nullptr;
-	lv_font_t* mono = font_mono;
-	lv_font_t* font = font_body;
-	int size_h = body_font_height/2;
-	int size_v = body_font_height;
+	lv_font_t* mono;
+	lv_font_t* font;
+	int size;
+	int size_h;
+	int size_v;
 
 	void ScrollUp();
 };

@@ -6,6 +6,19 @@
 
 lv_obj_t* lv_mylist_add_btn(lv_obj_t* list, const char* icon, const char* txt, bool arrow, std::string shortcut);
 
+enum class MenuItemType {
+	SubMenu,
+	Item,
+	Separator
+};
+
+struct MenuItem {
+	MenuItemType type;
+	std::string v;
+	std::string shortcut;
+	const char* icon = NULL;
+};
+
 struct MenuDefinition {
 	lv_obj_t* obj;
 	std::list<MenuItem> items;

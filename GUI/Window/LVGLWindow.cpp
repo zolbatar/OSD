@@ -1,5 +1,5 @@
 #include "LVGLWindow.h"
-#include "../Style.h"
+#include "../../Tasks/WindowManager/Style.h"
 
 static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj);
 
@@ -30,14 +30,16 @@ lv_obj_t* lv_mywin_create(lv_obj_t* parent, lv_coord_t header_height, WindowAttr
 
 	if (wa->resizable) {
 		auto btn_resize = lv_btn_create(obj);
-		lv_obj_set_size(btn_resize, WINDOW_FURNITURE_WIDTH, WINDOW_FURNITURE_WIDTH);
+		auto furniture_width = ThemeManager::GetConst(ConstAttribute::WindowFurnitureWidth);
+		lv_obj_set_size(btn_resize, furniture_width, furniture_width);
 		lv_obj_add_flag(btn_resize, LV_OBJ_FLAG_FLOATING);
 		lv_obj_add_event_cb(btn_resize, ResizePressed, LV_EVENT_PRESSING, NULL);
 		lv_obj_align(btn_resize, LV_ALIGN_BOTTOM_RIGHT, -4, -4);
 		lv_obj_t* img = lv_img_create(btn_resize);
 		lv_img_set_src(img, LV_SYMBOL_RESIZE);
 		lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
-		lv_obj_add_style(btn_resize, &style_window_furniture, LV_STATE_DEFAULT);
+		auto style = ThemeManager::GetStyle(StyleAttribute::WindowButton);
+		lv_obj_add_style(btn_resize, style, LV_STATE_DEFAULT);
 	}
 
 	return obj;
@@ -123,12 +125,16 @@ static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 {
 	// Attributes
 	auto wa = (WindowAttributes*)obj->user_data;
+	auto style_window = ThemeManager::GetStyle(StyleAttribute::Window);
+	auto style_header = ThemeManager::GetStyle(StyleAttribute::WindowHeader);
+	auto style_content = ThemeManager::GetStyle(StyleAttribute::WindowContent);
+	auto style_scrollbar = ThemeManager::GetStyle(StyleAttribute::Scrollbar);
 
 	LV_UNUSED(class_p);
 	lv_obj_t* parent = lv_obj_get_parent(obj);
 	lv_obj_set_size(obj, lv_obj_get_width(parent), lv_obj_get_height(parent));
 	lv_obj_set_flex_flow(obj, LV_FLEX_FLOW_COLUMN);
-	lv_obj_add_style(obj, &style_window, LV_STATE_DEFAULT);
+	lv_obj_add_style(obj, style_window, LV_STATE_DEFAULT);
 	lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
 
 	lv_obj_t* header = lv_obj_create(obj);
@@ -136,7 +142,7 @@ static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 	lv_obj_set_flex_flow(header, LV_FLEX_FLOW_ROW);
 	lv_obj_set_flex_align(header, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 	lv_obj_clear_flag(header, LV_OBJ_FLAG_SCROLLABLE);
-	lv_obj_add_style(header, &style_window_header, LV_STATE_DEFAULT);
+	lv_obj_add_style(header, style_header, LV_STATE_DEFAULT);
 
 	lv_obj_t* body = lv_obj_create(obj);
 	lv_obj_set_flex_grow(body, 1);
@@ -144,9 +150,9 @@ static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 	lv_obj_set_height(body, LV_PCT(100));
 	//lv_obj_set_width(body, LV_SIZE_CONTENT);
 	//lv_obj_set_height(body, LV_SIZE_CONTENT);
-	lv_obj_add_style(body, &style_window_content, LV_STATE_DEFAULT);
+	lv_obj_add_style(body, style_content, LV_STATE_DEFAULT);
 	lv_obj_set_scrollbar_mode(body, LV_SCROLLBAR_MODE_AUTO);
-	lv_obj_add_style(body, &style_scrollbar, LV_PART_SCROLLBAR);
+	lv_obj_add_style(body, style_scrollbar, LV_PART_SCROLLBAR);
 }
 
 

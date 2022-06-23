@@ -4,11 +4,20 @@
 #include <circle/multicore.h>
 #endif
 #include "../../Tasks/FontManager/FontManager.h"
+#include "../../Tasks/WindowManager/Style.h"
 
 Canvas::Canvas(OSDTask* task, lv_obj_t* parent, int w, int h)
 		:task(task)
 {
 	this->parent = parent;
+
+	fg = ThemeManager::GetColour(ColourAttribute::WindowForeground);
+	bg = ThemeManager::GetColour(ColourAttribute::WindowBackground);
+	size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
+	size_h = size/2;
+	size_v = size;
+	mono = ThemeManager::GetFont(FontAttribute::Mono);
+	font = ThemeManager::GetFont(FontAttribute::Body);
 
 	// First buffer
 	firstbuffer = lv_canvas_create(parent);
@@ -330,11 +339,11 @@ void Canvas::PrintString(const char* s)
 
 		if (cursor_x+(size_h)>w) {
 			cursor_x = 0;
-			cursor_y += body_font_height;
+			cursor_y += size;
 
 			// Move buffer
 			if (cursor_y+size_v>h) {
-				cursor_y -= body_font_height;
+				cursor_y -= size;
 				ScrollUp();
 			}
 		}
@@ -357,7 +366,7 @@ void Canvas::ScrollUp()
 {
 	// Move memory buffer up
 	const int ss = (lv_img_cf_get_px_size(cf)*w)*h/8;
-	const int bs = (lv_img_cf_get_px_size(cf)*w)*body_font_height/8;
+	const int bs = (lv_img_cf_get_px_size(cf)*w)*size/8;
 	memcpy(buffer, buffer+bs, ss-bs);
 	lv_obj_invalidate(object);
 
@@ -367,7 +376,7 @@ void Canvas::ScrollUp()
 	rect_dsc.radius = 0;
 	rect_dsc.bg_opa = LV_OPA_COVER;
 	rect_dsc.bg_color = bg;
-	lv_canvas_draw_rect(object, 0, h-body_font_height, w, body_font_height, &rect_dsc);
+	lv_canvas_draw_rect(object, 0, h-size, w, size, &rect_dsc);
 }
 
 void Canvas::PrintTab(int64_t v)

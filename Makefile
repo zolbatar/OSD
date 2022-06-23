@@ -10,12 +10,12 @@ OBJS    = 	main.o kernel.o \
 			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o \
 			Input/Input.o \
 			GUI/Window/Window.o GUI/Window/LVGLWindow.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
-			Tasks/WindowManager/WindowManager.o Tasks/IconBar/IconBar.o \
+			Tasks/WindowManager/WindowManager.o Tasks/WindowManager/Style.o Tasks/IconBar/IconBar.o \
 			Tasks/DARICWindow.o Tasks/TasksWindow/TasksWindow.o Tasks/Filer/Filer.o \
 			Tasks/FontManager/FontManager.o Tasks/Menu/Menu.o \
 			Tasks/FileManager/FileManager.o \
 			Tasks/Editor/Editor.o \
-			GUI/lvgl.o GUI/Style.o \
+			GUI/lvgl.o  \
 			Library/StringLib.o \
 			\
 			Tokeniser/Tokeniser.o Tokeniser/TokeniserNumber.o Tokeniser/TokeniserString.o Tokeniser/TokeniserSymbol.o \

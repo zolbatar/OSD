@@ -43,11 +43,11 @@ void Editor::Run()
 	lv_obj_set_height(ta, lv_pct(100));
 	lv_textarea_add_text(ta, code.c_str());
 	lv_obj_add_state(ta, LV_STATE_FOCUSED);
-	lv_obj_add_style(ta, &style_textarea, LV_STATE_DEFAULT);
+//	lv_obj_add_style(ta, &style_textarea, LV_STATE_DEFAULT);
 
 	// Do stuff
 	while (1) {
-		Sleep(1000);
+		Yield();
 	}
 }
 

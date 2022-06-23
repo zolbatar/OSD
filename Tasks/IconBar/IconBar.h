@@ -4,7 +4,7 @@
 #include <circle/logger.h>
 #include <circle/timer.h>
 #include "../../GUI/Window/LVGLWindow.h"
-#include "../../GUI/Style.h"
+#include "../WindowManager/Style.h"
 #include "../WindowManager/WindowManager.h"
 
 struct Drive {
