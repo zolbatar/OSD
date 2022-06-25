@@ -1,28 +1,24 @@
 #pragma once
-
+//#define VERBOSE_COMPILE
 #include <stack>
 #include "../Tokeniser/Tokeniser.h"
 #include "../Tokeniser/Types.h"
 #include "../NativeCompiler/Functions.h"
 #include "../Exception/DARICException.h"
-
-#ifndef CLION
 #include <circle/new.h>
-#endif
-
 #include "IROpcodes.h"
 
 class IRInstruction {
 public:
-	IRInstruction(IROpcodes type, int64_t index, int64_t iv, double rv, std::string sv, void* func)
-			:type(type), index(index), iv(iv), rv(rv), sv(sv), func(func) { };
+	IRInstruction(IROpcodes type, int64_t index, int64_t iv, double rv, std::string sv, TokenType tt)
+			:type(type), index(index), iv(iv), rv(rv), sv(sv), tt(tt) { };
 	IROpcodes type;
 	int64_t index;
 	int64_t index2; // Used by optimiser
 	int64_t iv;
 	double rv;
 	std::string sv;
-	void* func;
+	TokenType tt;
 };
 
 class IRCompiler {
@@ -100,11 +96,12 @@ private:
 
 	void Init_AddIR(IROpcodes type);
 	void AddIR(IROpcodes type);
-	void AddIRWithAddress(IROpcodes type, void* func, std::string name);
+//	void AddIRWithAddress(IROpcodes type, void* func, std::string name);
 	void AddIRWithIndex(IROpcodes type, int64_t index);
 	void AddIRWithIntegerLiteral(IROpcodes type, int64_t v);
 	void AddIRWithFloatLiteral(IROpcodes type, double v);
 	void AddIRWithStringLiteral(IROpcodes type, std::string v);
+	void AddIRWithTokenTypeAndStringLiteral(IROpcodes type, std::string v, TokenType tt);
 	void AddIRWithStringLiteralWithInteger(IROpcodes type, std::string v, int64_t iv);
 	void AddIRWithIndexAndInteger(IROpcodes type, int64_t index, int64_t iv);
 	void Init_AddIRWithIndexAndInteger(IROpcodes type, int64_t index, int64_t iv);
