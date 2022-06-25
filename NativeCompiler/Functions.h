@@ -48,6 +48,7 @@ void call_STRING_freepermanent(int64_t s);
 int64_t call_TIME();
 int64_t call_TIMES();
 
+void call_2D_mode(int64_t x, int64_t y);
 int64_t call_2D_screenwidth();
 int64_t call_2D_screenheight();
 void call_2D_shadow();

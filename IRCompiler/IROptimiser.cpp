@@ -1,4 +1,5 @@
 #include "IRCompiler.h"
+#include <circle/logger.h>
 
 void IRCompiler::RunOptimiser(std::list<IRInstruction>* _ir)
 {
@@ -132,8 +133,8 @@ void IRCompiler::RunOptimiser(std::list<IRInstruction>* _ir)
 		_ir->remove_if([](IRInstruction ir) { return ir.type==IROpcodes::NOP; });
 
 		// Summary
-#ifdef CLION
-		printf("IR %p optimisation: %d changes. %zu micro-ops before, %zu micro-ops after\n", _ir, count, previous, _ir->size());
+#ifdef VERBOSE_COMPILE
+		CLogger::Get()->Write("IR Optimiser", LogDebug, "%d changes. %d micro-ops before, %d micro-ops after", count, previous, _ir->size());
 #endif
 	}
 	while (count>0);

@@ -1,6 +1,8 @@
 #include "NativeCompiler.h"
+#include <circle/logger.h>
 #include <capstone/capstone.h>
 #include <capstone/platform.h>
+#include "../Parser/Parser.h"
 
 NativeCompiler::NativeCompiler(bool optimise, jit_state_t* _jit, OSDTask* task)
 		:optimise(optimise), _jit(_jit), task(task)
@@ -46,12 +48,12 @@ void NativeCompiler::IRToNative(std::list<IRInstruction>* ir_global, std::list<I
 	if (optimise) {
 		//jit_print();
 
-#ifdef CLION
+#ifdef VERBOSE_COMPILE
 		int count = 0;
 		for (auto node = _jitc->head; node; node = node->next) {
 			count++;
 		}
-		printf("Count before native opt: %d\n", count);
+		CLogger::Get()->Write("Native Compiler", LogDebug, "Count before native opt: %d", count);
 #endif
 
 		jit_node_t* previous = NULL;
@@ -82,12 +84,12 @@ void NativeCompiler::IRToNative(std::list<IRInstruction>* ir_global, std::list<I
 			previous = node;
 		}
 
-#ifdef CLION
+#ifdef VERBOSE_COMPILE
 		count = 0;
 		for (auto node = _jitc->head; node; node = node->next) {
 			count++;
 		}
-		printf("Count after native opt: %d\n", count);
+		CLogger::Get()->Write("Native Compiler", LogDebug, "Count after native opt: %d", count);
 #endif
 		//jit_print();
 	}
@@ -95,27 +97,23 @@ void NativeCompiler::IRToNative(std::list<IRInstruction>* ir_global, std::list<I
 	// Code & data size
 	jit_realize();
 	if (!_jitc->realize) {
-		printf("Native compiler, failed to realise\n");
-		while (1);
+		CLogger::Get()->Write("Native Compiler", LogPanic, "Failed to realise");
 	}
 	code_size = _jit->code.length;
-#ifndef CLION
 	task->CreateCode(code_size);
 	jit_set_code(task->GetCode(), code_size);
-#endif
 	jit_set_data(NULL, 0, JIT_DISABLE_DATA | JIT_DISABLE_NOTE);
 
 	auto exec = jit_emit_void();
 	if (exec==NULL) {
-		printf("Code generation failed.\n");
-		while (1);
+		CLogger::Get()->Write("Native Compiler", LogPanic, "Code generation failed");
 	}
 	task->SetStart(exec);
 
 	// Size?
 	jit_get_code(&code_size);
-#ifdef CLION
-	printf("Code size: %ld bytes\n", code_size);
+#ifdef VERBOSE_COMPILE
+	CLogger::Get()->Write("Native Compiler", LogDebug, "Code size: %ld bytes", code_size);
 #endif
 }
 
@@ -147,9 +145,15 @@ void call_STACKCHECK(int64_t sp, int64_t line_number, uint64_t fp)
 		for (auto i = 0; i<8; i++) {
 			uint64_t* p = (uint64_t*)(fp-2064-(i*sizeof(int64_t)));
 			int64_t v = *p;
-			printf("[%p] %" PRId64 "\n", p, v);
+			printf("[%p] %"
+			PRId64
+			"\n", p, v);
 		}
-		printf("SP: %" PRId64 "=%" PRId64 "\n", line_number, sp);
+		printf("SP: %"
+		PRId64
+		"=%"
+		PRId64
+		"\n", line_number, sp);
 	}
 }
 
@@ -966,9 +970,35 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction>* ir)
 				returns.push(ValueType::String);
 				break;
 			case IROpcodes::CallFunc: {
+
+				// Lookup the actual address
+				void* func = NULL;
+				if (op.sv=="SPC")
+					func = (void*)&call_PRINT_SPC;
+				else if (op.sv=="TAB")
+					func = (void*)&call_PRINT_TAB;
+				else if (op.sv=="Tabbed On")
+					func = (void*)&call_PRINT_Tabbed;
+				else if (op.sv=="Tabbed Off")
+					func = (void*)&call_PRINT_TabbedOff;
+				else if (op.sv=="NL")
+					func = (void*)&call_PRINT_NL;
+				else if (op.sv=="PRINT integer")
+					func = (void*)&call_PRINT_integer;
+				else if (op.sv=="PRINT real")
+					func = (void*)&call_PRINT_real;
+				else if (op.sv=="PRINT string")
+					func = (void*)&call_PRINT_string;
+				else if (op.sv=="TIME")
+					func = (void*)&call_TIME;
+				else if (op.sv=="TIME$")
+					func = (void*)&call_TIMES;
+				else
+					func = Parser::GetAddressForFunc(op.tt);
+
 				jit_prepare();
 				ConstructArguments();
-				jit_finishi((jit_pointer_t)op.func);
+				jit_finishi((jit_pointer_t)func);
 				if (!returns.empty()) {
 					auto type = returns.top();
 					returns.pop();

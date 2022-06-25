@@ -1,7 +1,5 @@
 #include "NativeCompiler.h"
-#ifndef CLION
 #include <circle/logger.h>
-#endif
 
 static bool tabbed = true;
 const int tab_size = 20;
@@ -12,9 +10,6 @@ void call_PRINT_NL()
 	DirectMessage mess;
 	mess.source = task;
 	mess.type = Messages::Canvas_PrintNewLine;
-#ifdef CLION
-	printf("\n");
-#endif
 	task->CallGUIDirectEx(&mess);
 }
 
@@ -70,9 +65,6 @@ void call_PRINT_real(double v)
 	mess.source = task;
 	mess.type = Messages::Canvas_PrintString;
 	mess.data = &d;
-#ifdef CLION
-	printf("%s", d);
-#endif
 	task->CallGUIDirectEx(&mess);
 	tabbed = false;
 }
@@ -87,9 +79,6 @@ void call_PRINT_string(int64_t idx)
 	mess.type = Messages::Canvas_PrintString;
 	mess.data = (void*)v.c_str();
 	task->CallGUIDirectEx(&mess);
-#ifdef CLION
-	printf("%s", v.c_str());
-#endif
 	tabbed = false;
 	task->ClearTemporaryStrings();
 }

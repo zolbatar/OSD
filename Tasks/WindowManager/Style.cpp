@@ -1,7 +1,5 @@
 #include "Style.h"
-#ifndef CLION
 #include <circle/logger.h>
-#endif
 #include "../FontManager/FontManager.h"
 #include "WindowManager.h"
 
@@ -71,7 +69,7 @@ void WindowManager::SetupLVGLStyles()
 	ThemeManager::AddConst(ConstAttribute::WindowHeaderHeight, 28);
 	ThemeManager::AddConst(ConstAttribute::MenuHeaderHeight, 28);
 	ThemeManager::AddConst(ConstAttribute::WindowFurnitureWidth, 24);
-	ThemeManager::AddConst(ConstAttribute::WindowContentPadding, 16);
+	ThemeManager::AddConst(ConstAttribute::WindowContentPadding, 0);
 	ThemeManager::AddConst(ConstAttribute::CornerRadius, 3);
 	ThemeManager::AddConst(ConstAttribute::ControlPadding, 1);
 	ThemeManager::AddConst(ConstAttribute::ContainerPadding, 8);
@@ -85,7 +83,7 @@ void WindowManager::SetupLVGLStyles()
 	ThemeManager::AddColour(ColourAttribute::MenuForeground, lv_color_black());
 	ThemeManager::AddColour(ColourAttribute::DesktopBackground, lv_color_hex(0x707070));
 	ThemeManager::AddColour(ColourAttribute::DesktopForeground, lv_color_black());
-
+	ThemeManager::AddColour(ColourAttribute::Focus, lv_color_hex(0x73a6e6));
 	ThemeManager::AddColour(ColourAttribute::WindowHeaderForeground, lv_color_black());
 	ThemeManager::AddColour(ColourAttribute::WindowHeaderBackground, lv_color_hex(0xB0B0B0));
 	ThemeManager::AddColour(ColourAttribute::WindowHeaderBackgroundActive, lv_color_hex(0xe0e0b0));
@@ -115,6 +113,15 @@ void WindowManager::SetupLVGLStyles()
 			FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular", ThemeManager::GetConst(ConstAttribute::MonoFontSize)));
 	ThemeManager::AddFont(FontAttribute::Symbol,
 			FontManager::GetFontByNameStyleAndSize("Font Awesome 6 Pro Light", "Light", ThemeManager::GetConst(ConstAttribute::FurnitureFontSize)));
+
+	// Focussed
+	{
+		lv_style_t* style = CreateStyle();
+		lv_style_init(style);
+		lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::Focus));
+		lv_style_set_border_width(style, 3);
+		ThemeManager::AddStyle(StyleAttribute::Focussed, style);
+	}
 
 	// Bold body font
 	{
@@ -226,6 +233,7 @@ void WindowManager::SetupLVGLStyles()
 		lv_style_t* style = CreateStyle();
 		lv_style_init(style);
 		lv_style_set_radius(style, 0);
+		lv_style_set_shadow_opa(style, LV_OPA_TRANSP);
 		lv_style_set_shadow_width(style, 0);
 		lv_style_set_border_width(style, 0);
 		lv_style_set_bg_opa(style, LV_OPA_TRANSP);
@@ -323,14 +331,6 @@ void WindowManager::SetupLVGLStyles()
 		lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::ControlBackgroundColour));
 		ThemeManager::AddStyle(StyleAttribute::Bar, style);
 	}
-/*	{
-		lv_style_t* style = CreateStyle();
-		lv_style_init(style);
-		lv_style_set_radius(style, 0);
-		lv_style_set_border_width(style, 0);
-		lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::ControlHighlightColour));
-		ThemeManager::AddStyle(StyleAttribute::BarIndicator, style);
-	}*/
 	{
 		lv_style_t* style = CreateStyle();
 		lv_style_init(style);
@@ -367,7 +367,7 @@ void WindowManager::SetupLVGLStyles()
 
 	// Wallpaper
 	fs.SetCurrentDirectory(":BOOT/System/Wallpaper");
-	auto img = LoadPNG(fs.GetCurrentDirectory()+"Daric Wallpaper.png", ScreenResX, ScreenResY);
+	auto img = LoadPNG(fs.GetCurrentDirectory()+"Daric Wallpaper.png", 1920, 1080);
 	static lv_style_t style_background;
 	lv_style_init(&style_background);
 	lv_style_set_bg_img_src(&style_background, img);

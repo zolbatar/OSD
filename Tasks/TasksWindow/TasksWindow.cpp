@@ -17,7 +17,6 @@ TasksWindow::TasksWindow(int x, int y, int w, int h)
 
 TasksWindow::~TasksWindow()
 {
-	CLogger::Get()->Write("Tasks Window", LogDebug, "Delete");
 }
 
 void TasksWindow::Run()
@@ -43,7 +42,7 @@ void TasksWindow::Run()
 	// Do stuff
 	while (1) {
 		UpdateGUI();
-		Sleep(1000);
+		Sleep(100);
 	}
 }
 
@@ -235,4 +234,11 @@ void TasksWindow::UpdateGUI()
 
 		i++;
 	}
+}
+
+void TasksWindow::Maximise()
+{
+	maximise_requested = false;
+	auto ww = (Window*)this->GetWindow();
+	ww->Maximise();
 }

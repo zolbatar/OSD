@@ -1,9 +1,6 @@
 #include "Tokeniser.h"
-
-#ifndef CLION
 #include <circle/timer.h>
-extern CTimer *timer;
-#endif
+extern CTimer* timer;
 
 void Tokeniser::PrintTokens(std::list<Token>* tokens, int depth, std::list<std::string>* output)
 {
@@ -281,7 +278,6 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 				sprintf(m, "%c", (char)token->type);
 			}
 			else {
-#ifdef CLION
 				auto kw = keyword_lookup.find(token->type);
 				if (kw!=keyword_lookup.end()) {
 					sprintf(m, "%s", kw->second.name.c_str());
@@ -289,9 +285,6 @@ void Tokeniser::PrintToken(Token* token, int depth, std::list<std::string>* outp
 				else {
 					sprintf(m, "Unknown: %d", (int)token->type);
 				}
-#else
-				assert(0);
-#endif
 			}
 			break;
 	}

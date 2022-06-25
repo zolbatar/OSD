@@ -8,15 +8,7 @@ void NativeCompiler::Disassemble(std::list<std::string>* disass)
 	csh handle;
 	cs_insn* insn;
 	size_t count;
-#ifndef CLION
 	cs_err err = cs_open(CS_ARCH_ARM64, CS_MODE_ARM, &handle);
-#else
-#ifdef __x86_64__
-	cs_err err = cs_open(CS_ARCH_X86, CS_MODE_64, &handle);
-#else
-	cs_err err = cs_open(CS_ARCH_ARM64, CS_MODE_ARM, &handle);
-#endif
-#endif
 	if (err!=CS_ERR_OK) {
 		printf("Error: %d\n", err);
 		return;

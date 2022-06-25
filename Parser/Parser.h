@@ -21,6 +21,7 @@ public:
 	{
 		return &final_tokens;
 	}
+	static void *GetAddressForFunc(TokenType tt);
 
 private:
 	bool optimise;
@@ -53,7 +54,7 @@ private:
 
 	void ParseStatement(Token* t, std::list<Token*>* tokens_out);
 	void ParseExpression(bool assignment, bool subexpression, std::list<Token*>* stack);
-	void ParserStatementGeneric(Token* t, std::list<Token*>* tokens_out, fp* parameters, void* func, bool expression);
+	void ParserStatementGeneric(Token* t, std::list<Token*>* tokens_out, fp* parameters, bool expression);
 
 	void ParserAssignment(Token* t, std::list<Token*>* tokens_out, bool local_override);
 	void Parser_CASE(Token* t, std::list<Token*>* tokens_out);

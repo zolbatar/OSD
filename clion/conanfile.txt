@@ -1,8 +1,0 @@
-[requires]
-sdl/2.0.18@
-opengl/system@
-
-[generators]
-cmake
-
-[imports]

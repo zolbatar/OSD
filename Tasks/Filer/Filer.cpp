@@ -1,8 +1,10 @@
+#include <circle/logger.h>
 #include "Filer.h"
 #include "../FileManager/FileManager.h"
 #include "../FontManager/FontManager.h"
 #include "../../GUI/Window/LVGLWindow.h"
 #include "../Library/StringLib.h"
+#include "../Editor/Editor.h"
 
 int Filer::cx = 128;
 int Filer::cy = 128;
@@ -19,7 +21,7 @@ Filer::Filer(std::string volume, std::string directory)
 	cx += 100;
 	cy += 100;
 	this->d_w = 512;
-	this->d_h = 224;
+	this->d_h = 256;
 	this->type = TaskType::Filer;
 	if (cx>960) {
 		cx = 128;
@@ -29,7 +31,6 @@ Filer::Filer(std::string volume, std::string directory)
 
 Filer::~Filer()
 {
-//	lv_obj_del(filer_cont);
 }
 
 void Filer::Run()
@@ -54,10 +55,24 @@ void Filer::Run()
 	m.fixed = true;
 	CallGUIDirectEx(&mess);
 
-	// Now build content
+	BuildContent();
+}
+
+void Filer::BuildContent()
+{
+	switch (view) {
+		case FilerView::Icons:
+			BuildIcons();
+			break;
+	}
+}
+
+void Filer::BuildIcons()
+{
 	auto w = ((Window*)
 			this->GetWindow())->GetLVGLWindow();
 	auto content = lv_mywin_get_content(w);
+	lv_obj_clean(content);
 
 	auto style_grid = ThemeManager::GetStyle(StyleAttribute::Grid);
 
@@ -73,8 +88,8 @@ void Filer::Run()
 	lv_obj_add_event_cb(content, WindowPressEventHandler, LV_EVENT_LONG_PRESSED, this);
 
 	// Keys
-//	lv_obj_add_event_cb(lv_scr_act(), KeyPressEventHandler, LV_EVENT_KEY, this);
-	lv_obj_add_event_cb(w, KeyPressEventHandler, LV_EVENT_KEY, this);
+	lv_obj_add_event_cb(lv_scr_act(), KeyPressEventHandler, LV_EVENT_KEY, this);
+//	lv_obj_add_event_cb(w, KeyPressEventHandler, LV_EVENT_KEY, this);
 //	lv_obj_add_event_cb(content, KeyPressEventHandler, LV_EVENT_KEY, this);
 //	lv_obj_add_event_cb(filer_cont, KeyPressEventHandler, LV_EVENT_KEY, this);
 
@@ -182,11 +197,6 @@ void Filer::AddIcon(std::string name, bool is_directory)
 
 	// Add to list for later
 	items.push_back(device_cont);
-
-	// Any already selected?
-	if (selected==NULL) {
-		selected = device_cont;
-	}
 }
 
 void Filer::IconClickEventHandler(lv_event_t* e)
@@ -197,7 +207,7 @@ void Filer::IconClickEventHandler(lv_event_t* e)
 		task->Start();
 	}
 	else {
-		auto app = NEW DARICWindow(icon_clicked->name, false, cx, cy, 256, 256, 640, 512);
+		auto app = new DARICWindow(icon_clicked->name, false, cx, cy, 256, 256, 640, 512);
 		app->LoadSourceCode(icon_clicked->volume+"/"+icon_clicked->current_directory, icon_clicked->name);
 		app->Start();
 		cx += 100;
@@ -239,7 +249,6 @@ void Filer::IconPressEventHandler(lv_event_t* e)
 			MenuItem mi;
 			mi.type = MenuItemType::Item;
 			mi.v = "Info";
-			mi.icon = LV_SYMBOL_FILE;
 			menu.items.push_back(std::move(mi));
 		}
 
@@ -253,13 +262,25 @@ void Filer::IconPressEventHandler(lv_event_t* e)
 			{
 				MenuItem mi;
 				mi.type = MenuItemType::Item;
-				mi.v = "Compile & Run";
+				mi.v = "Edit";
+				mi.cb = &Filer::EditEventHandler;
+				mi.user_data = e->user_data;
 				menu.items.push_back(std::move(mi));
 			}
 			{
 				MenuItem mi;
 				mi.type = MenuItemType::Item;
-				mi.v = "Compile & Run (Debug)";
+				mi.v = "Compile & Run";
+				mi.cb = &Filer::CompileEventHandler;
+				mi.user_data = e->user_data;
+				menu.items.push_back(std::move(mi));
+			}
+			{
+				MenuItem mi;
+				mi.type = MenuItemType::Item;
+				mi.v = "Compile & Debug";
+				mi.cb = &Filer::DebugEventHandler;
+				mi.user_data = e->user_data;
 				menu.items.push_back(std::move(mi));
 			}
 		}
@@ -288,7 +309,6 @@ void Filer::WindowPressEventHandler(lv_event_t* e)
 			mi.type = MenuItemType::Item;
 			mi.v = "Grid view";
 			mi.shortcut = "^G";
-			mi.icon = LV_SYMBOL_LAYOUT;
 			menu.items.push_back(std::move(mi));
 		}
 		{
@@ -335,5 +355,38 @@ void Filer::KeyPressEventHandler(lv_event_t* e)
 		case KEY_Right:
 			break;
 	}
-//	CLogger::Get()->Write("File Manager", LogNotice, "%d %s", key, t->id.c_str());
+	CLogger::Get()->Write("File Manager", LogNotice, "%d %s", key, t->id.c_str());
 }
+
+void Filer::CompileEventHandler(lv_event_t* e)
+{
+	Menu::CloseMenu();
+	auto t = (FileIcon*)e->user_data;
+	CLogger::Get()->Write("File Manager", LogNotice, "Compile");
+	CLogger::Get()->Write("File Manager", LogNotice, "%s", t->name.c_str());
+}
+
+void Filer::DebugEventHandler(lv_event_t* e)
+{
+	Menu::CloseMenu();
+	auto t = (FileIcon*)e->user_data;
+	CLogger::Get()->Write("File Manager", LogNotice, "Debug");
+	CLogger::Get()->Write("File Manager", LogNotice, "%s", t->name.c_str());
+}
+
+void Filer::EditEventHandler(lv_event_t* e)
+{
+	Menu::CloseMenu();
+	auto t = (FileIcon*)e->user_data;
+	auto editor = new Editor(50, 50, 500, 500);
+	editor->LoadSourceCode(t->volume, t->current_directory, t->name);
+	editor->Start();
+}
+
+void Filer::Maximise()
+{
+	maximise_requested = false;
+	auto ww = (Window*)this->GetWindow();
+	ww->Maximise();
+}
+

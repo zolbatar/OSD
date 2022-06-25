@@ -60,15 +60,15 @@ void Menu::OpenMenu(int x, int y, OSDTask* task, std::string title, MenuDefiniti
 	for (auto& mi : menu.items) {
 		switch (mi.type) {
 			case MenuItemType::SubMenu: {
-				auto btn = lv_mylist_add_btn(cont_list, mi.icon, mi.v.c_str(), true, mi.shortcut);
+				auto btn = lv_mylist_add_btn(cont_list, mi.v.c_str(), true, mi.shortcut);
 				lv_obj_add_style(btn, ThemeManager::GetStyle(StyleAttribute::MenuItem), LV_STATE_DEFAULT);
 				lv_obj_add_event_cb(btn, NULL, LV_EVENT_CLICKED, NULL);
 				break;
 			}
 			case MenuItemType::Item: {
-				auto btn = lv_mylist_add_btn(cont_list, mi.icon, mi.v.c_str(), false, mi.shortcut);
+				auto btn = lv_mylist_add_btn(cont_list, mi.v.c_str(), false, mi.shortcut);
 				lv_obj_add_style(btn, ThemeManager::GetStyle(StyleAttribute::MenuItem), LV_STATE_DEFAULT);
-				lv_obj_add_event_cb(btn, NULL, LV_EVENT_CLICKED, NULL);
+				lv_obj_add_event_cb(btn, mi.cb, LV_EVENT_CLICKED, mi.user_data);
 				break;
 			}
 			case MenuItemType::Separator: {
@@ -92,25 +92,19 @@ void Menu::OpenMenu(int x, int y, OSDTask* task, std::string title, MenuDefiniti
 	Menu::menu = menu;
 }
 
-lv_obj_t* lv_mylist_add_btn(lv_obj_t* list, const char* icon, const char* txt, bool arrow, std::string shortcut)
+lv_obj_t* lv_mylist_add_btn(lv_obj_t* list, const char* txt, bool arrow, std::string shortcut)
 {
 	lv_obj_t* obj = lv_obj_class_create_obj(&lv_list_btn_class, list);
 	lv_obj_class_init_obj(obj);
-	lv_obj_set_size(obj, LV_PCT(100), LV_SIZE_CONTENT);
+	lv_obj_set_size(obj, LV_PCT(100), ThemeManager::GetConst(ConstAttribute::HeaderFontSize));
 	lv_obj_set_flex_flow(obj, LV_FLEX_FLOW_ROW);
-	lv_obj_t* img = lv_img_create(obj);
-	if (icon) {
-		lv_img_set_src(img, icon);
-	}
-	lv_obj_set_size(img, 16, 16);
-	lv_obj_add_style(img, ThemeManager::GetStyle(StyleAttribute::FontSymbol), LV_STATE_DEFAULT);
 	if (txt) {
 		lv_obj_t* label = lv_label_create(obj);
 		lv_label_set_text(label, txt);
 		lv_label_set_long_mode(label, LV_LABEL_LONG_DOT);
 		lv_obj_set_flex_grow(label, 1);
 	}
-	if (icon) {
+	if (arrow) {
 		lv_obj_t* img = lv_img_create(obj);
 		lv_img_set_src(img, LV_SYMBOL_MENURIGHT);
 		lv_obj_set_size(img, 16, 16);
@@ -125,6 +119,11 @@ lv_obj_t* lv_mylist_add_btn(lv_obj_t* list, const char* icon, const char* txt, b
 	}
 
 	return obj;
+}
+
+void Menu::CloseMenu() {
+	lv_obj_del(block);
+	lv_obj_del(menu.obj);
 }
 
 void Menu::ClickAwayEventHandler(lv_event_t* e)

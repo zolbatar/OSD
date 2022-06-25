@@ -58,14 +58,14 @@ private:
 	static lv_indev_t* keyboard;
 	lv_obj_t* mouse_cursor;
 
-	CScreenDevice* m_pScreen;
-	CBcmFrameBuffer* m_pFrameBuffer;
-	CDMAChannel m_DMAChannel;
 	unsigned m_nLastUpdate = 0;
 	CMouseDevice* volatile m_pMouseDevice;
 	CUSBKeyboardDevice* volatile m_pKeyboardDevice;
 	lv_color_t* m_pBuffer1;
 	lv_color_t* m_pBuffer2;
+	CScreenDevice* m_pScreen;
+	CBcmFrameBuffer* m_pFrameBuffer;
+	CDMAChannel m_DMAChannel;
 	lv_indev_data_t m_PointerData;
 	static GuiCLVGL* s_pThis;
 	static std::queue<uint32_t> keys;

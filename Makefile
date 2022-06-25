@@ -7,8 +7,8 @@ NEWLIBDIR = ../circle-stdlib/install/$(NEWLIB_ARCH)
 
 OBJS    = 	main.o kernel.o \
 			Chrono/Chrono.o \
-			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o \
-			Input/Input.o \
+			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o OS/OS_Tasks_Compile.o \
+			Tasks/InputManager/InputManager.o \
 			GUI/Window/Window.o GUI/Window/LVGLWindow.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
 			Tasks/WindowManager/WindowManager.o Tasks/WindowManager/Style.o Tasks/IconBar/IconBar.o \
 			Tasks/DARICWindow.o Tasks/TasksWindow/TasksWindow.o Tasks/Filer/Filer.o \

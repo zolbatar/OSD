@@ -58,6 +58,7 @@ void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive
 	auto d = &drives.back();
 
 	auto style_iconbar_inner = ThemeManager::GetStyle(StyleAttribute::IconBarInner);
+	auto style_focussed = ThemeManager::GetStyle(StyleAttribute::Focussed);
 	auto style_iconbar_button = ThemeManager::GetStyle(StyleAttribute::IconBarButton);
 
 	lv_obj_t* device_cont = lv_obj_create(icon_bar_left);
@@ -66,6 +67,7 @@ void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive
 	lv_obj_set_flex_align(device_cont, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 	lv_obj_set_flex_flow(device_cont, LV_FLEX_FLOW_COLUMN);
 	lv_obj_add_style(device_cont, style_iconbar_inner, LV_STATE_DEFAULT);
+	lv_obj_add_style(device_cont, style_focussed, LV_STATE_FOCUSED);
 
 	lv_obj_t* btn = lv_btn_create(device_cont);
 	lv_obj_center(btn);
@@ -75,6 +77,9 @@ void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive
 	lv_obj_center(img);
 	lv_img_set_src(img, WindowManager::GetIcon(name));
 	lv_obj_add_style(btn, style_iconbar_button, LV_STATE_DEFAULT);
+//	lv_obj_add_style(img, style_iconbar_button, LV_STATE_DEFAULT);
+	lv_obj_add_style(btn, style_focussed, LV_STATE_FOCUSED);
+//	lv_obj_add_style(img, style_focussed, LV_STATE_FOCUSED);
 
 	auto nam = lv_label_create(device_cont);
 	lv_obj_center(nam);
@@ -123,7 +128,7 @@ void IconBar::AppClickEventHandler(lv_event_t* e)
 {
 	auto app_clicked = (App*)e->user_data;
 	if (app_clicked->name=="OS/D") {
-		auto tasks = NEW TasksWindow(1100, 600, 768, 256);
+		auto tasks = new TasksWindow(1100, 600, 768, 256);
 		tasks->Start();
 	}
 }

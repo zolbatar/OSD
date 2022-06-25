@@ -1,8 +1,6 @@
 #include "FileManager.h"
 #include "../Library/StringLib.h"
-#ifndef CLION
 #include <circle/logger.h>
-#endif
 
 std::map<std::string, FSVolume> FileManager::volumes;
 FileSystemHandler *FileManager::fsFAT;
@@ -23,8 +21,8 @@ void FileManager::Run()
 	CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":BOOT");
 
 	FSVolume sd;
-	sd.prefix = "/";
-	volumes.insert(std::make_pair(":SD", std::move(sd)));
+	sd.prefix = "/osd/home/";
+	volumes.insert(std::make_pair(":HOME", std::move(sd)));
 	CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":SD");
 
 	fs.SetVolume(":BOOT");

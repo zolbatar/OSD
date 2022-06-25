@@ -1,7 +1,5 @@
 #include "Window.h"
-#ifndef CLION
 #include <circle/logger.h>
-#endif
 #include "LVGLWindow.h"
 
 std::map<std::string, Window*> Window::windows;
@@ -37,10 +35,15 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 
 	auto furniture_width = ThemeManager::GetConst(ConstAttribute::WindowFurnitureWidth);
 	auto style = ThemeManager::GetStyle(StyleAttribute::WindowButton);
+
 	auto btn_min = lv_mywin_add_btn(win, LV_SYMBOL_MINIMISE, furniture_width);
+	lv_obj_add_event_cb(btn_min, MinimiseClicked, LV_EVENT_CLICKED, this);
 	lv_obj_add_style(btn_min, style, LV_STATE_DEFAULT);
+
 	auto btn_max = lv_mywin_add_btn(win, LV_SYMBOL_MAXIMISE, furniture_width);
+	lv_obj_add_event_cb(btn_max, MaximiseClicked, LV_EVENT_CLICKED, this);
 	lv_obj_add_style(btn_max, style, LV_STATE_DEFAULT);
+
 	auto btn_close = lv_mywin_add_btn(win, LV_SYMBOL_MY_CLOSE, furniture_width);
 	lv_obj_add_event_cb(btn_close, CloseClicked, LV_EVENT_CLICKED, this);
 	lv_obj_add_style(btn_close, style, LV_STATE_DEFAULT);
@@ -49,8 +52,6 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 		canvas = new Canvas(task, content, canvas_w, canvas_h);
 	}
 
-	group = lv_group_create();
-	lv_group_add_obj(group, win);
 	SetActive();
 }
 
@@ -58,7 +59,6 @@ Window::~Window()
 {
 	if (canvas!=NULL)
 		delete canvas;
-	lv_group_del(group);
 	lv_obj_del(win);
 }
 
@@ -72,10 +72,6 @@ void Window::SetActive()
 	lv_obj_add_style(header, ThemeManager::GetStyle(StyleAttribute::WindowActive), 0);
 	lv_obj_move_foreground(this->GetLVGLWindow());
 	this->active = true;
-
-	// Focus
-	GuiCLVGL::SetKeyboardGroup(group);
-	lv_group_focus_obj(win);
 }
 
 void Window::SetInactive()
@@ -89,6 +85,22 @@ void Window::CloseClicked(_lv_event_t* e)
 {
 	auto w = (Window*)e->user_data;
 	w->task->RequestTerminate();
+}
+
+void Window::MinimiseClicked(_lv_event_t* e)
+{
+	lv_obj_t* obj = lv_event_get_target(e);
+	auto win = (Window*)e->user_data;
+	auto task = win->GetTask();
+	task->RequestMinimise();
+}
+
+void Window::MaximiseClicked(_lv_event_t* e)
+{
+	lv_obj_t* obj = lv_event_get_target(e);
+	auto win = (Window*)e->user_data;
+	auto task = win->GetTask();
+	task->RequestMaximise();
 }
 
 void Window::ClickEventHandler(lv_event_t* e)
@@ -132,3 +144,35 @@ void Window::DragEventHandler(lv_event_t* e)
 
 	lv_obj_set_pos(win, x, y);
 }
+
+void Window::Maximise()
+{
+	if (!maximised) {
+		maximised = true;
+
+		// Save position to restore
+		x1 = lv_obj_get_x(win);
+		y1 = lv_obj_get_y(win);
+		width = lv_obj_get_width(win);
+		height = lv_obj_get_height(win);
+		x2 = x1+width;
+		y2 = y1+height;
+
+		// Maximise
+		lv_obj_set_pos(win, 0, 0);
+		auto w = lv_obj_get_width(lv_scr_act());
+		auto h = lv_obj_get_height(lv_scr_act());
+		lv_obj_set_width(win, w);
+		lv_obj_set_height(win, h);
+	}
+	else {
+		maximised = false;
+
+		// Restore
+		lv_obj_set_pos(win, x1, y1);
+		lv_obj_set_width(win, width);
+		lv_obj_set_height(win, height);
+	}
+}
+
+

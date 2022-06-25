@@ -1,8 +1,6 @@
 #include "Canvas.h"
-#ifndef CLION
 #include <circle/logger.h>
 #include <circle/multicore.h>
-#endif
 #include "../../Tasks/FontManager/FontManager.h"
 #include "../../Tasks/WindowManager/Style.h"
 
@@ -28,15 +26,14 @@ Canvas::Canvas(OSDTask* task, lv_obj_t* parent, int w, int h)
 		h = lv_obj_get_height(firstbuffer);
 	}
 	else {
-		lv_obj_set_width(firstbuffer, w);
-		lv_obj_set_height(firstbuffer, h);
+		lv_obj_set_size(firstbuffer, w, h);
 		this->w = w;
 		this->h = h;
 	}
 
 	// Allocate memory
 	sz = (lv_img_cf_get_px_size(cf)*w)*h/8;
-	buffer = NEW uint8_t[sz];
+	buffer = new uint8_t[sz];
 	task->AddFrameBufferMemory(sz);
 
 //	CLogger::Get()->Write("Window Manager", LogPanic, "%d %d", w, h);
@@ -49,9 +46,9 @@ Canvas::Canvas(OSDTask* task, lv_obj_t* parent, int w, int h)
 
 Canvas::~Canvas()
 {
-	DELETE buffer;
+	delete buffer;
 	if (buffer_back!=nullptr) {
-		DELETE buffer_back;
+		delete buffer_back;
 	}
 	if (left_id!=0)
 		lv_draw_mask_free_param(&left_id);
@@ -77,10 +74,58 @@ void Canvas::Render()
 {
 }
 
+void Canvas::Mode(int64_t w, int64_t h)
+{
+	this->w = w;
+	this->h = h;
+
+	// Clear old
+	lv_obj_clean(parent);
+
+	// Delete old buffer
+	delete buffer;
+	bool double_buffer = buffer_back!=nullptr;
+	task->RemoveFrameBufferMemory(sz);
+	if (double_buffer) {
+		task->RemoveFrameBufferMemory(sz);
+		delete buffer_back;
+	}
+
+	// Size
+	firstbuffer = lv_canvas_create(parent);
+	lv_obj_set_size(firstbuffer, w, h);
+
+	// Allocate memory
+	sz = (lv_img_cf_get_px_size(cf)*w)*h/8;
+	buffer = new uint8_t[sz];
+	lv_canvas_set_buffer(firstbuffer, buffer, w, h, cf);
+	task->AddFrameBufferMemory(sz);
+
+	// Clear
+	lv_canvas_fill_bg(firstbuffer, bg, LV_OPA_COVER);
+	lv_obj_clear_flag(firstbuffer, LV_OBJ_FLAG_HIDDEN);
+
+	if (double_buffer) {
+		secondbuffer = lv_canvas_create(parent);
+		lv_obj_set_size(secondbuffer, w, h);
+
+		// Allocate memory
+		sz = (lv_img_cf_get_px_size(cf)*w)*h/8;
+		buffer_back = new uint8_t[sz];
+		task->AddFrameBufferMemory(sz);
+
+		// Clear
+		lv_canvas_set_buffer(secondbuffer, buffer_back, w, h, cf);
+		lv_canvas_fill_bg(secondbuffer, bg, LV_OPA_COVER);
+		lv_obj_add_flag(secondbuffer, LV_OBJ_FLAG_HIDDEN);
+	}
+	which_buffer = false;
+}
+
 void Canvas::EnableDoubleBuffering()
 {
 	double_buffered = true;
-	buffer_back = NEW uint8_t[sz];
+	buffer_back = new uint8_t[sz];
 	task->AddFrameBufferMemory(sz);
 
 	// Second buffer

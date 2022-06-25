@@ -17,11 +17,7 @@
  *	Paulo Cesar Pereira de Andrade
  */
 
-#ifndef CLION
 #include <circle/sysconfig.h>
-#else
-//#include <sysconfig.h>
-#endif
 
 #define jit_arg_reg_p(i) ((i) >= 0 && (i) < 8)
 #define jit_arg_f_reg_p(i) ((i) >= 0 && (i) < 8)
@@ -1525,11 +1521,7 @@ void jit_flush(void *fptr, void *tptr)
 #if defined(__GNUC__)
     jit_word_t f, t, s;
 
-#ifdef CLION
-    s = sysconf(_SC_PAGE_SIZE);
-#else
-    s = PAGE_SIZE;
-#endif
+	s = PAGE_SIZE;
     f = (jit_word_t)fptr & -s;
     t = (((jit_word_t)tptr) + s - 1) & -s;
     __clear_cache((void *)f, (void *)t);

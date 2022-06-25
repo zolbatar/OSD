@@ -1,9 +1,5 @@
 #include "OS.h"
-
-#ifndef CLION
 #include <circle/logger.h>
-#else
-#endif
 
 extern size_t kernel_size;
 extern size_t initial_mem_free;
@@ -23,12 +19,10 @@ void TaskAddAllocation(size_t size, void* m)
 {
 	if (kernel_size==0)return;
 	auto task = GetCurrentTask();
-#ifndef CLION
 	if (task==OSDTask::boot_task) {
 		pre_boot_memory += size;
 		return;
 	}
-#endif
 	task->AddAllocation(size, m);
 }
 
@@ -51,7 +45,6 @@ void TaskFreeAllocation(void* m)
 
 void CalculateMem(MemorySummary* m)
 {
-#ifndef CLION
 	auto mem = CMemorySystem::Get();
 	m->total_memory = (mem->GetMemSize()-kernel_size);
 	m->free_memory = mem->GetHeapFreeSpace(HEAP_ANY);
@@ -61,20 +54,12 @@ void CalculateMem(MemorySummary* m)
 	}
 	m->used = initial_mem_free-mem->GetHeapFreeSpace(HEAP_ANY);
 	m->lost = m->used-m->total_task;
-#else
-	m->total_memory = 1;
-	m->free_memory = 1;
-	m->total_task = 1;
-	m->used = 1;
-	m->lost = 1;
-#endif
 }
 
 void DumpMemory()
 {
 	MemorySummary m;
 	CalculateMem(&m);
-#ifndef CLION
 	CLogger::Get()->Write("Memory", LogDebug, "Total memory: %d", m.total_memory);
 	CLogger::Get()->Write("Memory", LogDebug, "Free memory: %d", m.free_memory);
 	CLogger::Get()->Write("Memory", LogDebug, "Kernel size: %d", kernel_size);
@@ -83,8 +68,5 @@ void DumpMemory()
 	CLogger::Get()->Write("Memory", LogDebug, "Lost memory: %d", m.lost);
 	CLogger::Get()->Write("Memory", LogDebug, "Pre-boot memory: %d", pre_boot_memory);
 	CLogger::Get()->Write("Memory", LogDebug, "---");
-	for (auto &task: OSDTask::tasks_list) {
-	}
-#endif
 }
 

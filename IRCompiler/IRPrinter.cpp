@@ -1,10 +1,7 @@
 #include "IRCompiler.h"
 #include <cstring>
-
-#ifndef CLION
 #include <circle/timer.h>
 extern CTimer *timer;
-#endif
 
 void IRCompiler::IRPrinter(std::list<std::string>* irl)
 {
@@ -484,7 +481,7 @@ void IRCompiler::IRPrinterSection(std::list<std::string>* irl, std::list<IRInstr
 				break;
 			case IROpcodes::CallFunc:
 				// Can we look it up?
-				sprintf(l, "[Func    ] Call function: (%p/'%s')", instruction.func, instruction.sv.c_str());
+				sprintf(l, "[Func    ] Call function: ('%s')", instruction.sv.c_str());
 				break;
 
 				// DATA

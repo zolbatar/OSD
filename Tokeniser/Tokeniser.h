@@ -124,9 +124,7 @@ private:
 	Leaf* keyword_tree = &root;
 
 	static Leaf root;
-#ifdef CLION
 	static std::map<TokenType, TokenDef> keyword_lookup;
-#endif
 	static std::map<std::string, TokenType> symbols;
 	static std::list<TokenDef> tokendefs;
 };

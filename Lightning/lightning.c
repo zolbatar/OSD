@@ -125,12 +125,10 @@ static void _patch_registers(jit_state_t *_jit);
 #define patch_register(n, l, r, p) _patch_register(_jit, n, l, r, p)
 static void _patch_register(jit_state_t *jit, jit_node_t *node, jit_node_t *link, jit_int32_t regno, jit_int32_t patch);
 
-#ifndef CLION
 void abort()
 {
     // TODO
 }
-#endif
 
 /*
  * Initialization

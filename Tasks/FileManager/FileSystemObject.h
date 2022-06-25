@@ -1,7 +1,5 @@
 #pragma once
-#ifndef CLION
 #include <fatfs/ff.h>
-#endif
 #include <memory>
 
 enum class FileSystemType {

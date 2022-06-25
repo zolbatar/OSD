@@ -9,7 +9,3 @@
 clion/CMakeCache.txt
 .DS_Store
 *.ttf
-clion/ir.txt
-clion/native.txt
-clion/tokeniser.txt
-clion/tokens.txt

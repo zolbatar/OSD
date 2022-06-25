@@ -1,22 +1,13 @@
 #pragma once
-#ifndef CLION
 #include <circle/sched/scheduler.h>
 #include <circle/sched/task.h>
 #include <circle/sysconfig.h>
 #include <circle/new.h>
 #include <circle/alloc.h>
 #include <circle/timer.h>
-#include <circle/timer.h>
+#include <circle/logger.h>
 #include <circle/spinlock.h>
 #include <circle/sched/mutex.h>
-#define NEW new(HEAP_ANY)
-#else
-#include <mutex>
-#include <thread>
-#define NEW new
-#endif
-#define DELETE delete
-
 #include <string>
 #include <array>
 #include <vector>
@@ -70,35 +61,12 @@ struct DirectMessage {
 	void* data;
 };
 
-#ifndef CLION
 class OSDTask : public CTask {
-#else
-
-class OSDTask {
-#endif
 public:
 	OSDTask();
 	~OSDTask();
-
 	size_t CalculateMemoryUsed();
-
 	void SetNameAndAddToList();
-
-#ifdef CLION
-
-	virtual void Run();
-
-	void SetName(std::string name)
-	{
-	}
-
-	void Start()
-	{
-		Run();
-	}
-
-#endif
-
 	std::string LoadSource(std::string directory, std::string filename);
 	bool CompileSource(std::string filename, std::string code);
 	void RunCode();
@@ -147,19 +115,16 @@ public:
 	bool IsExclusive() { return exclusive; }
 	void TerminateTask();
 	void RequestTerminate();
+	void RequestMaximise();
+	void RequestMinimise();
 	size_t GetStringCount() { return permanent_strings.size(); }
 	size_t GetStringCountTemporary() { return strings.size(); }
 	size_t GetAllocCount();
 
-#ifdef CLION
-	static std::map<std::string, OSDTask*> tasks;
-	static std::map<std::thread::id, OSDTask*> task_threads;
-#endif
 	static std::list<OSDTask*> tasks_list;
-#ifndef CLION
-	static CTask *boot_task;
-	static OSDTask *current_task;
-#endif
+	static CTask* boot_task;
+	static OSDTask* current_task;
+	static OSDTask* focus_task;
 	TaskType type = TaskType::Other;
 
 	void SetID(std::string id)
@@ -171,12 +136,15 @@ public:
 	{
 		framebuffer_memory += t;
 	}
+	void RemoveFrameBufferMemory(size_t t)
+	{
+		framebuffer_memory -= t;
+	}
 
 	size_t GetFrameBufferMemory()
 	{
 		return framebuffer_memory;
 	}
-	virtual void UpdateGUI();
 	static bool yield_due;
 	static OSDTask* GetOverride();
 	static void SetOverride(OSDTask* task);
@@ -195,7 +163,11 @@ protected:
 	std::string name;
 	TaskPriority priority = TaskPriority::High;
 	bool terminate_requested = false;
+	bool minimise_requested = false;
+	bool maximise_requested = false;
 	static OSDTask* task_override;
+	virtual void Maximise();
+	virtual void Minimise();
 private:
 	void* w = NULL;
 	int64_t idx;

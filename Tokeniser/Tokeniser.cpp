@@ -4,9 +4,7 @@
 #include "../Exception/DARICException.h"
 
 Leaf Tokeniser::root;
-#ifdef CLION
 std::map<TokenType, TokenDef> Tokeniser::keyword_lookup;
-#endif
 std::map<std::string, TokenType> Tokeniser::symbols;
 
 void Tokeniser::Init()
@@ -50,14 +48,12 @@ void Tokeniser::Init()
 	symbols.insert(std::make_pair(">>=", TokenType::SHIFT_RIGHT_EQUAL));
 
 	// Add symbols to reverse lookup
-#ifdef CLION
 	for (auto& s: symbols) {
 		TokenDef def;
 		def.type = s.second;
 		def.name = s.first;
 		keyword_lookup.insert(std::make_pair(def.type, def));
 	}
-#endif
 
 	// Standard
 	AddKeyword(TokenDef{ "CASE", TokenType::CASE });
@@ -165,8 +161,8 @@ void Tokeniser::Init()
 	AddKeyword(TokenDef{ "COLOURBG", TokenType::COLOURBG });
 	AddKeyword(TokenDef{ "FLIP", TokenType::FLIP });
 	AddKeyword(TokenDef{ "FONT", TokenType::SETFONT });
-//	AddKeyword(TokenDef{ "GRAPHICS", TokenType::GRAPHICS });
 	AddKeyword(TokenDef{ "LINE", TokenType::LINE });
+	AddKeyword(TokenDef{ "MODE", TokenType::MODE });
 	AddKeyword(TokenDef{ "PLOT", TokenType::PLOT });
 	AddKeyword(TokenDef{ "RECTANGLE", TokenType::RECTANGLE });
 	AddKeyword(TokenDef{ "RECTANGLEFILLED", TokenType::RECTANGLEFILLED });
@@ -224,9 +220,7 @@ void Tokeniser::AddKeyword(TokenDef def)
 
 	// Add to end
 	start->token = def;
-#ifdef CLION
 	keyword_lookup.insert(std::make_pair(def.type, std::move(def)));
-#endif
 }
 
 void Tokeniser::Parse()

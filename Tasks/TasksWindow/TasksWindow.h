@@ -11,5 +11,5 @@ public:
 private:
 	const int HISTORY_SIZE = 64;
 	std::list<size_t> used_history;
-
+	void Maximise();
 };

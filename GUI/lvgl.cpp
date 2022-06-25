@@ -27,6 +27,7 @@
 #include <circle/new.h>
 #include <string>
 #include "KeyboardCodes.h"
+#include "../Tasks/InputManager/InputManager.h"
 
 GuiCLVGL* GuiCLVGL::s_pThis = 0;
 std::queue<uint32_t> GuiCLVGL::keys;
@@ -82,6 +83,7 @@ bool GuiCLVGL::Initialize(void)
 	assert(m_pFrameBuffer->GetDepth()==LV_COLOR_DEPTH);
 	size_t nWidth = m_pFrameBuffer->GetWidth();
 	size_t nHeight = m_pFrameBuffer->GetHeight();
+	CLogger::Get()->Write("lvgl", LogNotice, "Resolution: %dx%d", nWidth, nHeight);
 
 	lv_init();
 
@@ -135,9 +137,9 @@ bool GuiCLVGL::Initialize(void)
 	keyboard = lv_indev_drv_register(&indev_drvk);
 
 	// Keyboard group
-	static lv_group_t* g = lv_group_create();
-	lv_group_set_default(g);
-	lv_indev_set_group(keyboard, g);
+	//	static lv_group_t* g = lv_group_create();
+//	lv_group_set_default(g);
+//	lv_indev_set_group(keyboard, g);
 
 	return true;
 }
@@ -230,6 +232,7 @@ void GuiCLVGL::KeyboardRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData)
 
 	if (last_key!=0) {
 		// Do release
+		InputManager::KeyUp(last_key);
 		pData->key = last_key;
 		pData->state = LV_INDEV_STATE_RELEASED;
 		last_key = 0;
@@ -239,6 +242,29 @@ void GuiCLVGL::KeyboardRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData)
 		auto t = keys.front();
 		keys.pop();
 
+		if (t==KEY_Left) {
+			t = LV_KEY_LEFT;
+		}
+		else if (t==KEY_Right) {
+			t = LV_KEY_RIGHT;
+		}
+		else if (t==KEY_Up) {
+			t = LV_KEY_UP;
+		}
+		else if (t==KEY_Down) {
+			t = LV_KEY_DOWN;
+		}
+		else if (t==13) {
+			t = LV_KEY_ENTER;
+		}
+		else if (t==KEY_ShiftTab) {
+			t = LV_KEY_PREV;
+		}
+		else if (t==KEY_Tab) {
+			t = LV_KEY_NEXT;
+		}
+
+		InputManager::KeyDown(t);
 		pData->key = t;
 		pData->state = LV_INDEV_STATE_PRESSED;
 		last_key = t;
@@ -280,7 +306,9 @@ void GuiCLVGL::KeyboardEventHandler(const char* pString)
 	switch (icc) {
 		case 27: { // Escape
 			std::string s(&pString[1]);
-			if (s=="[2~")
+			if (s=="")
+				keys.push(KEY_Escape);
+			else if (s=="[2~")
 				keys.push(KEY_Insert);
 			else if (s=="[1~")
 				keys.push(KEY_Home);
@@ -321,7 +349,7 @@ void GuiCLVGL::KeyboardEventHandler(const char* pString)
 			else if (s=="[G")
 				keys.push(KEY_Center);
 			else
-				CLogger::Get()->Write("Keyboard", LogNotice, "Escape: %s", s.c_str());
+				CLogger::Get()->Write("Keyboard", LogNotice, "Escape: '%s'", s.c_str());
 			break;
 		}
 		case 127: // backspace
@@ -341,6 +369,20 @@ void GuiCLVGL::KeyboardEventHandlerRaw(unsigned char ucModifiers, const unsigned
 	if (ucModifiers & KEY_LWIN_MASK || ucModifiers & KEY_RWIN_MASK) {
 		keys.push(KEY_WindowsKey);
 	}
+	else if (ucModifiers==0 && RawKeys[0]==43) {
+		keys.push(KEY_Tab);
+	}
+	else if (ucModifiers & KEY_LSHIFT_MASK==KEY_LSHIFT_MASK && RawKeys[0]==43) {
+		keys.push(KEY_ShiftTab);
+	}
+	else if (ucModifiers & KEY_ALT_MASK==KEY_ALT_MASK && RawKeys[0]==43) {
+		keys.push(KEY_AltTab);
+	}
+	if ((int)RawKeys[0]==0)
+		return;
+/*	CLogger::Get()
+			->Write("lvgl", LogDebug, "%d %d/%d/%d/%d/%d/%d", ucModifiers & KEY_ALT_MASK, (int)RawKeys[0], (int)RawKeys[1], (int)RawKeys[2], (int)RawKeys[3],
+					(int)RawKeys[4], (int)RawKeys[5]);*/
 }
 
 void GuiCLVGL::MouseRemovedHandler(CDevice* pDevice, void* pContext)

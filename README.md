@@ -1,5 +1,5 @@
 # OS/D
-OS/D, uses Circle for Pi and Clion (or Xcode?) for desktop dev
+OS/D, uses Circle for Pi
 
 Uses C++ and C.
 

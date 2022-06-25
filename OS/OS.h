@@ -10,8 +10,6 @@
 #include <circle/new.h>
 #include <circle/alloc.h>
 #include "../GUI/KeyboardCodes.h"
-#define NEW new(HEAP_ANY)
-#define DELETE delete
 
 void OS_Init();
 

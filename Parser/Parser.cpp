@@ -1,11 +1,8 @@
 #include "Parser.h"
 #include "../Exception/DARICException.h"
 #include <tuple>
-
-#ifndef CLION
 #include <circle/timer.h>
 extern CTimer *timer;
-#endif
 
 std::map<TokenType, std::list<ComplexType>> Parser::generic_functions;
 std::map<TokenType, void*> Parser::generic_functions_ptr;
@@ -28,6 +25,8 @@ void Parser::TypeError(Token* token)
 void Parser::Init()
 {
 	// 2D
+	generic_functions.insert(std::make_pair(TokenType::MODE, fp{ TypeNone(), TypeInteger(), TypeInteger() }));
+	generic_functions_ptr.insert(std::make_pair(TokenType::MODE, (void*)&call_2D_mode));
 	generic_functions.insert(std::make_pair(TokenType::SCREENWIDTH, fp{ TypeInteger() }));
 	generic_functions_ptr.insert(std::make_pair(TokenType::SCREENWIDTH, (void*)&call_2D_screenwidth));
 	generic_functions.insert(std::make_pair(TokenType::SCREENHEIGHT, fp{ TypeInteger() }));
@@ -187,11 +186,10 @@ void Parser::ParseSequenceOfStatements(Token* t, std::set<TokenType> block_termi
 	PushTokenBack();
 }
 
-void Parser::ParserStatementGeneric(Token* t, std::list<Token*>* tokens_out, fp* parameters, void* func, bool expression)
+void Parser::ParserStatementGeneric(Token* t, std::list<Token*>* tokens_out, fp* parameters, bool expression)
 {
 	// Parentheses are optional
 	auto tt = GetToken();
-	t->func = func;
 	bool optional_parens = true;
 	if (tt->type!=TokenType::LPARENS) {
 		PushTokenBack();
@@ -329,7 +327,7 @@ void Parser::ParseStatement(Token* t, std::list<Token*>* tokens_out)
 			// A generic function?
 			auto f = generic_functions.find(t->type);
 			if (f!=generic_functions.end()) {
-				ParserStatementGeneric(t, tokens_out, &f->second, generic_functions_ptr.find(t->type)->second, false);
+				ParserStatementGeneric(t, tokens_out, &f->second, false);
 				break;
 			}
 
@@ -534,4 +532,8 @@ ComplexType TypeStruct(Type* type)
 	ComplexType t;
 	t.Struct(type);
 	return t;
+}
+
+void *Parser::GetAddressForFunc(TokenType tt) {
+	return generic_functions_ptr.find(tt)->second;
 }

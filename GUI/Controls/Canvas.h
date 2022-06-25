@@ -16,6 +16,7 @@ public:
 	void ClearClip();
 	void EnableDoubleBuffering();
 	void Flip();
+	void Mode(int64_t w, int64_t h);
 	void Clear();
 	void ClipOn(int64_t x1, int64_t y1, int64_t x2, int64_t y2);
 	void ClipOff();

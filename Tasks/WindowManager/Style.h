@@ -9,6 +9,8 @@ enum class ColourAttribute {
 	ControlHighlightColour,
 	DesktopBackground,
 	DesktopForeground,
+	Focus,
+	ScrollbarBackground,
 	WindowBackground,
 	WindowForeground,
 	WindowHeaderForeground,
@@ -19,7 +21,6 @@ enum class ColourAttribute {
 	MenuSeparator,
 	MenuForeground,
 	WindowBorder,
-	ScrollbarBackground,
 	WindowFurnitureBackground,
 	WindowFurnitureForeground,
 	WindowFurnitureBorder,
@@ -27,9 +28,9 @@ enum class ColourAttribute {
 
 enum class StyleAttribute {
 	Bar,
-//	BarIndicator,
 	BarGreen,
 	BarRed,
+	Focussed,
 	FontBodyBold,
 	FontSymbol,
 	IconBar,

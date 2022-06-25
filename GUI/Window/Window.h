@@ -14,9 +14,13 @@ public:
 	void SetActive();
 	void SetInactive();
 	bool GetActive() { return active; }
+	OSDTask* GetTask() { return task; }
+	void Maximise();
 
 	static std::map<std::string, Window*> windows;
 private:
+	static void MinimiseClicked(_lv_event_t* e);
+	static void MaximiseClicked(_lv_event_t* e);
 	static void CloseClicked(_lv_event_t* e);
 	static void DragEventHandler(lv_event_t* e);
 	static void ClickEventHandler(lv_event_t* e);
@@ -35,5 +39,6 @@ private:
 	Canvas* canvas = NULL;
 	std::list<Control> children;
 	lv_group_t* group;
+	bool maximised = false;
 };
 

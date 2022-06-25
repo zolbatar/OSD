@@ -46,7 +46,7 @@ WindowManager::WindowManager()
 
 WindowManager::~WindowManager()
 {
-	DELETE clvgl;
+	delete clvgl;
 }
 
 void WindowManager::Run()
@@ -54,7 +54,7 @@ void WindowManager::Run()
 	SetNameAndAddToList();
 
 	// Setup clvgl
-	clvgl = NEW GuiCLVGL(screen, interrupt);
+	clvgl = new GuiCLVGL(screen, interrupt);
 	clvgl->Initialize();
 	SetupLVGLStyles();
 
@@ -74,24 +74,18 @@ void WindowManager::Run()
 //	lv_obj_add_event_cb(lv_scr_act(), ClickEventHandler, LV_EVENT_LONG_PRESSED, this);
 
 	while (!clvgl->QuitRequested()) {
-#ifndef CLION
 		clvgl->Update(USBHCI->UpdatePlugAndPlay());
-#else
-		clvgl->Update();
-#endif
 
 		//CLogger::Get()->Write("Window Manager", LogDebug, "Yielding");
 		Yield();
 	}
 
 	// Must shut all other tasks down
-#ifdef CLION
-	for (auto& t: tasks) {
+/*	for (auto& t: tas) {
 		if (t.first!="@") {
 			t.second->TerminateTask();
 		}
-	}
-#endif
+	}*/
 }
 
 void WindowManager::ReceiveDirectEx(DirectMessage* message)
@@ -111,10 +105,15 @@ void WindowManager::ReceiveDirectEx(DirectMessage* message)
 		case Messages::WM_CloseWindow: {
 			auto w = Window::windows.find(source->GetWindowID());
 			if (w!=Window::windows.end()) {
-				DELETE w->second;
+				delete w->second;
 				Window::windows.erase(w);
 				source->SetWindow(NULL);
 			}
+			break;
+		}
+		case Messages::Canvas_Mode: {
+			auto m = (Coord1*)message->data;
+			c->Mode(m->x, m->y);
 			break;
 		}
 		case Messages::Canvas_PlotPixel: {

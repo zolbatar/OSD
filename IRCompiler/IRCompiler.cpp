@@ -1,13 +1,6 @@
 #include "IRCompiler.h"
-
-#ifndef CLION
 #include <circle/new.h>
 #include <circle/string.h>
-#else
-
-#include <string>
-
-#endif
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846264338327950288 /**< pi */
@@ -61,12 +54,12 @@ void IRCompiler::CompileToken(Token* token)
 			// Chrono
 		case TokenType::TIME:
 			AddIR(IROpcodes::StackReturnIntArgument);
-			AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_TIME, "TIME");
+			AddIRWithStringLiteral(IROpcodes::CallFunc, "TIME");
 			type_stack.push(ValueType::Integer);
 			break;
 		case TokenType::TIMES:
 			AddIR(IROpcodes::StackReturnStringArgument);
-			AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_TIMES, "TIME$");
+			AddIRWithStringLiteral(IROpcodes::CallFunc, "TIME$");
 			type_stack.push(ValueType::String);
 			break;
 
@@ -264,7 +257,7 @@ void IRCompiler::CompileToken(Token* token)
 					AddIR(IROpcodes::ArgumentString);
 				}
 			}
-			AddIRWithAddress(IROpcodes::CallFunc, token->func, token->name);
+			AddIRWithTokenTypeAndStringLiteral(IROpcodes::CallFunc, token->name, token->type);
 			break;
 		}
 	}
@@ -321,140 +314,148 @@ void IRCompiler::TypeError(Token* token)
 void IRCompiler::Init_AddIR(IROpcodes type)
 {
 	if (is_global)
-		ir_global_init.emplace_back(type, 0, 0, 0.0, "", nullptr);
+		ir_global_init.emplace_back(type, 0, 0, 0.0, "", TokenType::NONE);
 	else
-		current_def_init.emplace_back(type, 0, 0, 0.0, "", nullptr);
+		current_def_init.emplace_back(type, 0, 0, 0.0, "", TokenType::NONE);
 }
 
 void IRCompiler::AddIR(IROpcodes type)
 {
 	if (is_global)
-		ir_global.emplace_back(type, 0, 0, 0.0, "", nullptr);
+		ir_global.emplace_back(type, 0, 0, 0.0, "", TokenType::NONE);
 	else
-		current_def.emplace_back(type, 0, 0, 0.0, "", nullptr);
+		current_def.emplace_back(type, 0, 0, 0.0, "", TokenType::NONE);
 }
 
 void IRCompiler::Init_AddIRWithIndex(IROpcodes type, int64_t index)
 {
 	if (is_global)
-		ir_global_init.emplace_back(type, index, 0, 0.0, "", nullptr);
+		ir_global_init.emplace_back(type, index, 0, 0.0, "", TokenType::NONE);
 	else
-		current_def_init.emplace_back(type, index, 0, 0.0, "", nullptr);
+		current_def_init.emplace_back(type, index, 0, 0.0, "", TokenType::NONE);
 }
 
 void IRCompiler::AddIRWithIndexAndInteger(IROpcodes type, int64_t index, int64_t iv)
 {
 	if (is_global)
-		ir_global.emplace_back(type, index, iv, 0.0, "", nullptr);
+		ir_global.emplace_back(type, index, iv, 0.0, "", TokenType::NONE);
 	else
-		current_def.emplace_back(type, index, iv, 0.0, "", nullptr);
+		current_def.emplace_back(type, index, iv, 0.0, "", TokenType::NONE);
 }
 
 void IRCompiler::Init_AddIRWithIndexAndInteger(IROpcodes type, int64_t index, int64_t iv)
 {
 	if (is_global)
-		ir_global_init.emplace_back(type, index, iv, 0.0, "", nullptr);
+		ir_global_init.emplace_back(type, index, iv, 0.0, "", TokenType::NONE);
 	else
-		current_def_init.emplace_back(type, index, iv, 0.0, "", nullptr);
+		current_def_init.emplace_back(type, index, iv, 0.0, "", TokenType::NONE);
 }
 
 void IRCompiler::AddIRWithIndex(IROpcodes type, int64_t index)
 {
 	if (is_global)
-		ir_global.emplace_back(type, index, 0, 0.0, "", nullptr);
+		ir_global.emplace_back(type, index, 0, 0.0, "", TokenType::NONE);
 	else
-		current_def.emplace_back(type, index, 0, 0.0, "", nullptr);
+		current_def.emplace_back(type, index, 0, 0.0, "", TokenType::NONE);
 }
 
 void IRCompiler::AddIRWithIntegerLiteral(IROpcodes type, int64_t v)
 {
 	if (is_global)
-		ir_global.emplace_back(type, 0, v, 0.0, "", nullptr);
+		ir_global.emplace_back(type, 0, v, 0.0, "", TokenType::NONE);
 	else
-		current_def.emplace_back(type, 0, v, 0.0, "", nullptr);
+		current_def.emplace_back(type, 0, v, 0.0, "", TokenType::NONE);
 }
 
 void IRCompiler::AddIRWithFloatLiteral(IROpcodes type, double v)
 {
 	if (is_global)
-		ir_global.emplace_back(type, 0, 0, v, "", nullptr);
+		ir_global.emplace_back(type, 0, 0, v, "", TokenType::NONE);
 	else
-		current_def.emplace_back(type, 0, 0, v, "", nullptr);
+		current_def.emplace_back(type, 0, 0, v, "", TokenType::NONE);
 }
 
 void IRCompiler::AddIRWithStringLiteral(IROpcodes type, std::string v)
 {
 	if (is_global)
-		ir_global.emplace_back(type, 0, 0, 0.0, v, nullptr);
+		ir_global.emplace_back(type, 0, 0, 0.0, v, TokenType::NONE);
 	else
-		current_def.emplace_back(type, 0, 0, 0.0, v, nullptr);
+		current_def.emplace_back(type, 0, 0, 0.0, v, TokenType::NONE);
+}
+
+void IRCompiler::AddIRWithTokenTypeAndStringLiteral(IROpcodes type, std::string v, TokenType tt)
+{
+	if (is_global)
+		ir_global.emplace_back(type, 0, 0, 0.0, v, tt);
+	else
+		current_def.emplace_back(type, 0, 0, 0.0, v, tt);
 }
 
 void IRCompiler::AddIRWithStringLiteralWithInteger(IROpcodes type, std::string v, int64_t iv)
 {
 	if (is_global)
-		ir_global.emplace_back(type, iv, 0, 0.0, v, nullptr);
+		ir_global.emplace_back(type, iv, 0, 0.0, v, TokenType::NONE);
 	else
-		current_def.emplace_back(type, iv, 0, 0.0, v, nullptr);
+		current_def.emplace_back(type, iv, 0, 0.0, v, TokenType::NONE);
 }
 
 void IRCompiler::Init_AddIRWithStringLiteralWithIntegerAndIndex(IROpcodes type, std::string v, int64_t iv, int64_t index)
 {
 	if (is_global)
-		ir_global_init.emplace_back(type, index, iv, 0.0, v, nullptr);
+		ir_global_init.emplace_back(type, index, iv, 0.0, v, TokenType::NONE);
 	else
-		current_def_init.emplace_back(type, index, iv, 0.0, v, nullptr);
+		current_def_init.emplace_back(type, index, iv, 0.0, v, TokenType::NONE);
 }
 
 void IRCompiler::AddIRWithStringLiteralWithIntegerAndIndex(IROpcodes type, std::string v, int64_t iv, int64_t index)
 {
 	if (is_global)
-		ir_global.emplace_back(type, index, iv, 0.0, v, nullptr);
+		ir_global.emplace_back(type, index, iv, 0.0, v, TokenType::NONE);
 	else
-		current_def.emplace_back(type, index, iv, 0.0, v, nullptr);
+		current_def.emplace_back(type, index, iv, 0.0, v, TokenType::NONE);
 }
 
-void IRCompiler::AddIRWithAddress(IROpcodes type, void* func, std::string name)
+/*void IRCompiler::AddIRWithAddress(IROpcodes type, void* func, std::string name)
 {
 	if (is_global)
 		ir_global.emplace_back(type, 0, 0, 0.0, name, func);
 	else
 		current_def.emplace_back(type, 0, 0, 0.0, name, func);
-}
+}*/
 
 void IRCompiler::AddIRIntegerLiteral(int64_t v)
 {
 	if (is_global) {
-		ir_global.emplace_back(IROpcodes::LiteralInteger, 0, v, 0.0, "", nullptr);
-		ir_global.emplace_back(IROpcodes::StackPushIntOperand1, 0, v, 0.0, "", nullptr);
+		ir_global.emplace_back(IROpcodes::LiteralInteger, 0, v, 0.0, "", TokenType::NONE);
+		ir_global.emplace_back(IROpcodes::StackPushIntOperand1, 0, v, 0.0, "", TokenType::NONE);
 	}
 	else {
-		current_def.emplace_back(IROpcodes::LiteralInteger, 0, v, 0.0, "", nullptr);
-		current_def.emplace_back(IROpcodes::StackPushIntOperand1, 0, v, 0.0, "", nullptr);
+		current_def.emplace_back(IROpcodes::LiteralInteger, 0, v, 0.0, "", TokenType::NONE);
+		current_def.emplace_back(IROpcodes::StackPushIntOperand1, 0, v, 0.0, "", TokenType::NONE);
 	}
 }
 
 void IRCompiler::AddIRFloatLiteral(double v)
 {
 	if (is_global) {
-		ir_global.emplace_back(IROpcodes::LiteralFloat, 0, 0, v, "", nullptr);
-		ir_global.emplace_back(IROpcodes::StackPushFloatOperand1, 0, v, 0.0, "", nullptr);
+		ir_global.emplace_back(IROpcodes::LiteralFloat, 0, 0, v, "", TokenType::NONE);
+		ir_global.emplace_back(IROpcodes::StackPushFloatOperand1, 0, v, 0.0, "", TokenType::NONE);
 	}
 	else {
-		current_def.emplace_back(IROpcodes::LiteralFloat, 0, 0, v, "", nullptr);
-		current_def.emplace_back(IROpcodes::StackPushFloatOperand1, 0, v, 0.0, "", nullptr);
+		current_def.emplace_back(IROpcodes::LiteralFloat, 0, 0, v, "", TokenType::NONE);
+		current_def.emplace_back(IROpcodes::StackPushFloatOperand1, 0, v, 0.0, "", TokenType::NONE);
 	}
 }
 
 void IRCompiler::AddIRStringLiteral(std::string v)
 {
 	if (is_global) {
-		ir_global.emplace_back(IROpcodes::LiteralString, 0, 0, 0.0, v, nullptr);
-		ir_global.emplace_back(IROpcodes::StackPushStringOperand1, 0, 0, 0.0, "", nullptr);
+		ir_global.emplace_back(IROpcodes::LiteralString, 0, 0, 0.0, v, TokenType::NONE);
+		ir_global.emplace_back(IROpcodes::StackPushStringOperand1, 0, 0, 0.0, "", TokenType::NONE);
 	}
 	else {
-		current_def.emplace_back(IROpcodes::LiteralString, 0, 0, 0.0, v, nullptr);
-		current_def.emplace_back(IROpcodes::StackPushStringOperand1, 0, 0, 0.0, "", nullptr);
+		current_def.emplace_back(IROpcodes::LiteralString, 0, 0, 0.0, v, TokenType::NONE);
+		current_def.emplace_back(IROpcodes::StackPushStringOperand1, 0, 0, 0.0, "", TokenType::NONE);
 	}
 }
 

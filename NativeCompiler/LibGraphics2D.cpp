@@ -1,6 +1,19 @@
 #include "NativeCompiler.h"
 #include "../Tasks/WindowManager/WindowManager.h"
 
+void call_2D_mode(int64_t x, int64_t y)
+{
+	auto task = GetCurrentTask();
+	DirectMessage mess;
+	mess.source = task;
+	mess.type = Messages::Canvas_Mode;
+	Coord1 m;
+	mess.data = &m;
+	m.x = x;
+	m.y = y;
+	task->CallGUIDirectEx(&mess);
+}
+
 int64_t call_2D_screenwidth()
 {
 	auto w = (Window*)GetCurrentTask()->GetWindow();
@@ -22,7 +35,6 @@ void call_2D_shadow()
 	mess.source = task;
 	mess.type = Messages::Canvas_Enable_Shadow;
 	task->CallGUIDirectEx(&mess);
-//	GetCurrentTask()->Yield();
 }
 
 void call_2D_clipon(int64_t x1, int64_t y1, int64_t x2, int64_t y2)

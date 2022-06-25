@@ -1,9 +1,14 @@
 #pragma once
-#include <circle/logger.h>
 #include <list>
 #include "../../OS/OS.h"
 #include "../WindowManager/WindowManager.h"
 #include "../Menu/Menu.h"
+
+enum class FilerView {
+	Icons,
+	List,
+	Detail
+};
 
 struct FileIcon {
 	std::string name;
@@ -20,19 +25,25 @@ public:
 	void Run();
 
 private:
+	FilerView view = FilerView::Icons;
 	const int cell_size = 96;
 	std::string volume;
 	std::string directory;
 	static int cx;
 	static int cy;
 	lv_obj_t* filer_cont = NULL;
-	lv_obj_t* selected = NULL;
 	std::list<FileIcon> icons;
 	std::vector<lv_obj_t*> items;
 
+	void Maximise();
+	void BuildContent();
+	void BuildIcons();
 	void AddIcon(std::string name, bool is_directory);
 	static void WindowPressEventHandler(lv_event_t* e);
 	static void IconClickEventHandler(lv_event_t* e);
 	static void IconPressEventHandler(lv_event_t* e);
 	static void KeyPressEventHandler(lv_event_t* e);
+	static void CompileEventHandler(lv_event_t* e);
+	static void DebugEventHandler(lv_event_t* e);
+	static void EditEventHandler(lv_event_t* e);
 };

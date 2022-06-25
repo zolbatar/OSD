@@ -9,26 +9,26 @@ void IRCompiler::CompileTokenPrint(Token* token)
 				for (auto& ctoken: expr)
 					CompileToken(ctoken);
 			}
-            auto v = PopType(token);
+			auto v = PopType(token);
 			EnsureStackIsInteger(token, v);
 			if (token->type==TokenType::SPC) {
 				AddIR(IROpcodes::ArgumentInteger);
-				AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_PRINT_SPC, "SPC");
+				AddIRWithStringLiteral(IROpcodes::CallFunc, "SPC");
 			}
 			else {
 				AddIR(IROpcodes::ArgumentInteger);
-				AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_PRINT_TAB, "TAB");
+				AddIRWithStringLiteral(IROpcodes::CallFunc, "TAB");
 			}
 			break;
 		}
 		case TokenType::PRINTTABBED:
-			AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_PRINT_Tabbed, "Tabbed On");
+			AddIRWithStringLiteral(IROpcodes::CallFunc, "Tabbed On");
 			break;
 		case TokenType::PRINTTABBEDOFF:
-			AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_PRINT_TabbedOff, "Tabbed Off");
+			AddIRWithStringLiteral(IROpcodes::CallFunc, "Tabbed Off");
 			break;
 		case TokenType::PRINTNL:
-			AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_PRINT_NL, "NL");
+			AddIRWithStringLiteral(IROpcodes::CallFunc, "NL");
 			break;
 		case TokenType::PRINT: {
 			// Loop through each expression in turn
@@ -42,15 +42,15 @@ void IRCompiler::CompileTokenPrint(Token* token)
 						switch (type) {
 							case ValueType::Integer:
 								AddIR(IROpcodes::ArgumentInteger);
-								AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_PRINT_integer, "PRINT integer");
+								AddIRWithStringLiteral(IROpcodes::CallFunc, "PRINT integer");
 								break;
 							case ValueType::Float:
 								AddIR(IROpcodes::ArgumentFloat);
-								AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_PRINT_real, "PRINT real");
+								AddIRWithStringLiteral(IROpcodes::CallFunc, "PRINT real");
 								break;
 							case ValueType::String:
 								AddIR(IROpcodes::ArgumentString);
-								AddIRWithAddress(IROpcodes::CallFunc, (void*)&call_PRINT_string, "PRINT string");
+								AddIRWithStringLiteral(IROpcodes::CallFunc, "PRINT string");
 								break;
 						}
 					}

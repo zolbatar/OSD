@@ -5,15 +5,14 @@
 #include <sstream>
 #include <string>
 #include "kernel.h"
-#ifndef CLION
 #include <circle/new.h>
-#endif
 #include "../Chrono/Chrono.h"
 #include "OS/OS.h"
 #include "Tasks/FontManager/FontManager.h"
 #include "Tasks/FileManager/FileManager.h"
 #include "Tasks/IconBar/IconBar.h"
 #include "Tasks/WindowManager/WindowManager.h"
+#include "Tasks/InputManager/InputManager.h"
 #include "Tasks/DARICWindow.h"
 #include "Tokeniser/Tokeniser.h"
 #include "Parser/Parser.h"
@@ -21,8 +20,6 @@
 size_t kernel_size = 0;
 size_t initial_mem_free = 0;
 size_t pre_boot_memory = 0;
-int ScreenResX = 1920;
-int ScreenResY = 1080;
 size_t ScreenSize = 0;
 CTimer* timer;
 CBcmFrameBuffer* fb;
@@ -32,7 +29,7 @@ CInterruptSystem* interrupt;
 CUSBHCIDevice* USBHCI;
 CUserTimer* UserTimer;
 unsigned rate = USER_CLOCKHZ/1000;
-FontManager *fm;
+FontManager* fm;
 
 #define NET_DEVICE_TYPE        NetDeviceTypeEthernet
 //#define NET_DEVICE_TYPE        NetDeviceTypeWLAN
@@ -97,14 +94,9 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	mTimer.MsDelay(20000);*/
 
 	// Initial memory and kernel size
-#ifndef CLION
 	auto memory = CMemorySystem::Get();
 	initial_mem_free = memory->GetHeapFreeSpace(HEAP_ANY);
 	kernel_size = memory->GetMemSize()-initial_mem_free;
-#else
-	initial_mem_free = 1;
-	kernel_size = 1;
-#endif
 
 	// Now fire cores up
 //	mMulticore.Initialize();
@@ -120,6 +112,9 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
 	fm = new FontManager();
 	fm->InitFonts();
 	fm->Start();
+	CScheduler::Get()->Yield();
+	auto im = new InputManager();
+	im->Start();
 	CScheduler::Get()->Yield();
 
 	// Wait for GUI startup
