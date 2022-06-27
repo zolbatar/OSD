@@ -387,6 +387,6 @@ void Filer::Maximise()
 {
 	maximise_requested = false;
 	auto ww = (Window*)this->GetWindow();
-	ww->Maximise();
+	ww->Maximise(false);
 }
 

@@ -3,14 +3,18 @@
 #include "Control.h"
 #include "../../Tasks/WindowManager/Style.h"
 
-extern lv_font_t* font_body;
-
 class Canvas : public Control {
 public:
 	Canvas(OSDTask* task, lv_obj_t* parent, int w, int h);
 	~Canvas();
 	int64_t GetContentWidth();
 	int64_t GetContentHeight();
+	int GetSizeH() { return size_h; }
+	int GetSizeV() { return size_v; }
+	int GetW() { return w; }
+	int GetH() { return h; }
+	lv_obj_t* GetFirstBuffer() { return firstbuffer; }
+
 	void Render();
 	void SetupClip();
 	void ClearClip();
@@ -60,8 +64,8 @@ private:
 	int cursor_y = 0;
 	int sz;
 	lv_img_cf_t cf = LV_IMG_CF_TRUE_COLOR;
-	lv_obj_t* firstbuffer;
-	lv_obj_t* secondbuffer;
+	lv_obj_t* firstbuffer = NULL;
+	lv_obj_t* secondbuffer = NULL;
 	bool which_buffer = false;
 	bool double_buffered = false;
 	lv_color_t fg;

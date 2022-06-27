@@ -68,8 +68,6 @@ void call_2D_flip()
 	mess.source = task;
 	mess.type = Messages::Canvas_Flip;
 	task->CallGUIDirectEx(&mess);
-	task->ClearTemporaryStrings();
-//	GetCurrentTask()->Yield();
 }
 
 void call_2D_cls()
@@ -79,7 +77,6 @@ void call_2D_cls()
 	mess.source = task;
 	mess.type = Messages::Canvas_Clear;
 	task->CallGUIDirectEx(&mess);
-	task->ClearTemporaryStrings();
 }
 
 void call_2D_colour(int64_t r, int64_t g, int64_t b)

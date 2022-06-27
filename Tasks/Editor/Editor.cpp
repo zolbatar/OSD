@@ -9,6 +9,11 @@ Editor::Editor(int x, int y, int w, int h)
 	this->d_y = y;
 	this->d_w = w;
 	this->d_h = h;
+	auto window_border_width = ThemeManager::GetConst(ConstAttribute::WindowBorderWidth);
+	auto window_content_padding = ThemeManager::GetConst(ConstAttribute::WindowContentPadding);
+	auto window_header_height = ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight);
+	this->canvas_w = w-window_border_width*2-window_content_padding*2;
+	this->canvas_h = h-window_border_width*2-window_header_height-window_content_padding*2;
 	this->id = "@"+std::to_string(task_id++);
 	this->name = "Editor";
 }
@@ -29,21 +34,29 @@ void Editor::Run()
 	m.y = d_y;
 	m.width = d_w;
 	m.height = d_h;
-	m.canvas = false;
+	m.canvas = true;
+	m.canvas_w = canvas_w;
+	m.canvas_h = canvas_h;
 	m.fixed = true;
 	CallGUIDirectEx(&mess);
 
+	// Set up canvas
+	auto window = (Window*)this->GetWindow();
+	auto ww = window->GetLVGLWindow();
+	auto content = lv_mywin_get_content(ww);
+	obj = lv_obj_create(content);
+	lv_obj_add_style(obj, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
+
+	// Set canvas to float
+	auto canvas = window->GetCanvas();
+	lv_obj_add_flag(canvas->GetFirstBuffer(), LV_OBJ_FLAG_FLOATING);
+	lv_obj_align(canvas->GetFirstBuffer(), LV_ALIGN_TOP_LEFT, 0, 0);
+
+	// Scroll event
+	lv_obj_add_event_cb(content, ScrollEventHandler, LV_EVENT_SCROLL, this);
+
 	// Build
-	auto ww = ((Window*)this->GetWindow())->GetLVGLWindow();
-	lv_obj_t* ta = lv_textarea_create(lv_mywin_get_content(ww));
-//	lv_textarea_set_one_line(ta, true);
-	lv_obj_align(ta, LV_ALIGN_TOP_MID, 0, 0);
-	lv_obj_add_event_cb(ta, TextareaEventHandler, LV_EVENT_READY, ta);
-	lv_obj_set_width(ta, lv_pct(100));
-	lv_obj_set_height(ta, lv_pct(100));
-	lv_textarea_add_text(ta, code.c_str());
-//	lv_obj_add_state(ta, LV_STATE_FOCUSED);
-//	lv_obj_add_style(ta, &style_textarea, LV_STATE_DEFAULT);
+	Render();
 
 	// Do stuff
 	while (1) {
@@ -51,11 +64,11 @@ void Editor::Run()
 	}
 }
 
-void Editor::TextareaEventHandler(lv_event_t* e)
+/*void Editor::TextareaEventHandler(lv_event_t* e)
 {
 	lv_obj_t* ta = lv_event_get_target(e);
 	LV_LOG_USER("Enter was pressed. The current text is: %s", lv_textarea_get_text(ta));
-}
+}*/
 
 void Editor::LoadSourceCode(std::string volume, std::string directory, std::string filename)
 {
@@ -81,8 +94,75 @@ void Editor::LoadSourceCode(std::string volume, std::string directory, std::stri
 	buffer[sz] = 0;
 	std::string s(buffer);
 	free(buffer);
-	this->code = s;
+
+	// Split into lines
+	auto ll = splitString(s, '\n');
+	code.reserve(ll.size());
+	std::copy(std::begin(ll), std::end(ll), std::back_inserter(code));
+	CalculateLongestLine();
+
 	ClearOverride();
 }
 
+void Editor::CalculateLongestLine()
+{
+	longest_line = 0;
+	for (auto& c : code) {
+		longest_line = std::max(longest_line, c.length());
+	}
+}
 
+void Editor::Render()
+{
+	auto window = (Window*)this->GetWindow();
+	auto canvas = window->GetCanvas();
+	auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
+	lv_obj_set_size(obj, longest_line*size, code.size()*size);
+
+	// Clear
+	canvas->Clear();
+
+	int actual_y = 0;
+	for (size_t i = y; i<code.size(); i++) {
+
+		// Get line
+		auto line = code[i];
+
+		int actual_x = 0;
+		for (size_t j = x; j<line.length(); j++) {
+			char c = line[j];
+
+			// Draw
+			canvas->DrawText(actual_x, actual_y, std::string(1, c));
+
+			// Next character
+			actual_x += size/2;
+			if (actual_x>canvas_w)
+				break;
+		}
+
+		// Next line
+		actual_y += size;
+		if (actual_y>canvas_h)
+			break;
+	}
+}
+
+void Editor::ScrollEventHandler(lv_event_t* e)
+{
+	lv_obj_t* scroll = lv_event_get_target(e);
+	auto scroll_y = lv_obj_get_scroll_top(scroll);
+	auto scroll_x = lv_obj_get_scroll_left(scroll);
+
+	// Work out X and Y
+	auto editor = (Editor*)e->user_data;
+	auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
+	editor->x = scroll_x/size/2;
+	editor->y = scroll_y/size;
+	if (editor->x<0) editor->x = 0;
+	if (editor->y<0) editor->y = 0;
+
+	// Render
+	editor->Render();
+	CLogger::Get()->Write("File Manager", LogNotice, "Scroll %d %d: %d %d", scroll_x, scroll_y, editor->x, editor->y);
+}

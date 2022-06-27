@@ -145,7 +145,7 @@ void Window::DragEventHandler(lv_event_t* e)
 	lv_obj_set_pos(win, x, y);
 }
 
-void Window::Maximise()
+void Window::Maximise(bool full_maximise)
 {
 	if (!maximised) {
 		maximised = true;
@@ -164,6 +164,21 @@ void Window::Maximise()
 		auto h = lv_obj_get_height(lv_scr_act());
 		lv_obj_set_width(win, w);
 		lv_obj_set_height(win, h);
+
+		if (full_maximise) {
+
+			// Set styles to hide all the window stuff
+			lv_obj_remove_style(win, ThemeManager::GetStyle(StyleAttribute::Window), LV_STATE_DEFAULT);
+			lv_obj_add_style(win, ThemeManager::GetStyle(StyleAttribute::WindowFullScreen), LV_STATE_DEFAULT);
+			auto header = lv_mywin_get_header(win);
+			lv_obj_remove_style(header, ThemeManager::GetStyle(StyleAttribute::WindowHeader), LV_STATE_DEFAULT);
+			lv_obj_add_style(header, ThemeManager::GetStyle(StyleAttribute::WindowHeaderFullScreen), LV_STATE_DEFAULT);
+			lv_obj_set_size(header, LV_PCT(100), 0);
+
+			// Hide resize button
+			auto resize = lv_mywin_get_resizebutton(win);
+			lv_obj_add_flag(resize, LV_OBJ_FLAG_HIDDEN);
+		}
 	}
 	else {
 		maximised = false;

@@ -46,12 +46,15 @@ enum class StyleAttribute {
 	MenuItemBold,
 	MenuSeparator,
 	Scrollbar,
+	TransparentWindow,
 	Window,
 	WindowButton,
 	WindowContent,
 	WindowHeader,
 	WindowActive,
 	WindowInactive,
+	WindowFullScreen,
+	WindowHeaderFullScreen,
 };
 
 enum class FontAttribute {

@@ -39,6 +39,7 @@ lv_obj_t* lv_mywin_add_btn(lv_obj_t* win, const void* icon, lv_coord_t btn_w);
 
 lv_obj_t* lv_mywin_get_header(lv_obj_t* win);
 lv_obj_t* lv_mywin_get_content(lv_obj_t* win);
+lv_obj_t* lv_mywin_get_resizebutton(lv_obj_t* win);
 
 static void ResizePressed(_lv_event_t* e);
 

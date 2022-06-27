@@ -88,5 +88,5 @@ void DARICWindow::Maximise()
 {
 	maximise_requested = false;
 	auto ww = (Window*)this->GetWindow();
-	ww->Maximise();
+	ww->Maximise(true);
 }

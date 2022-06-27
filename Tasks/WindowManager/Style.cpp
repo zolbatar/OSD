@@ -123,6 +123,14 @@ void WindowManager::SetupLVGLStyles()
 		ThemeManager::AddStyle(StyleAttribute::Focussed, style);
 	}
 
+	// Transparent
+	{
+		lv_style_t* style = CreateStyle();
+		lv_style_init(style);
+		lv_style_set_bg_opa(style, LV_OPA_TRANSP);
+		ThemeManager::AddStyle(StyleAttribute::TransparentWindow, style);
+	}
+
 	// Bold body font
 	{
 		lv_style_t* style = CreateStyle();
@@ -288,6 +296,23 @@ void WindowManager::SetupLVGLStyles()
 		lv_style_init(style);
 		lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowHeaderBackground));
 		ThemeManager::AddStyle(StyleAttribute::WindowInactive, style);
+	}
+
+	// Window full screen
+	{
+		lv_style_t* style = CreateStyle();
+		lv_style_init(style);
+		lv_style_set_border_width(style, 0);
+		lv_style_set_radius(style, ThemeManager::GetConst(ConstAttribute::CornerRadius));
+		ThemeManager::AddStyle(StyleAttribute::WindowFullScreen, style);
+	}
+	{
+		lv_style_t* style = CreateStyle();
+		lv_style_init(style);
+		lv_style_set_height(style, 0);
+		lv_style_set_radius(style, 0);
+		lv_style_set_border_width(style, 0);
+		ThemeManager::AddStyle(StyleAttribute::WindowHeaderFullScreen, style);
 	}
 
 	// Window buttons

@@ -15,7 +15,7 @@ public:
 	void SetInactive();
 	bool GetActive() { return active; }
 	OSDTask* GetTask() { return task; }
-	void Maximise();
+	void Maximise(bool full_maximise);
 
 	static std::map<std::string, Window*> windows;
 private:

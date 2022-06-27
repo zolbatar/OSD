@@ -78,6 +78,11 @@ lv_obj_t* lv_mywin_get_content(lv_obj_t* win)
 	return lv_obj_get_child(win, 1);
 }
 
+lv_obj_t* lv_mywin_get_resizebutton(lv_obj_t* win)
+{
+	return lv_obj_get_child(win, 2);
+}
+
 /**********************
  *   STATIC FUNCTIONS
  **********************/
@@ -152,6 +157,7 @@ static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 	//lv_obj_set_height(body, LV_SIZE_CONTENT);
 	lv_obj_add_style(body, style_content, LV_STATE_DEFAULT);
 	lv_obj_set_scrollbar_mode(body, LV_SCROLLBAR_MODE_AUTO);
+//	lv_obj_set_scrollbar_mode(body, LV_SCROLLBAR_MODE_ON);
 	lv_obj_add_style(body, style_scrollbar, LV_PART_SCROLLBAR);
 }
 

@@ -62,13 +62,13 @@ void Menu::OpenMenu(int x, int y, OSDTask* task, std::string title, MenuDefiniti
 			case MenuItemType::SubMenu: {
 				auto btn = lv_mylist_add_btn(cont_list, mi.v.c_str(), true, mi.shortcut);
 				lv_obj_add_style(btn, ThemeManager::GetStyle(StyleAttribute::MenuItem), LV_STATE_DEFAULT);
-				lv_obj_add_event_cb(btn, NULL, LV_EVENT_CLICKED, NULL);
 				break;
 			}
 			case MenuItemType::Item: {
 				auto btn = lv_mylist_add_btn(cont_list, mi.v.c_str(), false, mi.shortcut);
 				lv_obj_add_style(btn, ThemeManager::GetStyle(StyleAttribute::MenuItem), LV_STATE_DEFAULT);
-				lv_obj_add_event_cb(btn, mi.cb, LV_EVENT_CLICKED, mi.user_data);
+				if (mi.cb!=NULL)
+					lv_obj_add_event_cb(btn, mi.cb, LV_EVENT_CLICKED, mi.user_data);
 				break;
 			}
 			case MenuItemType::Separator: {
@@ -121,7 +121,8 @@ lv_obj_t* lv_mylist_add_btn(lv_obj_t* list, const char* txt, bool arrow, std::st
 	return obj;
 }
 
-void Menu::CloseMenu() {
+void Menu::CloseMenu()
+{
 	lv_obj_del(block);
 	lv_obj_del(menu.obj);
 }

@@ -16,7 +16,7 @@ struct MenuItem {
 	MenuItemType type;
 	std::string v;
 	std::string shortcut;
-	lv_event_cb_t cb;
+	lv_event_cb_t cb = NULL;
 	void *user_data;
 };
 

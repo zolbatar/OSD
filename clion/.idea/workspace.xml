@@ -11,72 +11,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ab2653b-580c-4dd2-9953-7c61bbaa069f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GUI/Controls/Canvas.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/Controls/Canvas.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GUI/Controls/Canvas.h" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/Controls/Canvas.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GUI/KeyboardCodes.h" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/KeyboardCodes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GUI/Window/LVGLWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/Window/LVGLWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GUI/Window/LVGLWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/Window/LVGLWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GUI/Window/Window.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/Window/Window.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../GUI/Window/Window.h" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/Window/Window.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GUI/lvgl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/lvgl.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GUI/lvgl.h" beforeDir="false" afterPath="$PROJECT_DIR$/../GUI/lvgl.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IRCompiler/IRCompiler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../IRCompiler/IRCompiler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IRCompiler/IRCompiler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../IRCompiler/IRCompiler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IRCompiler/IROptimiser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../IRCompiler/IROptimiser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IRCompiler/IRPrint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../IRCompiler/IRPrint.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IRCompiler/IRPrinter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../IRCompiler/IRPrinter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Input/Input.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Input/Input.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lightning/jit_aarch64.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Lightning/jit_aarch64.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lightning/lightning.c" beforeDir="false" afterPath="$PROJECT_DIR$/../Lightning/lightning.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NativeCompiler/Disassemble.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../NativeCompiler/Disassemble.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NativeCompiler/Functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/../NativeCompiler/Functions.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../NativeCompiler/LibGraphics2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../NativeCompiler/LibGraphics2D.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NativeCompiler/LibPrint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../NativeCompiler/LibPrint.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NativeCompiler/NativeCompiler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../NativeCompiler/NativeCompiler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OS/OS.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../OS/OS.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OS/OS.h" beforeDir="false" afterPath="$PROJECT_DIR$/../OS/OS.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OS/OS_Messages.h" beforeDir="false" afterPath="$PROJECT_DIR$/../OS/OS_Messages.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OS/OS_Tasks.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../OS/OS_Tasks.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OS/OS_Tasks.h" beforeDir="false" afterPath="$PROJECT_DIR$/../OS/OS_Tasks.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Parser/Parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Parser/Parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Parser/Parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Parser/Parser.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Parser/ParserExpression.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Parser/ParserExpression.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasks/DARICWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/DARICWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasks/DARICWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/DARICWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasks/Editor/Editor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/Editor/Editor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasks/Editor/Editor.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/Editor/Editor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasks/FileManager/FileManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/FileManager/FileManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasks/FileManager/FileSystemObject.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/FileManager/FileSystemObject.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasks/Filer/Filer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/Filer/Filer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasks/Filer/Filer.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/Filer/Filer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasks/IconBar/IconBar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/IconBar/IconBar.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasks/Menu/Menu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/Menu/Menu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasks/Menu/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/Menu/Menu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasks/TasksWindow/TasksWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/TasksWindow/TasksWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasks/TasksWindow/TasksWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/TasksWindow/TasksWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasks/WindowManager/Style.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/WindowManager/Style.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Tasks/WindowManager/Style.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/WindowManager/Style.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tasks/WindowManager/WindowManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tasks/WindowManager/WindowManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tokeniser/Tokeniser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tokeniser/Tokeniser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tokeniser/Tokeniser.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Tokeniser/Tokeniser.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tokeniser/TokeniserPrinter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Tokeniser/TokeniserPrinter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tokeniser/Tokens.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Tokeniser/Tokens.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/clion.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conanfile.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph_info.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scratch.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kernel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../kernel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +120,7 @@
       <workItem from="1653558272059" duration="85921000" />
       <workItem from="1653930800927" duration="11416000" />
       <workItem from="1654615324801" duration="254629000" />
-      <workItem from="1655482005622" duration="178760000" />
+      <workItem from="1655482005622" duration="206893000" />
     </task>
     <servers />
   </component>
