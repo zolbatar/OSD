@@ -13,10 +13,10 @@ enum class FilerView
 
 struct FileIcon
 {
-    std::string name;
-    bool is_directory;
     std::string volume;
-    std::string current_directory;
+    std::string directory;
+    std::string filename;
+    bool is_directory;
     FileType *type;
 };
 
@@ -26,10 +26,11 @@ class Filer : public OSDTask
     Filer(std::string volume, std::string directory);
     ~Filer();
     void Run();
+    void Refresh();
 
   private:
     FilerView view = FilerView::Icons;
-    const int cell_size = 96;
+    const int cell_size = 128;
     std::string volume;
     std::string directory;
     static int cx;
@@ -46,6 +47,7 @@ class Filer : public OSDTask
     static void IconClickEventHandler(lv_event_t *e);
     static void IconPressEventHandler(lv_event_t *e);
     static void KeyPressEventHandler(lv_event_t *e);
+    static void RefreshEventHandler(lv_event_t *e);
     static void RunEventHandler(lv_event_t *e);
     static void RunFullscreenEventHandler(lv_event_t *e);
     static void EditEventHandler(lv_event_t *e);

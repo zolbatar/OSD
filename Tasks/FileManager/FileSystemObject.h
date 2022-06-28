@@ -1,45 +1,57 @@
 #pragma once
 #include <fatfs/ff.h>
 #include <memory>
+#include <vector>
 
-enum class FileSystemType {
-	FAT
+enum class FileSystemType
+{
+    FAT
 };
 
-struct FSVolume {
-	FileSystemType type;
-	std::string prefix;
+struct FSVolume
+{
+    FileSystemType type;
+    std::string prefix;
 };
 
-class FileSystemHandler {
-public:
-	virtual bool OpenDirectory(std::string directory, void* data);
+class FileSystemHandler
+{
+  public:
+    virtual bool OpenDirectory(std::string directory, void *data);
 };
 
-class FileSytemHandlerFAT : public FileSystemHandler {
-public:
-	FileSytemHandlerFAT();
-	bool OpenDirectory(std::string directory, void* data);
-private:
-	FATFS ff;
+class FileSytemHandlerFAT : public FileSystemHandler
+{
+  public:
+    FileSytemHandlerFAT();
+    bool OpenDirectory(std::string directory, void *data);
+
+  private:
+    FATFS ff;
 };
 
-class FileSystem {
-public:
-	FileSystem();
-	void Init();
-	FileSystem(FSVolume* volume);
-	void SetVolume(std::string volume);
-	std::string GetCurrentDirectory() { return current_directory; }
-	void SetCurrentDirectory(std::string directory);
-	std::vector<std::string> ListAllFilesInCurrentDirectory(bool subdirectories);
-	std::vector<std::string> ListAllDirectoriesInCurrentDirectory(bool subdirectories, bool include_current);
-private:
-	void ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out);
-	void ListAllDirectoriesInCurrentDirectoryWorker(bool subdirectories, std::string directory, std::vector<std::string>* out);
+class FileSystem
+{
+  public:
+    FileSystem();
+    void Init();
+    FileSystem(FSVolume *volume);
+    void SetVolume(std::string volume);
+    std::string GetCurrentDirectory()
+    {
+        return current_directory;
+    }
+    void SetCurrentDirectory(std::string directory);
+    std::vector<std::string> ListAllFilesInCurrentDirectory(bool subdirectories);
+    std::vector<std::string> ListAllDirectoriesInCurrentDirectory(bool subdirectories, bool include_current);
 
-	FileSystemHandler* handler;
-	FSVolume* volume;
-	std::string current_directory = "/";
+  private:
+    void ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::string directory,
+                                              std::vector<std::string> *out);
+    void ListAllDirectoriesInCurrentDirectoryWorker(bool subdirectories, std::string directory,
+                                                    std::vector<std::string> *out);
+
+    FileSystemHandler *handler;
+    FSVolume *volume;
+    std::string current_directory = "/";
 };
-

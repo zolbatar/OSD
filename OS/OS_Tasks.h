@@ -75,7 +75,7 @@ class OSDTask : public CTask
     size_t CalculateMemoryUsed();
     void SetNameAndAddToList();
     std::string LoadSource(std::string volume, std::string directory, std::string filename);
-    bool CompileSource(std::string filename, std::string code);
+    bool CompileSource(std::string volume, std::string directory, std::string filename, std::string code, bool debug);
     void RunCode(bool wait);
     void AddDataElement(DataElement de);
     DataElement *GetDataElement();
@@ -133,10 +133,6 @@ class OSDTask : public CTask
     void *GetWindow()
     {
         return w;
-    }
-    bool IsExclusive()
-    {
-        return exclusive;
     }
     void TerminateTask();
     void RequestTerminate();
@@ -197,7 +193,8 @@ class OSDTask : public CTask
     FileSystem fs;
     OSDTask *GetTask(const char *s);
     start exec;
-    bool exclusive = false;
+    bool fullscreen = false;
+    bool inside_editor = false;
     int d_x;
     int d_y;
     int d_w;

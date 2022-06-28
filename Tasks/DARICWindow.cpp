@@ -4,9 +4,14 @@
 #include <string.h>
 #include <fstream>
 
-DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, int h, int canvas_w, int canvas_h)
+DARICWindow::DARICWindow(std::string volume, std::string directory, std::string filename, std::string name,
+                         bool fullscreen, bool inside_editor, int x, int y, int w, int h, int canvas_w, int canvas_h)
 {
-    this->exclusive = exclusive;
+    this->volume = volume;
+    this->filename = filename;
+    this->directory = directory;
+    this->fullscreen = fullscreen;
+    this->inside_editor = inside_editor;
     this->d_x = x;
     this->d_y = y;
     this->d_w = w;
@@ -27,7 +32,7 @@ DARICWindow::DARICWindow(std::string name, bool exclusive, int x, int y, int w, 
     type = TaskType::DARIC;
 }
 
-void DARICWindow::LoadSourceCode(std::string volume, std::string directory, std::string filename)
+void DARICWindow::LoadSourceCode()
 {
     SetOverride(this);
     this->code = this->LoadSource(volume, directory, filename);
@@ -59,15 +64,15 @@ void DARICWindow::Run()
     // Compile (and run)
     try
     {
-        if (CompileSource(filename, code))
+        if (CompileSource(volume, directory, filename, code, inside_editor))
         {
-            if (exclusive)
+            if (fullscreen)
             {
                 auto ww = (Window *)this->GetWindow();
                 ww->Maximise(true);
             }
             // CLogger::Get()->Write("DARICWindow", LogDebug, "Run: %s", GetWindowName().c_str());
-            RunCode(exclusive);
+            RunCode(inside_editor);
         }
     }
     catch (DARICException &ex)

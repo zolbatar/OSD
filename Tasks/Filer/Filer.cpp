@@ -1,6 +1,7 @@
 #include <circle/logger.h>
 #include "Filer.h"
 #include "../FileManager/FileManager.h"
+#include "../IconBar/IconBar.h"
 #include "../FontManager/FontManager.h"
 #include "../../GUI/Window/LVGLWindow.h"
 #include "../Library/StringLib.h"
@@ -19,8 +20,8 @@ Filer::Filer(std::string volume, std::string directory) : volume(volume), direct
     this->d_y = cy;
     cx += 100;
     cy += 100;
-    this->d_w = 512;
-    this->d_h = 256;
+    this->d_w = 768;
+    this->d_h = 386;
     this->type = TaskType::Filer;
     if (cx > 960)
     {
@@ -56,6 +57,31 @@ void Filer::Run()
     CallGUIDirectEx(&mess);
 
     BuildContent();
+    while (1)
+    {
+        Yield();
+
+        // Process keyboard queue
+        while (!keyboard_queue.empty())
+        {
+            auto k = keyboard_queue.front();
+            keyboard_queue.pop();
+
+            // Process
+            if (k.ascii == 0)
+            {
+                switch (k.keycode)
+                {
+                default:
+                    CLogger::Get()->Write("Editor", LogNotice, "Key: %d %x", k.ascii, k.keycode);
+                }
+            }
+            else
+            {
+                CLogger::Get()->Write("Editor", LogNotice, "%d", k.ascii);
+            }
+        }
+    }
 }
 
 void Filer::BuildContent()
@@ -66,6 +92,11 @@ void Filer::BuildContent()
         BuildIcons();
         break;
     }
+}
+
+void Filer::Refresh()
+{
+    BuildContent();
 }
 
 void Filer::BuildIcons()
@@ -108,11 +139,6 @@ void Filer::BuildIcons()
     {
         AddIcon(d.substr(l), false);
     }
-
-    while (1)
-    {
-        Yield();
-    }
 }
 
 void Filer::AddIcon(std::string name, bool is_directory)
@@ -121,9 +147,9 @@ void Filer::AddIcon(std::string name, bool is_directory)
     auto style_iconbar_inner = ThemeManager::GetStyle(StyleAttribute::IconBarInner);
 
     FileIcon i;
-    i.name = name;
+    i.filename = name;
     i.is_directory = is_directory;
-    i.current_directory = directory;
+    i.directory = directory;
     i.volume = volume;
     lv_img_dsc_t *icon = NULL;
 
@@ -216,13 +242,14 @@ void Filer::IconClickEventHandler(lv_event_t *e)
     auto icon_clicked = (FileIcon *)e->user_data;
     if (icon_clicked->is_directory)
     {
-        auto task = new Filer(icon_clicked->volume, icon_clicked->current_directory + "/" + icon_clicked->name);
+        auto task = new Filer(icon_clicked->volume, icon_clicked->directory + "/" + icon_clicked->filename);
         task->Start();
     }
     else
     {
-        auto app = new DARICWindow(icon_clicked->name, false, cx, cy, 640, 512, 1920, 1080);
-        app->LoadSourceCode(icon_clicked->volume, icon_clicked->current_directory, icon_clicked->name);
+        auto app = new DARICWindow(icon_clicked->volume, icon_clicked->directory, icon_clicked->filename,
+                                   icon_clicked->filename, false, false, cx, cy, 640, 512, 1920, 1080);
+        app->LoadSourceCode();
         app->Start();
         cx += 100;
         cy += 100;
@@ -295,7 +322,7 @@ void Filer::IconPressEventHandler(lv_event_t *e)
             {
                 MenuItem mi;
                 mi.type = MenuItemType::Item;
-                mi.v = "Run fullscreen";
+                mi.v = "Run full screen";
                 mi.cb = &Filer::RunFullscreenEventHandler;
                 mi.user_data = e->user_data;
                 menu.items.push_back(std::move(mi));
@@ -355,6 +382,15 @@ void Filer::WindowPressEventHandler(lv_event_t *e)
             mi.shortcut = "^A";
             menu.items.push_back(std::move(mi));
         }
+        {
+            MenuItem mi;
+            mi.type = MenuItemType::Item;
+            mi.v = "Refresh";
+            mi.shortcut = "^R";
+            mi.cb = &Filer::RefreshEventHandler;
+            mi.user_data = e->user_data;
+            menu.items.push_back(std::move(mi));
+        }
         Menu::OpenMenu(p.x, p.y, NULL, "Filer", std::move(menu));
     }
 }
@@ -377,12 +413,20 @@ void Filer::KeyPressEventHandler(lv_event_t *e)
     CLogger::Get()->Write("File Manager", LogNotice, "%d %s", key, t->id.c_str());
 }
 
+void Filer::RefreshEventHandler(lv_event_t *e)
+{
+    Menu::CloseMenu();
+    auto t = (Filer *)e->user_data;
+    t->Refresh();
+}
+
 void Filer::RunEventHandler(lv_event_t *e)
 {
     Menu::CloseMenu();
     auto t = (FileIcon *)e->user_data;
-    auto app = new DARICWindow("DARIC", false, 100, 100, 640, 512, 1920, 1080);
-    app->LoadSourceCode(t->volume, t->current_directory, t->name);
+    auto app =
+        new DARICWindow(t->volume, t->directory, t->filename, "DARIC", false, false, 100, 100, 640, 512, 1920, 1080);
+    app->LoadSourceCode();
     app->Start();
 }
 
@@ -390,8 +434,9 @@ void Filer::RunFullscreenEventHandler(lv_event_t *e)
 {
     Menu::CloseMenu();
     auto t = (FileIcon *)e->user_data;
-    auto app = new DARICWindow("DARIC", true, 100, 100, 640, 512, 1920, 1080);
-    app->LoadSourceCode(t->volume, t->current_directory, t->name);
+    auto app =
+        new DARICWindow(t->volume, t->directory, t->filename, "DARIC", true, false, 100, 100, 640, 512, 1920, 1080);
+    app->LoadSourceCode();
     app->Start();
 }
 
@@ -400,7 +445,7 @@ void Filer::EditEventHandler(lv_event_t *e)
     Menu::CloseMenu();
     auto t = (FileIcon *)e->user_data;
     auto editor = new Editor(50, 50, 800, 600);
-    editor->LoadSourceCode(t->volume, t->current_directory, t->name);
+    editor->LoadSourceCode(t->volume, t->directory, t->filename);
     editor->Start();
 }
 

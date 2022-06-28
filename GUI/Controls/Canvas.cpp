@@ -88,9 +88,8 @@ void Canvas::Mode(int64_t w, int64_t h)
 
     // Delete old buffer
     delete buffer;
-    bool double_buffer = buffer_back != nullptr;
     task->RemoveFrameBufferMemory(sz);
-    if (double_buffer)
+    if (double_buffered)
     {
         task->RemoveFrameBufferMemory(sz);
         delete buffer_back;
@@ -99,6 +98,7 @@ void Canvas::Mode(int64_t w, int64_t h)
     // Size
     firstbuffer = lv_canvas_create(parent);
     lv_obj_set_size(firstbuffer, w, h);
+    object = firstbuffer;
 
     // Allocate memory
     sz = (lv_img_cf_get_px_size(cf) * w) * h / 8;
@@ -110,13 +110,12 @@ void Canvas::Mode(int64_t w, int64_t h)
     lv_canvas_fill_bg(firstbuffer, bg, LV_OPA_COVER);
     lv_obj_clear_flag(firstbuffer, LV_OBJ_FLAG_HIDDEN);
 
-    if (double_buffer)
+    if (double_buffered)
     {
         secondbuffer = lv_canvas_create(parent);
         lv_obj_set_size(secondbuffer, w, h);
 
         // Allocate memory
-        sz = (lv_img_cf_get_px_size(cf) * w) * h / 8;
         buffer_back = new uint8_t[sz];
         task->AddFrameBufferMemory(sz);
 
@@ -172,6 +171,7 @@ void Canvas::Clear()
 void Canvas::PlotPixel(int64_t x, int64_t y)
 {
     SetupClip();
+    lv_canvas_set_px_color(object, x, y, fg);
     ClearClip();
 }
 
