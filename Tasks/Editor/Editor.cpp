@@ -2,6 +2,7 @@
 #include "Editor.h"
 #include "../../Library/StringLib.h"
 #include "../../GUI/Window/LVGLWindow.h"
+#include "../Menu/Menu.h"
 
 Editor::Editor(int x, int y, int w, int h)
 {
@@ -10,7 +11,7 @@ Editor::Editor(int x, int y, int w, int h)
 	this->d_w = w;
 	this->d_h = h;
 	auto window_border_width = ThemeManager::GetConst(ConstAttribute::WindowBorderWidth);
-	auto window_content_padding = ThemeManager::GetConst(ConstAttribute::WindowContentPadding);
+	auto window_content_padding = ThemeManager::GetConst(ConstAttribute::WindowContentPaddingPadded);
 	auto window_header_height = ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight);
 	this->canvas_w = w-window_border_width*2-window_content_padding*2;
 	this->canvas_h = h-window_border_width*2-window_header_height-window_content_padding*2;
@@ -34,9 +35,7 @@ void Editor::Run()
 	m.y = d_y;
 	m.width = d_w;
 	m.height = d_h;
-	m.canvas = true;
-	m.canvas_w = canvas_w;
-	m.canvas_h = canvas_h;
+	m.canvas = false;
 	m.fixed = true;
 	CallGUIDirectEx(&mess);
 
@@ -44,23 +43,91 @@ void Editor::Run()
 	auto window = (Window*)this->GetWindow();
 	auto ww = window->GetLVGLWindow();
 	auto content = lv_mywin_get_content(ww);
+//	lv_obj_remove_style(content, ThemeManager::GetStyle(StyleAttribute::WindowContent), LV_STATE_DEFAULT);
+//	lv_obj_add_style(content, ThemeManager::GetStyle(StyleAttribute::WindowContentPadded), LV_STATE_DEFAULT);
 	obj = lv_obj_create(content);
+	lv_obj_set_size(obj, LV_PCT(100), LV_PCT(100));
 	lv_obj_add_style(obj, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
-
-	// Set canvas to float
-	auto canvas = window->GetCanvas();
-	lv_obj_add_flag(canvas->GetFirstBuffer(), LV_OBJ_FLAG_FLOATING);
-	lv_obj_align(canvas->GetFirstBuffer(), LV_ALIGN_TOP_LEFT, 0, 0);
+	lv_obj_add_event_cb(obj, ContextMenuEventHandler, LV_EVENT_LONG_PRESSED, this);
 
 	// Scroll event
 	lv_obj_add_event_cb(content, ScrollEventHandler, LV_EVENT_SCROLL, this);
+	lv_obj_add_event_cb(content, ResizeEventHandler, LV_EVENT_SIZE_CHANGED, this);
 
-	// Build
-	Render();
+	auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
 
 	// Do stuff
 	while (1) {
 		Yield();
+
+		// Process keyboard queue
+		while (!keyboard_queue.empty()) {
+			auto k = keyboard_queue.front();
+			keyboard_queue.pop();
+
+			// Process
+			if (k.ascii==0) {
+				switch (k.keycode) {
+					case KEY_F1: {
+						RunWindowed();
+						break;
+					}
+					case KEY_F2: {
+						FullscreenRun();
+						break;
+					}
+					case KEY_Insert:
+						if (mode==Mode::Overwrite)
+							mode = Mode::Insert;
+						else
+							mode = Mode::Overwrite;
+					case KEY_Up:
+						y--;
+						break;
+					case KEY_Down:
+						y++;
+						break;
+					case KEY_Left:
+						x--;
+						break;
+					case KEY_Right:
+						x++;
+						break;
+					case KEY_PageUp:
+						y -= canvas_h/size;
+						break;
+					case KEY_PageDown:
+						y += canvas_h/size;
+						break;
+					default:
+						CLogger::Get()->Write("Editor", LogNotice, "Key: %d %x", k.ascii, k.keycode);
+				}
+			}
+			else {
+				if (k.ascii==10) {
+					auto l1 = code[y].substr(0, x);
+					auto l2 = code[y].substr(x);
+					code[y] = l1;
+					code.insert(code.begin()+y+1, l2);
+					y++;
+					x = 0;
+					// Break line at this point
+				}
+				else {
+					CLogger::Get()->Write("Editor", LogNotice, "%d", k.ascii);
+					// normal character
+					if (mode==Mode::Overwrite) {
+						code[y][x] = k.ascii;
+						x++;
+					}
+					else {
+						code[y].insert(x, std::string(1, k.ascii));
+						CalculateLongestLine();
+					}
+				}
+			}
+			Render();
+		}
 	}
 }
 
@@ -79,16 +146,16 @@ void Editor::LoadSourceCode(std::string volume, std::string directory, std::stri
 
 	FIL fil;
 	if (f_open(&fil, (filename).c_str(), FA_READ | FA_OPEN_EXISTING)!=FR_OK) {
-		CLogger::Get()->Write("OSDTask", LogPanic, "Error opening source file '%s'", filename.c_str());
+		CLogger::Get()->Write("Editor", LogPanic, "Error opening source file '%s'", filename.c_str());
 	}
 	size_t sz = f_size(&fil);
 	char* buffer = (char*)malloc(sz+1);
 	if (!buffer) {
-		CLogger::Get()->Write("OSDTask", LogPanic, "Error allocating memory for source file '%s'", filename.c_str());
+		CLogger::Get()->Write("Editor", LogPanic, "Error allocating memory for source file '%s'", filename.c_str());
 	}
 	uint32_t l;
 	if (f_read(&fil, buffer, sz, &l)!=FR_OK) {
-		CLogger::Get()->Write("OSDTask", LogPanic, "Error loading source file '%s'", filename.c_str());
+		CLogger::Get()->Write("Editor", LogPanic, "Error loading source file '%s'", filename.c_str());
 	}
 	f_close(&fil);
 	buffer[sz] = 0;
@@ -122,18 +189,59 @@ void Editor::Render()
 	// Clear
 	canvas->Clear();
 
+	// Adjust cursor etc.
+	if (y<0)
+		y = 0;
+	if (y>=static_cast<int>(code.size()))
+		y = static_cast<int>(code.size())-1;
+	if (x<0)
+		x = 0;
+	if (x>=static_cast<int>(code[y].size()))
+		x = static_cast<int>(code[y].size())-1;
+	bool adjust = false;
+	do {
+		adjust = false;
+		int bottom_y = screen_y+(canvas_h/size)-1;
+		if (y<screen_y) {
+			//					CLogger::Get()->Write("Editor", LogNotice, "Y<: %d %d", y, screen_y);
+			screen_y--;
+			//screen_y -= (canvas_h/size);
+			adjust = true;
+		}
+		if (y>bottom_y) {
+			//					CLogger::Get()->Write("Editor", LogNotice, "Y>: %d %d", y, bottom_y);
+			screen_y++;
+			//screen_y += (canvas_h/size);
+			adjust = true;
+		}
+	}
+	while (adjust);
+
+	// Cursor
+	int64_t ex = (x-screen_x)*(size/2);
+	int64_t ey = (y-screen_y)*size;
+	canvas->SetBG(0xA0A0A0);
+	canvas->DrawRectangleFilled(ex, ey, ex+size/2, ey+size, 1);
+	canvas->SetBG(0xFFFFFF);
+
+	// Text
 	int actual_y = 0;
-	for (size_t i = y; i<code.size(); i++) {
+	for (size_t i = screen_y; i<code.size(); i++) {
 
 		// Get line
 		auto line = code[i];
 
 		int actual_x = 0;
-		for (size_t j = x; j<line.length(); j++) {
+		for (size_t j = screen_x; j<line.length(); j++) {
 			char c = line[j];
 
 			// Draw
-			canvas->DrawText(actual_x, actual_y, std::string(1, c));
+			if (c==8) {
+				canvas->DrawMonoText(actual_x, actual_y, std::string(4, c));
+			}
+			else {
+				canvas->DrawMonoText(actual_x, actual_y, std::string(1, c));
+			}
 
 			// Next character
 			actual_x += size/2;
@@ -153,16 +261,136 @@ void Editor::ScrollEventHandler(lv_event_t* e)
 	lv_obj_t* scroll = lv_event_get_target(e);
 	auto scroll_y = lv_obj_get_scroll_top(scroll);
 	auto scroll_x = lv_obj_get_scroll_left(scroll);
+	if (scroll_x<0) scroll_x = 0;
+	if (scroll_y<0) scroll_y = 0;
 
 	// Work out X and Y
 	auto editor = (Editor*)e->user_data;
 	auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
 	editor->x = scroll_x/size/2;
 	editor->y = scroll_y/size;
-	if (editor->x<0) editor->x = 0;
-	if (editor->y<0) editor->y = 0;
+	editor->screen_x = scroll_x/size/2;
+	editor->screen_y = scroll_y/size;
 
 	// Render
 	editor->Render();
-	CLogger::Get()->Write("File Manager", LogNotice, "Scroll %d %d: %d %d", scroll_x, scroll_y, editor->x, editor->y);
+}
+
+void Editor::ResizeEventHandler(lv_event_t* e)
+{
+	auto editor = (Editor*)e->user_data;
+	auto window = (Window*)editor->GetWindow();
+	auto ww = window->GetLVGLWindow();
+	lv_area_t sz;
+	lv_obj_get_coords(ww, &sz);
+
+	// Set new size
+	editor->d_w = sz.x2-sz.x1;
+	editor->d_h = sz.y2-sz.y1;
+
+	// Resize/redraw canvas
+	auto window_border_width = ThemeManager::GetConst(ConstAttribute::WindowBorderWidth);
+	auto window_content_padding = ThemeManager::GetConst(ConstAttribute::WindowContentPaddingPadded);
+	auto window_header_height = ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight);
+	window->DeleteCanvas();
+	editor->canvas_w = editor->d_w-window_border_width*2-window_content_padding*2;
+	editor->canvas_h = editor->d_h-window_border_width*2-window_header_height-window_content_padding*2;
+	window->CreateCanvas(editor->canvas_w, editor->canvas_h);
+
+	// Reset canvas styling
+	auto canvas = window->GetCanvas();
+	canvas->SetBG(0xFFFFFF);
+	canvas->SetFG(0x0);
+	lv_obj_add_flag(canvas->GetFirstBuffer(), LV_OBJ_FLAG_FLOATING);
+	lv_obj_align(canvas->GetFirstBuffer(), LV_ALIGN_TOP_LEFT, 0, 0);
+	lv_obj_add_style(canvas->GetFirstBuffer(), ThemeManager::GetStyle(StyleAttribute::BorderedContent), LV_STATE_DEFAULT);
+
+	// Render
+	editor->Render();
+
+//	CLogger::Get()->Write("File Manager", LogNotice, "Resize %d %d/%d %d", editor->canvas_w, editor->canvas_h);
+}
+
+void Editor::ContextMenuEventHandler(lv_event_t* e)
+{
+	auto editor = (Editor*)e->user_data;
+	e->stop_bubbling = 1;
+	lv_point_t p;
+	lv_indev_t* indev = lv_indev_get_act();
+	lv_indev_type_t indev_type = lv_indev_get_type(indev);
+	if (indev_type==LV_INDEV_TYPE_POINTER) {
+		lv_indev_get_point(indev, &p);
+
+		// Create menu window
+		MenuDefinition menu;
+
+		// View style
+		{
+			MenuItem mi;
+			mi.type = MenuItemType::Item;
+			mi.v = "Run windowed";
+			mi.shortcut = "F1";
+			mi.cb = &Editor::RunHandler;
+			mi.user_data = e->user_data;
+			menu.items.push_back(std::move(mi));
+		}
+		{
+			MenuItem mi;
+			mi.type = MenuItemType::Item;
+			mi.v = "Run full screen";
+			mi.shortcut = "F2";
+			mi.cb = &Editor::RunFullScreenHandler;
+			mi.user_data = e->user_data;
+			menu.items.push_back(std::move(mi));
+		}
+		{
+			MenuItem mi;
+			mi.type = MenuItemType::Item;
+			mi.v = "Debug output";
+			mi.shortcut = "F3";
+			menu.items.push_back(std::move(mi));
+		}
+		Menu::OpenMenu(p.x, p.y, NULL, "Editor", std::move(menu));
+	}
+}
+
+void Editor::RunHandler(lv_event_t* e)
+{
+	Menu::CloseMenu();
+	auto editor = (Editor*)e->user_data;
+	editor->RunWindowed();
+}
+
+void Editor::RunFullScreenHandler(lv_event_t* e)
+{
+	Menu::CloseMenu();
+	auto editor = (Editor*)e->user_data;
+	editor->FullscreenRun();
+}
+
+void Editor::RunWindowed()
+{
+	auto app = new DARICWindow("DARIC", false, 100, 100, 640, 512, 1920, 1080);
+	std::string c;
+	for (auto& l:code) {
+		c += l+"\n";
+	}
+	app->SetCode(c);
+	app->Start();
+}
+
+void Editor::FullscreenRun()
+{
+	auto app = new DARICWindow("DARIC", true, 100, 100, 640, 512, 1920, 1080);
+	std::string c;
+	for (auto& l:code) {
+		c += l+"\n";
+	}
+	app->SetCode(c);
+	app->Start();
+}
+
+void Editor::Debug()
+{
+
 }

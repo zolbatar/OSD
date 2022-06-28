@@ -1,1 +1,0 @@
-CMakeLists.txt not found in /Users/daryl/GitHub/osd/clion Select CMakeLists.txt

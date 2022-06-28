@@ -26,3 +26,8 @@ const int KEY_F6 = 0x10105;
 const int KEY_F7 = 0x10106;
 const int KEY_F8 = 0x10107;
 const int KEY_F9 = 0x10108;
+const int KEY_F10 = 0x10109;
+const int KEY_F11 = 0x10110;
+const int KEY_F12 = 0x10111;
+
+const int KEY_GRAVE = 0x20000;

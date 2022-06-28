@@ -9,6 +9,8 @@ public:
 	~Window();
 	lv_obj_t* GetLVGLWindow() { return win; }
 	Canvas* GetCanvas() { return canvas; }
+	void DeleteCanvas();
+	void CreateCanvas(int canvas_w, int canvas_h);
 	int64_t GetContentWidth() { return canvas->GetContentWidth(); }
 	int64_t GetContentHeight() { return canvas->GetContentHeight(); }
 	void SetActive();

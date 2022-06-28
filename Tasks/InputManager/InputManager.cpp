@@ -1,4 +1,8 @@
 #include "InputManager.h"
+#include <circle/logger.h>
+#include "../../GUI/KeyboardCodes.h"
+
+OSDTask* InputManager::current_task = NULL;
 
 InputManager::InputManager()
 {
@@ -17,209 +21,227 @@ void InputManager::Run()
 
 void InputManager::KeyDown(uint32_t key)
 {
-
+	Key k;
+	if (key<=127) {
+		k.ascii = key;
+		k.keycode = 0;
+	}
+	else {
+		// Convert to upper
+		if (key>='a' && key<='z')
+			key -= 32;
+		k.ascii = 0;
+		k.keycode = key;
+	}
+	k.ro_keycode = KeyRISCOSTranslate(key);
+	if (current_task!=NULL)
+		current_task->ReceiveKey(k);
+//	CLogger::Get()->Write("Input Manager", LogNotice, "%d", key);
 }
 
 void InputManager::KeyUp(uint32_t key)
 {
+}
 
+void InputManager::ClaimInput(OSDTask* task)
+{
+	current_task = task;
 }
 
 int InputManager::KeyRISCOSTranslate(uint32_t key)
 {
-/*	switch (key.scancode) {
+	switch (key) {
 		// Top row
-		case SDL_SCANCODE_ESCAPE:
+		case KEY_Escape:
 			return 112;
-		case SDL_SCANCODE_F1:
+		case KEY_F1:
 			return 113;
-		case SDL_SCANCODE_F2:
+		case KEY_F2:
 			return 114;
-		case SDL_SCANCODE_F3:
+		case KEY_F3:
 			return 115;
-		case SDL_SCANCODE_F4:
+		case KEY_F4:
 			return 20;
-		case SDL_SCANCODE_F5:
+		case KEY_F5:
 			return 116;
-		case SDL_SCANCODE_F6:
+		case KEY_F6:
 			return 117;
-		case SDL_SCANCODE_F7:
+		case KEY_F7:
 			return 22;
-		case SDL_SCANCODE_F8:
+		case KEY_F8:
 			return 118;
-		case SDL_SCANCODE_F9:
+		case KEY_F9:
 			return 119;
-		case SDL_SCANCODE_F10: {
+		case KEY_F10:
 			return 30;
-		}
-		case SDL_SCANCODE_F11:
+		case KEY_F11:
 			return 28;
-		case SDL_SCANCODE_F12:
+		case KEY_F12:
 			return 29;
-		case SDL_SCANCODE_PRINTSCREEN:
-			return 32;
-		case SDL_SCANCODE_SCROLLLOCK:
-			return 31;
-		case SDL_SCANCODE_PAUSE:
-			return 44;
+//		case SDL_SCANCODE_PRINTSCREEN:
+//			return 32;
+//		case SDL_SCANCODE_SCROLLLOCK:
+//			return 31;
+//		case SDL_SCANCODE_PAUSE:
+//			return 44;
 
 			// Row 2
-		case SDL_SCANCODE_GRAVE:
+		case '`':
 			return 45;
-		case SDL_SCANCODE_1:
+		case '1':
 			return 48;
-		case SDL_SCANCODE_2:
+		case '2':
 			return 49;
-		case SDL_SCANCODE_3:
+		case '3':
 			return 17;
-		case SDL_SCANCODE_4:
+		case '4':
 			return 18;
-		case SDL_SCANCODE_5:
+		case '5':
 			return 19;
-		case SDL_SCANCODE_6:
+		case '6':
 			return 52;
-		case SDL_SCANCODE_7:
+		case '7':
 			return 36;
-		case SDL_SCANCODE_8:
+		case '8':
 			return 21;
-		case SDL_SCANCODE_9:
+		case '9':
 			return 38;
-		case SDL_SCANCODE_0:
+		case '0':
 			return 39;
-		case SDL_SCANCODE_KP_PLUSMINUS:
+		case '-':
 			return 23;
-		case SDL_SCANCODE_EQUALS:
+		case '=':
 			return 93;
-		case SDL_SCANCODE_BACKSPACE:
+		case KEY_Backspace:
 			return 47;
 
 			// Row 3
-		case SDL_SCANCODE_TAB:
+		case KEY_Tab:
 			return 96;
-		case SDL_SCANCODE_Q:
+		case 'Q':
 			return 16;
-		case SDL_SCANCODE_W:
+		case 'W':
 			return 33;
-		case SDL_SCANCODE_E:
+		case 'E':
 			return 34;
-		case SDL_SCANCODE_R:
+		case 'R':
 			return 51;
-		case SDL_SCANCODE_T:
+		case 'T':
 			return 35;
-		case SDL_SCANCODE_Y:
+		case 'Y':
 			return 68;
-		case SDL_SCANCODE_U:
+		case 'U':
 			return 53;
-		case SDL_SCANCODE_I:
+		case 'I':
 			return 37;
-		case SDL_SCANCODE_O:
+		case 'O':
 			return 54;
-		case SDL_SCANCODE_P:
+		case 'P':
 			return 55;
-		case SDL_SCANCODE_LEFTBRACKET:
+		case '[':
 			return 56;
-		case SDL_SCANCODE_RIGHTBRACKET:
+		case ']':
 			return 88;
-		case SDL_SCANCODE_NONUSBACKSLASH:
-			return 120;
+//		case SDL_SCANCODE_NONUSBACKSLASH:
+//			return 120;
 
 			// Row 4
-		case SDL_SCANCODE_LCTRL:
-			return 1;
-		case SDL_SCANCODE_A:
+//		case SDL_SCANCODE_LCTRL:
+//			return 1;
+		case 'A':
 			return 65;
-		case SDL_SCANCODE_S:
+		case 'S':
 			return 81;
-		case SDL_SCANCODE_D:
+		case 'D':
 			return 50;
-		case SDL_SCANCODE_F:
+		case 'F':
 			return 67;
-		case SDL_SCANCODE_G:
+		case 'G':
 			return 83;
-		case SDL_SCANCODE_H:
+		case 'H':
 			return 84;
-		case SDL_SCANCODE_J:
+		case 'J':
 			return 69;
-		case SDL_SCANCODE_K:
+		case 'K':
 			return 70;
-		case SDL_SCANCODE_L:
+		case 'L':
 			return 86;
-		case SDL_SCANCODE_SEMICOLON:
+		case ';':
 			return 72;
-		case SDL_SCANCODE_APOSTROPHE:
+		case '\'':
 			return 79;
-		case SDL_SCANCODE_BACKSLASH:
+		case '#':
 			return 125;
-		case SDL_SCANCODE_RETURN:
+		case 13:
 			return 73;
 
 			// Row 4
-		case SDL_SCANCODE_LSHIFT:
-			return 3; // 0
-		case SDL_SCANCODE_Z:
+//		case SDL_SCANCODE_LSHIFT:
+//			return 3; // 0
+		case 'Z':
 			return 97;
-		case SDL_SCANCODE_X:
+		case 'X':
 			return 66;
-		case SDL_SCANCODE_C:
+		case 'C':
 			return 82;
-		case SDL_SCANCODE_V:
+		case 'V':
 			return 99;
-		case SDL_SCANCODE_B:
+		case 'B':
 			return 100;
-		case SDL_SCANCODE_N:
+		case 'N':
 			return 85;
-		case SDL_SCANCODE_M:
+		case 'M':
 			return 101;
-		case SDL_SCANCODE_COMMA:
+		case ',':
 			return 102;
-		case SDL_SCANCODE_PERIOD:
+		case '.':
 			return 103;
-		case SDL_SCANCODE_SLASH:
+		case '/':
 			return 104;
-		case SDL_SCANCODE_RSHIFT:
-			return 6; // 0
+//		case SDL_SCANCODE_RSHIFT:
+//			return 6; // 0
 
 			// Row 5
-		case SDL_SCANCODE_CAPSLOCK:
-			return 64;
-		case SDL_SCANCODE_LALT:
-			return 2;
+//		case SDL_SCANCODE_CAPSLOCK:
+//			return 64;
+//		case SDL_SCANCODE_LALT:
+//			return 2;
 			// return 5;
-		case SDL_SCANCODE_SPACE:
+		case ' ':
 			return 98;
-		case SDL_SCANCODE_RALT:
-			return 2;
+//		case SDL_SCANCODE_RALT:
+//			return 2;
 			// return 8;
-		case SDL_SCANCODE_RCTRL:
-			return 1;
+//		case SDL_SCANCODE_RCTRL:
+//			return 1;
 			// return 7;
 
 			// Navigation keys
-		case SDL_SCANCODE_INSERT:
+		case KEY_Insert:
 			return 61;
-		case SDL_SCANCODE_HOME:
+		case KEY_Home:
 			return 62;
-		case SDL_SCANCODE_PAGEUP:
+		case KEY_PageUp:
 			return 63;
-		case SDL_SCANCODE_DELETE:
+		case KEY_Delete:
 			return 89;
-		case SDL_SCANCODE_END:
+		case KEY_End:
 			return 105;
-		case SDL_SCANCODE_PAGEDOWN:
+		case KEY_PageDown:
 			return 78;
 
 			// Cursor keys
-		case SDL_SCANCODE_UP:
+		case KEY_Up:
 			return 57;
-		case SDL_SCANCODE_LEFT:
+		case KEY_Left:
 			return 25;
-		case SDL_SCANCODE_DOWN:
+		case KEY_Down:
 			return 41;
-		case SDL_SCANCODE_RIGHT:
+		case KEY_Right:
 			return 121;
 
 			// Keypad
-		case SDL_SCANCODE_NUMLOCKCLEAR:
+/*		case SDL_SCANCODE_NUMLOCKCLEAR:
 			return 77;
 		case SDL_SCANCODE_KP_DIVIDE:
 			return 74;
@@ -252,8 +274,8 @@ int InputManager::KeyRISCOSTranslate(uint32_t key)
 		case SDL_SCANCODE_KP_0:
 			return 106;
 		case SDL_SCANCODE_KP_PERIOD:
-			return 76;
+			return 76;*/
 		default:
 			return -1;
-	}*/
+	}
 }

@@ -1,6 +1,7 @@
 #include "Window.h"
 #include <circle/logger.h>
 #include "LVGLWindow.h"
+#include "../../Tasks/InputManager/InputManager.h"
 
 std::map<std::string, Window*> Window::windows;
 
@@ -20,9 +21,6 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	lv_obj_set_pos(win, x1, y1);
 	lv_obj_set_width(win, width);
 	lv_obj_set_height(win, height);
-
-	// Content
-	auto content = lv_mywin_get_content(win);
 
 	// Header
 	header = lv_mywin_get_header(win);
@@ -49,10 +47,23 @@ Window::Window(OSDTask* task, bool pure_canvas, bool fixed, std::string title, i
 	lv_obj_add_style(btn_close, style, LV_STATE_DEFAULT);
 
 	if (pure_canvas) {
-		canvas = new Canvas(task, content, canvas_w, canvas_h);
+		CreateCanvas(canvas_w, canvas_h);
 	}
 
 	SetActive();
+}
+
+void Window::CreateCanvas(int canvas_w, int canvas_h)
+{
+	auto content = lv_mywin_get_content(win);
+	canvas = new Canvas(task, content, canvas_w, canvas_h);
+}
+
+void Window::DeleteCanvas()
+{
+	if (canvas!=NULL)
+		delete canvas;
+	canvas = NULL;
 }
 
 Window::~Window()
@@ -72,6 +83,7 @@ void Window::SetActive()
 	lv_obj_add_style(header, ThemeManager::GetStyle(StyleAttribute::WindowActive), 0);
 	lv_obj_move_foreground(this->GetLVGLWindow());
 	this->active = true;
+	InputManager::ClaimInput(this->task);
 }
 
 void Window::SetInactive()

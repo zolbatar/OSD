@@ -273,6 +273,9 @@ void IRCompiler::Compile(std::list<Token*>* tokens)
 		CompileToken(token);
 	}
 
+	// Make sure the end of the global bit ends
+	AddIR(IROpcodes::End);
+
 	// Split global (local init)
 	ir_global.splice(ir_global.begin(), ir_global_init);
 

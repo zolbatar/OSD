@@ -50,11 +50,13 @@ enum class StyleAttribute {
 	Window,
 	WindowButton,
 	WindowContent,
+	WindowContentPadded,
 	WindowHeader,
 	WindowActive,
 	WindowInactive,
 	WindowFullScreen,
 	WindowHeaderFullScreen,
+	BorderedContent,
 };
 
 enum class FontAttribute {
@@ -82,6 +84,7 @@ enum class ConstAttribute {
 	WindowHeaderHeight,
 	WindowFurnitureWidth,
 	WindowContentPadding,
+	WindowContentPaddingPadded,
 };
 
 #define LV_SYMBOL_MY_CLOSE        "\xEF\x8B\x93" // 0xF00D close

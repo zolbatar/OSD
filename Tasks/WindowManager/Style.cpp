@@ -70,6 +70,7 @@ void WindowManager::SetupLVGLStyles()
 	ThemeManager::AddConst(ConstAttribute::MenuHeaderHeight, 28);
 	ThemeManager::AddConst(ConstAttribute::WindowFurnitureWidth, 24);
 	ThemeManager::AddConst(ConstAttribute::WindowContentPadding, 0);
+	ThemeManager::AddConst(ConstAttribute::WindowContentPaddingPadded, 6);
 	ThemeManager::AddConst(ConstAttribute::CornerRadius, 3);
 	ThemeManager::AddConst(ConstAttribute::ControlPadding, 1);
 	ThemeManager::AddConst(ConstAttribute::ContainerPadding, 8);
@@ -119,7 +120,7 @@ void WindowManager::SetupLVGLStyles()
 		lv_style_t* style = CreateStyle();
 		lv_style_init(style);
 		lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::Focus));
-		lv_style_set_border_width(style, 3);
+		lv_style_set_border_width(style, 0);
 		ThemeManager::AddStyle(StyleAttribute::Focussed, style);
 	}
 
@@ -128,6 +129,7 @@ void WindowManager::SetupLVGLStyles()
 		lv_style_t* style = CreateStyle();
 		lv_style_init(style);
 		lv_style_set_bg_opa(style, LV_OPA_TRANSP);
+		lv_style_set_border_width(style, 0);
 		ThemeManager::AddStyle(StyleAttribute::TransparentWindow, style);
 	}
 
@@ -208,6 +210,7 @@ void WindowManager::SetupLVGLStyles()
 		lv_style_set_radius(style, 0);
 		lv_style_set_border_width(style, 0);
 		lv_style_set_bg_color(style, lv_color_black());
+//		lv_style_set_bg_opa(style, LV_OPA_TRANSP);
 		lv_style_set_bg_opa(style, LV_OPA_30);
 		ThemeManager::AddStyle(StyleAttribute::MenuBackground, style);
 	}
@@ -254,6 +257,14 @@ void WindowManager::SetupLVGLStyles()
 	{
 		lv_style_t* style = CreateStyle();
 		lv_style_init(style);
+		lv_style_set_border_width(style, 1);
+		lv_style_set_border_side(style, LV_BORDER_SIDE_RIGHT | LV_BORDER_SIDE_BOTTOM);
+		lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
+		ThemeManager::AddStyle(StyleAttribute::BorderedContent, style);
+	}
+	{
+		lv_style_t* style = CreateStyle();
+		lv_style_init(style);
 		lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
 		lv_style_set_border_width(style, ThemeManager::GetConst(ConstAttribute::WindowBorderWidth));
 		lv_style_set_radius(style, ThemeManager::GetConst(ConstAttribute::CornerRadius));
@@ -273,6 +284,20 @@ void WindowManager::SetupLVGLStyles()
 		lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::Body));
 		lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::WindowForeground));
 		ThemeManager::AddStyle(StyleAttribute::WindowContent, style);
+	}
+	{
+		lv_style_t* style = CreateStyle();
+		lv_style_init(style);
+		lv_style_set_border_width(style, 0);
+		lv_style_set_radius(style, 0);
+		lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowBackground));
+		lv_style_set_bg_opa(style, LV_OPA_COVER);
+		lv_style_set_pad_all(style, 0);
+		lv_style_set_pad_right(style, ThemeManager::GetConst(ConstAttribute::WindowContentPaddingPadded));
+		lv_style_set_pad_bottom(style, ThemeManager::GetConst(ConstAttribute::WindowContentPaddingPadded));
+		lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::Body));
+		lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::WindowForeground));
+		ThemeManager::AddStyle(StyleAttribute::WindowContentPadded, style);
 	}
 	{
 		lv_style_t* style = CreateStyle();

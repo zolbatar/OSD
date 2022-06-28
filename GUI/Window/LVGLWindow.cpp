@@ -132,7 +132,6 @@ static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 	auto wa = (WindowAttributes*)obj->user_data;
 	auto style_window = ThemeManager::GetStyle(StyleAttribute::Window);
 	auto style_header = ThemeManager::GetStyle(StyleAttribute::WindowHeader);
-	auto style_content = ThemeManager::GetStyle(StyleAttribute::WindowContent);
 	auto style_scrollbar = ThemeManager::GetStyle(StyleAttribute::Scrollbar);
 
 	LV_UNUSED(class_p);
@@ -155,7 +154,7 @@ static void lv_mywin_constructor(const lv_obj_class_t* class_p, lv_obj_t* obj)
 	lv_obj_set_height(body, LV_PCT(100));
 	//lv_obj_set_width(body, LV_SIZE_CONTENT);
 	//lv_obj_set_height(body, LV_SIZE_CONTENT);
-	lv_obj_add_style(body, style_content, LV_STATE_DEFAULT);
+	lv_obj_add_style(body, ThemeManager::GetStyle(StyleAttribute::WindowContent), LV_STATE_DEFAULT);
 	lv_obj_set_scrollbar_mode(body, LV_SCROLLBAR_MODE_AUTO);
 //	lv_obj_set_scrollbar_mode(body, LV_SCROLLBAR_MODE_ON);
 	lv_obj_add_style(body, style_scrollbar, LV_PART_SCROLLBAR);

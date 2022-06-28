@@ -1,0 +1,1009 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/daryl/GitHub/osd'
+ 
+Makefile:65: warning: overriding commands for target `clean'
+../circle-stdlib/libs/circle/Rules.mk:169: warning: ignoring old commands for target `clean'
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/LibRandom.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/LibKeyboardMouse.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/LibData.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/LibGraphics2D.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/LibChrono.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/LibGeneral.cpp:2:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/LibString.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/LibMaths.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/NativeStack.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/LibPrint.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from NativeCompiler/../IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from NativeCompiler/../IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from NativeCompiler/../IRCompiler/IRCompiler.h:4,
+                 from NativeCompiler/NativeCompiler.h:4,
+                 from NativeCompiler/Disassemble.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRDefs.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRData.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRCase.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IROptimiser.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRFor.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRWhile.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRRepeat.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRPrint.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRAssignment.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRVariables.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRString.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRConversion.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRBoolean.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRPrinter.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRMaths.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRLiteral.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRIf.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRCompiler.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from IRCompiler/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from IRCompiler/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from IRCompiler/../Tokeniser/../OS/OS.h:9,
+                 from IRCompiler/../Tokeniser/Tokeniser.h:3,
+                 from IRCompiler/IRCompiler.h:4,
+                 from IRCompiler/IRComparison.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_TYPE.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_DATA.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_CASE.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_FOR.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_WHILE.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_REPEAT.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_Assignment.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_SWAP.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_CONST.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_PROCCall.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_PRINT.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_IF.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser_DEF.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/ParserExpression.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Parser/../Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Parser/../Tokeniser/../OS/OS_Tasks.h:21,
+                 from Parser/../Tokeniser/../OS/OS.h:9,
+                 from Parser/../Tokeniser/Tokeniser.h:3,
+                 from Parser/Parser.h:9,
+                 from Parser/Parser.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tokeniser/../OS/OS_Tasks.h:21,
+                 from Tokeniser/../OS/OS.h:9,
+                 from Tokeniser/Tokeniser.h:3,
+                 from Tokeniser/TokeniserPrinter.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tokeniser/../OS/OS_Tasks.h:21,
+                 from Tokeniser/../OS/OS.h:9,
+                 from Tokeniser/Tokeniser.h:3,
+                 from Tokeniser/TokeniserText.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tokeniser/../OS/OS_Tasks.h:21,
+                 from Tokeniser/../OS/OS.h:9,
+                 from Tokeniser/Tokeniser.h:3,
+                 from Tokeniser/TokeniserSymbol.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tokeniser/../OS/OS_Tasks.h:21,
+                 from Tokeniser/../OS/OS.h:9,
+                 from Tokeniser/Tokeniser.h:3,
+                 from Tokeniser/TokeniserString.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tokeniser/../OS/OS_Tasks.h:21,
+                 from Tokeniser/../OS/OS.h:9,
+                 from Tokeniser/Tokeniser.h:3,
+                 from Tokeniser/TokeniserNumber.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tokeniser/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tokeniser/../OS/OS_Tasks.h:21,
+                 from Tokeniser/../OS/OS.h:9,
+                 from Tokeniser/Tokeniser.h:3,
+                 from Tokeniser/Tokeniser.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from capstone/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from capstone/../OS/OS_Tasks.h:21,
+                 from capstone/../OS/OS.h:9,
+                 from GUI/../Tasks/InputManager/../../GUI/Window/../Controls/Canvas.h:2,
+                 from GUI/../Tasks/InputManager/../../GUI/Window/Window.h:4,
+                 from GUI/../Tasks/InputManager/InputManager.h:3,
+                 from GUI/lvgl.cpp:30:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/Editor/../WindowManager/../../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/Editor/../WindowManager/../../OS/OS_Tasks.h:21,
+                 from Tasks/Editor/../WindowManager/../../OS/OS.h:9,
+                 from Tasks/Editor/../WindowManager/WindowManager.h:2,
+                 from Tasks/Editor/Editor.h:3,
+                 from Tasks/Editor/Editor.cpp:2:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/FileManager/../../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/FileManager/../../OS/OS_Tasks.h:21,
+                 from Tasks/FileManager/../../OS/OS.h:9,
+                 from Tasks/FileManager/FileManager.h:2,
+                 from Tasks/FileManager/FileManager.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/Menu/../../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/Menu/../../OS/OS_Tasks.h:21,
+                 from Tasks/Menu/../../OS/OS.h:9,
+                 from Tasks/Menu/Menu.h:3,
+                 from Tasks/Menu/Menu.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/FontManager/../../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/FontManager/../../OS/OS_Tasks.h:21,
+                 from Tasks/FontManager/../../OS/OS.h:9,
+                 from Tasks/FontManager/FontManager.h:2,
+                 from Tasks/FontManager/FontManager.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/Filer/../../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/Filer/../../OS/OS_Tasks.h:21,
+                 from Tasks/Filer/../../OS/OS.h:9,
+                 from Tasks/Filer/Filer.h:3,
+                 from Tasks/Filer/Filer.cpp:2:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/TasksWindow/../WindowManager/../../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/TasksWindow/../WindowManager/../../OS/OS_Tasks.h:21,
+                 from Tasks/TasksWindow/../WindowManager/../../OS/OS.h:9,
+                 from Tasks/TasksWindow/../WindowManager/WindowManager.h:2,
+                 from Tasks/TasksWindow/TasksWindow.h:2,
+                 from Tasks/TasksWindow/TasksWindow.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/../OS/OS_Tasks.h:21,
+                 from Tasks/../OS/OS.h:9,
+                 from Tasks/DARICWindow.h:2,
+                 from Tasks/DARICWindow.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/IconBar/../../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/IconBar/../../OS/OS_Tasks.h:21,
+                 from Tasks/IconBar/../../OS/OS.h:9,
+                 from Tasks/IconBar/IconBar.h:3,
+                 from Tasks/IconBar/IconBar.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/WindowManager/../FontManager/../../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/WindowManager/../FontManager/../../OS/OS_Tasks.h:21,
+                 from Tasks/WindowManager/../FontManager/../../OS/OS.h:9,
+                 from Tasks/WindowManager/../FontManager/FontManager.h:2,
+                 from Tasks/WindowManager/Style.cpp:3:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from Tasks/WindowManager/../../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from Tasks/WindowManager/../../OS/OS_Tasks.h:21,
+                 from Tasks/WindowManager/../../OS/OS.h:9,
+                 from Tasks/WindowManager/WindowManager.h:2,
+                 from Tasks/WindowManager/WindowManager.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from capstone/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from capstone/../OS/OS_Tasks.h:21,
+                 from capstone/../OS/OS.h:9,
+                 from GUI/Controls/Canvas.h:2,
+                 from GUI/Controls/Canvas.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from capstone/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from capstone/../OS/OS_Tasks.h:21,
+                 from capstone/../OS/OS.h:9,
+                 from GUI/Controls/Control.cpp:2:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from capstone/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from capstone/../OS/OS_Tasks.h:21,
+                 from capstone/../OS/OS.h:9,
+                 from GUI/Window/../Controls/Canvas.h:2,
+                 from GUI/Window/Window.h:4,
+                 from GUI/Window/Window.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from capstone/../OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from capstone/../OS/OS_Tasks.h:21,
+                 from capstone/../OS/OS.h:9,
+                 from Tasks/InputManager/../../GUI/Window/../Controls/Canvas.h:2,
+                 from Tasks/InputManager/../../GUI/Window/Window.h:4,
+                 from Tasks/InputManager/InputManager.h:3,
+                 from Tasks/InputManager/InputManager.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from OS/OS_Tasks.h:21,
+                 from OS/OS.h:9,
+                 from OS/OS_Tasks_Compile.cpp:5:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from OS/OS_Tasks.h:21,
+                 from OS/OS.h:9,
+                 from OS/OS_Strings.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from OS/OS_Tasks.h:21,
+                 from OS/OS.h:9,
+                 from OS/OS_Tasks.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from OS/../Tasks/FileManager/FileSystemObject.h:2,
+                 from OS/OS_Tasks.h:21,
+                 from OS/OS.h:9,
+                 from OS/OS.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from ../circle-stdlib/include/wrap_fatfs.h:12,
+                 from ../circle-stdlib/include/circle_glue.h:4,
+                 from ../circle-stdlib/include/circle_stdlib_app.h:32,
+                 from kernel.h:2,
+                 from kernel.cpp:7:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+In file included from ../circle-stdlib/include/wrap_fatfs.h:12,
+                 from ../circle-stdlib/include/circle_glue.h:4,
+                 from ../circle-stdlib/include/circle_stdlib_app.h:32,
+                 from kernel.h:2,
+                 from main.cpp:1:
+../circle-stdlib/libs/circle/addon/fatfs/ff.h:346:17: error: macro names must be identifiers
+  346 | #define         (path) f_mount(0, path, 0)
+      |                 ^
+
+make: Leaving directory `/Users/daryl/GitHub/osd'
+ 
+make: Entering directory `/Users/daryl/GitHub/osd'
+ 
+Makefile:65: warning: overriding commands for target `clean'
+../circle-stdlib/libs/circle/Rules.mk:169: warning: ignoring old commands for target `clean'
+
+echo "  CPP   main.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o main.o main.cpp
+echo "  CPP   kernel.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o kernel.o kernel.cpp
+echo "  CPP   Chrono/Chrono.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Chrono/Chrono.o Chrono/Chrono.cpp
+echo "  CPP   OS/OS.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o OS/OS.o OS/OS.cpp
+ 
+echo "  CPP   OS/OS_Tasks.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o OS/OS_Tasks.o OS/OS_Tasks.cpp
+echo "  CPP   OS/OS_Strings.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o OS/OS_Strings.o OS/OS_Strings.cpp
+ 
+echo "  CPP   OS/OS_Tasks_Compile.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o OS/OS_Tasks_Compile.o OS/OS_Tasks_Compile.cpp
+echo "  CPP   Tasks/InputManager/InputManager.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/InputManager/InputManager.o Tasks/InputManager/InputManager.cpp
+echo "  CPP   GUI/Window/Window.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o GUI/Window/Window.o GUI/Window/Window.cpp
+echo "  CPP   GUI/Window/LVGLWindow.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o GUI/Window/LVGLWindow.o GUI/Window/LVGLWindow.cpp
+ 
+echo "  CPP   GUI/Controls/Control.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o GUI/Controls/Control.o GUI/Controls/Control.cpp
+ 
+echo "  CPP   GUI/Controls/Canvas.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o GUI/Controls/Canvas.o GUI/Controls/Canvas.cpp
+ 
+echo "  CPP   Tasks/WindowManager/WindowManager.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/WindowManager/WindowManager.o Tasks/WindowManager/WindowManager.cpp
+ 
+echo "  CPP   Tasks/WindowManager/Style.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/WindowManager/Style.o Tasks/WindowManager/Style.cpp
+ 
+echo "  CPP   Tasks/IconBar/IconBar.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/IconBar/IconBar.o Tasks/IconBar/IconBar.cpp
+ 
+echo "  CPP   Tasks/DARICWindow.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/DARICWindow.o Tasks/DARICWindow.cpp
+ 
+echo "  CPP   Tasks/TasksWindow/TasksWindow.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/TasksWindow/TasksWindow.o Tasks/TasksWindow/TasksWindow.cpp
+ 
+echo "  CPP   Tasks/Filer/Filer.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/Filer/Filer.o Tasks/Filer/Filer.cpp
+ 
+echo "  CPP   Tasks/FontManager/FontManager.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/FontManager/FontManager.o Tasks/FontManager/FontManager.cpp
+ 
+echo "  CPP   Tasks/Menu/Menu.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/Menu/Menu.o Tasks/Menu/Menu.cpp
+ 
+echo "  CPP   Tasks/FileManager/FileManager.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/FileManager/FileManager.o Tasks/FileManager/FileManager.cpp
+ 
+echo "  CPP   Tasks/Editor/Editor.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tasks/Editor/Editor.o Tasks/Editor/Editor.cpp
+ 
+echo "  CPP   GUI/lvgl.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o GUI/lvgl.o GUI/lvgl.cpp
+echo "  CPP   Library/StringLib.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Library/StringLib.o Library/StringLib.cpp
+ 
+echo "  CPP   Tokeniser/Tokeniser.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tokeniser/Tokeniser.o Tokeniser/Tokeniser.cpp
+ 
+echo "  CPP   Tokeniser/TokeniserNumber.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tokeniser/TokeniserNumber.o Tokeniser/TokeniserNumber.cpp
+ 
+echo "  CPP   Tokeniser/TokeniserString.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tokeniser/TokeniserString.o Tokeniser/TokeniserString.cpp
+echo "  CPP   Tokeniser/TokeniserSymbol.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tokeniser/TokeniserSymbol.o Tokeniser/TokeniserSymbol.cpp
+ 
+echo "  CPP   Tokeniser/TokeniserText.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tokeniser/TokeniserText.o Tokeniser/TokeniserText.cpp
+ 
+echo "  CPP   Tokeniser/TokeniserPrinter.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Tokeniser/TokeniserPrinter.o Tokeniser/TokeniserPrinter.cpp
+ 
+echo "  CPP   Parser/Parser.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser.o Parser/Parser.cpp
+ 
+echo "  CPP   Parser/ParserExpression.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/ParserExpression.o Parser/ParserExpression.cpp
+ 
+echo "  CPP   Parser/Parser_DEF.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_DEF.o Parser/Parser_DEF.cpp
+echo "  CPP   Parser/Parser_IF.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_IF.o Parser/Parser_IF.cpp
+echo "  CPP   Parser/Parser_PRINT.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_PRINT.o Parser/Parser_PRINT.cpp
+echo "  CPP   Parser/Parser_PROCCall.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_PROCCall.o Parser/Parser_PROCCall.cpp
+echo "  CPP   Parser/Parser_CONST.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_CONST.o Parser/Parser_CONST.cpp
+ 
+echo "  CPP   Parser/Parser_SWAP.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_SWAP.o Parser/Parser_SWAP.cpp
+ 
+echo "  CPP   Parser/Parser_Assignment.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_Assignment.o Parser/Parser_Assignment.cpp
+ 
+echo "  CPP   Parser/Parser_REPEAT.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_REPEAT.o Parser/Parser_REPEAT.cpp
+ 
+echo "  CPP   Parser/Parser_WHILE.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_WHILE.o Parser/Parser_WHILE.cpp
+ 
+echo "  CPP   Parser/Parser_FOR.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_FOR.o Parser/Parser_FOR.cpp
+ 
+echo "  CPP   Parser/Parser_CASE.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_CASE.o Parser/Parser_CASE.cpp
+ 
+echo "  CPP   Parser/Parser_DATA.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_DATA.o Parser/Parser_DATA.cpp
+ 
+echo "  CPP   Parser/Parser_TYPE.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o Parser/Parser_TYPE.o Parser/Parser_TYPE.cpp
+ 
+echo "  CPP   IRCompiler/IRComparison.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRComparison.o IRCompiler/IRComparison.cpp
+ 
+echo "  CPP   IRCompiler/IRCompiler.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRCompiler.o IRCompiler/IRCompiler.cpp
+echo "  CPP   IRCompiler/IRIf.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRIf.o IRCompiler/IRIf.cpp
+echo "  CPP   IRCompiler/IRLiteral.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRLiteral.o IRCompiler/IRLiteral.cpp
+ 
+echo "  CPP   IRCompiler/IRMaths.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRMaths.o IRCompiler/IRMaths.cpp
+ 
+echo "  CPP   IRCompiler/IRPrinter.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRPrinter.o IRCompiler/IRPrinter.cpp
+ 
+echo "  CPP   IRCompiler/IRBoolean.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRBoolean.o IRCompiler/IRBoolean.cpp
+echo "  CPP   IRCompiler/IRConversion.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRConversion.o IRCompiler/IRConversion.cpp
+echo "  CPP   IRCompiler/IRString.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRString.o IRCompiler/IRString.cpp
+ 
+echo "  CPP   IRCompiler/IRVariables.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRVariables.o IRCompiler/IRVariables.cpp
+ 
+echo "  CPP   IRCompiler/IRAssignment.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRAssignment.o IRCompiler/IRAssignment.cpp
+ 
+echo "  CPP   IRCompiler/IRPrint.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRPrint.o IRCompiler/IRPrint.cpp
+ 
+echo "  CPP   IRCompiler/IRRepeat.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRRepeat.o IRCompiler/IRRepeat.cpp
+ 
+echo "  CPP   IRCompiler/IRWhile.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRWhile.o IRCompiler/IRWhile.cpp
+ 
+echo "  CPP   IRCompiler/IRFor.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRFor.o IRCompiler/IRFor.cpp
+ 
+echo "  CPP   IRCompiler/IROptimiser.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IROptimiser.o IRCompiler/IROptimiser.cpp
+ 
+echo "  CPP   IRCompiler/IRCase.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRCase.o IRCompiler/IRCase.cpp
+ 
+echo "  CPP   IRCompiler/IRData.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRData.o IRCompiler/IRData.cpp
+ 
+echo "  CPP   IRCompiler/IRDefs.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o IRCompiler/IRDefs.o IRCompiler/IRDefs.cpp
+ 
+echo "  CPP   NativeCompiler/Disassemble.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/Disassemble.o NativeCompiler/Disassemble.cpp
+ 
+echo "  CPP   NativeCompiler/LibPrint.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/LibPrint.o NativeCompiler/LibPrint.cpp
+ 
+echo "  CPP   NativeCompiler/NativeCompiler.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/NativeCompiler.o NativeCompiler/NativeCompiler.cpp
+ 
+echo "  CPP   NativeCompiler/NativeStack.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/NativeStack.o NativeCompiler/NativeStack.cpp
+ 
+echo "  CPP   NativeCompiler/LibMaths.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/LibMaths.o NativeCompiler/LibMaths.cpp
+ 
+echo "  CPP   NativeCompiler/LibString.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/LibString.o NativeCompiler/LibString.cpp
+ 
+echo "  CPP   NativeCompiler/LibGeneral.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/LibGeneral.o NativeCompiler/LibGeneral.cpp
+echo "  CPP   NativeCompiler/LibChrono.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/LibChrono.o NativeCompiler/LibChrono.cpp
+ 
+echo "  CPP   NativeCompiler/LibGraphics2D.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/LibGraphics2D.o NativeCompiler/LibGraphics2D.cpp
+echo "  CPP   NativeCompiler/LibData.o"
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/LibData.o NativeCompiler/LibData.cpp
+ 
+echo "  CPP   NativeCompiler/LibKeyboardMouse.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/LibKeyboardMouse.o NativeCompiler/LibKeyboardMouse.cpp
+echo "  CPP   NativeCompiler/LibRandom.o"
+ 
+aarch64-none-elf-g++ -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=c++17 -Wno-aligned-new -c -o NativeCompiler/LibRandom.o NativeCompiler/LibRandom.cpp
+echo "  CC    Lightning/lightning.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o Lightning/lightning.o Lightning/lightning.c
+echo "  CC    Lightning/jit_memory.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o Lightning/jit_memory.o Lightning/jit_memory.c
+echo "  CC    Lightning/jit_disasm.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o Lightning/jit_disasm.o Lightning/jit_disasm.c
+ 
+echo "  CC    Lightning/jit_size.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o Lightning/jit_size.o Lightning/jit_size.c
+echo "  CC    Lightning/jit_note.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o Lightning/jit_note.o Lightning/jit_note.c
+echo "  CC    Lightning/jit_print.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o Lightning/jit_print.o Lightning/jit_print.c
+ 
+echo "  CC    capstone/arch/AArch64/AArch64BaseInfo.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/arch/AArch64/AArch64BaseInfo.o capstone/arch/AArch64/AArch64BaseInfo.c
+echo "  CC    capstone/arch/AArch64/AArch64Disassembler.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/arch/AArch64/AArch64Disassembler.o capstone/arch/AArch64/AArch64Disassembler.c
+ 
+echo "  CC    capstone/arch/AArch64/AArch64InstPrinter.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/arch/AArch64/AArch64InstPrinter.o capstone/arch/AArch64/AArch64InstPrinter.c
+echo "  CC    capstone/arch/AArch64/AArch64Mapping.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/arch/AArch64/AArch64Mapping.o capstone/arch/AArch64/AArch64Mapping.c
+ 
+echo "  CC    capstone/arch/AArch64/AArch64Module.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/arch/AArch64/AArch64Module.o capstone/arch/AArch64/AArch64Module.c
+echo "  CC    capstone/cs.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/cs.o capstone/cs.c
+echo "  CC    capstone/MCInst.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/MCInst.o capstone/MCInst.c
+ 
+echo "  CC    capstone/MCInstrDesc.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/MCInstrDesc.o capstone/MCInstrDesc.c
+echo "  CC    capstone/MCRegisterInfo.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/MCRegisterInfo.o capstone/MCRegisterInfo.c
+echo "  CC    capstone/SStream.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/SStream.o capstone/SStream.c
+ 
+echo "  CC    capstone/utils.o"
+aarch64-none-elf-gcc -Wno-parentheses  -DAARCH=64 -mcpu=cortex-a72 -mlittle-endian -mcmodel=small -Wall -fsigned-char -ffreestanding -D__circle__=440401 -DRASPPI=4 -DSTDLIB_SUPPORT=3 -D__VCCOREVER__=0x04000000 -U__unix__ -U__linux__  -I ../circle-stdlib/libs/circle/include -I ../circle-stdlib/libs/circle/addon -I ../circle-stdlib/libs/circle/app/lib -I ../circle-stdlib/libs/circle/addon/vc4 -I ../circle-stdlib/libs/circle/addon/vc4/interface/khronos/include -O2 -g -I "../circle-stdlib/install/aarch64-none-circle/include" -I "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/include" -I ../circle-stdlib/include -I capstone/include -I capstone -Wno-unused-function -D CAPSTONE_HAS_ARM64=1 -D CAPSTONE_USE_SYS_DYN_MEM=no -std=gnu99 -c -o capstone/utils.o capstone/utils.c
+ 
+echo "  LD    kernel8-rpi4.elf"
+ 
+aarch64-none-elf-ld -o kernel8-rpi4.elf -Map kernel8-rpi4.map --section-start=.init=0x80000 \
+		-T ../circle-stdlib/libs/circle/circle.ld "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/crtbegin.o" main.o kernel.o Chrono/Chrono.o OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o OS/OS_Tasks_Compile.o Tasks/InputManager/InputManager.o GUI/Window/Window.o GUI/Window/LVGLWindow.o GUI/Controls/Control.o GUI/Controls/Canvas.o Tasks/WindowManager/WindowManager.o Tasks/WindowManager/Style.o Tasks/IconBar/IconBar.o Tasks/DARICWindow.o Tasks/TasksWindow/TasksWindow.o Tasks/Filer/Filer.o Tasks/FontManager/FontManager.o Tasks/Menu/Menu.o Tasks/FileManager/FileManager.o Tasks/Editor/Editor.o GUI/lvgl.o Library/StringLib.o Tokeniser/Tokeniser.o Tokeniser/TokeniserNumber.o Tokeniser/TokeniserString.o Tokeniser/TokeniserSymbol.o Tokeniser/TokeniserText.o Tokeniser/TokeniserPrinter.o Parser/Parser.o Parser/ParserExpression.o Parser/Parser_DEF.o Parser/Parser_IF.o Parser/Parser_PRINT.o Parser/Parser_PROCCall.o Parser/Parser_CONST.o Parser/Parser_SWAP.o Parser/Parser_Assignment.o Parser/Parser_REPEAT.o Parser/Parser_WHILE.o Parser/Parser_FOR.o Parser/Parser_CASE.o Parser/Parser_DATA.o Parser/Parser_TYPE.o IRCompiler/IRComparison.o IRCompiler/IRCompiler.o IRCompiler/IRIf.o IRCompiler/IRLiteral.o IRCompiler/IRMaths.o IRCompiler/IRPrinter.o IRCompiler/IRBoolean.o IRCompiler/IRConversion.o IRCompiler/IRString.o IRCompiler/IRVariables.o IRCompiler/IRAssignment.o IRCompiler/IRPrint.o IRCompiler/IRRepeat.o IRCompiler/IRWhile.o IRCompiler/IRFor.o IRCompiler/IROptimiser.o IRCompiler/IRCase.o IRCompiler/IRData.o IRCompiler/IRDefs.o NativeCompiler/Disassemble.o NativeCompiler/LibPrint.o NativeCompiler/NativeCompiler.o NativeCompiler/NativeStack.o NativeCompiler/LibMaths.o NativeCompiler/LibString.o NativeCompiler/LibGeneral.o NativeCompiler/LibChrono.o NativeCompiler/LibGraphics2D.o NativeCompiler/LibData.o NativeCompiler/LibKeyboardMouse.o NativeCompiler/LibRandom.o Lightning/lightning.o Lightning/jit_memory.o Lightning/jit_disasm.o Lightning/jit_size.o Lightning/jit_note.o Lightning/jit_print.o capstone/arch/AArch64/AArch64BaseInfo.o capstone/arch/AArch64/AArch64Disassembler.o capstone/arch/AArch64/AArch64InstPrinter.o capstone/arch/AArch64/AArch64Mapping.o capstone/arch/AArch64/AArch64Module.o capstone/cs.o capstone/MCInst.o capstone/MCInstrDesc.o capstone/MCRegisterInfo.o capstone/SStream.o capstone/utils.o  \
+		--start-group "../circle-stdlib/install/aarch64-none-circle/lib/libm.a" "../circle-stdlib/install/aarch64-none-circle/lib/libc.a" "../circle-stdlib/install/aarch64-none-circle/lib/libcirclenewlib.a" ../circle-stdlib/libs/circle/addon/SDCard/libsdcard.a ../circle-stdlib/libs/circle/lib/usb/libusb.a ../circle-stdlib/libs/circle/lib/input/libinput.a ../circle-stdlib/libs/circle/addon/fatfs/libfatfs.a ../circle-stdlib/libs/circle/addon/lvgl/liblvgl.a ../circle-stdlib/libs/circle/lib/fs/libfs.a ../circle-stdlib/libs/circle/lib/net/libnet.a ../circle-stdlib/libs/circle/lib/sched/libsched.a ../circle-stdlib/libs/circle/lib/libcircle.a ../circle-stdlib/libs/circle/addon/wlan/hostap/wpa_supplicant/libwpa_supplicant.a ../circle-stdlib/libs/circle/addon/wlan/libwlan.a "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/../../../../aarch64-none-elf/lib/libstdc++.a" "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/libgcc.a" --end-group "/Applications/ARM/bin/../lib/gcc/aarch64-none-elf/11.2.1/crtend.o"
+echo "  DUMP  kernel8-rpi4.lst"
+aarch64-none-elf-objdump -d kernel8-rpi4.elf | aarch64-none-elf-c++filt > kernel8-rpi4.lst
+echo "  COPY  kernel8-rpi4.img"
+aarch64-none-elf-objcopy kernel8-rpi4.elf -O binary kernel8-rpi4.img
+echo -n "  WC    kernel8-rpi4.img => "
+wc -c < kernel8-rpi4.img
+make: Leaving directory `/Users/daryl/GitHub/osd'
+ 

@@ -278,7 +278,7 @@ void OSDTask::Yield()
 	if (terminate_requested)
 		TerminateTask();
 	if (maximise_requested)
- 		Maximise();
+		Maximise();
 	if (minimise_requested)
 		Minimise();
 	auto mScheduler = CScheduler::Get();
@@ -348,5 +348,10 @@ void OSDTask::Maximise()
 void OSDTask::Minimise()
 {
 	minimise_requested = false;
+}
+
+void OSDTask::ReceiveKey(Key k)
+{
+	keyboard_queue.push(k);
 }
 

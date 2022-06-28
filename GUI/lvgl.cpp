@@ -242,7 +242,7 @@ void GuiCLVGL::KeyboardRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData)
 		auto t = keys.front();
 		keys.pop();
 
-		if (t==KEY_Left) {
+/*		if (t==KEY_Left) {
 			t = LV_KEY_LEFT;
 		}
 		else if (t==KEY_Right) {
@@ -262,7 +262,7 @@ void GuiCLVGL::KeyboardRead(lv_indev_drv_t* pDriver, lv_indev_data_t* pData)
 		}
 		else if (t==KEY_Tab) {
 			t = LV_KEY_NEXT;
-		}
+		}*/
 
 		InputManager::KeyDown(t);
 		pData->key = t;
@@ -368,6 +368,15 @@ void GuiCLVGL::KeyboardEventHandlerRaw(unsigned char ucModifiers, const unsigned
 {
 	if (ucModifiers & KEY_LWIN_MASK || ucModifiers & KEY_RWIN_MASK) {
 		keys.push(KEY_WindowsKey);
+	}
+	else if (RawKeys[0]==67) {
+		keys.push(KEY_F10);
+	}
+	else if (RawKeys[0]==68) {
+		keys.push(KEY_F11);
+	}
+	else if (RawKeys[0]==69) {
+		keys.push(KEY_F12);
 	}
 	else if (ucModifiers==0 && RawKeys[0]==43) {
 		keys.push(KEY_Tab);
