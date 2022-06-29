@@ -2,8 +2,9 @@
 #include "Editor.h"
 #include "../../Library/StringLib.h"
 #include "../../GUI/Window/LVGLWindow.h"
-#include "../Menu/Menu.h"
-#include "../IconBar/IconBar.h"
+#include "../System/Menu/Menu.h"
+#include "../System/IconBar/IconBar.h"
+#include "../System/WindowManager/Style.h"
 
 Editor::Editor(int x, int y, int w, int h)
 {
@@ -18,6 +19,12 @@ Editor::Editor(int x, int y, int w, int h)
     this->canvas_h = h - window_border_width * 2 - window_header_height - window_content_padding * 2;
     this->id = "@" + std::to_string(task_id++);
     this->name = "Editor";
+    this->type = TaskType::Editor;
+}
+
+Editor::~Editor()
+{
+    lv_obj_del(buttons);
 }
 
 void Editor::Run()
@@ -43,12 +50,12 @@ void Editor::Run()
     // App icon
     IconBar::RegisterApp(NULL, "Editor", WindowManager::GetIcon("Editor"), NULL, NULL);
 
-    // Set up canvas
+    // Get window
     auto window = (Window *)this->GetWindow();
     auto ww = window->GetLVGLWindow();
     auto content = lv_mywin_get_content(ww);
-    //	lv_obj_remove_style(content, ThemeManager::GetStyle(StyleAttribute::WindowContent), LV_STATE_DEFAULT);
-    //	lv_obj_add_style(content, ThemeManager::GetStyle(StyleAttribute::WindowContentPadded), LV_STATE_DEFAULT);
+
+    // Set up canvas
     obj = lv_obj_create(content);
     lv_obj_set_size(obj, LV_PCT(100), LV_PCT(100));
     lv_obj_add_style(obj, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
@@ -56,7 +63,53 @@ void Editor::Run()
 
     // Scroll event
     lv_obj_add_event_cb(content, ScrollEventHandler, LV_EVENT_SCROLL, this);
+    lv_obj_add_event_cb(ww, MoveEventHandler, (lv_event_code_t)OSD_EVENT_MOVED, this);
     lv_obj_add_event_cb(content, ResizeEventHandler, LV_EVENT_SIZE_CHANGED, this);
+
+    // Buttons
+    buttons = lv_obj_create(lv_scr_act());
+    lv_obj_update_layout(ww);
+    auto x = lv_obj_get_x(ww);
+    auto y = lv_obj_get_y(ww);
+    lv_obj_set_pos(buttons, x - 32 - ThemeManager::GetConst(ConstAttribute::WindowBorderWidth),
+                   y + ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
+    const int num_buttons = 3;
+    lv_obj_set_size(buttons, 34, 32 * num_buttons + 4);
+    lv_obj_set_flex_flow(buttons, LV_FLEX_FLOW_COLUMN);
+    lv_obj_add_style(buttons, ThemeManager::GetStyle(StyleAttribute::Drawer), LV_STATE_DEFAULT);
+
+    // Build
+    auto style = ThemeManager::GetStyle(StyleAttribute::WindowButton);
+    {
+        lv_obj_t *btn = lv_btn_create(buttons);
+        lv_obj_set_size(btn, 28, 28);
+        lv_obj_set_flex_grow(btn, 1);
+        lv_obj_t *img = lv_img_create(btn);
+        lv_img_set_src(img, LV_SYMBOL_BUILD);
+        lv_obj_center(img);
+        lv_obj_add_event_cb(btn, BuildHandler, LV_EVENT_CLICKED, this);
+        lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
+    }
+    {
+        lv_obj_t *btn = lv_btn_create(buttons);
+        lv_obj_set_size(btn, 28, 28);
+        lv_obj_set_flex_grow(btn, 1);
+        lv_obj_t *img = lv_img_create(btn);
+        lv_img_set_src(img, LV_SYMBOL_WINDOWED);
+        lv_obj_add_event_cb(btn, RunFullScreenHandler, LV_EVENT_CLICKED, this);
+        lv_obj_center(img);
+        lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
+    }
+    {
+        lv_obj_t *btn = lv_btn_create(buttons);
+        lv_obj_set_size(btn, 28, 28);
+        lv_obj_set_flex_grow(btn, 1);
+        lv_obj_t *img = lv_img_create(btn);
+        lv_img_set_src(img, LV_SYMBOL_FULLSCREEN);
+        lv_obj_add_event_cb(btn, RunHandler, LV_EVENT_CLICKED, this);
+        lv_obj_center(img);
+        lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
+    }
 
     auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
 
@@ -236,7 +289,7 @@ void Editor::Render()
     // Cursor
     int64_t ex = (x - screen_x) * (size / 2);
     int64_t ey = (y - screen_y) * size;
-    canvas->SetBG(0xA0A0A0);
+    canvas->SetBG(0x606060);
     canvas->DrawRectangleFilled(ex, ey, ex + size / 2, ey + size, 1);
     canvas->SetBG(0xFFFFFF);
 
@@ -298,6 +351,19 @@ void Editor::ScrollEventHandler(lv_event_t *e)
     editor->Render();
 }
 
+void Editor::MoveEventHandler(lv_event_t *e)
+{
+    auto editor = (Editor *)e->user_data;
+    auto window = (Window *)editor->GetWindow();
+    auto ww = window->GetLVGLWindow();
+    lv_area_t sz;
+    lv_obj_get_coords(ww, &sz);
+
+    // Move button drawer
+    lv_obj_set_pos(editor->GetButtons(), sz.x1 - 32 - ThemeManager::GetConst(ConstAttribute::WindowBorderWidth),
+                   sz.y1 + ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
+}
+
 void Editor::ResizeEventHandler(lv_event_t *e)
 {
     auto editor = (Editor *)e->user_data;
@@ -336,60 +402,64 @@ void Editor::ResizeEventHandler(lv_event_t *e)
 
 void Editor::ContextMenuEventHandler(lv_event_t *e)
 {
-    auto editor = (Editor *)e->user_data;
-    e->stop_bubbling = 1;
-    lv_point_t p;
-    lv_indev_t *indev = lv_indev_get_act();
-    lv_indev_type_t indev_type = lv_indev_get_type(indev);
-    if (indev_type == LV_INDEV_TYPE_POINTER)
-    {
-        lv_indev_get_point(indev, &p);
+    /*    auto editor = (Editor *)e->user_data;
+        e->stop_bubbling = 1;
+        lv_point_t p;
+        lv_indev_t *indev = lv_indev_get_act();
+        lv_indev_type_t indev_type = lv_indev_get_type(indev);
+        if (indev_type == LV_INDEV_TYPE_POINTER)
+        {
+            lv_indev_get_point(indev, &p);
 
-        // Create menu window
-        MenuDefinition menu;
+            // Create menu window
+            MenuDefinition menu;
 
-        // View style
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "Run windowed";
-            mi.shortcut = "F1";
-            mi.cb = &Editor::RunHandler;
-            mi.user_data = e->user_data;
-            menu.items.push_back(std::move(mi));
-        }
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "Run full screen";
-            mi.shortcut = "F2";
-            mi.cb = &Editor::RunFullScreenHandler;
-            mi.user_data = e->user_data;
-            menu.items.push_back(std::move(mi));
-        }
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "Debug output";
-            mi.shortcut = "F3";
-            menu.items.push_back(std::move(mi));
-        }
-        Menu::OpenMenu(p.x, p.y, NULL, "Editor", std::move(menu));
-    }
+            // View style
+            {
+                MenuItem mi;
+                mi.type = MenuItemType::Item;
+                mi.v = "Run windowed";
+                mi.shortcut = "F1";
+                mi.cb = &Editor::RunHandler;
+                mi.user_data = e->user_data;
+                menu.items.push_back(std::move(mi));
+            }
+            {
+                MenuItem mi;
+                mi.type = MenuItemType::Item;
+                mi.v = "Run full screen";
+                mi.shortcut = "F2";
+                mi.cb = &Editor::RunFullScreenHandler;
+                mi.user_data = e->user_data;
+                menu.items.push_back(std::move(mi));
+            }
+            {
+                MenuItem mi;
+                mi.type = MenuItemType::Item;
+                mi.v = "Debug output";
+                mi.shortcut = "F3";
+                menu.items.push_back(std::move(mi));
+            }
+            Menu::OpenMenu(p.x, p.y, NULL, "Editor", std::move(menu));
+        }*/
 }
 
 void Editor::RunHandler(lv_event_t *e)
 {
-    Menu::CloseMenu();
     auto editor = (Editor *)e->user_data;
     editor->RunWindowed();
 }
 
 void Editor::RunFullScreenHandler(lv_event_t *e)
 {
-    Menu::CloseMenu();
     auto editor = (Editor *)e->user_data;
     editor->FullscreenRun();
+}
+
+void Editor::BuildHandler(lv_event_t *e)
+{
+    auto editor = (Editor *)e->user_data;
+    editor->Debug();
 }
 
 void Editor::RunWindowed()
@@ -418,4 +488,10 @@ void Editor::FullscreenRun()
 
 void Editor::Debug()
 {
+    std::string c;
+    for (auto &l : code)
+    {
+        c += l + "\n";
+    }
+    CompileSource(volume, directory, filename, c, true);
 }

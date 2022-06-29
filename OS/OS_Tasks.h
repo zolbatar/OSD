@@ -18,8 +18,8 @@
 #include <queue>
 #include <map>
 #include "../Tokeniser/Types.h"
-#include "../Tasks/FileManager/FileSystemObject.h"
-#include "../Tasks/InputManager/InputManagerStruct.h"
+#include "../Tasks/System/FileManager/FileSystemObject.h"
+#include "../Tasks/System/InputManager/InputManagerStruct.h"
 
 extern "C"
 {
@@ -33,6 +33,7 @@ enum class TaskType
     DARIC,
     TaskManager,
     Filer,
+    Editor,
 };
 
 enum TaskPriority
@@ -192,7 +193,7 @@ class OSDTask : public CTask
   protected:
     FileSystem fs;
     OSDTask *GetTask(const char *s);
-    start exec;
+    start exec = NULL;
     bool fullscreen = false;
     bool inside_editor = false;
     int d_x;

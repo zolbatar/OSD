@@ -87,7 +87,7 @@ class Tokeniser
     }
 
     void PrintTokens(std::list<Token> *tokens, int depth, bool stage1);
-    void PrintTokensPtr(std::list<Token *> *tokens, int depth, std::list<std::string> *output, bool stage1);
+    void PrintTokensPtr(std::list<Token *> *tokens, int depth, bool stage1);
 
   private:
     void PrintToken(Token *token, int depth, std::list<std::string> *output);

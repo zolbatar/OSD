@@ -10,7 +10,7 @@ extern CUSBHCIDevice* USBHCI;
 #include "mouse.h"
 #include "../../OS/OS.h"
 #include "../TasksWindow/TasksWindow.h"
-#include "../Editor/Editor.h"
+#include "../../Editor/Editor.h"
 #include "../../GUI/Window/LVGLWindow.h"
 std::map<std::string, Icon> WindowManager::icons;
 std::map<std::string, FileType> WindowManager::types;

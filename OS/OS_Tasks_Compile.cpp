@@ -64,6 +64,8 @@ bool OSDTask::CompileSource(std::string volume, std::string directory, std::stri
     Tokeniser token(filename, code);
     Parser parser;
     double total_time_span = 0;
+    if (debug)
+        Breakdown::Init();
 
     // Tokens
     auto t1 = CTimer::GetClockTicks();
@@ -71,63 +73,18 @@ bool OSDTask::CompileSource(std::string volume, std::string directory, std::stri
     auto t2 = CTimer::GetClockTicks();
     double time_span = (t2 - t1) / 1000.0;
     total_time_span += time_span;
-    Breakdown::ProcessTokeniser(&token);
     if (debug)
-    {
-        FIL fil;
-        std::string file(fs.GetCurrentDirectory() + "Tokeniser.txt");
-        if (f_open(&fil, file.c_str(), FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
-        {
-            CLogger::Get()->Write("FontManager", LogPanic, "Error creating tokeniser debug file");
-        }
+        Breakdown::ProcessTokeniser(&token);
 
-        // Output time taken
-        std::string t("Tokeniser: %f millis\n\n", time_span);
-        f_puts(t.c_str(), &fil);
-
-        // Now output all lines
-        std::list<std::string> tokens;
-        token.PrintTokens(token.Tokens(), 0, &tokens, true);
-        for (auto &s : tokens)
-        {
-            f_puts(s.c_str(), &fil);
-            f_puts("\n", &fil);
-        }
-
-        f_close(&fil);
-    }
-
+    // Parser
     t1 = CTimer::GetClockTicks();
     parser.Parse(optimise, token.Tokens(), token.GetFilenames());
     t2 = CTimer::GetClockTicks();
     time_span = (t2 - t1) / 1000.0;
     total_time_span += time_span;
     CLogger::Get()->Write("OSDTask", LogNotice, "Parser: %f millis", time_span);
-    Breakdown::ProcessParser(&token, &parser);
     if (debug)
-    {
-        FIL fil;
-        std::string file(fs.GetCurrentDirectory() + "Parser.txt");
-        if (f_open(&fil, file.c_str(), FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
-        {
-            CLogger::Get()->Write("FontManager", LogPanic, "Error creating parser debug file");
-        }
-
-        // Output time taken
-        std::string t("Parser: %f millis\n\n", time_span);
-        f_puts(t.c_str(), &fil);
-
-        // Now output all lines
-        std::list<std::string> tokens;
-        token.PrintTokensPtr(parser.Tokens(), 0, &tokens, false);
-        for (auto &s : tokens)
-        {
-            f_puts(s.c_str(), &fil);
-            f_puts("\n", &fil);
-        }
-
-        f_close(&fil);
-    }
+        Breakdown::ProcessParser(&token, &parser);
 
     // Compile
     t1 = CTimer::GetClockTicks();
@@ -138,81 +95,41 @@ bool OSDTask::CompileSource(std::string volume, std::string directory, std::stri
     total_time_span += time_span;
     CLogger::Get()->Write("OSDTask", LogNotice, "IR Compiler: %f millis", time_span);
     if (debug)
-    {
-        FIL fil;
-        std::string file(fs.GetCurrentDirectory() + "IR.txt");
-        if (f_open(&fil, file.c_str(), FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
-        {
-            CLogger::Get()->Write("FontManager", LogPanic, "Error creating IR debug file");
-        }
-
-        // Output time taken
-        std::string t("IR Compiler: %f millis\n\n", time_span);
-        f_puts(t.c_str(), &fil);
-
-        // Now output all lines
-        std::list<std::string> ir;
-        ir_compiler.IRPrinter(&ir);
-        for (auto &s : ir)
-        {
-            f_puts(s.c_str(), &fil);
-            f_puts("\n", &fil);
-        }
-
-        f_close(&fil);
-    }
+        Breakdown::ProcessIR(&ir_compiler);
 
     // Native
     _jit = jit_new_state();
     t1 = CTimer::GetClockTicks();
     NativeCompiler native_compiler(optimise, _jit, this);
-    native_compiler.IRToNative(ir_compiler.GetGlobalIRInstructions(), ir_compiler.GetIRInstructions());
+    native_compiler.IRToNative(ir_compiler.GetGlobalIRInstructions(), ir_compiler.GetIRInstructions(), debug);
     t2 = CTimer::GetClockTicks();
     time_span = (t2 - t1) / 1000.0;
     total_time_span += time_span;
     CLogger::Get()->Write("OSDTask", LogNotice, "Native Compiler: %f millis", time_span);
     if (debug)
-    {
-        FIL fil;
-        std::string file(fs.GetCurrentDirectory() + "Native.txt");
-        if (f_open(&fil, file.c_str(), FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
-        {
-            CLogger::Get()->Write("FontManager", LogPanic, "Error creating IR debug file");
-        }
-
-        // Output time taken
-        std::string t("IR Compiler: %f millis\nTotal: %f millis\n\n", time_span, total_time_span);
-        f_puts(t.c_str(), &fil);
-
-        // Now output all lines
-        std::list<std::string> disassm;
-        native_compiler.Disassemble(&disassm);
-        for (auto &s : disassm)
-        {
-            f_puts(s.c_str(), &fil);
-            f_puts("\n", &fil);
-        }
-
-        f_close(&fil);
-    }
+        Breakdown::ProcessNative(&native_compiler);
 
     // Output new style debug
-    Breakdown::Output(&this->fs, volume, directory, filename);
+    if (debug)
+        Breakdown::Output(&this->fs, volume, directory, filename);
 
     return true;
 }
 
 void OSDTask::SetStart(start s)
 {
+    //    CLogger::Get()->Write("OSDTask", LogNotice, "Set start: %p", s);
     exec = s;
 }
 
 void OSDTask::CreateCode(size_t code_size)
 {
-    //	CLogger::Get()->Write("OSDTask", LogDebug, "Create code: %d", code_size);
+    if (code != NULL)
+    {
+        delete code;
+    }
     this->code_size = code_size;
     code = new uint8_t[code_size];
-    //	CLogger::Get()->Write("OSDTask", LogDebug, "Create code done");
 }
 
 uint8_t *OSDTask::GetCode()

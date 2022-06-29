@@ -8,12 +8,12 @@ NEWLIBDIR = ../circle-stdlib/install/$(NEWLIB_ARCH)
 OBJS    = 	main.o kernel.o \
 			Chrono/Chrono.o \
 			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o OS/OS_Tasks_Compile.o OS/Breakdown.o \
-			Tasks/InputManager/InputManager.o \
+			Tasks/System/InputManager/InputManager.o \
 			GUI/Window/Window.o GUI/Window/LVGLWindow.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
-			Tasks/WindowManager/WindowManager.o Tasks/WindowManager/Style.o Tasks/IconBar/IconBar.o \
-			Tasks/DARICWindow.o Tasks/TasksWindow/TasksWindow.o Tasks/Filer/Filer.o \
-			Tasks/FontManager/FontManager.o Tasks/Menu/Menu.o \
-			Tasks/FileManager/FileManager.o \
+			Tasks/System/WindowManager/WindowManager.o Tasks/System/WindowManager/Style.o Tasks/System/IconBar/IconBar.o \
+			Tasks/DARICWindow.o Tasks/System/TasksWindow/TasksWindow.o Tasks/System/Filer/Filer.o \
+			Tasks/System/FontManager/FontManager.o Tasks/System/Menu/Menu.o \
+			Tasks/System/FileManager/FileManager.o \
 			Tasks/Editor/Editor.o \
 			GUI/lvgl.o  \
 			Library/StringLib.o \

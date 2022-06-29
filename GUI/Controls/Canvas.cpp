@@ -1,8 +1,8 @@
 #include "Canvas.h"
 #include <circle/logger.h>
 #include <circle/multicore.h>
-#include "../../Tasks/FontManager/FontManager.h"
-#include "../../Tasks/WindowManager/Style.h"
+#include "../../Tasks/System/FontManager/FontManager.h"
+#include "../../Tasks/System/WindowManager/Style.h"
 
 Canvas::Canvas(OSDTask *task, lv_obj_t *parent, int w, int h) : task(task) //, m_DMAChannel(DMA_CHANNEL_NORMAL)
 {

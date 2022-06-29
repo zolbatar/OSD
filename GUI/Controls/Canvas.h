@@ -2,7 +2,7 @@
 #include <circle/dmachannel.h>
 #include "../OS/OS.h"
 #include "Control.h"
-#include "../../Tasks/WindowManager/Style.h"
+#include "../../Tasks/System/WindowManager/Style.h"
 
 #define SCREEN_DMA_BURST_LENGTH 2
 

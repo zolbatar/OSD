@@ -23,22 +23,17 @@ void Tokeniser::PrintTokens(std::list<Token> *tokens, int depth, bool stage1)
     }
 }
 
-void Tokeniser::PrintTokensPtr(std::list<Token *> *tokens, int depth, std::list<std::string> *output, bool stage1)
+void Tokeniser::PrintTokensPtr(std::list<Token *> *tokens, int depth, bool stage1)
 {
     for (auto tk = tokens->begin(); tk != tokens->end(); ++tk)
     {
         auto token = *tk;
-        //        PrintToken(token, depth, output);
+        std::list<std::string> *output;
         if (stage1)
-        {
-            auto irl = Breakdown::GetRowTokens(token->line_number);
-            PrintToken(token, depth, irl);
-        }
+            output = Breakdown::GetRowTokens(token->line_number);
         else
-        {
-            auto irl = Breakdown::GetRowParser(token->line_number);
-            PrintToken(token, depth, irl);
-        }
+            output = Breakdown::GetRowParser(token->line_number);
+        PrintToken(token, depth, output);
 
         // Spacing
         std::string spacing;
@@ -54,7 +49,7 @@ void Tokeniser::PrintTokensPtr(std::list<Token *> *tokens, int depth, std::list<
             for (auto &e : token->expressions)
             {
                 output->push_back(spacing + "  Expression " + std::to_string(i) + ":");
-                PrintTokensPtr(&e, depth + 4, output, stage1);
+                PrintTokensPtr(&e, depth + 4, stage1);
                 i++;
             }
         }
@@ -66,7 +61,7 @@ void Tokeniser::PrintTokensPtr(std::list<Token *> *tokens, int depth, std::list<
             for (auto &b : token->branches)
             {
                 output->push_back(spacing + "  Branch " + std::to_string(i) + ":");
-                PrintTokensPtr(&b, depth + 4, output, stage1);
+                PrintTokensPtr(&b, depth + 4, stage1);
                 i++;
             }
         }
@@ -75,7 +70,7 @@ void Tokeniser::PrintTokensPtr(std::list<Token *> *tokens, int depth, std::list<
         if (!token->stack.empty())
         {
             output->push_back(spacing + "  Stack:");
-            PrintTokensPtr(&token->stack, depth + 4, output, stage1);
+            PrintTokensPtr(&token->stack, depth + 4, stage1);
         }
     }
 }

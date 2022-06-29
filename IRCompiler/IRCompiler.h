@@ -10,8 +10,11 @@
 class IRInstruction
 {
   public:
-    IRInstruction(IROpcodes type, int64_t index, int64_t iv, double rv, std::string sv, TokenType tt)
-        : type(type), index(index), iv(iv), rv(rv), sv(sv), tt(tt){};
+    IRInstruction(Token *token, IROpcodes type, int64_t index, int64_t iv, double rv, std::string sv, TokenType tt)
+        : line_number(token->line_number), file_number(token->file_number), type(type), index(index), iv(iv), rv(rv),
+          sv(sv), tt(tt){};
+    int line_number;
+    int file_number;
     IROpcodes type;
     int64_t index;
     int64_t index2; // Used by optimiser
@@ -29,7 +32,7 @@ class IRCompiler
     }
 
     void Compile(std::list<Token *> *tokens);
-    void IRPrinter(std::list<std::string> *ir);
+    void IRPrinter();
 
     std::list<IRInstruction> *GetIRInstructions()
     {
@@ -44,7 +47,7 @@ class IRCompiler
   private:
     bool optimise;
     void RunOptimiser(std::list<IRInstruction> *_ir);
-    void IRPrinterSection(std::list<std::string> *irl, std::list<IRInstruction> *ir);
+    void IRPrinterSection(std::list<IRInstruction> *ir);
     void IRPrintValueBased(char *l, IROpcodes o, IROpcodes in, IROpcodes fl, IROpcodes st, std::string fmt, ...);
     void ForwardLookups(Token *token);
     void CheckForForwardLookup(Token *token);
@@ -81,7 +84,7 @@ class IRCompiler
 
     // Comparison
     void CompileTokenComparison(Token *token);
-    void GenericComparison(ValueType type, IROpcodes i, IROpcodes r, IROpcodes s);
+    void GenericComparison(Token *token, ValueType type, IROpcodes i, IROpcodes r, IROpcodes s);
 
     // Maths
     void CompileTokenMaths(Token *token);
@@ -94,24 +97,25 @@ class IRCompiler
     ValueType TypeDemotion(Token *token);
 
     // Front loading stuff for DEFs, typically setting up variables
-    void Init_AddIRWithIndex(IROpcodes type, int64_t index);
+    void Init_AddIRWithIndex(Token *token, IROpcodes type, int64_t index);
 
-    void Init_AddIR(IROpcodes type);
-    void AddIR(IROpcodes type);
-    //	void AddIRWithAddress(IROpcodes type, void* func, std::string name);
-    void AddIRWithIndex(IROpcodes type, int64_t index);
-    void AddIRWithIntegerLiteral(IROpcodes type, int64_t v);
-    void AddIRWithFloatLiteral(IROpcodes type, double v);
-    void AddIRWithStringLiteral(IROpcodes type, std::string v);
-    void AddIRWithTokenTypeAndStringLiteral(IROpcodes type, std::string v, TokenType tt);
-    void AddIRWithStringLiteralWithInteger(IROpcodes type, std::string v, int64_t iv);
-    void AddIRWithIndexAndInteger(IROpcodes type, int64_t index, int64_t iv);
-    void Init_AddIRWithIndexAndInteger(IROpcodes type, int64_t index, int64_t iv);
-    void Init_AddIRWithStringLiteralWithIntegerAndIndex(IROpcodes type, std::string v, int64_t iv, int64_t index);
-    void AddIRWithStringLiteralWithIntegerAndIndex(IROpcodes type, std::string v, int64_t iv, int64_t index);
-    void AddIRIntegerLiteral(int64_t v);
-    void AddIRFloatLiteral(double v);
-    void AddIRStringLiteral(std::string v);
+    void Init_AddIR(Token *token, IROpcodes type);
+    void AddIR(Token *token, IROpcodes type);
+    void AddIRWithIndex(Token *token, IROpcodes type, int64_t index);
+    void AddIRWithIntegerLiteral(Token *token, IROpcodes type, int64_t v);
+    void AddIRWithFloatLiteral(Token *token, IROpcodes type, double v);
+    void AddIRWithStringLiteral(Token *token, IROpcodes type, std::string v);
+    void AddIRWithTokenTypeAndStringLiteral(Token *token, IROpcodes type, std::string v, TokenType tt);
+    void AddIRWithStringLiteralWithInteger(Token *token, IROpcodes type, std::string v, int64_t iv);
+    void AddIRWithIndexAndInteger(Token *token, IROpcodes type, int64_t index, int64_t iv);
+    void Init_AddIRWithIndexAndInteger(Token *token, IROpcodes type, int64_t index, int64_t iv);
+    void Init_AddIRWithStringLiteralWithIntegerAndIndex(Token *token, IROpcodes type, std::string v, int64_t iv,
+                                                        int64_t index);
+    void AddIRWithStringLiteralWithIntegerAndIndex(Token *token, IROpcodes type, std::string v, int64_t iv,
+                                                   int64_t index);
+    void AddIRIntegerLiteral(Token *token, int64_t v);
+    void AddIRFloatLiteral(Token *token, double v);
+    void AddIRStringLiteral(Token *token, std::string v);
 
     void EnsureStackIsInteger(Token *token, ValueType type);
     void EnsureStackIsFloat(Token *token, ValueType type);

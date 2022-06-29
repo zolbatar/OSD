@@ -5,7 +5,7 @@
 #include "../FontManager/FontManager.h"
 #include "../../GUI/Window/LVGLWindow.h"
 #include "../Library/StringLib.h"
-#include "../Editor/Editor.h"
+#include "../../Editor/Editor.h"
 
 int Filer::cx = 128;
 int Filer::cy = 128;
@@ -444,7 +444,7 @@ void Filer::EditEventHandler(lv_event_t *e)
 {
     Menu::CloseMenu();
     auto t = (FileIcon *)e->user_data;
-    auto editor = new Editor(50, 50, 800, 600);
+    auto editor = new Editor(100, 100, 1400, 600);
     editor->LoadSourceCode(t->volume, t->directory, t->filename);
     editor->Start();
 }

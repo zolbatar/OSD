@@ -3,6 +3,8 @@
 #include "../FontManager/FontManager.h"
 #include "WindowManager.h"
 
+uint32_t OSD_EVENT_MOVED;
+
 extern int ScreenResX;
 extern int ScreenResY;
 std::map<ColourAttribute, lv_color_t> ThemeManager::theme_colours;
@@ -57,6 +59,9 @@ lv_style_t *WindowManager::CreateStyle()
 
 void WindowManager::SetupLVGLStyles()
 {
+    // Custom events
+    OSD_EVENT_MOVED = lv_event_register_id();
+
     CLogger::Get()->Write("Window Manager", LogDebug, "Setting up styles");
 
     // Constants
@@ -76,6 +81,7 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddConst(ConstAttribute::ControlPadding, 1);
     ThemeManager::AddConst(ConstAttribute::ContainerPadding, 8);
     ThemeManager::AddConst(ConstAttribute::ScrollbarSize, 8);
+    ThemeManager::AddConst(ConstAttribute::ButtonFontSize, 24);
 
     // Colours
     ThemeManager::AddColour(ColourAttribute::WindowBackground, lv_color_hex(0xD0D0D0));
@@ -122,6 +128,9 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddFont(FontAttribute::Symbol, FontManager::GetFontByNameStyleAndSize(
                                                      "Font Awesome 6 Pro Light", "Light",
                                                      ThemeManager::GetConst(ConstAttribute::FurnitureFontSize)));
+    ThemeManager::AddFont(FontAttribute::SymbolLarge, FontManager::GetFontByNameStyleAndSize(
+                                                          "Font Awesome 6 Pro Light", "Light",
+                                                          ThemeManager::GetConst(ConstAttribute::ButtonFontSize)));
 
     // Focussed
     {
@@ -259,6 +268,24 @@ void WindowManager::SetupLVGLStyles()
         lv_style_set_pad_all(style, 0);
         lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::Header));
         ThemeManager::AddStyle(StyleAttribute::IconBarButton, style);
+    }
+
+    // Drawer
+    {
+        lv_style_t *style = CreateStyle();
+        lv_style_init(style);
+        lv_style_set_radius(style, 0);
+        lv_style_set_border_width(style, 1);
+        lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowBackground));
+        lv_style_set_bg_opa(style, LV_OPA_COVER);
+        lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
+        lv_style_set_clip_corner(style, true);
+        lv_style_set_border_post(style, true);
+        lv_style_set_pad_all(style, 2);
+        lv_style_set_pad_column(style, 2);
+        lv_style_set_pad_row(style, 2);
+        lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::SymbolLarge));
+        ThemeManager::AddStyle(StyleAttribute::Drawer, style);
     }
 
     // Window

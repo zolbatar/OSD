@@ -1,7 +1,7 @@
 #include "Window.h"
 #include <circle/logger.h>
 #include "LVGLWindow.h"
-#include "../../Tasks/InputManager/InputManager.h"
+#include "../../Tasks/System/InputManager/InputManager.h"
 
 std::map<std::string, Window *> Window::windows;
 
@@ -158,6 +158,9 @@ void Window::DragEventHandler(lv_event_t *e)
         y = sh - h;
 
     lv_obj_set_pos(win, x, y);
+
+    // Event
+    lv_event_send(win, (lv_event_code_t)OSD_EVENT_MOVED, NULL);
 }
 
 void Window::Maximise(bool full_maximise)

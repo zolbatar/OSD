@@ -59,6 +59,7 @@ enum class StyleAttribute
     WindowFullScreen,
     WindowHeaderFullScreen,
     BorderedContent,
+    Drawer,
 };
 
 enum class FontAttribute
@@ -69,7 +70,8 @@ enum class FontAttribute
     BodyBold,
     Mono,
     Header,
-    Symbol
+    Symbol,
+    SymbolLarge
 };
 
 enum class ConstAttribute
@@ -90,15 +92,19 @@ enum class ConstAttribute
     WindowFurnitureWidth,
     WindowContentPadding,
     WindowContentPaddingPadded,
+    ButtonFontSize,
 };
 
-#define LV_SYMBOL_MY_CLOSE "\xEF\x8B\x93"  // 0xF00D close
-#define LV_SYMBOL_MAXIMISE "\xEF\x8B\x90"  // 0xF2D0 window maximize
-#define LV_SYMBOL_MINIMISE "\xEF\x8B\x91"  // 0xF2D1 window minimise
-#define LV_SYMBOL_RESIZE "\xEF\x8C\x9D"    // 0xf31D
-#define LV_SYMBOL_MENURIGHT "\xEF\x81\x94" // 0xf054
-#define LV_SYMBOL_LAYOUT "\xEE\x8A\x8F"    // 0xf054
-#define LV_SYMBOL_FILE "\xEF\x85\x9B"      // 0xf15b
+#define LV_SYMBOL_MY_CLOSE "\xEF\x8B\x93"   // 0xF00D close
+#define LV_SYMBOL_MAXIMISE "\xEF\x8B\x90"   // 0xF2D0 window maximize
+#define LV_SYMBOL_MINIMISE "\xEF\x8B\x91"   // 0xF2D1 window minimise
+#define LV_SYMBOL_RESIZE "\xEF\x8C\x9D"     // 0xf31D
+#define LV_SYMBOL_MENURIGHT "\xEF\x81\x94"  // 0xf054
+#define LV_SYMBOL_LAYOUT "\xEE\x8A\x8F"     // 0xf054
+#define LV_SYMBOL_FILE "\xEF\x85\x9B"       // 0xf15b
+#define LV_SYMBOL_BUILD "\xEE\x8B\x86"      // 0xe2c6
+#define LV_SYMBOL_FULLSCREEN "\xEF\x90\x81" // 0xf401
+#define LV_SYMBOL_WINDOWED "\xEF\x90\x8F"   // 0xf40f
 
 class ThemeManager
 {
@@ -118,3 +124,5 @@ class ThemeManager
     static std::map<FontAttribute, lv_font_t *> theme_fonts;
     static std::map<ConstAttribute, uint32_t> theme_consts;
 };
+
+extern uint32_t OSD_EVENT_MOVED;
