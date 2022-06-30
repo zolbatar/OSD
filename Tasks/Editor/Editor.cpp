@@ -289,7 +289,7 @@ void Editor::Render()
     // Cursor
     int64_t ex = (x - screen_x) * (size / 2);
     int64_t ey = (y - screen_y) * size;
-    canvas->SetBG(0x606060);
+    canvas->SetBG(0xD0D0D0);
     canvas->DrawRectangleFilled(ex, ey, ex + size / 2, ey + size, 1);
     canvas->SetBG(0xFFFFFF);
 

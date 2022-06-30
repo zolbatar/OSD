@@ -15,7 +15,7 @@ void NativeCompiler::Disassemble(std::list<std::string> *disass)
     }
     cs_option(handle, CS_OPT_DETAIL, CS_OPT_ON);
     auto exec = (uint8_t *)task->GetExec();
-    count = cs_disasm(handle, exec, code_size, (uint64_t)_jit->code.ptr, 0, &insn);
+    count = cs_disasm(handle, exec, task->GetCodeSize(), (uint64_t)_jit->code.ptr, 0, &insn);
     if (count > 0)
     {
         size_t j;

@@ -63,7 +63,6 @@ class NativeCompiler
     std::stack<ValueType> arguments;
     std::stack<ValueType> returns;
     IRInstruction *swap_source;
-    jit_word_t code_size;
     jit_state_t *_jit;
     OSDTask *task;
 };

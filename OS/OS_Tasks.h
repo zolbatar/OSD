@@ -104,6 +104,10 @@ class OSDTask : public CTask
     void SetStart(start s);
     void CreateCode(size_t code_size);
     uint8_t *GetCode();
+    size_t GetCodeSize()
+    {
+        return code_size;
+    }
     start GetExec();
 
     TaskPriority GetPriority()
@@ -227,6 +231,7 @@ class OSDTask : public CTask
     std::map<std::string, size_t> data_labels;
     std::vector<DataElement> data_elements;
     size_t code_size;
+    size_t data_size;
     uint8_t *code = NULL;
     jit_state_t *_jit = NULL;
 };

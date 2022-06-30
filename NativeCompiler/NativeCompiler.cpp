@@ -3,6 +3,7 @@
 #include <capstone/capstone.h>
 #include <capstone/platform.h>
 #include "../Parser/Parser.h"
+#include "../OS/Breakdown.h"
 
 NativeCompiler::NativeCompiler(bool optimise, jit_state_t *_jit, OSDTask *task)
     : optimise(optimise), _jit(_jit), task(task)
@@ -108,11 +109,9 @@ void NativeCompiler::IRToNative(std::list<IRInstruction> *ir_global, std::list<I
     {
         CLogger::Get()->Write("Native Compiler", LogPanic, "Failed to realise");
     }
-    code_size = _jit->code.length;
-    task->CreateCode(code_size);
-    jit_set_code(task->GetCode(), code_size);
-    jit_set_data(NULL, 0, JIT_DISABLE_DATA | JIT_DISABLE_NOTE);
-
+    task->CreateCode(_jit->code.length);
+    jit_set_code(task->GetCode(), task->GetCodeSize());
+    jit_set_data(NULL, 0, JIT_DISABLE_NOTE | JIT_DISABLE_NOTE);
     auto exec = jit_emit_void();
     if (exec == NULL)
     {
@@ -120,7 +119,11 @@ void NativeCompiler::IRToNative(std::list<IRInstruction> *ir_global, std::list<I
     }
     task->SetStart(exec);
 
+    // Dump line mappings
+    Breakdown::ProcessLineMappings(_jit);
+
     // Size?
+    jit_word_t code_size;
     jit_get_code(&code_size);
 #ifdef VERBOSE_COMPILE
     CLogger::Get()->Write("Native Compiler", LogDebug, "Code size: %ld bytes", code_size);
@@ -167,8 +170,16 @@ void call_STACKCHECK(int64_t sp, int64_t line_number, uint64_t fp)
 
 void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
 {
+    auto previous_line = 0;
     for (auto &op : *ir)
     {
+        // Line number
+        if (op.line_number != previous_line)
+        {
+            Breakdown::InsertLineMapping(op.line_number, jit_indirect());
+            previous_line = op.line_number;
+        }
+
         switch (op.type)
         {
         case IROpcodes::End:

@@ -14,7 +14,12 @@ struct LineBreakdown
     std::list<std::string> tokens;
     std::list<std::string> parser;
     std::list<std::string> IR;
-    std::list<std::string> native;
+};
+
+struct LineMapping
+{
+    jit_node_t *node;
+    size_t address;
 };
 
 class Breakdown
@@ -28,6 +33,8 @@ class Breakdown
     static std::list<std::string> *GetRowParser(size_t line);
     static std::list<std::string> *GetRowIR(size_t line);
     static std::list<std::string> *GetRowNative(size_t line);
+    static void InsertLineMapping(size_t line, jit_node_t *node);
+    static void ProcessLineMappings(jit_state_t *_jit);
     static void SetSource(size_t line, std::string source);
     static void ProcessTokeniser(Tokeniser *t);
     static void ProcessParser(Tokeniser *t, Parser *p);
@@ -39,5 +46,6 @@ class Breakdown
     static void CheckLineExists(size_t line);
 
     static std::map<size_t, LineBreakdown> line_breakdown;
-    static std::list<std::string> __native;
+    static std::map<size_t, std::string> native;
+    static std::map<size_t, LineMapping> line_mappings;
 };
