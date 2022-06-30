@@ -25,6 +25,7 @@ Editor::Editor(int x, int y, int w, int h)
 Editor::~Editor()
 {
     lv_obj_del(buttons);
+    lv_obj_del(debug);
 }
 
 void Editor::Run()
@@ -77,8 +78,6 @@ void Editor::Run()
     lv_obj_set_size(buttons, 34, 32 * num_buttons + 4);
     lv_obj_set_flex_flow(buttons, LV_FLEX_FLOW_COLUMN);
     lv_obj_add_style(buttons, ThemeManager::GetStyle(StyleAttribute::Drawer), LV_STATE_DEFAULT);
-
-    // Build
     auto style = ThemeManager::GetStyle(StyleAttribute::WindowButton);
     {
         lv_obj_t *btn = lv_btn_create(buttons);
@@ -110,6 +109,43 @@ void Editor::Run()
         lv_obj_center(img);
         lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
     }
+
+    // Disassembly/debug drawer
+    debug = lv_obj_create(lv_scr_act());
+    lv_obj_update_layout(ww);
+    x = lv_obj_get_x(ww);
+    y = lv_obj_get_y(ww);
+    auto w = lv_obj_get_width(ww);
+    auto h = lv_obj_get_height(ww);
+    lv_obj_set_pos(debug, x + w, y + ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
+    lv_obj_set_size(debug, 200, h - ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
+    lv_obj_add_style(debug, ThemeManager::GetStyle(StyleAttribute::DrawerText), LV_STATE_DEFAULT);
+    lv_obj_t *tabview = lv_tabview_create(debug, LV_DIR_RIGHT, LV_PCT(25));
+    //    lv_obj_set_style_pad_all(tabview, 0, LV_STATE_DEFAULT);
+    //    lv_obj_set_style_border_width(tabview, 0, LV_STATE_DEFAULT);
+    //    lv_obj_add_event_cb(lv_tabview_get_content(tabview), scroll_begin_event, LV_EVENT_SCROLL_BEGIN, NULL);
+    //    lv_obj_set_style_bg_color(tabview, lv_palette_lighten(LV_PALETTE_RED, 2), 0);
+    lv_obj_t *tab_btns = lv_tabview_get_tab_btns(tabview);
+    lv_obj_set_style_border_width(tab_btns, 1, LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(tab_btns, ThemeManager::GetColour(ColourAttribute::WindowBorder), LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(tab_btns, lv_palette_darken(LV_PALETTE_GREY, 1), 0);
+    lv_obj_set_style_text_color(tab_btns, lv_color_white(), 0);
+    lv_obj_set_style_border_side(tab_btns, LV_BORDER_SIDE_LEFT, LV_PART_ITEMS | LV_STATE_CHECKED);
+    lv_obj_t *tab1 = lv_tabview_add_tab(tabview, "T");
+    lv_obj_t *tab2 = lv_tabview_add_tab(tabview, "P");
+    lv_obj_t *tab3 = lv_tabview_add_tab(tabview, "IR");
+    lv_obj_t *tab4 = lv_tabview_add_tab(tabview, "MC");
+    lv_obj_set_style_bg_color(tab2, lv_palette_lighten(LV_PALETTE_AMBER, 3), 0);
+    lv_obj_set_style_bg_opa(tab2, LV_OPA_COVER, 0);
+    lv_obj_t *label = lv_label_create(tab1);
+    lv_label_set_text(label, "First tab");
+    label = lv_label_create(tab2);
+    lv_label_set_text(label, "Second tab");
+    label = lv_label_create(tab3);
+    lv_label_set_text(label, "Third tab");
+    label = lv_label_create(tab4);
+    lv_label_set_text(label, "Forth tab");
+    lv_obj_clear_flag(lv_tabview_get_content(tabview), LV_OBJ_FLAG_SCROLLABLE);
 
     auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
 

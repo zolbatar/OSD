@@ -99,8 +99,7 @@ void Breakdown::ProcessIR(IRCompiler *ir)
 
 void Breakdown::ProcessNative(NativeCompiler *nc)
 {
-    auto disassm = Breakdown::GetRowNative(0);
-    nc->Disassemble(disassm);
+    nc->Disassemble(&native);
 }
 
 std::list<std::string> *Breakdown::GetRowTokens(size_t line)
@@ -113,13 +112,6 @@ std::list<std::string> *Breakdown::GetRowParser(size_t line)
 {
     CheckLineExists(line);
     return &line_breakdown.find(line)->second.parser;
-}
-
-std::list<std::string> *Breakdown::GetRowNative(size_t line)
-{
-    return &__native;
-    //    CheckLineExists(line);
-    //  return &line_breakdown.find(line)->second.native;
 }
 
 std::list<std::string> *Breakdown::GetRowIR(size_t line)

@@ -287,6 +287,22 @@ void WindowManager::SetupLVGLStyles()
         lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::SymbolLarge));
         ThemeManager::AddStyle(StyleAttribute::Drawer, style);
     }
+    {
+        lv_style_t *style = CreateStyle();
+        lv_style_init(style);
+        lv_style_set_radius(style, 0);
+        lv_style_set_border_width(style, 1);
+        lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowBackground));
+        lv_style_set_bg_opa(style, LV_OPA_COVER);
+        lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
+        lv_style_set_clip_corner(style, true);
+        lv_style_set_border_post(style, true);
+        lv_style_set_pad_all(style, 0);
+        //        lv_style_set_pad_column(style, 2);
+        //          lv_style_set_pad_row(style, 2);
+        lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::Body));
+        ThemeManager::AddStyle(StyleAttribute::DrawerText, style);
+    }
 
     // Window
     {

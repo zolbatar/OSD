@@ -60,6 +60,7 @@ enum class StyleAttribute
     WindowHeaderFullScreen,
     BorderedContent,
     Drawer,
+    DrawerText,
 };
 
 enum class FontAttribute

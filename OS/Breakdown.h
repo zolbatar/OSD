@@ -32,7 +32,6 @@ class Breakdown
     static std::list<std::string> *GetRowTokens(size_t line);
     static std::list<std::string> *GetRowParser(size_t line);
     static std::list<std::string> *GetRowIR(size_t line);
-    static std::list<std::string> *GetRowNative(size_t line);
     static void InsertLineMapping(size_t line, jit_node_t *node);
     static void ProcessLineMappings(jit_state_t *_jit);
     static void SetSource(size_t line, std::string source);

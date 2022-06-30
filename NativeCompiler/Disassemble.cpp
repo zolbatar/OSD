@@ -2,7 +2,7 @@
 #include <capstone/capstone.h>
 #include <capstone/platform.h>
 
-void NativeCompiler::Disassemble(std::list<std::string> *disass)
+void NativeCompiler::Disassemble(std::map<size_t, std::string> *disass)
 {
     // Disassemble
     csh handle;
@@ -23,7 +23,7 @@ void NativeCompiler::Disassemble(std::list<std::string> *disass)
         {
             char f[256];
             sprintf(f, "0x%" PRIx64 ":\t%s\t%s", insn[j].address, insn[j].mnemonic, insn[j].op_str);
-            disass->push_back(std::string(f));
+            disass->insert(std::make_pair(insn[j].address, std::string(f)));
         }
 
         cs_free(insn, count);

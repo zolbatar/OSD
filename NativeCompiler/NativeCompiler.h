@@ -33,7 +33,7 @@ class NativeCompiler
   public:
     NativeCompiler(bool optimise, jit_state_t *_jit, OSDTask *task);
     void IRToNative(std::list<IRInstruction> *ir_global, std::list<IRInstruction> *ir, bool debug);
-    void Disassemble(std::list<std::string> *disass);
+    void Disassemble(std::map<size_t, std::string> *disass);
 
   private:
     bool optimise;
