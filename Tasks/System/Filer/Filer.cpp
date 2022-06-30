@@ -444,7 +444,7 @@ void Filer::EditEventHandler(lv_event_t *e)
 {
     Menu::CloseMenu();
     auto t = (FileIcon *)e->user_data;
-    auto editor = new Editor(100, 100, 1400, 600);
+    auto editor = new Editor(100, 100, 1000, 600);
     editor->LoadSourceCode(t->volume, t->directory, t->filename);
     editor->Start();
 }

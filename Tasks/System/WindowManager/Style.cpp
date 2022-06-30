@@ -69,6 +69,7 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddConst(ConstAttribute::WindowFontSize, 20);
     ThemeManager::AddConst(ConstAttribute::BodyFontSize, 20);
     ThemeManager::AddConst(ConstAttribute::MonoFontSize, 20);
+    ThemeManager::AddConst(ConstAttribute::MonoFontSizeSmall, 16);
     ThemeManager::AddConst(ConstAttribute::FurnitureFontSize, 16);
     ThemeManager::AddConst(ConstAttribute::HeaderFontSize, 24);
     ThemeManager::AddConst(ConstAttribute::WindowBorderWidth, 1);
@@ -125,6 +126,9 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddFont(FontAttribute::Mono,
                           FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular",
                                                                  ThemeManager::GetConst(ConstAttribute::MonoFontSize)));
+    ThemeManager::AddFont(FontAttribute::MonoSmall,
+                          FontManager::GetFontByNameStyleAndSize(
+                              "IBM Plex Mono", "Regular", ThemeManager::GetConst(ConstAttribute::MonoFontSizeSmall)));
     ThemeManager::AddFont(FontAttribute::Symbol, FontManager::GetFontByNameStyleAndSize(
                                                      "Font Awesome 6 Pro Light", "Light",
                                                      ThemeManager::GetConst(ConstAttribute::FurnitureFontSize)));

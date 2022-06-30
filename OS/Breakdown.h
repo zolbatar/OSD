@@ -29,6 +29,7 @@ class Breakdown
     {
         line_breakdown.clear();
     }
+    static LineBreakdown *GetLineBreakdown(size_t line_number);
     static std::list<std::string> *GetRowTokens(size_t line);
     static std::list<std::string> *GetRowParser(size_t line);
     static std::list<std::string> *GetRowIR(size_t line);

@@ -128,3 +128,13 @@ void Breakdown::CheckLineExists(size_t line)
         line_breakdown.insert(std::make_pair(line, std::move(lb)));
     }
 }
+
+LineBreakdown *Breakdown::GetLineBreakdown(size_t line_number)
+{
+    auto f = line_breakdown.find(line_number);
+    if (f == line_breakdown.end())
+    {
+        return NULL;
+    }
+    return &f->second;
+}

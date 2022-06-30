@@ -5,6 +5,7 @@
 #include "../System/Menu/Menu.h"
 #include "../System/IconBar/IconBar.h"
 #include "../System/WindowManager/Style.h"
+#include "../../OS/Breakdown.h"
 
 Editor::Editor(int x, int y, int w, int h)
 {
@@ -110,43 +111,6 @@ void Editor::Run()
         lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
     }
 
-    // Disassembly/debug drawer
-    debug = lv_obj_create(lv_scr_act());
-    lv_obj_update_layout(ww);
-    x = lv_obj_get_x(ww);
-    y = lv_obj_get_y(ww);
-    auto w = lv_obj_get_width(ww);
-    auto h = lv_obj_get_height(ww);
-    lv_obj_set_pos(debug, x + w, y + ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
-    lv_obj_set_size(debug, 200, h - ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
-    lv_obj_add_style(debug, ThemeManager::GetStyle(StyleAttribute::DrawerText), LV_STATE_DEFAULT);
-    lv_obj_t *tabview = lv_tabview_create(debug, LV_DIR_RIGHT, LV_PCT(25));
-    //    lv_obj_set_style_pad_all(tabview, 0, LV_STATE_DEFAULT);
-    //    lv_obj_set_style_border_width(tabview, 0, LV_STATE_DEFAULT);
-    //    lv_obj_add_event_cb(lv_tabview_get_content(tabview), scroll_begin_event, LV_EVENT_SCROLL_BEGIN, NULL);
-    //    lv_obj_set_style_bg_color(tabview, lv_palette_lighten(LV_PALETTE_RED, 2), 0);
-    lv_obj_t *tab_btns = lv_tabview_get_tab_btns(tabview);
-    lv_obj_set_style_border_width(tab_btns, 1, LV_STATE_DEFAULT);
-    lv_obj_set_style_border_color(tab_btns, ThemeManager::GetColour(ColourAttribute::WindowBorder), LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(tab_btns, lv_palette_darken(LV_PALETTE_GREY, 1), 0);
-    lv_obj_set_style_text_color(tab_btns, lv_color_white(), 0);
-    lv_obj_set_style_border_side(tab_btns, LV_BORDER_SIDE_LEFT, LV_PART_ITEMS | LV_STATE_CHECKED);
-    lv_obj_t *tab1 = lv_tabview_add_tab(tabview, "T");
-    lv_obj_t *tab2 = lv_tabview_add_tab(tabview, "P");
-    lv_obj_t *tab3 = lv_tabview_add_tab(tabview, "IR");
-    lv_obj_t *tab4 = lv_tabview_add_tab(tabview, "MC");
-    lv_obj_set_style_bg_color(tab2, lv_palette_lighten(LV_PALETTE_AMBER, 3), 0);
-    lv_obj_set_style_bg_opa(tab2, LV_OPA_COVER, 0);
-    lv_obj_t *label = lv_label_create(tab1);
-    lv_label_set_text(label, "First tab");
-    label = lv_label_create(tab2);
-    lv_label_set_text(label, "Second tab");
-    label = lv_label_create(tab3);
-    lv_label_set_text(label, "Third tab");
-    label = lv_label_create(tab4);
-    lv_label_set_text(label, "Forth tab");
-    lv_obj_clear_flag(lv_tabview_get_content(tabview), LV_OBJ_FLAG_SCROLLABLE);
-
     auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
 
     // Do stuff
@@ -155,8 +119,10 @@ void Editor::Run()
         Yield();
 
         // Process keyboard queue
+        bool update = false;
         while (!keyboard_queue.empty())
         {
+            update = true;
             auto k = keyboard_queue.front();
             keyboard_queue.pop();
 
@@ -179,22 +145,22 @@ void Editor::Run()
                     else
                         mode = Mode::Overwrite;
                 case KEY_Up:
-                    y--;
+                    this->y--;
                     break;
                 case KEY_Down:
-                    y++;
+                    this->y++;
                     break;
                 case KEY_Left:
-                    x--;
+                    this->x--;
                     break;
                 case KEY_Right:
-                    x++;
+                    this->x++;
                     break;
                 case KEY_PageUp:
-                    y -= canvas_h / size;
+                    this->y -= canvas_h / size;
                     break;
                 case KEY_PageDown:
-                    y += canvas_h / size;
+                    this->y += canvas_h / size;
                     break;
                 default:
                     CLogger::Get()->Write("Editor", LogNotice, "Key: %d %x", k.ascii, k.keycode);
@@ -228,8 +194,9 @@ void Editor::Run()
                     }
                 }
             }
-            Render();
         }
+        if (update)
+            Render();
     }
 }
 
@@ -325,9 +292,14 @@ void Editor::Render()
     // Cursor
     int64_t ex = (x - screen_x) * (size / 2);
     int64_t ey = (y - screen_y) * size;
+    canvas->SetFG(0xA0A0A0);
     canvas->SetBG(0xD0D0D0);
     canvas->DrawRectangleFilled(ex, ey, ex + size / 2, ey + size, 1);
     canvas->SetBG(0xFFFFFF);
+    canvas->SetFG(0x0);
+
+    if (debug != NULL)
+        UpdateDebugWindow();
 
     // Text
     int actual_y = 0;
@@ -530,4 +502,97 @@ void Editor::Debug()
         c += l + "\n";
     }
     CompileSource(volume, directory, filename, c, true);
+    UpdateDebugWindow();
+}
+
+void Editor::UpdateDebugWindow()
+{
+    if (debug == NULL)
+    {
+        auto window = (Window *)this->GetWindow();
+        auto ww = window->GetLVGLWindow();
+
+        // Disassembly/debug drawer
+        debug = lv_obj_create(lv_scr_act());
+        lv_obj_update_layout(ww);
+        x = lv_obj_get_x(ww);
+        y = lv_obj_get_y(ww);
+        auto w = lv_obj_get_width(ww);
+        auto h = lv_obj_get_height(ww);
+        lv_obj_set_pos(debug, x + w, y + ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
+        lv_obj_set_size(debug, 400, h - ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
+        lv_obj_add_style(debug, ThemeManager::GetStyle(StyleAttribute::DrawerText), LV_STATE_DEFAULT);
+        lv_obj_t *tabview = lv_tabview_create(debug, LV_DIR_RIGHT, 40);
+        lv_obj_clear_flag(lv_tabview_get_content(tabview), LV_OBJ_FLAG_SCROLLABLE);
+        //    lv_obj_add_event_cb(lv_tabview_get_content(tabview), scroll_begin_event, LV_EVENT_SCROLL_BEGIN, NULL);
+        lv_obj_t *tab_btns = lv_tabview_get_tab_btns(tabview);
+        lv_obj_set_style_border_width(tab_btns, 1, LV_STATE_DEFAULT);
+        lv_obj_set_style_border_color(tab_btns, ThemeManager::GetColour(ColourAttribute::WindowBorder),
+                                      LV_STATE_DEFAULT);
+        lv_obj_set_style_bg_color(tab_btns, lv_palette_darken(LV_PALETTE_GREY, 1), 0);
+        lv_obj_set_style_text_color(tab_btns, lv_color_white(), 0);
+        lv_obj_set_style_border_side(tab_btns, LV_BORDER_SIDE_LEFT, LV_PART_ITEMS | LV_STATE_CHECKED);
+        tab_tokens = lv_tabview_add_tab(tabview, "T");
+        tab_parser = lv_tabview_add_tab(tabview, "P");
+        tab_ir = lv_tabview_add_tab(tabview, "IR");
+        tab_native = lv_tabview_add_tab(tabview, "MC");
+        lv_obj_set_style_pad_all(tab_tokens, 0, LV_STATE_DEFAULT);
+        lv_obj_set_style_pad_all(tab_parser, 0, LV_STATE_DEFAULT);
+        lv_obj_set_style_pad_all(tab_ir, 0, LV_STATE_DEFAULT);
+        lv_obj_set_style_pad_all(tab_native, 0, LV_STATE_DEFAULT);
+
+        // Textareas
+        auto grid_style = ThemeManager::GetStyle(StyleAttribute::Grid);
+        ta1 = lv_textarea_create(tab_tokens);
+        lv_textarea_set_one_line(ta1, false);
+        lv_obj_set_size(ta1, LV_PCT(100), LV_PCT(100));
+        lv_obj_add_style(ta1, grid_style, LV_STATE_DEFAULT);
+        lv_obj_set_style_text_font(ta1, ThemeManager::GetFont(FontAttribute::MonoSmall), LV_STATE_DEFAULT);
+        ta2 = lv_textarea_create(tab_parser);
+        lv_textarea_set_one_line(ta2, false);
+        lv_obj_set_size(ta2, LV_PCT(100), LV_PCT(100));
+        lv_obj_add_style(ta2, grid_style, LV_STATE_DEFAULT);
+        lv_obj_set_style_text_font(ta2, ThemeManager::GetFont(FontAttribute::MonoSmall), LV_STATE_DEFAULT);
+        ta3 = lv_textarea_create(tab_ir);
+        lv_textarea_set_one_line(ta3, false);
+        lv_obj_set_size(ta3, LV_PCT(100), LV_PCT(100));
+        lv_obj_add_style(ta3, grid_style, LV_STATE_DEFAULT);
+        lv_obj_set_style_text_font(ta3, ThemeManager::GetFont(FontAttribute::MonoSmall), LV_STATE_DEFAULT);
+        ta4 = lv_textarea_create(tab_native);
+        lv_textarea_set_one_line(ta4, false);
+        lv_obj_set_size(ta4, LV_PCT(100), LV_PCT(100));
+        lv_obj_add_style(ta4, grid_style, LV_STATE_DEFAULT);
+        lv_obj_set_style_text_font(ta4, ThemeManager::GetFont(FontAttribute::MonoSmall), LV_STATE_DEFAULT);
+    }
+
+    auto breakdown = Breakdown::GetLineBreakdown(this->y + 1);
+    if (breakdown == NULL)
+        return;
+
+    // Tokens
+    std::string tokens;
+    for (auto &s : breakdown->tokens)
+    {
+        tokens += s + "\n";
+    }
+    lv_textarea_set_text(ta1, tokens.c_str());
+    lv_textarea_set_cursor_pos(ta1, 0);
+
+    // Parser
+    std::string parser;
+    for (auto &s : breakdown->parser)
+    {
+        parser += s + "\n";
+    }
+    lv_textarea_set_text(ta2, parser.c_str());
+    lv_textarea_set_cursor_pos(ta2, 0);
+
+    // IR
+    std::string ir;
+    for (auto &s : breakdown->IR)
+    {
+        ir += s + "\n";
+    }
+    lv_textarea_set_text(ta3, ir.c_str());
+    lv_textarea_set_cursor_pos(ta3, 0);
 }

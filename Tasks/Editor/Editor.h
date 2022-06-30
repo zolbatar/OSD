@@ -24,6 +24,7 @@ class Editor : public OSDTask
     void RunWindowed();
     void FullscreenRun();
     void Debug();
+    void UpdateDebugWindow();
 
     int screen_x = 0;
     int screen_y = 0;
@@ -45,7 +46,15 @@ class Editor : public OSDTask
     std::vector<std::string> code;
     lv_obj_t *obj;
     lv_obj_t *buttons;
-    lv_obj_t *debug;
+    lv_obj_t *debug = NULL;
+    lv_obj_t *tab_tokens;
+    lv_obj_t *tab_parser;
+    lv_obj_t *tab_ir;
+    lv_obj_t *tab_native;
+    lv_obj_t *ta1;
+    lv_obj_t *ta2;
+    lv_obj_t *ta3;
+    lv_obj_t *ta4;
 
     void CalculateLongestLine();
     static void ScrollEventHandler(lv_event_t *e);

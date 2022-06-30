@@ -70,6 +70,7 @@ enum class FontAttribute
     Body,
     BodyBold,
     Mono,
+    MonoSmall,
     Header,
     Symbol,
     SymbolLarge
@@ -86,6 +87,7 @@ enum class ConstAttribute
     HeaderFontSize,
     MenuHeaderHeight,
     MonoFontSize,
+    MonoFontSizeSmall,
     ScrollbarSize,
     WindowBorderWidth,
     WindowFontSize,
