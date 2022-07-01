@@ -37,7 +37,7 @@ void NativeCompiler::IRToNative(std::list<IRInstruction> *ir_global, std::list<I
     jit_prolog();
     StackInit();
     jit_movr(JIT_V1, JIT_FP);
-    IRToNativeSection(ir_global, debug);
+    IRToNativeSection(ir_global, debug, true);
     jit_ret();
     jit_epilog();
 
@@ -45,7 +45,7 @@ void NativeCompiler::IRToNative(std::list<IRInstruction> *ir_global, std::list<I
             printf("Global alloc: %d\n", v);*/
 
     // PROCs etc
-    IRToNativeSection(ir, debug);
+    IRToNativeSection(ir, debug, false);
 
     // Optimise stuff?
     if (optimise)
@@ -112,15 +112,24 @@ void NativeCompiler::IRToNative(std::list<IRInstruction> *ir_global, std::list<I
     task->CreateCode(_jit->code.length);
     jit_set_code(task->GetCode(), task->GetCodeSize());
     jit_set_data(NULL, 0, JIT_DISABLE_NOTE | JIT_DISABLE_NOTE);
-    auto exec = jit_emit_void();
-    if (exec == NULL)
+    start exec;
+    try
     {
-        CLogger::Get()->Write("Native Compiler", LogPanic, "Code generation failed");
+        exec = jit_emit_void();
+        if (exec == NULL)
+        {
+            CLogger::Get()->Write("Native Compiler", LogPanic, "Code generation failed");
+        }
+    }
+    catch (const std::exception &ex)
+    {
+        CLogger::Get()->Write("Native Compiler", LogPanic, "Error emitting: %s", ex.what());
     }
     task->SetStart(exec);
 
     // Dump line mappings
-    Breakdown::ProcessLineMappings(_jit);
+    if (debug)
+        Breakdown::ProcessLineMappings(_jit);
 
     // Size?
     jit_word_t code_size;
@@ -130,12 +139,21 @@ void NativeCompiler::IRToNative(std::list<IRInstruction> *ir_global, std::list<I
 #endif
 }
 
-int NativeCompiler::IdxForVar(int64_t index)
+int NativeCompiler::IdxForVar(IRInstruction &op, int64_t index)
 {
     if (index >= 0)
+    {
+        size_t ii = index;
+        if (ii > local_variables.size())
+            CLogger::Get()->Write("Native Compiler", LogPanic, "Invalid local: %d at %d", ii, op.line_number);
         return local_variables[index];
+    }
     else
     {
+        size_t ii = (-index) - 1;
+        if (ii > global_variables.size())
+            CLogger::Get()->Write("Native Compiler", LogPanic, "Invalid global: %d/%d at %d", ii, index,
+                                  op.line_number);
         return global_variables[(-index) - 1];
     }
 }
@@ -168,17 +186,14 @@ void call_STACKCHECK(int64_t sp, int64_t line_number, uint64_t fp)
     }
 }
 
-void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
+void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug, bool global)
 {
-    auto previous_line = 0;
     for (auto &op : *ir)
     {
-        // Line number
-        if (op.line_number != previous_line)
-        {
+        if (global)
+            Breakdown::InsertLineMappingGlobal(op.line_number, jit_indirect());
+        else
             Breakdown::InsertLineMapping(op.line_number, jit_indirect());
-            previous_line = op.line_number;
-        }
 
         switch (op.type)
         {
@@ -226,12 +241,12 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
             SF(jit_movr)(JIT_F0, JIT_F1);
             break;
         case IROpcodes::LoadIntegerOperands:
-            jit_ldxi_l(JIT_R1, RegForVar(op.index), IdxForVar(op.index));
-            jit_ldxi_l(JIT_R0, RegForVar(op.index2), IdxForVar(op.index2));
+            jit_ldxi_l(JIT_R1, RegForVar(op.index), IdxForVar(op, op.index));
+            jit_ldxi_l(JIT_R0, RegForVar(op.index2), IdxForVar(op, op.index2));
             break;
         case IROpcodes::LoadFloatOperands:
-            SF(jit_ldxi)(JIT_F1, RegForVar(op.index), IdxForVar(op.index));
-            SF(jit_ldxi)(JIT_F0, RegForVar(op.index2), IdxForVar(op.index2));
+            SF(jit_ldxi)(JIT_F1, RegForVar(op.index), IdxForVar(op, op.index));
+            SF(jit_ldxi)(JIT_F0, RegForVar(op.index2), IdxForVar(op, op.index2));
             break;
 
             // Variables
@@ -244,7 +259,7 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
         case IROpcodes::VariableLocalCreateString:
             local_variables.push_back(jit_allocai(sizeof(int64_t)));
             local_string_variables.push_back(op.index);
-            jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), 0);
+            jit_stxi_l(IdxForVar(op, op.index), RegForVar(op.index), 0);
             break;
         case IROpcodes::VariableLocalCreateType:
             local_variables.push_back(jit_allocai(op.iv));
@@ -252,7 +267,7 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
         case IROpcodes::VariableLocalCreateTypeString: {
 
             // Clear
-            jit_movi(JIT_R2, IdxForVar(op.index));
+            jit_movi(JIT_R2, IdxForVar(op, op.index));
             jit_addi(JIT_R2, JIT_R2, op.iv);
             jit_movi(JIT_R0, 0);
             jit_stxr_l(JIT_R2, RegForVar(op.index), JIT_R0);
@@ -272,45 +287,45 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
             break;
         case IROpcodes::VariableGlobalCreateString:
             global_variables.push_back(jit_allocai(sizeof(int64_t)));
-            jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), 0);
+            jit_stxi_l(IdxForVar(op, op.index), RegForVar(op.index), 0);
             break;
         case IROpcodes::VariableGlobalCreateType:
             global_variables.push_back(jit_allocai(op.iv));
             break;
         case IROpcodes::VariableGlobalCreateTypeString: {
-            jit_movi(JIT_R2, IdxForVar(op.index));
+            jit_movi(JIT_R2, IdxForVar(op, op.index));
             jit_addi(JIT_R2, JIT_R2, op.iv);
             jit_movi(JIT_R0, 0);
             jit_stxr_l(JIT_R2, RegForVar(op.index), 0);
             break;
         }
         case IROpcodes::VariableLoadInteger:
-            jit_ldxi_l(JIT_R0, RegForVar(op.index), IdxForVar(op.index));
+            jit_ldxi_l(JIT_R0, RegForVar(op.index), IdxForVar(op, op.index));
             break;
         case IROpcodes::VariableLoadFloat:
-            SF(jit_ldxi)(JIT_F0, RegForVar(op.index), IdxForVar(op.index));
+            SF(jit_ldxi)(JIT_F0, RegForVar(op.index), IdxForVar(op, op.index));
             break;
         case IROpcodes::VariableLoadString:
-            jit_ldxi_l(JIT_R0, RegForVar(op.index), IdxForVar(op.index));
+            jit_ldxi_l(JIT_R0, RegForVar(op.index), IdxForVar(op, op.index));
             break;
         case IROpcodes::VariableStoreInteger:
-            jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
+            jit_stxi_l(IdxForVar(op, op.index), RegForVar(op.index), JIT_R0);
             break;
         case IROpcodes::VariableStoreFloat:
-            SF(jit_stxi)(IdxForVar(op.index), RegForVar(op.index), JIT_F0);
+            SF(jit_stxi)(IdxForVar(op, op.index), RegForVar(op.index), JIT_F0);
             break;
         case IROpcodes::VariableStoreString:
             jit_movr(JIT_V2, JIT_R0);
 
             // Free old value
-            jit_ldxi_l(JIT_R0, RegForVar(op.index), IdxForVar(op.index));
+            jit_ldxi_l(JIT_R0, RegForVar(op.index), IdxForVar(op, op.index));
             jit_prepare();
             jit_pushargr(JIT_R0);
             jit_finishi((jit_pointer_t)call_STRING_freepermanent);
 
             // Store
             jit_movr(JIT_R0, JIT_V2);
-            jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
+            jit_stxi_l(IdxForVar(op, op.index), RegForVar(op.index), JIT_R0);
 
             // Make permanent
             jit_prepare();
@@ -320,27 +335,27 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
 
             // Offsets
         case IROpcodes::VariableLoadIntegerWithOffset:
-            jit_movi(JIT_R2, IdxForVar(op.index));
+            jit_movi(JIT_R2, IdxForVar(op, op.index));
             jit_addi(JIT_R2, JIT_R2, op.iv);
             jit_ldxr_l(JIT_R0, RegForVar(op.index), JIT_R2);
             break;
         case IROpcodes::VariableLoadFloatWithOffset:
-            jit_movi(JIT_R2, IdxForVar(op.index));
+            jit_movi(JIT_R2, IdxForVar(op, op.index));
             jit_addi(JIT_R2, JIT_R2, op.iv);
             SF(jit_ldxr)(JIT_F0, RegForVar(op.index), JIT_R2);
             break;
         case IROpcodes::VariableLoadStringWithOffset:
-            jit_movi(JIT_R2, IdxForVar(op.index));
+            jit_movi(JIT_R2, IdxForVar(op, op.index));
             jit_addi(JIT_R2, JIT_R2, op.iv);
             jit_ldxr_l(JIT_R0, RegForVar(op.index), JIT_R2);
             break;
         case IROpcodes::VariableStoreIntegerWithOffset:
-            jit_movi(JIT_R2, IdxForVar(op.index));
+            jit_movi(JIT_R2, IdxForVar(op, op.index));
             jit_addi(JIT_R2, JIT_R2, op.iv);
             jit_stxr_l(JIT_R2, RegForVar(op.index), JIT_R0);
             break;
         case IROpcodes::VariableStoreFloatWithOffset:
-            jit_movi(JIT_R2, IdxForVar(op.index));
+            jit_movi(JIT_R2, IdxForVar(op, op.index));
             jit_addi(JIT_R2, JIT_R2, op.iv);
             SF(jit_stxr)(JIT_R2, RegForVar(op.index), JIT_F0);
             break;
@@ -348,7 +363,7 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
             jit_movr(JIT_V2, JIT_R0);
 
             // Free old value
-            jit_movi(JIT_R2, IdxForVar(op.index));
+            jit_movi(JIT_R2, IdxForVar(op, op.index));
             jit_addi(JIT_R2, JIT_R2, op.iv);
             jit_ldxr_l(JIT_R0, RegForVar(op.index), JIT_R2);
             jit_prepare();
@@ -357,7 +372,7 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
 
             // Store
             jit_movr(JIT_R0, JIT_V2);
-            jit_movi(JIT_R2, IdxForVar(op.index));
+            jit_movi(JIT_R2, IdxForVar(op, op.index));
             jit_addi(JIT_R2, JIT_R2, op.iv);
             jit_stxr_l(JIT_R2, RegForVar(op.index), JIT_R0);
 
@@ -372,28 +387,28 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
             swap_source = &op;
             break;
         case IROpcodes::VariableSwapDestinationInteger:
-            jit_ldxi_l(JIT_R0, RegForVar(swap_source->index), IdxForVar(swap_source->index));
-            jit_ldxi_l(JIT_R1, RegForVar(op.index), IdxForVar(op.index));
-            jit_stxi_l(IdxForVar(swap_source->index), RegForVar(swap_source->index), JIT_R1);
-            jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
+            jit_ldxi_l(JIT_R0, RegForVar(swap_source->index), IdxForVar(op, swap_source->index));
+            jit_ldxi_l(JIT_R1, RegForVar(op.index), IdxForVar(op, op.index));
+            jit_stxi_l(IdxForVar(op, swap_source->index), RegForVar(swap_source->index), JIT_R1);
+            jit_stxi_l(IdxForVar(op, op.index), RegForVar(op.index), JIT_R0);
             break;
         case IROpcodes::VariableSwapSourceFloat:
             swap_source = &op;
             break;
         case IROpcodes::VariableSwapDestinationFloat:
-            SF(jit_ldxi)(JIT_F0, RegForVar(swap_source->index), IdxForVar(swap_source->index));
-            SF(jit_ldxi)(JIT_F1, RegForVar(op.index), IdxForVar(op.index));
-            SF(jit_stxi)(IdxForVar(swap_source->index), RegForVar(swap_source->index), JIT_F1);
-            SF(jit_stxi)(IdxForVar(op.index), RegForVar(op.index), JIT_F0);
+            SF(jit_ldxi)(JIT_F0, RegForVar(swap_source->index), IdxForVar(op, swap_source->index));
+            SF(jit_ldxi)(JIT_F1, RegForVar(op.index), IdxForVar(op, op.index));
+            SF(jit_stxi)(IdxForVar(op, swap_source->index), RegForVar(swap_source->index), JIT_F1);
+            SF(jit_stxi)(IdxForVar(op, op.index), RegForVar(op.index), JIT_F0);
             break;
         case IROpcodes::VariableSwapSourceString:
             swap_source = &op;
             break;
         case IROpcodes::VariableSwapDestinationString:
-            jit_ldxi_l(JIT_R0, RegForVar(swap_source->index), IdxForVar(swap_source->index));
-            jit_ldxi_l(JIT_R1, RegForVar(op.index), IdxForVar(op.index));
-            jit_stxi_l(IdxForVar(swap_source->index), RegForVar(swap_source->index), JIT_R1);
-            jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
+            jit_ldxi_l(JIT_R0, RegForVar(swap_source->index), IdxForVar(op, swap_source->index));
+            jit_ldxi_l(JIT_R1, RegForVar(op.index), IdxForVar(op, op.index));
+            jit_stxi_l(IdxForVar(op, swap_source->index), RegForVar(swap_source->index), JIT_R1);
+            jit_stxi_l(IdxForVar(op, op.index), RegForVar(op.index), JIT_R0);
             break;
 
             // Literals
@@ -824,15 +839,15 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
             break;
         case IROpcodes::ParameterInt:
             jit_getarg_l(JIT_R0, jit_arg());
-            jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
+            jit_stxi_l(IdxForVar(op, op.index), RegForVar(op.index), JIT_R0);
             break;
         case IROpcodes::ParameterFloat:
             SF(jit_getarg)(JIT_F0, SF(jit_arg)());
-            SF(jit_stxi)(IdxForVar(op.index), RegForVar(op.index), JIT_F0);
+            SF(jit_stxi)(IdxForVar(op, op.index), RegForVar(op.index), JIT_F0);
             break;
         case IROpcodes::ParameterString:
             jit_getarg_l(JIT_R0, jit_arg());
-            jit_stxi_l(IdxForVar(op.index), RegForVar(op.index), JIT_R0);
+            jit_stxi_l(IdxForVar(op, op.index), RegForVar(op.index), JIT_R0);
             break;
         case IROpcodes::ReturnNone:
             if (op.index == 1)
@@ -899,14 +914,14 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug)
             // Release any local string variables
             for (auto &local : local_string_variables)
             {
-                jit_ldxi_l(JIT_R0, RegForVar(local), IdxForVar(local));
+                jit_ldxi_l(JIT_R0, RegForVar(local), IdxForVar(op, local));
                 jit_prepare();
                 jit_pushargr(JIT_R0);
                 jit_finishi((jit_pointer_t)call_STRING_freepermanent);
             }
             for (auto &local : local_string_variables_types)
             {
-                jit_movi(JIT_R2, IdxForVar(local.index));
+                jit_movi(JIT_R2, IdxForVar(op, local.index));
                 jit_addi(JIT_R2, JIT_R2, local.offset);
                 jit_ldxr_l(JIT_R0, RegForVar(local.index), JIT_R2);
                 jit_prepare();

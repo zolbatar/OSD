@@ -107,6 +107,7 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddColour(ColourAttribute::WindowFurnitureBorder, lv_color_hex(0x404040));
     ThemeManager::AddColour(ColourAttribute::WindowBorder, lv_color_hex(0x404040));
     ThemeManager::AddColour(ColourAttribute::ScrollbarBackground, lv_color_hex(0x404040));
+    ThemeManager::AddColour(ColourAttribute::Shadow, lv_color_hex(0x808080));
 
     ThemeManager::AddFont(FontAttribute::Window,
                           FontManager::GetFontByNameStyleAndSize(
@@ -240,6 +241,10 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
+        /*        lv_style_set_shadow_opa(style, LV_OPA_80);
+                lv_style_set_shadow_color(style, ThemeManager::GetColour(ColourAttribute::Shadow));
+                lv_style_set_shadow_width(style, 4);
+                lv_style_set_shadow_spread(style, 4);*/
         lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
         lv_style_set_border_side(style, LV_BORDER_SIDE_TOP);
         lv_style_set_border_width(style, ThemeManager::GetConst(ConstAttribute::WindowBorderWidth));

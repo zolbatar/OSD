@@ -11,17 +11,26 @@ void IRCompiler::CompileTokenCase(Token *token)
     switch (type)
     {
     case ValueType::Integer:
-        Init_AddIRWithIndex(token, IROpcodes::VariableLocalCreateInteger, token->index);
+        if (token->index > 0)
+            Init_AddIRWithIndex(token, IROpcodes::VariableLocalCreateInteger, token->index);
+        else
+            Init_AddIRWithIndex(token, IROpcodes::VariableGlobalCreateInteger, token->index);
         AddIR(token, IROpcodes::StackPopIntOperand1);
         AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index);
         break;
     case ValueType::Float:
-        Init_AddIRWithIndex(token, IROpcodes::VariableLocalCreateFloat, token->index);
+        if (token->index > 0)
+            Init_AddIRWithIndex(token, IROpcodes::VariableLocalCreateFloat, token->index);
+        else
+            Init_AddIRWithIndex(token, IROpcodes::VariableGlobalCreateFloat, token->index);
         AddIR(token, IROpcodes::StackPopFloatOperand1);
         AddIRWithIndex(token, IROpcodes::VariableStoreFloat, token->index);
         break;
     case ValueType::String:
-        Init_AddIRWithIndex(token, IROpcodes::VariableLocalCreateString, token->index);
+        if (token->index > 0)
+            Init_AddIRWithIndex(token, IROpcodes::VariableLocalCreateString, token->index);
+        else
+            Init_AddIRWithIndex(token, IROpcodes::VariableGlobalCreateString, token->index);
         AddIR(token, IROpcodes::StackPopStringOperand1);
         AddIRWithIndex(token, IROpcodes::VariableStoreString, token->index);
         break;
@@ -34,8 +43,8 @@ void IRCompiler::CompileTokenCase(Token *token)
     {
         auto b_when_code = jump_index++;
         auto b_next_when = jump_index++;
-        AddIRWithIndex(token, IROpcodes::JumpCreateForward, b_when_code);
-        AddIRWithIndex(token, IROpcodes::JumpCreateForward, b_next_when);
+        AddIRWithIndex(when, IROpcodes::JumpCreateForward, b_when_code);
+        AddIRWithIndex(when, IROpcodes::JumpCreateForward, b_next_when);
         for (auto &expr : when->expressions)
         {
             for (auto &t : expr)
@@ -50,41 +59,41 @@ void IRCompiler::CompileTokenCase(Token *token)
             switch (type)
             {
             case ValueType::Integer:
-                AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index);
-                AddIR(token, IROpcodes::StackPushIntOperand1);
-                AddIR(token, IROpcodes::StackPopIntOperand1);
-                AddIR(token, IROpcodes::StackPopIntOperand2);
-                AddIR(token, IROpcodes::CompareEqualInt);
+                AddIRWithIndex(when, IROpcodes::VariableLoadInteger, token->index);
+                AddIR(when, IROpcodes::StackPushIntOperand1);
+                AddIR(when, IROpcodes::StackPopIntOperand1);
+                AddIR(when, IROpcodes::StackPopIntOperand2);
+                AddIR(when, IROpcodes::CompareEqualInt);
                 break;
             case ValueType::Float:
-                AddIRWithIndex(token, IROpcodes::VariableLoadFloat, token->index);
-                AddIR(token, IROpcodes::StackPushFloatOperand1);
-                AddIR(token, IROpcodes::StackPopFloatOperand1);
-                AddIR(token, IROpcodes::StackPopFloatOperand2);
-                AddIR(token, IROpcodes::CompareEqualFloat);
+                AddIRWithIndex(when, IROpcodes::VariableLoadFloat, token->index);
+                AddIR(when, IROpcodes::StackPushFloatOperand1);
+                AddIR(when, IROpcodes::StackPopFloatOperand1);
+                AddIR(when, IROpcodes::StackPopFloatOperand2);
+                AddIR(when, IROpcodes::CompareEqualFloat);
                 break;
             case ValueType::String:
-                AddIRWithIndex(token, IROpcodes::VariableLoadString, token->index);
-                AddIR(token, IROpcodes::StackPushStringOperand1);
-                AddIR(token, IROpcodes::StackPopStringOperand1);
-                AddIR(token, IROpcodes::StackPopStringOperand2);
-                AddIR(token, IROpcodes::CompareEqualString);
+                AddIRWithIndex(when, IROpcodes::VariableLoadString, token->index);
+                AddIR(when, IROpcodes::StackPushStringOperand1);
+                AddIR(when, IROpcodes::StackPopStringOperand1);
+                AddIR(when, IROpcodes::StackPopStringOperand2);
+                AddIR(when, IROpcodes::CompareEqualString);
                 break;
             }
 
             // Jump!
-            AddIRWithIndex(token, IROpcodes::JumpOnConditionTrueForward, b_when_code);
+            AddIRWithIndex(when, IROpcodes::JumpOnConditionTrueForward, b_when_code);
         }
-        AddIRWithIndex(token, IROpcodes::JumpForward, b_next_when);
+        AddIRWithIndex(when, IROpcodes::JumpForward, b_next_when);
 
         // Actual code to execute on match
-        AddIRWithIndex(token, IROpcodes::JumpDestination, b_when_code);
+        AddIRWithIndex(when, IROpcodes::JumpDestination, b_when_code);
         for (auto &t : when->branches[0])
         {
             CompileToken(t);
         }
-        AddIRWithIndex(token, IROpcodes::JumpForward, b_end);
-        AddIRWithIndex(token, IROpcodes::JumpDestination, b_next_when);
+        AddIRWithIndex(when, IROpcodes::JumpForward, b_end);
+        AddIRWithIndex(when, IROpcodes::JumpDestination, b_next_when);
     }
 
     // Otherwise

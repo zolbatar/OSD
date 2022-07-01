@@ -1,0 +1,514 @@
+{
+    "Fonts": [
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-Bold.ttf",
+            "name": "IBM Plex Mono",
+            "style": "Bold"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-BoldItalic.ttf",
+            "name": "IBM Plex Mono",
+            "style": "Bold Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-ExtraLight.ttf",
+            "name": "IBM Plex Mono ExtraLight",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-ExtraLightItalic.ttf",
+            "name": "IBM Plex Mono ExtraLight",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-Italic.ttf",
+            "name": "IBM Plex Mono",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-Light.ttf",
+            "name": "IBM Plex Mono Light",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-LightItalic.ttf",
+            "name": "IBM Plex Mono Light",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-Medium.ttf",
+            "name": "IBM Plex Mono Medium",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-MediumItalic.ttf",
+            "name": "IBM Plex Mono Medium",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-Regular.ttf",
+            "name": "IBM Plex Mono",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-RegularItalic.ttf",
+            "name": "IBM Plex Mono",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-SemiBold.ttf",
+            "name": "IBM Plex Mono SemiBold",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-SemiBoldItalic.ttf",
+            "name": "IBM Plex Mono SemiBold",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-Thin.ttf",
+            "name": "IBM Plex Mono Thin",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexMono-ThinItalic.ttf",
+            "name": "IBM Plex Mono Thin",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-Bold.ttf",
+            "name": "IBM Plex Sans",
+            "style": "Bold"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-BoldItalic.ttf",
+            "name": "IBM Plex Sans",
+            "style": "Bold Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-ExtraLight.ttf",
+            "name": "IBM Plex Sans ExtraLight",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-ExtraLightItalic.ttf",
+            "name": "IBM Plex Sans ExtraLight",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-Italic.ttf",
+            "name": "IBM Plex Sans",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-Light.ttf",
+            "name": "IBM Plex Sans Light",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-LightItalic.ttf",
+            "name": "IBM Plex Sans Light",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-Medium.ttf",
+            "name": "IBM Plex Sans Medium",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-MediumItalic.ttf",
+            "name": "IBM Plex Sans Medium",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-Regular.ttf",
+            "name": "IBM Plex Sans",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-RegularItalic.ttf",
+            "name": "IBM Plex Sans",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-SemiBold.ttf",
+            "name": "IBM Plex Sans SemiBold",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-SemiBoldItalic.ttf",
+            "name": "IBM Plex Sans SemiBold",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-Thin.ttf",
+            "name": "IBM Plex Sans Thin",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSans-ThinItalic.ttf",
+            "name": "IBM Plex Sans Thin",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-Bold.ttf",
+            "name": "IBM Plex Sans Condensed",
+            "style": "Bold"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-BoldItalic.ttf",
+            "name": "IBM Plex Sans Condensed",
+            "style": "Bold Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-ExtraLight.ttf",
+            "name": "IBM Plex Sans Condensed ExtraLight",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-ExtraLightItalic.ttf",
+            "name": "IBM Plex Sans Condensed ExtraLight",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-Light.ttf",
+            "name": "IBM Plex Sans Condensed Light",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-LightItalic.ttf",
+            "name": "IBM Plex Sans Condensed Light",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-Medium.ttf",
+            "name": "IBM Plex Sans Condensed Medium",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-MediumItalic.ttf",
+            "name": "IBM Plex Sans Condensed Medium",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-Regular.ttf",
+            "name": "IBM Plex Sans Condensed",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-RegularItalic.ttf",
+            "name": "IBM Plex Sans Condensed",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-SemiBold.ttf",
+            "name": "IBM Plex Sans Condensed SemiBold",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-SemiBoldItalic.ttf",
+            "name": "IBM Plex Sans Condensed SemiBold",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-Thin.ttf",
+            "name": "IBM Plex Sans Condensed Thin",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSansCondensed-ThinItalic.ttf",
+            "name": "IBM Plex Sans Condensed Thin",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-Bold.ttf",
+            "name": "IBM Plex Serif",
+            "style": "Bold"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-BoldItalic.ttf",
+            "name": "IBM Plex Serif",
+            "style": "Bold Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-ExtraLight.ttf",
+            "name": "IBM Plex Serif ExtraLight",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-ExtraLightItalic.ttf",
+            "name": "IBM Plex Serif ExtraLight",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-Italic.ttf",
+            "name": "IBM Plex Serif",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-Light.ttf",
+            "name": "IBM Plex Serif Light",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-LightItalic.ttf",
+            "name": "IBM Plex Serif Light",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-Medium.ttf",
+            "name": "IBM Plex Serif Medium",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-MediumItalic.ttf",
+            "name": "IBM Plex Serif Medium",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-Regular.ttf",
+            "name": "IBM Plex Serif",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-RegularItalic.ttf",
+            "name": "IBM Plex Serif",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-SemiBold.ttf",
+            "name": "IBM Plex Serif SemiBold",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-SemiBoldItalic.ttf",
+            "name": "IBM Plex Serif SemiBold",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-Thin.ttf",
+            "name": "IBM Plex Serif Thin",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/IBMPlex/IBMPlexSerif-ThinItalic.ttf",
+            "name": "IBM Plex Serif Thin",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-Black.ttf",
+            "name": "Source Code Pro Black",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-BlackItalic.ttf",
+            "name": "Source Code Pro Black",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-Bold.ttf",
+            "name": "Source Code Pro",
+            "style": "Bold"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-BoldItalic.ttf",
+            "name": "Source Code Pro",
+            "style": "Bold Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-ExtraBold.ttf",
+            "name": "Source Code Pro ExtraBold",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-ExtraBoldItalic.ttf",
+            "name": "Source Code Pro ExtraBold",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-ExtraLight.ttf",
+            "name": "Source Code Pro ExtraLight",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-ExtraLightItalic.ttf",
+            "name": "Source Code Pro ExtraLight",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-Italic.ttf",
+            "name": "Source Code Pro",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-Light.ttf",
+            "name": "Source Code Pro Light",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-LightItalic.ttf",
+            "name": "Source Code Pro Light",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-Medium.ttf",
+            "name": "Source Code Pro Medium",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-MediumItalic.ttf",
+            "name": "Source Code Pro Medium",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-Regular.ttf",
+            "name": "Source Code Pro",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-SemiBold.ttf",
+            "name": "Source Code Pro SemiBold",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceCodePro-SemiBoldItalic.ttf",
+            "name": "Source Code Pro SemiBold",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-Black.ttf",
+            "name": "Source Sans Pro Black",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-BlackItalic.ttf",
+            "name": "Source Sans Pro Black",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-Bold.ttf",
+            "name": "Source Sans Pro",
+            "style": "Bold"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-BoldItalic.ttf",
+            "name": "Source Sans Pro",
+            "style": "Bold Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-ExtraLight.ttf",
+            "name": "Source Sans Pro ExtraLight",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-ExtraLightItalic.ttf",
+            "name": "Source Sans Pro ExtraLight",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-Italic.ttf",
+            "name": "Source Sans Pro",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-Light.ttf",
+            "name": "Source Sans Pro Light",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-LightItalic.ttf",
+            "name": "Source Sans Pro Light",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-Regular.ttf",
+            "name": "Source Sans Pro",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-SemiBold.ttf",
+            "name": "Source Sans Pro SemiBold",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSansPro-SemiBoldItalic.ttf",
+            "name": "Source Sans Pro SemiBold",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-Black.ttf",
+            "name": "Source Serif Pro Black",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-BlackItalic.ttf",
+            "name": "Source Serif Pro Black",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-Bold.ttf",
+            "name": "Source Serif Pro",
+            "style": "Bold"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-BoldItalic.ttf",
+            "name": "Source Serif Pro",
+            "style": "Bold Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-ExtraLight.ttf",
+            "name": "Source Serif Pro ExtraLight",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-ExtraLightItalic.ttf",
+            "name": "Source Serif Pro ExtraLight",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-Italic.ttf",
+            "name": "Source Serif Pro",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-Light.ttf",
+            "name": "Source Serif Pro Light",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-LightItalic.ttf",
+            "name": "Source Serif Pro Light",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-Regular.ttf",
+            "name": "Source Serif Pro",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-SemiBold.ttf",
+            "name": "Source Serif Pro SemiBold",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts/Source/SourceSerifPro-SemiBoldItalic.ttf",
+            "name": "Source Serif Pro SemiBold",
+            "style": "Italic"
+        },
+        {
+            "filename": "/osd/System/Fonts//fa-light-300.ttf",
+            "name": "Font Awesome 6 Pro Light",
+            "style": "Light"
+        },
+        {
+            "filename": "/osd/System/Fonts//FXMatrix105MonoPicaRegular.otf",
+            "name": "FXMatrix105MonoPica",
+            "style": "Regular"
+        },
+        {
+            "filename": "/osd/System/Fonts//edunline.ttf",
+            "name": "Edit Undo Line BRK",
+            "style": "Regular"
+        }
+    ]
+}

@@ -10,7 +10,8 @@
             "defines": [],
             "macFrameworkPath": [],
             "compilerPath": "/usr/local/bin/gcc-11",
-            "intelliSenseMode": "macos-gcc-x64"
+            "intelliSenseMode": "macos-gcc-x64",
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4

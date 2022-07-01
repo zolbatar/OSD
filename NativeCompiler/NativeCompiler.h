@@ -37,7 +37,7 @@ class NativeCompiler
 
   private:
     bool optimise;
-    void IRToNativeSection(std::list<IRInstruction> *ir, bool debug);
+    void IRToNativeSection(std::list<IRInstruction> *ir, bool debug, bool global);
     void StackInit();
     void StackPeekInt(int reg);
     void StackPushInt(int reg);
@@ -47,7 +47,7 @@ class NativeCompiler
     void StackPushString(int reg);
     void StackPopString(int reg);
     void ConstructArguments();
-    int IdxForVar(int64_t index);
+    int IdxForVar(IRInstruction &op, int64_t index);
     jit_reg_t RegForVar(int64_t index);
 
     jit_node_t *forward_ret;

@@ -25,6 +25,7 @@ enum class ColourAttribute
     WindowFurnitureBackground,
     WindowFurnitureForeground,
     WindowFurnitureBorder,
+    Shadow
 };
 
 enum class StyleAttribute

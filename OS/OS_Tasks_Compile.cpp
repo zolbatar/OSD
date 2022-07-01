@@ -82,7 +82,7 @@ bool OSDTask::CompileSource(std::string volume, std::string directory, std::stri
     t2 = CTimer::GetClockTicks();
     time_span = (t2 - t1) / 1000.0;
     total_time_span += time_span;
-    CLogger::Get()->Write("OSDTask", LogNotice, "Parser: %f millis", time_span);
+    //    CLogger::Get()->Write("OSDTask", LogNotice, "Parser: %f millis", time_span);
     if (debug)
         Breakdown::ProcessParser(&token, &parser);
 
@@ -93,7 +93,7 @@ bool OSDTask::CompileSource(std::string volume, std::string directory, std::stri
     t2 = CTimer::GetClockTicks();
     time_span = (t2 - t1) / 1000.0;
     total_time_span += time_span;
-    CLogger::Get()->Write("OSDTask", LogNotice, "IR Compiler: %f millis", time_span);
+    //    CLogger::Get()->Write("OSDTask", LogNotice, "IR Compiler: %f millis", time_span);
     if (debug)
         Breakdown::ProcessIR(&ir_compiler);
 
@@ -105,7 +105,7 @@ bool OSDTask::CompileSource(std::string volume, std::string directory, std::stri
     t2 = CTimer::GetClockTicks();
     time_span = (t2 - t1) / 1000.0;
     total_time_span += time_span;
-    CLogger::Get()->Write("OSDTask", LogNotice, "Native Compiler: %f millis", time_span);
+    //    CLogger::Get()->Write("OSDTask", LogNotice, "Native Compiler: %f millis", time_span);
     if (debug)
         Breakdown::ProcessNative(&native_compiler);
 

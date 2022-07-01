@@ -8,26 +8,28 @@
 #include <circle/usb/usbhcidevice.h>
 #include <circle/multicore.h>
 
-class CMultiCore : public CMultiCoreSupport {
-public:
-	CMultiCore(CMemorySystem* pMemorySystem);
-	void Run(unsigned nCore);
-private:
+class CMultiCore : public CMultiCoreSupport
+{
+  public:
+    CMultiCore(CMemorySystem *pMemorySystem);
+    void Run(unsigned nCore);
+
+  private:
 };
 
 class CKernel : public CStdlibAppStdio /*CStdlibAppNetwork*/
 {
-public:
-	CKernel(void);
-	TShutdownMode Run(void);
+  public:
+    CKernel(void);
+    TShutdownMode Run(void);
 
-private:
-	CMachineInfo mMachineInfo;
-	CMemorySystem mMemory;
-	CCPUThrottle mThrottle;
-	CScheduler mScheduler;
-	CMultiCore mMulticore;
-	CUserTimer mUserTimer;
+  private:
+    CMachineInfo mMachineInfo;
+    CMemorySystem mMemory;
+    CCPUThrottle mThrottle;
+    CScheduler mScheduler;
+    CMultiCore mMulticore;
+    CUserTimer mUserTimer;
 
-	static void PeriodicHandler(CUserTimer* pTimer, void* pParam);
+    static void PeriodicHandler(CUserTimer *pTimer, void *pParam);
 };

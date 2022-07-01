@@ -136,14 +136,13 @@ void FileSystem::ListAllFilesInCurrentDirectoryWorker(bool subdirectories, std::
             {
                 if (subdirectories)
                 {
-                    ListAllFilesInCurrentDirectoryWorker(subdirectories, directory + fno.fname, out);
+                    ListAllFilesInCurrentDirectoryWorker(subdirectories, directory + fno.fname + "/", out);
                 }
             }
             else
             {
                 std::string d;
                 d += directory;
-                //				d += "/";
                 d += fno.fname;
                 out->push_back(d);
             }
@@ -181,7 +180,7 @@ void FileSystem::ListAllDirectoriesInCurrentDirectoryWorker(bool subdirectories,
                 d += fno.fname;
                 out->push_back(d);
                 if (subdirectories)
-                    ListAllDirectoriesInCurrentDirectoryWorker(subdirectories, directory + fno.fname, out);
+                    ListAllDirectoriesInCurrentDirectoryWorker(subdirectories, directory + fno.fname + "/", out);
             }
         }
         f_closedir(&dir);

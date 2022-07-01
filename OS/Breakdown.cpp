@@ -3,26 +3,41 @@
 
 std::map<size_t, LineBreakdown> Breakdown::line_breakdown;
 std::map<size_t, std::string> Breakdown::native;
-std::map<size_t, LineMapping> Breakdown::line_mappings;
-
-void Breakdown::SetSource(size_t line, std::string source)
-{
-}
 
 void Breakdown::InsertLineMapping(size_t line, jit_node_t *node)
 {
     LineMapping lm;
     lm.node = node;
     lm.address = 0;
-    line_mappings.insert(std::make_pair(line, std::move(lm)));
+    CheckLineExists(line);
+    auto f = line_breakdown.find(line);
+    f->second.native.push_back(std::move(lm));
+}
+
+void Breakdown::InsertLineMappingGlobal(size_t line, jit_node_t *node)
+{
+    LineMapping lm;
+    lm.node = node;
+    lm.address = 0;
+    CheckLineExists(line);
+    auto f = line_breakdown.find(line);
+    f->second.native_global.push_back(std::move(lm));
 }
 
 void Breakdown::ProcessLineMappings(jit_state_t *_jit)
 {
-    for (auto &l : line_mappings)
+    for (auto &l : line_breakdown)
     {
-        l.second.address = static_cast<size_t>(l.second.node->u.w);
-        // CLogger::Get()->Write("NativeCompiler", LogNotice, "%d = %x", l.first, l.second.address);
+        for (auto &l1 : l.second.native)
+        {
+            l1.address = (size_t)jit_address(l1.node);
+            // CLogger::Get()->Write("NativeCompiler", LogNotice, "%d = %x", l.first, l.second.address);
+        }
+        for (auto &l1 : l.second.native_global)
+        {
+            l1.address = (size_t)jit_address(l1.node);
+            // CLogger::Get()->Write("NativeCompiler", LogNotice, "%d = %x", l.first, l.second.address);
+        }
     }
 }
 
@@ -136,5 +151,11 @@ LineBreakdown *Breakdown::GetLineBreakdown(size_t line_number)
     {
         return NULL;
     }
+    return &f->second;
+}
+
+std::string *Breakdown::GetNativeForAddress(size_t address)
+{
+    auto f = native.find(address);
     return &f->second;
 }
