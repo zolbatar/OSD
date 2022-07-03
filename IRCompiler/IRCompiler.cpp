@@ -17,7 +17,7 @@ void IRCompiler::CompileToken(Token *token)
         AddIR(token, IROpcodes::Yield);
         break;
     case TokenType::STATEMENT_START:
-        // AddIRWithIndex(token, IROpcodes::StackCheck, token->line_number);
+        AddIRWithIndex(token, IROpcodes::StackCheck, token->line_number);
         if (!type_stack.empty())
             Error(token, "Expected empty type stack");
         break;

@@ -267,6 +267,9 @@ FontSize *FontManager::InternalLookup(std::string name, std::string style_name, 
 
 lv_font_t *FontManager::GetFontByNameStyleAndSize(std::string name, std::string style_name, int size)
 {
+    // return (lv_font_t *)&lv_font_unscii_8;
+    // return (lv_font_t *)&lv_font_unscii_16;
+    // return (lv_font_t *)&lv_font_montserrat_12_subpx;
     auto f = InternalLookup(name, style_name, size);
     return f->lv;
 }

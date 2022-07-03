@@ -40,6 +40,7 @@ struct Token
     ComplexType vtype = TypeNone();
     int64_t index = -1;
     int64_t index2;
+    int64_t index3;
 
     // Name (for variables etc)
     std::string name;

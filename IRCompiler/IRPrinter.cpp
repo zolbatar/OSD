@@ -346,7 +346,7 @@ void IRCompiler::IRPrinterSection(std::list<IRInstruction> *ir)
             sprintf(l, "[Maths   ] MOD, float");
             break;
         case IROpcodes::MathsDiv:
-            sprintf(l, "[Maths   ] DIV, float");
+            sprintf(l, "[Maths   ] DIV, integer");
             break;
         case IROpcodes::MathsAbsInt:
             sprintf(l, "[Maths   ] ABS, int");

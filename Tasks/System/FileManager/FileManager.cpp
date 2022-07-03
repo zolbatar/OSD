@@ -56,7 +56,6 @@ FSVolume *FileManager::FindVolume(std::string volume)
     {
         return &f->second;
     }
-    CLogger::Get()->Write("File Manager", LogPanic, "Can't find volume");
     return NULL;
 }
 

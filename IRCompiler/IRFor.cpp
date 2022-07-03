@@ -25,7 +25,9 @@ void IRCompiler::CompileTokenFor(Token *token)
         AddIR(token, IROpcodes::StackPopIntOperand2);
         AddIR(token, IROpcodes::StackPopIntOperand1);
         AddIR(token, IROpcodes::MathsSubtractInt);
-        AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index + (token->index > 0 ? 1 : -1));
+        //        this fails because it assumes the Step / iteration vars are immediately after the actual var,
+        // this wont be the case a lot of the time
+        AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index2);
 
         // Step
         if (token->expressions.size() == 3)
@@ -35,23 +37,23 @@ void IRCompiler::CompileTokenFor(Token *token)
             auto type = PopType(token);
             EnsureStackIsInteger(token, type);
             AddIR(token, IROpcodes::StackPopIntOperand1);
-            AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index + (token->index > 0 ? 2 : -2));
+            AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index3);
 
             // Adjust iterations
-            AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index + (token->index > 0 ? 2 : -2));
+            AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index3);
             AddIR(token, IROpcodes::StackPushIntOperand1);
-            AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index + (token->index > 0 ? 1 : -1));
+            AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index2);
             AddIR(token, IROpcodes::StackPushIntOperand1);
             AddIR(token, IROpcodes::StackPopIntOperand2);
             AddIR(token, IROpcodes::StackPopIntOperand1);
             AddIR(token, IROpcodes::MathsDiv);
-            AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index + (token->index > 0 ? 1 : -1));
+            AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index2);
         }
         else
         {
             AddIRIntegerLiteral(token, 1);
             AddIR(token, IROpcodes::StackPopIntOperand1);
-            AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index + (token->index > 0 ? 2 : -2));
+            AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index3);
         }
     }
     else if (token->vtype.IsFloat())
@@ -61,7 +63,7 @@ void IRCompiler::CompileTokenFor(Token *token)
             CompileToken(t);
         auto type = PopType(token);
         EnsureStackIsFloat(token, type);
-        type = ValueType::Integer;
+        type = ValueType::Float;
         AddIR(token, IROpcodes::StackPopFloatOperand1);
         AddIRWithIndex(token, IROpcodes::VariableStoreFloat, token->index);
         AddIR(token, IROpcodes::StackPushFloatOperand1);
@@ -71,14 +73,14 @@ void IRCompiler::CompileTokenFor(Token *token)
             CompileToken(t);
         type = PopType(token);
         EnsureStackIsFloat(token, type);
-        type = ValueType::Integer;
+        type = ValueType::Float;
 
         // Subtract to work out iterations
         AddIR(token, IROpcodes::StackPopFloatOperand2);
         AddIR(token, IROpcodes::StackPopFloatOperand1);
         AddIR(token, IROpcodes::MathsSubtractFloat);
         AddIR(token, IROpcodes::ConvertOperand1FloatToInt1);
-        AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index + (token->index > 0 ? 1 : -1));
+        AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index2);
 
         // Step
         if (token->expressions.size() == 3)
@@ -88,23 +90,23 @@ void IRCompiler::CompileTokenFor(Token *token)
             type = PopType(token);
             EnsureStackIsFloat(token, type);
             AddIR(token, IROpcodes::StackPopFloatOperand1);
-            AddIRWithIndex(token, IROpcodes::VariableStoreFloat, token->index + (token->index > 0 ? 2 : -2));
+            AddIRWithIndex(token, IROpcodes::VariableStoreFloat, token->index3);
 
             // Adjust iterations
-            AddIRWithIndex(token, IROpcodes::VariableLoadFloat, token->index + (token->index > 0 ? 2 : -2));
+            AddIRWithIndex(token, IROpcodes::VariableLoadFloat, token->index3);
             AddIR(token, IROpcodes::StackPushFloatOperand1);
-            AddIRWithIndex(token, IROpcodes::VariableLoadFloat, token->index + (token->index > 0 ? 1 : -1));
+            AddIRWithIndex(token, IROpcodes::VariableLoadFloat, token->index2);
             AddIR(token, IROpcodes::StackPushFloatOperand1);
             AddIR(token, IROpcodes::StackPopFloatOperand2);
             AddIR(token, IROpcodes::StackPopFloatOperand1);
             AddIR(token, IROpcodes::MathsDivide);
-            AddIRWithIndex(token, IROpcodes::VariableStoreFloat, token->index + (token->index > 0 ? 1 : -1));
+            AddIRWithIndex(token, IROpcodes::VariableStoreFloat, token->index2);
         }
         else
         {
             AddIRFloatLiteral(token, 1.0);
             AddIR(token, IROpcodes::StackPopFloatOperand1);
-            AddIRWithIndex(token, IROpcodes::VariableStoreFloat, token->index + (token->index > 0 ? 2 : -2));
+            AddIRWithIndex(token, IROpcodes::VariableStoreFloat, token->index3);
         }
     }
     else
@@ -127,7 +129,7 @@ void IRCompiler::CompileTokenNext(Token *token)
     if (token->vtype.IsInteger())
     {
         // Increase loop var
-        AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index + (token->index > 0 ? 2 : -2));
+        AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index3);
         AddIR(token, IROpcodes::StackPushIntOperand1);
         AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index);
         AddIR(token, IROpcodes::StackPushIntOperand1);
@@ -139,7 +141,7 @@ void IRCompiler::CompileTokenNext(Token *token)
     else if (token->vtype.IsFloat())
     {
         // Increase loop var
-        AddIRWithIndex(token, IROpcodes::VariableLoadFloat, token->index + (token->index > 0 ? 2 : -2));
+        AddIRWithIndex(token, IROpcodes::VariableLoadFloat, token->index3);
         AddIR(token, IROpcodes::StackPushFloatOperand1);
         AddIRWithIndex(token, IROpcodes::VariableLoadFloat, token->index);
         AddIR(token, IROpcodes::StackPushFloatOperand1);
@@ -151,16 +153,16 @@ void IRCompiler::CompileTokenNext(Token *token)
 
     // Decrease iterations
     AddIRIntegerLiteral(token, 1);
-    AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index + (token->index > 0 ? 1 : -1));
+    AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index2);
     AddIR(token, IROpcodes::StackPushIntOperand1);
     AddIR(token, IROpcodes::StackPopIntOperand2);
     AddIR(token, IROpcodes::StackPopIntOperand1);
     AddIR(token, IROpcodes::MathsSubtractInt);
-    AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index + (token->index > 0 ? 1 : -1));
+    AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index2);
 
     // Done?
     AddIRIntegerLiteral(token, 0);
-    AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index + (token->index > 0 ? 1 : -1));
+    AddIRWithIndex(token, IROpcodes::VariableLoadInteger, token->index2);
     AddIR(token, IROpcodes::StackPushIntOperand1);
     AddIR(token, IROpcodes::StackPopIntOperand2);
     AddIR(token, IROpcodes::StackPopIntOperand1);

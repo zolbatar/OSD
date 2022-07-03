@@ -36,6 +36,7 @@ Filer::~Filer()
 
 void Filer::Run()
 {
+    volume_obj = FileManager::FindVolume(volume);
     fs.SetVolume(volume);
     fs.SetCurrentDirectory(directory);
     SetNameAndAddToList();
@@ -120,11 +121,11 @@ void Filer::BuildIcons()
 
     // Keys
     lv_obj_add_event_cb(lv_scr_act(), KeyPressEventHandler, LV_EVENT_KEY, this);
-    //	lv_obj_add_event_cb(w, KeyPressEventHandler, LV_EVENT_KEY, this);
-    //	lv_obj_add_event_cb(content, KeyPressEventHandler, LV_EVENT_KEY, this);
-    //	lv_obj_add_event_cb(filer_cont, KeyPressEventHandler, LV_EVENT_KEY, this);
 
-    auto l = volume.length() + directory.length();
+    auto prefix = volume_obj->prefix;
+    auto l = prefix.length() + directory.length();
+    // CLogger::Get()->Write("File Manager", LogNotice, "%s - %s - %s", volume.c_str(), directory.c_str(),
+    // prefix.c_str());
 
     // Directories
     auto dirs = fs.ListAllDirectoriesInCurrentDirectory(false, false);
@@ -138,6 +139,7 @@ void Filer::BuildIcons()
     for (auto &d : files)
     {
         AddIcon(d.substr(l), false);
+        // CLogger::Get()->Write("File Manager", LogNotice, "%s", d.c_str());
     }
 }
 

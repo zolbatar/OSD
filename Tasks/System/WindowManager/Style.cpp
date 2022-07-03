@@ -65,13 +65,15 @@ void WindowManager::SetupLVGLStyles()
     CLogger::Get()->Write("Window Manager", LogDebug, "Setting up styles");
 
     // Constants
-    ThemeManager::AddConst(ConstAttribute::IconBarHeight, 110);
     ThemeManager::AddConst(ConstAttribute::WindowFontSize, 20);
     ThemeManager::AddConst(ConstAttribute::BodyFontSize, 20);
     ThemeManager::AddConst(ConstAttribute::MonoFontSize, 20);
     ThemeManager::AddConst(ConstAttribute::MonoFontSizeSmall, 16);
     ThemeManager::AddConst(ConstAttribute::FurnitureFontSize, 16);
     ThemeManager::AddConst(ConstAttribute::HeaderFontSize, 24);
+    ThemeManager::AddConst(ConstAttribute::ButtonFontSize, 24);
+
+    ThemeManager::AddConst(ConstAttribute::IconBarHeight, 110);
     ThemeManager::AddConst(ConstAttribute::WindowBorderWidth, 1);
     ThemeManager::AddConst(ConstAttribute::WindowHeaderHeight, 28);
     ThemeManager::AddConst(ConstAttribute::MenuHeaderHeight, 28);
@@ -82,7 +84,6 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddConst(ConstAttribute::ControlPadding, 1);
     ThemeManager::AddConst(ConstAttribute::ContainerPadding, 8);
     ThemeManager::AddConst(ConstAttribute::ScrollbarSize, 8);
-    ThemeManager::AddConst(ConstAttribute::ButtonFontSize, 24);
 
     // Colours
     ThemeManager::AddColour(ColourAttribute::WindowBackground, lv_color_hex(0xD0D0D0));
@@ -111,25 +112,25 @@ void WindowManager::SetupLVGLStyles()
 
     ThemeManager::AddFont(FontAttribute::Window,
                           FontManager::GetFontByNameStyleAndSize(
-                              "IBM Plex Sans", "Regular", ThemeManager::GetConst(ConstAttribute::WindowFontSize)));
+                              "Roboto", "Regular", ThemeManager::GetConst(ConstAttribute::WindowFontSize)));
     ThemeManager::AddFont(FontAttribute::WindowBold,
                           FontManager::GetFontByNameStyleAndSize(
-                              "IBM Plex Sans", "Bold", ThemeManager::GetConst(ConstAttribute::WindowFontSize)));
+                              "Roboto", "Bold", ThemeManager::GetConst(ConstAttribute::WindowFontSize)));
     ThemeManager::AddFont(FontAttribute::Body,
-                          FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Regular",
+                          FontManager::GetFontByNameStyleAndSize("Roboto", "Regular",
                                                                  ThemeManager::GetConst(ConstAttribute::BodyFontSize)));
-    ThemeManager::AddFont(FontAttribute::BodyBold,
-                          FontManager::GetFontByNameStyleAndSize("IBM Plex Sans", "Bold",
-                                                                 ThemeManager::GetConst(ConstAttribute::BodyFontSize)));
+    ThemeManager::AddFont(
+        FontAttribute::BodyBold,
+        FontManager::GetFontByNameStyleAndSize("Roboto", "Bold", ThemeManager::GetConst(ConstAttribute::BodyFontSize)));
     ThemeManager::AddFont(FontAttribute::Header,
                           FontManager::GetFontByNameStyleAndSize(
-                              "IBM Plex Sans", "Bold", ThemeManager::GetConst(ConstAttribute::HeaderFontSize)));
+                              "Roboto", "Bold", ThemeManager::GetConst(ConstAttribute::HeaderFontSize)));
     ThemeManager::AddFont(FontAttribute::Mono,
-                          FontManager::GetFontByNameStyleAndSize("IBM Plex Mono", "Regular",
+                          FontManager::GetFontByNameStyleAndSize("Roboto Mono", "Regular",
                                                                  ThemeManager::GetConst(ConstAttribute::MonoFontSize)));
     ThemeManager::AddFont(FontAttribute::MonoSmall,
                           FontManager::GetFontByNameStyleAndSize(
-                              "IBM Plex Mono", "Regular", ThemeManager::GetConst(ConstAttribute::MonoFontSizeSmall)));
+                              "Roboto Mono", "Regular", ThemeManager::GetConst(ConstAttribute::MonoFontSizeSmall)));
     ThemeManager::AddFont(FontAttribute::Symbol, FontManager::GetFontByNameStyleAndSize(
                                                      "Font Awesome 6 Pro Light", "Light",
                                                      ThemeManager::GetConst(ConstAttribute::FurnitureFontSize)));

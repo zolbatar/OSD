@@ -522,7 +522,7 @@ void Editor::UpdateDebugWindow()
         lv_obj_set_pos(debug, _x + w, _y + ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
         lv_obj_set_size(debug, 400, h - ThemeManager::GetConst(ConstAttribute::MenuHeaderHeight));
         lv_obj_add_style(debug, ThemeManager::GetStyle(StyleAttribute::DrawerText), LV_STATE_DEFAULT);
-        lv_obj_t *tabview = lv_tabview_create(debug, LV_DIR_RIGHT, 40);
+        lv_obj_t *tabview = lv_tabview_create(debug, LV_DIR_TOP, 40);
         lv_obj_clear_flag(lv_tabview_get_content(tabview), LV_OBJ_FLAG_SCROLLABLE);
         //    lv_obj_add_event_cb(lv_tabview_get_content(tabview), scroll_begin_event, LV_EVENT_SCROLL_BEGIN, NULL);
         lv_obj_t *tab_btns = lv_tabview_get_tab_btns(tabview);
@@ -532,10 +532,10 @@ void Editor::UpdateDebugWindow()
         lv_obj_set_style_bg_color(tab_btns, lv_palette_darken(LV_PALETTE_GREY, 3), 0);
         lv_obj_set_style_text_color(tab_btns, lv_color_white(), 0);
         lv_obj_set_style_border_side(tab_btns, LV_BORDER_SIDE_LEFT, LV_PART_ITEMS | LV_STATE_CHECKED);
-        tab_tokens = lv_tabview_add_tab(tabview, "T");
-        tab_parser = lv_tabview_add_tab(tabview, "P");
+        tab_tokens = lv_tabview_add_tab(tabview, "Tokens");
+        tab_parser = lv_tabview_add_tab(tabview, "Parser");
         tab_ir = lv_tabview_add_tab(tabview, "IR");
-        tab_native = lv_tabview_add_tab(tabview, "MC");
+        tab_native = lv_tabview_add_tab(tabview, "Native");
         lv_obj_set_style_pad_all(tab_tokens, 0, LV_STATE_DEFAULT);
         lv_obj_set_style_pad_all(tab_parser, 0, LV_STATE_DEFAULT);
         lv_obj_set_style_pad_all(tab_ir, 0, LV_STATE_DEFAULT);
