@@ -277,32 +277,6 @@ void IRCompiler::IRPrinterSection(std::list<IRInstruction> *ir)
             break;
 
             // Maths
-        case IROpcodes::StringsStrings:
-            sprintf(l, "[Strings ] STRING$");
-            break;
-        case IROpcodes::StringsRights:
-            sprintf(l, "[Strings ] RIGHT$");
-            break;
-        case IROpcodes::StringsMids:
-            sprintf(l, "[Strings ] MID$");
-            break;
-        case IROpcodes::StringsLefts:
-            sprintf(l, "[Strings ] LEFT$");
-            break;
-        case IROpcodes::StringsInstr:
-            sprintf(l, "[Strings ] INSTR");
-            break;
-        case IROpcodes::StringsChrs:
-            sprintf(l, "[Strings ] CHR$");
-            break;
-        case IROpcodes::StringsAsc:
-            sprintf(l, "[Strings ] ASC");
-            break;
-        case IROpcodes::StringsLen:
-            sprintf(l, "[Strings ] LEN");
-            break;
-
-            // Maths
         case IROpcodes::MathsUnaryMinusInt:
             sprintf(l, "[Maths   ] Unary -, integer");
             break;

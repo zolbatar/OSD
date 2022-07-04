@@ -2,6 +2,8 @@
 
 void Parser::Parser_FOR(Token *t, std::list<Token *> *tokens_out)
 {
+    //    CLogger::Get()->Write("Parser", LogNotice, "For: %d/%d", t->line_number, inside_function);
+
     // Get variable
     Token *tt = GetToken();
     t->name = tt->text;
@@ -26,9 +28,8 @@ void Parser::Parser_FOR(Token *t, std::list<Token *> *tokens_out)
         auto f = local_variables.find(t->name);
         if (f == local_variables.end())
         {
-            // Create variable: loop
-            tt->vtype = t->vtype;
-            CreateLocalVariableNoInit(tt);
+            Token *tt = CreateNewLocalVariableNoInit(t, t->name, t->vtype);
+            //            CLogger::Get()->Write("Parser", LogNotice, "1: %d %d", tt->line_number, tt->index);
             t->index = tt->index;
             tokens_out->push_back(tt);
         }
@@ -43,17 +44,15 @@ void Parser::Parser_FOR(Token *t, std::list<Token *> *tokens_out)
         f = local_variables.find(name);
         if (f == local_variables.end())
         {
-            Token tt2 = CreateToken(t, TokenType::LOCAL);
-            tt2.text = name;
-            tt2.vtype = TypeInteger();
-            CreateLocalVariableNoInit(&tt2);
-            t->index2 = tt2.index;
-            new_tokens.push_back(std::move(tt2));
-            tokens_out->push_back(&new_tokens.back());
+            Token *tt = CreateNewLocalVariableNoInit(t, name, TypeInteger());
+            //            CLogger::Get()->Write("Parser", LogNotice, "2: %d %d", tt->line_number, tt->index);
+            t->index2 = tt->index;
+            tokens_out->push_back(tt);
         }
         else
         {
             t->index2 = f->second->index;
+            //            CLogger::Get()->Write("Parser", LogNotice, "2i: %d '%s'", t->index2, f->second->name.c_str());
         }
 
         // Create variable: step
@@ -61,17 +60,15 @@ void Parser::Parser_FOR(Token *t, std::list<Token *> *tokens_out)
         f = local_variables.find(name);
         if (f == local_variables.end())
         {
-            Token tt2 = CreateToken(t, TokenType::LOCAL);
-            tt2.text = name;
-            tt2.vtype = t->vtype;
-            CreateLocalVariableNoInit(&tt2);
-            t->index3 = tt2.index;
-            new_tokens.push_back(std::move(tt2));
-            tokens_out->push_back(&new_tokens.back());
+            Token *tt = CreateNewLocalVariableNoInit(t, name, t->vtype);
+            t->index3 = tt->index;
+            //            CLogger::Get()->Write("Parser", LogNotice, "3: %d %d", tt->line_number, tt->index);
+            tokens_out->push_back(tt);
         }
         else
         {
             t->index3 = f->second->index;
+            //            CLogger::Get()->Write("Parser", LogNotice, "3i: %d", t->index3);
         }
     }
     else
@@ -79,9 +76,8 @@ void Parser::Parser_FOR(Token *t, std::list<Token *> *tokens_out)
         auto f = global_variables.find(t->name);
         if (f == global_variables.end())
         {
-            // Create variable: loop
-            tt->vtype = t->vtype;
-            CreateGlobalVariableNoInit(tt);
+            Token *tt = CreateNewGlobalVariableNoInit(t, t->name, t->vtype);
+            //            CLogger::Get()->Write("Parser", LogNotice, "1g: %d %d", tt->line_number, tt->index);
             t->index = tt->index;
             tokens_out->push_back(tt);
         }
@@ -96,13 +92,10 @@ void Parser::Parser_FOR(Token *t, std::list<Token *> *tokens_out)
         f = global_variables.find(name);
         if (f == global_variables.end())
         {
-            Token tt2 = CreateToken(t, TokenType::GLOBAL);
-            tt2.text = name;
-            tt2.vtype = TypeInteger();
-            CreateGlobalVariableNoInit(&tt2);
-            t->index2 = tt2.index;
-            new_tokens.push_back(std::move(tt2));
-            tokens_out->push_back(&new_tokens.back());
+            Token *tt = CreateNewGlobalVariableNoInit(t, name, TypeInteger());
+            //            CLogger::Get()->Write("Parser", LogNotice, "2g: %d %d", tt->line_number, tt->index);
+            t->index2 = tt->index;
+            tokens_out->push_back(tt);
         }
         else
         {
@@ -114,13 +107,10 @@ void Parser::Parser_FOR(Token *t, std::list<Token *> *tokens_out)
         f = global_variables.find(name);
         if (f == global_variables.end())
         {
-            Token tt2 = CreateToken(t, TokenType::GLOBAL);
-            tt2.text = name;
-            tt2.vtype = t->vtype;
-            CreateGlobalVariableNoInit(&tt2);
-            t->index3 = tt2.index;
-            new_tokens.push_back(std::move(tt2));
-            tokens_out->push_back(&new_tokens.back());
+            Token *tt = CreateNewGlobalVariableNoInit(t, name, t->vtype);
+            t->index3 = tt->index;
+            //            CLogger::Get()->Write("Parser", LogNotice, "3g: %d %d", tt->line_number, tt->index);
+            tokens_out->push_back(tt);
         }
         else
         {
@@ -185,6 +175,8 @@ void Parser::Parser_NEXT(Token *t, std::list<Token *> *tokens_out)
     auto var = for_loop_variables.top();
     for_loop_variables.pop();
     t->index = var->index;
+    t->index2 = var->index2;
+    t->index3 = var->index3;
     t->vtype = var->vtype;
     tokens_out->push_back(t);
 }

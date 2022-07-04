@@ -17,6 +17,6 @@ void IRCompiler::CompileTokenLiteral(Token *token)
         type_stack.push(ValueType::String);
         break;
     default:
-        Error(token, "Why?");
+        Error(token, "IRLiteral: Why?");
     }
 }

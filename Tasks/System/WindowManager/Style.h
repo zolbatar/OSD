@@ -25,7 +25,6 @@ enum class ColourAttribute
     WindowFurnitureBackground,
     WindowFurnitureForeground,
     WindowFurnitureBorder,
-    Shadow
 };
 
 enum class StyleAttribute
@@ -51,6 +50,7 @@ enum class StyleAttribute
     Scrollbar,
     TransparentWindow,
     Window,
+    Button,
     WindowButton,
     WindowContent,
     WindowContentPadded,

@@ -64,7 +64,7 @@ void IRCompiler::CompileTokenData(Token *token)
                 AddIRWithIndex(token, IROpcodes::VariableStoreString, t->index);
             }
             else
-                Error(token, "Why?");
+                Error(token, "IRData: Why?");
         }
         break;
     }

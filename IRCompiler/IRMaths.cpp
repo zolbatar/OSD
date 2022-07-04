@@ -181,7 +181,7 @@ void IRCompiler::CompileTokenMaths(Token *token)
         break;
     }
     default:
-        Error(token, "Why?");
+        Error(token, "IRMaths: Why?");
     }
 }
 

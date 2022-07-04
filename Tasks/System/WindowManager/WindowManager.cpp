@@ -59,7 +59,7 @@ void WindowManager::Run()
     SetupLVGLStyles();
 
     // Setup filetypes
-    types.insert(std::make_pair("DARIC", FileType("DARIC", "Sloth", "")));
+    types.insert(std::make_pair("DARIC", FileType("DARIC", "Daric", "")));
     types.insert(std::make_pair("PNG", FileType("PNG", "Image", "")));
     types.insert(std::make_pair("TXT", FileType("TXT", "Text", "")));
 

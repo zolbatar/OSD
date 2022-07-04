@@ -37,7 +37,7 @@ lv_obj_t *lv_mywin_create(lv_obj_t *parent, lv_coord_t header_height, WindowAttr
         lv_obj_t *img = lv_img_create(btn_resize);
         lv_img_set_src(img, LV_SYMBOL_RESIZE);
         lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
-        auto style = ThemeManager::GetStyle(StyleAttribute::WindowButton);
+        auto style = ThemeManager::GetStyle(StyleAttribute::Button);
         lv_obj_add_style(btn_resize, style, LV_STATE_DEFAULT);
     }
 

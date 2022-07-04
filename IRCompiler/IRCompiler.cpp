@@ -117,17 +117,6 @@ void IRCompiler::CompileToken(Token *token)
         CompileTokenConversion(token);
         break;
 
-    case TokenType::ASC:
-    case TokenType::CHRS:
-    case TokenType::INSTR:
-    case TokenType::LEFTS:
-    case TokenType::MIDS:
-    case TokenType::RIGHTS:
-    case TokenType::LEN:
-    case TokenType::STRINGS:
-        CompileTokenString(token);
-        break;
-
     case TokenType::EQUAL:
     case TokenType::NOTEQUAL:
     case TokenType::LESS:
@@ -329,7 +318,7 @@ void IRCompiler::Error(Token *token, std::string error)
 void IRCompiler::TypeError(Token *token)
 {
     throw DARICException(ExceptionType::COMPILER, filenames->at(token->file_number), token->line_number,
-                         token->char_number, "Unexpected type or syntax error");
+                         token->char_number, "Unexpected type, incorrent parameters or syntax error");
 }
 
 void IRCompiler::Init_AddIR(Token *token, IROpcodes type)
@@ -490,6 +479,7 @@ void IRCompiler::CheckParamType(Token *token, ValueType wanted_type)
         // Conversion?
         if (wanted_type == ValueType::Integer && type == ValueType::Float)
         {
+            CLogger::Get()->Write("IR", LogNotice, "Want integer at line %d", token->line_number);
             AddIR(token, IROpcodes::StackPopFloatOperand1);
             AddIR(token, IROpcodes::ConvertOperand1FloatToInt1);
             AddIR(token, IROpcodes::StackPushIntOperand1);

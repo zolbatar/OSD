@@ -8,10 +8,19 @@ void Parser::Parser_CASE(Token *t, std::list<Token *> *tokens_out)
 
     // Space for temp variable, we will build it in the IR stage as we don't know the type yet
     if (inside_function)
-        t->index = local_index++;
+    {
+        Token *tt = CreateNewLocalVariableNoInit(
+            t, "CASE " + std::to_string(t->file_number) + "-" + std::to_string(t->line_number), TypeInteger());
+        t->index = tt->index;
+        tokens_out->push_back(tt);
+    }
     else
-        t->index = global_index++;
-    //    CLogger::Get()->Write("CASE", LogDebug, "%d %d", t->index, local_index);
+    {
+        Token *tt = CreateNewGlobalVariableNoInit(
+            t, "##CASE " + std::to_string(t->file_number) + "-" + std::to_string(t->line_number), TypeInteger());
+        t->index = tt->index;
+        tokens_out->push_back(tt);
+    }
 
     // Now expect an OF
     auto tt = GetToken();

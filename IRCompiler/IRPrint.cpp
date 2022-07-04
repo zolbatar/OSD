@@ -46,6 +46,8 @@ void IRCompiler::CompileTokenPrint(Token *token)
                 {
                     auto type = type_stack.top();
                     type_stack.pop();
+                    //                    CLogger::Get()->Write("PRINT", LogNotice, "Line: %d, Type: %d",
+                    //                    token->line_number, (int)type);
                     switch (type)
                     {
                     case ValueType::Integer:
@@ -67,6 +69,6 @@ void IRCompiler::CompileTokenPrint(Token *token)
         break;
     }
     default:
-        Error(token, "Why?");
+        Error(token, "IRPrint: Why?");
     }
 }

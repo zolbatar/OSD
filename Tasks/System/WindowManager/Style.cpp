@@ -80,18 +80,18 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddConst(ConstAttribute::WindowFurnitureWidth, 24);
     ThemeManager::AddConst(ConstAttribute::WindowContentPadding, 0);
     ThemeManager::AddConst(ConstAttribute::WindowContentPaddingPadded, 6);
-    ThemeManager::AddConst(ConstAttribute::CornerRadius, 3);
+    ThemeManager::AddConst(ConstAttribute::CornerRadius, 5);
     ThemeManager::AddConst(ConstAttribute::ControlPadding, 1);
     ThemeManager::AddConst(ConstAttribute::ContainerPadding, 8);
     ThemeManager::AddConst(ConstAttribute::ScrollbarSize, 8);
 
     // Colours
-    ThemeManager::AddColour(ColourAttribute::WindowBackground, lv_color_hex(0xD0D0D0));
+    ThemeManager::AddColour(ColourAttribute::WindowBackground, lv_color_hex(0xF8F8F8));
     ThemeManager::AddColour(ColourAttribute::WindowForeground, lv_color_black());
     ThemeManager::AddColour(ColourAttribute::MenuBackground, lv_color_white());
     ThemeManager::AddColour(ColourAttribute::MenuForeground, lv_color_black());
     ThemeManager::AddColour(ColourAttribute::DesktopBackground, lv_color_hex(0x707070));
-    ThemeManager::AddColour(ColourAttribute::DesktopForeground, lv_color_black());
+    ThemeManager::AddColour(ColourAttribute::DesktopForeground, lv_color_white());
     ThemeManager::AddColour(ColourAttribute::Focus, lv_color_hex(0x73a6e6));
     ThemeManager::AddColour(ColourAttribute::WindowHeaderForeground, lv_color_black());
     ThemeManager::AddColour(ColourAttribute::WindowHeaderBackground, lv_color_hex(0xB0B0B0));
@@ -103,12 +103,11 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddColour(ColourAttribute::ControlBackgroundColour, lv_color_hex(0xE8E8E8));
     ThemeManager::AddColour(ColourAttribute::ControlBorderColour, lv_color_hex(0x404040));
     ThemeManager::AddColour(ColourAttribute::ControlHighlightColour, lv_color_hex(0xA0A0A0));
-    ThemeManager::AddColour(ColourAttribute::WindowFurnitureBackground, lv_color_hex(0xE0E0E0));
+    ThemeManager::AddColour(ColourAttribute::WindowFurnitureBackground, lv_color_hex(0xF0F0F0));
     ThemeManager::AddColour(ColourAttribute::WindowFurnitureForeground, lv_color_black());
     ThemeManager::AddColour(ColourAttribute::WindowFurnitureBorder, lv_color_hex(0x404040));
-    ThemeManager::AddColour(ColourAttribute::WindowBorder, lv_color_hex(0x404040));
+    ThemeManager::AddColour(ColourAttribute::WindowBorder, lv_color_hex(0x606060));
     ThemeManager::AddColour(ColourAttribute::ScrollbarBackground, lv_color_hex(0x404040));
-    ThemeManager::AddColour(ColourAttribute::Shadow, lv_color_hex(0x808080));
 
     ThemeManager::AddFont(FontAttribute::Window,
                           FontManager::GetFontByNameStyleAndSize(
@@ -242,14 +241,8 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
-        /*        lv_style_set_shadow_opa(style, LV_OPA_80);
-                lv_style_set_shadow_color(style, ThemeManager::GetColour(ColourAttribute::Shadow));
-                lv_style_set_shadow_width(style, 4);
-                lv_style_set_shadow_spread(style, 4);*/
-        lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
-        lv_style_set_border_side(style, LV_BORDER_SIDE_TOP);
-        lv_style_set_border_width(style, ThemeManager::GetConst(ConstAttribute::WindowBorderWidth));
-        lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowBackground));
+        lv_style_set_border_width(style, 0);
+        lv_style_set_bg_opa(style, LV_OPA_TRANSP);
         lv_style_set_radius(style, 0);
         lv_style_set_pad_all(style, 0);
         lv_style_set_pad_left(style, 8);
@@ -259,8 +252,7 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
-        lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::DesktopForeground));
-        lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowBackground));
+        lv_style_set_bg_opa(style, LV_OPA_TRANSP);
         lv_style_set_border_width(style, 0);
         lv_style_set_radius(style, 0);
         lv_style_set_pad_all(style, 0);
@@ -284,6 +276,7 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
+        lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::DesktopForeground));
         lv_style_set_radius(style, 0);
         lv_style_set_border_width(style, 1);
         lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowBackground));
@@ -332,6 +325,7 @@ void WindowManager::SetupLVGLStyles()
         lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::Window));
         lv_style_set_clip_corner(style, true);
         lv_style_set_border_post(style, true);
+
         ThemeManager::AddStyle(StyleAttribute::Window, style);
     }
     {
@@ -365,9 +359,9 @@ void WindowManager::SetupLVGLStyles()
         lv_style_init(style);
         lv_style_set_radius(style, 0);
         lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::WindowHeaderForeground));
-        lv_style_set_border_width(style, 1);
         lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
         lv_style_set_border_side(style, LV_BORDER_SIDE_BOTTOM);
+        lv_style_set_border_width(style, ThemeManager::GetConst(ConstAttribute::WindowBorderWidth));
         lv_style_set_pad_all(style, 2);
         ThemeManager::AddStyle(StyleAttribute::WindowHeader, style);
     }
@@ -407,9 +401,26 @@ void WindowManager::SetupLVGLStyles()
         lv_style_init(style);
         lv_style_set_radius(style, ThemeManager::GetConst(ConstAttribute::CornerRadius));
         lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowFurnitureBorder));
-        lv_style_set_border_width(style, 1);
+        lv_style_set_border_width(style, ThemeManager::GetConst(ConstAttribute::WindowBorderWidth));
+        lv_style_set_border_opa(style, LV_OPA_COVER);
+        lv_style_set_bg_color(style, lv_color_white());
         lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowFurnitureBackground));
         lv_style_set_bg_opa(style, LV_OPA_COVER);
+        lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::WindowFurnitureForeground));
+        lv_style_set_pad_all(style, 0);
+        lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::Symbol));
+        ThemeManager::AddStyle(StyleAttribute::Button, style);
+    }
+    {
+        lv_style_t *style = CreateStyle();
+        lv_style_init(style);
+        lv_style_set_radius(style, ThemeManager::GetConst(ConstAttribute::CornerRadius));
+        lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowFurnitureBorder));
+        lv_style_set_border_width(style, ThemeManager::GetConst(ConstAttribute::WindowBorderWidth));
+        lv_style_set_border_opa(style, LV_OPA_COVER);
+        lv_style_set_bg_color(style, lv_color_white());
+        lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowFurnitureBackground));
+        lv_style_set_bg_opa(style, LV_OPA_30);
         lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::WindowFurnitureForeground));
         lv_style_set_pad_all(style, 0);
         lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::Symbol));
@@ -480,12 +491,10 @@ void WindowManager::SetupLVGLStyles()
 
     // Wallpaper
     fs.SetCurrentDirectory(":BOOT/System/Wallpaper");
-    auto img = LoadPNG(fs.GetCurrentDirectory() + "Daric Wallpaper.png", 1920, 1080);
+    auto img = LoadPNG(fs.GetCurrentDirectory() + "Daric Wallpaper Text.png", 1920, 1080);
     static lv_style_t style_background;
     lv_style_init(&style_background);
     lv_style_set_bg_img_src(&style_background, img);
-    //	lv_style_set_bg_color(style_background, DESKTOP_COLOUR);
-    lv_style_set_text_color(&style_background, lv_color_black());
     lv_obj_add_style(lv_scr_act(), &style_background, LV_STATE_DEFAULT);
 
     // Disable scrolling
@@ -499,6 +508,7 @@ void WindowManager::SetupLVGLStyles()
     LoadIcon(fs.GetCurrentDirectory() + "Folder.png", "Folder");
     LoadIcon(fs.GetCurrentDirectory() + "Home.png", "Home");
     LoadIcon(fs.GetCurrentDirectory() + "Sloth.png", "Sloth");
+    LoadIcon(fs.GetCurrentDirectory() + "Daric.png", "Daric");
     LoadIcon(fs.GetCurrentDirectory() + "Text.png", "Text");
     LoadIcon(fs.GetCurrentDirectory() + "Image.png", "Image");
 

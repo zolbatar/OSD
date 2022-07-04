@@ -25,80 +25,79 @@ void Parser::TypeError(Token *token)
                          token->char_number, "Unexpected type");
 }
 
+void Parser::AddFuncTokenType(TokenType type, std::list<ComplexType> types, void *func)
+{
+    generic_functions.insert(std::make_pair(type, types));
+    generic_functions_ptr.insert(std::make_pair(type, func));
+}
+
 void Parser::Init()
 {
+    // Strings
+    AddFuncTokenType(TokenType::ASC, fp{TypeInteger(), TypeString()}, (void *)&call_STRING_asc);
+    AddFuncTokenType(TokenType::CHRS, fp{TypeString(), TypeInteger()}, (void *)&call_STRING_chrs);
+    AddFuncTokenType(TokenType::MIDS, fp{TypeString(), TypeString(), TypeInteger(), TypeInteger()},
+                     (void *)&call_STRING_mids);
+    AddFuncTokenType(TokenType::INSTR, fp{TypeInteger(), TypeString(), TypeString(), TypeInteger()},
+                     (void *)&call_STRING_instr);
+    AddFuncTokenType(TokenType::LEFTS, fp{TypeString(), TypeString(), TypeInteger()}, (void *)&call_STRING_lefts);
+    AddFuncTokenType(TokenType::RIGHTS, fp{TypeString(), TypeString(), TypeInteger()}, (void *)&call_STRING_rights);
+    AddFuncTokenType(TokenType::LEN, fp{TypeInteger(), TypeString()}, (void *)&call_STRING_len);
+    AddFuncTokenType(TokenType::STRINGS, fp{TypeString(), TypeString(), TypeInteger()}, (void *)&call_STRING_strings);
+
     // 2D
-    generic_functions.insert(std::make_pair(TokenType::MODE, fp{TypeNone(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::MODE, (void *)&call_2D_mode));
-    generic_functions.insert(std::make_pair(TokenType::SCREENWIDTH, fp{TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::SCREENWIDTH, (void *)&call_2D_screenwidth));
-    generic_functions.insert(std::make_pair(TokenType::SCREENHEIGHT, fp{TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::SCREENHEIGHT, (void *)&call_2D_screenheight));
-    generic_functions.insert(
-        std::make_pair(TokenType::COLOUR, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::COLOUR, (void *)&call_2D_colour));
-    generic_functions.insert(
-        std::make_pair(TokenType::COLOURBG, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::COLOURBG, (void *)&call_2D_colourbg));
-    generic_functions.insert(std::make_pair(TokenType::SHADOW, fp{TypeNone()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::SHADOW, (void *)&call_2D_shadow));
-    generic_functions.insert(std::make_pair(TokenType::FLIP, fp{TypeNone()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::FLIP, (void *)&call_2D_flip));
-    generic_functions.insert(std::make_pair(TokenType::CLS, fp{TypeNone()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::CLS, (void *)&call_2D_cls));
-    generic_functions.insert(std::make_pair(TokenType::PLOT, fp{TypeNone(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::PLOT, (void *)&call_2D_plot));
-    generic_functions.insert(std::make_pair(
-        TokenType::LINE, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::LINE, (void *)&call_2D_line));
-    generic_functions.insert(
-        std::make_pair(TokenType::TRIANGLE, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(),
-                                               TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::TRIANGLE, (void *)&call_2D_triangle));
-    generic_functions.insert(
-        std::make_pair(TokenType::TRIANGLEFILLED, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(),
-                                                     TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::TRIANGLEFILLED, (void *)&call_2D_trianglefilled));
-    generic_functions.insert(
-        std::make_pair(TokenType::CIRCLE, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::CIRCLE, (void *)&call_2D_circle));
-    generic_functions.insert(std::make_pair(
-        TokenType::CIRCLEFILLED, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::CIRCLEFILLED, (void *)&call_2D_circlefilled));
-    generic_functions.insert(std::make_pair(TokenType::RECTANGLE, fp{TypeNone(), TypeInteger(), TypeInteger(),
-                                                                     TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::RECTANGLE, (void *)&call_2D_rectangle));
-    generic_functions.insert(
-        std::make_pair(TokenType::RECTANGLEFILLED,
-                       fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::RECTANGLEFILLED, (void *)&call_2D_rectanglefilled));
-    generic_functions.insert(std::make_pair(TokenType::CLIPOFF, fp{TypeNone()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::CLIPOFF, (void *)&call_2D_clipoff));
-    generic_functions.insert(
-        std::make_pair(TokenType::CLIPON, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::CLIPON, (void *)&call_2D_clipon));
-    generic_functions.insert(
-        std::make_pair(TokenType::TEXT, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeString()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::TEXT, (void *)&call_2D_text));
-    generic_functions.insert(
-        std::make_pair(TokenType::TEXTCENTRE, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeString()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::TEXTCENTRE, (void *)&call_2D_textcentre));
-    generic_functions.insert(
-        std::make_pair(TokenType::TEXTRIGHT, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeString()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::TEXTRIGHT, (void *)&call_2D_textright));
-    generic_functions.insert(
-        std::make_pair(TokenType::SETFONT, fp{TypeNone(), TypeString(), TypeString(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::SETFONT, (void *)&call_2D_font));
+    AddFuncTokenType(TokenType::MODE, fp{TypeNone(), TypeInteger(), TypeInteger()}, (void *)&call_2D_mode);
+    AddFuncTokenType(TokenType::SCREENWIDTH, fp{TypeInteger()}, (void *)&call_2D_screenwidth);
+    AddFuncTokenType(TokenType::SCREENHEIGHT, fp{TypeInteger()}, (void *)&call_2D_screenheight);
+    AddFuncTokenType(TokenType::COLOUR, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_colour);
+    AddFuncTokenType(TokenType::COLOURBG, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_colourbg);
+    AddFuncTokenType(TokenType::SHADOW, fp{TypeNone()}, (void *)&call_2D_shadow);
+    AddFuncTokenType(TokenType::FLIP, fp{TypeNone()}, (void *)&call_2D_flip);
+    AddFuncTokenType(TokenType::CLS, fp{TypeNone()}, (void *)&call_2D_cls);
+    AddFuncTokenType(TokenType::SHADOW, fp{TypeNone()}, (void *)&call_2D_shadow);
+    AddFuncTokenType(TokenType::PLOT, fp{TypeNone(), TypeInteger(), TypeInteger()}, (void *)&call_2D_plot);
+    AddFuncTokenType(TokenType::LINE,
+                     fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_line);
+    AddFuncTokenType(TokenType::TRIANGLE,
+                     fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(),
+                        TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_triangle);
+    AddFuncTokenType(TokenType::TRIANGLEFILLED,
+                     fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(),
+                        TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_trianglefilled);
+    AddFuncTokenType(TokenType::CIRCLE, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_circle);
+    AddFuncTokenType(TokenType::CIRCLEFILLED,
+                     fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_circlefilled);
+    AddFuncTokenType(TokenType::RECTANGLE,
+                     fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_rectangle);
+    AddFuncTokenType(TokenType::RECTANGLEFILLED,
+                     fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_rectanglefilled);
+    AddFuncTokenType(TokenType::CLIPOFF, fp{TypeNone()}, (void *)&call_2D_clipoff);
+    AddFuncTokenType(TokenType::CLIPON, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeInteger(), TypeInteger()},
+                     (void *)&call_2D_clipon);
+    AddFuncTokenType(TokenType::TEXT, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeString()},
+                     (void *)&call_2D_text);
+    AddFuncTokenType(TokenType::TEXTCENTRE, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeString()},
+                     (void *)&call_2D_textcentre);
+    AddFuncTokenType(TokenType::TEXTRIGHT, fp{TypeNone(), TypeInteger(), TypeInteger(), TypeString()},
+                     (void *)&call_2D_textright);
+    AddFuncTokenType(TokenType::SETFONT, fp{TypeNone(), TypeString(), TypeString(), TypeInteger()},
+                     (void *)&call_2D_font);
 
     // Keyboard
-    generic_functions.insert(std::make_pair(TokenType::INKEY, fp{TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::INKEY, (void *)&call_INKEY));
+    AddFuncTokenType(TokenType::INKEY, fp{TypeInteger(), TypeInteger()}, (void *)&call_INKEY);
 
     // Random
-    generic_functions.insert(std::make_pair(TokenType::RND, fp{TypeInteger(), TypeInteger()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::RND, (void *)&call_RNDI));
-    generic_functions.insert(std::make_pair(TokenType::RNDF, fp{TypeFloat(), TypeFloat()}));
-    generic_functions_ptr.insert(std::make_pair(TokenType::RNDF, (void *)&call_RNDF));
+    AddFuncTokenType(TokenType::RND, fp{TypeInteger(), TypeInteger()}, (void *)&call_RNDI);
+    AddFuncTokenType(TokenType::RNDF, fp{TypeFloat(), TypeFloat()}, (void *)&call_RNDF);
 }
 
 bool Parser::Parse(bool optimise, std::list<Token> *tokens, std::vector<std::string> *filenames)
@@ -445,8 +444,8 @@ void Parser::CreateLocalVariable(Token *tt, bool init)
         tt->expressions.push_back(std::list<Token *>());
         tt->expressions[0].push_back(&new_tokens.back());
     }
-    auto f = local_variables.find(tt->name);
-    tt->index = f->second->index;
+    // CLogger::Get()->Write("Parser", LogNotice, "Create local: %d %d %s", tt->line_number, tt->index,
+    // tt->name.c_str());
 }
 
 void Parser::CreateGlobalVariable(Token *tt, bool init)
@@ -482,58 +481,36 @@ void Parser::CreateGlobalVariable(Token *tt, bool init)
         tt->expressions.push_back(std::list<Token *>());
         tt->expressions[0].push_back(&new_tokens.back());
     }
-    auto f = global_variables.find(tt->name);
-    tt->index = f->second->index;
+    //    CLogger::Get()->Write("Parser", LogNotice, "Create global: %d %d %s", tt->line_number, tt->index,
+    //    tt->name.c_str());
 }
 
-void Parser::CreateLocalVariableNoInit(Token *tt)
+Token *Parser::CreateNewLocalVariableNoInit(Token *t, std::string name, ComplexType type)
 {
-    tt->index = local_index++;
-    tt->type = TokenType::LOCAL_NOINIT;
-    tt->name = std::move(tt->text);
-    tt->text = "";
-    local_variables.insert(std::make_pair(tt->name, tt));
-    auto f = local_variables.find(tt->name);
-    tt->index = f->second->index;
-}
-
-void Parser::CreateGlobalVariableNoInit(Token *tt)
-{
-    tt->index = global_index--;
-    tt->type = TokenType::GLOBAL_NOINIT;
-    tt->name = std::move(tt->text);
-    tt->text = "";
-    global_variables.insert(std::make_pair(tt->name, tt));
-    auto f = global_variables.find(tt->name);
-    tt->index = f->second->index;
-}
-
-Token *Parser::CreateNewLocalVariableNoInit(Token tt)
-{
+    Token tt = CreateToken(t, TokenType::LOCAL_NOINIT);
+    tt.name = name;
+    tt.vtype = type;
     tt.index = local_index++;
-    tt.type = TokenType::LOCAL_NOINIT;
-    tt.name = std::move(tt.text);
-    tt.text = "";
     new_tokens.push_back(std::move(tt));
-    Token *t = &new_tokens.back();
-    local_variables.insert(std::make_pair(t->name, t));
-    auto f = local_variables.find(tt.name);
-    tt.index = f->second->index;
-    return t;
+    Token *tg = &new_tokens.back();
+    local_variables.insert(std::make_pair(tg->name, tg));
+    //    CLogger::Get()->Write("Parser", LogNotice, "New local: %d %d %s", tg->line_number, tg->index,
+    //    tg->name.c_str());
+    return tg;
 }
 
-Token *Parser::CreateNewGlobalVariableNoInit(Token tt)
+Token *Parser::CreateNewGlobalVariableNoInit(Token *t, std::string name, ComplexType type)
 {
+    Token tt = CreateToken(t, TokenType::GLOBAL_NOINIT);
+    tt.name = name;
+    tt.vtype = type;
     tt.index = global_index--;
-    tt.type = TokenType::GLOBAL_NOINIT;
-    tt.name = std::move(tt.text);
-    tt.text = "";
     new_tokens.push_back(std::move(tt));
-    Token *t = &new_tokens.back();
-    global_variables.insert(std::make_pair(t->name, t));
-    auto f = global_variables.find(t->name);
-    t->index = f->second->index;
-    return t;
+    Token *tg = &new_tokens.back();
+    global_variables.insert(std::make_pair(tg->name, tg));
+    //    CLogger::Get()->Write("Parser", LogNotice, "New global: %d %d %s", tg->line_number, tg->index,
+    //    tg->name.c_str());
+    return tg;
 }
 
 Token Parser::CreateToken(Token *parent, TokenType t)

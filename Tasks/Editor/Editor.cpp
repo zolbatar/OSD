@@ -50,7 +50,7 @@ void Editor::Run()
     CallGUIDirectEx(&mess);
 
     // App icon
-    IconBar::RegisterApp(NULL, "Editor", WindowManager::GetIcon("Editor"), NULL, NULL);
+    // IconBar::RegisterApp(NULL, "Editor", WindowManager::GetIcon("Editor"), NULL, NULL);
 
     // Get window
     auto window = (Window *)this->GetWindow();
@@ -96,7 +96,7 @@ void Editor::Run()
         lv_obj_set_flex_grow(btn, 1);
         lv_obj_t *img = lv_img_create(btn);
         lv_img_set_src(img, LV_SYMBOL_WINDOWED);
-        lv_obj_add_event_cb(btn, RunFullScreenHandler, LV_EVENT_CLICKED, this);
+        lv_obj_add_event_cb(btn, RunHandler, LV_EVENT_CLICKED, this);
         lv_obj_center(img);
         lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
     }
@@ -106,7 +106,7 @@ void Editor::Run()
         lv_obj_set_flex_grow(btn, 1);
         lv_obj_t *img = lv_img_create(btn);
         lv_img_set_src(img, LV_SYMBOL_FULLSCREEN);
-        lv_obj_add_event_cb(btn, RunHandler, LV_EVENT_CLICKED, this);
+        lv_obj_add_event_cb(btn, RunFullScreenHandler, LV_EVENT_CLICKED, this);
         lv_obj_center(img);
         lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
     }

@@ -74,5 +74,5 @@ void IRCompiler::CompileTokenSwap(Token *token)
         AddIRWithIndex(token, IROpcodes::VariableSwapDestinationString, token->index2);
     }
     else
-        Error(token, "Why?");
+        Error(token, "IRAssignment: Why?");
 }

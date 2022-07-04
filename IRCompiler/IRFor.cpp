@@ -25,8 +25,6 @@ void IRCompiler::CompileTokenFor(Token *token)
         AddIR(token, IROpcodes::StackPopIntOperand2);
         AddIR(token, IROpcodes::StackPopIntOperand1);
         AddIR(token, IROpcodes::MathsSubtractInt);
-        //        this fails because it assumes the Step / iteration vars are immediately after the actual var,
-        // this wont be the case a lot of the time
         AddIRWithIndex(token, IROpcodes::VariableStoreInteger, token->index2);
 
         // Step
@@ -123,6 +121,7 @@ void IRCompiler::CompileTokenFor(Token *token)
 
 void IRCompiler::CompileTokenNext(Token *token)
 {
+
     auto t = for_loop_tokens.top();
     for_loop_tokens.pop();
 

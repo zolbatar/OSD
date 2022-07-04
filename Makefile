@@ -27,7 +27,7 @@ OBJS    = 	main.o kernel.o \
 			Parser/Parser_TYPE.o \
 			\
 			IRCompiler/IRComparison.o IRCompiler/IRCompiler.o IRCompiler/IRIf.o IRCompiler/IRLiteral.o \
-			IRCompiler/IRMaths.o IRCompiler/IRPrinter.o IRCompiler/IRBoolean.o IRCompiler/IRConversion.o IRCompiler/IRString.o \
+			IRCompiler/IRMaths.o IRCompiler/IRPrinter.o IRCompiler/IRBoolean.o IRCompiler/IRConversion.o \
 			IRCompiler/IRVariables.o IRCompiler/IRAssignment.o IRCompiler/IRPrint.o \
 			IRCompiler/IRRepeat.o IRCompiler/IRWhile.o IRCompiler/IRFor.o IRCompiler/IROptimiser.o \
 			IRCompiler/IRCase.o IRCompiler/IRData.o IRCompiler/IRDefs.o \

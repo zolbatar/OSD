@@ -145,15 +145,16 @@ int NativeCompiler::IdxForVar(IRInstruction &op, int64_t index)
     {
         size_t ii = index;
         if (ii > local_variables.size())
-            CLogger::Get()->Write("Native Compiler", LogPanic, "Invalid local: %d at %d", ii, op.line_number);
+            CLogger::Get()->Write("Native Compiler", LogPanic, "Invalid local: %d/%d at %d", ii, local_variables.size(),
+                                  op.line_number);
         return local_variables[index];
     }
     else
     {
         size_t ii = (-index) - 1;
         if (ii > global_variables.size())
-            CLogger::Get()->Write("Native Compiler", LogPanic, "Invalid global: %d/%d at %d", ii, index,
-                                  op.line_number);
+            CLogger::Get()->Write("Native Compiler", LogPanic, "Invalid global: %d/%d/%d at %d", ii, index,
+                                  global_variables.size(), op.line_number);
         return global_variables[(-index) - 1];
     }
 }
@@ -633,56 +634,6 @@ void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug,
             jit_prepare();
             SF(jit_pushargr)(JIT_F0);
             jit_finishi((jit_pointer_t)call_MATHS_sgn);
-            jit_retval_l(JIT_R0);
-            break;
-
-            // String
-        case IROpcodes::StringsAsc:
-            jit_prepare();
-            ConstructArguments();
-            jit_finishi((jit_pointer_t)call_STRING_asc);
-            jit_retval_l(JIT_R0);
-            break;
-        case IROpcodes::StringsChrs:
-            jit_prepare();
-            ConstructArguments();
-            jit_finishi((jit_pointer_t)call_STRING_chrs);
-            jit_retval_l(JIT_R0);
-            break;
-        case IROpcodes::StringsInstr:
-            jit_prepare();
-            ConstructArguments();
-            jit_finishi((jit_pointer_t)call_STRING_instr);
-            jit_retval_l(JIT_R0);
-            break;
-        case IROpcodes::StringsLefts:
-            jit_prepare();
-            ConstructArguments();
-            jit_finishi((jit_pointer_t)call_STRING_lefts);
-            jit_retval_l(JIT_R0);
-            break;
-        case IROpcodes::StringsMids:
-            jit_prepare();
-            ConstructArguments();
-            jit_finishi((jit_pointer_t)call_STRING_mids);
-            jit_retval_l(JIT_R0);
-            break;
-        case IROpcodes::StringsRights:
-            jit_prepare();
-            ConstructArguments();
-            jit_finishi((jit_pointer_t)call_STRING_rights);
-            jit_retval_l(JIT_R0);
-            break;
-        case IROpcodes::StringsLen:
-            jit_prepare();
-            ConstructArguments();
-            jit_finishi((jit_pointer_t)call_STRING_len);
-            jit_retval_l(JIT_R0);
-            break;
-        case IROpcodes::StringsStrings:
-            jit_prepare();
-            ConstructArguments();
-            jit_finishi((jit_pointer_t)call_STRING_strings);
             jit_retval_l(JIT_R0);
             break;
 

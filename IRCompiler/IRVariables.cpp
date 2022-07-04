@@ -2,6 +2,7 @@
 
 void IRCompiler::CompileTokenLocalVariable(Token *token)
 {
+    // CLogger::Get()->Write("IR", LogNotice, "Local: %d %d %s", token->line_number, token->index, token->name.c_str());
 
     // Create variable
     if (token->vtype.IsInteger())
@@ -26,7 +27,7 @@ void IRCompiler::CompileTokenLocalVariable(Token *token)
         }
     }
     else
-        Error(token, "Why?");
+        Error(token, "IRVariables: Why?");
 
     // Expression value?
     if (!token->expressions.empty())
@@ -62,6 +63,9 @@ void IRCompiler::CompileTokenLocalVariable(Token *token)
 
 void IRCompiler::CompileTokenLocalNoInitVariable(Token *token)
 {
+    //    CLogger::Get()->Write("IR", LogNotice, "Local (NO INIT): %d %d %s", token->line_number, token->index,
+    //                        token->name.c_str());
+
     // Create variable
     if (token->vtype.IsInteger())
         Init_AddIRWithIndex(token, IROpcodes::VariableLocalCreateInteger, token->index);
@@ -70,7 +74,7 @@ void IRCompiler::CompileTokenLocalNoInitVariable(Token *token)
     else if (token->vtype.IsString())
         Init_AddIRWithIndex(token, IROpcodes::VariableLocalCreateString, token->index);
     else
-        Error(token, "Why?");
+        Error(token, "IRVariables: Why?");
 }
 
 void IRCompiler::CompileTokenGlobalVariable(Token *token)
@@ -135,7 +139,7 @@ void IRCompiler::CompileTokenGlobalVariable(Token *token)
         }
     }
     else
-        Error(token, "Why?");
+        Error(token, "IRVariables: Why??");
 
     // Build IR
     if (token->vtype.IsInteger())
@@ -169,7 +173,7 @@ void IRCompiler::CompileTokenGlobalNoInitVariable(Token *token)
     else if (token->vtype.IsString())
         Init_AddIRWithIndex(token, IROpcodes::VariableGlobalCreateString, token->index);
     else
-        Error(token, "Why?");
+        Error(token, "IRVariables: Why??");
 }
 
 void IRCompiler::CompileTokenVariable(Token *token)

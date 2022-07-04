@@ -127,16 +127,6 @@ enum class IROpcodes
     CompareGreaterEqualFloat,
     CompareGreaterEqualString,
 
-    // Strings
-    StringsAsc,
-    StringsChrs,
-    StringsInstr,
-    StringsLefts,
-    StringsMids,
-    StringsRights,
-    StringsLen,
-    StringsStrings,
-
     // Maths
     MathsUnaryMinusInt,
     MathsUnaryMinusFloat,

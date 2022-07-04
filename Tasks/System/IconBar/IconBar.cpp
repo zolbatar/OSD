@@ -84,6 +84,7 @@ void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive
     lv_obj_center(img);
     lv_img_set_src(img, WindowManager::GetIcon(name));
     lv_obj_add_style(btn, style_iconbar_button, LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(btn, ThemeManager::GetColour(ColourAttribute::DesktopForeground), LV_STATE_DEFAULT);
     lv_obj_add_style(btn, style_focussed, LV_STATE_FOCUSED);
 
     auto nam = lv_label_create(device_cont);
