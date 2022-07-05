@@ -30,7 +30,7 @@ class Filer : public OSDTask
 
   private:
     FilerView view = FilerView::Icons;
-    const int cell_size = 128;
+    const int cell_size = 108;
     FSVolume *volume_obj;
     std::string volume;
     std::string directory;

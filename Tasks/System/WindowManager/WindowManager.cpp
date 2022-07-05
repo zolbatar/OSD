@@ -28,7 +28,7 @@ WindowManager::WindowManager()
     this->priority = TaskPriority::NoPreempt;
 
     // Init JIT
-    init_jit("OS/D");
+    init_jit("Daric");
 
     // Setup capstone
     cs_opt_mem setup;
@@ -59,9 +59,9 @@ void WindowManager::Run()
     SetupLVGLStyles();
 
     // Setup filetypes
-    types.insert(std::make_pair("DARIC", FileType("DARIC", "Daric", "")));
-    types.insert(std::make_pair("PNG", FileType("PNG", "Image", "")));
-    types.insert(std::make_pair("TXT", FileType("TXT", "Text", "")));
+    types.insert(std::make_pair("DARIC", FileType("DARIC", "FileType/Daric", "")));
+    types.insert(std::make_pair("PNG", FileType("PNG", "FileType/Image", "")));
+    types.insert(std::make_pair("TXT", FileType("TXT", "FileType/Text", "")));
 
     //	LV_IMG_DECLARE(mouse_cursor_icon);
     lv_obj_t *cursor = lv_img_create(lv_scr_act());
@@ -257,7 +257,7 @@ void WindowManager::ClickEventHandler(lv_event_t *e)
             mi3.v = "Clock";
             menu->items.push_back(std::move(mi3));
 
-            t->CreateMenu(p.x, p.y, NULL, "OS/D", menu);
+            t->CreateMenu(p.x, p.y, NULL, "Daric", menu);
         }*/
 }
 

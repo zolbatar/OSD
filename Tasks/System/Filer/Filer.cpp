@@ -122,10 +122,9 @@ void Filer::BuildIcons()
     // Keys
     lv_obj_add_event_cb(lv_scr_act(), KeyPressEventHandler, LV_EVENT_KEY, this);
 
+    auto drive = FileManager::GetDrivePrefix();
     auto prefix = volume_obj->prefix;
-    auto l = prefix.length() + directory.length();
-    // CLogger::Get()->Write("File Manager", LogNotice, "%s - %s - %s", volume.c_str(), directory.c_str(),
-    // prefix.c_str());
+    auto l = drive.length() + prefix.length() + directory.length();
 
     // Directories
     auto dirs = fs.ListAllDirectoriesInCurrentDirectory(false, false);
@@ -160,6 +159,7 @@ void Filer::AddIcon(std::string name, bool is_directory)
     if (fd != std::string::npos)
     {
         auto extension = name.substr(fd + 1);
+        name = name.substr(0, fd);
         toupper(extension);
         i.type = WindowManager::GetFileType(extension);
         if (i.type != NULL)
@@ -195,13 +195,13 @@ void Filer::AddIcon(std::string name, bool is_directory)
             }
             else
             {
-                icon = WindowManager::GetIcon("Folder");
+                icon = WindowManager::GetIcon("Folder/Folder");
             }
         }
         else
         {
             // Later we need to look up the app types
-            icon = WindowManager::GetIcon("Daric");
+            icon = WindowManager::GetIcon("FileType/Daric");
         }
     }
 
@@ -211,6 +211,7 @@ void Filer::AddIcon(std::string name, bool is_directory)
     lv_obj_set_flex_align(device_cont, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_set_flex_flow(device_cont, LV_FLEX_FLOW_COLUMN);
     lv_obj_add_style(device_cont, style_iconbar_inner, LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(device_cont, LV_OPA_TRANSP, LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(device_cont, ThemeManager::GetColour(ColourAttribute::WindowForeground),
                                 LV_STATE_DEFAULT);
     lv_obj_clear_flag(device_cont, LV_OBJ_FLAG_SCROLLABLE);
@@ -233,7 +234,7 @@ void Filer::AddIcon(std::string name, bool is_directory)
     if (width >= cell_size)
     {
         lv_obj_set_size(nam, cell_size, ThemeManager::GetConst(ConstAttribute::BodyFontSize));
-        lv_label_set_long_mode(nam, LV_LABEL_LONG_DOT);
+        lv_label_set_long_mode(nam, LV_LABEL_LONG_SCROLL_CIRCULAR /*LV_LABEL_LONG_DOT*/);
     }
     lv_obj_center(nam);
 

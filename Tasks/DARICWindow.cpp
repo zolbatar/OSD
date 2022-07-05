@@ -1,8 +1,9 @@
-#include "DARICWindow.h"
-#include "../Exception/DARICException.h"
 #include <memory.h>
 #include <string.h>
 #include <fstream>
+#include "DARICWindow.h"
+#include "../Exception/DARICException.h"
+#include "../GUI/Window/LVGLWindow.h"
 
 DARICWindow::DARICWindow(std::string volume, std::string directory, std::string filename, std::string name,
                          bool fullscreen, bool inside_editor, int x, int y, int w, int h, int canvas_w, int canvas_h)
@@ -61,6 +62,11 @@ void DARICWindow::Run()
     m.fixed = true;
     CallGUIDirectEx(&mess);
 
+    auto ww = (Window *)this->GetWindow();
+    auto win = ww->GetLVGLWindow();
+    auto content = lv_mywin_get_content(win);
+    lv_obj_set_style_bg_color(content, lv_color_black(), LV_STATE_DEFAULT);
+
     // Compile (and run)
     try
     {
@@ -68,7 +74,6 @@ void DARICWindow::Run()
         {
             if (fullscreen)
             {
-                auto ww = (Window *)this->GetWindow();
                 ww->Maximise(true);
             }
             // CLogger::Get()->Write("DARICWindow", LogDebug, "Run: %s", GetWindowName().c_str());

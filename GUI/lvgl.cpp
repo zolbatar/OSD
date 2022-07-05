@@ -34,6 +34,7 @@ std::queue<uint32_t> GuiCLVGL::keys;
 uint32_t GuiCLVGL::last_key = 0;
 lv_indev_t *GuiCLVGL::mouse;
 lv_indev_t *GuiCLVGL::keyboard;
+std::set<uint8_t> GuiCLVGL::lv_pressed;
 
 GuiCLVGL::GuiCLVGL(CScreenDevice *pScreen, CInterruptSystem *pInterrupt)
     : m_pBuffer1(0), m_pBuffer2(0), m_pScreen(pScreen), m_pFrameBuffer(0), m_DMAChannel(DMA_CHANNEL_NORMAL, pInterrupt),
@@ -363,8 +364,8 @@ void GuiCLVGL::KeyboardEventHandler(const char *pString)
             keys.push(KEY_F8);
         else if (s == "[20~")
             keys.push(KEY_F9);
-        else if (s == "[G")
-            keys.push(KEY_Center);
+        //        else if (s == "[G")
+        //          keys.push(KEY_Center);
         else
             CLogger::Get()->Write("Keyboard", LogNotice, "Escape: '%s'", s.c_str());
         break;
@@ -375,46 +376,72 @@ void GuiCLVGL::KeyboardEventHandler(const char *pString)
     default:
         // Regular key
         keys.push(icc);
-        //			CLogger::Get()->Write("Keyboard", LogNotice, "%d", icc);
+        CLogger::Get()->Write("Keyboard", LogNotice, "%d", icc);
         break;
     }
 }
 
 void GuiCLVGL::KeyboardEventHandlerRaw(unsigned char ucModifiers, const unsigned char RawKeys[6])
 {
-    if (ucModifiers & KEY_LWIN_MASK || ucModifiers & KEY_RWIN_MASK)
+    //   CLogger::Get()->Write("lvgl", LogDebug, "%d %d/%d/%d/%d/%d/%d", ucModifiers & KEY_ALT_MASK, (int)RawKeys[0],
+    //                         (int)RawKeys[1], (int)RawKeys[2], (int)RawKeys[3], (int)RawKeys[4], (int)RawKeys[5]);
+
+    // We are only interested in values other than 0
+    std::set<uint8_t> saved_keys;
+    saved_keys.swap(lv_pressed);
+    for (auto i = 0; i < 6; i++)
     {
-        keys.push(KEY_WindowsKey);
+        uint8_t b = RawKeys[i];
+        if (RawKeys[i] > 0)
+        {
+            //            InputManager::K
+            // CLogger::Get()->Write("lvgl", LogNotice, "%d:%d", i, b);
+            lv_pressed.insert(b);
+            auto ki = InputManager::GetKeyInfo(b);
+            auto skf = saved_keys.find(b);
+            if (skf != saved_keys.end())
+                saved_keys.erase(skf);
+            else
+                CLogger::Get()->Write("lvgl", LogNotice, "Pressed:%d", b);
+        }
     }
-    else if (RawKeys[0] == 67)
+
+    // What has been released?
+    for (auto &k : saved_keys)
     {
-        keys.push(KEY_F10);
+        CLogger::Get()->Write("lvgl", LogNotice, "Released:%d", k);
     }
-    else if (RawKeys[0] == 68)
-    {
-        keys.push(KEY_F11);
-    }
-    else if (RawKeys[0] == 69)
-    {
-        keys.push(KEY_F12);
-    }
-    else if (ucModifiers == 0 && RawKeys[0] == 43)
-    {
-        keys.push(KEY_Tab);
-    }
-    else if (ucModifiers & KEY_LSHIFT_MASK == KEY_LSHIFT_MASK && RawKeys[0] == 43)
-    {
-        keys.push(KEY_ShiftTab);
-    }
-    else if (ucModifiers & KEY_ALT_MASK == KEY_ALT_MASK && RawKeys[0] == 43)
-    {
-        keys.push(KEY_AltTab);
-    }
-    if ((int)RawKeys[0] == 0)
-        return;
-    /*	CLogger::Get()
-                ->Write("lvgl", LogDebug, "%d %d/%d/%d/%d/%d/%d", ucModifiers & KEY_ALT_MASK, (int)RawKeys[0],
-       (int)RawKeys[1], (int)RawKeys[2], (int)RawKeys[3], (int)RawKeys[4], (int)RawKeys[5]);*/
+
+    /*    if (ucModifiers & KEY_LWIN_MASK || ucModifiers & KEY_RWIN_MASK)
+        {
+            keys.push(KEY_WindowsKey);
+        }
+        else if (RawKeys[0] == 67)
+        {
+            keys.push(KEY_F10);
+        }
+        else if (RawKeys[0] == 68)
+        {
+            keys.push(KEY_F11);
+        }
+        else if (RawKeys[0] == 69)
+        {
+            keys.push(KEY_F12);
+        }
+        else if (ucModifiers == 0 && RawKeys[0] == 43)
+        {
+            keys.push(KEY_Tab);
+        }
+        else if (ucModifiers & KEY_LSHIFT_MASK == KEY_LSHIFT_MASK && RawKeys[0] == 43)
+        {
+            keys.push(KEY_ShiftTab);
+        }
+        else if (ucModifiers & KEY_ALT_MASK == KEY_ALT_MASK && RawKeys[0] == 43)
+        {
+            keys.push(KEY_AltTab);
+        }
+        if ((int)RawKeys[0] == 0)
+            return;*/
 }
 
 void GuiCLVGL::MouseRemovedHandler(CDevice *pDevice, void *pContext)

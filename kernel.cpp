@@ -35,8 +35,8 @@ FontManager *fm;
 //#define NET_DEVICE_TYPE        NetDeviceTypeWLAN
 
 CKernel::CKernel(void)
-    //		:CStdlibAppNetwork("OS/D", CSTDLIBAPP_DEFAULT_PARTITION, 0, 0, 0, 0, NET_DEVICE_TYPE)
-    : CStdlibAppStdio("OS/D"), mMulticore(&mMemory), mUserTimer(&mInterrupt, PeriodicHandler, this, true)
+    //		:CStdlibAppNetwork("Daric", CSTDLIBAPP_DEFAULT_PARTITION, 0, 0, 0, 0, NET_DEVICE_TYPE)
+    : CStdlibAppStdio("Daric"), mMulticore(&mMemory), mUserTimer(&mInterrupt, PeriodicHandler, this, true)
 {
     timer = &mTimer;
     memory = &mMemory;
@@ -53,7 +53,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
     if (!mScheduler.IsActive)
     {
         Message.Format("No scheduler available");
-        mLogger.Write("OS/D", LogNotice, Message);
+        mLogger.Write("Daric", LogNotice, Message);
         while (1)
             ;
     }
@@ -62,26 +62,14 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
     mScheduler.RegisterTaskSwitchHandler(OSDTask::TaskSwitchHandler);
     mScheduler.RegisterTaskTerminationHandler(OSDTask::TaskTerminationHandler);
 
-#ifdef __arm__
-    mLogger.Write(GetKernelName(), LogNotice, "Defined: ARM");
-#endif
-#ifdef __aarch64__
-    mLogger.Write(GetKernelName(), LogNotice, "Defined: AARCH64");
-#endif
-    mLogger.Write(GetKernelName(), LogNotice, "Defined: RASPPI=%d", RASPPI);
-
-    // OS Version
-    Message.Format("Compile time: %s %s", __DATE__, __TIME__);
-    mLogger.Write("OS/D", LogNotice, Message);
-
     // Hardware
     Message.Format("Machine: %s, RAM: %d MB", mMachineInfo.GetMachineName(), mMachineInfo.GetRAMSize());
-    mLogger.Write("OS/D", LogNotice, Message);
+    mLogger.Write("Daric", LogNotice, Message);
 
     // Screen
     Message.Format("Screen: %dx%d/%dx%d", mScreen.GetWidth(), mScreen.GetHeight(), mScreen.GetColumns(),
                    mScreen.GetRows());
-    mLogger.Write("OS/D", LogNotice, Message);
+    mLogger.Write("Daric", LogNotice, Message);
 
     // Init clock and input stuff
     OS_Init();
@@ -133,7 +121,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
         CScheduler::Get()->Yield();
     }
 
-    mLogger.Write("OS/D", LogNotice, "Termination");
+    mLogger.Write("Daric", LogNotice, "Termination");
 
     return ShutdownHalt;
 }

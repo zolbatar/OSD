@@ -2,6 +2,7 @@
 #include <circle/logger.h>
 #include "../FontManager/FontManager.h"
 #include "WindowManager.h"
+#include "../Library/json.hpp"
 
 uint32_t OSD_EVENT_MOVED;
 
@@ -69,13 +70,13 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddConst(ConstAttribute::BodyFontSize, 20);
     ThemeManager::AddConst(ConstAttribute::MonoFontSize, 20);
     ThemeManager::AddConst(ConstAttribute::MonoFontSizeSmall, 16);
-    ThemeManager::AddConst(ConstAttribute::FurnitureFontSize, 16);
+    ThemeManager::AddConst(ConstAttribute::FurnitureFontSize, 20);
     ThemeManager::AddConst(ConstAttribute::HeaderFontSize, 24);
     ThemeManager::AddConst(ConstAttribute::ButtonFontSize, 24);
 
     ThemeManager::AddConst(ConstAttribute::IconBarHeight, 110);
     ThemeManager::AddConst(ConstAttribute::WindowBorderWidth, 1);
-    ThemeManager::AddConst(ConstAttribute::WindowHeaderHeight, 28);
+    ThemeManager::AddConst(ConstAttribute::WindowHeaderHeight, 32);
     ThemeManager::AddConst(ConstAttribute::MenuHeaderHeight, 28);
     ThemeManager::AddConst(ConstAttribute::WindowFurnitureWidth, 24);
     ThemeManager::AddConst(ConstAttribute::WindowContentPadding, 0);
@@ -86,12 +87,12 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddConst(ConstAttribute::ScrollbarSize, 8);
 
     // Colours
-    ThemeManager::AddColour(ColourAttribute::WindowBackground, lv_color_hex(0xF8F8F8));
+    ThemeManager::AddColour(ColourAttribute::WindowBackground, lv_color_hex(0xF0F0F0));
     ThemeManager::AddColour(ColourAttribute::WindowForeground, lv_color_black());
     ThemeManager::AddColour(ColourAttribute::MenuBackground, lv_color_white());
     ThemeManager::AddColour(ColourAttribute::MenuForeground, lv_color_black());
-    ThemeManager::AddColour(ColourAttribute::DesktopBackground, lv_color_hex(0x707070));
-    ThemeManager::AddColour(ColourAttribute::DesktopForeground, lv_color_white());
+    ThemeManager::AddColour(ColourAttribute::IconBarBackground, lv_color_hex(0xadabb0));
+    ThemeManager::AddColour(ColourAttribute::IconBarForeground, lv_color_black());
     ThemeManager::AddColour(ColourAttribute::Focus, lv_color_hex(0x73a6e6));
     ThemeManager::AddColour(ColourAttribute::WindowHeaderForeground, lv_color_black());
     ThemeManager::AddColour(ColourAttribute::WindowHeaderBackground, lv_color_hex(0xB0B0B0));
@@ -187,6 +188,7 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
+        lv_style_set_radius(style, 0);
         lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::MenuBackground));
         lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::MenuForeground));
         lv_style_set_border_width(style, 0);
@@ -196,7 +198,7 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
-        lv_style_set_pad_all(style, 2);
+        lv_style_set_pad_all(style, 4);
         lv_style_set_pad_left(style, 8);
         lv_style_set_border_width(style, 0);
         lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::Window));
@@ -205,7 +207,7 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
-        lv_style_set_pad_all(style, 2);
+        lv_style_set_pad_all(style, 0);
         lv_style_set_border_width(style, 0);
         lv_style_set_text_font(style, ThemeManager::GetFont(FontAttribute::WindowBold));
         ThemeManager::AddStyle(StyleAttribute::MenuItemBold, style);
@@ -214,8 +216,6 @@ void WindowManager::SetupLVGLStyles()
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
         lv_style_set_pad_all(style, 0);
-        lv_style_set_pad_top(style, 8);
-        lv_style_set_pad_bottom(style, 8);
         lv_style_set_border_width(style, 1);
         lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::MenuSeparator));
         ThemeManager::AddStyle(StyleAttribute::MenuSeparator, style);
@@ -241,8 +241,10 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
-        lv_style_set_border_width(style, 0);
-        lv_style_set_bg_opa(style, LV_OPA_TRANSP);
+        lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
+        lv_style_set_border_side(style, LV_BORDER_SIDE_TOP);
+        lv_style_set_border_width(style, ThemeManager::GetConst(ConstAttribute::WindowBorderWidth));
+        lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::IconBarBackground));
         lv_style_set_radius(style, 0);
         lv_style_set_pad_all(style, 0);
         lv_style_set_pad_left(style, 8);
@@ -252,7 +254,8 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
-        lv_style_set_bg_opa(style, LV_OPA_TRANSP);
+        lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::IconBarForeground));
+        lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::IconBarBackground));
         lv_style_set_border_width(style, 0);
         lv_style_set_radius(style, 0);
         lv_style_set_pad_all(style, 0);
@@ -276,7 +279,7 @@ void WindowManager::SetupLVGLStyles()
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
-        lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::DesktopForeground));
+        lv_style_set_text_color(style, ThemeManager::GetColour(ColourAttribute::WindowForeground));
         lv_style_set_radius(style, 0);
         lv_style_set_border_width(style, 1);
         lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::WindowBackground));
@@ -362,7 +365,7 @@ void WindowManager::SetupLVGLStyles()
         lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
         lv_style_set_border_side(style, LV_BORDER_SIDE_BOTTOM);
         lv_style_set_border_width(style, ThemeManager::GetConst(ConstAttribute::WindowBorderWidth));
-        lv_style_set_pad_all(style, 2);
+        lv_style_set_pad_all(style, 4);
         ThemeManager::AddStyle(StyleAttribute::WindowHeader, style);
     }
     {
@@ -490,8 +493,8 @@ void WindowManager::SetupLVGLStyles()
     }
 
     // Wallpaper
-    fs.SetCurrentDirectory(":BOOT/System/Wallpaper");
-    auto img = LoadPNG(fs.GetCurrentDirectory() + "Daric Wallpaper Text.png", 1920, 1080);
+    fs.SetCurrentDirectory(":BOOT/Wallpaper");
+    auto img = LoadPNG(fs.GetCurrentDirectory() + "Daric Wallpaper.png", 1920, 1080);
     static lv_style_t style_background;
     lv_style_init(&style_background);
     lv_style_set_bg_img_src(&style_background, img);
@@ -501,19 +504,40 @@ void WindowManager::SetupLVGLStyles()
     lv_obj_set_scrollbar_mode(lv_scr_act(), LV_SCROLLBAR_MODE_OFF);
 
     // Icons
-    fs.SetCurrentDirectory(":BOOT/System/Icons");
-    LoadIcon(fs.GetCurrentDirectory() + "Applications.png", "Applications");
-    LoadIcon(fs.GetCurrentDirectory() + "Editor.png", "Editor");
-    LoadIcon(fs.GetCurrentDirectory() + "Flash.png", "SD Card");
-    LoadIcon(fs.GetCurrentDirectory() + "Folder.png", "Folder");
-    LoadIcon(fs.GetCurrentDirectory() + "Home.png", "Home");
-    LoadIcon(fs.GetCurrentDirectory() + "Sloth.png", "Sloth");
-    LoadIcon(fs.GetCurrentDirectory() + "Daric.png", "Daric");
-    LoadIcon(fs.GetCurrentDirectory() + "Text.png", "Text");
-    LoadIcon(fs.GetCurrentDirectory() + "Image.png", "Image");
+    fs.SetCurrentDirectory(":BOOT/Config");
+    CLogger::Get()->Write("Window Manager", LogNotice, "Loading icon definitions");
+    FIL fil;
+    if (f_open(&fil, (fs.GetCurrentDirectory() + "Icons").c_str(), FA_READ | FA_OPEN_EXISTING) != FR_OK)
+    {
+        CLogger::Get()->Write("Window Manager", LogPanic, "Error opening icon definition file");
+    }
+    size_t sz = f_size(&fil);
+    char *buffer = (char *)malloc(sz + 1);
+    if (!buffer)
+    {
+        CLogger::Get()->Write("Window Manager", LogPanic, "Error allocating memory for icon definition file");
+    }
+    uint32_t l;
+    if (f_read(&fil, buffer, sz, &l) != FR_OK)
+    {
+        CLogger::Get()->Write("Window Manager", LogPanic, "Error loading icon definition file");
+    }
+    buffer[sz] = 0;
+
+    // Parse JSON
+    nlohmann::json j = nlohmann::json::parse(buffer);
+
+    // Loop through and create all font objects
+    fs.SetCurrentDirectory(":BOOT/Icons");
+    for (auto &icon : j["Icons"])
+    {
+        std::string name = icon["name"];
+        std::string filename = icon["filename"];
+        LoadIcon(fs.GetCurrentDirectory() + filename, name);
+    }
 
     // Cursors
-    fs.SetCurrentDirectory(":BOOT/System/Cursors");
+    fs.SetCurrentDirectory(":BOOT/Cursors");
     mouse_cursor = LoadPNG(fs.GetCurrentDirectory() + "Arrow.png", 32, 32);
 }
 

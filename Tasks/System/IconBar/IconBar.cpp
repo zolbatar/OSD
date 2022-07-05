@@ -44,9 +44,10 @@ void IconBar::Run()
     lv_obj_add_style(icon_bar_right, style_iconbar_inner, LV_STATE_DEFAULT);
 
     // Devices
-    AddDriveIcon("SD Card", "Boot", ":BOOT");
-    AddDriveIcon("Home", "Home", ":HOME");
-    RegisterApp(NULL, "OS/D", WindowManager::GetIcon("Sloth"), TasksClickEventHandler, NULL);
+    AddDriveIcon("Device/SDCard", ":BOOT");
+    AddDriveIcon("Folder/Applications", ":APPS");
+    AddDriveIcon("Folder/Home", ":HOME");
+    RegisterApp(NULL, "Daric", WindowManager::GetIcon("Application/Sloth"), TasksClickEventHandler, NULL);
 
     ClearOverride();
 
@@ -56,7 +57,7 @@ void IconBar::Run()
     }
 }
 
-void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive_name)
+void IconBar::AddDriveIcon(std::string name, std::string drive_name)
 {
     Drive drive;
     drive.name = name;
@@ -84,12 +85,12 @@ void IconBar::AddDriveIcon(std::string name, std::string text, std::string drive
     lv_obj_center(img);
     lv_img_set_src(img, WindowManager::GetIcon(name));
     lv_obj_add_style(btn, style_iconbar_button, LV_STATE_DEFAULT);
-    lv_obj_set_style_text_color(btn, ThemeManager::GetColour(ColourAttribute::DesktopForeground), LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(btn, ThemeManager::GetColour(ColourAttribute::IconBarBackground), LV_STATE_DEFAULT);
     lv_obj_add_style(btn, style_focussed, LV_STATE_FOCUSED);
 
     auto nam = lv_label_create(device_cont);
     lv_obj_center(nam);
-    lv_label_set_text(nam, text.c_str());
+    lv_label_set_text(nam, drive_name.c_str());
 }
 
 void IconBar::RegisterApp(OSDTask *task, std::string name, lv_img_dsc_t *icon, lv_event_cb_t click_handler,

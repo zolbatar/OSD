@@ -17,14 +17,14 @@ struct FSVolume
 class FileSystemHandler
 {
   public:
-    virtual bool OpenDirectory(std::string directory, void *data);
+    virtual bool OpenDirectory(std::string *directory, void *data);
 };
 
 class FileSytemHandlerFAT : public FileSystemHandler
 {
   public:
     FileSytemHandlerFAT();
-    bool OpenDirectory(std::string directory, void *data);
+    bool OpenDirectory(std::string *directory, void *data);
 
   private:
     FATFS ff;

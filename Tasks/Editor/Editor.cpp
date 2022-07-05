@@ -26,7 +26,8 @@ Editor::Editor(int x, int y, int w, int h)
 Editor::~Editor()
 {
     lv_obj_del(buttons);
-    lv_obj_del(debug);
+    if (debug != NULL)
+        lv_obj_del(debug);
 }
 
 void Editor::Run()
@@ -50,12 +51,18 @@ void Editor::Run()
     CallGUIDirectEx(&mess);
 
     // App icon
-    // IconBar::RegisterApp(NULL, "Editor", WindowManager::GetIcon("Editor"), NULL, NULL);
+    IconBar::RegisterApp(NULL, "Editor", WindowManager::GetIcon("Application/CodeEditor"), NULL, NULL);
 
     // Get window
     auto window = (Window *)this->GetWindow();
     auto ww = window->GetLVGLWindow();
     auto content = lv_mywin_get_content(ww);
+
+    // Docks
+    /*    lv_obj_t *parent = lv_obj_get_parent(content);
+        lv_obj_set_size(obj, lv_obj_get_width(content), lv_obj_get_height(content));
+        lv_obj_set_flex_flow(obj, LV_FLEX_FLOW_ROW);
+        lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);*/
 
     // Set up canvas
     obj = lv_obj_create(content);
@@ -389,8 +396,8 @@ void Editor::ResizeEventHandler(lv_event_t *e)
     auto window_content_padding = ThemeManager::GetConst(ConstAttribute::WindowContentPaddingPadded);
     auto window_header_height = ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight);
     window->DeleteCanvas();
-    editor->canvas_w = editor->d_w - window_border_width * 2 - window_content_padding * 2;
-    editor->canvas_h = editor->d_h - window_border_width * 2 - window_header_height - window_content_padding * 2;
+    editor->canvas_w = editor->d_w - window_border_width * 2 - window_content_padding * 2 - 1;
+    editor->canvas_h = editor->d_h - window_border_width * 2 - window_header_height - window_content_padding * 2 - 1;
     window->CreateCanvas(editor->canvas_w, editor->canvas_h);
 
     // Reset canvas styling

@@ -8,6 +8,8 @@ Canvas::Canvas(OSDTask *task, lv_obj_t *parent, int w, int h) : task(task) //, m
 {
     this->parent = parent;
 
+    //    fg = lv_color_white();
+    //    bg = lv_color_black();
     fg = ThemeManager::GetColour(ColourAttribute::WindowForeground);
     bg = ThemeManager::GetColour(ColourAttribute::WindowBackground);
     size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
@@ -18,6 +20,7 @@ Canvas::Canvas(OSDTask *task, lv_obj_t *parent, int w, int h) : task(task) //, m
 
     // First buffer
     firstbuffer = lv_canvas_create(parent);
+    lv_obj_center(firstbuffer);
     if (w == 0 || h == 0)
     {
         lv_obj_set_size(firstbuffer, w, h);
@@ -97,6 +100,7 @@ void Canvas::Mode(int64_t w, int64_t h)
 
     // Size
     firstbuffer = lv_canvas_create(parent);
+    lv_obj_center(firstbuffer);
     lv_obj_set_size(firstbuffer, w, h);
     object = firstbuffer;
 
@@ -113,6 +117,7 @@ void Canvas::Mode(int64_t w, int64_t h)
     if (double_buffered)
     {
         secondbuffer = lv_canvas_create(parent);
+        lv_obj_center(secondbuffer);
         lv_obj_set_size(secondbuffer, w, h);
 
         // Allocate memory
@@ -135,6 +140,7 @@ void Canvas::EnableDoubleBuffering()
 
     // Second buffer
     secondbuffer = lv_canvas_create(parent);
+    lv_obj_center(secondbuffer);
     lv_obj_set_size(secondbuffer, w, h);
     lv_canvas_set_buffer(secondbuffer, buffer_back, w, h, cf);
     lv_canvas_fill_bg(secondbuffer, bg, LV_OPA_COVER);

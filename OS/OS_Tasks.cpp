@@ -118,7 +118,7 @@ void OSDTask::TaskSwitchHandler(CTask *ctask)
         UserTimer->Start(rate);
         break;
     }
-    //	CLogger::Get()->Write("OS/D", LogNotice, "Task focus: %s", ctask->GetName());
+    //	CLogger::Get()->Write("Daric", LogNotice, "Task focus: %s", ctask->GetName());
 }
 
 void OSDTask::ReceiveDirectEx(DirectMessage *m)

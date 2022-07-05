@@ -152,10 +152,7 @@ static void lv_mywin_constructor(const lv_obj_class_t *class_p, lv_obj_t *obj)
     lv_obj_set_flex_grow(body, 1);
     lv_obj_set_width(body, LV_PCT(100));
     lv_obj_set_height(body, LV_PCT(100));
-    // lv_obj_set_width(body, LV_SIZE_CONTENT);
-    // lv_obj_set_height(body, LV_SIZE_CONTENT);
     lv_obj_add_style(body, ThemeManager::GetStyle(StyleAttribute::WindowContent), LV_STATE_DEFAULT);
     lv_obj_set_scrollbar_mode(body, LV_SCROLLBAR_MODE_AUTO);
-    //	lv_obj_set_scrollbar_mode(body, LV_SCROLLBAR_MODE_ON);
     lv_obj_add_style(body, style_scrollbar, LV_PART_SCROLLBAR);
 }

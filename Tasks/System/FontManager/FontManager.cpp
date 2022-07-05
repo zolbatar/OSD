@@ -18,7 +18,7 @@ void FontManager::InitFonts()
     SetOverride(this);
 
     // Does font cache exist?
-    fs.SetCurrentDirectory(":BOOT/System/Config");
+    fs.SetCurrentDirectory(":BOOT/Config");
     FILINFO fno;
     auto fr = f_stat((fs.GetCurrentDirectory() + "FontManager").c_str(), &fno);
     if (fr == FR_NO_FILE)
@@ -98,7 +98,7 @@ void FontManager::CreateConfigFile()
     CLogger::Get()->Write("FontManager", LogNotice, "Rebuilding font cache");
     nlohmann::json j;
     j["Fonts"] = {};
-    fs.SetCurrentDirectory(":BOOT/System/Fonts");
+    fs.SetCurrentDirectory(":BOOT/Fonts");
     auto files = fs.ListAllFilesInCurrentDirectory(true);
     for (auto &file : files)
     {
@@ -150,7 +150,7 @@ void FontManager::CreateConfigFile()
     }
 
     // Write config
-    fs.SetCurrentDirectory(":BOOT/System/Config");
+    fs.SetCurrentDirectory(":BOOT/Config");
     FIL fil;
     if (f_open(&fil, (fs.GetCurrentDirectory() + "FontManager").c_str(), FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
     {

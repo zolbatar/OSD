@@ -1,9 +1,10 @@
 #pragma once
 #include <inttypes.h>
 
-struct Key {
-	char ascii;
-	uint32_t keycode;
-	uint8_t ro_keycode;
+struct Key
+{
+    char ascii;
+    uint8_t lv_keycode;
+    uint8_t ro_keycode;
+    uint32_t keycode;
 };
-
