@@ -6,7 +6,7 @@
 #include <string>
 #include "kernel.h"
 #include <circle/new.h>
-#include "../Chrono/Chrono.h"
+#include "OS/Chrono/Chrono.h"
 #include "OS/OS.h"
 #include "Tasks/System/FontManager/FontManager.h"
 #include "Tasks/System/FileManager/FileManager.h"
@@ -14,8 +14,8 @@
 #include "Tasks/System/WindowManager/WindowManager.h"
 #include "Tasks/System/InputManager/InputManager.h"
 #include "Tasks/DARICWindow.h"
-#include "Tokeniser/Tokeniser.h"
-#include "Parser/Parser.h"
+#include "Compiler/Tokeniser/Tokeniser.h"
+#include "Compiler/Parser/Parser.h"
 
 size_t kernel_size = 0;
 size_t initial_mem_free = 0;
@@ -28,7 +28,7 @@ CMemorySystem *memory;
 CInterruptSystem *interrupt;
 CUSBHCIDevice *USBHCI;
 CUserTimer *UserTimer;
-unsigned rate = USER_CLOCKHZ / 1000;
+unsigned rate = USER_CLOCKHZ;
 FontManager *fm;
 
 #define NET_DEVICE_TYPE NetDeviceTypeEthernet
@@ -36,7 +36,7 @@ FontManager *fm;
 
 CKernel::CKernel(void)
     //		:CStdlibAppNetwork("Daric", CSTDLIBAPP_DEFAULT_PARTITION, 0, 0, 0, 0, NET_DEVICE_TYPE)
-    : CStdlibAppStdio("Daric"), mMulticore(&mMemory), mUserTimer(&mInterrupt, PeriodicHandler, this, true)
+    : CStdlibAppStdio("Daric"), mMulticore(&mMemory), mUserTimer(&mInterrupt, PeriodicHandler, this, false)
 {
     timer = &mTimer;
     memory = &mMemory;
@@ -84,7 +84,7 @@ CStdlibApp::TShutdownMode CKernel::Run(void)
     mTimer.MsDelay(20000);*/
 
     // Initial memory and kernel size
-    auto memory = CMemorySystem::Get();
+    // auto memory = CMemorySystem::Get();
     initial_mem_free = memory->GetHeapFreeSpace(HEAP_ANY);
     kernel_size = memory->GetMemSize() - initial_mem_free;
 
@@ -141,6 +141,5 @@ void CMultiCore::Run(unsigned nCore)
 
 void CKernel::PeriodicHandler(CUserTimer *pTimer, void *pParam)
 {
-    pTimer->Start(rate * 32);
     OSDTask::yield_due = true;
 }
