@@ -1,4 +1,5 @@
 #pragma once
+#ifndef CLION
 #include <circle/sched/scheduler.h>
 #include <circle/sched/task.h>
 #include <circle/sysconfig.h>
@@ -8,6 +9,7 @@
 #include <circle/logger.h>
 #include <circle/spinlock.h>
 #include <circle/sched/mutex.h>
+#endif
 #include <string>
 #include <list>
 #include <chrono>

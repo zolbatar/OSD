@@ -20,6 +20,7 @@ void call_END()
     {
         auto window = (Window *)task->GUI.GetWindow();
         auto canvas = window->GetCanvas();
+        canvas->SetFG(0xFFFFFF);
         std::string finish_message = "Run time was " + out.str() + " seconds. Press any key to continue.";
         canvas->PrintNewLine();
         canvas->PrintString(finish_message.c_str());

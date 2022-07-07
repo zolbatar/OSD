@@ -28,7 +28,7 @@ CMemorySystem *memory;
 CInterruptSystem *interrupt;
 CUSBHCIDevice *USBHCI;
 CUserTimer *UserTimer;
-unsigned rate = USER_CLOCKHZ;
+unsigned rate = USER_CLOCKHZ / 100;
 FontManager *fm;
 
 #define NET_DEVICE_TYPE NetDeviceTypeEthernet

@@ -6,6 +6,8 @@
 *.map
 *.img
 
+cmake-build-debug/
+cmake-build-release/
 clion/CMakeCache.txt
 .DS_Store
 *.ttf
