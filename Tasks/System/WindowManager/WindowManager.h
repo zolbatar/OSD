@@ -1,10 +1,9 @@
 #pragma once
-#include "../../OS/OS.h"
-#include "../../GUI/Controls/Control.h"
-#include "../../GUI/Controls/Canvas.h"
-#include "../../GUI/Window/Window.h"
-#include "../../GUI/lvgl.h"
-#include "Style.h"
+#include "../../../OS/OS.h"
+#include "canvas/Canvas.h"
+#include "window/Window.h"
+#include "lvgl/lvgl.h"
+#include "style/Style.h"
 #include "../../DARICWindow.h"
 #include <map>
 #include <memory>

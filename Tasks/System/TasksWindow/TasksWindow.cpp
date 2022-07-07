@@ -1,17 +1,17 @@
 #include "TasksWindow.h"
-#include "../../GUI/Window/LVGLWindow.h"
+#include "../WindowManager/lvglwindow/LVGLWindow.h"
 
 extern size_t pre_boot_memory;
 extern size_t kernel_size;
 
 TasksWindow::TasksWindow(int x, int y, int w, int h)
 {
-    this->d_x = x;
-    this->d_y = y;
-    this->d_w = w;
-    this->d_h = h;
+    this->GUI.d_x = x;
+    this->GUI.d_y = y;
+    this->GUI.d_w = w;
+    this->GUI.d_h = h;
     this->id = "@" + std::to_string(task_id++);
-    this->name = "Task Manager";
+    this->SetName("Task Manager");
     type = TaskType::TaskManager;
 }
 
@@ -30,11 +30,11 @@ void TasksWindow::Run()
     WM_OpenWindow m;
     mess.data = &m;
     strcpy(m.id, id.c_str());
-    strcpy(m.title, name.c_str());
-    m.x = d_x;
-    m.y = d_y;
-    m.width = d_w;
-    m.height = d_h;
+    strcpy(m.title, GetName());
+    m.x = GUI.d_x;
+    m.y = GUI.d_y;
+    m.width = GUI.d_w;
+    m.height = GUI.d_h;
     m.canvas = false;
     m.fixed = true;
     CallGUIDirectEx(&mess);
@@ -52,7 +52,7 @@ void TasksWindow::UpdateGUI()
     MemorySummary m;
     CalculateMem(&m);
 
-    auto w = ((Window *)this->GetWindow())->GetLVGLWindow();
+    auto w = ((Window *)this->GUI.GetWindow())->GetLVGLWindow();
     auto content = lv_mywin_get_content(w);
     lv_obj_clean(content); // This is BAD
 
@@ -65,13 +65,10 @@ void TasksWindow::UpdateGUI()
 
     // Container
     const int sz = tasks_list.size() + 4;
-    static lv_coord_t row_dsc[256];
     row_dsc[0] = (ThemeManager::GetConst(ConstAttribute::BodyFontSize) + 4);
     for (int i = 1; i < sz; i++)
         row_dsc[i] = ThemeManager::GetConst(ConstAttribute::BodyFontSize);
     row_dsc[sz] = LV_GRID_TEMPLATE_LAST;
-    static lv_coord_t col_dsc[] = {lv_pct(31), lv_pct(10), lv_pct(15),           lv_pct(7),
-                                   lv_pct(7),  lv_pct(30), LV_GRID_TEMPLATE_LAST};
 
     // Body
     lv_obj_set_width(content, LV_PCT(100));
@@ -169,24 +166,24 @@ void TasksWindow::UpdateGUI()
         // Title
         auto title = lv_label_create(cont);
         lv_obj_set_grid_cell(title, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-        if (task->GetWindowName() == "@")
+        if (strcmp(task->GetName(), "@") == 0)
         {
             lv_label_set_text_fmt(title, "Window Manager");
         }
         else
         {
-            if (task->GetWindowID()[0] != '@')
+            if (task->GetID()[0] != '@')
             {
                 // Module
-                lv_label_set_text_fmt(title, "%s", task->GetWindowName().c_str());
+                lv_label_set_text_fmt(title, "%s", task->GetName());
             }
             else
             {
                 // Task
-                lv_label_set_text_fmt(title, "%s [%s]", task->GetWindowName().c_str(), task->GetWindowID().c_str());
+                lv_label_set_text_fmt(title, "%s [%s]", task->GetName(), task->GetID().c_str());
             }
         }
-        auto w = (Window *)task->GetWindow();
+        auto w = (Window *)task->GUI.GetWindow();
         if (w != NULL)
         {
             if (w->GetActive())
@@ -201,13 +198,10 @@ void TasksWindow::UpdateGUI()
         lv_obj_set_grid_cell(priority, LV_GRID_ALIGN_STRETCH, 1, 1, LV_GRID_ALIGN_STRETCH, i, 1);
         switch (task->GetPriority())
         {
-        case TaskPriority::Low:
-            lv_label_set_text_fmt(priority, "Low");
+        case TaskPriority::User:
+            lv_label_set_text_fmt(priority, "User");
             break;
-        case TaskPriority::High:
-            lv_label_set_text_fmt(priority, "High");
-            break;
-        case TaskPriority::NoPreempt:
+        case TaskPriority::System:
             lv_label_set_text_fmt(priority, "System");
             break;
         }
@@ -216,8 +210,8 @@ void TasksWindow::UpdateGUI()
         // Memory
         auto memory = lv_label_create(cont);
         lv_obj_set_grid_cell(memory, LV_GRID_ALIGN_STRETCH, 2, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-        auto total = task->CalculateMemoryUsed();
-        auto fb = task->GetFrameBufferMemory();
+        auto total = task->Memory.CalculateMemoryUsed();
+        auto fb = task->Memory.GetFrameBufferMemory();
         if (total < fb)
             total = fb;
         lv_label_set_text_fmt(memory, "%zu KB", (total - fb) / 1024);
@@ -232,14 +226,14 @@ void TasksWindow::UpdateGUI()
         // Allocations
         auto memory3 = lv_label_create(cont);
         lv_obj_set_grid_cell(memory3, LV_GRID_ALIGN_STRETCH, 4, 1, LV_GRID_ALIGN_STRETCH, i, 1);
-        lv_label_set_text_fmt(memory3, "%zu [%zu+%zu]", task->GetAllocCount(), task->GetStringCount(),
-                              task->GetStringCountTemporary());
+        lv_label_set_text_fmt(memory3, "%zu [%zu+%zu]", task->Memory.GetAllocCount(), task->Strings.GetStringCount(),
+                              task->Strings.GetStringCountTemporary());
         lv_label_set_long_mode(memory3, LV_LABEL_LONG_DOT);
 
         auto bar = lv_bar_create(cont);
         lv_obj_set_grid_cell(bar, LV_GRID_ALIGN_STRETCH, 5, 1, LV_GRID_ALIGN_STRETCH, i, 1);
         lv_obj_center(bar);
-        size_t pc = (task->CalculateMemoryUsed() * 100) / m.used;
+        size_t pc = (task->Memory.CalculateMemoryUsed() * 100) / m.used;
         lv_bar_set_value(bar, pc, LV_ANIM_OFF);
         lv_obj_add_style(bar, style_bar, LV_STATE_DEFAULT);
         lv_obj_add_style(bar, style_bar_red, LV_PART_INDICATOR);
@@ -251,6 +245,6 @@ void TasksWindow::UpdateGUI()
 void TasksWindow::Maximise()
 {
     maximise_requested = false;
-    auto ww = (Window *)this->GetWindow();
+    auto ww = (Window *)this->GUI.GetWindow();
     ww->Maximise(false);
 }

@@ -1,11 +1,11 @@
 #pragma once
 #include <list>
 #include <map>
-#include "../../OS/OS.h"
+#include "../../../OS/OS.h"
 #include <circle/logger.h>
 #include <circle/timer.h>
-#include "../../GUI/Window/LVGLWindow.h"
-#include "../WindowManager/Style.h"
+#include "../WindowManager/lvglwindow/LVGLWindow.h"
+#include "../WindowManager/style/Style.h"
 #include "../WindowManager/WindowManager.h"
 
 struct App

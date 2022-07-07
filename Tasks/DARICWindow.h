@@ -1,6 +1,6 @@
 #pragma once
 #include "../OS/OS.h"
-#include "../GUI/Window/Window.h"
+#include "System/WindowManager/window/Window.h"
 #include <circle/logger.h>
 
 class DARICWindow : public OSDTask
@@ -14,8 +14,11 @@ class DARICWindow : public OSDTask
     {
         code = code_in;
     }
+    void RequestMaximise();
+    void RequestMinimise();
 
   private:
+    bool inside_editor = false;
     std::string volume;
     std::string directory;
     std::string filename;

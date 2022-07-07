@@ -7,11 +7,9 @@
 extern CScreenDevice *screen;
 extern CInterruptSystem *interrupt;
 extern CUSBHCIDevice *USBHCI;
-#include "mouse.h"
-#include "../../OS/OS.h"
 #include "../TasksWindow/TasksWindow.h"
 #include "../../Editor/Editor.h"
-#include "../../GUI/Window/LVGLWindow.h"
+#include "lvglwindow/LVGLWindow.h"
 std::map<std::string, Icon> WindowManager::icons;
 std::map<std::string, FileType> WindowManager::types;
 
@@ -24,8 +22,8 @@ extern "C"
 WindowManager::WindowManager()
 {
     this->id = "@";
-    this->name = "@";
-    this->priority = TaskPriority::NoPreempt;
+    this->SetName("@");
+    this->priority = TaskPriority::System;
 
     // Init JIT
     init_jit("Daric");
@@ -92,7 +90,7 @@ void WindowManager::Run()
 void WindowManager::ReceiveDirectEx(DirectMessage *message)
 {
     OSDTask *source = (OSDTask *)message->source;
-    auto w = (Window *)source->GetWindow();
+    auto w = (Window *)source->GUI.GetWindow();
     auto c = w->GetCanvas();
     assert(w != NULL);
     switch (message->type)
@@ -102,16 +100,16 @@ void WindowManager::ReceiveDirectEx(DirectMessage *message)
         Window *w = new Window(source, m->canvas, m->fixed, m->title, m->x, m->y, m->width, m->height, m->canvas_w,
                                m->canvas_h);
         Window::windows.insert(std::make_pair(m->id, w));
-        source->SetWindow(w);
+        source->GUI.SetWindow(w);
         break;
     }
     case Messages::WM_CloseWindow: {
-        auto w = Window::windows.find(source->GetWindowID());
+        auto w = Window::windows.find(source->GetID());
         if (w != Window::windows.end())
         {
             delete w->second;
             Window::windows.erase(w);
-            source->SetWindow(NULL);
+            source->GUI.SetWindow(NULL);
         }
         break;
     }
@@ -185,22 +183,22 @@ void WindowManager::ReceiveDirectEx(DirectMessage *message)
     }
     case Messages::Canvas_Text: {
         auto m = (Coord1S *)message->data;
-        c->DrawText(m->x, m->y, source->GetString(m->s));
+        c->DrawText(m->x, m->y, source->Strings.GetString(m->s));
         break;
     }
     case Messages::Canvas_TextCentre: {
         auto m = (Coord1S *)message->data;
-        c->DrawTextCentre(m->x, m->y, source->GetString(m->s));
+        c->DrawTextCentre(m->x, m->y, source->Strings.GetString(m->s));
         break;
     }
     case Messages::Canvas_TextRight: {
         auto m = (Coord1S *)message->data;
-        c->DrawTextRight(m->x, m->y, source->GetString(m->s));
+        c->DrawTextRight(m->x, m->y, source->Strings.GetString(m->s));
         break;
     }
     case Messages::Canvas_SetFont: {
         auto m = (SetFont *)message->data;
-        c->SetFont(source->GetString(m->ff), source->GetString(m->fs), m->size);
+        c->SetFont(source->Strings.GetString(m->ff), source->Strings.GetString(m->fs), m->size);
         break;
     }
     case Messages::Canvas_PrintString: {

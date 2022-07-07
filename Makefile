@@ -6,43 +6,50 @@ CIRCLEHOME = ../circle-stdlib/libs/circle
 NEWLIBDIR = ../circle-stdlib/install/$(NEWLIB_ARCH)
 
 OBJS    = 	main.o kernel.o \
-			Chrono/Chrono.o \
-			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o OS/OS_Tasks_Compile.o OS/Breakdown.o \
+			OS/Chrono/Chrono.o \
+			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o OS/OS_Tasks_Code.o OS/Breakdown.o OS/OS_Tasks_Strings.o OS/OS_Tasks_Data.o \
+			OS/OS_Tasks_GUI.o OS/OS_Tasks_Memory.o \
 			Tasks/System/InputManager/InputManager.o \
-			GUI/Window/Window.o GUI/Window/LVGLWindow.o GUI/Controls/Control.o GUI/Controls/Canvas.o \
-			Tasks/System/WindowManager/WindowManager.o Tasks/System/WindowManager/Style.o Tasks/System/IconBar/IconBar.o \
-			Tasks/DARICWindow.o Tasks/System/TasksWindow/TasksWindow.o Tasks/System/Filer/Filer.o \
-			Tasks/System/FontManager/FontManager.o Tasks/System/Menu/Menu.o \
+			\
+			Tasks/System/WindowManager/window/Window.o Tasks/System/WindowManager/lvglwindow/LVGLWindow.o Tasks/System/WindowManager/canvas/Canvas.o \
+			Tasks/System/WindowManager/WindowManager.o Tasks/System/WindowManager/style/Style.o Tasks/System/WindowManager/lvgl/lvgl.o \
+			\
+			Tasks/System/IconBar/IconBar.o \
+			Tasks/DARICWindow.o \
+			Tasks/System/TasksWindow/TasksWindow.o \
+			Tasks/System/Filer/Filer.o \
+			Tasks/System/FontManager/FontManager.o \
+			Tasks/System/Menu/Menu.o \
 			Tasks/System/FileManager/FileManager.o \
 			Tasks/Editor/Editor.o \
-			GUI/lvgl.o  \
 			Library/StringLib.o \
 			\
-			Tokeniser/Tokeniser.o Tokeniser/TokeniserNumber.o Tokeniser/TokeniserString.o Tokeniser/TokeniserSymbol.o \
-			Tokeniser/TokeniserText.o Tokeniser/TokeniserPrinter.o \
+			Compiler/Tokeniser/Tokeniser.o Compiler/Tokeniser/TokeniserNumber.o Compiler/Tokeniser/TokeniserString.o Compiler/Tokeniser/TokeniserSymbol.o \
+			Compiler/Tokeniser/TokeniserText.o Compiler/Tokeniser/TokeniserPrinter.o \
 			\
-			Parser/Parser.o Parser/ParserExpression.o Parser/Parser_DEF.o Parser/Parser_IF.o Parser/Parser_PRINT.o Parser/Parser_PROCCall.o \
-			Parser/Parser_CONST.o Parser/Parser_SWAP.o Parser/Parser_Assignment.o \
-			Parser/Parser_REPEAT.o Parser/Parser_WHILE.o Parser/Parser_FOR.o Parser/Parser_CASE.o Parser/Parser_DATA.o \
-			Parser/Parser_TYPE.o \
+			Compiler/Parser/Parser.o Compiler/Parser/ParserExpression.o Compiler/Parser/Parser_DEF.o Compiler/Parser/Parser_IF.o \
+			Compiler/Parser/Parser_PRINT.o Compiler/Parser/Parser_PROCCall.o \
+			Compiler/Parser/Parser_CONST.o Compiler/Parser/Parser_SWAP.o Compiler/Parser/Parser_Assignment.o \
+			Compiler/Parser/Parser_REPEAT.o Compiler/Parser/Parser_WHILE.o Compiler/Parser/Parser_FOR.o Compiler/Parser/Parser_CASE.o Compiler/Parser/Parser_DATA.o \
+			Compiler/Parser/Parser_TYPE.o \
 			\
-			IRCompiler/IRComparison.o IRCompiler/IRCompiler.o IRCompiler/IRIf.o IRCompiler/IRLiteral.o \
-			IRCompiler/IRMaths.o IRCompiler/IRPrinter.o IRCompiler/IRBoolean.o IRCompiler/IRConversion.o \
-			IRCompiler/IRVariables.o IRCompiler/IRAssignment.o IRCompiler/IRPrint.o \
-			IRCompiler/IRRepeat.o IRCompiler/IRWhile.o IRCompiler/IRFor.o IRCompiler/IROptimiser.o \
-			IRCompiler/IRCase.o IRCompiler/IRData.o IRCompiler/IRDefs.o \
+			Compiler/IRCompiler/IRComparison.o Compiler/IRCompiler/IRCompiler.o Compiler/IRCompiler/IRIf.o Compiler/IRCompiler/IRLiteral.o \
+			Compiler/IRCompiler/IRMaths.o Compiler/IRCompiler/IRPrinter.o Compiler/IRCompiler/IRBoolean.o Compiler/IRCompiler/IRConversion.o \
+			Compiler/IRCompiler/IRVariables.o Compiler/IRCompiler/IRAssignment.o Compiler/IRCompiler/IRPrint.o \
+			Compiler/IRCompiler/IRRepeat.o Compiler/IRCompiler/IRWhile.o Compiler/IRCompiler/IRFor.o Compiler/IRCompiler/IROptimiser.o \
+			Compiler/IRCompiler/IRCase.o Compiler/IRCompiler/IRData.o Compiler/IRCompiler/IRDefs.o \
 			\
-			NativeCompiler/Disassemble.o NativeCompiler/LibPrint.o NativeCompiler/NativeCompiler.o NativeCompiler/NativeStack.o \
-			NativeCompiler/LibMaths.o NativeCompiler/LibString.o NativeCompiler/LibGeneral.o NativeCompiler/LibChrono.o \
-			NativeCompiler/LibGraphics2D.o NativeCompiler/LibData.o NativeCompiler/LibKeyboardMouse.o NativeCompiler/LibRandom.o \
+			Compiler/NativeCompiler/Disassemble.o Compiler/NativeCompiler/NativeCompiler.o Compiler/NativeCompiler/NativeStack.o \
+			OS/Library/LibPrint.o OS/Library/LibMaths.o OS/Library/LibString.o OS/Library/LibGeneral.o OS/Library/LibChrono.o \
+			OS/Library/LibGraphics2D.o OS/Library/LibData.o OS/Library/LibKeyboardMouse.o OS/Library/LibRandom.o \
 			\
-			Lightning/lightning.o Lightning/jit_memory.o Lightning/jit_disasm.o Lightning/jit_size.o Lightning/jit_note.o Lightning/jit_print.o \
-			capstone/arch/AArch64/AArch64BaseInfo.o capstone/arch/AArch64/AArch64Disassembler.o capstone/arch/AArch64/AArch64InstPrinter.o capstone/arch/AArch64/AArch64Mapping.o \
-			capstone/arch/AArch64/AArch64Module.o capstone/cs.o capstone/MCInst.o capstone/MCInstrDesc.o capstone/MCRegisterInfo.o capstone/SStream.o capstone/utils.o \
+			Compiler/Lightning/lightning.o Compiler/Lightning/jit_memory.o Compiler/Lightning/jit_disasm.o Compiler/Lightning/jit_size.o Compiler/Lightning/jit_note.o Compiler/Lightning/jit_print.o \
+			Compiler/capstone/arch/AArch64/AArch64BaseInfo.o Compiler/capstone/arch/AArch64/AArch64Disassembler.o Compiler/capstone/arch/AArch64/AArch64InstPrinter.o Compiler/capstone/arch/AArch64/AArch64Mapping.o \
+			Compiler/capstone/arch/AArch64/AArch64Module.o Compiler/capstone/cs.o Compiler/capstone/MCInst.o Compiler/capstone/MCInstrDesc.o Compiler/capstone/MCRegisterInfo.o Compiler/capstone/SStream.o Compiler/capstone/utils.o \
 
 include $(CIRCLEHOME)/Rules.mk
 
-CFLAGS += -I "$(NEWLIBDIR)/include" -I $(STDDEF_INCPATH) -I ../circle-stdlib/include -I capstone/include
+CFLAGS += -I "$(NEWLIBDIR)/include" -I $(STDDEF_INCPATH) -I ../circle-stdlib/include -I Compiler/capstone/include
 LIBS := "$(NEWLIBDIR)/lib/libm.a" "$(NEWLIBDIR)/lib/libc.a" "$(NEWLIBDIR)/lib/libcirclenewlib.a" \
  	$(CIRCLEHOME)/addon/SDCard/libsdcard.a \
   	$(CIRCLEHOME)/lib/usb/libusb.a \

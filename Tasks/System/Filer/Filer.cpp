@@ -3,8 +3,9 @@
 #include "../FileManager/FileManager.h"
 #include "../IconBar/IconBar.h"
 #include "../FontManager/FontManager.h"
-#include "../../GUI/Window/LVGLWindow.h"
-#include "../Library/StringLib.h"
+#include "../InputManager/InputManager.h"
+#include "../WindowManager/lvglwindow/LVGLWindow.h"
+#include "../../../Library/StringLib.h"
 #include "../../Editor/Editor.h"
 
 int Filer::cx = 128;
@@ -13,15 +14,15 @@ int Filer::cy = 128;
 Filer::Filer(std::string volume, std::string directory) : volume(volume), directory(directory)
 {
     this->id = "Filer" + std::to_string(task_id++);
-    this->name = volume + directory;
-    this->priority = TaskPriority::Low;
+    this->SetName((volume + directory).c_str());
+    this->priority = TaskPriority::System;
     //	CLogger::Get()->Write("File Manager", LogNotice, "%s", name.c_str());
-    this->d_x = cx;
-    this->d_y = cy;
+    this->GUI.d_x = cx;
+    this->GUI.d_y = cy;
     cx += 100;
     cy += 100;
-    this->d_w = 768;
-    this->d_h = 386;
+    this->GUI.d_w = 768;
+    this->GUI.d_h = 386;
     this->type = TaskType::Filer;
     if (cx > 960)
     {
@@ -48,11 +49,11 @@ void Filer::Run()
     WM_OpenWindow m;
     mess.data = &m;
     strcpy(m.id, id.c_str());
-    strcpy(m.title, name.c_str());
-    m.x = d_x;
-    m.y = d_y;
-    m.width = d_w;
-    m.height = d_h;
+    strcpy(m.title, GetName());
+    m.x = GUI.d_x;
+    m.y = GUI.d_y;
+    m.width = GUI.d_w;
+    m.height = GUI.d_h;
     m.canvas = false;
     m.fixed = true;
     CallGUIDirectEx(&mess);
@@ -102,7 +103,7 @@ void Filer::Refresh()
 
 void Filer::BuildIcons()
 {
-    auto w = ((Window *)this->GetWindow())->GetLVGLWindow();
+    auto w = ((Window *)this->GUI.GetWindow())->GetLVGLWindow();
     auto content = lv_mywin_get_content(w);
     lv_obj_clean(content);
 
@@ -116,13 +117,8 @@ void Filer::BuildIcons()
     lv_obj_set_flex_flow(filer_cont, LV_FLEX_FLOW_ROW_WRAP);
     lv_obj_add_style(filer_cont, style_grid, LV_STATE_DEFAULT);
     lv_obj_clear_flag(filer_cont, LV_OBJ_FLAG_SCROLLABLE);
-    lv_obj_add_event_cb(filer_cont, WindowPressEventHandler, LV_EVENT_LONG_PRESSED, this);
-    lv_obj_add_event_cb(content, WindowPressEventHandler, LV_EVENT_LONG_PRESSED, this);
 
-    // Keys
-    lv_obj_add_event_cb(lv_scr_act(), KeyPressEventHandler, LV_EVENT_KEY, this);
-
-    auto drive = FileManager::GetDrivePrefix();
+    auto drive = FileManager::BootDrivePrefix;
     auto prefix = volume_obj->prefix;
     auto l = drive.length() + prefix.length() + directory.length();
 
@@ -220,7 +216,7 @@ void Filer::AddIcon(std::string name, bool is_directory)
     lv_obj_center(btn);
     lv_obj_set_size(btn, 64, 64);
     lv_obj_add_event_cb(btn, IconClickEventHandler, LV_EVENT_SHORT_CLICKED, ip);
-    lv_obj_add_event_cb(btn, IconPressEventHandler, LV_EVENT_LONG_PRESSED, ip);
+    // lv_obj_add_event_cb(btn, IconPressEventHandler, LV_EVENT_LONG_PRESSED, ip);
     lv_obj_t *img = lv_img_create(btn);
     lv_obj_center(img);
     lv_img_set_src(img, icon);
@@ -252,12 +248,32 @@ void Filer::IconClickEventHandler(lv_event_t *e)
     }
     else
     {
-        auto app = new DARICWindow(icon_clicked->volume, icon_clicked->directory, icon_clicked->filename,
-                                   icon_clicked->filename, false, false, cx, cy, 640, 512, 1920, 1080);
-        app->LoadSourceCode();
-        app->Start();
-        cx += 100;
-        cy += 100;
+        if (InputManager::ShiftDown)
+        {
+            // Shift to edit
+            auto editor = new Editor(100, 100, 1500, 800);
+            editor->LoadSourceCode(icon_clicked->volume, icon_clicked->directory, icon_clicked->filename);
+            editor->Start();
+        }
+        else if (InputManager::AltDown)
+        {
+            // Alt for window
+            auto app = new DARICWindow(icon_clicked->volume, icon_clicked->directory, icon_clicked->filename,
+                                       icon_clicked->filename, false, false, cx, cy,
+                                       640 + ThemeManager::GetConst(ConstAttribute::WindowBorderWidth) * 2,
+                                       512 + ThemeManager::GetConst(ConstAttribute::WindowBorderWidth) * 3 +
+                                           ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight),
+                                       640, 512);
+            app->LoadSourceCode();
+            app->Start();
+        }
+        else
+        {
+            auto app = new DARICWindow(icon_clicked->volume, icon_clicked->directory, icon_clicked->filename,
+                                       icon_clicked->filename, true, false, cx, cy, 640, 512, 1920, 1080);
+            app->LoadSourceCode();
+            app->Start();
+        }
     }
     if (cx > 960)
     {
@@ -266,197 +282,9 @@ void Filer::IconClickEventHandler(lv_event_t *e)
     }
 }
 
-void Filer::IconPressEventHandler(lv_event_t *e)
-{
-    auto t = (FileIcon *)e->user_data;
-
-    lv_point_t p;
-    lv_indev_t *indev = lv_indev_get_act();
-    lv_indev_type_t indev_type = lv_indev_get_type(indev);
-    if (indev_type == LV_INDEV_TYPE_POINTER)
-    {
-        lv_indev_get_point(indev, &p);
-
-        // Create menu window
-        MenuDefinition menu;
-
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::SubMenu;
-            mi.v = "Rename";
-            menu.items.push_back(std::move(mi));
-        }
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "Delete";
-            mi.shortcut = "Del";
-            menu.items.push_back(std::move(mi));
-        }
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "Info";
-            menu.items.push_back(std::move(mi));
-        }
-
-        // Is it a DARIC file?
-        if (t->type->extension == "DARIC")
-        {
-            {
-                MenuItem mi;
-                mi.type = MenuItemType::Separator;
-                menu.items.push_back(std::move(mi));
-            }
-            {
-                MenuItem mi;
-                mi.type = MenuItemType::Item;
-                mi.v = "Edit";
-                mi.cb = &Filer::EditEventHandler;
-                mi.user_data = e->user_data;
-                menu.items.push_back(std::move(mi));
-            }
-            {
-                MenuItem mi;
-                mi.type = MenuItemType::Item;
-                mi.v = "Run windowed";
-                mi.cb = &Filer::RunEventHandler;
-                mi.user_data = e->user_data;
-                menu.items.push_back(std::move(mi));
-            }
-            {
-                MenuItem mi;
-                mi.type = MenuItemType::Item;
-                mi.v = "Run full screen";
-                mi.cb = &Filer::RunFullscreenEventHandler;
-                mi.user_data = e->user_data;
-                menu.items.push_back(std::move(mi));
-            }
-        }
-
-        Menu::OpenMenu(p.x, p.y, NULL, "Filer", std::move(menu));
-    }
-}
-
-void Filer::WindowPressEventHandler(lv_event_t *e)
-{
-    auto t = (Filer *)e->user_data;
-    e->stop_bubbling = 1;
-
-    lv_point_t p;
-    lv_indev_t *indev = lv_indev_get_act();
-    lv_indev_type_t indev_type = lv_indev_get_type(indev);
-    if (indev_type == LV_INDEV_TYPE_POINTER)
-    {
-        lv_indev_get_point(indev, &p);
-
-        // Create menu window
-        MenuDefinition menu;
-
-        // View style
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "Grid view";
-            mi.shortcut = "^G";
-            menu.items.push_back(std::move(mi));
-        }
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "List view";
-            mi.shortcut = "^L";
-            menu.items.push_back(std::move(mi));
-        }
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "Detail view";
-            mi.shortcut = "^D";
-            menu.items.push_back(std::move(mi));
-        }
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Separator;
-            menu.items.push_back(std::move(mi));
-        }
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "Select all";
-            mi.shortcut = "^A";
-            menu.items.push_back(std::move(mi));
-        }
-        {
-            MenuItem mi;
-            mi.type = MenuItemType::Item;
-            mi.v = "Refresh";
-            mi.shortcut = "^R";
-            mi.cb = &Filer::RefreshEventHandler;
-            mi.user_data = e->user_data;
-            menu.items.push_back(std::move(mi));
-        }
-        Menu::OpenMenu(p.x, p.y, NULL, "Filer", std::move(menu));
-    }
-}
-
-void Filer::KeyPressEventHandler(lv_event_t *e)
-{
-    auto t = (Filer *)e->user_data;
-    uint32_t key = lv_event_get_key(e);
-    switch (key)
-    {
-    case 7: // Ctrl-G
-        break;
-    case 12: // Ctrl-L
-        break;
-    case 4: // Ctrl-D
-        break;
-    case KEY_Right:
-        break;
-    }
-    CLogger::Get()->Write("File Manager", LogNotice, "%d %s", key, t->id.c_str());
-}
-
-void Filer::RefreshEventHandler(lv_event_t *e)
-{
-    Menu::CloseMenu();
-    auto t = (Filer *)e->user_data;
-    t->Refresh();
-}
-
-void Filer::RunEventHandler(lv_event_t *e)
-{
-    Menu::CloseMenu();
-    auto t = (FileIcon *)e->user_data;
-    auto app =
-        new DARICWindow(t->volume, t->directory, t->filename, "DARIC", false, false, 100, 100, 640, 512, 1920, 1080);
-    app->LoadSourceCode();
-    app->Start();
-}
-
-void Filer::RunFullscreenEventHandler(lv_event_t *e)
-{
-    Menu::CloseMenu();
-    auto t = (FileIcon *)e->user_data;
-    auto app =
-        new DARICWindow(t->volume, t->directory, t->filename, "DARIC", true, false, 100, 100, 640, 512, 1920, 1080);
-    app->LoadSourceCode();
-    app->Start();
-}
-
-void Filer::EditEventHandler(lv_event_t *e)
-{
-    Menu::CloseMenu();
-    auto t = (FileIcon *)e->user_data;
-    auto editor = new Editor(100, 100, 1000, 600);
-    editor->LoadSourceCode(t->volume, t->directory, t->filename);
-    editor->Start();
-}
-
 void Filer::Maximise()
 {
     maximise_requested = false;
-    auto ww = (Window *)this->GetWindow();
+    auto ww = (Window *)this->GUI.GetWindow();
     ww->Maximise(false);
 }

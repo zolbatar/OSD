@@ -1,7 +1,7 @@
 #include "FontManager.h"
 #include <stdio.h>
 #include <circle/logger.h>
-#include "../Library/json.hpp"
+#include "../../../Library/json.hpp"
 
 std::map<std::string, Font *> FontManager::loaded_fonts;
 extern FontManager *fm;
@@ -9,8 +9,8 @@ extern FontManager *fm;
 FontManager::FontManager()
 {
     this->id = "Font Manager";
-    this->name = "Font Manager";
-    this->priority = TaskPriority::Low;
+    this->SetName("Font Manager");
+    this->priority = TaskPriority::System;
 }
 
 void FontManager::InitFonts()
@@ -18,7 +18,7 @@ void FontManager::InitFonts()
     SetOverride(this);
 
     // Does font cache exist?
-    fs.SetCurrentDirectory(":BOOT/Config");
+    fs.SetCurrentDirectory(":Boot/Config");
     FILINFO fno;
     auto fr = f_stat((fs.GetCurrentDirectory() + "FontManager").c_str(), &fno);
     if (fr == FR_NO_FILE)
@@ -98,7 +98,7 @@ void FontManager::CreateConfigFile()
     CLogger::Get()->Write("FontManager", LogNotice, "Rebuilding font cache");
     nlohmann::json j;
     j["Fonts"] = {};
-    fs.SetCurrentDirectory(":BOOT/Fonts");
+    fs.SetCurrentDirectory(":Boot/Fonts");
     auto files = fs.ListAllFilesInCurrentDirectory(true);
     for (auto &file : files)
     {
@@ -150,7 +150,7 @@ void FontManager::CreateConfigFile()
     }
 
     // Write config
-    fs.SetCurrentDirectory(":BOOT/Config");
+    fs.SetCurrentDirectory(":Boot/Config");
     FIL fil;
     if (f_open(&fil, (fs.GetCurrentDirectory() + "FontManager").c_str(), FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
     {

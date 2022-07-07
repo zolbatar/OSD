@@ -1,6 +1,7 @@
 #include "IconBar.h"
 #include "../Filer/Filer.h"
 #include "../TasksWindow/TasksWindow.h"
+#include "../FileManager/FileManager.h"
 
 lv_obj_t *IconBar::icon_bar_cont;
 lv_obj_t *IconBar::icon_bar_left;
@@ -11,7 +12,8 @@ size_t IconBar::index;
 IconBar::IconBar()
 {
     this->id = "@" + std::to_string(task_id++);
-    this->name = "Icon Bar";
+    this->SetName("Icon Bar");
+    this->priority = TaskPriority::System;
 }
 
 void IconBar::Run()
@@ -44,9 +46,16 @@ void IconBar::Run()
     lv_obj_add_style(icon_bar_right, style_iconbar_inner, LV_STATE_DEFAULT);
 
     // Devices
-    AddDriveIcon("Device/SDCard", ":BOOT");
-    AddDriveIcon("Folder/Applications", ":APPS");
-    AddDriveIcon("Folder/Home", ":HOME");
+    if (FileManager::BootDrivePrefix == "SD:")
+    {
+        AddDriveIcon("Device/SDCard", ":Boot");
+    }
+    else
+    {
+        AddDriveIcon("Device/USB", ":Boot");
+    }
+    AddDriveIcon("Folder/Applications", ":Apps");
+    AddDriveIcon("Folder/Home", ":Home");
     RegisterApp(NULL, "Daric", WindowManager::GetIcon("Application/Sloth"), TasksClickEventHandler, NULL);
 
     ClearOverride();
@@ -122,10 +131,6 @@ void IconBar::RegisterApp(OSDTask *task, std::string name, lv_img_dsc_t *icon, l
     app.icon = icon;
     lv_img_set_src(img, app.icon);
     lv_obj_add_style(btn, style_iconbar_button, LV_STATE_DEFAULT);
-
-    auto nam = lv_label_create(device_cont);
-    lv_obj_center(nam);
-    lv_label_set_text(nam, name.c_str());
 
     apps.insert(std::make_pair(index++, std::move(app)));
 }

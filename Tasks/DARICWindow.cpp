@@ -2,8 +2,8 @@
 #include <string.h>
 #include <fstream>
 #include "DARICWindow.h"
-#include "../Exception/DARICException.h"
-#include "../GUI/Window/LVGLWindow.h"
+#include "../Compiler/Exception/DARICException.h"
+#include "System/WindowManager/lvglwindow/LVGLWindow.h"
 
 DARICWindow::DARICWindow(std::string volume, std::string directory, std::string filename, std::string name,
                          bool fullscreen, bool inside_editor, int x, int y, int w, int h, int canvas_w, int canvas_h)
@@ -11,12 +11,12 @@ DARICWindow::DARICWindow(std::string volume, std::string directory, std::string 
     this->volume = volume;
     this->filename = filename;
     this->directory = directory;
-    this->fullscreen = fullscreen;
+    this->GUI.fullscreen = fullscreen;
     this->inside_editor = inside_editor;
-    this->d_x = x;
-    this->d_y = y;
-    this->d_w = w;
-    this->d_h = h;
+    this->GUI.d_x = x;
+    this->GUI.d_y = y;
+    this->GUI.d_w = w;
+    this->GUI.d_h = h;
     auto window_border_width = ThemeManager::GetConst(ConstAttribute::WindowBorderWidth);
     auto window_content_padding = ThemeManager::GetConst(ConstAttribute::WindowContentPadding);
     auto window_header_height = ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight);
@@ -28,7 +28,7 @@ DARICWindow::DARICWindow(std::string volume, std::string directory, std::string 
         this->canvas_h = canvas_h;
     else
         this->canvas_h = h - window_border_width * 2 - window_header_height - window_content_padding * 2;
-    this->name = name;
+    this->SetName(name.c_str());
     this->id = "@" + std::to_string(task_id++);
     type = TaskType::DARIC;
 }
@@ -36,7 +36,7 @@ DARICWindow::DARICWindow(std::string volume, std::string directory, std::string 
 void DARICWindow::LoadSourceCode()
 {
     SetOverride(this);
-    this->code = this->LoadSource(volume, directory, filename);
+    this->code = Code.LoadSource(&fs, volume, directory, filename);
     ClearOverride();
 }
 
@@ -51,18 +51,18 @@ void DARICWindow::Run()
     WM_OpenWindow m;
     mess.data = &m;
     strcpy(m.id, id.c_str());
-    strcpy(m.title, name.c_str());
-    m.x = d_x;
-    m.y = d_y;
-    m.width = d_w;
-    m.height = d_h;
+    strcpy(m.title, GetName());
+    m.x = GUI.d_x;
+    m.y = GUI.d_y;
+    m.width = GUI.d_w;
+    m.height = GUI.d_h;
     m.canvas = true;
     m.canvas_w = canvas_w;
     m.canvas_h = canvas_h;
     m.fixed = true;
     CallGUIDirectEx(&mess);
 
-    auto ww = (Window *)this->GetWindow();
+    auto ww = (Window *)this->GUI.GetWindow();
     auto win = ww->GetLVGLWindow();
     auto content = lv_mywin_get_content(win);
     lv_obj_set_style_bg_color(content, lv_color_black(), LV_STATE_DEFAULT);
@@ -70,15 +70,13 @@ void DARICWindow::Run()
     // Compile (and run)
     try
     {
-        if (CompileSource(volume, directory, filename, code, inside_editor))
+        Code.CompileSource(&fs, volume, directory, filename, code, inside_editor);
+        if (GUI.fullscreen)
         {
-            if (fullscreen)
-            {
-                ww->Maximise(true);
-            }
-            // CLogger::Get()->Write("DARICWindow", LogDebug, "Run: %s", GetWindowName().c_str());
-            RunCode(inside_editor);
+            ww->Maximise(true);
         }
+        // CLogger::Get()->Write("DARICWindow", LogDebug, "Run: %s", GetWindowName().c_str());
+        Code.RunCode(inside_editor);
     }
     catch (DARICException &ex)
     {
@@ -107,6 +105,6 @@ void DARICWindow::Run()
 void DARICWindow::Maximise()
 {
     maximise_requested = false;
-    auto ww = (Window *)this->GetWindow();
+    auto ww = (Window *)this->GUI.GetWindow();
     ww->Maximise(true);
 }

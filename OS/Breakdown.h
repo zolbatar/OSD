@@ -3,10 +3,10 @@
 #include <map>
 #include <string>
 #include "../Tasks/System/FileManager/FileSystemObject.h"
-#include "../Parser/Parser.h"
-#include "../Tokeniser/Tokeniser.h"
-#include "../IRCompiler/IRCompiler.h"
-#include "../NativeCompiler/NativeCompiler.h"
+#include "../Compiler/Parser/Parser.h"
+#include "../Compiler/Tokeniser/Tokeniser.h"
+#include "../Compiler/IRCompiler/IRCompiler.h"
+#include "../Compiler/NativeCompiler/NativeCompiler.h"
 
 struct LineMapping
 {
@@ -30,6 +30,7 @@ class Breakdown
     static void Init()
     {
         line_breakdown.clear();
+        native.clear();
     }
     static LineBreakdown *GetLineBreakdown(size_t line_number);
     static std::list<std::string> *GetRowTokens(size_t line);

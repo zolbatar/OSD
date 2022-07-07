@@ -1,24 +1,32 @@
 #pragma once
 #include <map>
+#include <circle/input/keymap.h>
 #include "InputManagerStruct.h"
-#include "../../GUI/Window/Window.h"
-#include "../../GUI/lvgl.h"
+#include "../WindowManager/window/Window.h"
+#include "../WindowManager/lvgl/lvgl.h"
 
 class InputManager : public OSDTask
 {
   public:
     InputManager();
     void Run();
-    static void KeyDown(uint8_t lv);
+    static void KeyDown(Key ki);
     static void KeyUp(uint8_t lv);
     static void ClaimInput(OSDTask *task);
-    static Key GetKeyInfo(uint8_t lv);
+    static OSDTask *GetInput()
+    {
+        return current_task;
+    }
+    static void ProcessModifiers(uint8_t modifiers);
+    static Key GetKeyInfo(uint8_t lv, uint8_t modifiers);
+
+    static bool ShiftDown;
+    static bool CtrlDown;
+    static bool AltDown;
 
   private:
+    static CKeyMap keymap;
     static OSDTask *current_task;
-    static std::map<uint8_t, uint32_t> lv_to_ascii;
-    static std::map<uint8_t, uint32_t> lv_to_ascii_shift;
     static std::map<uint8_t, uint32_t> lv_to_ro;
-    static void AddKeyS(uint8_t lv, uint32_t key, uint32_t shift_key, uint8_t ro);
-    static void AddKey(uint8_t lv, uint32_t key, uint8_t ro);
+    static void AddKey(uint8_t lv, uint8_t ro);
 };

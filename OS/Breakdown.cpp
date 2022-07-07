@@ -144,6 +144,8 @@ void Breakdown::CheckLineExists(size_t line)
     }
 }
 
+std::string blank = "BLANK";
+
 LineBreakdown *Breakdown::GetLineBreakdown(size_t line_number)
 {
     auto f = line_breakdown.find(line_number);
@@ -157,5 +159,7 @@ LineBreakdown *Breakdown::GetLineBreakdown(size_t line_number)
 std::string *Breakdown::GetNativeForAddress(size_t address)
 {
     auto f = native.find(address);
+    if (f == native.end())
+        return &blank;
     return &f->second;
 }

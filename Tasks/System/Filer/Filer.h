@@ -1,6 +1,6 @@
 #pragma once
 #include <list>
-#include "../../OS/OS.h"
+#include "../../../OS/OS.h"
 #include "../WindowManager/WindowManager.h"
 #include "../Menu/Menu.h"
 
@@ -30,7 +30,7 @@ class Filer : public OSDTask
 
   private:
     FilerView view = FilerView::Icons;
-    const int cell_size = 108;
+    const int cell_size = 128;
     FSVolume *volume_obj;
     std::string volume;
     std::string directory;
@@ -44,12 +44,5 @@ class Filer : public OSDTask
     void BuildContent();
     void BuildIcons();
     void AddIcon(std::string name, bool is_directory);
-    static void WindowPressEventHandler(lv_event_t *e);
     static void IconClickEventHandler(lv_event_t *e);
-    static void IconPressEventHandler(lv_event_t *e);
-    static void KeyPressEventHandler(lv_event_t *e);
-    static void RefreshEventHandler(lv_event_t *e);
-    static void RunEventHandler(lv_event_t *e);
-    static void RunFullscreenEventHandler(lv_event_t *e);
-    static void EditEventHandler(lv_event_t *e);
 };

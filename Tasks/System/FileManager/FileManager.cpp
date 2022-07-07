@@ -1,16 +1,16 @@
 #include "FileManager.h"
-#include "../Library/StringLib.h"
+#include "../../../Library/StringLib.h"
 #include <circle/logger.h>
 
 std::map<std::string, FSVolume> FileManager::volumes;
 FileSystemHandler *FileManager::fsFAT;
-std::string FileManager::PHY_DRV_PREFIX = "USB:";
+std::string FileManager::BootDrivePrefix = "SD:";
 
 FileManager::FileManager()
 {
     this->id = "File Manager";
-    this->name = "File Manager";
-    this->priority = TaskPriority::Low;
+    this->SetName("File Manager");
+    this->priority = TaskPriority::System;
 };
 
 void FileManager::Run()
@@ -19,20 +19,20 @@ void FileManager::Run()
 
     FSVolume boot;
     boot.prefix = "/osd/";
-    volumes.insert(std::make_pair(":BOOT", std::move(boot)));
-    CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":BOOT");
+    volumes.insert(std::make_pair(":Boot", std::move(boot)));
+    CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":Boot");
 
     FSVolume apps;
     apps.prefix = "/apps/";
-    volumes.insert(std::make_pair(":APPS", std::move(apps)));
-    CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":APPS");
+    volumes.insert(std::make_pair(":Apps", std::move(apps)));
+    CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":Apps");
 
     FSVolume sd;
     sd.prefix = "/home/";
-    volumes.insert(std::make_pair(":HOME", std::move(sd)));
-    CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":HOME");
+    volumes.insert(std::make_pair(":Home", std::move(sd)));
+    CLogger::Get()->Write("File Manager", LogNotice, "Added volume '%s'", ":Home");
 
-    fs.SetVolume(":BOOT");
+    fs.SetVolume(":Boot");
 
     SetNameAndAddToList();
     while (1)
@@ -205,16 +205,23 @@ bool FileSystemHandler::OpenDirectory(std::string *directory, void *data)
 FileSytemHandlerFAT::FileSytemHandlerFAT()
 {
     // Mount file system
-    auto result = f_mount(&ff, FileManager::GetDrivePrefix().c_str(), 1);
+    CLogger::Get()->Write("File Manager", LogNotice, "Checking for SD card");
+    auto result = f_mount(&ff, "SD:", 1);
     if (result != FR_OK)
     {
-        CLogger::Get()->Write("File Manager", LogPanic, "Can't mount boot FAT filesystem, error code %d", result);
+        CLogger::Get()->Write("File Manager", LogNotice, "Can't mount SD card, checking USB");
+        auto result = f_mount(&ff, "USB:", 1);
+        if (result != FR_OK)
+        {
+            CLogger::Get()->Write("File Manager", LogPanic, "Can't mount USB either, error code %d", result);
+        }
+        FileManager::BootDrivePrefix = "USB:";
     }
 
-    CLogger::Get()->Write("File Manager", LogNotice, "Initialised boot FAT filesystem, sanity checking");
+    CLogger::Get()->Write("File Manager", LogNotice, "Initialised boot FAT filesystem, checking for valid fileystem");
     DIR Directory;
     FILINFO FileInfo;
-    FRESULT Result = f_findfirst(&Directory, &FileInfo, "USB:/", "*");
+    FRESULT Result = f_findfirst(&Directory, &FileInfo, (FileManager::BootDrivePrefix + "/").c_str(), "*");
     int count = 0;
     for (unsigned i = 0; Result == FR_OK && FileInfo.fname[0]; i++)
     {
@@ -232,7 +239,7 @@ FileSytemHandlerFAT::FileSytemHandlerFAT()
 bool FileSytemHandlerFAT::OpenDirectory(std::string *directory, void *data)
 {
     auto d = (DIR *)data;
-    *directory = FileManager::GetDrivePrefix() + *directory;
+    *directory = FileManager::BootDrivePrefix + *directory;
     auto result = f_opendir(d, directory->c_str());
     return result == FR_OK;
 }

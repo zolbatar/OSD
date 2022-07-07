@@ -1,5 +1,5 @@
 #include "Menu.h"
-#include "../../GUI/Window/LVGLWindow.h"
+#include "../WindowManager/lvglwindow/LVGLWindow.h"
 
 MenuDefinition Menu::menu;
 lv_obj_t *Menu::block;
@@ -7,8 +7,8 @@ lv_obj_t *Menu::block;
 Menu::Menu()
 {
     this->id = "Menu Manager";
-    this->name = "Menu Manager";
-    this->priority = TaskPriority::Low;
+    this->SetName("Menu Manager");
+    this->priority = TaskPriority::System;
 }
 
 void Menu::Run()
