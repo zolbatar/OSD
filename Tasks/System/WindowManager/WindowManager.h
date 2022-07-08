@@ -3,6 +3,7 @@
 #include "lvgl/lvgl.h"
 #include "controls/Control.h"
 #include "controls/canvas/Canvas.h"
+#include "controls/textedit/TextEdit.h"
 #include "style/Style.h"
 #include "window/Window.h"
 #include "../Tasks/DARICWindow.h"

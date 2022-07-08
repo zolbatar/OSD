@@ -3,12 +3,6 @@
 #include <Compiler.h>
 #include <WindowManager/WindowManager.h>
 
-enum class Mode
-{
-    Insert,
-    Overwrite
-};
-
 class Editor : public OSDTask
 {
   public:
@@ -18,32 +12,17 @@ class Editor : public OSDTask
     void Run();
     void LoadSourceCode(std::string volume, std::string directory, std::string filename);
     void Render();
-    lv_obj_t *GetObject()
-    {
-        return obj;
-    }
     void RunWindowed();
     void FullscreenRun();
     void Debug();
     void UpdateDebugWindow();
-    void SetupCanvas();
-
-    int screen_x = 0;
-    int screen_y = 0;
-    int x = 0;
-    int y = 0;
-    int canvas_w;
-    int canvas_h;
 
   private:
     std::string volume;
     std::string directory;
     std::string filename;
-    Mode mode = Mode::Insert;
-    size_t longest_line = 0;
-    std::vector<std::string> code;
-    lv_obj_t *obj = NULL;
-    lv_obj_t *obj_parent = NULL;
+    TextEdit *edit = NULL;
+    std::string loaded_code;
     lv_obj_t *ta1;
     lv_obj_t *ta2;
     lv_obj_t *ta3;
@@ -54,7 +33,6 @@ class Editor : public OSDTask
 
     void Maximise();
     void CalculateLongestLine();
-    static void ScrollEventHandler(lv_event_t *e);
     static void ResizeEventHandler(lv_event_t *e);
     static void RunHandler(lv_event_t *e);
     static void RunFullScreenHandler(lv_event_t *e);

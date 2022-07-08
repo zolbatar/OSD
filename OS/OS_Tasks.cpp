@@ -46,7 +46,6 @@ void OSDTask::SetNameAndAddToList()
 void OSDTask::TerminateTask()
 {
     terminate_requested = false;
-    UserTimer->Start(rate * 4096); // Don't try and switch tasks
 
     // Close window
     DirectMessage mess;

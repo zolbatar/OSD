@@ -73,7 +73,6 @@ class Canvas : public Control
     lv_draw_mask_line_param_t line_mask_param_t;
     lv_draw_mask_line_param_t line_mask_param_b;
 
-    OSDTask *task;
     int w;
     int h;
     int cursor_x = 0;

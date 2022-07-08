@@ -2,11 +2,6 @@
 #include <Breakdown/Breakdown.h>
 #include <IconBar/IconBar.h>
 #include <Menu/Menu.h>
-/*#include "../System/WindowManager/lvglwindow/LVGLWindow.h"
-#include "../System/Menu/Menu.h"
-#include "../System/IconBar/IconBar.h"
-#include "../System/WindowManager/style/Style.h"
-#include "../../../OS/Breakdown.h"*/
 
 Editor::Editor(int x, int y, int w, int h)
 {
@@ -14,11 +9,6 @@ Editor::Editor(int x, int y, int w, int h)
     this->GUI.d_y = y;
     this->GUI.d_w = w;
     this->GUI.d_h = h;
-    auto window_border_width = ThemeManager::GetConst(ConstAttribute::WindowBorderWidth);
-    auto window_content_padding = ThemeManager::GetConst(ConstAttribute::WindowContentPaddingPadded);
-    auto window_header_height = ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight);
-    this->canvas_w = w - window_border_width * 2 - window_content_padding * 2;
-    this->canvas_h = h - window_border_width * 2 - window_header_height - window_content_padding * 2;
     this->id = "@" + std::to_string(task_id++);
     this->SetName("Editor");
     this->type = TaskType::Editor;
@@ -26,6 +16,8 @@ Editor::Editor(int x, int y, int w, int h)
 
 Editor::~Editor()
 {
+    if (edit != NULL)
+        delete edit;
 }
 
 void Editor::ScrollBeginEvent(lv_event_t *e)
@@ -80,16 +72,20 @@ void Editor::Run()
     lv_obj_add_style(grid, ThemeManager::GetStyle(StyleAttribute::WindowContent), LV_STATE_DEFAULT);
 
     // Set up canvas
-    obj_parent = lv_obj_create(grid);
-    lv_obj_set_grid_cell(obj_parent, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
-    lv_obj_add_style(obj_parent, ThemeManager::GetStyle(StyleAttribute::Scrollbar), LV_PART_SCROLLBAR);
-    lv_obj_add_style(obj_parent, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
-    lv_obj_add_event_cb(obj_parent, ScrollEventHandler, LV_EVENT_SCROLL, this);
+    edit = new TextEdit(this, grid);
+    edit->SetText(loaded_code);
+    lv_obj_set_grid_cell(edit->GetObjectParent(), LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
 
-    // Canvas child
-    obj = lv_obj_create(obj_parent);
-    lv_obj_add_style(obj, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
-    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+    /*    obj_parent = lv_obj_create(grid);
+        lv_obj_set_grid_cell(obj_parent, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
+        lv_obj_add_style(obj_parent, ThemeManager::GetStyle(StyleAttribute::Scrollbar), LV_PART_SCROLLBAR);
+        lv_obj_add_style(obj_parent, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
+        lv_obj_add_event_cb(obj_parent, ScrollEventHandler, LV_EVENT_SCROLL, this);
+
+        // Canvas child
+        obj = lv_obj_create(obj_parent);
+        lv_obj_add_style(obj, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
+        lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);*/
 
     // Buttons
     auto buttons = lv_obj_create(grid);
@@ -206,22 +202,18 @@ void Editor::Run()
     lv_obj_set_style_text_font(ta4, ThemeManager::GetFont(FontAttribute::Mono), LV_STATE_DEFAULT);
     //        lv_textarea_set_cursor_hidden(ta4, true);
 
-    auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
-
     Yield();
     lv_obj_add_event_cb(content, ResizeEventHandler, LV_EVENT_SIZE_CHANGED, this);
 
     // Do stuff
-    SetupCanvas();
+    edit->Resized();
     while (1)
     {
         Yield();
 
         // Process keyboard queue
-        bool update = false;
         while (!keyboard_queue.empty())
         {
-            update = true;
             auto k = keyboard_queue.front();
             keyboard_queue.pop();
 
@@ -238,64 +230,16 @@ void Editor::Run()
                     FullscreenRun();
                     break;
                 }
-                case KeyInsert:
-                    if (mode == Mode::Overwrite)
-                        mode = Mode::Insert;
-                    else
-                        mode = Mode::Overwrite;
-                case KeyUp:
-                    this->y--;
-                    break;
-                case KeyDown:
-                    this->y++;
-                    break;
-                case KeyLeft:
-                    this->x--;
-                    break;
-                case KeyRight:
-                    this->x++;
-                    break;
-                case KeyPageUp:
-                    this->y -= canvas_h / size;
-                    break;
-                case KeyPageDown:
-                    this->y += canvas_h / size;
-                    break;
                 default:
-                    CLogger::Get()->Write("Editor", LogNotice, "Key: %d %x", k.ascii, k.keycode);
+                    // Pass to edit
+                    edit->HandleKey(k);
                 }
             }
             else
             {
-                if (k.ascii == 10)
-                {
-                    auto l1 = code[y].substr(0, x);
-                    auto l2 = code[y].substr(x);
-                    code[y] = l1;
-                    code.insert(code.begin() + y + 1, l2);
-                    y++;
-                    x = 0;
-                    // Break line at this point
-                }
-                else
-                {
-                    CLogger::Get()->Write("Editor", LogNotice, "%d", k.ascii);
-                    // normal character
-                    if (mode == Mode::Overwrite)
-                    {
-                        code[y][x] = k.ascii;
-                        x++;
-                    }
-                    else
-                    {
-                        code[y].insert(x, std::string(1, k.ascii));
-                        CalculateLongestLine();
-                    }
-                }
+                edit->HandleKey(k);
             }
         }
-        if (update)
-            Render();
     }
 }
 
@@ -327,175 +271,16 @@ void Editor::LoadSourceCode(std::string volume, std::string directory, std::stri
     }
     f_close(&fil);
     buffer[sz] = 0;
-    std::string s(buffer);
+    loaded_code = buffer;
     free(buffer);
 
-    // Split into lines
-    auto ll = splitString(s, '\n');
-    code.reserve(ll.size());
-    std::copy(std::begin(ll), std::end(ll), std::back_inserter(code));
-    CalculateLongestLine();
-
     ClearOverride();
-}
-
-void Editor::CalculateLongestLine()
-{
-    longest_line = 0;
-    for (auto &c : code)
-    {
-        longest_line = std::max(longest_line, c.length());
-    }
-}
-
-void Editor::Render()
-{
-    auto window = (Window *)this->GUI.GetWindow();
-    auto canvas = window->GetCanvas();
-    auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
-    lv_obj_set_size(obj, longest_line * size + 4, code.size() * size + 4);
-
-    // Clear
-    canvas->Clear();
-
-    // Adjust cursor etc.
-    if (y < 0)
-        y = 0;
-    if (y >= static_cast<int>(code.size()))
-        y = static_cast<int>(code.size()) - 1;
-    if (x < 0)
-        x = 0;
-    if (x >= static_cast<int>(code[y].size()))
-        x = static_cast<int>(code[y].size()) - 1;
-    bool adjust = false;
-    do
-    {
-        adjust = false;
-        int bottom_y = screen_y + (canvas_h / size) - 1;
-        if (y < screen_y)
-        {
-            //					CLogger::Get()->Write("Editor", LogNotice, "Y<: %d %d", y, screen_y);
-            screen_y--;
-            // screen_y -= (canvas_h/size);
-            adjust = true;
-        }
-        if (y > bottom_y)
-        {
-            //					CLogger::Get()->Write("Editor", LogNotice, "Y>: %d %d", y, bottom_y);
-            screen_y++;
-            // screen_y += (canvas_h/size);
-            adjust = true;
-        }
-    } while (adjust);
-
-    // Cursor
-    int64_t ex = (x - screen_x) * (size / 2);
-    int64_t ey = (y - screen_y) * size;
-    canvas->SetFG(0xA0A0A0);
-    canvas->SetBG(0xD0D0D0);
-    canvas->DrawRectangleFilled(ex, ey, ex + size / 2, ey + size, 1);
-    canvas->SetBG(0xFFFFFF);
-    canvas->SetFG(0x0);
-
-    UpdateDebugWindow();
-
-    // Text
-    int actual_y = 0;
-    for (size_t i = screen_y; i < code.size(); i++)
-    {
-
-        // Get line
-        auto line = code[i];
-
-        int actual_x = 0;
-        for (size_t j = screen_x; j < line.length(); j++)
-        {
-            char c = line[j];
-
-            // Draw
-            if (c == 8)
-            {
-                canvas->DrawMonoText(actual_x, actual_y, std::string(4, c));
-            }
-            else
-            {
-                canvas->DrawMonoText(actual_x, actual_y, std::string(1, c));
-            }
-
-            // Next character
-            actual_x += size / 2;
-            if (actual_x > canvas_w)
-                break;
-        }
-
-        // Next line
-        actual_y += size;
-        if (actual_y > canvas_h)
-            break;
-    }
-}
-
-void Editor::ScrollEventHandler(lv_event_t *e)
-{
-    lv_obj_t *scroll = lv_event_get_target(e);
-    auto scroll_y = lv_obj_get_scroll_top(scroll);
-    auto scroll_x = lv_obj_get_scroll_left(scroll);
-    if (scroll_x < 0)
-        scroll_x = 0;
-    if (scroll_y < 0)
-        scroll_y = 0;
-
-    // Work out X and Y
-    auto editor = (Editor *)e->user_data;
-    auto size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
-    editor->x = scroll_x / size / 2;
-    editor->y = scroll_y / size;
-    editor->screen_x = scroll_x / size / 2;
-    editor->screen_y = scroll_y / size;
-
-    // Render
-    editor->Render();
 }
 
 void Editor::ResizeEventHandler(lv_event_t *e)
 {
     auto editor = (Editor *)e->user_data;
-    editor->SetupCanvas();
-}
-
-void Editor::SetupCanvas()
-{
-    auto window = (Window *)GUI.GetWindow();
-    auto ww = window->GetLVGLWindow();
-    if (obj == NULL || ww == NULL)
-        return;
-    lv_area_t sz;
-    lv_obj_get_coords(obj_parent, &sz);
-    //    CLogger::Get()->Write("File Manager", LogNotice, "%d %d %d %d", sz.x1, sz.x2, sz.y1, sz.y2);
-
-    // Set new size
-    GUI.d_w = sz.x2 - sz.x1 - 12;
-    GUI.d_h = sz.y2 - sz.y1 - 12;
-
-    // Resize/redraw canvas
-    window->DeleteCanvas();
-    canvas_w = GUI.d_w;
-    canvas_h = GUI.d_h;
-    window->CreateCanvas(canvas_w, canvas_h);
-
-    // Reset canvas styling
-    auto canvas = window->GetCanvas();
-    canvas->SetBG(0xFFFFFF);
-    canvas->SetFG(0x0);
-    lv_obj_add_flag(canvas->GetFirstBuffer(), LV_OBJ_FLAG_FLOATING);
-    lv_obj_align(canvas->GetFirstBuffer(), LV_ALIGN_TOP_LEFT, 0, 46);
-    lv_obj_add_style(canvas->GetFirstBuffer(), ThemeManager::GetStyle(StyleAttribute::BorderedContent),
-                     LV_STATE_DEFAULT);
-
-    // Render
-    Render();
-
-    // CLogger::Get()->Write("File Manager", LogNotice, "Resize %d %d/%d %d", canvas_w, canvas_h);
+    editor->edit->Resized();
 }
 
 void Editor::RunHandler(lv_event_t *e)
@@ -519,34 +304,20 @@ void Editor::BuildHandler(lv_event_t *e)
 void Editor::RunWindowed()
 {
     auto app = new DARICWindow(volume, directory, filename, "DARIC", false, true, 100, 100, 640, 512, 1920, 1080);
-    std::string c;
-    for (auto &l : code)
-    {
-        c += l + "\n";
-    }
-    app->SetCode(c);
+    app->SetCode(edit->GetText());
     app->Start();
 }
 
 void Editor::FullscreenRun()
 {
     auto app = new DARICWindow(volume, directory, filename, "DARIC", true, true, 100, 100, 640, 512, 1920, 1080);
-    std::string c;
-    for (auto &l : code)
-    {
-        c += l + "\n";
-    }
-    app->SetCode(c);
+    app->SetCode(edit->GetText());
     app->Start();
 }
 
 void Editor::Debug()
 {
-    std::string c;
-    for (auto &l : code)
-    {
-        c += l + "\n";
-    }
+    auto c = edit->GetText();
     std::string msg;
     try
     {
@@ -580,7 +351,7 @@ void Editor::Debug()
 
 void Editor::UpdateDebugWindow()
 {
-    auto breakdown = Breakdown::GetLineBreakdown(this->y + 1);
+    auto breakdown = Breakdown::GetLineBreakdown(edit->y + 1);
     if (breakdown == NULL)
         return;
 
@@ -649,5 +420,5 @@ void Editor::Maximise()
     auto ww = (Window *)this->GUI.GetWindow();
     ww->Maximise(false);
     lv_obj_update_layout(ww->GetLVGLWindow());
-    SetupCanvas();
+    edit->Resized();
 }

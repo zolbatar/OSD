@@ -59,7 +59,6 @@ Canvas::~Canvas()
         lv_draw_mask_free_param(&top_id);
     if (bottom_id != 0)
         lv_draw_mask_free_param(&bottom_id);
-    lv_obj_del(object);
 }
 
 int64_t Canvas::GetContentWidth()
@@ -470,6 +469,7 @@ void Canvas::DrawMonoText(int64_t x, int64_t y, std::string s)
     lv_draw_label_dsc_init(&label_dsc);
     label_dsc.font = mono;
     label_dsc.color = fg;
+
     lv_canvas_draw_text(object, x, y, w->GetContentWidth() - x, &label_dsc, s.c_str());
 }
 

@@ -148,6 +148,7 @@ void WindowManager::SetupLVGLStyles()
         lv_style_init(style);
         lv_style_set_bg_opa(style, LV_OPA_TRANSP);
         lv_style_set_border_width(style, 0);
+        lv_style_set_pad_all(style, 0);
         ThemeManager::AddStyle(StyleAttribute::TransparentWindow, style);
     }
 
@@ -271,14 +272,6 @@ void WindowManager::SetupLVGLStyles()
     }
 
     // Window
-    {
-        lv_style_t *style = CreateStyle();
-        lv_style_init(style);
-        lv_style_set_border_width(style, 1);
-        lv_style_set_border_side(style, LV_BORDER_SIDE_RIGHT | LV_BORDER_SIDE_BOTTOM);
-        lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::WindowBorder));
-        ThemeManager::AddStyle(StyleAttribute::BorderedContent, style);
-    }
     {
         lv_style_t *style = CreateStyle();
         lv_style_init(style);

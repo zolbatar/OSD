@@ -7,6 +7,7 @@ class Control
   public:
     Control(OSDTask *task, lv_obj_t *parent);
     ~Control();
+    lv_obj_t *GetObject();
 
   protected:
     OSDTask *task;

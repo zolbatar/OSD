@@ -310,7 +310,6 @@ void GuiCLVGL::KeyboardEventHandlerRaw(unsigned char ucModifiers, const unsigned
                 auto task = InputManager::GetInput();
                 if (task != NULL)
                     task->RequestTerminate();
-                // task->TerminateTask();
             }
 
             ki.last_key = CTimer::GetClockTicks();

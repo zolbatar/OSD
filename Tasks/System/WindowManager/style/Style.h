@@ -61,7 +61,6 @@ enum class StyleAttribute
     WindowInactive,
     WindowFullScreen,
     WindowHeaderFullScreen,
-    BorderedContent,
 };
 
 enum class FontAttribute
