@@ -1,6 +1,5 @@
 #pragma once
-#include "../../../OS/OS.h"
-#include <circle/logger.h>
+#include <OS.h>
 
 class FileManager : public OSDTask
 {

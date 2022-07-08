@@ -1,7 +1,8 @@
 #pragma once
-#include <string>
-#include "../canvas/Canvas.h"
-#include "../style/Style.h"
+#include <OS.h>
+#include <WindowManager/lvglwindow/LVGLWindow.h>
+#include <WindowManager/controls/canvas/Canvas.h>
+#include <InputManager/InputManager.h>
 
 class Window
 {

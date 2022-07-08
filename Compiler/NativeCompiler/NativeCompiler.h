@@ -1,10 +1,6 @@
 #pragma once
-#include <list>
-#include <string>
-#include "../IRCompiler/IRCompiler.h"
-#include <map>
-#include "../../OS/OS.h"
-#include "../../OS/Library/Functions.h"
+#include <OS.h>
+#include <IRCompiler/IRCompiler.h>
 
 extern "C"
 {

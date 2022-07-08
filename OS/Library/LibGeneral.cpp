@@ -1,10 +1,6 @@
-#include <sstream>
-#include "../../Compiler/NativeCompiler/NativeCompiler.h"
-#include "../../Compiler/Exception/DARICException.h"
-#include "../OS.h"
-#include "../../Tasks/System/WindowManager/window/Window.h"
-
-extern uint64_t GetClock();
+#include <OS.h>
+#include <Chrono/Chrono.h>
+#include <WindowManager/WindowManager.h>
 
 void call_END()
 {

@@ -1,14 +1,7 @@
 #pragma once
+#include <OS_Includes.h>
+#include <Exception/DARICException.h>
 #include "Tokens.h"
-#include "../../OS/OS.h"
-#include <iostream>
-#include <list>
-#include <map>
-#include <string>
-#include <vector>
-#include <vector>
-#include "Types.h"
-#include <istream>
 
 enum class TokeniserState
 {

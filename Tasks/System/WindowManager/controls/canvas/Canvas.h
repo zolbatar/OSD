@@ -1,10 +1,8 @@
 #pragma once
-#include "../../../../OS/OS.h"
-#include "../style/Style.h"
+#include <OS.h>
+#include "../Control.h"
 
-#define SCREEN_DMA_BURST_LENGTH 2
-
-class Canvas
+class Canvas : public Control
 {
   public:
     Canvas(OSDTask *task, lv_obj_t *parent, int w, int h);
@@ -32,7 +30,6 @@ class Canvas
         return firstbuffer;
     }
 
-    void Render();
     void SetupClip();
     void ClearClip();
     void EnableDoubleBuffering();
@@ -61,9 +58,6 @@ class Canvas
     void PrintTab(int64_t v);
 
   private:
-    lv_obj_t *object;
-    lv_obj_t *parent;
-
     // Clipping
     bool clip = false;
     int64_t clip_x1;

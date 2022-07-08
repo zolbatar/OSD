@@ -1,14 +1,6 @@
 #pragma once
-
-#include <list>
-#include <string>
-#include <tuple>
-#include <stack>
-#include <tuple>
-#include <set>
-#include "../Tokeniser/Tokeniser.h"
-#include "../Tokeniser/Types.h"
-#include "../../OS/Library/Functions.h"
+#include <OS.h>
+#include <Tokeniser/Tokeniser.h>
 
 typedef std::list<ComplexType> fp;
 

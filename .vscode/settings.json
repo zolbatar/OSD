@@ -89,7 +89,8 @@
     "utility": "cpp",
     "stop_token": "cpp",
     "cinttypes": "cpp",
-    "filesystem": "cpp"
+    "filesystem": "cpp",
+    "cassert": "cpp"
   },
   "cmake.configureOnOpen": true
 }

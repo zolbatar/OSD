@@ -1,7 +1,4 @@
 #include "Tokeniser.h"
-#include <algorithm>
-#include <iterator>
-#include "../Exception/DARICException.h"
 
 Leaf Tokeniser::root;
 std::map<TokenType, TokenDef> Tokeniser::keyword_lookup;

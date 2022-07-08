@@ -1,7 +1,5 @@
 #include "IRCompiler.h"
-#include <cstring>
-#include <circle/timer.h>
-#include "../../OS/Breakdown.h"
+#include <Breakdown/Breakdown.h>
 
 void IRCompiler::IRPrinter()
 {

@@ -1,0 +1,49 @@
+#pragma once
+
+#include <stdint.h>
+#include <stdlib.h>
+#include <inttypes.h>
+
+#include <array>
+#include <algorithm>
+#include <assert.h>
+#include <cassert>
+#include <cstddef>
+#include <chrono>
+#include <exception>
+#include <iterator>
+#include <list>
+#include <map>
+#include <memory>
+#include <queue>
+#include <set>
+#include <stack>
+#include <stdexcept>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <tuple>
+#include <vector>
+
+#include <circle/multicore.h>
+#include <circle/screen.h>
+#include <circle/bcmframebuffer.h>
+#include <circle/interrupt.h>
+#include <circle/input/mouse.h>
+#include <circle/dmachannel.h>
+#include <circle/types.h>
+#include <circle/usb/usbkeyboard.h>
+#include <circle/input/keyboardbuffer.h>
+#include <circle/new.h>
+#include <circle/alloc.h>
+#include <circle/logger.h>
+#include <circle/sched/scheduler.h>
+#include <circle/sched/mutex.h>
+#include <circle/sched/task.h>
+#include <circle/spinlock.h>
+#include <circle/sysconfig.h>
+#include <circle/timer.h>
+
+#include <Types.h>
+#include <FileManager/FileSystemObject.h>
+#include <InputManager/InputManagerObject.h>

@@ -1,5 +1,4 @@
-#include "../../Compiler/NativeCompiler/NativeCompiler.h"
-#include <circle/logger.h>
+#include <OS.h>
 
 static bool tabbed = true;
 const int tab_size = 20;

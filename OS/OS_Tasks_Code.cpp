@@ -1,13 +1,6 @@
-#include <circle/logger.h>
-#include <circle/timer.h>
-#include "Chrono/Chrono.h"
-#include "../Compiler/Parser/Parser.h"
-#include "../Compiler/Tokeniser/Tokeniser.h"
-#include "../Compiler/IRCompiler/IRCompiler.h"
-#include "../Compiler/NativeCompiler/NativeCompiler.h"
-#include "../Compiler/Exception/DARICException.h"
-#include "../Tasks/System/WindowManager/window/Window.h"
-#include "Breakdown.h"
+#include "OS_Tasks_Code.h"
+#include <Breakdown/Breakdown.h>
+#include <Chrono/Chrono.cpp>
 
 OSDTaskCode::OSDTaskCode()
 {

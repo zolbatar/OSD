@@ -1,9 +1,8 @@
-#include "../../Compiler/NativeCompiler/NativeCompiler.h"
-
-#include <chrono>
+#include <OS.h>
+#include <Chrono/Chrono.h>
 
 extern std::chrono::system_clock::time_point t1;
-extern uint64_t GetClock();
+extern int64_t GetClock();
 
 int64_t call_TIME()
 {

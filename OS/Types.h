@@ -1,78 +1,94 @@
 #pragma once
-#include <map>
 
-enum class ValueType {
+enum class ValueType
+{
     Integer,
     Float,
     String,
 };
 
-struct TypeField {
+struct TypeField
+{
     std::string name;
     ValueType type;
     size_t position;
 };
 
-struct Type {
+struct Type
+{
     std::string name;
     std::map<std::string, TypeField> fields;
     std::vector<std::string> field_names;
     size_t size;
 };
 
-class ComplexType {
-public:
-    void None() {
+class ComplexType
+{
+  public:
+    void None()
+    {
         is_none = true;
     }
 
-    void Integer() {
-    	is_none = false;
+    void Integer()
+    {
+        is_none = false;
         is_standard = true;
         standard = ValueType::Integer;
     }
 
-    void Float() {
-    	is_none = false;
+    void Float()
+    {
+        is_none = false;
         is_standard = true;
         standard = ValueType::Float;
     }
 
-    void String() {
-    	is_none = false;
+    void String()
+    {
+        is_none = false;
         is_standard = true;
         standard = ValueType::String;
     }
 
-    void Struct(Type *type) {
-    	is_none = false;
+    void Struct(Type *type)
+    {
+        is_none = false;
         is_type = true;
         this->type = type;
     }
 
-    bool IsNone() {
+    bool IsNone()
+    {
         return is_none;
     }
 
-    bool IsInteger() {
+    bool IsInteger()
+    {
         return is_standard && standard == ValueType::Integer;
     }
 
-    bool IsFloat() {
+    bool IsFloat()
+    {
         return is_standard && standard == ValueType::Float;
     }
 
-    bool IsString() {
+    bool IsString()
+    {
         return is_standard && standard == ValueType::String;
     }
 
-    bool IsType() {
+    bool IsType()
+    {
         return is_type && type != nullptr;
     }
 
-    Type *GetType() { return type; }
+    Type *GetType()
+    {
+        return type;
+    }
 
-private:
+  private:
     bool is_standard = false;
     bool is_none = true;
     bool is_type = false;
@@ -85,4 +101,3 @@ ComplexType TypeInteger();
 ComplexType TypeFloat();
 ComplexType TypeString();
 ComplexType TypeStruct(Type *type);
-

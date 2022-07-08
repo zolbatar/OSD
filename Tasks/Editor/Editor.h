@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
-#include "../System/WindowManager/WindowManager.h"
+#include <OS.h>
+#include <Compiler.h>
+#include <WindowManager/WindowManager.h>
 
 enum class Mode
 {

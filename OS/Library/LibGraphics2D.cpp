@@ -1,5 +1,5 @@
-#include "../../Compiler/NativeCompiler/NativeCompiler.h"
-#include "../../Tasks/System/WindowManager/WindowManager.h"
+#include <OS.h>
+#include <WindowManager/WindowManager.h>
 
 void call_2D_mode(int64_t x, int64_t y)
 {

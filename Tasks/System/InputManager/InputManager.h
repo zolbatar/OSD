@@ -1,9 +1,6 @@
 #pragma once
-#include <map>
-#include <circle/input/keymap.h>
-#include "InputManagerStruct.h"
-#include "../WindowManager/window/Window.h"
-#include "../WindowManager/lvgl/lvgl.h"
+#include <OS.h>
+#include <WindowManager/WindowManager.h>
 
 class InputManager : public OSDTask
 {

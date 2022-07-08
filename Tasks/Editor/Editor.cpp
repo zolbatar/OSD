@@ -1,11 +1,12 @@
-#include <circle/logger.h>
 #include "Editor.h"
-#include "../../Library/StringLib.h"
-#include "../System/WindowManager/lvglwindow/LVGLWindow.h"
+#include <Breakdown/Breakdown.h>
+#include <IconBar/IconBar.h>
+#include <Menu/Menu.h>
+/*#include "../System/WindowManager/lvglwindow/LVGLWindow.h"
 #include "../System/Menu/Menu.h"
 #include "../System/IconBar/IconBar.h"
 #include "../System/WindowManager/style/Style.h"
-#include "../../../OS/Breakdown.h"
+#include "../../../OS/Breakdown.h"*/
 
 Editor::Editor(int x, int y, int w, int h)
 {
@@ -618,6 +619,7 @@ void Editor::UpdateDebugWindow()
     for (auto &s : breakdown->native_global)
     {
         auto address_s = s.address;
+        CLogger::Get()->Write("Native", LogNotice, "A: %p", address_s);
         if (address_s != previous_addr)
         {
             previous_addr = address_s;

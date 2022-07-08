@@ -1,13 +1,9 @@
 #include "Canvas.h"
-#include <circle/logger.h>
-#include <circle/multicore.h>
-#include "../../FontManager/FontManager.h"
-#include "../../WindowManager/style/Style.h"
+#include <FontManager/FontManager.h>
+#include <WindowManager/style/Style.h>
 
-Canvas::Canvas(OSDTask *task, lv_obj_t *parent, int w, int h) : task(task) //, m_DMAChannel(DMA_CHANNEL_NORMAL)
+Canvas::Canvas(OSDTask *task, lv_obj_t *parent, int w, int h) : Control(task, parent)
 {
-    this->parent = parent;
-
     fg = lv_color_white();
     bg = lv_color_black();
     size = ThemeManager::GetConst(ConstAttribute::MonoFontSize);
@@ -74,10 +70,6 @@ int64_t Canvas::GetContentWidth()
 int64_t Canvas::GetContentHeight()
 {
     return h;
-}
-
-void Canvas::Render()
-{
 }
 
 void Canvas::Mode(int64_t w, int64_t h)

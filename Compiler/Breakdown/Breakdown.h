@@ -1,12 +1,11 @@
 #pragma once
-#include <list>
-#include <map>
-#include <string>
-#include "../Tasks/System/FileManager/FileSystemObject.h"
-#include "../Compiler/Parser/Parser.h"
-#include "../Compiler/Tokeniser/Tokeniser.h"
-#include "../Compiler/IRCompiler/IRCompiler.h"
-#include "../Compiler/NativeCompiler/NativeCompiler.h"
+#include <Compiler.h>
+
+extern "C"
+{
+#include "../Compiler/Lightning/lightning.h"
+#include "../Compiler/Lightning/jit_private.h"
+}
 
 struct LineMapping
 {

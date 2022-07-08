@@ -1,5 +1,4 @@
-#include "OS.h"
-#include <circle/logger.h>
+#include <OS.h>
 
 extern size_t kernel_size;
 extern size_t initial_mem_free;

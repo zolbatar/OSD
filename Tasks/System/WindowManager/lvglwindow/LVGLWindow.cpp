@@ -1,5 +1,5 @@
 #include "LVGLWindow.h"
-#include "../../WindowManager/style/Style.h"
+#include <WindowManager/style/Style.h>
 
 static void lv_mywin_constructor(const lv_obj_class_t *class_p, lv_obj_t *obj);
 

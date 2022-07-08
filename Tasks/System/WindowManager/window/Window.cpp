@@ -1,7 +1,4 @@
 #include "Window.h"
-#include <circle/logger.h>
-#include "../lvglwindow/LVGLWindow.h"
-#include "../../InputManager/InputManager.h"
 
 std::map<std::string, Window *> Window::windows;
 

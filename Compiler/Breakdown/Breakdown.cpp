@@ -1,4 +1,3 @@
-#include <circle/logger.h>
 #include "Breakdown.h"
 
 std::map<size_t, LineBreakdown> Breakdown::line_breakdown;

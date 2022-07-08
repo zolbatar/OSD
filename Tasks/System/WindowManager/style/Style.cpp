@@ -1,8 +1,6 @@
 #include "Style.h"
-#include <circle/logger.h>
-#include "../../FontManager/FontManager.h"
-#include "../WindowManager.h"
-#include "../../../../Library/json.hpp"
+#include <FontManager/FontManager.h>
+#include <WindowManager/WindowManager.h>
 
 uint32_t OSD_EVENT_MOVED;
 

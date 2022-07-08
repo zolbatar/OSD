@@ -1,7 +1,7 @@
 #include "Tokeniser.h"
 #include <circle/timer.h>
 extern CTimer *timer;
-#include "../../OS/Breakdown.h"
+#include <Breakdown/Breakdown.h>
 
 extern void AddIRBreakdown(size_t line, size_t statement, std::string text);
 

@@ -1,4 +1,4 @@
-#include "../../Compiler/NativeCompiler/NativeCompiler.h"
+#include <OS.h>
 #include <sstream>
 
 int64_t call_STRING_equal(int64_t s1, int64_t s2)

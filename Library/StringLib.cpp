@@ -1,7 +1,4 @@
 #include <codecvt>
-#ifdef WINDOWS
-#include <conio.h>
-#endif
 #include <algorithm>
 #include <string>
 #include "StringLib.h"

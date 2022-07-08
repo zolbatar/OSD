@@ -1,4 +1,4 @@
-#include "../../Compiler/NativeCompiler/NativeCompiler.h"
+#include <OS.h>
 #include "math.h"
 
 #ifndef M_PI

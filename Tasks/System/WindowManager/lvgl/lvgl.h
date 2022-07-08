@@ -20,20 +20,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
+#include <OS.h>
 #include <lvgl/lvgl/lvgl.h>
-#include <circle/screen.h>
-#include <circle/bcmframebuffer.h>
-#include <circle/interrupt.h>
-#include <circle/input/mouse.h>
-#include <circle/dmachannel.h>
-#include <circle/types.h>
-#include <circle/usb/usbkeyboard.h>
-#include <circle/input/keyboardbuffer.h>
-#include <assert.h>
-#include <queue>
-#include <list>
-#include <map>
-#include "../../InputManager/InputManagerStruct.h"
 
 class GuiCLVGL
 {

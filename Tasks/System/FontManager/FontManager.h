@@ -1,10 +1,6 @@
 #pragma once
-#include "../../../OS/OS.h"
-#include "../WindowManager/canvas/Canvas.h"
-#include "../WindowManager/window/Window.h"
-#include "../WindowManager/lvgl/lvgl.h"
-#include "../WindowManager/style/Style.h"
-#include <map>
+#include <OS.h>
+#include <WindowManager/WindowManager.h>
 
 // Lightweight(ish) truetype
 #define STB_TRUETYPE_IMPLEMENTATION

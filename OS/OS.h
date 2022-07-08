@@ -1,14 +1,9 @@
 #pragma once
-#include <stdint.h>
-#include <stdlib.h>
-#include <inttypes.h>
-#include <string>
-#include <vector>
-#include <stack>
-#include "../Compiler/Tokeniser/Types.h"
-#include "OS_Tasks.h"
-#include <circle/new.h>
-#include <circle/alloc.h>
+#include <OS_Includes.h>
+#include <OS_Tasks.h>
+#include <Library/Functions.h>
+#include "../Library/StringLib.h"
+#include "../Library/json.hpp"
 
 void OS_Init();
 

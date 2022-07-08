@@ -1,5 +1,4 @@
 #include "OS_Tasks_Strings.h"
-#include <circle/logger.h>
 
 void OSDTaskStrings::FreeString(int64_t index)
 {

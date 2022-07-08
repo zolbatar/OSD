@@ -1,6 +1,5 @@
 #pragma once
-#include <cstddef>
-#include <array>
+#include <OS_Includes.h>
 
 const size_t ALLOCATION_SIZE = 32768;
 

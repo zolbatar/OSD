@@ -1,7 +1,4 @@
 #include "Parser.h"
-#include "../Exception/DARICException.h"
-#include <tuple>
-#include <circle/timer.h>
 extern CTimer *timer;
 
 std::map<TokenType, std::list<ComplexType>> Parser::generic_functions;

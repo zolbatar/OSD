@@ -1,10 +1,6 @@
 #pragma once
-#include <stack>
-#include "../Tokeniser/Tokeniser.h"
-#include "../Tokeniser/Types.h"
-#include "../../OS/Library/Functions.h"
-#include "../Exception/DARICException.h"
-#include <circle/new.h>
+#include <OS_Includes.h>
+#include <Tokeniser/Tokeniser.h>
 #include "IROpcodes.h"
 
 class IRInstruction

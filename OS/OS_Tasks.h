@@ -1,28 +1,11 @@
 #pragma once
-#ifndef CLION
-#include <circle/sched/scheduler.h>
-#include <circle/sched/task.h>
-#include <circle/sysconfig.h>
-#include <circle/new.h>
-#include <circle/alloc.h>
-#include <circle/timer.h>
-#include <circle/logger.h>
-#include <circle/spinlock.h>
-#include <circle/sched/mutex.h>
-#endif
-#include <string>
-#include <list>
-#include <chrono>
-#include <queue>
-#include "OS_Messages.h"
-#include "OS_Tasks_Strings.h"
-#include "OS_Tasks_Data.h"
-#include "OS_Tasks_Code.h"
-#include "OS_Tasks_GUI.h"
-#include "OS_Tasks_Memory.h"
-#include "../Compiler/Tokeniser/Types.h"
-#include "../Tasks/System/FileManager/FileSystemObject.h"
-#include "../Tasks/System/InputManager/InputManagerStruct.h"
+#include <OS.h>
+#include <OS_Messages.h>
+#include <OS_Tasks_Strings.h>
+#include <OS_Tasks_Data.h>
+#include <OS_Tasks_Code.h>
+#include <OS_Tasks_GUI.h>
+#include <OS_Tasks_Memory.h>
 
 enum class TaskType
 {

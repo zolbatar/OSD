@@ -1,8 +1,5 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <map>
-#include "../Compiler/Tokeniser/Types.h"
+#include <OS_Includes.h>
 
 struct DataElement
 {

@@ -6,12 +6,12 @@ CIRCLEHOME = ../circle-stdlib/libs/circle
 NEWLIBDIR = ../circle-stdlib/install/$(NEWLIB_ARCH)
 
 OBJS    = 	main.o kernel.o \
-			OS/Chrono/Chrono.o \
-			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o OS/OS_Tasks_Code.o OS/Breakdown.o OS/OS_Tasks_Strings.o OS/OS_Tasks_Data.o \
+			OS/OS.o OS/OS_Tasks.o OS/OS_Strings.o OS/OS_Tasks_Code.o OS/OS_Tasks_Strings.o OS/OS_Tasks_Data.o \
 			OS/OS_Tasks_GUI.o OS/OS_Tasks_Memory.o \
 			Tasks/System/InputManager/InputManager.o \
 			\
-			Tasks/System/WindowManager/window/Window.o Tasks/System/WindowManager/lvglwindow/LVGLWindow.o Tasks/System/WindowManager/canvas/Canvas.o \
+			Tasks/System/WindowManager/window/Window.o Tasks/System/WindowManager/lvglwindow/LVGLWindow.o \
+			Tasks/System/WindowManager/controls/Control.o Tasks/System/WindowManager/controls/canvas/Canvas.o Tasks/System/WindowManager/controls/textedit/TextEdit.o \
 			Tasks/System/WindowManager/WindowManager.o Tasks/System/WindowManager/style/Style.o Tasks/System/WindowManager/lvgl/lvgl.o \
 			\
 			Tasks/System/IconBar/IconBar.o \
@@ -24,6 +24,7 @@ OBJS    = 	main.o kernel.o \
 			Tasks/Editor/Editor.o \
 			Library/StringLib.o \
 			\
+			Compiler/Breakdown/Breakdown.o \
 			Compiler/Tokeniser/Tokeniser.o Compiler/Tokeniser/TokeniserNumber.o Compiler/Tokeniser/TokeniserString.o Compiler/Tokeniser/TokeniserSymbol.o \
 			Compiler/Tokeniser/TokeniserText.o Compiler/Tokeniser/TokeniserPrinter.o \
 			\
@@ -49,7 +50,8 @@ OBJS    = 	main.o kernel.o \
 
 include $(CIRCLEHOME)/Rules.mk
 
-CFLAGS += -I "$(NEWLIBDIR)/include" -I $(STDDEF_INCPATH) -I ../circle-stdlib/include -I Compiler/capstone/include
+CFLAGS += 	-I "$(NEWLIBDIR)/include" -I $(STDDEF_INCPATH) -I ../circle-stdlib/include -I Compiler/capstone/include \
+			-I OS/ -I Tasks/System -I Compiler
 LIBS := "$(NEWLIBDIR)/lib/libm.a" "$(NEWLIBDIR)/lib/libc.a" "$(NEWLIBDIR)/lib/libcirclenewlib.a" \
  	$(CIRCLEHOME)/addon/SDCard/libsdcard.a \
   	$(CIRCLEHOME)/lib/usb/libusb.a \

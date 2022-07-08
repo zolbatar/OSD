@@ -1,9 +1,7 @@
 #include "NativeCompiler.h"
-#include <circle/logger.h>
+#include <Breakdown/Breakdown.h>
 #include <capstone/capstone.h>
 #include <capstone/platform.h>
-#include "../Parser/Parser.h"
-#include "../../OS/Breakdown.h"
 
 NativeCompiler::NativeCompiler(bool optimise, jit_state_t *_jit, OSDTaskCode *task)
     : optimise(optimise), _jit(_jit), task(task)
@@ -189,12 +187,16 @@ void call_STACKCHECK(int64_t sp, int64_t line_number, uint64_t fp)
 
 void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug, bool global)
 {
+	int64_t previous_line = 0;
     for (auto &op : *ir)
     {
-        if (global)
-            Breakdown::InsertLineMappingGlobal(op.line_number, jit_indirect());
-        else
-            Breakdown::InsertLineMapping(op.line_number, jit_indirect());
+    	if (op.line_number != previous_line) {
+    		previous_line = op.line_number;
+    		if (global)
+    			Breakdown::InsertLineMappingGlobal(op.line_number, jit_indirect());
+    		else
+    			Breakdown::InsertLineMapping(op.line_number, jit_indirect());
+    	}
 
         switch (op.type)
         {

@@ -1,8 +1,4 @@
 #pragma once
-#ifdef WINDOWS
-#include <conio.h>
-#include <direct.h>
-#endif
 #include <string>
 #include <list>
 

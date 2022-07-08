@@ -104,9 +104,7 @@ Key InputManager::GetKeyInfo(uint8_t lv, uint8_t modifiers)
     k.lv_keycode = lv;
 
     // Keymap
-    char Buffer[2];
     k.keycode = keymap.Translate(lv, modifiers);
-    auto ks = keymap.GetString(k.keycode, modifiers, Buffer);
     if (k.keycode <= 255)
     {
         k.ascii = k.keycode & 0xFF;

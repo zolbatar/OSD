@@ -1,4 +1,4 @@
-#include "../../Compiler/NativeCompiler/NativeCompiler.h"
+#include <OS.h>
 #include <random>
 
 std::default_random_engine re;

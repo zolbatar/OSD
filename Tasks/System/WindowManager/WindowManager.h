@@ -1,12 +1,11 @@
 #pragma once
-#include "../../../OS/OS.h"
-#include "canvas/Canvas.h"
-#include "window/Window.h"
+#include <OS.h>
 #include "lvgl/lvgl.h"
+#include "controls/Control.h"
+#include "controls/canvas/Canvas.h"
 #include "style/Style.h"
-#include "../../DARICWindow.h"
-#include <map>
-#include <memory>
+#include "window/Window.h"
+#include "../Tasks/DARICWindow.h"
 
 class FileType
 {

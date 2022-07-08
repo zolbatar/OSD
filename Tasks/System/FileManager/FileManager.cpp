@@ -1,6 +1,4 @@
 #include "FileManager.h"
-#include "../../../Library/StringLib.h"
-#include <circle/logger.h>
 
 std::map<std::string, FSVolume> FileManager::volumes;
 FileSystemHandler *FileManager::fsFAT;
