@@ -247,7 +247,7 @@ void GuiCLVGL::KeyboardRead(lv_indev_drv_t *pDriver, lv_indev_data_t *pData)
         else
         {
             auto diff = CTimer::GetClockTicks() - k.last_key;
-            if (diff > 100)
+            if (diff > 1000000 / 10)
             {
                 InputManager::KeyDown(k);
                 k.last_key = CTimer::GetClockTicks();

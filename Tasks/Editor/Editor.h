@@ -17,6 +17,11 @@ class Editor : public OSDTask
     void Debug();
     void UpdateDebugWindow();
 
+    bool debug_output = false;
+    lv_obj_t *grid;
+    lv_coord_t col_dsc[3] = {LV_PCT(100), 0, LV_GRID_TEMPLATE_LAST};
+    lv_coord_t row_dsc[4] = {46, LV_PCT(100), 150, LV_GRID_TEMPLATE_LAST};
+
   private:
     std::string volume;
     std::string directory;
@@ -28,11 +33,11 @@ class Editor : public OSDTask
     lv_obj_t *ta3;
     lv_obj_t *ta4;
     lv_obj_t *status_text;
-    lv_coord_t col_dsc[3] = {LV_PCT(100), 400, LV_GRID_TEMPLATE_LAST};
-    lv_coord_t row_dsc[4] = {46, LV_PCT(100), 150, LV_GRID_TEMPLATE_LAST};
+    DARICWindow *app = NULL;
 
     void Maximise();
     void CalculateLongestLine();
+    static void DebugSelectHandler(lv_event_t *e);
     static void ResizeEventHandler(lv_event_t *e);
     static void RunHandler(lv_event_t *e);
     static void RunFullScreenHandler(lv_event_t *e);

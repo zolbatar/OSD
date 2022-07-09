@@ -187,16 +187,34 @@ void call_STACKCHECK(int64_t sp, int64_t line_number, uint64_t fp)
 
 void NativeCompiler::IRToNativeSection(std::list<IRInstruction> *ir, bool debug, bool global)
 {
-	int64_t previous_line = 0;
     for (auto &op : *ir)
     {
-    	if (op.line_number != previous_line) {
-    		previous_line = op.line_number;
-    		if (global)
-    			Breakdown::InsertLineMappingGlobal(op.line_number, jit_indirect());
-    		else
-    			Breakdown::InsertLineMapping(op.line_number, jit_indirect());
-    	}
+        switch (op.type)
+        {
+        case IROpcodes::NOP:
+        case IROpcodes::VariableGlobalCreateInteger:
+        case IROpcodes::VariableGlobalCreateFloat:
+        case IROpcodes::VariableLocalCreateInteger:
+        case IROpcodes::VariableLocalCreateFloat:
+        case IROpcodes::VariableLocalCreateType:
+        case IROpcodes::VariableSwapSourceInteger:
+        case IROpcodes::JumpForward:
+        case IROpcodes::JumpOnConditionTrueForward:
+        case IROpcodes::JumpOnConditionFalseForward:
+        case IROpcodes::ArgumentInteger:
+        case IROpcodes::ArgumentFloat:
+        case IROpcodes::ArgumentString:
+        case IROpcodes::StackReturnIntArgument:
+        case IROpcodes::StackReturnFloatArgument:
+        case IROpcodes::StackReturnStringArgument:
+            break;
+        default:
+            if (global)
+                Breakdown::InsertLineMappingGlobal(op.line_number, jit_indirect());
+            else
+                Breakdown::InsertLineMapping(op.line_number, jit_indirect());
+            break;
+        }
 
         switch (op.type)
         {

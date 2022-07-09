@@ -34,7 +34,6 @@ void Editor::ScrollBeginEvent(lv_event_t *e)
 void Editor::Run()
 {
     SetNameAndAddToList();
-
     Breakdown::Init();
 
     // Create Window
@@ -62,7 +61,7 @@ void Editor::Run()
     auto content = lv_mywin_get_content(ww);
 
     // Grid layout
-    lv_obj_t *grid = lv_obj_create(content);
+    grid = lv_obj_create(content);
     lv_obj_set_style_grid_column_dsc_array(grid, col_dsc, 0);
     lv_obj_set_style_grid_row_dsc_array(grid, row_dsc, 0);
     lv_obj_set_size(grid, LV_PCT(100), LV_PCT(100));
@@ -76,22 +75,12 @@ void Editor::Run()
     edit->SetText(loaded_code);
     lv_obj_set_grid_cell(edit->GetObjectParent(), LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
 
-    /*    obj_parent = lv_obj_create(grid);
-        lv_obj_set_grid_cell(obj_parent, LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
-        lv_obj_add_style(obj_parent, ThemeManager::GetStyle(StyleAttribute::Scrollbar), LV_PART_SCROLLBAR);
-        lv_obj_add_style(obj_parent, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
-        lv_obj_add_event_cb(obj_parent, ScrollEventHandler, LV_EVENT_SCROLL, this);
-
-        // Canvas child
-        obj = lv_obj_create(obj_parent);
-        lv_obj_add_style(obj, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
-        lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);*/
-
     // Buttons
     auto buttons = lv_obj_create(grid);
     lv_obj_set_grid_cell(buttons, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
     lv_obj_set_size(buttons, LV_PCT(100), 46);
     lv_obj_set_flex_flow(buttons, LV_FLEX_FLOW_ROW);
+    lv_obj_set_flex_align(buttons, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_add_style(buttons, ThemeManager::GetStyle(StyleAttribute::WindowContentPadded), LV_STATE_DEFAULT);
     lv_obj_set_style_border_width(buttons, 1, LV_STATE_DEFAULT);
     lv_obj_set_style_border_color(buttons, ThemeManager::GetColour(ColourAttribute::WindowBorder), LV_STATE_DEFAULT);
@@ -124,6 +113,9 @@ void Editor::Run()
         lv_obj_center(img);
         lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
     }
+    auto cb = lv_checkbox_create(buttons);
+    lv_checkbox_set_text(cb, "Debug Output");
+    lv_obj_add_event_cb(cb, DebugSelectHandler, LV_EVENT_ALL, this);
 
     // Status window
     auto status = lv_obj_create(grid);
@@ -211,9 +203,22 @@ void Editor::Run()
     {
         Yield();
 
+        // Running?
+        if (app != NULL)
+        {
+            if (!CScheduler::Get()->IsValidTask(app))
+            {
+                app = NULL;
+                lv_textarea_set_text(status_text, "Idle");
+                lv_textarea_set_cursor_pos(status_text, 0);
+            }
+        }
+
         // Process keyboard queue
+        bool update = false;
         while (!keyboard_queue.empty())
         {
+            update = true;
             auto k = keyboard_queue.front();
             keyboard_queue.pop();
 
@@ -240,6 +245,8 @@ void Editor::Run()
                 edit->HandleKey(k);
             }
         }
+        if (update)
+            UpdateDebugWindow();
     }
 }
 
@@ -303,15 +310,35 @@ void Editor::BuildHandler(lv_event_t *e)
 
 void Editor::RunWindowed()
 {
-    auto app = new DARICWindow(volume, directory, filename, "DARIC", false, true, 100, 100, 640, 512, 1920, 1080);
+    if (app != NULL)
+    {
+        lv_textarea_set_text(status_text, "Program already running");
+        lv_textarea_set_cursor_pos(status_text, 0);
+        return;
+    }
+    lv_textarea_set_text(status_text, "Compiling...");
+    lv_textarea_set_cursor_pos(status_text, 0);
+    app = new DARICWindow(volume, directory, filename, "DARIC", false, debug_output, 100, 100, 640, 512, 640, 512);
     app->SetCode(edit->GetText());
+    lv_textarea_set_text(status_text, "Running...");
+    lv_textarea_set_cursor_pos(status_text, 0);
     app->Start();
 }
 
 void Editor::FullscreenRun()
 {
-    auto app = new DARICWindow(volume, directory, filename, "DARIC", true, true, 100, 100, 640, 512, 1920, 1080);
+    if (app != NULL)
+    {
+        lv_textarea_set_text(status_text, "Program already running");
+        lv_textarea_set_cursor_pos(status_text, 0);
+        return;
+    }
+    lv_textarea_set_text(status_text, "Compiling...");
+    lv_textarea_set_cursor_pos(status_text, 0);
+    app = new DARICWindow(volume, directory, filename, "DARIC", true, debug_output, 100, 100, 640, 512, 1920, 1080);
     app->SetCode(edit->GetText());
+    lv_textarea_set_text(status_text, "Running...");
+    lv_textarea_set_cursor_pos(status_text, 0);
     app->Start();
 }
 
@@ -319,9 +346,11 @@ void Editor::Debug()
 {
     auto c = edit->GetText();
     std::string msg;
+    lv_textarea_set_text(status_text, "Compiling...");
+    lv_textarea_set_cursor_pos(status_text, 0);
     try
     {
-        msg = Code.CompileSource(&fs, volume, directory, filename, c, true);
+        msg = Code.CompileSource(&fs, volume, directory, filename, c, debug_output);
     }
     catch (DARICException &ex)
     {
@@ -386,29 +415,17 @@ void Editor::UpdateDebugWindow()
     std::string native;
     if (breakdown->native_global.size() > 0)
         native += "Global:\n";
-    size_t previous_addr = 0;
     for (auto &s : breakdown->native_global)
     {
-        auto address_s = s.address;
-        CLogger::Get()->Write("Native", LogNotice, "A: %p", address_s);
-        if (address_s != previous_addr)
-        {
-            previous_addr = address_s;
-            auto ss = Breakdown::GetNativeForAddress(address_s);
-            native += *ss + "\n";
-        }
+        auto ss = Breakdown::GetNativeForAddress(s.address);
+        native += *ss + "\n";
     }
     if (breakdown->native.size() > 0)
         native += "DEF:\n";
     for (auto &s : breakdown->native)
     {
-        auto address_s = s.address;
-        if (address_s != previous_addr)
-        {
-            previous_addr = address_s;
-            auto ss = Breakdown::GetNativeForAddress(address_s);
-            native += *ss + "\n";
-        }
+        auto ss = Breakdown::GetNativeForAddress(s.address);
+        native += *ss + "\n";
     }
     lv_textarea_set_text(ta4, native.c_str());
     lv_textarea_set_cursor_pos(ta4, 0);
@@ -421,4 +438,28 @@ void Editor::Maximise()
     ww->Maximise(false);
     lv_obj_update_layout(ww->GetLVGLWindow());
     edit->Resized();
+}
+
+void Editor::DebugSelectHandler(lv_event_t *e)
+{
+    auto editor = (Editor *)e->user_data;
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t *obj = lv_event_get_target(e);
+    if (code == LV_EVENT_VALUE_CHANGED)
+    {
+        editor->debug_output = lv_obj_get_state(obj) & LV_STATE_CHECKED;
+
+        if (editor->debug_output)
+        {
+            editor->col_dsc[1] = 400;
+        }
+        else
+        {
+            editor->col_dsc[1] = 0;
+        }
+        lv_obj_set_style_grid_column_dsc_array(editor->grid, editor->col_dsc, 0);
+        lv_obj_update_layout(editor->grid);
+        if (editor->edit != NULL)
+            editor->edit->Resized();
+    }
 }

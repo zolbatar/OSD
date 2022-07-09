@@ -39,7 +39,6 @@ OSDTask::~OSDTask()
 
 void OSDTask::SetNameAndAddToList()
 {
-    SetName(id.c_str());
     tasks_list.push_back(this);
 }
 
@@ -144,6 +143,7 @@ OSDTask *OSDTask::GetTask(const char *s)
 
 void OSDTask::Yield()
 {
+    yield_due = false;
     Strings.ClearTemporaryStrings();
     if (terminate_requested)
         TerminateTask();

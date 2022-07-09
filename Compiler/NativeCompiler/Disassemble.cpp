@@ -4,6 +4,8 @@
 
 void NativeCompiler::Disassemble(std::map<size_t, std::string> *disass)
 {
+    CLogger::Get()->Write("NativeCompiler", LogNotice, "Disassembly");
+
     // Disassemble
     csh handle;
     cs_insn *insn;
@@ -16,14 +18,18 @@ void NativeCompiler::Disassemble(std::map<size_t, std::string> *disass)
     cs_option(handle, CS_OPT_DETAIL, CS_OPT_ON);
     auto exec = (uint8_t *)task->GetExec();
     count = cs_disasm(handle, exec, task->GetCodeSize(), (uint64_t)_jit->code.ptr, 0, &insn);
+    char f[256];
     if (count > 0)
     {
+        if (OSDTask::yield_due)
+            GetCurrentTask()->Yield();
         size_t j;
         for (j = 0; j < count; j++)
         {
-            char f[256];
             sprintf(f, "0x%" PRIx64 ":\t%s\t%s", insn[j].address, insn[j].mnemonic, insn[j].op_str);
-            disass->insert(std::make_pair(insn[j].address, std::string(f)));
+            auto ss = std::string(f);
+            replaceAll(ss, "\t", " ");
+            disass->insert(std::make_pair(insn[j].address, ss));
             // CLogger::Get()->Write("NativeCompiler", LogNotice, "%p: %s", insn[j].address, f);
         }
 
