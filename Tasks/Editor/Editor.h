@@ -17,6 +17,7 @@ class Editor : public OSDTask
     void Debug();
     void UpdateDebugWindow();
     void Clear();
+    void HandleException(DARICException &ex);
 
     bool debug_output = false;
     lv_obj_t *grid;
@@ -26,7 +27,7 @@ class Editor : public OSDTask
   private:
     std::string volume;
     std::string directory;
-    std::string filename;
+    std::string filename = "<No File>";
     TextEdit *edit = NULL;
     std::string loaded_code;
     lv_obj_t *ta1;

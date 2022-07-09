@@ -215,9 +215,12 @@ void OSDTask::SetActive(OSDTask *task)
     // CLogger::Get()->Write("OSDTask", LogNotice, "Set active: %s", task->GetName());
     task_active = task;
     MoveTaskToTop(task);
-    InputManager::ClaimInput(task);
-    auto window = (Window *)task->GUI.GetWindow();
-    window->SetActive();
+    if (task != NULL && task->priority != TaskPriority::System)
+    {
+        InputManager::ClaimInput(task);
+        auto window = (Window *)task->GUI.GetWindow();
+        window->SetActive();
+    }
 }
 
 bool OSDTask::IsActive()

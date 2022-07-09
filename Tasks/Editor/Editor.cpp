@@ -52,9 +52,6 @@ void Editor::Run()
     m.fixed = true;
     CallGUIDirectEx(&mess);
 
-    // App icon
-    IconBar::RegisterApp(NULL, "Editor", WindowManager::GetIcon("Application/CodeEditor"), NULL, NULL);
-
     // Get window
     auto window = (Window *)this->GUI.GetWindow();
     auto ww = window->GetLVGLWindow();
@@ -140,8 +137,8 @@ void Editor::Run()
         lv_obj_center(img);
         lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
     }
-    auto cb = lv_checkbox_create(buttons);
-    /*    lv_checkbox_set_text(cb, "Show assembly");
+    /*auto cb = lv_checkbox_create(buttons);
+        lv_checkbox_set_text(cb, "Show assembly");
         lv_obj_add_event_cb(cb, DebugSelectHandler, LV_EVENT_ALL, this);*/
 
     // Status window
@@ -236,8 +233,8 @@ void Editor::Run()
             if (!CScheduler::Get()->IsValidTask(app))
             {
                 app = NULL;
-                lv_textarea_set_text(status_text, "Idle");
-                lv_textarea_set_cursor_pos(status_text, 0);
+                //                lv_textarea_set_text(status_text, "Idle");
+                //                lv_textarea_set_cursor_pos(status_text, 0);
             }
         }
 
@@ -272,8 +269,6 @@ void Editor::Run()
                 edit->HandleKey(k);
             }
         }
-        if (update)
-            UpdateDebugWindow();
     }
 }
 
@@ -366,7 +361,11 @@ void Editor::RunWindowed()
     }
     lv_textarea_set_text(status_text, "Compiling...");
     lv_textarea_set_cursor_pos(status_text, 0);
-    app = new DARICWindow(volume, directory, filename, "DARIC", false, debug_output, 100, 100, 640, 512, 640, 512);
+    app = new DARICWindow(this, volume, directory, filename, "DARIC", false, debug_output, true, 100, 100,
+                          640 + ThemeManager::GetConst(ConstAttribute::WindowBorderWidth) * 2,
+                          512 + ThemeManager::GetConst(ConstAttribute::WindowBorderWidth) * 3 +
+                              ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight),
+                          640, 512);
     app->SetCode(edit->GetText());
     lv_textarea_set_text(status_text, "Running...");
     lv_textarea_set_cursor_pos(status_text, 0);
@@ -383,7 +382,8 @@ void Editor::FullscreenRun()
     }
     lv_textarea_set_text(status_text, "Compiling...");
     lv_textarea_set_cursor_pos(status_text, 0);
-    app = new DARICWindow(volume, directory, filename, "DARIC", true, debug_output, 100, 100, 640, 512, 1920, 1080);
+    app = new DARICWindow(this, volume, directory, filename, "DARIC", true, debug_output, true, 100, 100, 640, 512,
+                          1920, 1080);
     app->SetCode(edit->GetText());
     lv_textarea_set_text(status_text, "Running...");
     lv_textarea_set_cursor_pos(status_text, 0);
@@ -532,4 +532,29 @@ void Editor::DebugSelectHandler(lv_event_t *e)
         if (editor->edit != NULL)
             editor->edit->Resized();
     }
+}
+
+void Editor::HandleException(DARICException &ex)
+{
+    std::string cat;
+    switch (ex.type)
+    {
+    case ExceptionType::COMPILER:
+        cat = "[Compiler] ";
+        break;
+    case ExceptionType::TOKENISER:
+        cat = "[Tokeniser] ";
+        break;
+    case ExceptionType::PARSER:
+        cat = "[Parser] ";
+        break;
+    case ExceptionType::RUNTIME:
+        cat = "[Runtime] ";
+        break;
+    }
+    char msg[256];
+    sprintf(msg, "%s%s in file '%s' at line %d, column %d", cat.c_str(), ex.error.c_str(), ex.filename.c_str(),
+            ex.line_number, ex.char_position);
+    lv_textarea_set_text(status_text, msg);
+    lv_textarea_set_cursor_pos(status_text, 0);
 }

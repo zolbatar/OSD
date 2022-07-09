@@ -44,6 +44,10 @@ Canvas::Canvas(OSDTask *task, lv_obj_t *parent, int w, int h) : Control(task, pa
 
 Canvas::~Canvas()
 {
+    if (firstbuffer != NULL)
+        lv_obj_del(firstbuffer);
+    if (secondbuffer != NULL)
+        lv_obj_del(secondbuffer);
     delete buffer;
     task->Memory.RemoveFrameBufferMemory(sz);
     if (buffer_back != nullptr)

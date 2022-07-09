@@ -258,8 +258,8 @@ void Filer::IconClickEventHandler(lv_event_t *e)
         else if (InputManager::AltDown)
         {
             // Alt for window
-            auto app = new DARICWindow(icon_clicked->volume, icon_clicked->directory, icon_clicked->filename,
-                                       icon_clicked->filename, false, false, cx, cy,
+            auto app = new DARICWindow(NULL, icon_clicked->volume, icon_clicked->directory, icon_clicked->filename,
+                                       icon_clicked->filename, false, false, false, cx, cy,
                                        640 + ThemeManager::GetConst(ConstAttribute::WindowBorderWidth) * 2,
                                        512 + ThemeManager::GetConst(ConstAttribute::WindowBorderWidth) * 3 +
                                            ThemeManager::GetConst(ConstAttribute::WindowHeaderHeight),
@@ -269,8 +269,8 @@ void Filer::IconClickEventHandler(lv_event_t *e)
         }
         else
         {
-            auto app = new DARICWindow(icon_clicked->volume, icon_clicked->directory, icon_clicked->filename,
-                                       icon_clicked->filename, true, false, cx, cy, 640, 512, 1920, 1080);
+            auto app = new DARICWindow(NULL, icon_clicked->volume, icon_clicked->directory, icon_clicked->filename,
+                                       icon_clicked->filename, true, false, false, cx, cy, 640, 512, 1920, 1080);
             app->LoadSourceCode();
             app->Start();
         }

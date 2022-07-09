@@ -2,6 +2,7 @@
 #include "../Filer/Filer.h"
 #include "../TasksWindow/TasksWindow.h"
 #include "../FileManager/FileManager.h"
+#include "../../Editor/Editor.h"
 
 lv_obj_t *IconBar::icon_bar_cont;
 lv_obj_t *IconBar::icon_bar_left;
@@ -57,6 +58,7 @@ void IconBar::Run()
     AddDriveIcon("Folder/Applications", ":Apps");
     AddDriveIcon("Folder/Home", ":Home");
     RegisterApp(NULL, "Daric", WindowManager::GetIcon("Application/Sloth"), TasksClickEventHandler, NULL);
+    RegisterApp(NULL, "Editor", WindowManager::GetIcon("Application/CodeEditor"), EditorClickEventHandler, NULL);
 
     ClearOverride();
 
@@ -147,4 +149,10 @@ void IconBar::TasksClickEventHandler(lv_event_t *e)
     auto app = (OSDTask *)e->user_data;
     auto tasks = new TasksWindow(1100, 600, 768, 256);
     tasks->Start();
+}
+
+void IconBar::EditorClickEventHandler(lv_event_t *e)
+{
+    auto editor = new Editor(100, 100, 1500, 800);
+    editor->Start();
 }

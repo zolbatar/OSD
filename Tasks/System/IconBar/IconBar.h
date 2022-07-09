@@ -32,6 +32,7 @@ class IconBar : public OSDTask
     void AddDriveIcon(std::string name, std::string drive_name);
     static void DriveClickEventHandler(lv_event_t *e);
     static void TasksClickEventHandler(lv_event_t *e);
+    static void EditorClickEventHandler(lv_event_t *e);
     static std::map<size_t, App> apps;
     static size_t index;
     std::list<Drive> drives;

@@ -11,7 +11,7 @@ class Control
 
   protected:
     OSDTask *task;
-    lv_obj_t *object;
+    lv_obj_t *object = NULL;
     lv_obj_t *parent;
     std::list<Control> children;
 };

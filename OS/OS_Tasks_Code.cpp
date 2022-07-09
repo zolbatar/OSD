@@ -60,10 +60,6 @@ std::string OSDTaskCode::CompileSource(FileSystem *fs, std::string volume, std::
     std::string messages;
     Breakdown::Init();
 
-    fs->SetVolume(volume);
-    fs->SetCurrentDirectory(directory);
-    filename = fs->GetCurrentDirectory() + filename;
-
     bool optimise = true;
     Tokeniser token(filename, code);
     Parser parser;
@@ -114,7 +110,12 @@ std::string OSDTaskCode::CompileSource(FileSystem *fs, std::string volume, std::
 
     // Output new style debug
     if (debug)
+    {
+        fs->SetVolume(volume);
+        fs->SetCurrentDirectory(directory);
+        filename = fs->GetCurrentDirectory() + filename;
         Breakdown::Output(fs, volume, directory, filename);
+    }
 
     messages += "Total Time: " + std::to_string((int)total_time_span) + "ms\n";
     return messages;

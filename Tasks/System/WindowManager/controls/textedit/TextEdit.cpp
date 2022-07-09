@@ -132,7 +132,7 @@ void TextEdit::Render()
 
     // Adjust cursor etc.
     if (y >= static_cast<int>(code.size()))
-        y = static_cast<int>(code.size());
+        y = static_cast<int>(code.size() - 1);
     if (y < 0)
         y = 0;
     if (x >= static_cast<int>(code[y].size()))

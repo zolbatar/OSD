@@ -4,14 +4,18 @@
 #include "DARICWindow.h"
 #include "../Compiler/Exception/DARICException.h"
 #include "System/WindowManager/lvglwindow/LVGLWindow.h"
+#include "../Editor/Editor.h"
 
-DARICWindow::DARICWindow(std::string volume, std::string directory, std::string filename, std::string name,
-                         bool fullscreen, bool inside_editor, int x, int y, int w, int h, int canvas_w, int canvas_h)
+DARICWindow::DARICWindow(void *editor, std::string volume, std::string directory, std::string filename,
+                         std::string name, bool fullscreen, bool debug, bool inside_editor, int x, int y, int w, int h,
+                         int canvas_w, int canvas_h)
 {
+    this->editor = editor;
     this->volume = volume;
     this->filename = filename;
     this->directory = directory;
     this->GUI.fullscreen = fullscreen;
+    this->debug = debug;
     this->inside_editor = inside_editor;
     this->GUI.d_x = x;
     this->GUI.d_y = y;
@@ -70,7 +74,7 @@ void DARICWindow::Run()
     // Compile (and run)
     try
     {
-        Code.CompileSource(&fs, volume, directory, filename, code, inside_editor);
+        Code.CompileSource(&fs, volume, directory, filename, code, debug);
         if (GUI.fullscreen)
         {
             ww->Maximise(true);
@@ -80,24 +84,31 @@ void DARICWindow::Run()
     }
     catch (DARICException &ex)
     {
-        std::string cat;
-        switch (ex.type)
+        if (editor != NULL)
         {
-        case ExceptionType::COMPILER:
-            cat = "[Compiler] ";
-            break;
-        case ExceptionType::TOKENISER:
-            cat = "[Tokeniser] ";
-            break;
-        case ExceptionType::PARSER:
-            cat = "[Parser] ";
-            break;
-        case ExceptionType::RUNTIME:
-            cat = "[Runtime] ";
-            break;
+            ((Editor *)editor)->HandleException(ex);
         }
-        CLogger::Get()->Write("CompileSource", LogPanic, "%s%s in file '%s' at line %d, column %d", cat.c_str(),
-                              ex.error.c_str(), ex.filename.c_str(), ex.line_number, ex.char_position);
+        else
+        {
+            std::string cat;
+            switch (ex.type)
+            {
+            case ExceptionType::COMPILER:
+                cat = "[Compiler] ";
+                break;
+            case ExceptionType::TOKENISER:
+                cat = "[Tokeniser] ";
+                break;
+            case ExceptionType::PARSER:
+                cat = "[Parser] ";
+                break;
+            case ExceptionType::RUNTIME:
+                cat = "[Runtime] ";
+                break;
+            }
+            CLogger::Get()->Write("CompileSource", LogPanic, "%s%s in file '%s' at line %d, column %d", cat.c_str(),
+                                  ex.error.c_str(), ex.filename.c_str(), ex.line_number, ex.char_position);
+        }
     }
     TerminateTask();
 }
