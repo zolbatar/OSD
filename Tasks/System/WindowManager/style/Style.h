@@ -12,6 +12,7 @@ enum class ColourAttribute
     IconBarForeground,
     Focus,
     ScrollbarBackground,
+    ScrollbarLightBackground,
     WindowBackground,
     WindowForeground,
     WindowHeaderForeground,
@@ -50,6 +51,7 @@ enum class StyleAttribute
     MenuItemBold,
     MenuSeparator,
     Scrollbar,
+    ScrollbarLight,
     TransparentWindow,
     Window,
     Button,
@@ -106,6 +108,9 @@ enum class ConstAttribute
 #define LV_SYMBOL_BUILD "\xEE\x8B\x86"      // 0xe2c6
 #define LV_SYMBOL_FULLSCREEN "\xEF\x90\x81" // 0xf401
 #define LV_SYMBOL_WINDOWED "\xEF\x90\x8F"   // 0xf40f
+#define LV_SYMBOL_NEW "\xEF\x85\x9B"        // 0xf15b
+#define LV_SYMBOL_MY_SAVE "\xEF\x95\xAD"    // 0xf56d
+#define LV_SYMBOL_MY_LOAD "\xEF\x95\xB4"    // 0xf574
 
 class ThemeManager
 {

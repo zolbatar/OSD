@@ -76,7 +76,7 @@ void Editor::Run()
     lv_obj_set_grid_cell(edit->GetObjectParent(), LV_GRID_ALIGN_STRETCH, 0, 1, LV_GRID_ALIGN_STRETCH, 1, 1);
 
     // Buttons
-    auto buttons = lv_obj_create(grid);
+    buttons = lv_obj_create(grid);
     lv_obj_set_grid_cell(buttons, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_CENTER, 0, 1);
     lv_obj_set_size(buttons, LV_PCT(100), 46);
     lv_obj_set_flex_flow(buttons, LV_FLEX_FLOW_ROW);
@@ -86,6 +86,33 @@ void Editor::Run()
     lv_obj_set_style_border_color(buttons, ThemeManager::GetColour(ColourAttribute::WindowBorder), LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(buttons, LV_BORDER_SIDE_BOTTOM, LV_STATE_DEFAULT);
     auto style = ThemeManager::GetStyle(StyleAttribute::Button);
+    {
+        lv_obj_t *btn = lv_btn_create(buttons);
+        lv_obj_set_size(btn, 36, 36);
+        lv_obj_t *img = lv_img_create(btn);
+        lv_img_set_src(img, LV_SYMBOL_NEW);
+        lv_obj_center(img);
+        lv_obj_add_event_cb(btn, NewHandler, LV_EVENT_CLICKED, this);
+        lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
+    }
+    {
+        lv_obj_t *btn = lv_btn_create(buttons);
+        lv_obj_set_size(btn, 36, 36);
+        lv_obj_t *img = lv_img_create(btn);
+        lv_img_set_src(img, LV_SYMBOL_MY_LOAD);
+        lv_obj_center(img);
+        lv_obj_add_event_cb(btn, LoadHandler, LV_EVENT_CLICKED, this);
+        lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
+    }
+    {
+        lv_obj_t *btn = lv_btn_create(buttons);
+        lv_obj_set_size(btn, 36, 36);
+        lv_obj_t *img = lv_img_create(btn);
+        lv_img_set_src(img, LV_SYMBOL_MY_SAVE);
+        lv_obj_center(img);
+        lv_obj_add_event_cb(btn, SaveHandler, LV_EVENT_CLICKED, this);
+        lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
+    }
     {
         lv_obj_t *btn = lv_btn_create(buttons);
         lv_obj_set_size(btn, 36, 36);
@@ -114,11 +141,11 @@ void Editor::Run()
         lv_obj_add_style(btn, style, LV_STATE_DEFAULT);
     }
     auto cb = lv_checkbox_create(buttons);
-    lv_checkbox_set_text(cb, "Debug Output");
-    lv_obj_add_event_cb(cb, DebugSelectHandler, LV_EVENT_ALL, this);
+    /*    lv_checkbox_set_text(cb, "Show assembly");
+        lv_obj_add_event_cb(cb, DebugSelectHandler, LV_EVENT_ALL, this);*/
 
     // Status window
-    auto status = lv_obj_create(grid);
+    status = lv_obj_create(grid);
     lv_obj_set_grid_cell(status, LV_GRID_ALIGN_STRETCH, 0, 2, LV_GRID_ALIGN_CENTER, 2, 1);
     lv_obj_set_size(status, LV_PCT(100), 150);
     lv_obj_add_style(status, ThemeManager::GetStyle(StyleAttribute::WindowContentPadded), LV_STATE_DEFAULT);
@@ -228,11 +255,11 @@ void Editor::Run()
                 switch (k.keycode)
                 {
                 case KeyF1: {
-                    RunWindowed();
+                    FullscreenRun();
                     break;
                 }
                 case KeyF2: {
-                    FullscreenRun();
+                    RunWindowed();
                     break;
                 }
                 default:
@@ -306,6 +333,27 @@ void Editor::BuildHandler(lv_event_t *e)
 {
     auto editor = (Editor *)e->user_data;
     editor->Debug();
+}
+
+void Editor::NewHandler(lv_event_t *e)
+{
+    auto editor = (Editor *)e->user_data;
+    editor->Clear();
+}
+
+void Editor::LoadHandler(lv_event_t *e)
+{
+    auto editor = (Editor *)e->user_data;
+}
+
+void Editor::SaveHandler(lv_event_t *e)
+{
+    auto editor = (Editor *)e->user_data;
+}
+
+void Editor::Clear()
+{
+    edit->SetText("");
 }
 
 void Editor::RunWindowed()
@@ -435,7 +483,29 @@ void Editor::Maximise()
 {
     maximise_requested = false;
     auto ww = (Window *)this->GUI.GetWindow();
-    ww->Maximise(false);
+    if (InputManager::ShiftDown)
+    {
+        edit->SetMaximisedMode();
+        ww->Maximise(true);
+        row_dsc[0] = 0;
+        lv_obj_add_flag(buttons, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_set_style_bg_color(status, lv_color_black(), LV_STATE_DEFAULT);
+        lv_obj_set_style_text_color(status, lv_color_white(), LV_STATE_DEFAULT);
+        lv_obj_set_style_bg_color(status_text, lv_color_black(), LV_STATE_DEFAULT);
+        lv_obj_set_style_text_color(status_text, lv_color_white(), LV_STATE_DEFAULT);
+    }
+    else
+    {
+        ww->Maximise(false);
+        row_dsc[0] = 46;
+        lv_obj_clear_flag(buttons, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_set_style_bg_color(status, lv_color_white(), LV_STATE_DEFAULT);
+        lv_obj_set_style_text_color(status, lv_color_black(), LV_STATE_DEFAULT);
+        lv_obj_set_style_bg_color(status_text, lv_color_white(), LV_STATE_DEFAULT);
+        lv_obj_set_style_text_color(status_text, lv_color_black(), LV_STATE_DEFAULT);
+    }
+    lv_obj_set_style_grid_row_dsc_array(grid, row_dsc, LV_STATE_DEFAULT);
+    lv_obj_update_layout(grid);
     lv_obj_update_layout(ww->GetLVGLWindow());
     edit->Resized();
 }
@@ -457,7 +527,7 @@ void Editor::DebugSelectHandler(lv_event_t *e)
         {
             editor->col_dsc[1] = 0;
         }
-        lv_obj_set_style_grid_column_dsc_array(editor->grid, editor->col_dsc, 0);
+        lv_obj_set_style_grid_column_dsc_array(editor->grid, editor->col_dsc, LV_STATE_DEFAULT);
         lv_obj_update_layout(editor->grid);
         if (editor->edit != NULL)
             editor->edit->Resized();

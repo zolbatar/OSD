@@ -20,6 +20,7 @@ std::list<OSDTask *> OSDTask::tasks_list;
 size_t OSDTask::task_id = 0;
 bool OSDTask::yield_due = false;
 OSDTask *OSDTask::task_override = nullptr;
+OSDTask *OSDTask::task_active = NULL;
 
 OSDTask *GetCurrentTask()
 {
@@ -60,7 +61,12 @@ void OSDTask::TerminateTask()
     }
 
     // Remove
+    bool active = IsActive();
     tasks_list.remove(this);
+    if (active)
+    {
+        SetActive(tasks_list.back());
+    }
     Terminate();
 }
 
@@ -196,4 +202,25 @@ void OSDTask::Maximise()
 void OSDTask::Minimise()
 {
     minimise_requested = false;
+}
+
+void OSDTask::MoveTaskToTop(OSDTask *task)
+{
+    tasks_list.remove(task);
+    tasks_list.push_back(task);
+}
+
+void OSDTask::SetActive(OSDTask *task)
+{
+    // CLogger::Get()->Write("OSDTask", LogNotice, "Set active: %s", task->GetName());
+    task_active = task;
+    MoveTaskToTop(task);
+    InputManager::ClaimInput(task);
+    auto window = (Window *)task->GUI.GetWindow();
+    window->SetActive();
+}
+
+bool OSDTask::IsActive()
+{
+    return task_active = this;
 }

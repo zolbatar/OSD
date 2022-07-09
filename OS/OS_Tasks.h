@@ -94,6 +94,9 @@ class OSDTask : public CTask
     static OSDTask *GetOverride();
     static void SetOverride(OSDTask *task);
     static void ClearOverride();
+    static void SetActive(OSDTask *task);
+    static void MoveTaskToTop(OSDTask *task);
+    bool IsActive();
 
     static std::list<OSDTask *> tasks_list;
     static CTask *boot_task;
@@ -110,6 +113,7 @@ class OSDTask : public CTask
     TaskPriority priority = TaskPriority::User;
     bool terminate_requested = false;
     static OSDTask *task_override;
+    static OSDTask *task_active;
     virtual void Maximise();
     virtual void Minimise();
     std::queue<Key> keyboard_queue;

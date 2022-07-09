@@ -6,6 +6,9 @@ TextEdit::TextEdit(OSDTask *task, lv_obj_t *parent) : Control(task, parent)
     parent_obj = lv_obj_create(parent);
     lv_obj_add_style(parent_obj, ThemeManager::GetStyle(StyleAttribute::Scrollbar), LV_PART_SCROLLBAR);
     lv_obj_add_style(parent_obj, ThemeManager::GetStyle(StyleAttribute::TransparentWindow), LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(parent_obj, lv_color_hex(bg), LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(parent_obj, LV_OPA_COVER, LV_STATE_DEFAULT);
+    // lv_obj_set_style_pad_all(parent_obj, 4, LV_STATE_DEFAULT);
     lv_obj_add_event_cb(parent_obj, ScrollEventHandler, LV_EVENT_SCROLL, this);
 
     // Canvas child
@@ -20,12 +23,32 @@ TextEdit::~TextEdit()
         delete canvas;
 }
 
+void TextEdit::SetMaximisedMode()
+{
+    maximised_mode = true;
+    lv_obj_add_style(parent_obj, ThemeManager::GetStyle(StyleAttribute::ScrollbarLight), LV_PART_SCROLLBAR);
+    fg = 0xFFFFFF;
+    bg = 0x0000AA;
+    bg_char = 0x0020AA;
+    cursor = 0xFFFF00;
+    lv_obj_set_style_bg_color(parent_obj, lv_color_hex(bg), LV_STATE_DEFAULT);
+    Render();
+}
+
 void TextEdit::SetText(std::string text)
 {
+    code.clear();
     auto ll = splitString(text, '\n');
     code.reserve(ll.size());
     std::copy(std::begin(ll), std::end(ll), std::back_inserter(code));
     CalculateLongestLine();
+
+    x = 0;
+    y = 0;
+    screen_x = 0;
+    screen_y = 0;
+    if (canvas != NULL)
+        Render();
 }
 
 std::string TextEdit::GetText()
@@ -78,8 +101,6 @@ void TextEdit::SetupCanvas()
     canvas = new Canvas(task, parent_obj, canvas_w, canvas_h);
 
     // Reset canvas styling
-    canvas->SetBG(0xFFFFFF);
-    canvas->SetFG(0x0);
     lv_obj_add_flag(canvas->GetFirstBuffer(), LV_OBJ_FLAG_FLOATING);
     lv_obj_align(canvas->GetFirstBuffer(), LV_ALIGN_TOP_LEFT, 0, 0);
     lv_obj_add_style(canvas->GetFirstBuffer(), ThemeManager::GetStyle(StyleAttribute::WindowContent), LV_STATE_DEFAULT);
@@ -105,17 +126,19 @@ void TextEdit::Render()
     lv_obj_set_size(obj, longest_line * size + 4, code.size() * size + 4);
 
     // Clear
+    canvas->SetBG(bg);
+    canvas->SetFG(fg);
     canvas->Clear();
 
     // Adjust cursor etc.
+    if (y >= static_cast<int>(code.size()))
+        y = static_cast<int>(code.size());
     if (y < 0)
         y = 0;
-    if (y >= static_cast<int>(code.size()))
-        y = static_cast<int>(code.size()) - 1;
+    if (x >= static_cast<int>(code[y].size()))
+        x = static_cast<int>(code[y].size());
     if (x < 0)
         x = 0;
-    if (x >= static_cast<int>(code[y].size()))
-        x = static_cast<int>(code[y].size()) - 1;
     bool adjust = false;
     do
     {
@@ -137,20 +160,11 @@ void TextEdit::Render()
         }
     } while (adjust);
 
-    // Cursor
-    int64_t ex = (x - screen_x) * (size / 2);
-    int64_t ey = (y - screen_y) * size;
-    canvas->SetFG(0xA0A0A0);
-    canvas->SetBG(0xD0D0D0);
-    canvas->DrawRectangleFilled(ex, ey, ex + size / 2, ey + size, 1);
-    canvas->SetBG(0xFFFFFF);
-    canvas->SetFG(0x0);
-
     // Text
+    canvas->SetBG(bg_char);
     int actual_y = 0;
     for (size_t i = screen_y; i < code.size(); i++)
     {
-
         // Get line
         auto line = code[i];
 
@@ -160,6 +174,8 @@ void TextEdit::Render()
             char c = line[j];
 
             // Draw
+            if (show_blocks)
+                canvas->DrawRectangleFilled(actual_x, actual_y, actual_x + size / 2, actual_y + size, 0);
             if (c == 8)
             {
                 canvas->DrawMonoText(actual_x, actual_y, std::string(4, c));
@@ -180,6 +196,14 @@ void TextEdit::Render()
         if (actual_y > canvas_h)
             break;
     }
+
+    // Cursor
+    int64_t ex = (x - screen_x) * (size / 2);
+    int64_t ey = (y - screen_y) * size;
+    canvas->SetFG(cursor);
+    canvas->DrawLine(ex, ey, ex, ey + size, 1);
+    canvas->SetFG(fg);
+    //    canvas->DrawRectangleFilled(ex, ey, ex + size / 2, ey + size, 1);
 }
 
 void TextEdit::HandleKey(Key k)
@@ -212,37 +236,86 @@ void TextEdit::HandleKey(Key k)
         case KeyPageDown:
             this->y += canvas_h / size;
             break;
-        default:
-            CLogger::Get()->Write("Editor", LogNotice, "Key: %d %x", k.ascii, k.keycode);
-        }
-    }
-    else
-    {
-        if (k.ascii == 10)
-        {
+        case KeyReturn: {
             auto l1 = code[y].substr(0, x);
             auto l2 = code[y].substr(x);
             code[y] = l1;
             code.insert(code.begin() + y + 1, l2);
             y++;
             x = 0;
-            // Break line at this point
+            break;
+        }
+        case KeySpace:
+            Insert(' ');
+            break;
+        case KeyBackspace:
+            Backspace();
+            break;
+        default:
+            CLogger::Get()->Write("Editor", LogNotice, "Key: %d %x", k.ascii, k.keycode);
+        }
+    }
+    else
+    {
+        Insert(k.ascii);
+    }
+    Render();
+}
+
+void TextEdit::Backspace()
+{
+    if (x == 0 && y == 0)
+    {
+        // Do nothing
+    }
+    else if (x == 0)
+    {
+        // Is current line empty?
+        x = code[y - 1].length();
+        if (code[y].length() == 0)
+        {
+            code.erase(code.begin() + y);
         }
         else
         {
-            CLogger::Get()->Write("Editor", LogNotice, "%d", k.ascii);
-            // normal character
-            if (mode == Mode::Overwrite)
-            {
-                code[y][x] = k.ascii;
-                x++;
-            }
-            else
-            {
-                code[y].insert(x, std::string(1, k.ascii));
-                CalculateLongestLine();
-            }
+            // Merge
+            code[y - 1] += code[y];
+            code.erase(code.begin() + y);
         }
+
+        // Beginning of line
+        y--;
+    }
+    else
+    {
+        //        CLogger::Get()->Write("Editor", LogNotice, "%d", x);
+        x--;
+        code[y].erase(x, 1);
     }
     Render();
+}
+
+void TextEdit::Insert(char c)
+{
+    // Do we have a line?
+    if (code.size() < static_cast<size_t>(y) + 1)
+    {
+        //        CLogger::Get()->Write("Editor", LogNotice, "Adding row");
+        code.push_back("");
+    }
+
+    if (mode == Mode::Overwrite)
+    {
+        code[y][x] = c;
+        x++;
+    }
+    else
+    {
+        if (code[y].empty())
+            code[y] = std::string(1, c);
+        else
+            code[y].insert(x, std::string(1, c));
+        x++;
+        CalculateLongestLine();
+    }
 }

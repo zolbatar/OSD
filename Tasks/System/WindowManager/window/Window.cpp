@@ -48,8 +48,6 @@ Window::Window(OSDTask *task, bool pure_canvas, bool fixed, std::string title, i
     {
         CreateCanvas(canvas_w, canvas_h);
     }
-
-    SetActive();
 }
 
 void Window::CreateCanvas(int canvas_w, int canvas_h)
@@ -81,15 +79,12 @@ void Window::SetActive()
     lv_obj_remove_style(header, ThemeManager::GetStyle(StyleAttribute::WindowInactive), 0);
     lv_obj_add_style(header, ThemeManager::GetStyle(StyleAttribute::WindowActive), 0);
     lv_obj_move_foreground(this->GetLVGLWindow());
-    this->active = true;
-    InputManager::ClaimInput(this->task);
 }
 
 void Window::SetInactive()
 {
     lv_obj_remove_style(header, ThemeManager::GetStyle(StyleAttribute::WindowActive), 0);
     lv_obj_add_style(header, ThemeManager::GetStyle(StyleAttribute::WindowInactive), 0);
-    this->active = false;
 }
 
 void Window::CloseClicked(_lv_event_t *e)
@@ -115,7 +110,7 @@ void Window::MaximiseClicked(_lv_event_t *e)
 void Window::ClickEventHandler(lv_event_t *e)
 {
     auto win = (Window *)e->user_data;
-    win->SetActive();
+    OSDTask::SetActive(win->task);
 }
 
 void Window::DragEventHandler(lv_event_t *e)

@@ -107,6 +107,7 @@ void WindowManager::SetupLVGLStyles()
     ThemeManager::AddColour(ColourAttribute::WindowFurnitureBorder, lv_color_hex(0x808080));
     ThemeManager::AddColour(ColourAttribute::WindowBorder, lv_color_hex(0x606060));
     ThemeManager::AddColour(ColourAttribute::ScrollbarBackground, lv_color_hex(0x404040));
+    ThemeManager::AddColour(ColourAttribute::ScrollbarLightBackground, lv_color_hex(0X8080aa));
 
     ThemeManager::AddFont(FontAttribute::Window,
                           FontManager::GetFontByNameStyleAndSize(
@@ -147,6 +148,7 @@ void WindowManager::SetupLVGLStyles()
         lv_style_t *style = CreateStyle();
         lv_style_init(style);
         lv_style_set_bg_opa(style, LV_OPA_TRANSP);
+        lv_style_set_radius(style, 0);
         lv_style_set_border_width(style, 0);
         lv_style_set_pad_all(style, 0);
         ThemeManager::AddStyle(StyleAttribute::TransparentWindow, style);
@@ -386,12 +388,25 @@ void WindowManager::SetupLVGLStyles()
         lv_style_set_radius(style, ThemeManager::GetConst(ConstAttribute::CornerRadius));
         lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::ControlBorderColour));
         lv_style_set_border_opa(style, LV_OPA_30);
-        lv_style_set_border_width(style, 1);
+        lv_style_set_border_width(style, 0);
         lv_style_set_width(style, ThemeManager::GetConst(ConstAttribute::ScrollbarSize));
         lv_style_set_height(style, ThemeManager::GetConst(ConstAttribute::ScrollbarSize));
         lv_style_set_bg_opa(style, LV_OPA_30);
         lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::ScrollbarBackground));
         ThemeManager::AddStyle(StyleAttribute::Scrollbar, style);
+    }
+    {
+        lv_style_t *style = CreateStyle();
+        lv_style_init(style);
+        lv_style_set_radius(style, ThemeManager::GetConst(ConstAttribute::CornerRadius));
+        lv_style_set_border_color(style, ThemeManager::GetColour(ColourAttribute::ControlBorderColour));
+        lv_style_set_border_opa(style, LV_OPA_30);
+        lv_style_set_border_width(style, 0);
+        lv_style_set_width(style, ThemeManager::GetConst(ConstAttribute::ScrollbarSize));
+        lv_style_set_height(style, ThemeManager::GetConst(ConstAttribute::ScrollbarSize));
+        lv_style_set_bg_opa(style, LV_OPA_30);
+        lv_style_set_bg_color(style, ThemeManager::GetColour(ColourAttribute::ScrollbarLightBackground));
+        ThemeManager::AddStyle(StyleAttribute::ScrollbarLight, style);
     }
 
     // Bar

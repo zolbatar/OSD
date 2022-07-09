@@ -32,7 +32,7 @@ class Window
     void SetInactive();
     bool GetActive()
     {
-        return active;
+        return task->IsActive();
     }
     OSDTask *GetTask()
     {
@@ -57,7 +57,6 @@ class Window
     int width;
     int height;
     int z = 0;
-    bool active = false;
     lv_obj_t *win;
     lv_obj_t *header;
     Canvas *canvas = NULL;

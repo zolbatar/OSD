@@ -101,6 +101,7 @@ void WindowManager::ReceiveDirectEx(DirectMessage *message)
                                m->canvas_h);
         Window::windows.insert(std::make_pair(m->id, w));
         source->GUI.SetWindow(w);
+        OSDTask::SetActive(source);
         break;
     }
     case Messages::WM_CloseWindow: {

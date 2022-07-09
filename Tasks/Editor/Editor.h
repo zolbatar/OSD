@@ -16,6 +16,7 @@ class Editor : public OSDTask
     void FullscreenRun();
     void Debug();
     void UpdateDebugWindow();
+    void Clear();
 
     bool debug_output = false;
     lv_obj_t *grid;
@@ -33,6 +34,8 @@ class Editor : public OSDTask
     lv_obj_t *ta3;
     lv_obj_t *ta4;
     lv_obj_t *status_text;
+    lv_obj_t *status;
+    lv_obj_t *buttons;
     DARICWindow *app = NULL;
 
     void Maximise();
@@ -42,5 +45,8 @@ class Editor : public OSDTask
     static void RunHandler(lv_event_t *e);
     static void RunFullScreenHandler(lv_event_t *e);
     static void BuildHandler(lv_event_t *e);
+    static void NewHandler(lv_event_t *e);
+    static void LoadHandler(lv_event_t *e);
+    static void SaveHandler(lv_event_t *e);
     static void ScrollBeginEvent(lv_event_t *e);
 };
